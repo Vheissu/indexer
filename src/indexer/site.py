@@ -260,7 +260,7 @@ def render_index(
     )
     body = f"""<h1>Active RSS feeds, by topic</h1>
 <p class="lead">{total:,} RSS and Atom feeds that work: each was fetched and parsed successfully
-in the last {success_days} days and has a post from the last {item_years} years.</p>
+in the recent days and had at least one post since the last year.</p>
 <p class="tip"><img src="{ICON}" width="20" height="20" alt=""><span>Follow any of them by email:
 click the icon next to a feed for a free digest from <a href="{FEEDRULE}">feedrule.com</a>, with
 keyword filters and no account.</span></p>
