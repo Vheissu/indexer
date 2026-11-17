@@ -1,0 +1,114 @@
+name: indexer
+
+# Shared by the indexer services (input, survivors, check, export, cleanup, drop-tables): one image, the
+# database settings, and the hardening for a process that handles untrusted content.
+x-indexer: &indexer
+  build:
+    context: .
+    dockerfile: Dockerfile
+  image: indexer:0.1.0
+  depends_on:
+    postgres:
+      condition: service_healthy
+    liquibase:
+      condition: service_completed_successfully # the schema is up to date first
+  environment:
+    # Local postgres by default, with the password from POSTGRES_PASSWORD (.env). CI sets
+    # DATABASE_URL (a URL or libpq keyword string) and PGPASSWORD for Supabase, and runs with
+    # `--no-deps` so the local database never starts.
+    DATABASE_URL: ${DATABASE_URL:-postgresql://indexer@postgres:5432/indexer}
+    PGPASSWORD: ${PGPASSWORD:-${POSTGRES_PASSWORD:-}}
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: ["no-new-privileges:true"]
+
+services:
+  postgres:
+    image: postgres:18.7-trixie
+    environment:
+      POSTGRES_DB: indexer
+      POSTGRES_USER: indexer
+      # local development only: set it in .env (see .env.example); never committed
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-}
+    ports:
+      - "127.0.0.1:5432:5432" # never exposed beyond this machine
+    volumes:
+      - pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U indexer -d indexer"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  liquibase:
+    build:
+      context: db
+      dockerfile: liquibase.Dockerfile
+    image: indexer-liquibase:5.0.4-pg42.7.14
+    depends_on:
+      postgres:
+        condition: service_healthy
+    # Defaults target the local postgres service. CI points these at Supabase and runs with
+    # `docker compose run --no-deps` so the local database is never started there.
+    environment:
+      LIQUIBASE_COMMAND_URL: ${LIQUIBASE_COMMAND_URL:-jdbc:postgresql://postgres:5432/indexer}
+      LIQUIBASE_COMMAND_USERNAME: ${LIQUIBASE_COMMAND_USERNAME:-indexer}
+      LIQUIBASE_COMMAND_PASSWORD: ${LIQUIBASE_COMMAND_PASSWORD:-${POSTGRES_PASSWORD:-}}
+    volumes:
+      - ./db/changelog:/liquibase/changelog:ro
+    command: ["--changelog-file=db.changelog-master.yaml", "update"]
+
+  # Loads every URL from the lists in data/sources.toml into the inputs table and exits.
+  # Safe to re-run: new URLs are added, nothing is deleted, and a URL's source changes only
+  # to a more permissive license.
+  input:
+    <<: *indexer
+    volumes:
+      - ./data:/work/data:ro
+    command: ["load-inputs", "data/sources.toml"]
+
+  # Proposes feeds from a ~5-year-old Common Crawl crawl that are still active today: appends
+  # them to data/survivors.txt (for a pull request) and writes output/survivors.md. Locally:
+  #   mkdir -p output && HOST_UID=$(id -u) HOST_GID=$(id -g) docker compose run --rm survivors
+  survivors:
+    <<: *indexer
+    user: "${HOST_UID:-10001}:${HOST_GID:-10001}" # owns what it writes
+    volumes:
+      - ./data:/work/data:ro
+      - ./data/survivors.txt:/work/data/survivors.txt # the only file it appends to
+      - ./output:/work/output # the pull request report
+    command: ["survivors", "--report", "output/survivors.md"]
+
+  # Checks a URL file in ./data, or a random batch of inputs, and exits.
+  #   docker compose run --rm check                                   # data/urls.txt
+  #   docker compose run --rm check run --from-inputs --batch 50 -v
+  check:
+    <<: *indexer
+    volumes:
+      - ./data:/work/data:ro
+    command: ["run", "data/urls.txt"]
+
+  # Writes the published lists to ./output (cleared first) and exits:
+  #   mkdir -p output && HOST_UID=$(id -u) HOST_GID=$(id -g) docker compose run --rm export
+  # Runs as your user so the files are yours; create ./output first, or Docker creates it as root.
+  export:
+    <<: *indexer
+    user: "${HOST_UID:-10001}:${HOST_GID:-10001}"
+    volumes:
+      - ./output:/work/output
+      - ./SPEC.md:/work/SPEC.md:ro
+    command: ["export", "--output-dir", "output"]
+
+  # Deletes every indexer table and all data (needs --yes); the next liquibase run recreates
+  # them empty:  docker compose run --rm drop-tables drop-tables --yes
+  drop-tables:
+    <<: *indexer
+    command: ["drop-tables"] # refuses without --yes
+
+  # Deletes health checks older than 8 months and exits. feeds and inputs are kept.
+  cleanup:
+    <<: *indexer
+    command: ["cleanup", "--months", "8"]
+
+volumes:
+  pgdata:

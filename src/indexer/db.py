@@ -1,0 +1,258 @@
+"""Postgres writes. Liquibase owns the schema (db/changelog); this module never creates it."""
+
+import asyncio
+import ipaddress
+from collections.abc import Mapping, Sequence
+from datetime import UTC, datetime
+from typing import Self
+
+import psycopg
+from psycopg import sql
+
+from indexer.check.runner import CheckRow
+from indexer.export import ListedFeed
+from indexer.sources import InputRow
+
+DEFAULT_DATABASE_URL = "postgresql://indexer@127.0.0.1:5432/indexer"  # password: $PGPASSWORD
+# Every table this project creates (db/changelog), plus Liquibase's own: what drop-tables drops.
+OWN_TABLES = (
+    "health_checks",
+    "runs",
+    "feeds",
+    "inputs",
+    "databasechangelog",
+    "databasechangeloglock",
+)
+
+_INSERT_CHECK = """
+INSERT INTO health_checks (
+    run_id, checked_at, url, final_url, http_status, parent_domain, last_item_date,
+    redirected, file_size, item_count, fetch_time_ms, response_time_ms, ttl, error,
+    etag, last_modified, first_redirect_status, ip_address
+) VALUES (
+    %(run_id)s, %(checked_at)s, %(url)s, %(final_url)s, %(http_status)s, %(parent_domain)s,
+    %(last_item_date)s, %(redirected)s, %(file_size)s, %(item_count)s, %(fetch_time_ms)s,
+    %(response_time_ms)s, %(ttl)s, %(error)s, %(etag)s, %(last_modified)s,
+    %(first_redirect_status)s, %(ip_address)s
+)
+"""
+
+# Descriptive metadata lives once per feed (feeds), not on every check. A parsed feed
+# overwrites all of it (a field the feed dropped becomes null) and clears any discovered URL.
+FEED_METADATA = (
+    "feed_kind",
+    "generator",
+    "title",
+    "subtitle",
+    "categories",
+    "item_categories",
+    "itunes_category",
+    "language",
+    "media_type",
+    "icon",
+    "logo",
+    "rights",
+    "license",
+    "site_url",
+    "self_url",
+    "new_feed_url",
+)
+
+_UPSERT_FEED = (
+    "INSERT INTO feeds AS f (url, updated_at, parsed_at, "
+    + ", ".join(FEED_METADATA)
+    + ") VALUES (%(url)s, %(checked_at)s, %(checked_at)s, "
+    + ", ".join(f"%({c})s" for c in FEED_METADATA)
+    + ") ON CONFLICT (url) DO UPDATE SET updated_at = EXCLUDED.updated_at,"
+    " parsed_at = EXCLUDED.parsed_at, " + ", ".join(f"{c} = EXCLUDED.{c}" for c in FEED_METADATA)
+)
+
+
+def _inet(value: str | None) -> ipaddress.IPv4Address | ipaddress.IPv6Address | None:
+    try:
+        return ipaddress.ip_address(value.split("%")[0]) if value else None
+    except ValueError:
+        return None
+
+
+# Insert new URLs; for a URL already present, replace its source only when the new license is
+# strictly more permissive (lower tier). Unknown licenses rank last. first_seen_at and
+# last_checked_at are never touched here.
+_UPSERT_INPUTS = """
+INSERT INTO inputs AS i (url, source, source_license)
+SELECT url, source, source_license FROM inputs_load
+ON CONFLICT (url) DO UPDATE
+SET source = EXCLUDED.source, source_license = EXCLUDED.source_license
+WHERE coalesce(
+          (%(tiers)s::int[])[array_position(%(licenses)s::text[], EXCLUDED.source_license)],
+          2147483647)
+    < coalesce(
+          (%(tiers)s::int[])[array_position(%(licenses)s::text[], i.source_license)],
+          2147483647)
+RETURNING (xmax::text = '0') AS inserted
+"""
+
+
+def _check_params(run_id: int, row: CheckRow) -> dict[str, object]:
+    params: dict[str, object] = {
+        "run_id": run_id,
+        "checked_at": row.checked_at,
+        "url": row.url,
+        "final_url": row.final_url,
+        "http_status": row.http_status,
+        "parent_domain": row.parent_domain,
+        "last_item_date": row.last_item_date,
+        "redirected": row.redirected,
+        "file_size": row.file_size,
+        "item_count": row.item_count,
+        "fetch_time_ms": row.fetch_time_ms,
+        "response_time_ms": row.response_time_ms,
+        "ttl": row.ttl,
+        "error": row.error,
+        "etag": row.etag,
+        "last_modified": row.last_modified,
+        "first_redirect_status": row.first_redirect_status,
+        "ip_address": _inet(row.ip_address),
+    }
+    params.update({name: getattr(row, name) for name in FEED_METADATA})
+    return params
+
+
+class Database:
+    def __init__(self, conn: psycopg.AsyncConnection) -> None:
+        self._conn = conn
+        # One connection serves every concurrent check. A connection runs one transaction at a
+        # time, so concurrent writers must take turns; otherwise their transactions interleave
+        # and psycopg aborts them (OutOfOrderTransactionNesting).
+        self._lock = asyncio.Lock()
+
+    @classmethod
+    async def connect(cls, dsn: str) -> Self:
+        return cls(await psycopg.AsyncConnection.connect(dsn, autocommit=True))
+
+    async def close(self) -> None:
+        await self._conn.close()
+
+    async def start_run(self) -> int:
+        cur = await self._conn.execute(
+            "INSERT INTO runs (started_at) VALUES (%s) RETURNING id", (datetime.now(UTC),)
+        )
+        row = await cur.fetchone()
+        assert row is not None
+        return int(row[0])
+
+    async def finish_run(self, run_id: int) -> None:
+        await self._conn.execute(
+            "UPDATE runs SET finished_at = %s WHERE id = %s", (datetime.now(UTC), run_id)
+        )
+
+    async def select_batch(self, size: int, stale_days: int) -> list[str]:
+        """A uniformly random sample of inputs never checked, or last checked more than
+        `stale_days` ago. Each run is a fresh random draw; a URL checked recently is excluded,
+        so repeated runs work through every URL before revisiting any."""
+        cur = await self._conn.execute(
+            "SELECT url FROM inputs"
+            " WHERE last_checked_at IS NULL"
+            "    OR last_checked_at < now() - make_interval(days => %s)"
+            " ORDER BY random() LIMIT %s",
+            (stale_days, size),
+        )
+        return [row[0] for row in await cur.fetchall()]
+
+    async def known_inputs(self, urls: Sequence[str]) -> set[str]:
+        """Those of `urls` that are already inputs."""
+        cur = await self._conn.execute("SELECT url FROM inputs WHERE url = ANY(%s)", (list(urls),))
+        return {row[0] for row in await cur.fetchall()}
+
+    async def insert_check(self, run_id: int, row: CheckRow) -> None:
+        """Store one check, in one transaction:
+        - the per-check health row;
+        - the feed's metadata in `feeds`: replaced when the feed parsed, untouched when the
+          check failed;
+        - `inputs.last_checked_at`, if the URL is an input (any outcome: a failing feed waits
+          its turn like the rest)."""
+        params = _check_params(run_id, row)
+        async with self._lock, self._conn.transaction():
+            await self._conn.execute(_INSERT_CHECK, params)
+            if row.error is None:
+                await self._conn.execute(_UPSERT_FEED, params)
+            await self._conn.execute(
+                "UPDATE inputs SET last_checked_at = %s WHERE url = %s",
+                (row.checked_at, row.url),
+            )
+
+    async def upsert_inputs(
+        self, rows: Sequence[InputRow], license_tiers: Mapping[str, int]
+    ) -> tuple[int, int]:
+        """Load rows into `inputs` in one transaction. Returns (inserted, re-attributed)."""
+        licenses = list(license_tiers)
+        params = {"licenses": licenses, "tiers": [license_tiers[x] for x in licenses]}
+        async with self._lock, self._conn.transaction(), self._conn.cursor() as cur:
+            await cur.execute(
+                "CREATE TEMP TABLE inputs_load (url text, source text, source_license text)"
+                " ON COMMIT DROP"
+            )
+            async with cur.copy(
+                "COPY inputs_load (url, source, source_license) FROM STDIN"
+            ) as copy:
+                for row in rows:
+                    await copy.write_row((row.url, row.source, row.source_license))
+            await cur.execute(_UPSERT_INPUTS, params)
+            changed = [r[0] for r in await cur.fetchall()]
+        inserted = sum(changed)
+        return inserted, len(changed) - inserted
+
+    async def listed_feeds(self, success_days: int, item_years: int) -> list[ListedFeed]:
+        """Feeds with a successful check in the last `success_days` days whose newest item, as
+        of their latest successful check, is less than `item_years` years old."""
+        cur = await self._conn.execute(
+            """
+            WITH latest_ok AS (
+                SELECT DISTINCT ON (url) url, last_item_date, file_size
+                FROM health_checks
+                WHERE error IS NULL AND checked_at > now() - make_interval(days => %s)
+                ORDER BY url, checked_at DESC
+            )
+            SELECT f.url, f.title, f.site_url, l.last_item_date, f.categories, f.item_categories,
+                   l.file_size
+            FROM feeds f JOIN latest_ok l USING (url)
+            WHERE l.last_item_date > now() - make_interval(years => %s)
+            """,
+            (success_days, item_years),
+        )
+        return [ListedFeed(*row) for row in await cur.fetchall()]
+
+    async def drop_all_tables(self) -> list[str]:
+        """Drop every table this project owns, Liquibase's bookkeeping included, so the next
+        migration rebuilds an empty schema. Only the tables named in OWN_TABLES: other tables in
+        the database (Supabase's, another app's) are never touched. Returns those that existed."""
+        async with self._lock, self._conn.transaction():
+            cur = await self._conn.execute(
+                "SELECT tablename FROM pg_tables"
+                " WHERE schemaname = current_schema() AND tablename = ANY(%s) ORDER BY tablename",
+                (list(OWN_TABLES),),
+            )
+            existing = [row[0] for row in await cur.fetchall()]
+            if existing:
+                await self._conn.execute(
+                    sql.SQL("DROP TABLE {} CASCADE").format(
+                        sql.SQL(", ").join(sql.Identifier(t) for t in existing)
+                    )
+                )
+            return existing
+
+    async def delete_old_checks(self, months: int) -> tuple[int, int]:
+        """Delete health checks older than `months`, then runs that are older than that and
+        have no checks left. feeds and inputs are untouched. Returns (checks, runs) deleted."""
+        async with self._lock, self._conn.transaction():
+            cur = await self._conn.execute(
+                "DELETE FROM health_checks WHERE checked_at < now() - make_interval(months => %s)",
+                (months,),
+            )
+            checks = cur.rowcount
+            cur = await self._conn.execute(
+                "DELETE FROM runs r WHERE r.started_at < now() - make_interval(months => %s)"
+                " AND NOT EXISTS (SELECT 1 FROM health_checks h WHERE h.run_id = r.id)",
+                (months,),
+            )
+            return checks, cur.rowcount

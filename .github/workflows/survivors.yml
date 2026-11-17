@@ -1,0 +1,106 @@
+# Proposes feeds from a ~5-year-old Common Crawl crawl that are still active: reads the first
+# 25 MB (input slice-mb) of one random WAT file, checks every feed found, and appends the ones that pass to
+# data/survivors.txt in a new pull request (base develop). Nothing is inserted here: once the
+# pull request is reviewed and merged, the input job loads the file.
+#
+# Every run starts from develop and pushes its own branch, survivors-<UTC timestamp>, so a pull
+# request only ever holds that run's finds: older proposals are never carried along. Requires the
+# repository setting "Allow GitHub Actions to create and approve pull requests". Reads the inputs
+# table (to skip known URLs) with the SUPABASE_DB_* secrets.
+name: survivors
+
+on:
+  schedule:
+    - cron: "11 4 * * 3" # Wednesdays
+  workflow_dispatch:
+    inputs:
+      slice-mb:
+        description: MB to read from the start of one random WAT file
+        type: number
+        default: 25
+      years-ago:
+        description: Use the crawl that ended closest to this many years ago
+        type: number
+        default: 5
+      active-days:
+        description: Keep feeds with a tagged post in this many days
+        type: number
+        default: 243 # about 8 months
+      max-feeds:
+        description: Stop once this many new feeds pass
+        type: number
+        default: 50
+
+permissions:
+  contents: write # to push the run's survivors-<timestamp> branch
+  pull-requests: write # to open the proposal
+
+concurrency:
+  group: indexer-db
+  cancel-in-progress: false
+
+jobs:
+  survivors:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      LIQUIBASE_COMMAND_URL: jdbc:postgresql://${{ secrets.SUPABASE_DB_HOST }}:${{ secrets.SUPABASE_DB_PORT }}/${{ secrets.SUPABASE_DB_NAME }}?sslmode=require
+      LIQUIBASE_COMMAND_USERNAME: ${{ secrets.SUPABASE_DB_USER }}
+      LIQUIBASE_COMMAND_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+      DATABASE_URL: >-
+        host=${{ secrets.SUPABASE_DB_HOST }} port=${{ secrets.SUPABASE_DB_PORT }}
+        dbname=${{ secrets.SUPABASE_DB_NAME }} user=${{ secrets.SUPABASE_DB_USER }}
+        sslmode=require
+      PGPASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+      GH_TOKEN: ${{ github.token }}
+      # Scheduled runs have no inputs: fall back to the defaults. Passed through the
+      # environment, never pasted into the script.
+      SLICE_MB: ${{ inputs.slice-mb || 25 }}
+      YEARS_AGO: ${{ inputs.years-ago || 5 }}
+      ACTIVE_DAYS: ${{ inputs.active-days || 243 }}
+      MAX_FEEDS: ${{ inputs.max-feeds || 50 }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: develop
+          persist-credentials: false
+
+      - name: Build images
+        run: docker compose build liquibase survivors
+
+      - name: Migrate schema
+        run: docker compose run --rm --no-deps -T liquibase
+
+      - name: Remember develop's file
+        run: cp data/survivors.txt "$RUNNER_TEMP/before.txt"
+
+      - name: Find surviving feeds
+        run: |
+          mkdir -p output
+          HOST_UID="$(id -u)" HOST_GID="$(id -g)" docker compose run --rm --no-deps -T survivors \
+            survivors --report output/survivors.md --slice-mb "$SLICE_MB" \
+            --years-ago "$YEARS_AGO" --active-days "$ACTIVE_DAYS" --max-feeds "$MAX_FEEDS"
+
+      - name: Propose them
+        run: |
+          if cmp -s data/survivors.txt "$RUNNER_TEMP/before.txt"; then
+            echo "Nothing new to propose."
+            exit 0
+          fi
+          stamp="$(date -u +%Y%m%d-%H%M%S)"
+          branch="survivors-$stamp"
+          git switch -q -c "$branch"
+          git add data/survivors.txt
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "Propose feeds from Common Crawl survivors, $stamp"
+          git push -q "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$branch:$branch"
+          {
+            echo "Feeds from a ~5-year-old Common Crawl crawl that are still active, proposed for"
+            echo "\`data/survivors.txt\` by one survivors run. Review the diff: delete the URL line of"
+            echo "any feed you don't want, then merge; or close this pull request to drop them all."
+            echo
+            cat output/survivors.md
+          } > "$RUNNER_TEMP/body.md"
+          gh pr create --repo "$GITHUB_REPOSITORY" --base develop --head "$branch" \
+            --title "Feeds from Common Crawl survivors, $stamp" --body-file "$RUNNER_TEMP/body.md"

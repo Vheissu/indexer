@@ -1,0 +1,61 @@
+# Checks a random batch of inputs not checked in the last 14 days, 8 times a day.
+# 8 runs x 500 URLs = 4,000 a day: about 12 days for the ~47,000 inputs, then each URL comes
+# round again 14 days after its last check. Results go to Supabase Postgres.
+#
+# Uses the same repository secrets as input.yml (SUPABASE_DB_*); see that file.
+name: check
+
+on:
+  schedule:
+    - cron: "23 */3 * * *" # every 3 hours, off the hour (busy times delay scheduled runs)
+  workflow_dispatch:
+    inputs:
+      batch:
+        description: URLs to check
+        type: number
+        default: 500
+      stale-days:
+        description: Recheck URLs last checked more than this many days ago
+        type: number
+        default: 14
+
+permissions:
+  contents: read # this job fetches untrusted content; it never needs to write to the repo
+
+concurrency:
+  group: indexer-db
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      # Read by compose.yaml (see the liquibase, input and check services).
+      LIQUIBASE_COMMAND_URL: jdbc:postgresql://${{ secrets.SUPABASE_DB_HOST }}:${{ secrets.SUPABASE_DB_PORT }}/${{ secrets.SUPABASE_DB_NAME }}?sslmode=require
+      LIQUIBASE_COMMAND_USERNAME: ${{ secrets.SUPABASE_DB_USER }}
+      LIQUIBASE_COMMAND_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+      DATABASE_URL: >-
+        host=${{ secrets.SUPABASE_DB_HOST }} port=${{ secrets.SUPABASE_DB_PORT }}
+        dbname=${{ secrets.SUPABASE_DB_NAME }} user=${{ secrets.SUPABASE_DB_USER }}
+        sslmode=require
+      PGPASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+      # Scheduled runs have no inputs: fall back to the defaults. Passed through the
+      # environment, never interpolated into the script.
+      BATCH: ${{ inputs.batch || 500 }}
+      STALE_DAYS: ${{ inputs.stale-days || 14 }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Build images
+        run: docker compose build liquibase check
+
+      - name: Migrate schema
+        run: docker compose run --rm --no-deps -T liquibase
+
+      - name: Check a batch
+        run: >-
+          docker compose run --rm --no-deps -T check
+          run --from-inputs --batch "$BATCH" --stale-days "$STALE_DAYS" -v

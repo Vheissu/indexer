@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Atom example</title>
+  <updated>2025-06-01T00:00:00Z</updated>
+  <entry><title>A</title><updated>2025-05-01T12:00:00+02:00</updated></entry>
+  <entry><title>B</title><published>2025-05-20T00:00:00Z</published></entry>
+</feed>

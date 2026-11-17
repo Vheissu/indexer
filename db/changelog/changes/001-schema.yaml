@@ -1,0 +1,173 @@
+# The whole schema (the former changesets 001 to 009, squashed on 2026-11-16; every database
+# was then reset, on 2026-11-17, so this one creates the tables from scratch; edited again
+# that day to drop the unused columns health_checks.conditional and feeds.discovered_feed_url).
+databaseChangeLog:
+  - changeSet:
+      id: 001-schema
+      author: feedrule-indexer
+      changes:
+        - createTable:
+            tableName: runs
+            remarks: One row per invocation of `indexer run`; id is the run number.
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  generationType: ALWAYS
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: started_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: finished_at
+                  type: TIMESTAMP WITH TIME ZONE
+
+        - createTable:
+            tableName: health_checks
+            remarks: One row per URL per run.
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  generationType: ALWAYS
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: run_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_health_checks_run
+                    references: runs(id)
+              - column:
+                  name: checked_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  constraints:
+                    nullable: false
+              - column: {name: url, type: TEXT, constraints: {nullable: false}}
+              - column: {name: final_url, type: TEXT}
+              - column: {name: http_status, type: SMALLINT}
+              - column: {name: parent_domain, type: TEXT}
+              - column: {name: last_item_date, type: TIMESTAMP WITH TIME ZONE}
+              - column:
+                  name: redirected
+                  type: BOOLEAN
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+              - column: {name: file_size, type: INTEGER}
+              - column: {name: item_count, type: INTEGER}
+              - column: {name: fetch_time_ms, type: INTEGER}
+              - column: {name: response_time_ms, type: INTEGER}
+              - column: {name: ttl, type: INTEGER}
+              - column: {name: error, type: TEXT}
+              - column:
+                  name: etag
+                  type: TEXT
+                  remarks: ETag of the final 200 response, as sent
+              - column:
+                  name: last_modified
+                  type: TEXT
+                  remarks: Last-Modified of the final 200 response, as sent
+              - column:
+                  name: first_redirect_status
+                  type: SMALLINT
+                  remarks: Status of the first redirect (301/308 permanent, 302/303/307 temporary)
+              - column:
+                  name: ip_address
+                  type: INET
+                  remarks: Final hop's peer address, or the last address a connection was tried to
+        # One row per URL per run; the same index serves lookups by URL.
+        - addUniqueConstraint:
+            tableName: health_checks
+            columnNames: url, run_id
+            constraintName: uq_health_checks_url_run
+
+        - createTable:
+            tableName: inputs
+            remarks: >-
+              Feed URLs to check, loaded from data/sources.toml by `indexer load-inputs`.
+            columns:
+              - column:
+                  name: url
+                  type: TEXT
+                  remarks: Feed URL, in the form the checker validates (unique)
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_inputs
+                    nullable: false
+              - column:
+                  name: source
+                  type: TEXT
+                  remarks: The list file the URL came from (or the Common Crawl WAT file)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: source_license
+                  type: TEXT
+                  remarks: SPDX id of that list's license; the most permissive if found in several
+                  constraints:
+                    nullable: false
+              - column:
+                  name: first_seen_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  defaultValueComputed: now()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_checked_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  remarks: Set by the checker; null means never checked
+        - createIndex:
+            tableName: inputs
+            indexName: ix_inputs_last_checked_at
+            columns:
+              - column:
+                  name: last_checked_at
+
+        - createTable:
+            tableName: feeds
+            remarks: >-
+              Latest metadata per feed URL, updated in place by each check: overwritten when a
+              check parses the feed, left as is when a check fails.
+            columns:
+              - column:
+                  name: url
+                  type: TEXT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_feeds
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  remarks: checked_at of the check that last changed this row
+                  constraints:
+                    nullable: false
+              - column:
+                  name: parsed_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  remarks: checked_at of the last check that parsed the feed; null if never
+              - column: {name: feed_kind, type: TEXT, remarks: "rss, rdf, atom or atom03"}
+              - column: {name: generator, type: TEXT}
+              - column: {name: title, type: TEXT}
+              - column: {name: subtitle, type: TEXT}
+              - column: {name: categories, type: TEXT}
+              - column: {name: item_categories, type: TEXT}
+              - column: {name: itunes_category, type: TEXT}
+              - column: {name: language, type: TEXT}
+              - column: {name: media_type, type: TEXT, remarks: "text, podcast or video"}
+              - column: {name: icon, type: TEXT}
+              - column: {name: logo, type: TEXT}
+              - column: {name: rights, type: TEXT}
+              - column: {name: license, type: TEXT}
+              - column: {name: site_url, type: TEXT}
+              - column: {name: self_url, type: TEXT}
+              - column: {name: new_feed_url, type: TEXT}

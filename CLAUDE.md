@@ -1,0 +1,146 @@
+# indexer (Maintained Awesome RSS)
+
+A self-maintaining awesome list of RSS/Atom feeds: collect feed URLs (curated lists, submissions,
+Common Crawl), check them regularly and securely, and publish the active ones by tag. README.md is for people
+looking for feeds (ends with a brief "How it works"); DEVELOP.md has the technical documentation (no duplication between the two); this file holds the rules and decisions to respect when changing code.
+
+Runs locally against the compose Postgres; deployed as GitHub Actions workflows writing to Supabase.
+
+## Pipeline
+
+| stage | command | compose service | workflow |
+| --- | --- | --- | --- |
+| inputs from lists | `indexer load-inputs data/sources.toml` | `input` | `input.yml` (daily; on push to develop/main changing `data/sources.toml` or `data/*.txt`) |
+| old CC feeds still active, proposed by PR | `indexer survivors` | `survivors` | `survivors.yml` (Wednesdays) |
+| health checks | `indexer run --from-inputs` (or `run FILE`) | `check` | `check.yml` (every 3 h, 500 URLs) |
+| publish | `indexer export` | `export` | `publish.yml` (after each successful check run; Mondays as fallback) |
+| retention | `indexer cleanup` | `cleanup` | `cleanup.yml` (Sundays) |
+| start over (all data) | `indexer drop-tables --yes` | `drop-tables` | `drop-tables.yml` (manual, typed confirmation) |
+
+## Decisions made with the user (keep them)
+
+- **Sources are unpinned and API-free**: `data/sources.toml` lists raw file URLs on a branch (`urls`) and/or repo
+  paths (`files`, relative to sources.toml), with a stated SPDX license that must be in `[licenses] ranking`.
+  Each load reads the lists as they are. A failing source is skipped (stderr, plus a `::warning::` annotation in
+  Actions); exit 1 only if every source failed.
+- **inputs is append-only**: nothing deletes inputs (except data changesets the user asked for, like the former 009 for
+  YouTube/Reddit, and `drop-tables`, the user-requested manual reset that drops every table, only names in
+  `db.OWN_TABLES`). A URL moves only to a strictly more permissive source. That is what makes unpinned sources safe.
+- **No quality filtering of inputs.** Inputs are candidates; publishing is a separate responsibility.
+  **Agree any selection or quality heuristic with the user before implementing it.** (`discover`, which
+  inserted the newest crawl's feeds unfiltered, was removed on 2026-11-16: survivors replaces it.)
+- `survivors` **proposes, never inserts**: appends to `data/survivors.txt` (a `files` source, CC ToU license) and
+  every survivors.yml run opens its own PR from a new branch `survivors-<UTC timestamp>` based on develop (never a reused
+  branch, so old proposals can't be merged by mistake). Skips URLs already in develop's file or in inputs.
+  Untrusted titles/tags: one line in the file (`proposals.one_line`), code spans in Markdown (no mentions/links).
+  PR report: one section per feed (title, URL, last tagged post, tags, the links of the 3 latest posts, all code spans; no
+  language), for spotting spam; item links are parsed (`FeedInfo.item_links`, 3 newest) but never stored or fetched; the report
+  never exceeds GitHub's 65,536-character limit (extra feeds are only counted).
+  Agreed filters: crawl closest to 5 years ago, first 25 MB of one random WAT file (one range
+  request, random each run, no state; one file because the yield per MB is the same as several smaller slices); strip session params (`urls.strip_session`), fold WordPress/Blogger/Joomla format variants
+  (`canonical_format`), skip WordPress category/tag/author feeds
+  unchecked; check the rest now; insert only feeds whose newest **tagged** item (not `uncategorized`/`general`) is
+  from the last 243 days (~8 months), are **labelled English** (`language` en / en-*, the feed's own label, no detection), **have a title** and are
+  **served over https today** (inserted as the URL after redirects; plain http is
+  skipped, https:// is not tried). Rejected as too complex: detecting one feed in several formats by its items (only the URL rules above).
+  Still open: language detection, a takeover guard, storing these checks (not stored now), remembering
+  URLs rejected in review.
+- `[exclude] domains` (youtube.com, reddit.com) is matched by registrable domain and applied at load and in survivors.
+- `[commoncrawl] exclude_keywords` (adult / sexual-violence words; gambling words added 2026-11-17 after casino spam in a sample), **Common Crawl only**: survivors skips a feed with one as a whole word in its title or any
+  tag (`commoncrawl.has_keyword`, after the English filter). Agreed with the user on 2026-11-16 after porn in a survivors PR;
+  never applied to the curated lists, submissions, load or export.
+- `data/submissions.txt`: user-submitted feeds via PR, last source in sources.toml, read via `files`; tested.
+- Common Crawl rows: source = WAT file URL, license `LicenseRef-CommonCrawl-ToU` (ranked last). No download
+  retries: if the slice fails to download (e.g. a 503), the run fails; next week's run tries again. Feed health checks never retry.
+- Batches: a uniformly random sample of inputs never checked or checked over `--stale-days` (14) ago; storing a
+  row sets `inputs.last_checked_at` whatever the outcome.
+- Export: success in the last 180 days and an item in the last 5 years; top 2000 tags; `uncategorized` ignored;
+  per tag links.txt ≤ 50,000, feeds.opml ≤ 500, tag page ≤ 200 (most recently active; each file starts with the next one's feeds; 200 agreed 2026-11-17 for page size); index sorted by count.
+  `all/{links.txt,feeds.opml}`: every listed feed, tagged or not, uncapped (about half have no categories).
+  links.txt files are newest post first (a search page shows them in file order).
+  `previews/<2 hex>/<sha256 hex of the URL>.json` per listed feed (for a search page, e.g. feedrule.com): `{url, title, bytes, last, tags}`,
+  bytes = body size at the latest successful check, tags = all the feed's tags minus ignored. Hash, not hex of the URL (file name limit).
+  `SPEC.md` at the repo root (hand-written: the output's file patterns and contents) is copied into the output by export
+  (`--spec`, mounted read-only in compose); keep it in sync with the export (a test checks patterns and limits).
+  **No Markdown in the output (except SPEC.md): the website is HTML** in `output/docs/` (`site.py`), served by GitHub Pages
+  from the output branch's `/docs` (agreed 2026-11-17: pages that rank, links to feedrule.com without GitHub's nofollow,
+  github.io keeps any thin-content risk off feedrule.com). Index (the 50 largest topics, a search box over all of them from an inline JSON list,
+  no links to the all/ files (too big), sources table `site.SOURCES`: update it with data/sources.toml) and one page per tag (200 rows = the first of feeds.opml); sitemap.xml, .nojekyll, canonical
+  URLs (`--site-url`). Data files stay outside docs/ and are linked on raw.githubusercontent.com (`--data-url`), so they
+  don't count toward the Pages limit. Colours: feedrule.com's (Tailwind zinc + orange), light and dark. No frameworks, no
+  build step; one small inline script (topic filter), pages work without it.
+  Each feed row starts with feedrule.com's icon (`src/indexer/feedrule.svg`, copied to docs/) linking to
+  `https://feedrule.com/?feed=<feed URL, percent-encoded except : and />` (`site.feedrule_link`). Untrusted text is
+  HTML-escaped; only http(s) URLs become links (`site.safe_href`); feed and site links are rel="nofollow", feedrule's not.
+  Row: title and a "Website" link (after the plain-text domain) go to the website (the feed's `site_url`, else its domain's home page), then a "Feed" link,
+  then up to 10 of the feed's other tags (`site.feed_tags`): ranked by how many listed feeds have them, because tag frequency
+  inside a feed is not stored; published ones link to their page.
+  `tag/tags.txt`: the published tag names, one per line, most feeds first (ties by name).
+  publish.yml force-pushes output/ as one orphan commit to the `output` branch (no history, by design).
+- Cleanup keeps 8 months of health_checks (refuses < 7: export looks back 6). feeds and inputs are kept.
+- Git: commit each verified step to `develop`; push only when asked. There is no `main` branch yet.
+
+## Stack and conventions
+
+- Source in `src/indexer/`: `cli.py`, `db.py`, `errors.py`, `export.py` (data files), `site.py` (HTML site), `sources.py` (sources.toml, list loading) at the top;
+  `net/` (guarded fetcher, URL validation, resolver, IP policy), `check/` (runner, feed parser), `survivors/` (Common Crawl, proposals).
+- Python 3.13 with **uv** (commit `uv.lock`), ruff (lint + format), type hints everywhere, `mypy --strict src`.
+- Tests use pytest with a local server, fake DNS and synthetic files. **Tests never touch the network.**
+  Database tests run only when `INDEXER_TEST_DATABASE_URL` is set.
+- Pin exact versions for images and actions (actions by commit SHA). This machine is aarch64: pick images that
+  publish arm64. Liquibase 5 ships no JDBC drivers: `db/liquibase.Dockerfile` adds the pinned, checksummed
+  PostgreSQL driver; bump image, driver version and checksum together.
+- Liquibase owns the schema: `db/changelog/changes/NNN-*.yaml`, each listed in `db.changelog-master.yaml`.
+  **Never edit an existing changeset; add a new one.** `001-schema` (author `feedrule-indexer`) squashes the former
+  001–009; it was edited on 2026-11-17 (reset databases, at the user's request: author, MARK_RAN removed, dead columns dropped). Squash or edit
+  only when asked; on a database that has data, a squash needs a new id, a MARK_RAN precondition and a schema dump diff.
+- compose.yaml: the app services share an `x-indexer` anchor (image, DB settings, hardening: read-only
+  root, no capabilities, no-new-privileges). DB settings default to the local postgres, whose password comes only from `POSTGRES_PASSWORD` in a git-ignored `.env`
+  (`.env.example`; no password in the repo; `uv run` uses `PGPASSWORD`), and are overridden by env
+  (`LIQUIBASE_COMMAND_URL/USERNAME/PASSWORD`, `DATABASE_URL`, `PGPASSWORD`). Workflows run
+  `docker compose build` then `docker compose run --rm --no-deps -T liquibase|<service>`, with
+  `contents: read` (publish: write; survivors: write + `pull-requests: write`), `persist-credentials: false` and one shared concurrency group.
+  Supabase secrets `SUPABASE_DB_*`; use the IPv4 session pooler (runners have no IPv6).
+- All DB writes share one connection across concurrent checks; `Database` serializes them with a lock
+  (concurrent transactions on one connection fail with OutOfOrderTransactionNesting).
+
+## Security rules (all URLs are untrusted)
+
+1. Only `http://` and `https://`. Reject URLs with credentials (`user:pass@`) or a port other than 80 or 443.
+2. Connect only to public IPs. Reject the host if **any** address DNS returns is non-public: private, loopback,
+   link-local (including 169.254.169.254), Azure's 168.63.129.16, CGNAT 100.64/10, multicast, reserved,
+   unspecified, IPv6 ULA and link-local, and IPv4-mapped or NAT64 forms of these. IP literals get the same check.
+   **The check must run on the exact address the socket connects to**: a guarded resolver inside the aiohttp
+   connector with the DNS cache off, plus a socket-factory check. Never resolve, check, and then let a client
+   resolve again (DNS rebinding / TOCTOU). Applies to every redirect hop.
+3. At most 3 redirects, followed by hand; rules 1 and 2 on every hop; relative `Location` resolved; https→http
+   allowed.
+4. Limits: ~15 s deadline per fetch (redirects included), connect timeout, 5 MB body cap **after decompression**
+   (gzip bombs fail), header size cap, GET only, no cookies, proxy env vars ignored, honest User-Agent.
+5. Parse XML with defusedxml (no DTD loading, no entity expansion). Ignore Content-Type.
+6. Concurrency: about 20 fetches in total, at most 2 per host.
+7. A failure never stops the run. Every URL gets exactly one row, with an error identifier if it failed.
+8. Text from feeds is untrusted wherever it is published: escape it (Markdown, XML); URLs found in content are
+   stored, never fetched.
+
+## Schema (details in DEVELOP.md)
+
+- `inputs`: url PK, source, source_license, first_seen_at, last_checked_at.
+- `runs`: id, started_at, finished_at.
+- `health_checks`: per-check data only (status, timings, sizes, item count, last item date, redirects, error,
+  ip_address, etag/last_modified). Keep rows small (~330 bytes with indexes). Unique (url, run_id).
+- `feeds`: latest metadata per URL, updated in place (replaced on a parsed check, kept on failure). Descriptive fields use Atom names; categories are normalized lower-case
+  ASCII, comma separated, sorted, ≤ 2048 chars.
+- `error` identifiers live in `src/indexer/errors.py` (e.g. `dns_nxdomain`, `rate_limited`, `not_a_feed`).
+
+## Commands
+
+- `docker compose up -d postgres && docker compose run --rm liquibase`
+- `uv run pytest`, `uv run ruff format . && uv run ruff check .`, `uv run mypy --strict src`
+- `docker compose build` after code changes, before running services.
+
+## Required tests
+
+Each blocked IP range; the DNS rebinding case (public IP first, private IP on the next call, and no connection
+is ever made to the private IP); too many redirects; a redirect to a private IP; an oversized body; a gzip bomb;
+the scheme, port and credentials checks.

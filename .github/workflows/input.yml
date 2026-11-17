@@ -1,0 +1,65 @@
+# Loads every feed URL from the sources in data/sources.toml into the `inputs` table (Supabase
+# Postgres), daily: sources are not pinned, so new feeds added upstream arrive on their own.
+# Also on a push to develop or main that changes the lists in this repo (a merged submission or
+# survivors pull request), so they load right away.
+# Safe to re-run: new URLs are added, nothing is deleted, and a URL's source changes only to a
+# more permissive license. A source that fails (file moved or gone, malformed) is skipped and
+# the run is marked failed, after the other sources have loaded.
+#
+# Repository secrets (Settings > Secrets and variables > Actions):
+#   SUPABASE_DB_HOST      the Session pooler host, e.g. aws-0-<region>.pooler.supabase.com
+#                         (GitHub-hosted runners have no IPv6; Supabase's direct host is IPv6-only)
+#   SUPABASE_DB_PORT      5432 (session mode; not the 6543 transaction pooler)
+#   SUPABASE_DB_NAME      postgres
+#   SUPABASE_DB_USER      postgres.<project-ref>
+#   SUPABASE_DB_PASSWORD  the database password
+#
+# Everything runs through docker compose, exactly as locally: the same images (Dockerfile,
+# db/liquibase.Dockerfile) and the same hardened containers. `--no-deps` keeps compose from
+# starting the local postgres service; the environment below points it at Supabase instead.
+name: input
+
+on:
+  schedule:
+    - cron: "41 4 * * *" # daily
+  workflow_dispatch:
+  push: # a change to the lists loads right away, without waiting for the daily run
+    branches: [develop, main]
+    paths:
+      - data/sources.toml
+      - data/*.txt # repo lists read via `files` (submissions, survivors)
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexer-db # never overlaps with the check workflow
+  cancel-in-progress: false
+
+jobs:
+  load-inputs:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      # Read by compose.yaml (see the liquibase, input and check services).
+      LIQUIBASE_COMMAND_URL: jdbc:postgresql://${{ secrets.SUPABASE_DB_HOST }}:${{ secrets.SUPABASE_DB_PORT }}/${{ secrets.SUPABASE_DB_NAME }}?sslmode=require
+      LIQUIBASE_COMMAND_USERNAME: ${{ secrets.SUPABASE_DB_USER }}
+      LIQUIBASE_COMMAND_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+      DATABASE_URL: >-
+        host=${{ secrets.SUPABASE_DB_HOST }} port=${{ secrets.SUPABASE_DB_PORT }}
+        dbname=${{ secrets.SUPABASE_DB_NAME }} user=${{ secrets.SUPABASE_DB_USER }}
+        sslmode=require
+      PGPASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Build images
+        run: docker compose build liquibase input
+
+      - name: Migrate schema
+        run: docker compose run --rm --no-deps -T liquibase
+
+      - name: Load inputs
+        run: docker compose run --rm --no-deps -T input

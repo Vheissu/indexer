@@ -1,0 +1,10 @@
+# Feeds submitted to this list directly.
+#
+# To suggest a feed, open a pull request that adds its URL on a line of its own, at the end
+# of this file. Use the feed's own URL (RSS or Atom), not the website's home page, and only
+# http(s) URLs on the standard ports. Lines starting with # are comments.
+#
+# Once merged, the daily input job loads every URL here into the inputs table, and the
+# checker starts tracking its health. A URL that already came from another list keeps its
+# original source. By submitting, you agree the URL is published under this repository's
+# license (MIT).

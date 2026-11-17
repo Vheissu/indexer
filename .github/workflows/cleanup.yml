@@ -1,0 +1,43 @@
+# Deletes health checks older than 8 months from Supabase, weekly, so the database stays within
+# its size limit (~4,000 checks a day). feeds (latest metadata per URL) and inputs are kept, and
+# the published lists only look back 6 months. Uses the same SUPABASE_DB_* secrets as input.yml.
+name: cleanup
+
+on:
+  schedule:
+    - cron: "47 3 * * 0" # Sundays
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexer-db
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      LIQUIBASE_COMMAND_URL: jdbc:postgresql://${{ secrets.SUPABASE_DB_HOST }}:${{ secrets.SUPABASE_DB_PORT }}/${{ secrets.SUPABASE_DB_NAME }}?sslmode=require
+      LIQUIBASE_COMMAND_USERNAME: ${{ secrets.SUPABASE_DB_USER }}
+      LIQUIBASE_COMMAND_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+      DATABASE_URL: >-
+        host=${{ secrets.SUPABASE_DB_HOST }} port=${{ secrets.SUPABASE_DB_PORT }}
+        dbname=${{ secrets.SUPABASE_DB_NAME }} user=${{ secrets.SUPABASE_DB_USER }}
+        sslmode=require
+      PGPASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Build images
+        run: docker compose build liquibase cleanup
+
+      - name: Migrate schema
+        run: docker compose run --rm --no-deps -T liquibase
+
+      - name: Delete old checks
+        run: docker compose run --rm --no-deps -T cleanup

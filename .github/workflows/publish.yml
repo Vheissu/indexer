@@ -1,0 +1,67 @@
+# Publishes the lists after every successful check run (and weekly, as a fallback):
+# regenerates output/ from Supabase (feeds with a successful check in
+# the last 6 months and a post in the last 5 years, top 2,000 tags) and force-pushes it as a single
+# fresh commit to the `output` branch. The branch has no history: each publish replaces it.
+# workflow_run triggers only use this file as it is on the default branch.
+#
+# This is the only workflow with write access to the repository. It reads the database and
+# writes text; it never fetches feeds. Uses the same SUPABASE_DB_* secrets as input.yml.
+name: publish
+
+on:
+  schedule:
+    - cron: "17 5 * * 1" # Mondays
+  workflow_dispatch:
+  workflow_run: # right after these finish, so the published lists follow the database
+    workflows: [check]
+    types: [completed]
+
+permissions:
+  contents: write # to push the output branch
+
+concurrency:
+  group: indexer-db
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    # Not after a failed or cancelled run.
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      LIQUIBASE_COMMAND_URL: jdbc:postgresql://${{ secrets.SUPABASE_DB_HOST }}:${{ secrets.SUPABASE_DB_PORT }}/${{ secrets.SUPABASE_DB_NAME }}?sslmode=require
+      LIQUIBASE_COMMAND_USERNAME: ${{ secrets.SUPABASE_DB_USER }}
+      LIQUIBASE_COMMAND_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+      DATABASE_URL: >-
+        host=${{ secrets.SUPABASE_DB_HOST }} port=${{ secrets.SUPABASE_DB_PORT }}
+        dbname=${{ secrets.SUPABASE_DB_NAME }} user=${{ secrets.SUPABASE_DB_USER }}
+        sslmode=require
+      PGPASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Build images
+        run: docker compose build liquibase export
+
+      - name: Migrate schema
+        run: docker compose run --rm --no-deps -T liquibase
+
+      - name: Export
+        run: |
+          mkdir -p output
+          HOST_UID="$(id -u)" HOST_GID="$(id -g)" docker compose run --rm --no-deps -T export
+
+      - name: Force-push to the output branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd output
+          git init -q -b output
+          git add -A
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "Publish feeds by tag, $(date -u +%F)"
+          git push --force -q "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" output:output

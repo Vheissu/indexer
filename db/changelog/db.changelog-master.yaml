@@ -1,0 +1,6 @@
+# Master changelog. Add new changesets as new numbered files and list them here.
+# Never edit a changeset that already exists.
+databaseChangeLog:
+  - include:
+      file: changes/001-schema.yaml
+      relativeToChangelogFile: true

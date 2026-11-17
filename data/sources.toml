@@ -1,0 +1,188 @@
+# Feed lists loaded into the inputs table by `indexer load-inputs`.
+#
+# Each source is a name, its license and the URL(s) of its list file(s). The URLs point at a
+# branch, not a commit, so every load reads the lists as they are today and new feeds arrive
+# on their own. A source that fails is skipped and reported; the rest still load. The inputs
+# table only grows, so a broken or truncated upstream file removes nothing.
+#
+# The survivors source below is filled by `indexer survivors` through reviewed pull requests.
+#
+# To add a source, add a [[source]] block with an openly licensed list. Lists without a
+# license are not used (e.g. kilimchoi/engineering-blogs, peterc/engblogs).
+
+[licenses]
+# Most permissive first; licenses in the same inner list rank equally. A URL found in several
+# lists is credited to the most permissive one (on a tie, the source listed first below).
+ranking = [
+    ["CC0-1.0", "Unlicense", "0BSD"],
+    ["MIT", "BSD-2-Clause", "BSD-3-Clause", "ISC"],
+    ["Apache-2.0"],
+    ["CC-BY-4.0"],
+    ["CC-BY-SA-4.0"],
+    # Feeds found in Common Crawl by `indexer survivors` (its terms of use, not an open
+    # license). Last, so a curated list that has the same feed takes the credit.
+    ["LicenseRef-CommonCrawl-ToU"],
+]
+
+[exclude]
+# Feeds on these registrable domains (and their subdomains) are never loaded: YouTube channel
+# feeds and Reddit feeds are platform feeds, not the independent sites this list is for.
+domains = ["youtube.com", "reddit.com"]
+
+[commoncrawl]
+# Common Crawl only (indexer survivors), not the lists below: a feed whose title or any of its
+# tags contains one of these as a whole word (case ignored; "porn" matches "Porn Passwords" and
+# "porn-videos", not "pornography": list each form) is never proposed. Adult and sexual-violence
+# content found in old crawls, and gambling spam (added 2026-11-17 after casino feeds in a sample).
+exclude_keywords = [
+  "porn", "porno", "pornography", "pornstar", "pornstars", "xxx", "nsfw",
+  "sex", "sexy", "nude", "nudes", "nudity", "naked", "erotic", "erotica", "hentai",
+  "fetish", "fetishes", "bdsm", "milf", "milfs", "escort", "escorts", "camgirl", "camgirls",
+  "onlyfans", "anal", "blowjob", "handjob", "cumshot", "creampie", "pussy", "boobs", "tits",
+  "gangbang", "incest", "rape", "stripper", "strippers", "hookup", "hookups",
+  # gambling
+  "casino", "casinos", "online casino", "gambling", "betting", "sportsbook", "bookmaker",
+  "poker", "baccarat", "roulette", "blackjack", "slots", "slot online", "slot gacor", "gacor",
+  "judi", "judi online", "togel", "sbobet", "maxwin",
+]
+
+[[source]]
+name = "web-dev-feeds"
+license = "MIT"
+format = "opml"
+homepage = "https://github.com/simevidas/web-dev-feeds"
+notes = "Web development blogs, about 1,000 feeds."
+urls = [
+    "https://raw.githubusercontent.com/simevidas/web-dev-feeds/master/feeds.opml",
+]
+
+[[source]]
+name = "plenary-awesome-rss-feeds"
+license = "CC0-1.0"
+format = "opml"
+homepage = "https://github.com/plenaryapp/awesome-rss-feeds"
+notes = "Recommended feeds by topic, and news sites by country."
+urls = [
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Australia.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Bangladesh.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Brazil.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Canada.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/France.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Germany.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Hong%20Kong%20SAR%20China.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/India.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Indonesia.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Iran.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Ireland.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Italy.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Japan.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Mexico.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Myanmar%20%28Burma%29.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Nigeria.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Pakistan.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Philippines.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Poland.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Russia.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/South%20Africa.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Spain.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/Ukraine.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/United%20Kingdom.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/countries/with_category/United%20States.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Android%20Development.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Android.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Animal%20%26%20Wildlife.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Apple.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Architecture.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Beauty.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Books.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Business%20%26%20Economy.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Cars.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Chess.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Cricket.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Cryptocurrency.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Cyber%20security.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/DIY.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Environment.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Fashion.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Food.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Football.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Funny.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Gaming.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/History.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Interior%20design.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Memes.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Movies.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Music.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Nature.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/News.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Personal%20finance.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Photography.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Programming.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Science.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Space.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Sports.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Startups.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Tech.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Television.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Tennis.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Travel.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/UI%20-%20UX.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/Web%20Development.opml",
+    "https://raw.githubusercontent.com/plenaryapp/awesome-rss-feeds/master/recommended/with_category/iOS%20Development.opml",
+]
+
+[[source]]
+name = "awesome-tech-rss"
+license = "CC0-1.0"
+format = "opml"
+homepage = "https://github.com/tuan3w/awesome-tech-rss"
+notes = "Startups, science and technology."
+urls = [
+    "https://raw.githubusercontent.com/tuan3w/awesome-tech-rss/main/feeds.opml",
+]
+
+[[source]]
+name = "hackernews-personal-blogs"
+license = "MIT"
+format = "opml"
+homepage = "https://github.com/outcoldman/hackernews-personal-blogs"
+notes = "Personal blogs of Hacker News users."
+urls = [
+    "https://raw.githubusercontent.com/outcoldman/hackernews-personal-blogs/master/list.opml",
+]
+
+[[source]]
+name = "dotnet-creators"
+license = "MIT"
+format = "opml"
+homepage = "https://github.com/matthiasjost/dotnet-creators-opml"
+notes = ".NET content creators' blogs (their YouTube list is not used)."
+urls = [
+    "https://raw.githubusercontent.com/matthiasjost/dotnet-creators-opml/main/OPML/blog-opml.xml",
+]
+
+[[source]]
+name = "kagi-smallweb"
+license = "MIT"
+format = "lines"
+homepage = "https://github.com/kagisearch/smallweb"
+notes = "Kagi's small web index of personal sites, about 44,000 feeds."
+urls = [
+    "https://raw.githubusercontent.com/kagisearch/smallweb/main/smallweb.txt",
+]
+
+[[source]]
+name = "survivors"
+license = "LicenseRef-CommonCrawl-ToU"
+format = "lines"
+homepage = "https://github.com/feedrule/indexer/blob/develop/data/survivors.txt"
+notes = "Feeds from a ~5-year-old Common Crawl crawl that are still active, proposed weekly by the survivors workflow as a pull request and reviewed before merging."
+files = ["survivors.txt"] # relative to this file
+
+[[source]]
+name = "submissions"
+license = "MIT" # this repository's license
+format = "lines"
+homepage = "https://github.com/feedrule/indexer/blob/develop/data/submissions.txt"
+notes = "Feeds submitted to this repository directly, one per line. Read from the checkout (works while the repo is private, and reads exactly what is committed). Listed last, so a feed that is also in another list keeps that list as its source."
+files = ["submissions.txt"] # relative to this file

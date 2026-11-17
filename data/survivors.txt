@@ -1,0 +1,106 @@
+# Feeds from Common Crawl that are still active, proposed by `indexer survivors`.
+#
+# The weekly survivors workflow scans a crawl from about 5 years ago, checks every feed it
+# advertised, and appends the ones that pass (an item with a real tag in the last 8 months,
+# labelled English, served over https today) to this file in a pull request. To review it,
+# delete the URL line of any feed you don't want (its comment lines can stay or go), then merge.
+# The daily input job loads every URL here into the inputs table.
+#
+# Each entry: title · language · date of the newest tagged item · tags, then the Common Crawl
+# WAT file it was found in, then the feed URL. Titles and tags come from the feeds themselves.
+# Common Crawl terms of use: https://commoncrawl.org/terms-of-use
+
+# --- 2026-11-17, from CC-MAIN-2021-43 ---
+# The Barn on White Run · en-us · last tagged post 2026-11-03 · classes, conservation, decorative surfaces, finishing, furniture making, gardening (+8)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://donsbarn.com/feed/
+# Wachusett Area Chamber of Commerce · en-us · last tagged post 2026-09-07 · events, holden days, updates
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://wachusettareachamber.org/feed/
+# Designbeep · en-us · last tagged post 2026-11-17 · articles, artists, food drink, inspirations
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://designbeep.com/feed/
+# 24x7breakingpoint · en-us · last tagged post 2026-11-17 · -, haridwar congress
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://24x7breakingpoint.com/feed/
+# Ernie Ball Forums · en-us · last tagged post 2026-11-17 · ernie ball music man basses, ernie ball music man guitars, ernie ball strings, general music discussion, the game changer
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://forums.ernieball.com/forums/-/index.rss
+# Library Mice · en-us · last tagged post 2026-10-21 · picture book challenge
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://librarymice.com/feed/
+# EclipseMagazine · en-us · last tagged post 2026-09-17 · announcements, cinemacon 2025, hollywood insider, interviews, james bond, mission impossible (+8)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://eclipsemagazine.com/feed/
+# World Exhibitions · en-us · last tagged post 2026-11-16 · asia best 10 world trade centers, asia business services exhibitions, asia business services expos, asia chemical and dyes exhibitions, asia chemical and dyes industry expos, asia paper exhibitions (…
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://www.2exhibitions.com/feed/
+# Search Results for “Water” – World Exhibitions · en-us · last tagged post 2026-11-16 · asia best 10 world trade centers, asia chemical and dyes exhibitions, asia chemical and dyes industry expos, asia paper exhibitions, asia paper industry expos, asia top 10 chemical and dyes exhibitio…
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://www.2exhibitions.com/search/Water/feed/
+# FreePngClipart | Download PNG Clipart for free · en-us · last tagged post 2026-03-26 · animalsalbatross, animalsarctic fox, brandsadidas, brandsandroid, brandsapple iphone, cartoonabstract (+27)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://freepngclipart.com/rss.xml
+# the blue and red idea network · en-gb · last tagged post 2026-11-17 · the most enthusiastic message board
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://blue-idea.net/phpbb/app.php/feed/forum/2
+# Planetdance forum · en-us · last tagged post 2026-11-16 · classic, medieval, planetdance general, vedic
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://forum.jcremers.com/index.php?type=rss;action=.xml
+# Shelf Reflections · en-us · last tagged post 2026-05-22 · 1 star, 25 stars, 45 stars, 5 stars, dark academia, fantasy (+6)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://shelfreflections.com/feed/
+# 2026 National Retriever Championship · en-us · last tagged post 2026-11-14 · recent post
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://upclosephoto.com/feed
+# Role of the Wnt/β-catenin pathway in gastric cancer · en-us · last tagged post 2026-05-28 · h1 receptors, h2 receptors, heat shock proteins, histamine h4 receptors, histaminergic-related compounds, histone methyltransferases (+4)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://ecmnp2015.com/feed/
+# berzerk.pl · en-us · last tagged post 2026-10-02 · ai, aliexpress, author, author basic, bike, black metal (+27)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://berzerk.pl/feed/
+# Program Studi Kedokteran · en-us · last tagged post 2026-11-10 · berita, lab tutorial - kbk, uncategorized
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://prodikedokteran.fk.uns.ac.id/feed/
+# El Lider USA · en-us · last tagged post 2026-11-16 · blog, cine y teatro, dallas, deportes, destacado, election day (+16)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://elliderusa.com/feed/
+# Florida Environmental Network · en-us · last tagged post 2026-07-13 · 40 weeks, uncategorized
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://floridaenet.com/feed/
+# NewSpiritualScience · en-us · last tagged post 2026-11-16 · chaos, cosmic consciousness, health diet, laws of life, lifes big questions, meaning of life (+3)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://newspiritualscience.com/feed/
+# Durham UCU · en-us · last tagged post 2026-11-04 · ballot, ballot dates and details, dispute, durham, equalities, finances and info (+21)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://durhamucu.org.uk/feed/
+# New Santa Ana · en-us · last tagged post 2026-11-17 · accidents, alcohol, automobiles, business, california, california department of corrections and rehabilitation (+29)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://newsantaana.com/feed/
+# OPEN SHELF · en-us · last tagged post 2026-11-06 · academic librarians, academic libraries, academic library, advertising, artificial intelligence, career advice (+24)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://open-shelf.ca/feed/
+# My WordPress · en-us · last tagged post 2026-11-13 · a festival of fabulous mums, adaptive reuse, advice by design, arcana durham, around the triangle, ashley monroe (+103)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://blog.realestatebydesignnc.com/feed/
+# DIY Home Decor Ideas · en-us · last tagged post 2026-11-10 · bathroom, bed room, laundry, living room, porch, seasonal decor (+1)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://diyhomedecorideas.net/feed/
+# Africazine · en-us · last tagged post 2026-11-17 · abdelmadjid tebboune, abia, abuja, advertising, africa, algeria (+180)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://africazine.com/feed/
+# COPY AND PASTE THIS LINK IN YOUR BROWSER TO WATCH THE LATEST SHOWS ON THE AUN TV NETWORK….. · en-us · last tagged post 2026-10-02 · business, economy, education, election, episodes, general news (+4)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://aun-tv.com/feed/
+# Visión Doble: Revista de Crítica e Historia del Arte · en-us · last tagged post 2026-09-30 · 16th century, abstraccion, abstract art, abstract painting, abstraction, america (+125)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://humanidades.uprrp.edu/visiondoble/feed/
+# Katalozi · en-us · last tagged post 2026-11-17 · black friday 2026 katalozi i akcije, bozic 2026, katalozi, kucanstvo, lego, lego katalog (+7)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://katalozi.net/feed
+# West Volusia Wolves · en-us · last tagged post 2026-10-14 · 2026, bingo, cheer, cheer competition, competition, ecc (+5)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://westvolusiawolves.org/feed/
+# Love Prescot · en-us · last tagged post 2026-09-29 · news
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
+https://loveprescot.co.uk/feed/

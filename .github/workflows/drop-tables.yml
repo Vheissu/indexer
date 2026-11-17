@@ -1,0 +1,46 @@
+# DELETES EVERY INDEXER TABLE IN SUPABASE, AND ALL THEIR DATA: inputs, feeds, health_checks,
+# runs, and Liquibase's bookkeeping. Other tables in the database are not touched. There is no
+# undo: Supabase's own backups are the only way back.
+#
+# Manual only, and only when the confirmation is typed exactly. The next workflow that runs
+# (any of them migrates first) recreates the schema empty; the input job then reloads the URLs
+# from data/sources.toml. Lost for good: the check history, and inputs that came only from
+# Common Crawl rows inserted before survivors used pull requests.
+name: drop-tables
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type "delete all tables" to delete every indexer table and all data'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexer-db # waits for any running pipeline job
+  cancel-in-progress: false
+
+jobs:
+  drop-tables:
+    if: inputs.confirm == 'delete all tables'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      DATABASE_URL: >-
+        host=${{ secrets.SUPABASE_DB_HOST }} port=${{ secrets.SUPABASE_DB_PORT }}
+        dbname=${{ secrets.SUPABASE_DB_NAME }} user=${{ secrets.SUPABASE_DB_USER }}
+        sslmode=require
+      PGPASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Build image
+        run: docker compose build drop-tables
+
+      - name: Drop every indexer table
+        run: docker compose run --rm --no-deps -T drop-tables drop-tables --yes
