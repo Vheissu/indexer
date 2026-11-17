@@ -221,66 +221,13 @@ no Markdown in the output except `SPEC.md`.
 
 The files and listing rules are described in the [README](README.md#which-feeds-are-listed). The
 limits are options: `--top-tags`, `--success-days`, `--item-years`, `--ignore-tag`. Titles and
-URLs come from the feeds, so they are escaped for HTML and XML, and only http(s) URLs become
+URLs come from the feeds: the pages are Jinja templates (`src/indexer/templates/`) with
+autoescaping on, the OPML is escaped by hand, and only http(s) URLs become
 links (a site URL could be `javascript:`); feed and site links are `rel="nofollow"`. `SPEC.md`,
 the hand-written description of these files at the repository root, is copied into the output
 (`--spec`; the compose `export` service mounts it read-only). The output directory is cleared on
 every run, but only if it is empty or holds the `.indexer-output` marker, so a wrong path cannot
 wipe anything else.
-
-```sh
-mkdir -p output && HOST_UID=$(id -u) HOST_GID=$(id -g) docker compose run --rm survivors \
-  survivors --slice-mb 5 --report output/survivors.md
-```
-
-In the pilot, a 20 MB slice of the 2021-49 crawl held about 3,200 pages and 2,300 feed URLs from
-900 sites. 216 had posted within a year; 56 (38 sites) also had tags and were served over https,
-and 14 of those (8 sites) were labelled English. With the default-tag, category-feed, session and
-format rules that becomes 10 (6 sites). The first real run (5 slices of 20 MB, CC-MAIN-2021-43)
-checked 11,944 feed URLs: 4,685 worked, 612 had a recent tagged item, 209 were labelled English
-and 104 were on https (0.87%). A run reads one 25 MB slice: about 3,000 feed URLs to check. One file
-gives as many distinct feeds per MB as several smaller slices (about 125 per MB in samples of 5 to
-30 MB from one file and of 5 × 20 MB), so there is no reason to spread the sample. The checks made
-here are not stored: once merged, the inputs get their regular checks from `check`. If the slice
-fails to download (Common Crawl answers busy periods with 503), the run fails without retrying;
-the next weekly run picks another file.
-
-## Checking
-
-```sh
-uv run indexer run FILE                     # every URL in a text file
-uv run indexer run --from-inputs            # a batch of 500 inputs not checked in 14 days
-uv run indexer run --from-inputs --batch 50 --stale-days 7 -v
-```
-
-A URL file has one URL per line; blank lines and `#` comments are ignored, and duplicates are
-checked once. `data/urls.txt` is a 100-feed sample of
-[simevidas/web-dev-feeds](https://github.com/simevidas/web-dev-feeds) (MIT) for quick runs.
-
-`--from-inputs` checks a uniformly random sample of the inputs never checked, or last checked
-more than `--stale-days` ago. Storing a result sets `last_checked_at` whatever the outcome, so
-repeated runs work through every URL before revisiting any: at 8 runs a day of 500, a full pass
-over ~47,000 curated inputs takes about 12 days.
-
-Each result is written as soon as its check finishes, so an interrupted run keeps what it has
-done (its `finished_at` stays empty). `-v` prints each failed URL with the reason; successes only
-appear in the summary. Other options: `--concurrency` (20), `--per-host` (2), `--deadline`
-(15 s). The `ETag` and `Last-Modified` of each successful response are stored as sent (values
-that are not printable ASCII, or longer than 1024 characters, are dropped); nothing sends them
-back yet.
-
-## Published lists
-
-`indexer export` writes `output/README.md` (the tag index), `output/tag/<tag>/` (README,
-`feeds.opml`, `links.txt`), `output/tag/tags.txt` (tag names, most feeds first) and `output/all/` (`links.txt`, `feeds.opml`: every listed feed). `links.txt` files are
-most recently active first. `output/previews/` has one JSON file per listed feed for a
-client-side search page (fetch a tag's `links.txt`, then the previews of the results shown);
-see `export.preview_path` and `export.render_preview`. The files and listing rules are described in the
-[README](README.md#which-feeds-are-listed). The limits are options: `--top-tags`,
-`--success-days`, `--item-years`, `--ignore-tag`. Titles and URLs come from the feeds, so they
-are escaped for Markdown and XML. `SPEC.md`, the hand-written description of these files at the repository root, is
-copied into the output (`--spec`; the compose `export` service mounts it read-only). The output directory is cleared on every run, but only if it
-is empty or holds the `.indexer-output` marker, so a wrong path cannot wipe anything else.
 
 ```sh
 mkdir -p output && HOST_UID=$(id -u) HOST_GID=$(id -g) docker compose run --rm export
@@ -429,7 +376,7 @@ Source layout (`src/indexer/`):
 | `db.py` | all database reads and writes |
 | `errors.py` | the error identifiers |
 | `export.py` | the published lists (data files) |
-| `site.py` | the website in `output/docs/` (HTML pages, sitemap) |
+| `site.py` | the website in `output/docs/`: prepares the data for the Jinja templates in `templates/` |
 | `sources.py` | data/sources.toml and loading the lists into inputs |
 | `net/` | fetching untrusted URLs: `fetch.py` (the guarded fetcher), `validate.py` (URL rules, URL files), `resolver.py`, `ippolicy.py`, `urls.py`, `domains.py` |
 | `check/` | `runner.py` (one check per URL), `feed.py` (parsing RSS/Atom) |

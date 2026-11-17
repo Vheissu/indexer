@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>Active RSS feeds, by topic</h1>
+<p class="lead">{{ total|num }} RSS and Atom feeds that work: each was fetched and parsed successfully
+in the recent days and had at least one post since the last year.</p>
+<p class="tip"><img src="{{ icon }}" width="20" height="20" alt=""><span>Follow any of them by email:
+click the icon next to a feed for a free digest from <a href="{{ feedrule }}">feedrule.com</a>, with
+keyword filters and no account.</span></p>
+
+<h2>Popular topics</h2>
+<p class="muted">The {{ popular|length|num }} largest of {{ topics|length|num }} topics. {{ listed|num }} of
+the feeds are in a topic; the rest publish no categories, or only rare ones.</p>
+<input id="q" class="filter" type="search" placeholder="Search all {{ topics|length|num }} topics" aria-label="Search topics" hidden>
+<ul id="tags" class="tags">
+{% for slug, count in popular %}
+<li data-t="{{ slug }}"><a href="tag/{{ slug }}/">{{ slug }}<span class="n">{{ count|num }}</span></a></li>
+{% endfor %}
+</ul>
+<ul id="found" class="tags" hidden></ul>
+<script type="application/json" id="topics">{{ topics|tojson }}</script>
+
+<h2 id="sources">Where the feeds come from</h2>
+<div class="scroll"><table class="sources">
+<thead><tr><th>Source</th><th>License</th><th>Feeds</th></tr></thead>
+<tbody>
+{% for s in sources %}
+<tr><td><a href="{{ s.url }}">{{ s.name }}</a></td><td>{% if s.license_url %}<a href="{{ s.license_url }}">{{ s.license }}</a>{% else %}{{ s.license }}{% endif %}</td><td>{{ s.feeds }}{% if s.how %} (<a href="{{ s.how }}">how</a>){% endif %}</td></tr>
+{% endfor %}
+</tbody>
+</table></div>
+
+<script>
+const q = document.getElementById("q"), popular = document.getElementById("tags"),
+  found = document.getElementById("found"),
+  topics = JSON.parse(document.getElementById("topics").textContent);
+q.hidden = false;
+q.addEventListener("input", () => {
+  const v = q.value.trim().toLowerCase().split(/\s+/).join("-");
+  popular.hidden = v !== "";
+  found.hidden = v === "";
+  found.replaceChildren();
+  if (!v) return;
+  const hits = topics.filter(([t]) => t.includes(v)).slice(0, {{ filter_matches }});
+  for (const [t, n] of hits) {
+    const li = document.createElement("li"), a = document.createElement("a"),
+      count = document.createElement("span");
+    a.href = `tag/${t}/`;
+    a.textContent = t;
+    count.className = "n";
+    count.textContent = n.toLocaleString("en");
+    a.append(count);
+    li.append(a);
+    found.append(li);
+  }
+  if (!hits.length) found.textContent = "No topic matches.";
+});
+</script>
+{% endblock %}

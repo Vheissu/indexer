@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
+<link rel="canonical" href="{{ canonical }}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="{{ root }}{{ icon }}" type="image/svg+xml">
+<link rel="stylesheet" href="{{ root }}{{ style }}">
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="brand" href="{{ root or './' }}"><img src="{{ root }}{{ icon }}" width="24" height="24" alt="">Active RSS feeds</a>
+<a class="cta" href="{{ feedrule }}">Get any feed by email</a>
+</div></header>
+<main class="wrap">
+{% block body %}{% endblock %}
+</main>
+<footer class="wrap">
+<p>Updated {{ generated.date().isoformat() }}. Every feed is fetched and checked regularly; the lists
+are rebuilt after each check run. <a href="{{ repo }}">How it works and source code</a> ·
+<a href="{{ data_url }}SPEC.md">Data files</a> ·
+Email digests by <a href="{{ feedrule }}">feedrule.com</a>.</p>
+</footer>
+</body>
+</html>

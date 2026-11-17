@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% macro some(cap) %}{% if total <= cap %}all {{ total|num }}{% else %}the {{ cap|num }} most recently active{% endif %}{% endmacro %}
+{% block body %}
+<nav class="crumbs"><a href="../../">All topics</a> / {{ tag }}</nav>
+<h1>{{ tag }} <span class="muted">RSS feeds</span></h1>
+{% if total <= rows|length %}
+<p class="lead">{{ total|num }} active feeds tagged <b>{{ tag }}</b>, newest post first. Subscribe to all of them at once by importing the OPML file into a feed reader.</p>
+{% else %}
+<p class="lead">{{ total|num }} active feeds are tagged <b>{{ tag }}</b>. Below: the {{ rows|length|num }} most recently active, newest post first. The OPML file (to import into a feed reader) has {{ some(opml_max) }}; links.txt lists {{ some(links_max) }}, one feed URL per line.</p>
+{% endif %}
+<p class="actions"><a class="button" href="{{ data }}feeds.opml">Download OPML</a>
+<a class="button ghost" href="{{ data }}links.txt">links.txt</a></p>
+<p class="tip"><img src="../../{{ icon }}" width="20" height="20" alt=""><span>Click the icon next
+to a feed to get its new posts by email: a free digest from <a href="{{ feedrule }}">feedrule.com</a>,
+with keyword filters and no account.</span></p>
+<table class="feeds">
+<thead><tr><th><span class="sr">Email</span></th><th>Feed</th><th class="date">Last post</th></tr></thead>
+<tbody>
+{% for row in rows %}
+<tr>
+<td><a class="mail" href="{{ row.feedrule }}" title="Get this feed by email (feedrule.com)"><img src="../../{{ icon }}" width="20" height="20" alt="Get by email"></a></td>
+<td class="feed">
+<a class="title" href="{{ row.site }}" rel="nofollow">{{ row.label }}</a>
+<span class="meta">{{ row.host }} · <a class="site" href="{{ row.site }}" rel="nofollow">Website</a> · <a class="rss" href="{{ row.feed }}" rel="nofollow">Feed</a></span>
+{% if row.tags %}
+<span class="ftags">{% for slug, linked in row.tags %}{% if linked %}<a href="../{{ slug }}/">{{ slug }}</a>{% else %}<span>{{ slug }}</span>{% endif %}{% endfor %}</span>
+{% endif %}
+</td>
+<td class="date">{% if row.date %}<time datetime="{{ row.date }}">{{ row.date }}</time>{% endif %}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

@@ -67,8 +67,9 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   github.io keeps any thin-content risk off feedrule.com). Index (the 50 largest topics, a search box over all of them from an inline JSON list,
   no links to the all/ files (too big), sources table `site.SOURCES`: update it with data/sources.toml) and one page per tag (200 rows = the first of feeds.opml); sitemap.xml, .nojekyll, canonical
   URLs (`--site-url`). Data files stay outside docs/ and are linked on raw.githubusercontent.com (`--data-url`), so they
-  don't count toward the Pages limit. Colours: feedrule.com's (Tailwind zinc + orange), light and dark. No frameworks, no
-  build step; one small inline script (topic filter), pages work without it.
+  don't count toward the Pages limit. Colours: feedrule.com's (Tailwind zinc + orange), light and dark. Jinja templates
+  (`src/indexer/templates/`: base, index, tag, sitemap) with autoescaping on and StrictUndefined; `site.py` only prepares
+  the data. No front-end framework, no build step; one small inline script (topic filter), pages work without it.
   Each feed row starts with feedrule.com's icon (`src/indexer/feedrule.svg`, copied to docs/) linking to
   `https://feedrule.com/?feed=<feed URL, percent-encoded except : and />` (`site.feedrule_link`). Untrusted text is
   HTML-escaped; only http(s) URLs become links (`site.safe_href`); feed and site links are rel="nofollow", feedrule's not.

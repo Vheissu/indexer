@@ -29,7 +29,7 @@ from indexer.site import (
     INDEX_TAGS,
     PAGE_ROWS,
     feed_tags,
-    feedrule_link,
+    feedrule_href,
     render_tag_page,
     safe_href,
 )
@@ -50,7 +50,7 @@ def page(tag: object) -> str:
 
 
 def rows(html: str) -> list[str]:
-    return re.findall(r"<tr><td><a class=\"mail\".*?</tr>", html)
+    return re.findall(r'<a class="mail" href="([^"]*)"', html)
 
 
 def feed_links(html: str) -> list[str]:
@@ -101,8 +101,8 @@ def test_feeds_in_a_tag_newest_first() -> None:
 
 
 def test_only_http_links_are_written() -> None:
-    assert safe_href("https://a.example/x?a=1&b=2") == "https://a.example/x?a=1&amp;b=2"
-    assert safe_href('http://a.example/"><script>') == "http://a.example/&quot;&gt;&lt;script&gt;"
+    # returned as is: the templates escape it
+    assert safe_href(" https://a.example/x?a=1&b=2") == "https://a.example/x?a=1&b=2"
     for bad in ("javascript:alert(1)", " JavaScript:alert(1)", "data:text/html,x", "", None):
         assert safe_href(bad) is None
 
@@ -117,7 +117,7 @@ def test_tag_page_rows_are_escaped_and_capped() -> None:
     html = page(tag)
     assert len(rows(html)) == PAGE_ROWS
     assert "<script>" not in html.split("<table")[1]
-    assert "&lt;script&gt;alert(1)&lt;/script&gt; &amp; &quot;x&quot;" in html
+    assert "&lt;script&gt;alert(1)&lt;/script&gt; &amp; &#34;x&#34;" in html  # autoescaped
     assert f"{PAGE_ROWS + 6} active feeds are tagged" in html
     # a non-http site URL is never a link: the feed's home page replaces it
     (only,) = top_tags([feeds[-1]], 1)
@@ -126,15 +126,16 @@ def test_tag_page_rows_are_escaped_and_capped() -> None:
 
 
 def test_feedrule_link_is_prefilled_and_encoded() -> None:
-    assert feedrule_link("https://github.com/rust-lang/rust/releases.atom", "i.svg").startswith(
-        '<a class="mail" href="https://feedrule.com/?feed=https://github.com/rust-lang/rust/'
-        'releases.atom"'
+    assert (
+        feedrule_href("https://github.com/rust-lang/rust/releases.atom")
+        == "https://feedrule.com/?feed=https://github.com/rust-lang/rust/releases.atom"
     )
-    cell = feedrule_link('https://e.example/f?a=1&b="><script>|x', "i.svg")
-    assert 'feed=https://e.example/f%3Fa%3D1%26b%3D%22%3E%3Cscript%3E%7Cx"' in cell
-    assert "<script>" not in cell
+    assert feedrule_href('https://e.example/f?a=1&b="><script>|x').endswith(
+        "feed=https://e.example/f%3Fa%3D1%26b%3D%22%3E%3Cscript%3E%7Cx"
+    )
     (tag,) = top_tags([feed(1, "x")], 1)
     html = page(tag)
+    assert rows(html) == ["https://feedrule.com/?feed=https://f1.example/feed"]
     assert '<img src="../../feedrule.svg" width="20" height="20" alt="Get by email">' in html
     # feed and site links are nofollow; feedrule.com links are not
     # the title and "Website" link to the website; "Feed" to the feed
@@ -149,12 +150,12 @@ def test_feedrule_link_is_prefilled_and_encoded() -> None:
 def test_feed_tags_most_widespread_first() -> None:
     f = feed(1, ", ".join(f"t{i}" for i in range(15)) + ", cur, uncategorized")
     counts = {f"t{i}": 100 - i for i in range(15)} | {"t14": 500}
-    html = feed_tags(f, "cur", counts, frozenset({"t14", "t0"}), frozenset({"uncategorized"}))
-    shown = re.findall(r">(t\d+)<", html)
+    tags = feed_tags(f, "cur", counts, frozenset({"t14", "t0"}), frozenset({"uncategorized"}))
+    shown = [t for t, _ in tags]
     assert len(shown) == FEED_TAGS and shown[:3] == ["t14", "t0", "t1"]
-    assert "cur" not in shown and "uncategorized" not in html  # the page's own tag, ignored tags
-    assert '<a href="../t14/">t14</a>' in html and "<span>t1</span>" in html  # links if published
-    assert feed_tags(feed(2, "cur"), "cur", {}, frozenset()) == ""
+    assert "cur" not in shown and "uncategorized" not in shown  # the page's tag, ignored tags
+    assert tags[:3] == [("t14", True), ("t0", True), ("t1", False)]  # linked if published
+    assert feed_tags(feed(2, "cur"), "cur", {}, frozenset()) == []
 
 
 def test_tag_pages_show_each_feeds_tags(tmp_path: Path) -> None:
