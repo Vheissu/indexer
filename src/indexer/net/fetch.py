@@ -47,8 +47,8 @@ _attempts: contextvars.ContextVar[list[str] | None] = contextvars.ContextVar(
 
 @dataclass(frozen=True, slots=True)
 class FetchConfig:
-    deadline: float = 15.0  # whole fetch: every hop, headers and body
-    connect_timeout: float = 5.0
+    deadline: float = 7.0  # whole fetch: every hop, headers and body
+    connect_timeout: float = 3.0
     max_body_bytes: int = 5 * 1024 * 1024  # after decompression
     max_redirects: int = 3
     max_line_size: int = 8190  # status line / single header line

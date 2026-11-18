@@ -411,7 +411,7 @@ def _parser() -> argparse.ArgumentParser:
     )
     run.add_argument("--concurrency", type=int, default=20, help="fetches at once (default 20)")
     run.add_argument("--per-host", type=int, default=2, help="fetches per host (default 2)")
-    run.add_argument("--deadline", type=float, default=15.0, help="seconds per fetch (default 15)")
+    run.add_argument("--deadline", type=float, default=7.0, help="seconds per fetch (default 7)")
     run.add_argument(
         "-v", "--verbose", action="store_true", help="print each failed URL with the reason"
     )

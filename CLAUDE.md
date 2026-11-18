@@ -116,10 +116,10 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
    resolve again (DNS rebinding / TOCTOU). Applies to every redirect hop.
 3. At most 3 redirects, followed by hand; rules 1 and 2 on every hop; relative `Location` resolved; https→http
    allowed.
-4. Limits: ~15 s deadline per fetch (redirects included), connect timeout, 5 MB body cap **after decompression**
+4. Limits: 7 s deadline per fetch (redirects included), 3 s connect timeout, 5 MB body cap **after decompression**
    (gzip bombs fail), header size cap, GET only, no cookies, proxy env vars ignored, honest User-Agent.
 5. Parse XML with defusedxml (no DTD loading, no entity expansion). Ignore Content-Type.
-6. Concurrency: about 20 fetches in total, at most 2 per host.
+6. Concurrency: 20 fetches in total by default, 50 in check.yml (`--concurrency`), at most 2 per host.
 7. A failure never stops the run. Every URL gets exactly one row, with an error identifier if it failed.
 8. Text from feeds is untrusted wherever it is published: escape it (Markdown, XML); URLs found in content are
    stored, never fetched.

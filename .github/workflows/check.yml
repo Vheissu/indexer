@@ -58,4 +58,4 @@ jobs:
       - name: Check a batch
         run: >-
           docker compose run --rm --no-deps -T check
-          run --from-inputs --batch "$BATCH" --stale-days "$STALE_DAYS" -v
+          run --from-inputs --batch "$BATCH" --stale-days "$STALE_DAYS" --concurrency 50 -v

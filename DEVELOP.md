@@ -198,8 +198,8 @@ over ~47,000 curated inputs takes about 12 days.
 
 Each result is written as soon as its check finishes, so an interrupted run keeps what it has
 done (its `finished_at` stays empty). `-v` prints each failed URL with the reason; successes only
-appear in the summary. Other options: `--concurrency` (20), `--per-host` (2), `--deadline`
-(15 s). The `ETag` and `Last-Modified` of each successful response are stored as sent (values
+appear in the summary. Other options: `--concurrency` (20; check.yml passes 50), `--per-host` (2), `--deadline`
+(7 s). The `ETag` and `Last-Modified` of each successful response are stored as sent (values
 that are not printable ASCII, or longer than 1024 characters, are dropped); nothing sends them
 back yet.
 
@@ -355,12 +355,12 @@ Every URL is untrusted. indexer:
   addresses the socket then connects to (`GuardedResolver`, DNS cache off), and again in the
   socket factory right before each socket is created. There is no second lookup;
 - follows at most 3 redirects by hand, re-applying every rule to each hop;
-- enforces a 15 s deadline per fetch (redirects and body included), a 5 s connect timeout, a
+- enforces a 7 s deadline per fetch (redirects and body included), a 3 s connect timeout, a
   5 MB body limit counted after decompression (gzip bombs stop at the limit), header size/count
   limits, GET only, no cookies, and ignores proxy environment variables;
 - parses XML with defusedxml (no entity expansion, no external references, DTDs never loaded)
   and ignores `Content-Type`;
-- runs 20 fetches at once, at most 2 per host; a failure never stops the run.
+- runs 20 fetches at once by default (50 in check.yml), at most 2 per host; a failure never stops the run.
 
 Lists and Common Crawl files are downloaded through the same fetcher (with larger size limits).
 Text from feeds is escaped wherever it is published. The User-Agent is
