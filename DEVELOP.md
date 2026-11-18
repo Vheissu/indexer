@@ -235,8 +235,10 @@ mkdir -p output && HOST_UID=$(id -u) HOST_GID=$(id -g) docker compose run --rm e
 ```
 
 `publish.yml` force-pushes `output/` as a single fresh commit to the `output` branch, which never
-accumulates history. It runs only when started by hand (Actions → publish → Run workflow): no
-schedule, no trigger from other workflows. It only reads the database.
+accumulates history. It runs right after each successful check run (`workflow_run`, which uses the
+file as it is on the default branch), on a push to develop that changes `src/indexer/templates/`,
+`style.css`, `feedrule.svg` or `site.py`, on Mondays as a fallback, and when started by hand
+(Actions → publish → Run workflow). It only reads the database.
 
 ## Cleanup
 

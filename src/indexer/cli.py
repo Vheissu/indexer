@@ -484,8 +484,8 @@ def _parser() -> argparse.ArgumentParser:
     ex.add_argument(
         "--item-years",
         type=int,
-        default=5,
-        help="list feeds whose newest item is younger than this (default 5)",
+        default=1,
+        help="list feeds whose newest item is younger than this (default 1)",
     )
     _add_database_url(ex)
 

@@ -64,7 +64,7 @@ commit.
 A feed is listed when:
 
 - it was fetched and read successfully at least once in the last 6 months, and
-- its newest post is less than 5 years old.
+- its newest post is less than a year old.
 
 Each English feed gets up to 5 topics, chosen by comparing the titles and openings of its English
 posts, and its own title and description, with about 6,000 topic names, using the MiniLM sentence
@@ -119,14 +119,14 @@ The code is MIT, see [LICENSE](LICENSE). Each feed URL comes from one of the sou
 ## How it works
 
 A Python tool, **indexer**, runs as GitHub Actions workflows that share one Postgres
-database (Supabase): four on a schedule, `publish` when started by hand, and one that keeps the
+database (Supabase): five on a schedule (`publish` also right after each successful check and when the site's design changes), and one that keeps the
 topic data up to date:
 
 | workflow | when | what it does |
 | --- | --- | --- |
 | `input` | daily, and on every merge that changes the lists in `data/` | reads the sources in `data/sources.toml` and adds new feed URLs to the database |
 | `check` | every 3 hours | fetches 500 feeds not checked in the last 14 days and records whether they work, their last post, title, languages and topics |
-| `publish` | when started by hand | writes the topic folders and the site and force-pushes them to the `output` branch |
+| `publish` | after each successful check run, when the site's templates or styles change; Mondays as a fallback | writes the topic folders and the site and force-pushes them to the `output` branch |
 | `survivors` | Wednesdays | samples an old Common Crawl crawl, checks the feeds it finds, and proposes the active ones in a pull request |
 | `cleanup` | Sundays | deletes check results older than 8 months |
 | `embeddings` | when the topic list changes | recomputes the topic names' MiniLM embeddings (`data/topics/topics.npy`) and commits them |

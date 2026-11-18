@@ -13,7 +13,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 | inputs from lists | `indexer load-inputs data/sources.toml` | `input` | `input.yml` (daily; on push to develop/main changing `data/sources.toml` or `data/*.txt`) |
 | old CC feeds still active, proposed by PR | `indexer survivors` | `survivors` | `survivors.yml` (Wednesdays) |
 | health checks | `indexer run --from-inputs` (or `run FILE`) | `check` | `check.yml` (every 3 h, 500 URLs, 3 h timeout) |
-| publish | `indexer export` | `export` | `publish.yml` (manual only: no schedule, no workflow_run; agreed 2026-11-18) |
+| publish | `indexer export` | `export` | `publish.yml` (after each successful check run; on push to develop changing templates/, style.css, feedrule.svg or site.py; Mondays as fallback; manual too. Re-enabled 2026-11-19 at the user's request) |
 | retention | `indexer cleanup` | `cleanup` | `cleanup.yml` (Sundays) |
 | topic matrix | `indexer embeddings` | `embeddings` | `embeddings.yml` (on push to develop changing `data/topics/topics.txt` or `Dockerfile`; manual) |
 | start over (all data) | `indexer drop-tables --yes` | `drop-tables` | `drop-tables.yml` (manual, typed confirmation) |
@@ -56,7 +56,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   retries: if the slice fails to download (e.g. a 503), the run fails; next week's run tries again. Feed health checks never retry.
 - Batches: a uniformly random sample of inputs never checked or checked over `--stale-days` (14) ago; storing a
   row sets `inputs.last_checked_at` whatever the outcome.
-- Export: success in the last 180 days and an item in the last 5 years; top 2000 topics (`feeds.topics`; agreed 2026-11-18:
+- Export: success in the last 180 days and an item in the last year (5 until 2026-11-18, changed with the user to match the site text); top 2000 topics (`feeds.topics`; agreed 2026-11-18:
   everything published is about topics, no tags; languages only in previews);
   per topic links.txt ≤ 50,000, feeds.opml ≤ 500, topic page ≤ 200 (most recently active; each file starts with the next one's feeds; 200 agreed 2026-11-17 for page size); index sorted by count.
   `all/{links.txt,feeds.opml}`: every listed feed, with a topic or not, uncapped.
@@ -107,7 +107,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   (`.env.example`; no password in the repo; `uv run` uses `PGPASSWORD`), and are overridden by env
   (`LIQUIBASE_COMMAND_URL/USERNAME/PASSWORD`, `DATABASE_URL`, `PGPASSWORD`). Workflows run
   `docker compose build` then `docker compose run --rm --no-deps -T liquibase|<service>`, with
-  `contents: read` (publish: write; survivors: write + `pull-requests: write`), `persist-credentials: false` and one shared concurrency group (except publish: manual, read-only on the database, no concurrency limit).
+  `contents: read` (publish: write; survivors: write + `pull-requests: write`), `persist-credentials: false` and one shared concurrency group (except publish: read-only on the database, no concurrency limit).
   Supabase secrets `SUPABASE_DB_*`; use the IPv4 session pooler (runners have no IPv6).
 - All DB writes share one connection across concurrent checks; `Database` serializes them with a lock
   (concurrent transactions on one connection fail with OutOfOrderTransactionNesting).

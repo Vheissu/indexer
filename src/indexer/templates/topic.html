@@ -14,22 +14,24 @@
 to a feed to get its new posts by email: a free digest from <a href="{{ feedrule }}">feedrule.com</a>,
 with keyword filters and no account.</span></p>
 <table class="feeds">
-<thead><tr><th><span class="sr">Email</span></th><th>Feed</th><th class="date">Last post</th></tr></thead>
+<thead><tr><th>Feed</th></tr></thead>
 <tbody>
 {% for row in rows %}
 <tr>
-<td><a class="mail" href="{{ row.feedrule }}" title="Get this feed by email (feedrule.com)"><img src="../../{{ icon }}" width="20" height="20" alt="Get by email"></a></td>
 <td class="feed">
-<a class="title" href="{{ row.site }}" rel="nofollow">{{ row.label }}</a>
+<span class="head"><a class="mail" href="{{ row.feedrule }}" title="Get this feed by email (feedrule.com)"><img src="../../{{ icon }}" width="20" height="20" alt="Get by email"></a>
+<a class="title" href="{{ row.site }}" rel="nofollow">{{ row.label }}</a></span>
 {% if row.subtitle %}
 <span class="sub">{{ row.subtitle }}</span>
 {% endif %}
 <span class="meta">{{ row.host }} · <a class="site" href="{{ row.site }}" rel="nofollow">Website</a> · <a class="rss" href="{{ row.feed }}" rel="nofollow">Feed</a></span>
+{% if row.date %}
+<span class="meta">Last indexed post: <time datetime="{{ row.date }}">{{ row.date }}</time></span>
+{% endif %}
 {% if row.topics %}
 <span class="ftopics">{% for name, slug in row.topics %}{% if slug %}<a href="../{{ slug }}/">{{ name }}</a>{% else %}<span>{{ name }}</span>{% endif %}{% endfor %}</span>
 {% endif %}
 </td>
-<td class="date">{% if row.date %}<time datetime="{{ row.date }}">{{ row.date }}</time>{% endif %}</td>
 </tr>
 {% endfor %}
 </tbody>

@@ -148,10 +148,13 @@ def test_feedrule_link_is_prefilled_and_encoded() -> None:
     # feed and site links are nofollow; feedrule.com links are not
     # the title and "Website" link to the website; "Feed" to the feed
     assert '<a class="title" href="https://f1.example/" rel="nofollow">T</a>' in html
+    # one cell per feed: the domain, Website and Feed on one line, the date on its own
     assert (
-        'f1.example · <a class="site" href="https://f1.example/" rel="nofollow">Website</a>' in html
+        'f1.example · <a class="site" href="https://f1.example/" rel="nofollow">Website</a>'
+        ' · <a class="rss" href="https://f1.example/feed" rel="nofollow">Feed</a></span>' in html
     )
-    assert '<a class="rss" href="https://f1.example/feed" rel="nofollow">Feed</a>' in html
+    assert html.count("<td") == html.count('<td class="feed">') == 1
+    assert 'Last indexed post: <time datetime="' in html
     assert 'href="https://feedrule.com/" rel' not in html
 
 
@@ -289,8 +292,8 @@ def test_all_lists_every_feed_with_a_topic_or_not(tmp_path: Path) -> None:
     assert [o.get("xmlUrl") for o in root.findall("./body/outline")] == urls
     index = (out / "docs" / "index.html").read_text()
     assert "4 RSS and Atom feeds that work" in index
+    assert "at least one post in the last 5 years." in index
     assert "all/links.txt" not in index and "all/feeds.opml" not in index  # too big to offer
-    assert "1 of\nthe feeds are in a topic" in index
     assert not (out / "topic" / "all").exists()  # all/ is outside topic/: no clash
 
 

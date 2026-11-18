@@ -1,19 +1,35 @@
-# Publishes the lists, started by hand only (no schedule, no trigger from other workflows):
+# Publishes the lists after every successful check run, on a push to develop that changes the site's
+# templates, styles or site.py, weekly as a fallback, or by hand:
 # regenerates output/ from Supabase (feeds with a successful check in
-# the last 6 months and a post in the last 5 years, top 2,000 topics) and force-pushes it as a single
+# the last 6 months and a post in the last year, top 2,000 topics) and force-pushes it as a single
 # fresh commit to the `output` branch. The branch has no history: each publish replaces it.
+# workflow_run triggers only use this file as it is on the default branch.
 #
 # It reads the database and writes text; it never fetches feeds. Uses the same SUPABASE_DB_* secrets as input.yml.
 name: publish
 
 on:
-  workflow_dispatch: # manual only
+  schedule:
+    - cron: "17 5 * * 1" # Mondays
+  push: # a change to how the site looks
+    branches: [develop]
+    paths:
+      - src/indexer/templates/**
+      - src/indexer/style.css
+      - src/indexer/feedrule.svg
+      - src/indexer/site.py
+  workflow_dispatch:
+  workflow_run: # right after a check run, so the published lists follow the database
+    workflows: [check]
+    types: [completed]
 
 permissions:
   contents: write # to push the output branch
 
 jobs:
   publish:
+    # Not after a failed or cancelled check run.
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     env:

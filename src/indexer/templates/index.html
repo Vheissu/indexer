@@ -2,7 +2,7 @@
 {% block body %}
 <h1>Active RSS feeds, by topic</h1>
 <p class="lead">{{ total|num }} RSS and Atom feeds that work: each was fetched and parsed successfully
-in the recent days and had at least one post since the last year.</p>
+in the recent days and had at least one post in the last {% if item_years == 1 %}year{% else %}{{ item_years }} years{% endif %}.</p>
 <p class="tip"><img src="{{ icon }}" width="20" height="20" alt=""><span>Follow any of them by email:
 click the icon next to a feed for a free digest from <a href="{{ feedrule }}">feedrule.com</a>, with
 keyword filters and no account.</span></p>

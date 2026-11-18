@@ -41,7 +41,7 @@ a:hover { text-decoration: underline; }
 .bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 60px; }
 .brand { display: flex; align-items: center; gap: 10px; color: var(--fg); font-weight: 600; }
 .brand:hover { text-decoration: none; }
-.cta, .button {
+.button {
   display: inline-block;
   padding: 7px 14px;
   border-radius: 8px;
@@ -51,7 +51,7 @@ a:hover { text-decoration: underline; }
   font-size: 14px;
   white-space: nowrap;
 }
-.cta:hover, .button:hover { text-decoration: none; filter: brightness(1.08); }
+.button:hover { text-decoration: none; filter: brightness(1.08); }
 .button.ghost { background: transparent; color: var(--fg); border: 1px solid var(--border); }
 button.button { cursor: pointer; font-family: inherit; }
 .more { margin-top: 16px; text-align: center; }
@@ -104,9 +104,9 @@ table { width: 100%; border-collapse: collapse; font-size: 15px; }
 th { text-align: left; font-size: 13px; font-weight: 600; color: var(--muted); }
 th, td { padding: 9px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
 .feeds { table-layout: fixed; margin-top: 16px; }
-.feeds th:first-child { width: 44px; }
-.feeds .date { width: 112px; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
-.feeds .title { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.feeds .head { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.feeds .title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.feeds time { font-variant-numeric: tabular-nums; }
 .feeds .meta { display: block; overflow-wrap: anywhere; }
 .feeds .sub { display: block; color: var(--fg); font-size: 14px; overflow-wrap: anywhere; }
 .feeds .title { color: var(--fg); font-weight: 500; }
@@ -133,6 +133,4 @@ footer a { color: var(--muted); text-decoration: underline; }
 
 @media (max-width: 560px) {
   h1 { font-size: 26px; }
-  .cta { padding: 6px 10px; font-size: 13px; }
-  .feeds .date { width: 88px; font-size: 13px; }
 }
