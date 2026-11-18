@@ -104,3 +104,98 @@ https://westvolusiawolves.org/feed/
 # Love Prescot · en-us · last tagged post 2026-09-29 · news
 # found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585504.90/wat/CC-MAIN-20211022084005-20211022114005-00128.warc.wat.gz
 https://loveprescot.co.uk/feed/
+
+# --- 2026-11-18, from CC-MAIN-2021-43 ---
+# Lynchburg Regional Business Alliance · en-us · last tagged post 2026-07-15 · ai, alliance member, benefits, business, business alliance, connection (+29)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://www.lynchburgregion.org/feed/
+# brushvox · en-us · last tagged post 2026-11-17 · 1989, 2026, activism, advertising, alvaro munero, art (+36)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://brushvox.com/feed/
+# Sweet Southern Prep · en-us · last tagged post 2026-11-05 · current discount codes, fashion friday, great gift ideas for any occasion, the gifting cabinet, tuesday trends, wednesday whereabouts
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://sweetsouthernprep.com/feed/
+# Sulut Online · en-us · last tagged post 2026-11-17 · berita, headline, manado, sulut
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://sulutonline.com/feed/
+# UF/IFAS Extension Collier County · en-us · last tagged post 2026-11-16 · agawareness, ageducation, agribusiness, agriculture, agriculture education, collier (+42)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://blogs.ifas.ufl.edu/collierco/feed/
+# Everyone Graduates Center · en-us · last tagged post 2026-10-26 · charlene pryseski, everyone graduates center, innovations in curriculum and instruction, jina kim, johns hopkins university school of education, new school designs (+8)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://new.every1graduates.org/feed/
+# therealtenerife.com · en-us · last tagged post 2026-11-16 · abandoned villages, about tenerife, agriculture, alcala, and weather, angel de la paz (+61)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://therealtenerife.com/feed/
+# South Africa Silver · en-us · last tagged post 2026-11-18 · africa, african, beautiful, cameo, cape, cents (+37)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://southafricasilver.com/feed/
+# tigho is forcery, nyc, real estate, advertising, tech · en-us · last tagged post 2026-06-28 · 285madison, advertising, artoftheitaliantwowheel, automation, b2b marketing, bots (+29)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://tigho.com/posts.atom
+# Indian Valley Chamber of Commerce · en-us · last tagged post 2026-06-24 · news
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://www.indianvalleychamber.com/feed/
+# Worcester Regional Chamber of Commerce · en-us · last tagged post 2026-04-14 · in the news, press release, uncategorized
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://www.worcesterchamber.org/feed/
+# tEre-tErRiTOrY · en · last tagged post 2026-08-11 · abudhabi, alfahidi, aquarium, arex, atlantisthepalm, atthetop (+60)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://blog.terewong.com/feed
+# Brad Hambrick · en-us · last tagged post 2026-08-31 · church resource, counseling article, counseling reflection, event promotion, uncategorized
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://old.bradhambrick.com/feed/
+# abarth squadra storica forum · en-us · last tagged post 2026-11-06 · abarth amp friends worldmeeting 2013, fiat abarth 750 850 and tc, simca 5 racer, welcome the abarth-gmr-forum
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://forum.abarth-gmr.be/index.php?type=rss;action=.xml
+# pixydust.net · en-us · last tagged post 2026-08-23 · anxiety, bitching, career, college, daily, david (+22)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://pixydust.net/feed/
+# Fennemore · en-us · last tagged post 2026-11-13 · articles, in the news, media hits
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://www.fennemorelaw.com/feed/
+# DPA · en-us · last tagged post 2026-11-16 · blog, coming home, dpa bahamas, news, press releases, rick fox
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://dpa-media.com/feed/
+# CossacksHQ International · en-gb · last tagged post 2026-08-14 · cossacks 3, cossacks1, cossacks3
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://cossackshq.net/feed/
+# Jason Johnson Racing · en-us · last tagged post 2026-11-07 · 2026
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://jasonjohnsonracing.com/feed/
+# StingUs.net · en-us · last tagged post 2026-11-18 · andy summers, music news, stewart copeland, sting, the police
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://stingus.net/feed/
+# McCall Mortgage Company · en-us · last tagged post 2026-11-18 · buying a home, home improvement, home maintenance, home owner tips, mortgage tips, va loans
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://mccallmortgagecompany.com/feed/
+# Radio Talas · en-us · last tagged post 2026-11-18 · zanimljivosti
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://radiotalas.com/feed/
+# Classiq · en-us · last tagged post 2026-11-10 · aaron sorkin, abbas kiarostami, aerosmith, akira kurosawa, alfred hitchcock, bernard herrmann (+43)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://classiq.me/feed
+# CareRite Centers · en-us · last tagged post 2026-09-02 · case studies
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://careritecenters.com/feed/
+# Biznesmenet · en-us · last tagged post 2026-11-11 · aktualitet
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://biznesmenet.com/feed/
+# GPKNews.com · en-us · last tagged post 2026-11-03 · atomic toybox, baseball, bowman, bowman chrome, gags, joker greeting (+10)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://gpknews.com/feed/
+# PK Porthcurno · en-gb · last tagged post 2026-11-06 · activity, caroline pedler, closed, cornwall, event, events (+16)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://pkporthcurno.com/feed/
+# Balcony Garden Web · en · last tagged post 2026-10-22 · balcony gardening, best and top of gardening, cactus succulents, diy, featured, flowers blooms (+6)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://balconygardenweb.com/feed/
+# FEVE · en-us · last tagged post 2026-10-29 · feve news
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://feve.org/feed/
+# MPOC · en-us · last tagged post 2026-11-17 · palm oil, palm oil news, palm oil news 2026
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://www.mpoc.org.my/feed/
+# The Young Reporter · en-us · last tagged post 2026-11-17 · culture, culture leisure, health environment, news, people, society (+5)
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-43/segments/1634323585045.2/wat/CC-MAIN-20211016231019-20211017021019-00366.warc.wat.gz
+https://tyr-jour.hkbu.edu.hk/feed/
