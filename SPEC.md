@@ -9,7 +9,7 @@
 | `all/feeds.opml` | OPML 2.0 of every listed feed, sorted by URL. |
 | `previews/<h:2>/<h>.json` | One JSON file per listed feed (see below). |
 | `docs/index.html` | Website (GitHub Pages serves `docs/`): the 50 largest topics, a search over all published topics, and the sources. |
-| `docs/topic/<slug>/index.html` | Page of the first 200 of those feeds: a feedrule.com link (email digests, form prefilled with the feed), title and "Website" (links to the website), domain, "Feed" (links to the feed), the feed's other topics (most relevant first), last post date. |
+| `docs/topic/<slug>/index.html` | Page of the first 200 of those feeds: a feedrule.com link (email digests, form prefilled with the feed), title and "Website" (links to the website), the feed's subtitle (up to 200 characters), domain, "Feed" (links to the feed), the feed's other topics (most relevant first), last post date. |
 | `docs/style.css`, `docs/feedrule.svg` | The site's stylesheet and feedrule.com's icon. |
 | `docs/sitemap.xml` | The index and every topic page. |
 | `docs/.nojekyll` | Tells GitHub Pages to serve the files as they are. |

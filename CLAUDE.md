@@ -76,7 +76,8 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   Each feed row starts with feedrule.com's icon (`src/indexer/feedrule.svg`, copied to docs/) linking to
   `https://feedrule.com/?feed=<feed URL, percent-encoded except : and />` (`site.feedrule_link`). Untrusted text is
   HTML-escaped; only http(s) URLs become links (`site.safe_href`); feed and site links are rel="nofollow", feedrule's not.
-  Row: title and a "Website" link (after the plain-text domain) go to the website (the feed's `site_url`, else its domain's home page), then a "Feed" link,
+  Row: title and a "Website" link (after the plain-text domain) go to the website (the feed's `site_url`, else its domain's home page), the subtitle under the title (one line,
+  ≤ 200 chars, not when it repeats the title; `site.subtitle_line`), then a "Feed" link,
   then the feed's other topics (`site.other_topics`), most similar first; published ones link to their page.
   `topic/topics.txt`: the published topic names, one per line, most feeds first (ties by name). Topic directories and
   URLs use `export.topic_slug` (+ → plus, # → sharp: `c++` → `cplusplus`); pages show the name.

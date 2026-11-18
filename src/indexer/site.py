@@ -23,6 +23,7 @@ if TYPE_CHECKING:
     from indexer.export import ListedFeed, Topic
 
 PAGE_ROWS = 200  # feeds shown on a topic page (the first ones of its feeds.opml)
+SUBTITLE_CHARS = 200  # a feed's subtitle on its row, cut beyond this
 INDEX_TOPICS = 50  # topics shown on the home page (the filter box searches all of them)
 FILTER_MATCHES = 100  # topics the filter box shows at most
 FEEDRULE = "https://feedrule.com/"
@@ -99,12 +100,25 @@ def other_topics(
     return [(name, published.get(name)) for name in feed.topic_names() if name != current]
 
 
+def subtitle_line(feed: ListedFeed, label: str) -> str:
+    """The feed's subtitle on one line, cut at SUBTITLE_CHARS (with an ellipsis); empty when it
+    has none or only repeats the title."""
+    text = " ".join((feed.subtitle or "").split())
+    if text.casefold() == label.casefold():
+        return ""
+    if len(text) > SUBTITLE_CHARS:
+        text = text[: SUBTITLE_CHARS - 1].rstrip() + "…"
+    return text
+
+
 def _row(feed: ListedFeed, current: str, published: Mapping[str, str]) -> dict[str, object]:
     parts = urlsplit(feed.url)
     # the feed's website, or else the home page of the feed's own domain
     site = safe_href(feed.site_url) or safe_href(f"{parts.scheme}://{parts.netloc}/") or ""
+    label = " ".join((feed.title or "").split()) or feed.url
     return {
-        "label": " ".join((feed.title or "").split()) or feed.url,
+        "label": label,
+        "subtitle": subtitle_line(feed, label),
         "feed": safe_href(feed.url) or "",
         "site": site,
         "host": urlsplit(site).hostname or "",

@@ -28,6 +28,7 @@ from indexer.export import (
 from indexer.site import (
     INDEX_TOPICS,
     PAGE_ROWS,
+    SUBTITLE_CHARS,
     feedrule_href,
     other_topics,
     render_topic_page,
@@ -475,3 +476,23 @@ def test_index_lists_the_sources_and_licenses(tmp_path: Path) -> None:
         "<td>MIT</td>" in index
     )
     assert 'href="data/' not in index  # links are absolute: the site is not the repository
+
+
+def test_rows_show_the_subtitle_escaped_and_cut() -> None:
+    def with_subtitle(n: int, title: str, subtitle: str | None) -> ListedFeed:
+        return ListedFeed(
+            f"https://f{n}.example/feed", title, None, None, "en", None, "x", subtitle
+        )
+
+    feeds = [
+        with_subtitle(1, "Food in Jars", "  Canning,\n <b>pickling</b> & preserving "),
+        with_subtitle(2, "Same", "same"),  # only the title again: not shown
+        with_subtitle(3, "Long", "word " * 100),
+        with_subtitle(4, "None", None),
+    ]
+    (topic,) = top_topics(feeds, 1)
+    html = page(topic)
+    assert '<span class="sub">Canning, &lt;b&gt;pickling&lt;/b&gt; &amp; preserving</span>' in html
+    subs = re.findall(r'<span class="sub">([^<]*)</span>', html)
+    assert len(subs) == 2  # feeds 2 and 4 have no line
+    assert len(subs[1]) == SUBTITLE_CHARS and subs[1].endswith("…")

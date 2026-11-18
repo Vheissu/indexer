@@ -106,6 +106,7 @@ th, td { padding: 9px 8px; border-bottom: 1px solid var(--border); vertical-alig
 .feeds .date { width: 112px; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
 .feeds .title { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .feeds .meta { display: block; overflow-wrap: anywhere; }
+.feeds .sub { display: block; color: var(--fg); font-size: 14px; overflow-wrap: anywhere; }
 .feeds .title { color: var(--fg); font-weight: 500; }
 .feeds .meta, .feeds .meta a { color: var(--muted); font-size: 13px; }
 .feeds .meta a.site, .feeds .meta a.rss { color: var(--link); }
