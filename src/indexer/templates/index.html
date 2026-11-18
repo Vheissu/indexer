@@ -8,8 +8,7 @@ click the icon next to a feed for a free digest from <a href="{{ feedrule }}">fe
 keyword filters and no account.</span></p>
 
 <h2>Popular topics</h2>
-<p class="muted">The {{ popular|length|num }} largest of {{ topics|length|num }} topics. {{ listed|num }} of
-the feeds are in a topic; the rest have no topic that stands out from their posts.</p>
+
 <input id="q" class="filter" type="search" placeholder="Search all {{ topics|length|num }} topics" aria-label="Search topics" hidden>
 <ul id="popular" class="topics">
 {% for name, slug, count in popular %}
