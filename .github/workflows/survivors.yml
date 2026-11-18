@@ -29,7 +29,7 @@ on:
       max-feeds:
         description: Stop once this many new feeds pass
         type: number
-        default: 50
+        default: 20
 
 permissions:
   contents: write # to push the run's survivors-<timestamp> branch
@@ -58,7 +58,7 @@ jobs:
       SLICE_MB: ${{ inputs.slice-mb || 25 }}
       YEARS_AGO: ${{ inputs.years-ago || 5 }}
       ACTIVE_DAYS: ${{ inputs.active-days || 243 }}
-      MAX_FEEDS: ${{ inputs.max-feeds || 50 }}
+      MAX_FEEDS: ${{ inputs.max-feeds || 20 }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

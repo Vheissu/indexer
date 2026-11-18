@@ -237,7 +237,8 @@ async def _survivors(args: argparse.Namespace) -> int:
             f.write(proposals.render_entries(new, result.crawl, datetime.now(UTC).date()))
         if args.report:
             args.report.write_text(
-                proposals.render_report(new, result.crawl, summary), encoding="utf-8"
+                proposals.render_report(new, result.crawl, summary, datetime.now(UTC)),
+                encoding="utf-8",
             )
     return 0
 
@@ -413,8 +414,8 @@ def _parser() -> argparse.ArgumentParser:
     sv.add_argument(
         "--max-feeds",
         type=int,
-        default=50,
-        help="stop checking once this many new feeds pass (default 50)",
+        default=20,
+        help="stop checking once this many new feeds pass (default 20)",
     )
     _add_database_url(sv)
 

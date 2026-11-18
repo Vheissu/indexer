@@ -14,13 +14,17 @@ Each entry is one comment line with what a reviewer needs, then the URL:
 Titles and links come from the feeds, so they are untrusted: in the file they are flattened to a
 single line of printable text (a title can never start a new, uncommented line), and in the
 Markdown report they are shown in code spans, where GitHub neither renders markup nor turns
-@names into mentions or #numbers into links.
+@names into mentions or #numbers into links. The report also holds the feeds as OPML (escaped
+XML attributes, in a code block), to save and import into a feed reader while reviewing.
 """
 
+import re
 import unicodedata
 from collections.abc import Iterable, Sequence
-from datetime import date
+from datetime import date, datetime
+from email.utils import format_datetime
 from pathlib import Path
+from xml.sax.saxutils import escape, quoteattr
 
 from indexer.sources import extract_urls
 from indexer.survivors.commoncrawl import Survivor
@@ -96,15 +100,54 @@ def _feed_section(s: Survivor) -> str:
     return "\n".join(lines) + "\n\n"
 
 
-def render_report(survivors: Sequence[Survivor], crawl: str, summary: str) -> str:
+def _code_block(text: str, language: str) -> str:
+    """A fenced code block, rendered literally. The fence is longer than any run of backticks
+    in the (untrusted) text, so nothing inside can close it."""
+    longest = max((len(run) for run in re.findall(r"`+", text)), default=0)
+    fence = "`" * max(3, longest + 1)
+    return f"{fence}{language}\n{text}{fence}\n"
+
+
+def render_report(
+    survivors: Sequence[Survivor], crawl: str, summary: str, generated: datetime
+) -> str:
     """Markdown for the pull request: one section per proposed feed with its title, URL, last
     post, languages and the links of its latest posts, all as code spans (nothing clickable),
-    to make spam easy to spot. Never longer than MAX_REPORT_CHARS: feeds that don't fit are
-    counted at the end (they are all in the diff)."""
+    to make spam easy to spot, after all of them as OPML (folded; left out if it would take
+    half the room). Never longer than MAX_REPORT_CHARS: feeds that don't fit are counted at the
+    end (they are all in the diff)."""
     report = f"**{len(survivors)} feeds** from `{crawl}`, still active today. {summary}\n\n"
+    opml = _code_block(render_opml(survivors, crawl, generated), "xml")
+    if len(report) + len(opml) < MAX_REPORT_CHARS // 2:  # leave most of the room to the feeds
+        report += (
+            "<details><summary>All of them as OPML: save as a .opml file and import it into a"
+            " feed reader</summary>\n\n" + opml + "\n</details>\n\n"
+        )
     for shown, s in enumerate(survivors):
         section = _feed_section(s)
         if len(report) + len(section) > MAX_REPORT_CHARS - 200:  # room for the note below
             return report + f"... and {len(survivors) - shown} more feeds: see the diff.\n"
         report += section
     return report
+
+
+def render_opml(survivors: Iterable[Survivor], crawl: str, generated: datetime) -> str:
+    """The proposed feeds as OPML, in proposal order, for importing into a feed reader during
+    review. Titles are flattened to one printable line (no control characters, which XML
+    forbids) and every value is escaped."""
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<opml version="2.0">',
+        "  <head>",
+        f"    <title>{escape(f'Proposed feeds from {crawl}')}</title>",
+        f"    <dateCreated>{format_datetime(generated)}</dateCreated>",
+        "  </head>",
+        "  <body>",
+    ]
+    for s in survivors:
+        title = quoteattr(one_line(s.title, MAX_TITLE) or s.url)
+        lines.append(
+            f'    <outline type="rss" text={title} title={title} xmlUrl={quoteattr(s.url)}/>'
+        )
+    lines += ["  </body>", "</opml>"]
+    return "\n".join(lines) + "\n"

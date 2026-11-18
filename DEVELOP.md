@@ -145,7 +145,9 @@ and opens **its own pull request** into `develop`, with one
 section per feed: its title, URL, date of the newest item, languages, and the links of its 3
 latest posts as written, all as code spans so nothing is clickable and spam domains are easy to
 spot. The report stays under GitHub's 65,536-character limit: feeds that don't fit are only
-counted ("... and N more feeds: see the diff"). Review the diff, delete the URL line of any feed you don't want, and merge (or close the pull
+counted ("... and N more feeds: see the diff"). The description also holds all the proposed feeds
+as OPML in a folded code block: save it as a `.opml` file and import it into a feed reader to try
+them while reviewing. Review the diff, delete the URL line of any feed you don't want, and merge (or close the pull
 request to drop the whole batch): the
 input job then loads the file on the push to `develop` (source `survivors`, license
 `LicenseRef-CommonCrawl-ToU`, ranked last). Every run starts from `develop`, so a pull request never carries an older run's proposals.
@@ -155,7 +157,7 @@ blocks). URLs in another open pull request are not skipped, so the same feed can
 so in the unlikely case a later random slice finds it again, it is proposed again.
 
 Started by hand (Actions → survivors → Run workflow), the workflow takes `slice-mb`, `years-ago`
-`active-days` and `max-feeds` as inputs; the weekly run uses the defaults (25, 5, 243, 50).
+`active-days` and `max-feeds` as inputs; the weekly run uses the defaults (25, 5, 243, 20).
 
 The workflow needs the repository setting **Settings → Actions → General → "Allow GitHub Actions
 to create and approve pull requests"**. Titles are untrusted: in the file they are

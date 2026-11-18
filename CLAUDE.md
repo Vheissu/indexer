@@ -36,7 +36,9 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   Untrusted titles/links: one line in the file (`proposals.one_line`), code spans in Markdown (no mentions/links).
   PR report: one section per feed (title, URL, last post, detected languages, the links of the 3 latest posts, all code spans),
   for spotting spam; item links are parsed (`FeedInfo.item_links`, 3 newest) but never stored or fetched; the report
-  never exceeds GitHub's 65,536-character limit (extra feeds are only counted).
+  never exceeds GitHub's 65,536-character limit (extra feeds are only counted). It starts with all proposals as OPML in a folded
+  code block (asked by the user on 2026-11-19; PRs can't hold attachments), fence longer than any backtick run in it;
+  max-feeds default 20 (was 50) so it fits.
   Agreed filters: crawl closest to 5 years ago, first 25 MB of one random WAT file (one range
   request, random each run, no state; one file because the yield per MB is the same as several smaller slices); strip session params (`urls.strip_session`), fold WordPress/Blogger/Joomla format variants
   (`canonical_format`), skip WordPress category/tag/author feeds

@@ -79,7 +79,7 @@ def test_cleanup_refuses_to_cut_into_the_export_window(capsys: pytest.CaptureFix
 
 def test_survivors_defaults() -> None:
     args = _parser().parse_args(["survivors"])
-    assert (args.years_ago, args.slice_mb, args.active_days, args.max_feeds) == (5, 25, 243, 50)
+    assert (args.years_ago, args.slice_mb, args.active_days, args.max_feeds) == (5, 25, 243, 20)
     assert str(args.config) == "data/sources.toml"
     assert str(args.file) == "data/survivors.txt" and args.report is None
 
