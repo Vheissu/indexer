@@ -228,6 +228,7 @@ async def _run(args: argparse.Namespace) -> int:
         per_host=args.per_host,
     )
     failed_writes = 0
+    checked = 0
     async with _database(args) as db:
         if args.from_inputs:
             urls = await db.select_batch(args.batch, args.stale_days)
@@ -242,7 +243,7 @@ async def _run(args: argparse.Namespace) -> int:
         log.info("run %d: checking %d URLs", run_id, len(urls))
 
         async def record(row: CheckRow) -> None:
-            nonlocal failed_writes
+            nonlocal failed_writes, checked
             if args.verbose:
                 _log_failure(row)
             try:
@@ -250,6 +251,9 @@ async def _run(args: argparse.Namespace) -> int:
             except Exception:
                 failed_writes += 1
                 log.exception("could not store the result for %s", row.url)
+            checked += 1
+            if checked % 100 == 0:
+                print(f"{checked} feeds checked", flush=True)
 
         async with open_fetcher(config) as fetcher:
             rows = await run_checks(urls, fetcher, on_row=record)
