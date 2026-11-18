@@ -152,7 +152,7 @@ def checked(
     days_ago: float | None,
     error: str | None = None,
     final_url: str | None = None,
-    language: str | None = "en-us",
+    language: str | None = "en",
     title: str | None = "A Feed",
 ) -> CheckRow:
     date = None if days_ago is None else NOW - timedelta(days=days_ago)
@@ -161,7 +161,6 @@ def checked(
         NOW,
         final_url=final_url,
         last_item_date=date,
-        last_tagged_item_date=date,
         error=error,
         language=language,
         title=title,
@@ -176,13 +175,16 @@ def test_is_active() -> None:
     assert not is_active(checked("u", 1, error="http_5xx"), NOW, 365)
     assert is_active(checked("u", -0.5), NOW, 365)  # time zones: up to a day ahead is fine
     assert not is_active(checked("u", -3), NOW, 365)  # a future date is not trusted
-    untagged = CheckRow("u", NOW, last_item_date=NOW - timedelta(days=1))
-    assert not is_active(untagged, NOW, 365)  # recent items, but none with a tag
 
 
 @pytest.mark.parametrize(
     ("language", "english"),
-    [("en", True), ("en-us", True), ("en-gb", True), ("eng", False), ("fr", False), (None, False)],
+    [
+        ("en", True),
+        ("de, en", True),  # English among others is enough
+        ("fr", False),
+        (None, False),  # nothing detected
+    ],
 )
 def test_is_english(language: str | None, english: bool) -> None:
     assert is_english(checked("u", 1, language=language)) is english
@@ -192,20 +194,19 @@ KEYWORDS = frozenset({"porn", "sex", "rape", "fetish"})
 
 
 @pytest.mark.parametrize(
-    ("title", "tags", "excluded"),
+    ("title", "excluded"),
     [
-        ("Captured Porn Passwords", "account, login", True),
-        ("BestCutScenes", "asian rape, death fetish, exploitation", True),
-        ("Shop", "sex-toys", True),  # hyphen and underscore separate words
-        ("Shop", "adult_porn", True),
-        ("Essex Gardening", "grapes, sussex", False),  # inside another word
-        ("Pornography studies", "media", False),  # a different word: list each form
-        ("Body Mind Place", "activism, animism", False),
-        (None, None, False),
+        ("Captured Porn Passwords", True),
+        ("BestCutScenes: death fetish", True),
+        ("Sex-toys shop", True),  # hyphen and underscore separate words
+        ("adult_porn", True),
+        ("Essex Gardening", False),  # inside another word
+        ("Pornography studies", False),  # a different word: list each form
+        (None, False),
     ],
 )
-def test_has_keyword(title: str | None, tags: str | None, excluded: bool) -> None:
-    row = CheckRow("u", NOW, title=title, item_categories=tags)
+def test_has_keyword(title: str | None, excluded: bool) -> None:
+    row = CheckRow("u", NOW, title=title)
     assert has_keyword(row, KEYWORDS) is excluded
     assert not has_keyword(row, frozenset())
 
@@ -269,7 +270,7 @@ def test_served_url_is_https_after_redirects() -> None:
     assert served_url(to_yt, frozenset({"youtube.com"})) is None
 
 
-async def test_survivors_keeps_active_tagged_feeds_served_over_https() -> None:
+async def test_survivors_keeps_active_english_feeds_served_over_https() -> None:
     paths = [f"crawl-data/{OLD}/segments/1/wat/CC-MAIN-1-{i:05}.warc.wat.gz" for i in range(3)]
     slice_ = wat(
         page(
@@ -313,16 +314,16 @@ async def test_survivors_keeps_active_tagged_feeds_served_over_https() -> None:
         rows = []
         for url in urls:
             if "/old/" in url:
-                rows.append(checked(url, 400))  # last tagged item too old
+                rows.append(checked(url, 400))  # newest item too old
             elif "shared" in url:
-                rows.append(checked(url, None))  # no tagged items
+                rows.append(checked(url, None))  # no dated items
             elif "/fr/" in url:
                 rows.append(checked(url, 3, language="fr"))
             elif "untitled" in url:
                 rows.append(checked(url, 3, title=None))
             elif "adult" in url:
                 row = checked(url, 3)
-                row.title, row.item_categories = "Free Logins", "account, porn"
+                row.title = "Free Porn Logins"
                 rows.append(row)
             elif url.startswith("http://m"):  # moved to https: kept as the https target
                 rows.append(checked(url, 3, final_url="https://new.example/feed"))
@@ -365,9 +366,9 @@ async def test_survivors_keeps_active_tagged_feeds_served_over_https() -> None:
     ]
     for row in result.rows:
         assert row.wat_url == sliced[0]  # credited to the WAT file it was found in
-        assert row.language == "en-us"
+        assert row.language == "en"
         days = 3 if row.url == "https://new.example/feed" else 30  # as the fake check said
-        assert row.last_tagged_item_date == NOW - timedelta(days=days)
+        assert row.last_item_date == NOW - timedelta(days=days)
 
 
 async def test_survivors_fails_when_the_slice_fails() -> None:

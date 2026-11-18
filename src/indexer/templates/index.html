@@ -9,14 +9,14 @@ keyword filters and no account.</span></p>
 
 <h2>Popular topics</h2>
 <p class="muted">The {{ popular|length|num }} largest of {{ topics|length|num }} topics. {{ listed|num }} of
-the feeds are in a topic; the rest publish no categories, or only rare ones.</p>
+the feeds are in a topic; the rest have no topic that stands out from their posts.</p>
 <input id="q" class="filter" type="search" placeholder="Search all {{ topics|length|num }} topics" aria-label="Search topics" hidden>
-<ul id="tags" class="tags">
-{% for slug, count in popular %}
-<li data-t="{{ slug }}"><a href="tag/{{ slug }}/">{{ slug }}<span class="n">{{ count|num }}</span></a></li>
+<ul id="popular" class="topics">
+{% for name, slug, count in popular %}
+<li><a href="topic/{{ slug }}/">{{ name }}<span class="n">{{ count|num }}</span></a></li>
 {% endfor %}
 </ul>
-<ul id="found" class="tags" hidden></ul>
+<ul id="found" class="topics" hidden></ul>
 <script type="application/json" id="topics">{{ topics|tojson }}</script>
 
 <h2 id="sources">Where the feeds come from</h2>
@@ -30,7 +30,7 @@ the feeds are in a topic; the rest publish no categories, or only rare ones.</p>
 </table></div>
 
 <script>
-const q = document.getElementById("q"), popular = document.getElementById("tags"),
+const q = document.getElementById("q"), popular = document.getElementById("popular"),
   found = document.getElementById("found"),
   topics = JSON.parse(document.getElementById("topics").textContent);
 q.hidden = false;
@@ -41,10 +41,10 @@ q.addEventListener("input", () => {
   found.replaceChildren();
   if (!v) return;
   const hits = topics.filter(([t]) => t.includes(v)).slice(0, {{ filter_matches }});
-  for (const [t, n] of hits) {
+  for (const [t, slug, n] of hits) {
     const li = document.createElement("li"), a = document.createElement("a"),
       count = document.createElement("span");
-    a.href = `tag/${t}/`;
+    a.href = `topic/${slug}/`;
     a.textContent = t;
     count.className = "n";
     count.textContent = n.toLocaleString("en");

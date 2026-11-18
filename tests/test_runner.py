@@ -1,9 +1,12 @@
+from collections.abc import Sequence
+
 from aiohttp.test_utils import TestServer
 from conftest import url
 
 from indexer.check.runner import CheckRow, run_checks
 from indexer.net.domains import registrable_domain
 from indexer.net.fetch import FetchResult
+from indexer.topics import Post
 
 
 class ExplodingFetcher:
@@ -72,3 +75,83 @@ def test_registrable_domain() -> None:
     assert registrable_domain("Example.COM.") == "example.com"
     assert registrable_domain("8.8.8.8") is None
     assert registrable_domain(None) is None
+
+
+class OneFeedFetcher:
+    BODY = (
+        "<rss><channel>"
+        + "".join(
+            f"<item><title>{t}</title><description>{'words ' * 10}</description>"
+            f"<category>{t.split()[0]}</category></item>"
+            for t in ("Rust tips", "Hallo Welt", "Rust news", "Hallo again", "Python notes")
+        )
+        + "</channel></rss>"
+    ).encode()
+
+    async def fetch(self, raw_url: str) -> FetchResult:
+        return FetchResult(url=raw_url, http_status=200, body=self.BODY)
+
+
+async def test_topics_come_from_the_english_items_only() -> None:
+    class Languages:
+        def post_languages(self, texts: Sequence[str]) -> list[str | None]:
+            return ["de" if t.startswith("Hallo") else "en" for t in texts]
+
+    class Model:
+        def __init__(self) -> None:
+            self.seen: list[Post] = []
+            self.about: list[tuple[str | None, str | None]] = []
+            self.first_label: list[bool] = []
+
+        def topics(
+            self,
+            posts: Sequence[Post],
+            title: str | None = None,
+            subtitle: str | None = None,
+            *,
+            first_label: bool = True,
+        ) -> list[str]:
+            self.seen.extend(posts)
+            self.about.append((title, subtitle))
+            self.first_label.append(first_label)
+            return ["rust", "python"]
+
+    model = Model()
+    urls = ["https://a.example/feed"]
+    (row,) = await run_checks(urls, OneFeedFetcher(), languages=Languages(), topics=model)
+    assert row.language == "de, en"
+    assert [p.text.split(".")[0] for p in model.seen] == ["Rust tips", "Rust news", "Python notes"]
+    assert [tuple(p.tags) for p in model.seen] == [("Rust",), ("Rust",), ("Python",)]
+    assert model.about == [(None, None)]  # this feed has no title or subtitle
+    assert model.first_label == [True]  # "en" is among the detected languages
+    assert row.topics == "rust, python"  # stored comma separated
+
+    (plain,) = await run_checks(urls, OneFeedFetcher())
+    assert plain.language is None and plain.topics is None  # no language model: neither runs
+
+
+async def test_no_first_label_fallback_unless_detected_english() -> None:
+    class MostlyGerman:  # one English item of four: "en" is not among the feed's languages
+        def post_languages(self, texts: Sequence[str]) -> list[str | None]:
+            return ["en" if t.startswith("Python") else "de" for t in texts]
+
+    class Model:
+        def __init__(self) -> None:
+            self.first_label: list[bool] = []
+
+        def topics(
+            self,
+            posts: Sequence[Post],
+            title: str | None = None,
+            subtitle: str | None = None,
+            *,
+            first_label: bool = True,
+        ) -> list[str]:
+            self.first_label.append(first_label)
+            return []
+
+    model = Model()
+    (row,) = await run_checks(
+        ["https://a.example/feed"], OneFeedFetcher(), languages=MostlyGerman(), topics=model
+    )
+    assert row.language == "de" and model.first_label == [False] and row.topics is None

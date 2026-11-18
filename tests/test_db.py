@@ -41,9 +41,8 @@ async def test_run_and_row_round_trip() -> None:
             site_url="https://example.com/",
             self_url="https://example.com/feed.xml",
             title="Example",
-            categories="css, web",
-            item_categories="nodejs, web dev",
-            language="en",
+            language="de, en",
+            topics="rust, webassembly",
             media_type="text",
         )
         await db.insert_check(run_id, row)
@@ -57,8 +56,8 @@ async def test_run_and_row_round_trip() -> None:
         )
         assert await cur.fetchall() == [(row.url, 4, True, None, '"abc"', 301, "2606:4700::1")]
         cur = await conn.execute(
-            "SELECT parsed_at, feed_kind, generator, title, categories, item_categories,"
-            " language, media_type, site_url FROM feeds WHERE url = %s",
+            "SELECT parsed_at, feed_kind, generator, title,"
+            " language, topics, media_type, site_url FROM feeds WHERE url = %s",
             (row.url,),
         )
         assert await cur.fetchone() == (
@@ -66,9 +65,8 @@ async def test_run_and_row_round_trip() -> None:
             "rss",
             "WordPress 6.4",
             "Example",
-            "css, web",
-            "nodejs, web dev",
-            "en",
+            "de, en",
+            "rust, webassembly",
             "text",
             "https://example.com/",
         )

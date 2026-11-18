@@ -1,6 +1,7 @@
 """Decide whether a body is an RSS/Atom feed and extract item count, newest date, ttl, the
 generator, the URLs the feed gives for itself (site, self, new-feed-url) and descriptive fields
-for labelling (title, subtitle, categories, language, media type, icon, logo, rights, license).
+for labelling (title, subtitle, media type, icon, logo, rights, license), and the text of
+the first items (for language detection; not stored).
 
 Parsing uses defusedxml: entity declarations and external references are refused, and DTDs
 are never loaded. A bare <!DOCTYPE> (common in RSS 0.91) is tolerated because nothing is
@@ -11,7 +12,6 @@ import dataclasses
 import email.utils
 import html
 import re
-import unicodedata
 import urllib.parse
 from collections.abc import Iterable
 from dataclasses import dataclass
@@ -36,19 +36,19 @@ ADMIN = "{http://webns.net/mvcb/}"
 MEDIA = "{http://search.yahoo.com/mrss/}"
 YT = "{http://www.youtube.com/xml/schemas/2015}"
 CC = "{http://backend.userland.com/creativeCommonsRssModule}"
-XML_LANG = "{http://www.w3.org/XML/1998/namespace}lang"
+CONTENT = "{http://purl.org/rss/1.0/modules/content/}"
 
 MAX_URL_LEN = 2048
 MAX_TEXT_LEN = 200
 MAX_SUBTITLE_LEN = 500
-MAX_CATEGORY_LEN = 100  # one itunes:category path
-MAX_CATEGORIES = 50  # itunes:category paths
-MAX_CATEGORY_LIST_LEN = 2048  # the whole categories / item_categories value
+MAX_TEXT_ITEMS = 30  # items whose text is kept for language detection (first in the feed)
+MAX_ITEM_TEXT_LEN = 300  # title and the start of the description, per item
+MAX_ITEM_TAGS = 50  # categories kept per item (topics ignore an item with more than a few)
+MAX_TAG_LEN = 100
 MAX_ITEM_LINKS = 3  # links of the most recent items (for reviewing proposals; not stored)
 MAX_ITEM_LINK_LEN = 300
 AUDIO_EXTENSIONS = (".mp3", ".m4a", ".aac", ".ogg", ".oga", ".opus", ".wav", ".flac")
 VIDEO_EXTENSIONS = (".mp4", ".m4v", ".webm", ".mov", ".mkv")
-_LANGUAGE = re.compile(r"[a-z]{2,3}(-[a-z0-9]{1,8})*")
 _TAG = re.compile(r"<[^>]*>")
 
 MAX_INT32 = 2**31 - 1
@@ -60,7 +60,6 @@ class FeedInfo:
     item_count: int
     last_item_date: datetime | None
     ttl: int | None
-    last_tagged_item_date: datetime | None = None  # newest item with a category / tag
     generator: str | None = None
     site_url: str | None = None  # the website the feed belongs to
     self_url: str | None = None  # where the feed says it lives (atom:link rel=self)
@@ -68,18 +67,20 @@ class FeedInfo:
     # Descriptive fields, named after their Atom counterparts.
     title: str | None = None
     subtitle: str | None = None  # Atom <subtitle>, RSS <description>
-    categories: str | None = None  # feed-level categories, normalized, comma separated, sorted
-    item_categories: str | None = None  # all items' categories, same format
     # Each item's link as written in the feed (not resolved or validated: untrusted text, shown
     # to reviewers, never fetched), distinct: the MAX_ITEM_LINKS most recent items, newest first.
     item_links: tuple[str, ...] = ()
-    itunes_category: str | None = None  # "Technology > Software, ...", sorted
-    language: str | None = None  # lower-case language tag
     media_type: str | None = None  # text, podcast or video; None for an empty feed
     icon: str | None = None
     logo: str | None = None  # Atom <logo>, RSS <image><url>, <itunes:image>
     rights: str | None = None  # Atom <rights>, RSS <copyright>, dc:rights
     license: str | None = None  # link rel=license, creativeCommons:license
+    # Plain text (title and the start of the description) of the first MAX_TEXT_ITEMS items, for
+    # language detection: untrusted, never stored.
+    item_texts: tuple[str, ...] = ()
+    # The categories of each of item_texts' items, as written (split on commas, trimmed, capped):
+    # untrusted, never stored; only used as evidence for topics.
+    item_tags: tuple[tuple[str, ...], ...] = ()
 
 
 def clean_url(value: str | None, base: str | None = None) -> str | None:
@@ -170,23 +171,6 @@ _ATOM_DATES = (f"{ATOM}updated", f"{ATOM}published")
 _ATOM03_DATES = (f"{ATOM03}modified", f"{ATOM03}issued", f"{ATOM03}created")
 _RDF_DATES = (f"{DC}date", f"{DCTERMS}modified", f"{DCTERMS}issued")
 
-# Platform defaults that say nothing about an item (WordPress files posts under "Uncategorized").
-DEFAULT_CATEGORIES = frozenset({"uncategorized", "uncategorised", "general"})
-
-
-def _newest_tagged(items: Iterable[Element], tags: tuple[str, ...]) -> datetime | None:
-    """The newest date among items with at least one category (after normalization) that is
-    not a platform default."""
-    return _newest((i for i in items if _has_real_category(i)), tags)
-
-
-def _has_real_category(item: Element) -> bool:
-    return any(
-        (term := normalize_category(part)) and term not in DEFAULT_CATEGORIES
-        for value in _category_values([item])
-        for part in (value or "").split(",")
-    )
-
 
 def _ttl(text: str | None) -> int | None:
     if text is None:
@@ -270,7 +254,6 @@ def _parse_root(root: Element, base_url: str | None) -> FeedInfo:
             len(items),
             _newest(items, date_tags),
             _ttl(channel.findtext("ttl")),
-            last_tagged_item_date=_newest_tagged(items, date_tags),
             generator=_clean_text(channel.findtext("generator")),
             site_url=clean_url(channel.findtext("link"), base_url),
             self_url=self_url,
@@ -286,7 +269,6 @@ def _parse_root(root: Element, base_url: str | None) -> FeedInfo:
             len(entries),
             _newest(entries, date_tags),
             None,
-            last_tagged_item_date=_newest_tagged(entries, date_tags),
             generator=_atom_generator(root, ns),
             site_url=site,
             self_url=self_url,
@@ -306,7 +288,6 @@ def _parse_root(root: Element, base_url: str | None) -> FeedInfo:
             len(items),
             _newest(items, date_tags),
             None,
-            last_tagged_item_date=_newest_tagged(items, date_tags),
             generator=_clean_text(agent.get(f"{RDF}resource")) if agent is not None else None,
             site_url=clean_url(channel.findtext(f"{ns}link"), base_url),
         )
@@ -327,81 +308,6 @@ def _text_of(el: Element | None, *, markup: bool = False, limit: int = MAX_TEXT_
 
 def _first(*values: str | None) -> str | None:
     return next((v for v in values if v), None)
-
-
-def _language(*values: str | None) -> str | None:
-    for value in values:
-        tag = (value or "").strip().lower().replace("_", "-")
-        if len(tag) <= 35 and _LANGUAGE.fullmatch(tag):
-            return tag
-    return None
-
-
-def _join_sorted(values: Iterable[str]) -> str | None:
-    """Comma-separated, de-duplicated ignoring case, sorted alphabetically ignoring case."""
-    unique: dict[str, str] = {}
-    for value in values:
-        unique.setdefault(value.casefold(), value)
-    ordered = sorted(unique.values(), key=lambda v: (v.casefold(), v))[:MAX_CATEGORIES]
-    return ", ".join(ordered) or None
-
-
-def normalize_category(value: str) -> str:
-    """Lower-case ASCII letters, digits, '-', '_' and single spaces. '+' becomes 'plus' and
-    '#' becomes 'sharp'; accents are folded (é -> e); everything else is dropped.
-    'C++' -> 'cplusplus', 'C#' -> 'csharp', 'Node.js' -> 'nodejs', 'Café' -> 'cafe'."""
-    value = value.replace("+", "plus").replace("#", "sharp")
-    folded = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
-    kept = "".join(c for c in folded.lower() if c.isalnum() or c in "-_ \t\n\r")
-    return " ".join(kept.split())
-
-
-def _categories(raw: Iterable[str | None]) -> str | None:
-    """Split each value on commas (some feeds put a list in one element), normalize,
-    de-duplicate, sort, and join with ', ' up to MAX_CATEGORY_LIST_LEN
-    characters. Only whole terms are kept, except a first term that alone is too long."""
-    unique = {
-        term
-        for value in raw
-        for part in (value or "").split(",")
-        if (term := normalize_category(part))
-    }
-    out = ""
-    for term in sorted(unique):
-        candidate = f"{out}, {term}" if out else term[:MAX_CATEGORY_LIST_LEN]
-        if len(candidate) > MAX_CATEGORY_LIST_LEN:
-            break
-        out = candidate
-    return out or None
-
-
-def _category_values(elements: Iterable[Element]) -> list[str | None]:
-    """Values of <category> (text, or Atom term/label) and dc:subject children."""
-    values: list[str | None] = []
-    for parent in elements:
-        for child in parent:
-            if child.tag == "category":
-                values.append(child.text)
-            elif child.tag in (f"{ATOM}category", f"{ATOM03}category"):
-                values.append(child.get("term") or child.get("label") or child.text)
-            elif child.tag == f"{DC}subject":
-                values.append(child.text)
-    return values
-
-
-def _itunes_categories(channel: Element) -> str | None:
-    paths: list[str] = []
-    for top in channel.findall(f"{ITUNES}category"):
-        name = _clean_text((top.get("text") or "").replace(",", " "))
-        if not name:
-            continue
-        subs = [
-            sub_name
-            for sub in top.findall(f"{ITUNES}category")
-            if (sub_name := _clean_text((sub.get("text") or "").replace(",", " ")))
-        ]
-        paths.extend([f"{name} > {sub}" for sub in subs] or [name])
-    return _join_sorted(p[:MAX_CATEGORY_LEN] for p in paths)
 
 
 def _item_media(item: Element) -> str | None:
@@ -488,14 +394,57 @@ def _item_links(
     return tuple(found)
 
 
+def _item_tags(item: Element) -> tuple[str, ...]:
+    """The item's categories (RSS <category>, Atom <category term|label>, dc:subject), each value
+    split on commas, trimmed, capped at MAX_TAG_LEN; at most MAX_ITEM_TAGS, in order, distinct."""
+    tags: dict[str, None] = {}
+    for child in item:
+        if child.tag in ("category", f"{DC}subject"):
+            value = child.text
+        elif child.tag in (f"{ATOM}category", f"{ATOM03}category"):
+            value = child.get("term") or child.get("label") or child.text
+        else:
+            continue
+        for part in (value or "").split(","):
+            if tag := _clean_text(part):
+                tags.setdefault(tag[:MAX_TAG_LEN])
+    return tuple(tags)[:MAX_ITEM_TAGS]
+
+
+class _ItemText(TypedDict):
+    item_texts: tuple[str, ...]
+    item_tags: tuple[tuple[str, ...], ...]
+
+
+def _item_texts(items: list[Element], title: str, descriptions: tuple[str, ...]) -> _ItemText:
+    """Title and the start of the first non-empty description of each of the first MAX_TEXT_ITEMS
+    items, as plain text (markup stripped), MAX_ITEM_TEXT_LEN characters at most, with each one's
+    categories (`_item_tags`)."""
+    texts: list[str] = []
+    tags: list[tuple[str, ...]] = []
+    for item in items[:MAX_TEXT_ITEMS]:
+        head = _text_of(item.find(title), markup=True, limit=MAX_ITEM_TEXT_LEN) or ""
+        body = next(
+            (
+                t
+                for tag in descriptions
+                if (t := _text_of(item.find(tag), markup=True, limit=MAX_ITEM_TEXT_LEN))
+            ),
+            "",
+        )
+        text = f"{head}. {body}" if head and body else head or body
+        if text:
+            texts.append(text[:MAX_ITEM_TEXT_LEN])
+            tags.append(_item_tags(item))
+    return {"item_texts": tuple(texts), "item_tags": tuple(tags)}
+
+
 class Description(TypedDict):
     title: str | None
     subtitle: str | None
-    categories: str | None
-    item_categories: str | None
     item_links: tuple[str, ...]
-    itunes_category: str | None
-    language: str | None
+    item_texts: tuple[str, ...]
+    item_tags: tuple[tuple[str, ...], ...]
     media_type: str | None
     icon: str | None
     logo: str | None
@@ -513,16 +462,8 @@ def _describe(root: Element, kind: str, base: str | None) -> Description:
         return {
             "title": _text_of(channel.find("title"), markup=True),
             "subtitle": _text_of(channel.find("description"), markup=True, limit=MAX_SUBTITLE_LEN),
-            "categories": _categories(_category_values([channel])),
-            "item_categories": _categories(_category_values(items)),
             "item_links": _item_links(items, "", atom=False, date_tags=_RSS_DATES),
-            "itunes_category": _itunes_categories(channel),
-            "language": _language(
-                channel.findtext("language"),
-                channel.findtext(f"{DC}language"),
-                channel.get(XML_LANG),
-                root.get(XML_LANG),
-            ),
+            **_item_texts(items, "title", ("description", f"{CONTENT}encoded")),
             "media_type": _media_type(items),
             "icon": clean_url(channel.findtext(f"{ATOM}icon"), base),
             "logo": _first(
@@ -546,13 +487,10 @@ def _describe(root: Element, kind: str, base: str | None) -> Description:
                 root.find(f"{ns}subtitle") if ns == ATOM else root.find(f"{ns}tagline"),
                 limit=MAX_SUBTITLE_LEN,
             ),
-            "categories": _categories(_category_values([root])),
-            "item_categories": _categories(_category_values(entries)),
             "item_links": _item_links(
                 entries, ns, atom=True, date_tags=_ATOM_DATES if ns == ATOM else _ATOM03_DATES
             ),
-            "itunes_category": _itunes_categories(root),
-            "language": _language(root.get(XML_LANG)),
+            **_item_texts(entries, f"{ns}title", (f"{ns}summary", f"{ns}content")),
             "media_type": _media_type(entries),
             "icon": clean_url(root.findtext(f"{ns}icon"), base),
             "logo": clean_url(root.findtext(f"{ns}logo"), base),
@@ -570,11 +508,8 @@ def _describe(root: Element, kind: str, base: str | None) -> Description:
     return {
         "title": _text_of(channel.find(f"{ns}title"), markup=True),
         "subtitle": _text_of(channel.find(f"{ns}description"), markup=True, limit=MAX_SUBTITLE_LEN),
-        "categories": _categories(_category_values([channel])),
-        "item_categories": _categories(_category_values(items)),
         "item_links": links[:MAX_ITEM_LINKS],
-        "itunes_category": None,
-        "language": _language(channel.findtext(f"{DC}language"), root.get(XML_LANG)),
+        **_item_texts(items, f"{ns}title", (f"{ns}description",)),
         "media_type": _media_type(items),
         "icon": None,
         "logo": clean_url(root.findtext(f"{ns}image/{ns}url"), base),

@@ -4,9 +4,11 @@ Commands, in pipeline order:
   load-inputs  load the feed URLs from the lists in data/sources.toml into the inputs table
   survivors    propose feeds from a ~5-year-old Common Crawl crawl still active today
   run          check a URL file, or a random batch of inputs, and record one row per URL
-  export       write the published lists (output/tag/<tag>/...) and website (output/docs/)
+  export       write the published lists (output/topic/<topic>/...) and website (output/docs/)
   cleanup      delete health checks older than a few months
   drop-tables  delete every table of this project (all data); needs --yes
+  topics       the topics of some text (no feed, no database): to try the topic model
+  languages    the languages of some text (no feed, no database): to try the language model
 """
 
 import argparse
@@ -24,6 +26,7 @@ from typing import Any
 from indexer.check.runner import CheckRow, run_checks
 from indexer.db import DEFAULT_DATABASE_URL, Database
 from indexer.export import DATA_URL, SITE_URL, ExportError, write_output
+from indexer.language import MODEL_ENV, LanguageModel
 from indexer.net.fetch import FetchConfig, open_fetcher
 from indexer.net.validate import read_url_file
 from indexer.sources import (
@@ -35,6 +38,7 @@ from indexer.sources import (
 )
 from indexer.survivors import commoncrawl, proposals
 from indexer.survivors.commoncrawl import CommonCrawlError
+from indexer.topics import TOPICS_DIR, Post, TopicModel, TopicsError, build_index
 
 log = logging.getLogger("indexer")
 
@@ -114,6 +118,24 @@ def _log_failure(row: CheckRow) -> None:
         log.info("%28s%s", "", row.detail)
 
 
+def _language_model() -> LanguageModel | None:
+    """The language model, or None after printing why it could not be loaded."""
+    try:
+        return LanguageModel.load()
+    except (OSError, ValueError, RuntimeError) as exc:
+        print(f"error: cannot load the language model ({MODEL_ENV}): {exc}", file=sys.stderr)
+        return None
+
+
+def _topic_model() -> TopicModel | None:
+    """The topic model, or None after printing why it could not be loaded."""
+    try:
+        return TopicModel.load()
+    except (OSError, ValueError, RuntimeError, TopicsError) as exc:
+        print(f"error: cannot load the topic model or data/topics: {exc}", file=sys.stderr)
+        return None
+
+
 # --- commands ------------------------------------------------------------------------------------
 
 
@@ -154,6 +176,8 @@ async def _survivors(args: argparse.Namespace) -> int:
         return 2
     if (config := _load_config(args.config)) is None:
         return 2
+    if (languages := _language_model()) is None:
+        return 2
     slice_bytes = args.slice_mb * 1024 * 1024
     download = FetchConfig(deadline=900, max_body_bytes=slice_bytes + 1024 * 1024)
     in_file = proposals.known_urls(args.file)
@@ -168,7 +192,7 @@ async def _survivors(args: argparse.Namespace) -> int:
                 return await fetch_once(url, {"Range": f"bytes=0-{slice_bytes - 1}"})
 
             async def check(urls: Sequence[str]) -> list[CheckRow]:
-                return await run_checks(urls, checker)
+                return await run_checks(urls, checker, languages=languages)
 
             async def known(urls: Sequence[str]) -> set[str]:
                 return {u for u in urls if u in in_file} | await db.known_inputs(list(urls))
@@ -196,8 +220,8 @@ async def _survivors(args: argparse.Namespace) -> int:
         f"{args.slice_mb} MB of {result.file.path.rsplit('/', 1)[-1]}:"
         f" {result.candidates} feed URLs ({result.archive_feeds} category/tag/author feeds"
         f" skipped, {result.known} already known), {result.checked} checked{stopped},"
-        f" {result.working} working today, {result.active} with a tagged item in the last"
-        f" {args.active_days} days, {result.english} labelled English"
+        f" {result.working} working today, {result.active} with an item in the last"
+        f" {args.active_days} days, {result.english} in English"
         f" ({result.untitled} without a title, {result.keyword_excluded} with an excluded"
         f" keyword); acceptance {proposals.acceptance(len(new), result.checked)}"
     )
@@ -221,6 +245,8 @@ async def _survivors(args: argparse.Namespace) -> int:
 async def _run(args: argparse.Namespace) -> int:
     if args.from_inputs and (args.batch < 1 or args.stale_days < 0):
         print("error: --batch must be positive and --stale-days not negative", file=sys.stderr)
+        return 2
+    if (languages := _language_model()) is None or (model := _topic_model()) is None:
         return 2
     config = FetchConfig(
         deadline=args.deadline,
@@ -256,7 +282,7 @@ async def _run(args: argparse.Namespace) -> int:
                 print(f"{checked} feeds checked", flush=True)
 
         async with open_fetcher(config) as fetcher:
-            rows = await run_checks(urls, fetcher, on_row=record)
+            rows = await run_checks(urls, fetcher, on_row=record, languages=languages, topics=model)
         await db.finish_run(run_id)
 
     counts = Counter(row.error or "ok" for row in rows)
@@ -270,20 +296,19 @@ async def _run(args: argparse.Namespace) -> int:
 
 
 async def _export(args: argparse.Namespace) -> int:
-    if args.top_tags < 1 or args.success_days < 1 or args.item_years < 1:
+    if args.top_topics < 1 or args.success_days < 1 or args.item_years < 1:
         print(
-            "error: --top-tags, --success-days and --item-years must be positive", file=sys.stderr
+            "error: --top-topics, --success-days and --item-years must be positive",
+            file=sys.stderr,
         )
         return 2
     async with _database(args) as db:
         feeds = await db.listed_feeds(args.success_days, args.item_years)
-    ignore = args.ignore_tag if args.ignore_tag is not None else ["uncategorized"]
     try:
-        tags = write_output(
+        topics = write_output(
             args.output_dir,
             feeds,
-            top=args.top_tags,
-            ignore=ignore,
+            top=args.top_topics,
             generated=datetime.now(UTC),
             success_days=args.success_days,
             item_years=args.item_years,
@@ -294,10 +319,10 @@ async def _export(args: argparse.Namespace) -> int:
     except ExportError as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 1
-    in_tags = len({f.url for t in tags for f in t.feeds})
+    in_topics = len({f.url for t in topics for f in t.feeds})
     print(
-        f"{len(feeds)} feeds qualify (all in all/); wrote {len(tags)} tags covering {in_tags}"
-        f" feeds to {args.output_dir}/"
+        f"{len(feeds)} feeds qualify (all in all/); wrote {len(topics)} topics covering"
+        f" {in_topics} feeds to {args.output_dir}/"
     )
     return 0
 
@@ -351,7 +376,7 @@ def _parser() -> argparse.ArgumentParser:
     sv = command(
         "survivors",
         _survivors,
-        "propose feeds from a ~5-year-old crawl still active today (tagged, English, https)"
+        "propose feeds from a ~5-year-old crawl still active today (English, https)"
         " by appending them to --file for review",
     )
     sv.add_argument(
@@ -383,7 +408,7 @@ def _parser() -> argparse.ArgumentParser:
         "--active-days",
         type=int,
         default=243,
-        help="keep feeds with a tagged item in the last N days (default 243, about 8 months)",
+        help="keep feeds with an item in the last N days (default 243, about 8 months)",
     )
     sv.add_argument(
         "--max-feeds",
@@ -424,7 +449,7 @@ def _parser() -> argparse.ArgumentParser:
     ex = command(
         "export",
         _export,
-        "write the data files (output/tag/<tag>/...) and the website (output/docs/)",
+        "write the data files (output/topic/<topic>/...) and the website (output/docs/)",
     )
     ex.add_argument(
         "-o",
@@ -449,7 +474,7 @@ def _parser() -> argparse.ArgumentParser:
         default=DATA_URL,
         help=f"where the output's data files are served, ending with / (default {DATA_URL})",
     )
-    ex.add_argument("--top-tags", type=int, default=2000, help="tags to publish (default 2000)")
+    ex.add_argument("--top-topics", type=int, default=2000, help="topics to publish (default 2000)")
     ex.add_argument(
         "--success-days",
         type=int,
@@ -461,12 +486,6 @@ def _parser() -> argparse.ArgumentParser:
         type=int,
         default=5,
         help="list feeds whose newest item is younger than this (default 5)",
-    )
-    ex.add_argument(
-        "--ignore-tag",
-        action="append",
-        default=None,
-        help="tag to leave out; repeatable (default: uncategorized)",
     )
     _add_database_url(ex)
 
@@ -484,7 +503,74 @@ def _parser() -> argparse.ArgumentParser:
     dt.add_argument("--yes", action="store_true", help="confirm: really delete everything")
     _add_database_url(dt)
 
+    tp = command(
+        "topics",
+        _topics,
+        "print the topics of some posts (each TEXT is one post: its title and opening), one per"
+        " line, most similar first; nothing is fetched or stored",
+    )
+    tp.add_argument("text", nargs="+", metavar="TEXT", help="a post's text, in English")
+    tp.add_argument("--title", help="the feed's title")
+    tp.add_argument("--subtitle", help="the feed's subtitle (counts only if it says something)")
+    tp.add_argument(
+        "--tags",
+        action="append",
+        default=[],
+        metavar="A,B",
+        help="one post's tags, comma separated; repeat in the order of the TEXTs",
+    )
+
+    em = command(
+        "embeddings",
+        _embeddings,
+        "rebuild the topic matrix (topics.npy, topics.json) from topics.txt with MiniLM",
+    )
+    em.add_argument(
+        "--directory",
+        type=Path,
+        default=TOPICS_DIR,
+        help=f"holds topics.txt; the files are written there (default {TOPICS_DIR})",
+    )
+
+    lg = command(
+        "languages",
+        _languages,
+        "print the language of each TEXT (one post each: its title and opening), then the feed's"
+        " labels; nothing is fetched or stored",
+    )
+    lg.add_argument("text", nargs="+", metavar="TEXT", help="a post's text")
+
     return parser
+
+
+async def _topics(args: argparse.Namespace) -> int:
+    if (model := _topic_model()) is None:
+        return 2
+    tags = [[t.strip() for t in group.split(",") if t.strip()] for group in args.tags]
+    posts = [Post(text, tags[i] if i < len(tags) else ()) for i, text in enumerate(args.text)]
+    for topic in model.topics(posts, args.title, args.subtitle):
+        print(topic)
+    return 0
+
+
+async def _embeddings(args: argparse.Namespace) -> int:
+    try:
+        rows = build_index(args.directory)
+    except (OSError, TopicsError) as exc:
+        print(f"error: cannot build the topic matrix: {exc}", file=sys.stderr)
+        return 1
+    print(f"{rows} topic names embedded into {args.directory / 'topics.npy'}")
+    return 0
+
+
+async def _languages(args: argparse.Namespace) -> int:
+    if (model := _language_model()) is None:
+        return 2
+    for text, code in zip(args.text, model.post_languages(args.text), strict=True):
+        shown = "(too short)" if code is None else code or "(unknown)"
+        print(f"{shown:12} {' '.join(text.split())[:70]}")
+    print(f"feed: {', '.join(model.languages(args.text)) or '(none)'}")
+    return 0
 
 
 def main(argv: list[str] | None = None) -> int:

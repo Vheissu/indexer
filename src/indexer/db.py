@@ -44,10 +44,8 @@ FEED_METADATA = (
     "generator",
     "title",
     "subtitle",
-    "categories",
-    "item_categories",
-    "itunes_category",
     "language",
+    "topics",
     "media_type",
     "icon",
     "logo",
@@ -213,8 +211,8 @@ class Database:
                 WHERE error IS NULL AND checked_at > now() - make_interval(days => %s)
                 ORDER BY url, checked_at DESC
             )
-            SELECT f.url, f.title, f.site_url, l.last_item_date, f.categories, f.item_categories,
-                   l.file_size
+            SELECT f.url, f.title, f.site_url, l.last_item_date, f.language, l.file_size, f.topics,
+                   f.subtitle
             FROM feeds f JOIN latest_ok l USING (url)
             WHERE l.last_item_date > now() - make_interval(years => %s)
             """,

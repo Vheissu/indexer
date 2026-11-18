@@ -1,7 +1,7 @@
 # indexer (Maintained Awesome RSS)
 
 A self-maintaining awesome list of RSS/Atom feeds: collect feed URLs (curated lists, submissions,
-Common Crawl), check them regularly and securely, and publish the active ones by tag. README.md is for people
+Common Crawl), check them regularly and securely, and publish the active ones by topic. README.md is for people
 looking for feeds (ends with a brief "How it works"); DEVELOP.md has the technical documentation (no duplication between the two); this file holds the rules and decisions to respect when changing code.
 
 Runs locally against the compose Postgres; deployed as GitHub Actions workflows writing to Supabase.
@@ -12,9 +12,10 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 | --- | --- | --- | --- |
 | inputs from lists | `indexer load-inputs data/sources.toml` | `input` | `input.yml` (daily; on push to develop/main changing `data/sources.toml` or `data/*.txt`) |
 | old CC feeds still active, proposed by PR | `indexer survivors` | `survivors` | `survivors.yml` (Wednesdays) |
-| health checks | `indexer run --from-inputs` (or `run FILE`) | `check` | `check.yml` (every 3 h, 500 URLs) |
-| publish | `indexer export` | `export` | `publish.yml` (after each successful check run; Mondays as fallback) |
+| health checks | `indexer run --from-inputs` (or `run FILE`) | `check` | `check.yml` (every 3 h, 500 URLs, 3 h timeout) |
+| publish | `indexer export` | `export` | `publish.yml` (manual only: no schedule, no workflow_run; agreed 2026-11-18) |
 | retention | `indexer cleanup` | `cleanup` | `cleanup.yml` (Sundays) |
+| topic matrix | `indexer embeddings` | `embeddings` | `embeddings.yml` (on push to develop changing `data/topics/topics.txt` or `Dockerfile`; manual) |
 | start over (all data) | `indexer drop-tables --yes` | `drop-tables` | `drop-tables.yml` (manual, typed confirmation) |
 
 ## Decisions made with the user (keep them)
@@ -32,58 +33,62 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 - `survivors` **proposes, never inserts**: appends to `data/survivors.txt` (a `files` source, CC ToU license) and
   every survivors.yml run opens its own PR from a new branch `survivors-<UTC timestamp>` based on develop (never a reused
   branch, so old proposals can't be merged by mistake). Skips URLs already in develop's file or in inputs.
-  Untrusted titles/tags: one line in the file (`proposals.one_line`), code spans in Markdown (no mentions/links).
-  PR report: one section per feed (title, URL, last tagged post, tags, the links of the 3 latest posts, all code spans; no
-  language), for spotting spam; item links are parsed (`FeedInfo.item_links`, 3 newest) but never stored or fetched; the report
+  Untrusted titles/links: one line in the file (`proposals.one_line`), code spans in Markdown (no mentions/links).
+  PR report: one section per feed (title, URL, last post, detected languages, the links of the 3 latest posts, all code spans),
+  for spotting spam; item links are parsed (`FeedInfo.item_links`, 3 newest) but never stored or fetched; the report
   never exceeds GitHub's 65,536-character limit (extra feeds are only counted).
   Agreed filters: crawl closest to 5 years ago, first 25 MB of one random WAT file (one range
   request, random each run, no state; one file because the yield per MB is the same as several smaller slices); strip session params (`urls.strip_session`), fold WordPress/Blogger/Joomla format variants
   (`canonical_format`), skip WordPress category/tag/author feeds
-  unchecked; check the rest now; insert only feeds whose newest **tagged** item (not `uncategorized`/`general`) is
-  from the last 243 days (~8 months), are **labelled English** (`language` en / en-*, the feed's own label, no detection), **have a title** and are
+  unchecked; check the rest now; insert only feeds whose newest item is
+  from the last 243 days (~8 months), are **in English** (`en` among the languages detected on their items, agreed
+  2026-11-18; what the feed declares is not read), **have a title** and are
   **served over https today** (inserted as the URL after redirects; plain http is
   skipped, https:// is not tried). Rejected as too complex: detecting one feed in several formats by its items (only the URL rules above).
-  Still open: language detection, a takeover guard, storing these checks (not stored now), remembering
+  Still open: a takeover guard, storing these checks (not stored now), remembering
   URLs rejected in review.
 - `[exclude] domains` (youtube.com, reddit.com) is matched by registrable domain and applied at load and in survivors.
-- `[commoncrawl] exclude_keywords` (adult / sexual-violence words; gambling words added 2026-11-17 after casino spam in a sample), **Common Crawl only**: survivors skips a feed with one as a whole word in its title or any
-  tag (`commoncrawl.has_keyword`, after the English filter). Agreed with the user on 2026-11-16 after porn in a survivors PR;
+- `[commoncrawl] exclude_keywords` (adult / sexual-violence words; gambling words added 2026-11-17 after casino spam in a sample), **Common Crawl only**: survivors skips a feed with one as a whole word in its title
+  (`commoncrawl.has_keyword`, after the English filter). Agreed with the user on 2026-11-16 after porn in a survivors PR;
   never applied to the curated lists, submissions, load or export.
 - `data/submissions.txt`: user-submitted feeds via PR, last source in sources.toml, read via `files`; tested.
 - Common Crawl rows: source = WAT file URL, license `LicenseRef-CommonCrawl-ToU` (ranked last). No download
   retries: if the slice fails to download (e.g. a 503), the run fails; next week's run tries again. Feed health checks never retry.
 - Batches: a uniformly random sample of inputs never checked or checked over `--stale-days` (14) ago; storing a
   row sets `inputs.last_checked_at` whatever the outcome.
-- Export: success in the last 180 days and an item in the last 5 years; top 2000 tags; `uncategorized` ignored;
-  per tag links.txt ≤ 50,000, feeds.opml ≤ 500, tag page ≤ 200 (most recently active; each file starts with the next one's feeds; 200 agreed 2026-11-17 for page size); index sorted by count.
-  `all/{links.txt,feeds.opml}`: every listed feed, tagged or not, uncapped (about half have no categories).
+- Export: success in the last 180 days and an item in the last 5 years; top 2000 topics (`feeds.topics`; agreed 2026-11-18:
+  everything published is about topics, no tags; languages only in previews);
+  per topic links.txt ≤ 50,000, feeds.opml ≤ 500, topic page ≤ 200 (most recently active; each file starts with the next one's feeds; 200 agreed 2026-11-17 for page size); index sorted by count.
+  `all/{links.txt,feeds.opml}`: every listed feed, with a topic or not, uncapped.
   links.txt files are newest post first (a search page shows them in file order).
-  `previews/<2 hex>/<sha256 hex of the URL>.json` per listed feed (for a search page, e.g. feedrule.com): `{url, title, bytes, last, tags}`,
-  bytes = body size at the latest successful check, tags = all the feed's tags minus ignored. Hash, not hex of the URL (file name limit).
+  `previews/<2 hex>/<sha256 hex of the URL>.json` per listed feed (for a search page, e.g. feedrule.com): `{url, title, subtitle, bytes, last, languages, topics}`,
+  bytes = body size at the latest successful check, languages = the detected labels (list), topics = the feed's topics (list, most similar first). Hash, not hex of the URL (file name limit).
   `SPEC.md` at the repo root (hand-written: the output's file patterns and contents) is copied into the output by export
   (`--spec`, mounted read-only in compose); keep it in sync with the export (a test checks patterns and limits).
   **No Markdown in the output (except SPEC.md): the website is HTML** in `output/docs/` (`site.py`), served by GitHub Pages
   from the output branch's `/docs` (agreed 2026-11-17: pages that rank, links to feedrule.com without GitHub's nofollow,
   github.io keeps any thin-content risk off feedrule.com). Index (the 50 largest topics, a search box over all of them from an inline JSON list,
-  no links to the all/ files (too big), sources table `site.SOURCES`: update it with data/sources.toml) and one page per tag (200 rows = the first of feeds.opml); sitemap.xml, .nojekyll, canonical
+  no links to the all/ files (too big), sources table `site.SOURCES`: update it with data/sources.toml) and one page per topic (200 rows = the first of feeds.opml); sitemap.xml, .nojekyll, canonical
   URLs (`--site-url`). Data files stay outside docs/ and are linked on raw.githubusercontent.com (`--data-url`), so they
   don't count toward the Pages limit. Colours: feedrule.com's (Tailwind zinc + orange), light and dark. Jinja templates
-  (`src/indexer/templates/`: base, index, tag, sitemap) with autoescaping on and StrictUndefined; `site.py` only prepares
+  (`src/indexer/templates/`: base, index, topic, sitemap) with autoescaping on and StrictUndefined; `site.py` only prepares
   the data. No front-end framework, no build step; one small inline script (topic filter), pages work without it.
   Each feed row starts with feedrule.com's icon (`src/indexer/feedrule.svg`, copied to docs/) linking to
   `https://feedrule.com/?feed=<feed URL, percent-encoded except : and />` (`site.feedrule_link`). Untrusted text is
   HTML-escaped; only http(s) URLs become links (`site.safe_href`); feed and site links are rel="nofollow", feedrule's not.
   Row: title and a "Website" link (after the plain-text domain) go to the website (the feed's `site_url`, else its domain's home page), then a "Feed" link,
-  then up to 10 of the feed's other tags (`site.feed_tags`): ranked by how many listed feeds have them, because tag frequency
-  inside a feed is not stored; published ones link to their page.
-  `tag/tags.txt`: the published tag names, one per line, most feeds first (ties by name).
+  then the feed's other topics (`site.other_topics`), most similar first; published ones link to their page.
+  `topic/topics.txt`: the published topic names, one per line, most feeds first (ties by name). Topic directories and
+  URLs use `export.topic_slug` (+ → plus, # → sharp: `c++` → `cplusplus`); pages show the name.
   publish.yml force-pushes output/ as one orphan commit to the `output` branch (no history, by design).
 - Cleanup keeps 8 months of health_checks (refuses < 7: export looks back 6). feeds and inputs are kept.
 - Git: commit each verified step to `develop`; push only when asked. There is no `main` branch yet.
 
 ## Stack and conventions
 
-- Source in `src/indexer/`: `cli.py`, `db.py`, `errors.py`, `export.py` (data files), `site.py` (HTML site), `sources.py` (sources.toml, list loading) at the top;
+- Source in `src/indexer/`: `cli.py`, `db.py`, `errors.py`, `export.py` (data files), `site.py` (HTML site), `sources.py` (sources.toml, list loading),
+  `topics.py` (topics from plain text: no RSS, no languages, no database; `TopicModel.topics(posts, title, subtitle)`),
+  `language.py` (languages from plain text, same style; `LanguageModel.post_languages(texts)` / `.languages(texts)`) at the top;
   `net/` (guarded fetcher, URL validation, resolver, IP policy), `check/` (runner, feed parser), `survivors/` (Common Crawl, proposals).
 - Python 3.13 with **uv** (commit `uv.lock`), ruff (lint + format), type hints everywhere, `mypy --strict src`.
 - Tests use pytest with a local server, fake DNS and synthetic files. **Tests never touch the network.**
@@ -93,7 +98,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   PostgreSQL driver; bump image, driver version and checksum together.
 - Liquibase owns the schema: `db/changelog/changes/NNN-*.yaml`, each listed in `db.changelog-master.yaml`.
   **Never edit an existing changeset; add a new one.** `001-schema` (author `feedrule-indexer`) squashes the former
-  001–009; it was edited on 2026-11-17 (reset databases, at the user's request: author, MARK_RAN removed, dead columns dropped). Squash or edit
+  001–009; it was edited on 2026-11-17 (reset databases, at the user's request: author, MARK_RAN removed, dead columns dropped; on 2026-11-18 the former 002–005, languages and topics, folded in after another reset). Squash or edit
   only when asked; on a database that has data, a squash needs a new id, a MARK_RAN precondition and a schema dump diff.
 - compose.yaml: the app services share an `x-indexer` anchor (image, DB settings, hardening: read-only
   root, no capabilities, no-new-privileges). DB settings default to the local postgres, whose password comes only from `POSTGRES_PASSWORD` in a git-ignored `.env`
@@ -130,8 +135,37 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 - `runs`: id, started_at, finished_at.
 - `health_checks`: per-check data only (status, timings, sizes, item count, last item date, redirects, error,
   ip_address, etag/last_modified). Keep rows small (~330 bytes with indexes). Unique (url, run_id).
-- `feeds`: latest metadata per URL, updated in place (replaced on a parsed check, kept on failure). Descriptive fields use Atom names; categories are normalized lower-case
-  ASCII, comma separated, sorted, ≤ 2048 chars.
+- `feeds`: latest metadata per URL, updated in place (replaced on a parsed check, kept on failure). Descriptive fields use Atom names.
+  `language`: the feed's labels, detected per item (agreed 2026-11-18; what the feed declares is not read): the categories the feeds publish are **not
+  extracted any more**; each of the first 30 items' text (title + start of the description, not stored) goes through
+  fastText lid.176 (`language.py`, model pinned by checksum in the Dockerfile, CC BY-SA 3.0); a language
+  becomes its ISO 639 code when it is on ≥ 2 items and ≥ 20% of the items with ≥ 40 characters of text. Several
+  languages give several labels, sorted, comma separated.
+  `topics` (agreed 2026-11-18): the text (title + start of the description) of the items detected as `en`, plus the feed's own
+  title and subtitle counted like 3 items (`topics.about_text`: boilerplate removed; only if the subtitle has ≥ 3 words
+  of its own, not just the name), is embedded with MiniLM (all-MiniLM-L6-v2,
+  quantized ONNX, Apache-2.0; model and tokenizer pinned by revision and SHA-256 in the Dockerfile), averaged, and
+  compared with `data/topics/topics.npy` (the embeddings of `data/topics/topics.txt`, 6,079 names used by ≥ 5 listed feeds);
+  names mapped through `data/topics/synonyms.tsv`; a feed gets topics only if its best name beats its 8th best (distinct)
+  by ≥ 0.08, then up to 5 within 0.02 of the best and ≥ 0.35, most similar first (`topics.py`; tuned 2026-11-18
+  on 55 random feeds judged by hand: title + description beat titles alone; **precision first** (user's choice):
+  ~77% of the model's topics right, on ~half the feeds; 0.04 gave ~65% on ~80%; a fixed threshold did worse). Authors' tags are evidence only, **never stored** (agreed 2026-11-18): the
+  parser reads each item's categories in memory (`FeedInfo.item_tags`); a topic they name (spelling folds, singular/
+  plural, synonyms) on ≥ 2 and ≥ 20% of the English items, ignoring items with > 10 tags, is added after the model's
+  picks if the model scores it ≥ 0.35 (plausible), up to 5 in all. A fixed boost was tried and changed nothing:
+  backed topics usually rank far down; the floor keeps bookkeeping tags (journal, personal, essay) out.
+  **Fallback (user's choice, 2026-11-18)**: a feed that gets nothing from the above takes the first label of its newest
+  labelled English item if it names a topic (`topics.first_author_topic`; no other label tried, no plausibility floor),
+  only when `en` is among the feed's detected languages (`feeds.language`, our fastText labels; nothing the feed declares).
+  Measured on 1,000 feeds: 59 of 403 topic-less English feeds get one, ~40-45% right; accepted because a wrong label
+  is at least the author's own.
+  Names about blogging rather than a subject were removed from topics.txt (journal, personal, opinion, feeds, diary,
+  hobbies, boredom, writing-life, blogging-about-blogging, end-of-year, blogger…) and names that matched everything
+  in a 1,000-feed run (social-software, webtech, brainstorming, bazaar, projects, future): precision first.
+  `data/topics/topics.json` holds the SHA-256 of topics.txt, the model and the tokenizer: loading refuses a stale matrix.
+  Rebuild with `indexer embeddings` (`topics.build_index`; never edit topics.npy by hand); embeddings.yml does it and
+  commits to develop (its own concurrency group: no database; network off in the container).
+  No English item, no topics. Survivors does not compute topics.
 - `error` identifiers live in `src/indexer/errors.py` (e.g. `dns_nxdomain`, `rate_limited`, `not_a_feed`).
 
 ## Commands

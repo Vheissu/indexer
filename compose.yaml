@@ -99,6 +99,23 @@ services:
       - ./SPEC.md:/work/SPEC.md:ro
     command: ["export", "--output-dir", "output"]
 
+  # Rebuilds the topic matrix (data/topics/topics.npy and topics.json) from data/topics/topics.txt
+  # with the image's MiniLM. No database, no network:
+  #   HOST_UID=$(id -u) HOST_GID=$(id -g) docker compose run --rm embeddings
+  embeddings:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: indexer:0.1.0
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    network_mode: none
+    user: "${HOST_UID:-10001}:${HOST_GID:-10001}" # owns what it writes
+    volumes:
+      - ./data/topics:/work/data/topics
+    command: ["embeddings"]
+
   # Deletes every indexer table and all data (needs --yes); the next liquibase run recreates
   # them empty:  docker compose run --rm drop-tables drop-tables --yes
   drop-tables:

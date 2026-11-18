@@ -6,17 +6,17 @@ listed. Dead feeds drop off on their own; nobody prunes the list by hand.
 
 **[Browse the feeds by topic →](https://feedrule.github.io/indexer/)**
 
-A few popular topics: [ai](https://feedrule.github.io/indexer/tag/ai/) ·
-[security](https://feedrule.github.io/indexer/tag/security/) ·
-[javascript](https://feedrule.github.io/indexer/tag/javascript/) ·
-[programming](https://feedrule.github.io/indexer/tag/programming/) ·
-[python](https://feedrule.github.io/indexer/tag/python/) ·
-[linux](https://feedrule.github.io/indexer/tag/linux/) ·
-[books](https://feedrule.github.io/indexer/tag/books/) ·
-[writing](https://feedrule.github.io/indexer/tag/writing/) ·
-[music](https://feedrule.github.io/indexer/tag/music/) ·
-[design](https://feedrule.github.io/indexer/tag/design/) ·
-[travel](https://feedrule.github.io/indexer/tag/travel/)
+A few popular topics: [ai](https://feedrule.github.io/indexer/topic/ai/) ·
+[security](https://feedrule.github.io/indexer/topic/security/) ·
+[javascript](https://feedrule.github.io/indexer/topic/javascript/) ·
+[programming](https://feedrule.github.io/indexer/topic/programming/) ·
+[python](https://feedrule.github.io/indexer/topic/python/) ·
+[linux](https://feedrule.github.io/indexer/topic/linux/) ·
+[books](https://feedrule.github.io/indexer/topic/books/) ·
+[writing](https://feedrule.github.io/indexer/topic/writing/) ·
+[music](https://feedrule.github.io/indexer/topic/music/) ·
+[design](https://feedrule.github.io/indexer/topic/design/) ·
+[travel](https://feedrule.github.io/indexer/topic/travel/)
 
 This is the open-source index behind [feedrule.com](https://feedrule.com/search), where you can
 search these feeds and get any of them by email. This repository holds the code that finds and
@@ -24,28 +24,29 @@ checks the feeds, and the published lists themselves.
 
 ## What you get for each topic
 
-Every topic has a page on the site, `https://feedrule.github.io/indexer/tag/<tag>/`, with up to 200 feeds (title, website,
+Every topic has a page on the site, `https://feedrule.github.io/indexer/topic/<topic>/`, with up to 200 feeds (title, website,
 date of the last post), most recently active first. The icon next to each feed opens
 [feedrule.com](https://feedrule.com/) with that feed filled in, to get its new posts by email.
 
-The data behind the pages is on the `output` branch, in `tag/<tag>/`:
+The data behind the pages is on the `output` branch, in `topic/<topic>/`:
 
 | file | what it is |
 | --- | --- |
 | `feeds.opml` | the 500 most recently active feeds, to import into a feed reader in one go |
-| `links.txt` | every feed in the tag (up to 50,000), one URL per line, most recently active first, for scripts and tools |
+| `links.txt` | every feed in the topic (up to 50,000), one URL per line, most recently active first, for scripts and tools |
 
-`tag/tags.txt` lists the topic names, one per line, most feeds first. About half of the active
-feeds publish no categories, so they are in no topic. **Every** listed feed, tagged or not, is in
+`topic/topics.txt` lists the topic names, one per line, most feeds first. In folder names, `+` and
+`#` are spelled out: `c++` is in `topic/cplusplus/`, `c#` in `topic/csharp/`. A feed none of whose
+topics stands out is in no topic. **Every** listed feed, with a topic or not, is in
 the `all/` folder: `all/links.txt` (one URL per line) and `all/feeds.opml`. Each listed feed also
-has a small JSON preview (URL, title, size in bytes, last post date, tags) in `previews/`, named
+has a small JSON preview (URL, title, description, size in bytes, last post date, languages, topics) in `previews/`, named
 by the SHA-256 of its URL: `previews/<first 2 hex digits>/<sha256 hex>.json`. `SPEC.md` on the
 branch describes every file.
 
 ## Subscribe to a whole topic
 
 1. Click **Download OPML** on the topic's page, or use its direct link:
-   `https://raw.githubusercontent.com/feedrule/indexer/output/tag/<tag>/feeds.opml`
+   `https://raw.githubusercontent.com/feedrule/indexer/output/topic/<topic>/feeds.opml`
 2. In your feed reader, look for **Import OPML** (Feedly, Inoreader, NetNewsWire, FreshRSS,
    Miniflux, Thunderbird and most others have it).
 
@@ -53,9 +54,9 @@ A popular topic can hold hundreds of feeds, so you may prefer to browse its page
 to the ones you like.
 
 For scripts, `links.txt` has the same kind of direct link:
-`https://raw.githubusercontent.com/feedrule/indexer/output/tag/<tag>/links.txt`.
-These URLs stay the same; the content behind them is replaced whenever the lists are refreshed
-(several times a day). The `output` branch keeps no history, so link to the branch, not to a
+`https://raw.githubusercontent.com/feedrule/indexer/output/topic/<topic>/links.txt`.
+These URLs stay the same; the content behind them is replaced whenever the lists are
+published. The `output` branch keeps no history, so link to the branch, not to a
 commit.
 
 ## Which feeds are listed
@@ -65,9 +66,17 @@ A feed is listed when:
 - it was fetched and read successfully at least once in the last 6 months, and
 - its newest post is less than 5 years old.
 
-Tags are the feed's own categories (the ones its posts are filed under), lower-cased and
-simplified: `C++` becomes `cplusplus`, `Node.js` becomes `nodejs`. A feed appears under each of its
-tags. Only the 2,000 tags with the most feeds get a folder, and `uncategorized` is left out.
+Each English feed gets up to 5 topics, chosen by comparing the titles and openings of its English
+posts, and its own title and description, with about 6,000 topic names, using the MiniLM sentence
+model (all-MiniLM-L6-v2, Apache-2.0). The feeds' own tags, when they are frequent and fit the
+posts, add to those topics. An English feed (by the detected languages) for which no topic stands
+out takes the first tag of its newest tagged post, if it is one of the topic names (the author's own choice, so less reliable);
+otherwise it gets no topic. The tags themselves are not stored or published.
+
+The languages a feed's posts are written in are detected on each post (`en`, `de`, `ar`) and
+listed in its preview file; a language counts if it is used in at least 2 posts and a fifth of
+them. Only English posts are used for topics. Language detection uses fastText's language
+identification model (lid.176, by Facebook AI Research, licensed CC BY-SA 3.0).
 
 Titles and descriptions come from the feeds themselves and are not edited. Being listed means a
 feed is alive, not that anyone vouches for its content.
@@ -99,7 +108,7 @@ tens of terabytes in a crawl), to keep bandwidth and runner time low.
 
 Open a pull request that adds the feed's URL to [`data/submissions.txt`](data/submissions.txt),
 one URL per line. Once it is merged, the feed is loaded right away, checked in one of the next
-check runs (usually within two weeks: each run takes a random batch), and listed under its tags if
+check runs (usually within two weeks: each run takes a random batch), and listed under its topics if
 it passes the rules above.
 
 ## License
@@ -109,19 +118,21 @@ The code is MIT, see [LICENSE](LICENSE). Each feed URL comes from one of the sou
 
 ## How it works
 
-A Python tool, **indexer**, runs as five scheduled GitHub Actions workflows that share one
-Postgres database (Supabase):
+A Python tool, **indexer**, runs as GitHub Actions workflows that share one Postgres
+database (Supabase): four on a schedule, `publish` when started by hand, and one that keeps the
+topic data up to date:
 
 | workflow | when | what it does |
 | --- | --- | --- |
 | `input` | daily, and on every merge that changes the lists in `data/` | reads the sources in `data/sources.toml` and adds new feed URLs to the database |
-| `check` | every 3 hours | fetches 500 feeds not checked in the last 14 days and records whether they work, their last post, title and tags |
-| `publish` | after every successful check (and Mondays) | writes the tag folders and force-pushes them to the `output` branch |
+| `check` | every 3 hours | fetches 500 feeds not checked in the last 14 days and records whether they work, their last post, title, languages and topics |
+| `publish` | when started by hand | writes the topic folders and the site and force-pushes them to the `output` branch |
 | `survivors` | Wednesdays | samples an old Common Crawl crawl, checks the feeds it finds, and proposes the active ones in a pull request |
 | `cleanup` | Sundays | deletes check results older than 8 months |
+| `embeddings` | when the topic list changes | recomputes the topic names' MiniLM embeddings (`data/topics/topics.npy`) and commits them |
 
 Each workflow runs the same Docker images as a local setup: `compose.yaml` defines the app
-services (`input`, `check`, `export`, `survivors`, `cleanup`), a local `postgres`, and a
+services (`input`, `check`, `export`, `survivors`, `cleanup`, `embeddings`), a local `postgres`, and a
 `liquibase` service that applies the schema in `db/changelog` before every run. In the
 workflows, the database settings point at Supabase instead of the local container.
 

@@ -7,11 +7,11 @@ loads the file.
 
 Each entry is one comment line with what a reviewer needs, then the URL:
 
-    # Miss Frugal Mommy · en-us · last tagged post 2026-11-12 · frugal living, lifestyle
+    # Miss Frugal Mommy · en · last post 2026-11-12
     # found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/.../...warc.wat.gz
     https://missfrugalmommy.com/feed/
 
-Titles and tags come from the feeds, so they are untrusted: in the file they are flattened to a
+Titles and links come from the feeds, so they are untrusted: in the file they are flattened to a
 single line of printable text (a title can never start a new, uncommented line), and in the
 Markdown report they are shown in code spans, where GitHub neither renders markup nor turns
 @names into mentions or #numbers into links.
@@ -26,7 +26,6 @@ from indexer.sources import extract_urls
 from indexer.survivors.commoncrawl import Survivor
 
 MAX_TITLE = 100
-MAX_TAGS = 6
 
 
 def one_line(text: str | None, limit: int) -> str:
@@ -36,12 +35,6 @@ def one_line(text: str | None, limit: int) -> str:
     )
     flat = " ".join(printable.split())
     return flat if len(flat) <= limit else flat[: limit - 1].rstrip() + "…"
-
-
-def tags(item_categories: str | None) -> str:
-    terms = [t for t in (item_categories or "").split(", ") if t]
-    shown = ", ".join(terms[:MAX_TAGS])
-    return shown + (f" (+{len(terms) - MAX_TAGS})" if len(terms) > MAX_TAGS else "")
 
 
 def known_urls(path: Path) -> set[str]:
@@ -59,9 +52,8 @@ def render_entries(survivors: Iterable[Survivor], crawl: str, today: date) -> st
         summary = " · ".join(
             [
                 one_line(s.title, MAX_TITLE) or "(no title)",
-                one_line(s.language, 20) or "(no language)",
-                f"last tagged post {s.last_tagged_item_date.date().isoformat()}",
-                one_line(tags(s.item_categories), 200) or "(no tags)",
+                one_line(s.language, 200) or "(no language)",
+                f"last post {s.last_item_date.date().isoformat()}",
             ]
         )
         out.append(f"# {summary}\n# found in {s.wat_url}\n{s.url}\n")
@@ -69,9 +61,9 @@ def render_entries(survivors: Iterable[Survivor], crawl: str, today: date) -> st
 
 
 def log_line(s: Survivor) -> str:
-    """One line for the run's log: the URL, the newest tagged item's date and the title."""
+    """One line for the run's log: the URL, the newest item's date and the title."""
     title = one_line(s.title, MAX_TITLE) or "(no title)"
-    return f"  + {s.url}  {s.last_tagged_item_date.date().isoformat()}  {title}"
+    return f"  + {s.url}  {s.last_item_date.date().isoformat()}  {title}"
 
 
 def _code(text: str) -> str:
@@ -96,8 +88,8 @@ def _feed_section(s: Survivor) -> str:
         f"### {_code(one_line(s.title, MAX_TITLE))}",
         "",
         f"- feed: {_code(s.url)}",
-        f"- last tagged post: {s.last_tagged_item_date.date().isoformat()}",
-        f"- tags: {_code(one_line(tags(s.item_categories), 200))}",
+        f"- last post: {s.last_item_date.date().isoformat()}",
+        f"- languages: {_code(one_line(s.language, 200))}",
         "- latest posts:" if s.item_links else "- latest posts: none with a link",
     ]
     lines += [f"  - {_code(one_line(link, 300))}" for link in s.item_links]
@@ -106,7 +98,7 @@ def _feed_section(s: Survivor) -> str:
 
 def render_report(survivors: Sequence[Survivor], crawl: str, summary: str) -> str:
     """Markdown for the pull request: one section per proposed feed with its title, URL, last
-    tagged post, tags and the links of its latest posts, all as code spans (nothing clickable),
+    post, languages and the links of its latest posts, all as code spans (nothing clickable),
     to make spam easy to spot. Never longer than MAX_REPORT_CHARS: feeds that don't fit are
     counted at the end (they are all in the diff)."""
     report = f"**{len(survivors)} feeds** from `{crawl}`, still active today. {summary}\n\n"

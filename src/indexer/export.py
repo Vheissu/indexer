@@ -1,16 +1,15 @@
-"""Write the published output: data files at the top (output/tag/<tag>/{links.txt,feeds.opml},
-the tag names in output/tag/tags.txt (most feeds first), every listed feed in
-output/all/{links.txt,feeds.opml} (tagged or not), one small JSON preview per listed feed in
+"""Write the published output: data files at the top (output/topic/<topic>/{links.txt,feeds.opml},
+the topic names in output/topic/topics.txt (most feeds first), every listed feed in
+output/all/{links.txt,feeds.opml} (with a topic or not), one small JSON preview per listed feed in
 output/previews/ (for a search page, see `preview_path` and `render_preview`), a copy of the
 repository's SPEC.md), and the website in output/docs/ (see `indexer.site`).
 
 A feed is listed when it had a successful check in the last `success_days` days and its newest
-item (as of its latest successful check) is less than `item_years` years old. Its tags are its
-feed-level and item categories (already normalized to lower-case ASCII, `a-z0-9-_` and spaces).
-Only the `top_tags` tags with the most listed feeds get a directory; output/all has every listed
-feed, including the many that publish no categories.
+item (as of its latest successful check) is less than `item_years` years old. Its topics are
+chosen from its posts (see `indexer.topics`). Only the `top` topics with the most listed feeds
+get a directory; output/all has every listed feed, including those with no topic.
 
-Everything here comes from untrusted feeds, so text is escaped for HTML and XML, and tag
+Everything here comes from untrusted feeds, so text is escaped for HTML and XML, and topic
 names are checked again before they become directory names. The output directory is cleared
 before writing, but only if it is empty or was created by this exporter (it holds a marker
 file), so a mistyped path cannot wipe an unrelated directory.
@@ -20,7 +19,7 @@ import hashlib
 import json
 import re
 import shutil
-from collections import Counter, defaultdict
+from collections import defaultdict
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from datetime import datetime
@@ -34,8 +33,8 @@ from indexer import site
 
 MARKER = ".indexer-output"
 SLUG = re.compile(r"[a-z0-9_-]{1,100}")
-# Per-tag caps. Each file keeps the most recently active feeds (newest post first), so the
-# tag page (site.PAGE_ROWS) lists the first feeds of feeds.opml, which lists the first of links.txt.
+# Per-topic caps. Each file keeps the most recently active feeds (newest post first), so the topic
+# page (site.PAGE_ROWS) lists the first feeds of feeds.opml, which lists the first of links.txt.
 LINKS_MAX = 50_000  # links.txt (~35 bytes a line: ~1.7 MB at most)
 OPML_MAX = 500  # feeds.opml
 # Where the output branch is served: docs/ by GitHub Pages, the data files from raw.
@@ -49,36 +48,44 @@ class ListedFeed:
     title: str | None
     site_url: str | None
     last_item_date: datetime | None
-    categories: str | None
-    item_categories: str | None
+    language: str | None  # detected on the items: "de, en"
     file_size: int | None = None  # body bytes at the latest successful check
+    topics: str | None = None  # from the English item titles, most similar first: "rust, wasm"
+    subtitle: str | None = None  # Atom <subtitle> or RSS <description>
 
-    def tags(self, ignore: frozenset[str] = frozenset()) -> set[str]:
-        """Directory names for this feed's tags (spaces become dashes)."""
-        out: set[str] = set()
-        for field in (self.categories, self.item_categories):
-            for tag in (field or "").split(","):
-                slug = "-".join(tag.split())
-                if slug and slug not in ignore and SLUG.fullmatch(slug):
-                    out.add(slug)
-        return out
+    def languages(self) -> list[str]:
+        """The languages detected on the feed's items ("en"), sorted."""
+        return sorted({t.strip() for t in (self.language or "").split(",")} - {""})
+
+    def topic_names(self) -> list[str]:
+        """The feed's topics, most similar first; only names that make a safe directory."""
+        names = [t.strip() for t in (self.topics or "").split(",")]
+        return [t for t in dict.fromkeys(names) if t and SLUG.fullmatch(topic_slug(t))]
+
+
+def topic_slug(name: str) -> str:
+    """A topic's directory and URL name: + and # spelled out (c++ -> cplusplus, c# -> csharp)."""
+    return name.replace("+", "plus").replace("#", "sharp")
 
 
 @dataclass(frozen=True, slots=True)
-class Tag:
-    slug: str
+class Topic:
+    name: str  # as in data/topics/topics.txt: "c++"
     feeds: tuple[ListedFeed, ...]  # newest item first, then by URL
 
+    @property
+    def slug(self) -> str:
+        return topic_slug(self.name)
 
-def top_tags(feeds: Iterable[ListedFeed], limit: int, ignore: Iterable[str] = ()) -> list[Tag]:
-    """The `limit` tags with the most feeds (ties broken by name), each with its feeds."""
-    ignored = frozenset("-".join(t.split()) for t in ignore)
+
+def top_topics(feeds: Iterable[ListedFeed], limit: int) -> list[Topic]:
+    """The `limit` topics with the most feeds (ties broken by name), each with its feeds."""
     members: defaultdict[str, list[ListedFeed]] = defaultdict(list)
     for feed in feeds:
-        for slug in feed.tags(ignored):
-            members[slug].append(feed)
+        for name in feed.topic_names():
+            members[name].append(feed)
     ranked = sorted(members.items(), key=lambda kv: (-len(kv[1]), kv[0]))[:limit]
-    return [Tag(slug, tuple(sorted(fs, key=_newest_first))) for slug, fs in ranked]
+    return [Topic(name, tuple(sorted(fs, key=_newest_first))) for name, fs in ranked]
 
 
 def _newest_first(feed: ListedFeed) -> tuple[float, str]:
@@ -89,37 +96,37 @@ def _newest_first(feed: ListedFeed) -> tuple[float, str]:
 # --- rendering --------------------------------------------------------------------------------
 
 
-def by_popularity(tags: Iterable[Tag]) -> list[Tag]:
+def by_popularity(topics: Iterable[Topic]) -> list[Topic]:
     """Most feeds first; ties by name."""
-    return sorted(tags, key=lambda t: (-len(t.feeds), t.slug))
+    return sorted(topics, key=lambda t: (-len(t.feeds), t.name))
 
 
-def render_tag_names(tags: Iterable[Tag]) -> str:
-    """tag/tags.txt: one published tag per line, most feeds first. (Slugs have no dot, so the
-    file cannot clash with a tag directory.)"""
-    return "".join(f"{tag.slug}\n" for tag in by_popularity(tags))
+def render_topic_names(topics: Iterable[Topic]) -> str:
+    """topic/topics.txt: one published topic name per line, most feeds first. (Slugs have no
+    dot, so the file cannot clash with a topic directory.)"""
+    return "".join(f"{topic.name}\n" for topic in by_popularity(topics))
 
 
-def render_links(tag: Tag, limit: int | None = LINKS_MAX) -> str:
+def render_links(topic: Topic, limit: int | None = LINKS_MAX) -> str:
     """The `limit` most recently active feeds (all if None), newest post first: the first lines
     are the best results, so a search page can show them in file order."""
-    return "".join(f"{f.url}\n" for f in tag.feeds[:limit])
+    return "".join(f"{f.url}\n" for f in topic.feeds[:limit])
 
 
 def render_opml(
-    tag: Tag, generated: datetime, limit: int | None = OPML_MAX, title: str | None = None
+    topic: Topic, generated: datetime, limit: int | None = OPML_MAX, title: str | None = None
 ) -> str:
     """The `limit` most recently active feeds (all if None), sorted by URL."""
     lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<opml version="2.0">',
         "  <head>",
-        f"    <title>{xml_escape(title or f'{tag.slug} feeds')}</title>",
+        f"    <title>{xml_escape(title or f'{topic.name} feeds')}</title>",
         f"    <dateCreated>{format_datetime(generated)}</dateCreated>",
         "  </head>",
         "  <body>",
     ]
-    for feed in sorted(tag.feeds[:limit], key=lambda f: f.url):  # most active, by URL
+    for feed in sorted(topic.feeds[:limit], key=lambda f: f.url):  # most active, by URL
         title = quoteattr(" ".join((feed.title or feed.url).split()))
         attrs = f'type="rss" text={title} title={title} xmlUrl={quoteattr(feed.url)}'
         if feed.site_url:
@@ -137,21 +144,25 @@ def preview_path(url: str) -> str:
     return f"previews/{digest[:2]}/{digest}.json"
 
 
-def render_preview(feed: ListedFeed, ignore: frozenset[str] = frozenset()) -> str:
-    """One feed's preview, for a search page showing the feeds of a tag's links.txt:
+def render_preview(feed: ListedFeed) -> str:
+    """One feed's preview, for a search page showing the feeds of a topic's links.txt:
 
-        {"url": "https://...", "title": "...", "bytes": 48213, "last": "2026-11-14",
-         "tags": ["rust", "web-dev"]}
+        {"url": "https://...", "title": "...", "subtitle": "...", "bytes": 48213,
+         "last": "2026-11-14", "languages": ["de", "en"], "topics": ["rust", "webassembly"]}
 
-    url is the feed URL the file is named after, so a preview stands alone. title, bytes (body
-    size at the latest successful check) and last are null when unknown; tags are all the feed's
-    tags (sorted; only those in tag/tags.txt have a folder). The title is untrusted plain text."""
+    url is the feed URL the file is named after, so a preview stands alone. title, subtitle,
+    bytes (body size at the latest successful check) and last are null when unknown; languages
+    are the languages detected on its items (sorted, empty if none); topics are its topics
+    (names from data/topics/topics.txt, most similar first, empty if none; only those in
+    topic/topics.txt have a folder). The title and subtitle are untrusted plain text."""
     doc = {
         "url": feed.url,
         "title": " ".join(feed.title.split()) or None if feed.title else None,
+        "subtitle": " ".join(feed.subtitle.split()) or None if feed.subtitle else None,
         "bytes": feed.file_size,
         "last": feed.last_item_date.date().isoformat() if feed.last_item_date else None,
-        "tags": sorted(feed.tags(ignore)),
+        "languages": feed.languages(),
+        "topics": feed.topic_names(),
     }
     return json.dumps(doc, ensure_ascii=False, indent=2) + "\n"
 
@@ -188,56 +199,51 @@ def write_output(
     feeds: Sequence[ListedFeed],
     *,
     top: int,
-    ignore: Iterable[str],
     generated: datetime,
     success_days: int,
     item_years: int,
     spec: Path | None = None,
     site_url: str = SITE_URL,
     data_url: str = DATA_URL,
-) -> list[Tag]:
+) -> list[Topic]:
     """Write everything to `path` (cleared first), with a copy of `spec` (SPEC.md) if given:
     the data files at the top, the website in docs/. `site_url` and `data_url` end with '/'."""
     if spec is not None and not spec.is_file():
         raise ExportError(f"{spec} not found: the output's SPEC.md is copied from it")
     if not (site_url.endswith("/") and data_url.endswith("/")):
         raise ExportError("--site-url and --data-url must end with '/'")
-    ignored = frozenset("-".join(t.split()) for t in ignore)
-    tags = top_tags(feeds, top, ignored)
+    topics = top_topics(feeds, top)
     clean_output_dir(path)
     root = path.resolve()
     unique = {f.url: f for f in feeds}.values()
-    counts = Counter(slug for f in unique for slug in f.tags(ignored))  # listed feeds per tag
-    published = frozenset(t.slug for t in tags)
+    published = {t.name: t.slug for t in topics}
     docs = path / "docs"
-    for tag in tags:
-        directory = path / "tag" / tag.slug
-        page = docs / "tag" / tag.slug
-        if not SLUG.fullmatch(tag.slug) or not all(
+    for topic in topics:
+        directory = path / "topic" / topic.slug
+        page = docs / "topic" / topic.slug
+        if not SLUG.fullmatch(topic.slug) or not all(
             d.resolve().is_relative_to(root) for d in (directory, page)
         ):
-            raise ExportError(f"unsafe tag directory {tag.slug!r}")  # cannot happen
+            raise ExportError(f"unsafe topic directory {topic.slug!r}")  # cannot happen
         directory.mkdir(parents=True)
         page.mkdir(parents=True)
-        (directory / "links.txt").write_text(render_links(tag), encoding="utf-8")
-        (directory / "feeds.opml").write_text(render_opml(tag, generated), encoding="utf-8")
+        (directory / "links.txt").write_text(render_links(topic), encoding="utf-8")
+        (directory / "feeds.opml").write_text(render_opml(topic, generated), encoding="utf-8")
         (page / "index.html").write_text(
-            site.render_tag_page(
-                tag,
+            site.render_topic_page(
+                topic,
                 generated,
                 site_url=site_url,
                 data_url=data_url,
                 opml_max=OPML_MAX,
                 links_max=LINKS_MAX,
-                counts=counts,
                 published=published,
-                ignore=ignored,
             ),
             encoding="utf-8",
         )
-    (path / "tag").mkdir(exist_ok=True)
-    (path / "tag" / "tags.txt").write_text(render_tag_names(tags), encoding="utf-8")
-    everything = Tag("all", tuple(sorted(unique, key=_newest_first)))
+    (path / "topic").mkdir(exist_ok=True)
+    (path / "topic" / "topics.txt").write_text(render_topic_names(topics), encoding="utf-8")
+    everything = Topic("all", tuple(sorted(unique, key=_newest_first)))
     (path / "all").mkdir()
     (path / "all" / "links.txt").write_text(render_links(everything, None), encoding="utf-8")
     (path / "all" / "feeds.opml").write_text(
@@ -246,16 +252,16 @@ def write_output(
     for feed in everything.feeds:
         preview = path / preview_path(feed.url)
         preview.parent.mkdir(parents=True, exist_ok=True)
-        preview.write_text(render_preview(feed, ignored), encoding="utf-8")
+        preview.write_text(render_preview(feed), encoding="utf-8")
     if spec is not None:
         shutil.copyfile(spec, path / "SPEC.md")
-    listed = len({f.url for t in tags for f in t.feeds})
+    listed = len({f.url for t in topics for f in t.feeds})
     docs.mkdir(exist_ok=True)
     package = resources.files("indexer")
     for name in (site.ICON, site.STYLE):
         (docs / name).write_bytes(package.joinpath(name).read_bytes())
     (docs / ".nojekyll").write_text("")
-    ranked = by_popularity(tags)
+    ranked = by_popularity(topics)
     (docs / "index.html").write_text(
         site.render_index(
             ranked,
@@ -272,4 +278,4 @@ def write_output(
     (docs / "sitemap.xml").write_text(
         site.render_sitemap(ranked, generated, site_url), encoding="utf-8"
     )
-    return tags
+    return topics

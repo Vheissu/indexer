@@ -195,7 +195,7 @@ def scan_wat(data: bytes, path: str, exclude: frozenset[str] = frozenset()) -> F
     return result
 
 
-# --- survivors: old-crawl feeds still active today, tagged, English, on https ----------------
+# --- survivors: old-crawl feeds still active today, English, on https ------------------------
 
 type Check = Callable[[Sequence[str]], Awaitable[Iterable[CheckRow]]]
 # Which of these URLs are already proposed or in the inputs table.
@@ -211,9 +211,8 @@ class Survivor:
     url: str  # as served today (https, after redirects)
     wat_url: str  # the WAT file it was advertised in
     title: str | None
-    language: str | None
-    last_tagged_item_date: datetime
-    item_categories: str | None  # normalized, comma separated, sorted
+    language: str | None  # detected on the items: "en, fr"
+    last_item_date: datetime
     item_links: tuple[str, ...] = ()  # each item's link as written in the feed (untrusted)
 
 
@@ -226,37 +225,36 @@ class SurvivorsResult:
     known: int = 0  # found or served URLs already proposed or in inputs: skipped
     checked: int = 0  # feed URLs checked (fewer than candidates when the run stopped early)
     working: int = 0  # fetched and parsed today
-    active: int = 0  # working, with a tagged item in the last active_days days
-    english: int = 0  # active and labelled English
+    active: int = 0  # working, with an item in the last active_days days
+    english: int = 0  # active and written in English (en among its languages)
     untitled: int = 0  # English, but no title
-    keyword_excluded: int = 0  # English, but a [commoncrawl] exclude_keyword in the title or a tag
+    keyword_excluded: int = 0  # English, but a [commoncrawl] exclude_keyword in the title
     rows: list[Survivor] = field(default_factory=list)  # pass every filter, new: the proposals
 
 
 def is_active(row: CheckRow, now: datetime, active_days: int) -> bool:
-    """Parsed today, and the newest item with a category (tag) is from the last `active_days`
-    days. A date more than a day in the future is not trusted."""
-    date = row.last_tagged_item_date
+    """Parsed today, and the newest item is from the last `active_days` days. A date more than a
+    day in the future is not trusted."""
+    date = row.last_item_date
     if row.error is not None or date is None:
         return False
     return now - timedelta(days=active_days) <= date <= now + timedelta(days=1)
 
 
 def is_english(row: CheckRow) -> bool:
-    """The feed declares English (`en` or `en-*`, from <language>, xml:lang or dc:language).
-    The label is the publisher's: WordPress says en-US unless changed, so some aren't."""
-    return row.language is not None and (row.language == "en" or row.language.startswith("en-"))
+    """English is among the languages detected on the feed's items (`en`, see
+    `indexer.language`). What the feed declares is not read."""
+    return "en" in {t.strip() for t in (row.language or "").split(",")}
 
 
 def has_keyword(row: CheckRow, keywords: frozenset[str]) -> bool:
-    """The feed's title or one of its tags contains one of `keywords` (lower case) as a whole
-    word: not inside another word, so "sex" matches "Sex Toys" and "sex-ed" but not "Essex"."""
+    """The feed's title contains one of `keywords` (lower case) as a whole word: not inside
+    another word, so "sex" matches "Sex Toys" and "sex-ed" but not "Essex"."""
     if not keywords:
         return False
     words = "|".join(re.escape(k) for k in sorted(keywords, key=len, reverse=True))
     pattern = re.compile(rf"(?<![^\W_])(?:{words})(?![^\W_])")
-    text = f"{row.title or ''}\n{row.item_categories or ''}".lower()
-    return pattern.search(text) is not None
+    return pattern.search((row.title or "").lower()) is not None
 
 
 def is_archive_feed(url: str) -> bool:
@@ -318,10 +316,9 @@ async def survivors(
     minus excluded domains and WordPress category/tag/author feeds, session parameters removed,
     platform format variants folded into one URL, and those `known` reports dropped), and checks
     them now in random order, in batches, until `max_feeds` pass (all of them if None).
-    Returned as new inputs, at most `max_feeds`: those that parsed, have an item with a category
-    (not a platform default such as "uncategorized") from the last `active_days` days, are
-    labelled English, have a title and none of `keywords` in their title or tags, and are served
-    over https today.
+    Returned as new inputs, at most `max_feeds`: those that parsed, have an item from the last
+    `active_days` days, are written in English (detected on their items), have a title and none
+    of `keywords` in it, and are served over https today.
     Each is the URL after redirects (an http URL that redirects to https is kept as its https
     target), with the WAT file it was found in and the details a reviewer needs."""
     rng = rng or random.Random()
@@ -418,14 +415,6 @@ def _passes(
         result.keyword_excluded += 1
         return None
     https_url = served_url(row, exclude)
-    if https_url is None or row.last_tagged_item_date is None:
+    if https_url is None or row.last_item_date is None:
         return None
-    return Survivor(
-        https_url,
-        "",
-        row.title,
-        row.language,
-        row.last_tagged_item_date,
-        row.item_categories,
-        row.item_links,
-    )
+    return Survivor(https_url, "", row.title, row.language, row.last_item_date, row.item_links)

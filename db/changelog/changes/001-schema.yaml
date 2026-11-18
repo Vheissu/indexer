@@ -1,6 +1,7 @@
 # The whole schema (the former changesets 001 to 009, squashed on 2026-11-16; every database
 # was then reset, on 2026-11-17, so this one creates the tables from scratch; edited again
-# that day to drop the unused columns health_checks.conditional and feeds.discovered_feed_url).
+# that day to drop the unused columns health_checks.conditional and feeds.discovered_feed_url,
+# and on 2026-11-18 to fold in the former 002 to 005 (languages and topics) after another reset).
 databaseChangeLog:
   - changeSet:
       id: 001-schema
@@ -159,10 +160,18 @@ databaseChangeLog:
               - column: {name: generator, type: TEXT}
               - column: {name: title, type: TEXT}
               - column: {name: subtitle, type: TEXT}
-              - column: {name: categories, type: TEXT}
-              - column: {name: item_categories, type: TEXT}
-              - column: {name: itunes_category, type: TEXT}
-              - column: {name: language, type: TEXT}
+              - column:
+                  name: language
+                  type: TEXT
+                  remarks: >-
+                    Languages detected on the items, ISO 639 codes, sorted, comma separated
+                    ("de, en"); null until the feed is next parsed
+              - column:
+                  name: topics
+                  type: TEXT
+                  remarks: >-
+                    Topics from the English items and the feed's title and subtitle (topics.py),
+                    most similar first, comma separated; null when there are none
               - column: {name: media_type, type: TEXT, remarks: "text, podcast or video"}
               - column: {name: icon, type: TEXT}
               - column: {name: logo, type: TEXT}

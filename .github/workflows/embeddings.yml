@@ -1,0 +1,51 @@
+# Rebuilds the topic matrix (data/topics/topics.npy and topics.json) whenever the topic names or
+# the image's MiniLM change, and commits it to the same branch. The check refuses a stale matrix,
+# so a change to data/topics/topics.txt is followed by this run within minutes. Embeds the names
+# only: no database, no network inside the container, nothing untrusted.
+#
+# A push made with the workflow's token starts no other workflow, so this never triggers itself.
+name: embeddings
+
+on:
+  push:
+    branches: [develop]
+    paths:
+      - data/topics/topics.txt
+      - Dockerfile # the MiniLM model and tokenizer are pinned there
+  workflow_dispatch:
+
+permissions:
+  contents: write # to push the rebuilt matrix
+
+concurrency:
+  group: embeddings-${{ github.ref }}
+  cancel-in-progress: true # a newer push rebuilds from newer names
+
+jobs:
+  embeddings:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Build image
+        run: docker compose build embeddings
+
+      - name: Embed the topic names
+        run: HOST_UID="$(id -u)" HOST_GID="$(id -g)" docker compose run --rm --no-deps -T embeddings
+
+      - name: Commit the matrix
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- data/topics/topics.npy data/topics/topics.json; then
+            echo "The matrix is up to date."
+            exit 0
+          fi
+          git add data/topics/topics.npy data/topics/topics.json
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "Rebuild the topic matrix from data/topics/topics.txt"
+          git push -q "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${GITHUB_REF_NAME}"

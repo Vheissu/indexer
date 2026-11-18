@@ -1,5 +1,5 @@
 """The published website: static HTML pages in output/docs/, served by GitHub Pages from the
-output branch's /docs folder. An index of the tags and one page per tag (its most recently
+output branch's /docs folder. An index of the topics and one page per topic (its most recently
 active feeds), a stylesheet, feedrule.com's icon, a sitemap and .nojekyll. The data files
 (links.txt, OPML, previews) stay outside docs/ and are linked on raw.githubusercontent.com,
 so they don't count toward the Pages size limit.
@@ -20,11 +20,10 @@ from urllib.parse import quote, urlsplit
 from jinja2 import Environment, PackageLoader, StrictUndefined, select_autoescape
 
 if TYPE_CHECKING:
-    from indexer.export import ListedFeed, Tag
+    from indexer.export import ListedFeed, Topic
 
-PAGE_ROWS = 200  # feeds shown on a tag page (the first ones of its feeds.opml)
-FEED_TAGS = 10  # tags shown under each feed on a tag page
-INDEX_TAGS = 50  # topics shown on the home page (the filter box searches all of them)
+PAGE_ROWS = 200  # feeds shown on a topic page (the first ones of its feeds.opml)
+INDEX_TOPICS = 50  # topics shown on the home page (the filter box searches all of them)
 FILTER_MATCHES = 100  # topics the filter box shows at most
 FEEDRULE = "https://feedrule.com/"
 FEEDRULE_FORM = "https://feedrule.com/?feed="  # the email-digest form, prefilled with a feed
@@ -92,27 +91,15 @@ def feedrule_href(url: str) -> str:
     return FEEDRULE_FORM + quote(url, safe=":/")
 
 
-def feed_tags(
-    feed: ListedFeed,
-    current: str,
-    counts: Mapping[str, int],
-    published: frozenset[str],
-    ignore: frozenset[str] = frozenset(),
-) -> list[tuple[str, bool]]:
-    """Up to FEED_TAGS of the feed's tags other than `current`, the most widespread first (by
-    number of listed feeds: tag frequency inside a feed is not stored), each with whether it
-    has a page to link to."""
-    slugs = sorted(feed.tags(ignore) - {current}, key=lambda t: (-counts.get(t, 0), t))
-    return [(t, t in published) for t in slugs[:FEED_TAGS]]
+def other_topics(
+    feed: ListedFeed, current: str, published: Mapping[str, str]
+) -> list[tuple[str, str | None]]:
+    """The feed's topics other than `current`, most similar first, each with its page's slug
+    (None if the topic has no page). `published` maps a topic name to its page's slug."""
+    return [(name, published.get(name)) for name in feed.topic_names() if name != current]
 
 
-def _row(
-    feed: ListedFeed,
-    current: str,
-    counts: Mapping[str, int],
-    published: frozenset[str],
-    ignore: frozenset[str],
-) -> dict[str, object]:
+def _row(feed: ListedFeed, current: str, published: Mapping[str, str]) -> dict[str, object]:
     parts = urlsplit(feed.url)
     # the feed's website, or else the home page of the feed's own domain
     site = safe_href(feed.site_url) or safe_href(f"{parts.scheme}://{parts.netloc}/") or ""
@@ -122,47 +109,45 @@ def _row(
         "site": site,
         "host": urlsplit(site).hostname or "",
         "feedrule": feedrule_href(feed.url),
-        "tags": feed_tags(feed, current, counts, published, ignore),
+        "topics": other_topics(feed, current, published),
         "date": feed.last_item_date.date().isoformat() if feed.last_item_date else "",
     }
 
 
-def render_tag_page(
-    tag: Tag,
+def render_topic_page(
+    topic: Topic,
     generated: datetime,
     *,
     site_url: str,
     data_url: str,
     opml_max: int,
     links_max: int,
-    counts: Mapping[str, int] | None = None,
-    published: frozenset[str] = frozenset(),
-    ignore: frozenset[str] = frozenset(),
+    published: Mapping[str, str] | None = None,
 ) -> str:
-    """`counts` (listed feeds per tag) orders each feed's tags; `published` are the tags with a
-    page; `ignore` are left out."""
-    total = len(tag.feeds)
-    return _env.get_template("tag.html").render(
-        title=f"{total:,} active {tag.slug} RSS feeds",
+    """`published` maps the name of each topic with a page to its slug (a feed's other topics
+    link to theirs)."""
+    total = len(topic.feeds)
+    return _env.get_template("topic.html").render(
+        title=f"{total:,} active {topic.name} RSS feeds",
         description=(
-            f"{total:,} working RSS and Atom feeds tagged {tag.slug}, newest posts first."
+            f"{total:,} working RSS and Atom feeds about {topic.name}, newest posts first."
             " Download them as OPML, or get any of them by email."
         ),
-        canonical=f"{site_url}tag/{tag.slug}/",
+        canonical=f"{site_url}topic/{topic.slug}/",
         root="../../",
         generated=generated,
         data_url=data_url,
-        tag=tag.slug,
+        topic=topic.name,
         total=total,
-        data=f"{data_url}tag/{tag.slug}/",
+        data=f"{data_url}topic/{topic.slug}/",
         opml_max=opml_max,
         links_max=links_max,
-        rows=[_row(f, tag.slug, counts or {}, published, ignore) for f in tag.feeds[:PAGE_ROWS]],
+        rows=[_row(f, topic.name, published or {}) for f in topic.feeds[:PAGE_ROWS]],
     )
 
 
 def render_index(
-    tags: Sequence[Tag],
+    topics: Sequence[Topic],
     listed: int,
     generated: datetime,
     success_days: int,
@@ -172,11 +157,11 @@ def render_index(
     site_url: str,
     data_url: str,
 ) -> str:
-    topics = [(t.slug, len(t.feeds)) for t in tags]
+    entries = [(t.name, t.slug, len(t.feeds)) for t in topics]
     return _env.get_template("index.html").render(
         title="Active RSS feeds, by topic",
         description=(
-            f"{total:,} working RSS and Atom feeds in {len(tags):,} topics, checked regularly."
+            f"{total:,} working RSS and Atom feeds in {len(topics):,} topics, checked regularly."
             " Download them as OPML, or get any of them by email."
         ),
         canonical=site_url,
@@ -187,13 +172,13 @@ def render_index(
         listed=listed,
         success_days=success_days,
         item_years=item_years,
-        popular=topics[:INDEX_TAGS],
-        topics=topics,  # all of them, for the filter box (tojson escapes </script>)
+        popular=entries[:INDEX_TOPICS],
+        topics=entries,  # all of them, for the filter box (tojson escapes </script>)
         filter_matches=FILTER_MATCHES,
         sources=SOURCES,
     )
 
 
-def render_sitemap(tags: Iterable[Tag], generated: datetime, site_url: str) -> str:
-    urls = [site_url] + [f"{site_url}tag/{t.slug}/" for t in tags]
+def render_sitemap(topics: Iterable[Topic], generated: datetime, site_url: str) -> str:
+    urls = [site_url] + [f"{site_url}topic/{t.slug}/" for t in topics]
     return _env.get_template("sitemap.xml").render(urls=urls, day=generated.date().isoformat())

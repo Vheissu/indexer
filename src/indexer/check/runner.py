@@ -9,14 +9,31 @@ from typing import Protocol
 
 from indexer.check.feed import parse_feed
 from indexer.errors import CheckError, ErrorCode
+from indexer.language import feed_languages
 from indexer.net.domains import parent_domain_of
 from indexer.net.fetch import FetchResult
+from indexer.topics import Post
 
 log = logging.getLogger(__name__)
 
 
 class SupportsFetch(Protocol):
     async def fetch(self, raw_url: str) -> FetchResult: ...
+
+
+class SupportsLanguages(Protocol):  # indexer.language.LanguageModel
+    def post_languages(self, texts: Sequence[str]) -> list[str | None]: ...
+
+
+class SupportsTopics(Protocol):  # indexer.topics.TopicModel
+    def topics(
+        self,
+        posts: Sequence[Post],
+        title: str | None = None,
+        subtitle: str | None = None,
+        *,
+        first_label: bool = True,
+    ) -> list[str]: ...
 
 
 @dataclass(slots=True)
@@ -45,21 +62,23 @@ class CheckRow:
     new_feed_url: str | None = None
     title: str | None = None
     subtitle: str | None = None
-    categories: str | None = None
-    item_categories: str | None = None
-    itunes_category: str | None = None
-    language: str | None = None
+    language: str | None = None  # detected on the items: "de, en" (indexer.language)
+    topics: str | None = None  # from the English items, most similar first (indexer.topics)
     media_type: str | None = None
     icon: str | None = None
     logo: str | None = None
     rights: str | None = None
     license: str | None = None
-    last_tagged_item_date: datetime | None = None  # used by survivors, not stored
     item_links: tuple[str, ...] = ()  # used by survivors, not stored
     detail: str | None = None  # logged, not stored
 
 
-async def check_one(fetcher: SupportsFetch, url: str) -> CheckRow:
+async def check_one(
+    fetcher: SupportsFetch,
+    url: str,
+    languages: SupportsLanguages | None = None,
+    topics: SupportsTopics | None = None,
+) -> CheckRow:
     row = CheckRow(url=url, checked_at=datetime.now(UTC))
     try:
         row.parent_domain = parent_domain_of(url)
@@ -84,7 +103,6 @@ async def check_one(fetcher: SupportsFetch, url: str) -> CheckRow:
             return row
         row.item_count = info.item_count
         row.last_item_date = info.last_item_date
-        row.last_tagged_item_date = info.last_tagged_item_date
         row.ttl = info.ttl
         row.feed_kind = info.kind
         row.generator = info.generator
@@ -93,11 +111,28 @@ async def check_one(fetcher: SupportsFetch, url: str) -> CheckRow:
         row.new_feed_url = info.new_feed_url
         row.title = info.title
         row.subtitle = info.subtitle
-        row.categories = info.categories
-        row.item_categories = info.item_categories
         row.item_links = info.item_links
-        row.itunes_category = info.itunes_category
-        row.language = info.language
+        if languages is not None:
+            per_post = languages.post_languages(info.item_texts)
+            labels = feed_languages(per_post)
+            row.language = ", ".join(labels) or None
+            # Topic names and MiniLM are English: only the English items count. Their tags are
+            # evidence only, never stored; the author's first label stands in for the model only
+            # when "en" is among the feed's detected languages (row.language).
+            posts = [
+                Post(info.item_texts[i], info.item_tags[i])
+                for i, code in enumerate(per_post)
+                if code == "en"
+            ]
+            if topics is not None and posts:
+                found = await asyncio.to_thread(
+                    topics.topics,
+                    posts,
+                    info.title,
+                    info.subtitle,
+                    first_label="en" in labels,  # our detected languages (row.language)
+                )
+                row.topics = ", ".join(found) or None
         row.media_type = info.media_type
         row.icon = info.icon
         row.logo = info.logo
@@ -113,9 +148,11 @@ async def run_checks(
     urls: Sequence[str],
     fetcher: SupportsFetch,
     on_row: Callable[[CheckRow], Awaitable[None]] | None = None,
+    languages: SupportsLanguages | None = None,
+    topics: SupportsTopics | None = None,
 ) -> list[CheckRow]:
     async def one(url: str) -> CheckRow:
-        row = await check_one(fetcher, url)
+        row = await check_one(fetcher, url, languages, topics)
         if on_row is not None:
             await on_row(row)
         return row

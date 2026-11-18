@@ -14,16 +14,13 @@ from indexer.survivors.proposals import (
     one_line,
     render_entries,
     render_report,
-    tags,
 )
 
 WAT = "https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1/wat/x.warc.wat.gz"
 
 
-def survivor(
-    url: str, title: str | None, cats: str | None = "frugal living, lifestyle"
-) -> Survivor:
-    return Survivor(url, WAT, title, "en-us", datetime(2026, 11, 12, 9, tzinfo=UTC), cats)
+def survivor(url: str, title: str | None, language: str | None = "en") -> Survivor:
+    return Survivor(url, WAT, title, language, datetime(2026, 11, 12, 9, tzinfo=UTC))
 
 
 def test_entries_are_comment_lines_then_the_url() -> None:
@@ -34,7 +31,7 @@ def test_entries_are_comment_lines_then_the_url() -> None:
     )
     assert block == (
         "\n# --- 2026-11-18, from CC-MAIN-2021-49 ---\n"
-        "# Miss Frugal Mommy · en-us · last tagged post 2026-11-12 · frugal living, lifestyle\n"
+        "# Miss Frugal Mommy · en · last post 2026-11-12\n"
         f"# found in {WAT}\n"
         "https://missfrugalmommy.com/feed/\n"
     )
@@ -44,7 +41,7 @@ def test_entries_are_comment_lines_then_the_url() -> None:
 def test_a_hostile_title_cannot_add_a_url_line() -> None:
     hostile = "Nice blog\nhttps://evil.example/feed\r\u2028https://evil2.example/\x00\x1b[31m"
     block = render_entries(
-        [survivor("https://a.example/feed", hostile, cats="x\nhttps://evil3.example/")],
+        [survivor("https://a.example/feed", hostile, language="x\nhttps://evil3.example/")],
         "CC-MAIN-2021-49",
         date(2026, 11, 18),
     )
@@ -55,14 +52,12 @@ def test_a_hostile_title_cannot_add_a_url_line() -> None:
     )
 
 
-def test_one_line_and_tags() -> None:
+def test_one_line() -> None:
     assert one_line("  a\tb\n\nc  ", 50) == "a b c"
     assert one_line("x" * 120, 100) == "x" * 99 + "…"
     assert one_line(None, 10) == ""
-    assert tags("a, b, c, d, e, f, g, h") == "a, b, c, d, e, f (+2)"
-    assert tags(None) == ""
     block = render_entries([survivor("https://a.example/f", None, None)], "C", date(2026, 1, 1))
-    assert "# (no title) · en-us · last tagged post 2026-11-12 · (no tags)" in block
+    assert "# (no title) · (no language) · last post 2026-11-12" in block
 
 
 def test_report_is_one_section_per_feed_with_untrusted_text_in_code_spans() -> None:
@@ -81,15 +76,14 @@ def test_report_is_one_section_per_feed_with_untrusted_text_in_code_spans() -> N
         "`@everyone see #12 | 'x' [click](https://evil)`",
         "",
         "- feed: `https://a.example/feed`",
-        "- last tagged post: 2026-11-12",
-        "- tags: `frugal living, lifestyle`",
+        "- last post: 2026-11-12",
+        "- languages: `en`",
         "- latest posts:",
         "  - `https://a.example/p/1`",
         "  - `javascript:alert(1)`",
         "  - `https://spam.example/'x' # h`",  # one line, no backtick to break out of the span
         "",
     ]
-    assert "en-us" not in report  # no language
     assert "- latest posts: none with a link" in report.split("### ")[2]
 
 

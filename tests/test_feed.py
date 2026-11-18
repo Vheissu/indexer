@@ -154,43 +154,6 @@ def test_clean_url(value: str, expected: str | None) -> None:
     assert clean_url(value) == expected
 
 
-def test_last_tagged_item_date_is_the_newest_item_with_a_category() -> None:
-    rss = b"""<rss xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><category>feed</category>
-      <item><pubDate>Mon, 09 Nov 2026 10:00:00 GMT</pubDate></item>
-      <item><pubDate>Sun, 01 Nov 2026 10:00:00 GMT</pubDate><category>  </category></item>
-      <item><pubDate>Thu, 01 Oct 2026 10:00:00 GMT</pubDate><dc:subject>Python</dc:subject></item>
-      <item><pubDate>Tue, 01 Sep 2026 10:00:00 GMT</pubDate><category>old</category></item>
-    </channel></rss>"""
-    info = parse_feed(rss)
-    assert info.last_item_date == datetime(2026, 11, 9, 10, tzinfo=UTC)
-    # The blank category normalizes to nothing; feed-level categories don't count.
-    assert info.last_tagged_item_date == datetime(2026, 10, 1, 10, tzinfo=UTC)
-
-    atom = b"""<feed xmlns="http://www.w3.org/2005/Atom">
-      <entry><updated>2026-11-02T00:00:00Z</updated><category term="go"/></entry>
-      <entry><updated>2026-11-05T00:00:00Z</updated></entry>
-    </feed>"""
-    assert parse_feed(atom).last_tagged_item_date == datetime(2026, 11, 2, tzinfo=UTC)
-    assert parse("rss10.xml").last_tagged_item_date is None
-
-
-def test_platform_default_categories_do_not_make_an_item_tagged() -> None:
-    rss = b"""<rss><channel>
-      <item><pubDate>Mon, 09 Nov 2026 10:00:00 GMT</pubDate>
-        <category>Uncategorized</category></item>
-      <item><pubDate>Sun, 01 Nov 2026 10:00:00 GMT</pubDate><category>General</category>
-        <category>Uncategorised</category></item>
-      <item><pubDate>Thu, 01 Oct 2026 10:00:00 GMT</pubDate>
-        <category>Uncategorized, Frugal living</category></item>
-    </channel></rss>"""
-    info = parse_feed(rss)
-    assert info.last_tagged_item_date == datetime(2026, 10, 1, 10, tzinfo=UTC)
-    assert "uncategorized" in (info.item_categories or "")  # still recorded as categories
-    only_default = b"""<rss><channel><item><pubDate>Mon, 09 Nov 2026 10:00:00 GMT</pubDate>
-      <category>Uncategorized</category></item></channel></rss>"""
-    assert parse_feed(only_default).last_tagged_item_date is None
-
-
 @pytest.mark.parametrize("encoding", ["Shift_JIS", "EUC-JP", "GB2312", "Big5", "EUC-KR"])
 def test_multi_byte_declared_encodings_parse(encoding: str) -> None:
     """Expat refuses these encodings ("multi-byte encodings are not supported"); the body is
@@ -206,7 +169,7 @@ def test_multi_byte_declared_encodings_parse(encoding: str) -> None:
     )
     info = parse_feed(xml.encode(encoding))
     assert info.title == title
-    assert info.last_tagged_item_date == datetime(2026, 11, 9, 10, tzinfo=UTC)
+    assert info.last_item_date == datetime(2026, 11, 9, 10, tzinfo=UTC)
 
 
 def test_unknown_declared_encoding_is_a_parse_error() -> None:

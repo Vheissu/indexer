@@ -84,8 +84,8 @@ h2 { font-size: 20px; margin: 36px 0 8px; }
   border-radius: 8px;
 }
 .filter:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
-.tags { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-.tags a {
+.topics { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.topics a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -95,8 +95,8 @@ h2 { font-size: 20px; margin: 36px 0 8px; }
   color: var(--fg);
   font-size: 14px;
 }
-.tags a:hover { border-color: var(--accent); text-decoration: none; }
-.tags .n { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.topics a:hover { border-color: var(--accent); text-decoration: none; }
+.topics .n { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
 
 table { width: 100%; border-collapse: collapse; font-size: 15px; }
 th { text-align: left; font-size: 13px; font-weight: 600; color: var(--muted); }
@@ -109,8 +109,8 @@ th, td { padding: 9px 8px; border-bottom: 1px solid var(--border); vertical-alig
 .feeds .title { color: var(--fg); font-weight: 500; }
 .feeds .meta, .feeds .meta a { color: var(--muted); font-size: 13px; }
 .feeds .meta a.site, .feeds .meta a.rss { color: var(--link); }
-.ftags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
-.ftags a, .ftags span {
+.ftopics { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.ftopics a, .ftopics span {
   padding: 0 7px;
   border: 1px solid var(--border);
   border-radius: 999px;
@@ -118,7 +118,7 @@ th, td { padding: 9px 8px; border-bottom: 1px solid var(--border); vertical-alig
   font-size: 12px;
   line-height: 20px;
 }
-.ftags a:hover { border-color: var(--accent); color: var(--fg); text-decoration: none; }
+.ftopics a:hover { border-color: var(--accent); color: var(--fg); text-decoration: none; }
 .mail { display: inline-block; line-height: 0; }
 .mail img { width: 20px; height: 20px; border-radius: 4px; }
 .mail:hover img { outline: 2px solid var(--accent); outline-offset: 1px; }

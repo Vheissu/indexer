@@ -61,7 +61,7 @@ class SourcesConfig:
     # Registrable domains whose feeds are never loaded (e.g. youtube.com, reddit.com).
     exclude_domains: frozenset[str] = frozenset()
     # [commoncrawl] exclude_keywords: whole words (lower case) that keep survivors from proposing
-    # a feed with them in its title or tags. Common Crawl only; the lists are not filtered.
+    # a feed with them in its title. Common Crawl only; the lists are not filtered.
     commoncrawl_exclude_keywords: frozenset[str] = frozenset()
 
 

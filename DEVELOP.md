@@ -13,6 +13,7 @@ file doesn't repeat them.
 | check a random batch of inputs | `indexer run --from-inputs` | `check` | `check.yml` |
 | write the published lists | `indexer export` | `export` | `publish.yml` |
 | delete old checks | `indexer cleanup` | `cleanup` | `cleanup.yml` |
+| rebuild the topic matrix | `indexer embeddings` | `embeddings` | `embeddings.yml` |
 | **delete every table and all data** | `indexer drop-tables --yes` | `drop-tables` | `drop-tables.yml` (manual) |
 
 All state is in Postgres: locally the compose `postgres` service, in deployment Supabase. The
@@ -119,13 +120,12 @@ become `/feed/`; Blogger `?alt=rss` becomes the default feed; Joomla `type=atom`
 the main feed) without fetching them, and checks the rest today with the guarded fetcher (no
 retries). A feed is proposed only if:
 
-- it parses, and its newest item **with a category or tag** is from the last `--active-days` (243, about 8 months)
-  days (a date more than a day in the future doesn't count; platform defaults `uncategorized`,
-  `uncategorised` and `general` are not tags);
-- it is **labelled English**: its language is `en` or `en-*`. This is the publisher's label, not
-  detection: WordPress says `en-US` unless the owner changes it, so a few non-English sites pass;
+- it parses, and its newest item is from the last `--active-days` (243, about 8 months) days (a
+  date more than a day in the future doesn't count);
+- it is **in English**: `en` is among the languages detected on its items (see `language`
+  below). The feed's own `<language>` is not read: WordPress says `en-US` unless the owner changes it;
 - it **has a title**;
-- its title and tags (all of them) contain none of the `[commoncrawl] exclude_keywords` in `data/sources.toml`
+- its title contains none of the `[commoncrawl] exclude_keywords` in `data/sources.toml`
   as a whole word.
   This list is for Common Crawl only: the curated lists and submissions are not filtered by it
   (tried on their 9,048 feeds, it would flag 14: 3 adult, the rest blogs like "Budgets Are Sexy");
@@ -138,11 +138,11 @@ Feeds already there are skipped before checking (and again after, for the URL a 
 to). The rest are checked in random order, 200 at a time, and the run stops once `--max-feeds`
 (50) pass, so a run proposes at most 50 and stops downloading early.
 
-The finds are appended to `data/survivors.txt`, each as a comment line (title, language, date of
-the newest tagged item, tags), the WAT file it came from, and the URL. Each workflow run commits
+The finds are appended to `data/survivors.txt`, each as a comment line (title, detected
+languages, date of the newest item), the WAT file it came from, and the URL. Each workflow run commits
 that to a **new branch**, `survivors-<UTC timestamp>` (for example `survivors-20261119-041105`),
 and opens **its own pull request** into `develop`, with one
-section per feed: its title, URL, date of the newest tagged item, tags, and the links of its 3
+section per feed: its title, URL, date of the newest item, languages, and the links of its 3
 latest posts as written, all as code spans so nothing is clickable and spam domains are easy to
 spot. The report stays under GitHub's 65,536-character limit: feeds that don't fit are only
 counted ("... and N more feeds: see the diff"). Review the diff, delete the URL line of any feed you don't want, and merge (or close the pull
@@ -158,7 +158,7 @@ Started by hand (Actions → survivors → Run workflow), the workflow takes `sl
 `active-days` and `max-feeds` as inputs; the weekly run uses the defaults (25, 5, 243, 50).
 
 The workflow needs the repository setting **Settings → Actions → General → "Allow GitHub Actions
-to create and approve pull requests"**. Titles and tags are untrusted: in the file they are
+to create and approve pull requests"**. Titles are untrusted: in the file they are
 flattened to one line, and in the pull request they are shown as code, so they can't add URLs,
 mention people or link issues.
 
@@ -205,14 +205,14 @@ back yet.
 
 ## Published lists
 
-`indexer export` writes the data files: `output/tag/<tag>/` (`feeds.opml`, `links.txt`),
-`output/tag/tags.txt` (tag names, most feeds first), `output/all/` (`links.txt`, `feeds.opml`:
+`indexer export` writes the data files: `output/topic/<slug>/` (`feeds.opml`, `links.txt`),
+`output/topic/topics.txt` (topic names, most feeds first), `output/all/` (`links.txt`, `feeds.opml`:
 every listed feed) and `output/previews/` (one JSON file per listed feed, for a client-side search
-page: fetch a tag's `links.txt`, then the previews of the results shown; see
+page: fetch a topic's `links.txt`, then the previews of the results shown; see
 `export.preview_path` and `export.render_preview`). `links.txt` files are most recently active
 first. It also writes the website, `output/docs/` (`src/indexer/site.py`): `index.html` (the 50 largest
-topics, a search box over all of them, and the sources), `tag/<tag>/index.html` (the 200 most recently active feeds, each with a
-feedrule.com link prefilled with the feed), `style.css` and `feedrule.svg` (package data:
+topics, a search box over all of them, and the sources), `topic/<slug>/index.html` (the 200 most recently active feeds, each with a
+feedrule.com link prefilled with the feed and its other topics), `style.css` and `feedrule.svg` (package data:
 `src/indexer/style.css`, `src/indexer/feedrule.svg`), `sitemap.xml` and `.nojekyll`. GitHub Pages
 serves the `output` branch's `/docs` folder; the pages link the data files on
 raw.githubusercontent.com, so they don't count toward the Pages size limit. `--site-url` (default
@@ -220,7 +220,8 @@ raw.githubusercontent.com, so they don't count toward the Pages size limit. `--s
 no Markdown in the output except `SPEC.md`.
 
 The files and listing rules are described in the [README](README.md#which-feeds-are-listed). The
-limits are options: `--top-tags`, `--success-days`, `--item-years`, `--ignore-tag`. Titles and
+limits are options: `--top-topics`, `--success-days`, `--item-years`. A topic's `<slug>` is its name with `+`
+spelled `plus` and `#` spelled `sharp` (`export.topic_slug`). Titles and
 URLs come from the feeds: the pages are Jinja templates (`src/indexer/templates/`) with
 autoescaping on, the OPML is escaped by hand, and only http(s) URLs become
 links (a site URL could be `javascript:`); feed and site links are `rel="nofollow"`. `SPEC.md`,
@@ -234,8 +235,8 @@ mkdir -p output && HOST_UID=$(id -u) HOST_GID=$(id -g) docker compose run --rm e
 ```
 
 `publish.yml` force-pushes `output/` as a single fresh commit to the `output` branch, which never
-accumulates history. It is triggered by `workflow_run` on `check`, so it uses `publish.yml` as it
-is on the default branch. It only reads the database.
+accumulates history. It runs only when started by hand (Actions → publish → Run workflow): no
+schedule, no trigger from other workflows. It only reads the database.
 
 ## Cleanup
 
@@ -319,18 +320,90 @@ check keeps the last known values.
 | `new_feed_url` | `<itunes:new-feed-url>`: the feed declares it has moved |
 | `title` | feed title (Atom `<title>`, RSS channel `<title>`) |
 | `subtitle` | Atom `<subtitle>` or RSS `<description>`, up to 500 characters |
-| `categories` | feed-level categories (RSS `<category>`, `dc:subject`, Atom `<category term>`) |
-| `item_categories` | categories of all items, from the same elements |
-| `itunes_category` | `<itunes:category>` paths such as `Technology > Software` |
-| `language` | lower-case language tag (`<language>`, `dc:language`, `xml:lang`) |
+| `language` | languages detected on the items: `de, en` (see below); what the feed declares (`<language>`, `xml:lang`) is not read |
+| `topics` | topics from the text of the English items, most similar first: `rust, async` (see below) |
 | `media_type` | `video` or `podcast` when at least half the items carry video or audio, otherwise `text`; `null` for an empty feed |
 | `icon`, `logo` | Atom `<icon>`; Atom `<logo>`, RSS `<image><url>` or `<itunes:image>` |
 | `rights`, `license` | Atom `<rights>`, RSS `<copyright>` or `dc:rights`; a license URL (`link rel="license"`, `creativeCommons:license`) |
 
-Both category columns are normalized: each value is split on commas and lower-cased; `+` becomes
-`plus` and `#` becomes `sharp`; accents are folded to ASCII; only `a-z`, `0-9`, `-`, `_` and single
-spaces are kept (`C++` → `cplusplus`, `Node.js` → `nodejs`); duplicates are removed, and the rest
-are sorted and joined with `, `, up to 2048 characters of whole terms. Other text columns have
+The categories feeds publish are not read. `language` comes from `language.py` (plain text only, like `topics.py`): the text of
+each of the first 30 items (title and the start of the description, markup stripped, up to 300
+characters; kept in memory, never stored) goes through fastText's language identification model
+`lid.176.ftz` (176 languages; the Docker image downloads it at a pinned SHA-256 and sets
+`INDEXER_LID_MODEL`; model by Facebook AI Research, CC BY-SA 3.0). Items with under 40 characters
+of text are skipped. A language becomes a label, an ISO 639 code, when it is detected on at
+least 2 items and 20% of the judged items; labels are sorted and comma separated. Export
+lists them in the previews; only English items are used for topics.
+
+`topics` comes from `topics.py`, which works on plain text only (no RSS parsing, no language
+detection, no database): the checker gives it the text of each item detected as English (its title and
+the start of its description, as used for language detection) and the feed's own title and
+subtitle (counted like 3 items; boilerplate such as "Just another WordPress site" or "Recent content
+on …" removed; used only when the subtitle has at least 3 words of its own, since a bare name such
+as "Feep! blog" dilutes the posts) are embedded with MiniLM (`all-MiniLM-L6-v2`, quantized ONNX, Apache-2.0; the image downloads the model and its
+tokenizer at a pinned revision and SHA-256 and sets `INDEXER_MINILM_MODEL` and
+`INDEXER_MINILM_TOKENIZER`), averaged into one vector and compared with every row of
+`data/topics/topics.npy`, the precomputed embeddings of the names in `data/topics/topics.txt` (one row
+per line, float16). Names are mapped to their canonical form with `data/topics/synonyms.tsv`. A feed
+gets topics only if its best name beats its 8th best (distinct) name by at least 0.08: a vague
+feed scores many unrelated names about equally. It then gets up to 5 names within 0.02 of the
+best and at least 0.35, most similar first. Input and thresholds were tuned on 55 random listed
+feeds, judged by hand: title + description found about 55% more right topics than titles alone;
+wrong topics matter more than missing ones, so the thresholds favour precision: about 77% of the
+model's topics were right, on about half of the feeds (a spread of 0.04 gave about 65% on about
+80% of the feeds).
+A fixed threshold did worse (43% right at 0.35 with titles; at 0.6, 68% right but on 17 of 58
+feeds).
+
+Authors' tags help as evidence and are never stored. The parser reads each item's categories
+(RSS `<category>`, Atom `<category>`, `dc:subject`) in memory. A topic they name (matched after
+dropping case, spaces, punctuation and a hashtag sign, in singular or plural, and through the
+synonyms) on at least 2 English items and 20% of them is added after the model's own picks, up to 5
+in all, if the model scores it at least 0.35 for the feed's posts. Items with more than 10 tags don't
+count (tag stuffing). The floor keeps out tags about the blog itself (`journal`, `personal`,
+`essay` score 0.15 to 0.32) and tags unrelated to the posts. On the 56 English feeds of the tuning
+sample this added topics to 8 feeds (12 of 15 additions right, the rest close), and gave topics to
+2 feeds the model alone left without.
+
+A feed that still has no topic takes its author's first label: the first category of the newest
+English item that has categories, if it names a topic (`first_author_topic`); no other category is
+tried and the model doesn't vet it. This applies only when `en` is among the feed's detected
+languages (`language`): a feed with a few English posts among others gets no fallback. On 1,000 sampled feeds this gave a topic to 59 of the 403
+English feeds left without one; about 40-45% of those were right by hand judgment (filing labels
+such as `news`, `archive` or `life` make up most of the rest), against about 75% for the model's
+picks. It was accepted because a wrong topic is then at least one the author chose.
+
+The feed's title and subtitle fix many feeds whose posts say little ("The Druids Garden. Spiritual
+journeys in tending the living earth" gives `gardening, nature-writing, garden`) but pull towards
+names about blogging when the subtitle is "Personal blog" or "Journal". Those names (`journal`,
+`personal`, `opinion`, `feeds`, `diary`, `hobbies`, `writing-life`, `blogging-about-blogging`, …)
+were removed from `topics.txt`, as were names that came out in the top 8 of many unrelated feeds
+in a 1,000-feed run (`social-software`, `webtech`, `brainstorming`, `bazaar`, `projects`,
+`future`). `data/topics/topics.json` records the SHA-256 of `topics.txt`, the model and the
+tokenizer the matrix was built from; `indexer run` refuses to start if any of them changed, so
+`topics.npy` must be rebuilt with them: `indexer embeddings` (compose service `embeddings`, no
+database, no network; about 20 s) embeds every name in `topics.txt` in file order, with `-` and
+`_` read as spaces, and rewrites `topics.npy` and `topics.json`. The `embeddings.yml` workflow does
+it on every push to develop that changes `topics.txt` or the `Dockerfile` (which pins the model),
+and commits the result to develop; it can also be started by hand. To add or remove a topic, edit
+`topics.txt` and let the workflow (or the command) rebuild the matrix. The quantized model's
+output depends slightly on which names share a batch, so a rebuild also moves unchanged names a
+little (cosine ~0.99 to their old vector); the same `topics.txt` always gives the same matrix. A feed with no
+English item gets no topics.
+
+To try the model on any text, without a feed or a database, each TEXT being one post:
+
+```sh
+docker compose run --rm --no-deps check topics --title "Food in Jars" \
+  --subtitle "A blog about canning, pickling, and cooking from scratch" \
+  "Salted Vanilla Fig Jam. A sweet and salty jam" "How to Can Frozen Fruit. ..."
+```
+
+`--tags A,B` (repeatable, in the order of the TEXTs) gives each post's own tags.
+`indexer languages TEXT...` does the same for languages: each post's detected language, then the
+feed's labels.
+
+Text columns have
 markup stripped and whitespace collapsed, and are capped at 200 characters unless noted. URL
 columns come from untrusted content: resolved against `final_url`, kept only if they are absolute
 `http(s)` URLs without control characters (up to 2048 characters), and never fetched.
