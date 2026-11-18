@@ -13,6 +13,7 @@ file doesn't repeat them.
 | check a random batch of inputs | `indexer run --from-inputs` | `check` | `check.yml` |
 | write the published lists | `indexer export` | `export` | `publish.yml` |
 | delete old checks | `indexer cleanup` | `cleanup` | `cleanup.yml` |
+| delete the URLs in `data/undo.txt` | `indexer undo data/undo.txt` | `undo` | `undo.yml` |
 | rebuild the topic matrix | `indexer embeddings` | `embeddings` | `embeddings.yml` |
 | **delete every table and all data** | `indexer drop-tables --yes` | `drop-tables` | `drop-tables.yml` (manual) |
 
@@ -248,6 +249,18 @@ file as it is on the default branch), on a push to develop that changes `src/ind
 checks left. `feeds` (each feed's latest metadata) and `inputs` are kept. At about 4,000 checks a
 day this holds `health_checks` near a million rows (~320 MB with indexes). It refuses fewer than
 7 months, since the published lists look back 6.
+
+## Undo: deleting listed URLs
+
+`indexer undo data/undo.txt` deletes each URL in the file (one per line, `#` comments) from
+`inputs`, `health_checks` and `feeds`, in one transaction. A URL matches as written and in the
+canonical form the loader stores (e.g. `HTTPS://Example.com:443/feed` matches
+`https://example.com/feed`). It prints how many rows it deleted from each table per URL, and
+the URLs it found in no table. `undo.yml` runs it against Supabase on a push to `develop` that
+changes `data/undo.txt` (or by hand) and copies the report to the job summary. Re-running is
+harmless: deleted URLs are then reported as not found. A URL still listed in a source (a list in
+`sources.toml`, `survivors.txt`, `submissions.txt`) comes back with the next input load, so
+remove it there as well.
 
 ## Starting over: drop-tables
 

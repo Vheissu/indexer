@@ -1,6 +1,6 @@
 name: indexer
 
-# Shared by the indexer services (input, survivors, check, export, cleanup, drop-tables): one image, the
+# Shared by the indexer services (input, survivors, check, export, cleanup, undo, drop-tables): one image, the
 # database settings, and the hardening for a process that handles untrusted content.
 x-indexer: &indexer
   build:
@@ -121,6 +121,14 @@ services:
   drop-tables:
     <<: *indexer
     command: ["drop-tables"] # refuses without --yes
+
+  # Deletes the URLs in data/undo.txt from inputs, health_checks and feeds; reports what it
+  # deleted and what it did not find.
+  undo:
+    <<: *indexer
+    volumes:
+      - ./data/undo.txt:/work/data/undo.txt:ro
+    command: ["undo", "data/undo.txt"]
 
   # Deletes health checks older than 8 months and exits. feeds and inputs are kept.
   cleanup:

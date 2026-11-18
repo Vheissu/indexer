@@ -1,0 +1,4 @@
+# URLs to delete from the database (inputs, health_checks and feeds), one per line.
+# A push to develop that changes this file runs the undo workflow, which reports what it deleted
+# and what it did not find. A URL still listed in a source comes back with the next input load:
+# remove it from that list too (e.g. data/survivors.txt).

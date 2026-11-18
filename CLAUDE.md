@@ -10,12 +10,13 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 
 | stage | command | compose service | workflow |
 | --- | --- | --- | --- |
-| inputs from lists | `indexer load-inputs data/sources.toml` | `input` | `input.yml` (daily; on push to develop/main changing `data/sources.toml` or `data/*.txt`) |
+| inputs from lists | `indexer load-inputs data/sources.toml` | `input` | `input.yml` (daily; on push to develop/main changing `data/sources.toml` or `data/*.txt`, except `undo.txt`) |
 | old CC feeds still active, proposed by PR | `indexer survivors` | `survivors` | `survivors.yml` (Wednesdays) |
 | health checks | `indexer run --from-inputs` (or `run FILE`) | `check` | `check.yml` (every 3 h, 500 URLs, 3 h timeout) |
 | publish | `indexer export` | `export` | `publish.yml` (after each successful check run; on push to develop changing templates/, style.css, feedrule.svg or site.py; Mondays as fallback; manual too. Re-enabled 2026-11-19 at the user's request) |
 | retention | `indexer cleanup` | `cleanup` | `cleanup.yml` (Sundays) |
 | topic matrix | `indexer embeddings` | `embeddings` | `embeddings.yml` (on push to develop changing `data/topics/topics.txt` or `Dockerfile`; manual) |
+| delete listed URLs | `indexer undo data/undo.txt` | `undo` | `undo.yml` (on push to develop changing `data/undo.txt`; manual) |
 | start over (all data) | `indexer drop-tables --yes` | `drop-tables` | `drop-tables.yml` (manual, typed confirmation) |
 
 ## Decisions made with the user (keep them)
@@ -25,8 +26,10 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   Each load reads the lists as they are. A failing source is skipped (stderr, plus a `::warning::` annotation in
   Actions); exit 1 only if every source failed.
 - **inputs is append-only**: nothing deletes inputs (except data changesets the user asked for, like the former 009 for
-  YouTube/Reddit, and `drop-tables`, the user-requested manual reset that drops every table, only names in
-  `db.OWN_TABLES`). A URL moves only to a strictly more permissive source. That is what makes unpinned sources safe.
+  YouTube/Reddit, `drop-tables`, the user-requested manual reset that drops every table, only names in
+  `db.OWN_TABLES`, and `undo`, asked by the user on 2026-11-19: deletes the exact URLs in `data/undo.txt`, as written
+  and in canonical form, from inputs, health_checks and feeds in one transaction, and reports deleted (rows per table)
+  and not found. A URL still in a source comes back on the next load). A URL moves only to a strictly more permissive source. That is what makes unpinned sources safe.
 - **No quality filtering of inputs.** Inputs are candidates; publishing is a separate responsibility.
   **Agree any selection or quality heuristic with the user before implementing it.** (`discover`, which
   inserted the newest crawl's feeds unfiltered, was removed on 2026-11-16: survivors replaces it.)

@@ -129,10 +129,11 @@ topic data up to date:
 | `publish` | after each successful check run, when the site's templates or styles change; Mondays as a fallback | writes the topic folders and the site and force-pushes them to the `output` branch |
 | `survivors` | Wednesdays | samples an old Common Crawl crawl, checks the feeds it finds, and proposes the active ones in a pull request |
 | `cleanup` | Sundays | deletes check results older than 8 months |
+| `undo` | when `data/undo.txt` changes | deletes the feed URLs listed there from the database and reports which were deleted and which were not found |
 | `embeddings` | when the topic list changes | recomputes the topic names' MiniLM embeddings (`data/topics/topics.npy`) and commits them |
 
 Each workflow runs the same Docker images as a local setup: `compose.yaml` defines the app
-services (`input`, `check`, `export`, `survivors`, `cleanup`, `embeddings`), a local `postgres`, and a
+services (`input`, `check`, `export`, `survivors`, `cleanup`, `undo`, `embeddings`), a local `postgres`, and a
 `liquibase` service that applies the schema in `db/changelog` before every run. In the
 workflows, the database settings point at Supabase instead of the local container.
 

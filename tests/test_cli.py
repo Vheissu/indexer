@@ -1,7 +1,9 @@
 """Argument parsing for the indexer commands."""
 
 import logging
+from collections.abc import AsyncIterator
 from datetime import UTC, datetime
+from pathlib import Path
 
 import pytest
 
@@ -89,3 +91,55 @@ def test_drop_tables_needs_yes(capsys: pytest.CaptureFixture[str]) -> None:
 
     assert main(["drop-tables", "--database-url", "postgresql://unused"]) == 2
     assert "pass --yes" in capsys.readouterr().err
+
+
+class FakeUndoDb:
+    """Holds rows for two URLs, stored in their canonical form."""
+
+    def __init__(self) -> None:
+        self.asked: list[str] = []
+
+    async def delete_urls(self, urls: list[str]) -> dict[str, dict[str, int]]:
+        self.asked = urls
+        rows = {
+            "https://a.example/feed": {"health_checks": 3, "feeds": 1, "inputs": 1},
+            "https://b.example/rss": {"health_checks": 0, "feeds": 0, "inputs": 1},
+        }
+        return {u: rows[u] for u in urls if u in rows}
+
+
+def test_undo_reports_deleted_and_not_found(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    import contextlib
+
+    from indexer import cli
+
+    fake = FakeUndoDb()
+
+    @contextlib.asynccontextmanager
+    async def database(_args: object) -> AsyncIterator[FakeUndoDb]:
+        yield fake
+
+    monkeypatch.setattr(cli, "_database", database)
+    undo = tmp_path / "undo.txt"
+    undo.write_text(
+        "# comment\nhttps://a.example/feed\n\nHTTPS://B.example:443/rss\n"
+        "https://gone.example/feed\nnot a url\nhttps://a.example/feed\n"
+    )
+    assert cli.main(["undo", str(undo), "--database-url", "postgresql://unused"]) == 0
+    out = capsys.readouterr().out
+    assert "4 URLs in" in out and "2 deleted, 2 not found" in out
+    assert "  https://a.example/feed  (health_checks 3, feeds 1, inputs 1)" in out
+    # matched by its canonical form, reported as written
+    assert "  HTTPS://B.example:443/rss  (health_checks 0, feeds 0, inputs 1)" in out
+    assert out.index("not found") < out.index("  https://gone.example/feed")
+    assert "  not a url" in out
+    assert "https://b.example/rss" in fake.asked
+
+
+def test_undo_missing_file(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
+    from indexer.cli import main
+
+    assert main(["undo", str(tmp_path / "nope.txt"), "--database-url", "postgresql://u"]) == 2
+    assert "cannot read" in capsys.readouterr().err

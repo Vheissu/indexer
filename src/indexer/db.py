@@ -116,6 +116,10 @@ def _check_params(run_id: int, row: CheckRow) -> dict[str, object]:
     return params
 
 
+# Tables `undo` deletes a URL from, in deletion order.
+UNDO_TABLES = ("health_checks", "feeds", "inputs")
+
+
 class Database:
     def __init__(self, conn: psycopg.AsyncConnection) -> None:
         self._conn = conn
@@ -238,6 +242,23 @@ class Database:
                     )
                 )
             return existing
+
+    async def delete_urls(self, urls: Sequence[str]) -> dict[str, dict[str, int]]:
+        """Delete these exact URLs from health_checks, feeds and inputs, in one transaction.
+        Returns, per URL that was found anywhere, the rows deleted from each table."""
+        found: dict[str, dict[str, int]] = {}
+        async with self._lock, self._conn.transaction():
+            for table in UNDO_TABLES:
+                cur = await self._conn.execute(
+                    sql.SQL("DELETE FROM {} WHERE url = ANY(%s) RETURNING url").format(
+                        sql.Identifier(table)
+                    ),
+                    (list(urls),),
+                )
+                for (url,) in await cur.fetchall():
+                    counts = found.setdefault(url, dict.fromkeys(UNDO_TABLES, 0))
+                    counts[table] += 1
+        return found
 
     async def delete_old_checks(self, months: int) -> tuple[int, int]:
         """Delete health checks older than `months`, then runs that are older than that and

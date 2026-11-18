@@ -24,11 +24,12 @@ from pathlib import Path
 from typing import Any
 
 from indexer.check.runner import CheckRow, run_checks
-from indexer.db import DEFAULT_DATABASE_URL, Database
+from indexer.db import DEFAULT_DATABASE_URL, UNDO_TABLES, Database
+from indexer.errors import CheckError
 from indexer.export import DATA_URL, SITE_URL, ExportError, write_output
 from indexer.language import MODEL_ENV, LanguageModel
 from indexer.net.fetch import FetchConfig, open_fetcher
-from indexer.net.validate import read_url_file
+from indexer.net.validate import read_url_file, validate_url
 from indexer.sources import (
     SourceError,
     SourcesConfig,
@@ -339,6 +340,45 @@ async def _cleanup(args: argparse.Namespace) -> int:
     return 0
 
 
+def _undo_forms(url: str) -> list[str]:
+    """The URL as written, and as inputs stores it (canonical) when that differs."""
+    try:
+        canonical = str(validate_url(url))
+    except CheckError:
+        return [url]
+    return [url] if canonical == url else [url, canonical]
+
+
+async def _undo(args: argparse.Namespace) -> int:
+    try:
+        urls = read_url_file(args.file)
+    except OSError as exc:
+        print(f"error: cannot read {args.file}: {exc}", file=sys.stderr)
+        return 2
+    forms = {url: _undo_forms(url) for url in urls}
+    found: dict[str, dict[str, int]] = {}
+    if urls:
+        async with _database(args) as db:
+            found = await db.delete_urls([f for fs in forms.values() for f in fs])
+    deleted, missing = [], []
+    for url, fs in forms.items():
+        counts = dict.fromkeys(UNDO_TABLES, 0)
+        for f in dict.fromkeys(fs):
+            for table, n in found.get(f, {}).items():
+                counts[table] += n
+        if any(counts.values()):
+            rows = ", ".join(f"{table} {n}" for table, n in counts.items())
+            deleted.append(f"  {url}  ({rows})")
+        else:
+            missing.append(f"  {url}")
+    print(f"{len(urls)} URLs in {args.file}: {len(deleted)} deleted, {len(missing)} not found")
+    if deleted:
+        print("deleted (rows per table):", *deleted, sep="\n")
+    if missing:
+        print("not found (in no table):", *missing, sep="\n")
+    return 0
+
+
 async def _drop_tables(args: argparse.Namespace) -> int:
     if not args.yes:
         print(
@@ -495,6 +535,15 @@ def _parser() -> argparse.ArgumentParser:
         "--months", type=int, default=8, help="keep this many months of checks (default 8)"
     )
     _add_database_url(cl)
+
+    ud = command(
+        "undo",
+        _undo,
+        "delete the URLs listed in FILE from inputs, health_checks and feeds, and report which"
+        " were deleted and which were not found",
+    )
+    ud.add_argument("file", type=Path, help="one URL per line, # comments (e.g. data/undo.txt)")
+    _add_database_url(ud)
 
     dt = command(
         "drop-tables",

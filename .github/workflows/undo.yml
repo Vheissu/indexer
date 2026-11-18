@@ -1,0 +1,50 @@
+# Deletes the URLs listed in data/undo.txt from Supabase: their inputs row, health checks and
+# feeds row. Runs on a push to develop that changes the file, or by hand. The job summary (and
+# the log) lists what was deleted and what was not found. Re-running is harmless: URLs already
+# gone are reported as not found. A URL still listed in a source comes back with the next input
+# load, so remove it there too. Uses the same SUPABASE_DB_* secrets as input.yml.
+name: undo
+
+on:
+  push:
+    branches: [develop]
+    paths:
+      - data/undo.txt
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexer-db
+  cancel-in-progress: false
+
+jobs:
+  undo:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      LIQUIBASE_COMMAND_URL: jdbc:postgresql://${{ secrets.SUPABASE_DB_HOST }}:${{ secrets.SUPABASE_DB_PORT }}/${{ secrets.SUPABASE_DB_NAME }}?sslmode=require
+      LIQUIBASE_COMMAND_USERNAME: ${{ secrets.SUPABASE_DB_USER }}
+      LIQUIBASE_COMMAND_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+      DATABASE_URL: >-
+        host=${{ secrets.SUPABASE_DB_HOST }} port=${{ secrets.SUPABASE_DB_PORT }}
+        dbname=${{ secrets.SUPABASE_DB_NAME }} user=${{ secrets.SUPABASE_DB_USER }}
+        sslmode=require
+      PGPASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Build images
+        run: docker compose build liquibase undo
+
+      - name: Migrate schema
+        run: docker compose run --rm --no-deps -T liquibase
+
+      - name: Delete the listed URLs
+        run: |
+          set -o pipefail
+          docker compose run --rm --no-deps -T undo | tee "$RUNNER_TEMP/undo.txt"
+          { echo '~~~'; cat "$RUNNER_TEMP/undo.txt"; echo '~~~'; } >> "$GITHUB_STEP_SUMMARY"

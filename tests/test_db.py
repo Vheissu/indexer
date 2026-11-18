@@ -311,6 +311,42 @@ async def test_delete_old_checks() -> None:
         await db.close()
 
 
+async def test_delete_urls_from_every_table() -> None:
+    """The listed URLs go from inputs, health_checks and feeds; others stay; unknown URLs are
+    simply not in the result."""
+    assert DSN is not None
+    gone, kept = "https://indexer-undo.example/feed", "https://indexer-undo.example/keep"
+    missing = "https://indexer-undo.example/never"
+    db = await Database.connect(DSN)
+    conn = db._conn
+    try:
+        for url in (gone, kept):
+            await conn.execute("DELETE FROM health_checks WHERE url = %s", (url,))
+            await conn.execute("DELETE FROM feeds WHERE url = %s", (url,))
+            await conn.execute("DELETE FROM inputs WHERE url = %s", (url,))
+        await db.upsert_inputs([InputRow(gone, "s", "MIT"), InputRow(kept, "s", "MIT")], {"MIT": 0})
+        run = await db.start_run()
+        for url in (gone, kept):
+            await db.insert_check(run, CheckRow(url=url, checked_at=datetime.now(UTC), title="t"))
+
+        assert await db.delete_urls([gone, missing]) == {
+            gone: {"health_checks": 1, "feeds": 1, "inputs": 1}
+        }
+        for table in ("inputs", "health_checks", "feeds"):
+            cur = await conn.execute(
+                f"SELECT url FROM {table} WHERE url = ANY(%s) ORDER BY url", ([gone, kept],)
+            )
+            assert await cur.fetchall() == [(kept,)]
+        assert await db.delete_urls([gone]) == {}  # again: nothing left
+
+        await conn.execute("DELETE FROM health_checks WHERE run_id = %s", (run,))
+        await conn.execute("DELETE FROM runs WHERE id = %s", (run,))
+        await conn.execute("DELETE FROM feeds WHERE url = %s", (kept,))
+        await conn.execute("DELETE FROM inputs WHERE url = %s", (kept,))
+    finally:
+        await db.close()
+
+
 async def test_known_inputs() -> None:
     assert DSN is not None
     url = "https://indexer-test.example/known"
