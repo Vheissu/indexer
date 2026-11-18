@@ -12,10 +12,6 @@ on:
 permissions:
   contents: write # to push the output branch
 
-concurrency:
-  group: indexer-db
-  cancel-in-progress: false
-
 jobs:
   publish:
     runs-on: ubuntu-24.04

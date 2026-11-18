@@ -107,7 +107,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   (`.env.example`; no password in the repo; `uv run` uses `PGPASSWORD`), and are overridden by env
   (`LIQUIBASE_COMMAND_URL/USERNAME/PASSWORD`, `DATABASE_URL`, `PGPASSWORD`). Workflows run
   `docker compose build` then `docker compose run --rm --no-deps -T liquibase|<service>`, with
-  `contents: read` (publish: write; survivors: write + `pull-requests: write`), `persist-credentials: false` and one shared concurrency group.
+  `contents: read` (publish: write; survivors: write + `pull-requests: write`), `persist-credentials: false` and one shared concurrency group (except publish: manual, read-only on the database, no concurrency limit).
   Supabase secrets `SUPABASE_DB_*`; use the IPv4 session pooler (runners have no IPv6).
 - All DB writes share one connection across concurrent checks; `Database` serializes them with a lock
   (concurrent transactions on one connection fail with OutOfOrderTransactionNesting).
