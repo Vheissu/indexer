@@ -28,6 +28,7 @@ from indexer.export import (
 from indexer.site import (
     INDEX_TOPICS,
     PAGE_ROWS,
+    SHOWN_ROWS,
     SUBTITLE_CHARS,
     feedrule_href,
     other_topics,
@@ -123,7 +124,7 @@ def test_topic_page_rows_are_escaped_and_capped() -> None:
     (topic,) = top_topics(feeds, 1)
     html = page(topic)
     assert len(rows(html)) == PAGE_ROWS
-    assert "<script>" not in html.split("<table")[1]
+    assert "<script>" not in html.split("<table")[1].split("</table>")[0]
     assert "&lt;script&gt;alert(1)&lt;/script&gt; &amp; &#34;x&#34;" in html  # autoescaped
     assert f"{PAGE_ROWS + 6} active feeds are about" in html
     # a non-http site URL is never a link: the feed's home page replaces it
@@ -496,3 +497,13 @@ def test_rows_show_the_subtitle_escaped_and_cut() -> None:
     subs = re.findall(r'<span class="sub">([^<]*)</span>', html)
     assert len(subs) == 2  # feeds 2 and 4 have no line
     assert len(subs[1]) == SUBTITLE_CHARS and subs[1].endswith("…")
+
+
+def test_show_more_reveals_the_rest_of_the_rows() -> None:
+    (topic,) = top_topics([feed(i, "x") for i in range(SHOWN_ROWS + 5)], 1)
+    html = page(topic)
+    assert len(rows(html)) == SHOWN_ROWS + 5  # all in the page: it works without the script
+    assert '<button id="more" class="button ghost" type="button" hidden>Show more</button>' in html
+    assert f"const step = {SHOWN_ROWS}," in html
+    (small,) = top_topics([feed(i, "x") for i in range(SHOWN_ROWS)], 1)
+    assert 'id="more"' not in page(small)  # nothing more to show

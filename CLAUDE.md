@@ -72,7 +72,8 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   URLs (`--site-url`). Data files stay outside docs/ and are linked on raw.githubusercontent.com (`--data-url`), so they
   don't count toward the Pages limit. Colours: feedrule.com's (Tailwind zinc + orange), light and dark. Jinja templates
   (`src/indexer/templates/`: base, index, topic, sitemap) with autoescaping on and StrictUndefined; `site.py` only prepares
-  the data. No front-end framework, no build step; one small inline script (topic filter), pages work without it.
+  the data. No front-end framework, no build step; small inline scripts (topic filter; "Show more" on topic pages: 20 rows, then 20 more per click,
+  `site.SHOWN_ROWS`), pages work without them (all 200 rows are in the HTML).
   Each feed row starts with feedrule.com's icon (`src/indexer/feedrule.svg`, copied to docs/) linking to
   `https://feedrule.com/?feed=<feed URL, percent-encoded except : and />` (`site.feedrule_link`). Untrusted text is
   HTML-escaped; only http(s) URLs become links (`site.safe_href`); feed and site links are rel="nofollow", feedrule's not.

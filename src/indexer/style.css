@@ -53,6 +53,8 @@ a:hover { text-decoration: underline; }
 }
 .cta:hover, .button:hover { text-decoration: none; filter: brightness(1.08); }
 .button.ghost { background: transparent; color: var(--fg); border: 1px solid var(--border); }
+button.button { cursor: pointer; font-family: inherit; }
+.more { margin-top: 16px; text-align: center; }
 
 main.wrap { padding-top: 28px; padding-bottom: 40px; }
 h1 { font-size: 32px; line-height: 1.2; margin: 0 0 12px; letter-spacing: -0.02em; }

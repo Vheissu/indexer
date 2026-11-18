@@ -22,7 +22,8 @@ from jinja2 import Environment, PackageLoader, StrictUndefined, select_autoescap
 if TYPE_CHECKING:
     from indexer.export import ListedFeed, Topic
 
-PAGE_ROWS = 200  # feeds shown on a topic page (the first ones of its feeds.opml)
+PAGE_ROWS = 200  # feeds on a topic page (the first ones of its feeds.opml)
+SHOWN_ROWS = 20  # of those, shown at first; "Show more" reveals as many again (all without script)
 SUBTITLE_CHARS = 200  # a feed's subtitle on its row, cut beyond this
 INDEX_TOPICS = 50  # topics shown on the home page (the filter box searches all of them)
 FILTER_MATCHES = 100  # topics the filter box shows at most
@@ -157,6 +158,7 @@ def render_topic_page(
         opml_max=opml_max,
         links_max=links_max,
         rows=[_row(f, topic.name, published or {}) for f in topic.feeds[:PAGE_ROWS]],
+        shown_rows=SHOWN_ROWS,
     )
 
 

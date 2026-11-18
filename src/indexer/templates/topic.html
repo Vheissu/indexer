@@ -34,4 +34,20 @@ with keyword filters and no account.</span></p>
 {% endfor %}
 </tbody>
 </table>
+{% if rows|length > shown_rows %}
+<p class="more"><button id="more" class="button ghost" type="button" hidden>Show more</button></p>
+<script>
+// All rows are in the page (it works without this script); show SHOWN_ROWS, then as many again per click.
+const step = {{ shown_rows }}, more = document.getElementById("more"),
+  rows = [...document.querySelectorAll(".feeds tbody tr")];
+let shown = step;
+rows.slice(shown).forEach((row) => { row.hidden = true; });
+more.hidden = false;
+more.addEventListener("click", () => {
+  shown += step;
+  rows.slice(0, shown).forEach((row) => { row.hidden = false; });
+  more.hidden = shown >= rows.length;
+});
+</script>
+{% endif %}
 {% endblock %}
