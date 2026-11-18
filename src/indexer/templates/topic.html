@@ -8,8 +8,8 @@
 {% else %}
 <p class="lead">{{ total|num }} active feeds are about <b>{{ topic }}</b>. Below: the {{ rows|length|num }} most recently active, newest post first. The OPML file (to import into a feed reader) has {{ some(opml_max) }}; links.txt lists {{ some(links_max) }}, one feed URL per line.</p>
 {% endif %}
-<p class="actions"><a class="button" href="{{ data }}feeds.opml">Download OPML</a>
-<a class="button ghost" href="{{ data }}links.txt">links.txt</a></p>
+<p class="actions"><a class="button" href="{{ data }}feeds.opml">.OPML</a>
+<a class="button ghost" href="{{ data }}links.txt">.TXT</a></p>
 <p class="tip"><img src="../../{{ icon }}" width="20" height="20" alt=""><span>Click the icon next
 to a feed to get its new posts by email: a free digest from <a href="{{ feedrule }}">feedrule.com</a>,
 with keyword filters and no account.</span></p>
