@@ -2,3 +2,36 @@
 # A push to develop that changes this file runs the undo workflow, which reports what it deleted
 # and what it did not find. A URL still listed in a source comes back with the next input load:
 # remove it from that list too (e.g. data/survivors.txt).
+
+# All survivors proposals until 2026-11-19, removed from data/survivors.txt
+https://donsbarn.com/feed/
+https://wachusettareachamber.org/feed/
+https://designbeep.com/feed/
+https://24x7breakingpoint.com/feed/
+https://forums.ernieball.com/forums/-/index.rss
+https://librarymice.com/feed/
+https://eclipsemagazine.com/feed/
+https://www.2exhibitions.com/feed/
+https://www.2exhibitions.com/search/Water/feed/
+https://freepngclipart.com/rss.xml
+https://blue-idea.net/phpbb/app.php/feed/forum/2
+https://forum.jcremers.com/index.php?type=rss;action=.xml
+https://shelfreflections.com/feed/
+https://upclosephoto.com/feed
+https://ecmnp2015.com/feed/
+https://berzerk.pl/feed/
+https://prodikedokteran.fk.uns.ac.id/feed/
+https://elliderusa.com/feed/
+https://floridaenet.com/feed/
+https://newspiritualscience.com/feed/
+https://durhamucu.org.uk/feed/
+https://newsantaana.com/feed/
+https://open-shelf.ca/feed/
+https://blog.realestatebydesignnc.com/feed/
+https://diyhomedecorideas.net/feed/
+https://africazine.com/feed/
+https://aun-tv.com/feed/
+https://humanidades.uprrp.edu/visiondoble/feed/
+https://katalozi.net/feed
+https://westvolusiawolves.org/feed/
+https://loveprescot.co.uk/feed/
