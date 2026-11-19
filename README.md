@@ -37,9 +37,7 @@ The data behind the pages is on the `output` branch, in `topic/<topic>/`:
 
 `topic/topics.txt` lists the topic names, one per line, most feeds first. A feed none of whose
 topics stands out is in no topic. **Every** listed feed, with a topic or not, is in
-the `all/` folder: `all/links.txt` (one URL per line) and `all/feeds.opml`. Each listed feed also
-has a small JSON preview (URL, title, description, size in bytes, last post date, languages, topics) in `previews/`, named
-by the SHA-256 of its URL: `previews/<first 2 hex digits>/<sha256 hex>.json`. `SPEC.md` on the
+the `all/` folder: `all/links.txt` (one URL per line) and `all/feeds.opml`. `SPEC.md` on the
 branch describes every file.
 
 ## Subscribe to a whole topic
@@ -65,17 +63,10 @@ A feed is listed when:
 - it was fetched and read successfully at least once in the last 6 months, and
 - its newest post is less than a year old.
 
-Each English feed gets up to 5 topics, chosen by comparing the titles and openings of its English
-posts, and its own title and description, with about 6,000 topic names, using the MiniLM sentence
-model (all-MiniLM-L6-v2, Apache-2.0). The feeds' own tags, when they are frequent and fit the
-posts, add to those topics. An English feed (by the detected languages) for which no topic stands
-out takes the first tag of its newest tagged post, if it is one of the topic names (the author's own choice, so less reliable);
-otherwise it gets no topic. The tags themselves are not stored or published.
-
-The languages a feed's posts are written in are detected on each post (`en`, `de`, `ar`) and
-listed in its preview file; a language counts if it is used in at least 2 posts and a fifth of
-them. Only English posts are used for topics. Language detection uses fastText's language
-identification model (lid.176, by Facebook AI Research, licensed CC BY-SA 3.0).
+Each English feed gets up to 5 of about 6,000 topics, chosen from the text of its posts with the
+MiniLM sentence model (all-MiniLM-L6-v2, Apache-2.0); feeds in other languages get no topic yet.
+Languages are detected on each post with fastText's language identification model (lid.176, by
+Facebook AI Research, licensed CC BY-SA 3.0).
 
 Titles and descriptions come from the feeds themselves and are not edited. Being listed means a
 feed is alive, not that anyone vouches for its content.
@@ -99,9 +90,6 @@ The filtering is deliberately simple: a few cheap rules that are easy to underst
 anything clever that would be hard to trust. They are strict, so about **99% of the feeds are
 filtered out**. The remaining ~1% are proposed in a pull request, and **a person reviews every one
 before it is merged**.
-
-Each run reads only a small sample of the crawl (the start of one random file, about 25 MB of the
-tens of terabytes in a crawl), to keep bandwidth and runner time low.
 
 ## Add a feed
 
@@ -130,11 +118,6 @@ and two that run when a file in the repository changes:
 | `cleanup` | Sundays | deletes check results older than 8 months |
 | `undo` | when `data/undo.txt` changes | deletes the feed URLs listed there from the database and reports which were deleted and which were not found |
 | `embeddings` | when the topic list changes | recomputes the topic names' MiniLM embeddings (`data/topics/topics.npy`) and commits them |
-
-Each workflow runs the same Docker images as a local setup: `compose.yaml` defines the app
-services (`input`, `check`, `export`, `survivors`, `cleanup`, `undo`, `embeddings`), a local `postgres`, and a
-`liquibase` service that applies the schema in `db/changelog` before every run. In the
-workflows, the database settings point at Supabase instead of the local container.
 
 Setup, commands, the data model and the security model are documented in
 [DEVELOP.md](DEVELOP.md).
