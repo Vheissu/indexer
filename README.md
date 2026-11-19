@@ -136,8 +136,5 @@ services (`input`, `check`, `export`, `survivors`, `cleanup`, `undo`, `embedding
 `liquibase` service that applies the schema in `db/changelog` before every run. In the
 workflows, the database settings point at Supabase instead of the local container.
 
-Every feed URL is treated as untrusted. The checker only connects to public IP addresses, follows
-at most 3 redirects, caps time and size, and parses XML without loading external entities.
-
 Setup, commands, the data model and the security model are documented in
 [DEVELOP.md](DEVELOP.md).
