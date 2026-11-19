@@ -9,3 +9,65 @@
 # Each entry: title · language · date of the newest tagged item · tags, then the Common Crawl
 # WAT file it was found in, then the feed URL. Titles and tags come from the feeds themselves.
 # Common Crawl terms of use: https://commoncrawl.org/terms-of-use
+
+# --- 2026-11-19, from CC-MAIN-2021-49 ---
+# wc3edit.net · en · last post 2026-11-19
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://forum.wc3edit.net/app.php/feed
+# Comments for EroArtfFles · en · last post 2026-09-28
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://eroartfiles.net/comments/feed/
+# Logic Masters Forum - Alle Foren · de, en · last post 2026-11-18
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://forum.logic-masters.de/syndication.php?type=atom1.0
+# Center for Analysis and Design of Intelligent Agents · en · last post 2026-10-29
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://cadia.ru.is/wiki/feed.php
+# Comments for A Plebe's Site · en · last post 2026-11-09
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://aplebessite.com/comments/feed/
+# 9isex · en · last post 2026-11-18
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://www.9isex.net/feeds/posts/default
+# Comments for The Chairshot · en · last post 2026-11-10
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://thechairshot.com/comments/feed/
+# Comments for Pinter Computing · en, hu · last post 2026-10-05
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://pinter.org/comments/feed
+# CIRAD - Les dernières publications · en · last post 2026-11-18
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://publications.cirad.fr/rss/dernieres-publications.php
+# A Plebe's Site · en · last post 2026-11-19
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://aplebessite.com/feed/
+# Pinter Computing · en · last post 2026-11-14
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://pinter.org/feed
+# Comments for Data Science Software Reviews · en · last post 2026-09-07
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://r4stats.com/comments/feed/
+# Live Loudly Donate Proudly · en · last post 2026-09-27
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://live-loudly-donate-proudly.org/index.php/feed/
+# Comments for Manga Mavericks · en · last post 2026-09-23
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://mangamavericks.com/comments/feed/
+# MalvorlagenKostenlos.net · de, en · last post 2026-11-11
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://malvorlagenkostenlos.net/feed/
+# Consortium for Nursing History Inquiry at the University of British Columbia School of Nursing · en · last post 2026-08-13
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://blogs.ubc.ca/nursinghistory/feed/
+# The Kempe Foundation · en · last post 2026-06-24
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://kempe.org/feed/
+# The Philadelphia Parking Authority. · en · last post 2026-11-19
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://philapark.org/feed/
+# The Chairshot · en · last post 2026-11-19
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://thechairshot.com/feed/
+# wc3edit.net · en · last post 2026-11-19
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358443.87/wat/CC-MAIN-20211128013650-20211128043650-00157.warc.wat.gz
+https://forum.wc3edit.net/app.php/feed/topics_active
