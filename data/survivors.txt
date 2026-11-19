@@ -9,3 +9,65 @@
 # Each entry: title · language · date of the newest tagged item · tags, then the Common Crawl
 # WAT file it was found in, then the feed URL. Titles and tags come from the feeds themselves.
 # Common Crawl terms of use: https://commoncrawl.org/terms-of-use
+
+# --- 2026-11-19, from CC-MAIN-2021-49 ---
+# Metal Nexus · en · last post 2026-05-19
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://metalnexus.net/feed/
+# Kommentare auf politeknik.de · de, en · last post 2026-08-30
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://politeknik.de/language/de/comments/feed/
+# Maison Anglophone · en · last post 2026-11-16
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://maisonanglophone.org/feed/
+# Flowactivo · en · last post 2026-11-11
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://flowactivo.org/feed/
+# Comments for Neosubs · en · last post 2026-08-03
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://neosubs.net/comments/feed/
+# RUDN Journal of Engineering Research · en · last post 2026-07-10
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://journals.rudn.ru/engineering-researches/gateway/plugin/WebFeedGatewayPlugin/atom
+# BuzzLatest · en · last post 2026-06-03
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://buzzlatest.com/feed/
+# Jurnal Pendidikan Islam · en · last post 2026-11-11
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://ejournal.uin-suka.ac.id/tarbiyah/JPI/gateway/plugin/WebFeedGatewayPlugin/rss
+# Comments for passioneat.it · en · last post 2026-11-03
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://passioneat.it/comments/feed/
+# My RSS Feed · en · last post 2026-11-16
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://www.pastorjoshleadership.com/blog/files/feed.RSS
+# Decatur Public Library Local History Photo Collection · en · last post 2026-04-16
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://omeka.decaturlibrary.org/items/browse?tags=Ray's+Bridge&output=atom
+# Random Insanity Alliance Forum, Mark V · en · last post 2026-08-23
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://rialliance.net/index.php?type=rss;action=.xml
+# RUDN Journal of Medicine · en · last post 2026-09-02
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://journals.rudn.ru/medicine/gateway/plugin/WebFeedGatewayPlugin/atom
+# Eagle Lake Nurseries · en · last post 2026-08-27
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://www.eaglelakenurseries.com/feed/
+# RUDN Journal of Medicine · en · last post 2026-08-30
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://journals.rudn.ru/medicine/gateway/plugin/WebFeedGatewayPlugin/rss
+# BestCutScenes · en, fr · last post 2026-11-18
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://bestcutscenes.com/feed
+# Jolt Country · en · last post 2026-11-18
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://joltcountry.com/phpBB3/app.php/feed
+# Otherworldly · en · last post 2026-11-15
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://other-worldly.org/feed/
+# Swallow Immigration Consultancy Inc · en · last post 2026-08-02
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://swallowimmigration.ca/en/feed/
+# PiB — Photography in Berlin · de, en · last post 2026-05-17
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358685.55/wat/CC-MAIN-20211129014336-20211129044336-00461.warc.wat.gz
+https://www.photography-in.berlin/feed/
