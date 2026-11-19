@@ -78,8 +78,9 @@ class Topic:
         return topic_slug(self.name)
 
 
-def top_topics(feeds: Iterable[ListedFeed], limit: int) -> list[Topic]:
-    """The `limit` topics with the most feeds (ties broken by name), each with its feeds."""
+def top_topics(feeds: Iterable[ListedFeed], limit: int | None = None) -> list[Topic]:
+    """The `limit` topics with the most feeds (all of them if None; ties broken by name), each
+    with its feeds."""
     members: defaultdict[str, list[ListedFeed]] = defaultdict(list)
     for feed in feeds:
         for name in feed.topic_names():
@@ -198,7 +199,7 @@ def write_output(
     path: Path,
     feeds: Sequence[ListedFeed],
     *,
-    top: int,
+    top: int | None,
     generated: datetime,
     success_days: int,
     item_years: int,

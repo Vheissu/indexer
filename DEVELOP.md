@@ -214,16 +214,19 @@ every listed feed) and `output/previews/` (one JSON file per listed feed, for a 
 page: fetch a topic's `links.txt`, then the previews of the results shown; see
 `export.preview_path` and `export.render_preview`). `links.txt` files are most recently active
 first. It also writes the website, `output/docs/` (`src/indexer/site.py`): `index.html` (the 50 largest
-topics, a search box over all of them, and the sources), `topic/<slug>/index.html` (the 200 most recently active feeds, each with a
+topics, a search box over all of them, and the sources),
+`topic/<slug>/index.html` for every topic (the 200 most recently active feeds, each with a
 feedrule.com link prefilled with the feed and its other topics), `style.css` and `feedrule.svg` (package data:
-`src/indexer/style.css`, `src/indexer/feedrule.svg`), `sitemap.xml` and `.nojekyll`. GitHub Pages
+`src/indexer/style.css`, `src/indexer/feedrule.svg`), `sitemap.xml` and `.nojekyll`. Topic pages with fewer than 3 feeds are marked `noindex` and left out of
+the sitemap (near-empty pages would count as thin content); they are still linked and searchable. Pages link
+`style.css?v=<hash of its content>`, so browsers load a changed stylesheet at once. GitHub Pages
 serves the `output` branch's `/docs` folder; the pages link the data files on
 raw.githubusercontent.com, so they don't count toward the Pages size limit. `--site-url` (default
 `https://feedrule.github.io/indexer/`) is used for canonical links and the sitemap; `--data-url` for the data links. There is
 no Markdown in the output except `SPEC.md`.
 
 The files and listing rules are described in the [README](README.md#which-feeds-are-listed). The
-limits are options: `--top-topics`, `--success-days`, `--item-years`. A topic's `<slug>` is its name with `+`
+limits are options: `--top-topics` (default: all), `--success-days`, `--item-years`. A topic's `<slug>` is its name with `+`
 spelled `plus` and `#` spelled `sharp` (`export.topic_slug`). Titles and
 URLs come from the feeds: the pages are Jinja templates (`src/indexer/templates/`) with
 autoescaping on, the OPML is escaped by hand, and only http(s) URLs become

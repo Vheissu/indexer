@@ -1,7 +1,7 @@
 # Publishes the lists after every successful check run, on a push to develop that changes the site's
 # templates, styles or site.py, weekly as a fallback, or by hand:
 # regenerates output/ from Supabase (feeds with a successful check in
-# the last 6 months and a post in the last year, top 2,000 topics) and force-pushes it as a single
+# the last 6 months and a post in the last year, every topic) and force-pushes it as a single
 # fresh commit to the `output` branch. The branch has no history: each publish replaces it.
 # workflow_run triggers only use this file as it is on the default branch.
 #

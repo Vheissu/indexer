@@ -27,8 +27,10 @@ from indexer.export import (
 )
 from indexer.site import (
     INDEX_TOPICS,
+    MIN_INDEXED_FEEDS,
     PAGE_ROWS,
     SHOWN_ROWS,
+    STYLE_VERSION,
     SUBTITLE_CHARS,
     feedrule_href,
     other_topics,
@@ -249,15 +251,47 @@ def test_write_output(tmp_path: Path) -> None:
     topic_page = (docs / "topic" / "css" / "index.html").read_text()
     assert f'<a class="button" href="{DATA}topic/css/feeds.opml">' in topic_page
     assert f'href="{DATA}topic/css/links.txt"' in topic_page
-    assert '<link rel="stylesheet" href="../../style.css">' in topic_page
+    assert f'<link rel="stylesheet" href="../../style.css?v={STYLE_VERSION}">' in topic_page
+    assert len(STYLE_VERSION) == 12
+    assert '<meta name="robots" content="noindex">' in topic_page  # 2 feeds: too few
+    assert "noindex" not in index
     assert f'<link rel="canonical" href="{SITE}topic/css/">' in topic_page
     sitemap = SafeET.fromstring((docs / "sitemap.xml").read_bytes())
     ns = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
-    assert [u.findtext(f"{ns}loc") for u in sitemap] == [
-        SITE,
-        f"{SITE}topic/css/",
-        f"{SITE}topic/rust/",
-    ]
+    assert [u.findtext(f"{ns}loc") for u in sitemap] == [SITE]  # no topic has 3 feeds
+
+
+def test_small_topics_are_published_but_not_indexed(tmp_path: Path) -> None:
+    out = tmp_path / "out"
+    feeds = [feed(i, "css" if i <= MIN_INDEXED_FEEDS else "rust") for i in range(1, 6)]
+    topics = write_output(
+        out, feeds, top=None, generated=NOW, success_days=60, item_years=5, site_url=SITE
+    )
+    assert [t.name for t in topics] == ["css", "rust"]  # no cap: every topic gets a page
+    docs = out / "docs"
+    css = (docs / "topic" / "css" / "index.html").read_text()
+    rust = (docs / "topic" / "rust" / "index.html").read_text()
+    assert "noindex" not in css and '<meta name="robots" content="noindex">' in rust
+    sitemap = (docs / "sitemap.xml").read_text()
+    assert f"{SITE}topic/css/" in sitemap and "topic/rust/" not in sitemap
+    index = (docs / "index.html").read_text()
+    assert 'href="topic/rust/"' in index  # still linked and searchable
+
+
+def test_top_topics_without_a_limit_keeps_all() -> None:
+    feeds = [feed(1, "a, b"), feed(2, "c")]
+    assert [t.name for t in top_topics(feeds)] == ["a", "b", "c"]
+    assert [t.name for t in top_topics(feeds, 1)] == ["a"]
+
+
+def test_header_links_the_repository(tmp_path: Path) -> None:
+    out = tmp_path / "out"
+    write_output(out, [feed(1, "css")], top=None, generated=NOW, success_days=60, item_years=5,
+                 site_url=SITE, data_url=DATA)  # fmt: skip
+    index = (out / "docs" / "index.html").read_text()
+    topic_page = (out / "docs" / "topic" / "css" / "index.html").read_text()
+    for page in (index, topic_page):
+        assert '<a class="gh" href="https://github.com/feedrule/indexer"' in page
 
 
 def test_urls_must_end_with_a_slash(tmp_path: Path) -> None:

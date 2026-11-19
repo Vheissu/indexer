@@ -298,7 +298,9 @@ async def _run(args: argparse.Namespace) -> int:
 
 
 async def _export(args: argparse.Namespace) -> int:
-    if args.top_topics < 1 or args.success_days < 1 or args.item_years < 1:
+    if (args.top_topics is not None and args.top_topics < 1) or min(
+        args.success_days, args.item_years
+    ) < 1:
         print(
             "error: --top-topics, --success-days and --item-years must be positive",
             file=sys.stderr,
@@ -515,7 +517,9 @@ def _parser() -> argparse.ArgumentParser:
         default=DATA_URL,
         help=f"where the output's data files are served, ending with / (default {DATA_URL})",
     )
-    ex.add_argument("--top-topics", type=int, default=2000, help="topics to publish (default 2000)")
+    ex.add_argument(
+        "--top-topics", type=int, help="publish only this many topics, the largest (default: all)"
+    )
     ex.add_argument(
         "--success-days",
         type=int,

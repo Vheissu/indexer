@@ -12,8 +12,10 @@ Links to the feeds and their sites are rel="nofollow"; links to feedrule.com are
 
 from __future__ import annotations
 
+import hashlib
 from collections.abc import Iterable, Mapping, Sequence
 from datetime import datetime
+from importlib.resources import files
 from typing import TYPE_CHECKING, NamedTuple
 from urllib.parse import quote, urlsplit
 
@@ -32,6 +34,13 @@ FEEDRULE_FORM = "https://feedrule.com/?feed="  # the email-digest form, prefille
 REPO = "https://github.com/feedrule/indexer"
 ICON = "feedrule.svg"
 STYLE = "style.css"
+# Pages link the stylesheet as style.css?v=<hash of its content>: GitHub Pages lets browsers
+# cache it for 10 minutes, and a new URL makes them load a changed stylesheet right away.
+STYLE_VERSION = hashlib.sha256(files("indexer").joinpath(STYLE).read_bytes()).hexdigest()[:12]
+# Topic pages with fewer feeds are published (and linked) but marked noindex and left out of the
+# sitemap: near-empty pages would count as thin content against the whole site. A page loses the
+# mark on its own once its topic grows.
+MIN_INDEXED_FEEDS = 3
 
 
 class Source(NamedTuple):
@@ -76,7 +85,9 @@ _env = Environment(
 )
 _env.filters["num"] = lambda n: f"{n:,}"
 _env.policies["json.dumps_kwargs"] = {"separators": (",", ":")}  # compact topic list
-_env.globals.update(icon=ICON, style=STYLE, feedrule=FEEDRULE, repo=REPO)
+_env.globals.update(
+    icon=ICON, style=f"{STYLE}?v={STYLE_VERSION}", feedrule=FEEDRULE, repo=REPO, noindex=False
+)
 
 
 def safe_href(url: str | None) -> str | None:
@@ -159,7 +170,13 @@ def render_topic_page(
         links_max=links_max,
         rows=[_row(f, topic.name, published or {}) for f in topic.feeds[:PAGE_ROWS]],
         shown_rows=SHOWN_ROWS,
+        noindex=not indexed(topic),
     )
+
+
+def indexed(topic: Topic) -> bool:
+    """Whether search engines should index the topic's page (and the sitemap list it)."""
+    return len(topic.feeds) >= MIN_INDEXED_FEEDS
 
 
 def render_index(
@@ -196,5 +213,5 @@ def render_index(
 
 
 def render_sitemap(topics: Iterable[Topic], generated: datetime, site_url: str) -> str:
-    urls = [site_url] + [f"{site_url}topic/{t.slug}/" for t in topics]
+    urls = [site_url] + [f"{site_url}topic/{t.slug}/" for t in topics if indexed(t)]
     return _env.get_template("sitemap.xml").render(urls=urls, day=generated.date().isoformat())

@@ -123,6 +123,8 @@ th, td { padding: 9px 8px; border-bottom: 1px solid var(--border); vertical-alig
 }
 .ftopics a:hover { border-color: var(--accent); color: var(--fg); text-decoration: none; }
 .mail { display: inline-block; line-height: 0; }
+.gh { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 14px; font-weight: 500; }
+.gh:hover { color: var(--fg); text-decoration: none; }
 .mail img { width: 20px; height: 20px; border-radius: 4px; }
 .mail:hover img { outline: 2px solid var(--accent); outline-offset: 1px; }
 .scroll { overflow-x: auto; }

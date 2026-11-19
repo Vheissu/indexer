@@ -61,7 +61,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   retries: if the slice fails to download (e.g. a 503), the run fails; next week's run tries again. Feed health checks never retry.
 - Batches: a uniformly random sample of inputs never checked or checked over `--stale-days` (14) ago; storing a
   row sets `inputs.last_checked_at` whatever the outcome.
-- Export: success in the last 180 days and an item in the last year (5 until 2026-11-18, changed with the user to match the site text); top 2000 topics (`feeds.topics`; agreed 2026-11-18:
+- Export: success in the last 180 days and an item in the last year (5 until 2026-11-18, changed with the user to match the site text); every topic with a feed gets a page (`--top-topics` caps it, default none: the 2000 cap was removed 2026-11-19 at the user's request; `feeds.topics`; agreed 2026-11-18:
   everything published is about topics, no tags; languages only in previews);
   per topic links.txt ≤ 50,000, feeds.opml ≤ 500, topic page ≤ 200 (most recently active; each file starts with the next one's feeds; 200 agreed 2026-11-17 for page size); index sorted by count.
   `all/{links.txt,feeds.opml}`: every listed feed, with a topic or not, uncapped.
@@ -73,12 +73,14 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   **No Markdown in the output (except SPEC.md): the website is HTML** in `output/docs/` (`site.py`), served by GitHub Pages
   from the output branch's `/docs` (agreed 2026-11-17: pages that rank, links to feedrule.com without GitHub's nofollow,
   github.io keeps any thin-content risk off feedrule.com). Index (the 50 largest topics, a search box over all of them from an inline JSON list,
-  no links to the all/ files (too big), sources table `site.SOURCES`: update it with data/sources.toml) and one page per topic (200 rows = the first of feeds.opml); sitemap.xml, .nojekyll, canonical
+  no links to the all/ files (too big), sources table `site.SOURCES`: update it with data/sources.toml) and one page per topic (200 rows = the first of feeds.opml; under `site.MIN_INDEXED_FEEDS` (3) feeds: `noindex` and not in the sitemap, agreed 2026-11-19 against thin content); sitemap.xml, .nojekyll, canonical
   URLs (`--site-url`). Data files stay outside docs/ and are linked on raw.githubusercontent.com (`--data-url`), so they
   don't count toward the Pages limit. Colours: feedrule.com's (Tailwind zinc + orange), light and dark. Jinja templates
   (`src/indexer/templates/`: base, index, topic, sitemap) with autoescaping on and StrictUndefined; `site.py` only prepares
   the data. No front-end framework, no build step; small inline scripts (topic filter; "Show more" on topic pages: 20 rows, then 20 more per click,
   `site.SHOWN_ROWS`), pages work without them (all 200 rows are in the HTML).
+  The stylesheet is linked as `style.css?v=<content hash>` (`site.STYLE_VERSION`: Pages caches it 10 minutes). The header links
+  the GitHub repository ("Open source").
   Each feed row starts with feedrule.com's icon (`src/indexer/feedrule.svg`, copied to docs/) linking to
   `https://feedrule.com/?feed=<feed URL, percent-encoded except : and />` (`site.feedrule_link`). Untrusted text is
   HTML-escaped; only http(s) URLs become links (`site.safe_href`); feed and site links are rel="nofollow", feedrule's not.
