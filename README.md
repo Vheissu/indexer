@@ -1,7 +1,7 @@
 # Feedrule Indexer
 
 Thousands of RSS and Atom feeds, sorted by topic, that are **still alive**. Every feed is
-re-checked about every two weeks, and only feeds that work and have posted in recent years are
+re-checked about every two weeks, and only feeds that work and have posted in the last year are
 listed. Dead feeds drop off on their own; nobody prunes the list by hand.
 
 **[Browse the feeds by topic →](https://feedrule.github.io/indexer/)**
@@ -35,8 +35,7 @@ The data behind the pages is on the `output` branch, in `topic/<topic>/`:
 | `feeds.opml` | the 500 most recently active feeds, to import into a feed reader in one go |
 | `links.txt` | every feed in the topic (up to 50,000), one URL per line, most recently active first, for scripts and tools |
 
-`topic/topics.txt` lists the topic names, one per line, most feeds first. In folder names, `+` and
-`#` are spelled out: `c++` is in `topic/cplusplus/`, `c#` in `topic/csharp/`. A feed none of whose
+`topic/topics.txt` lists the topic names, one per line, most feeds first. A feed none of whose
 topics stands out is in no topic. **Every** listed feed, with a topic or not, is in
 the `all/` folder: `all/links.txt` (one URL per line) and `all/feeds.opml`. Each listed feed also
 has a small JSON preview (URL, title, description, size in bytes, last post date, languages, topics) in `previews/`, named
@@ -45,7 +44,7 @@ branch describes every file.
 
 ## Subscribe to a whole topic
 
-1. Click **Download OPML** on the topic's page, or use its direct link:
+1. Click the **.OPML** button on the topic's page, or use its direct link:
    `https://raw.githubusercontent.com/feedrule/indexer/output/topic/<topic>/feeds.opml`
 2. In your feed reader, look for **Import OPML** (Feedly, Inoreader, NetNewsWire, FreshRSS,
    Miniflux, Thunderbird and most others have it).
@@ -119,8 +118,8 @@ The code is MIT, see [LICENSE](LICENSE). Each feed URL comes from one of the sou
 ## How it works
 
 A Python tool, **indexer**, runs as GitHub Actions workflows that share one Postgres
-database (Supabase): five on a schedule (`publish` also right after each successful check and when the site's design changes), and one that keeps the
-topic data up to date:
+database (Supabase): five on a schedule (`publish` also right after each successful check and when the site's design changes),
+and two that run when a file in the repository changes:
 
 | workflow | when | what it does |
 | --- | --- | --- |
