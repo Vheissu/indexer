@@ -1,8 +1,6 @@
 """Shared candidate-URL handling: validation, de-duplication and domain exclusion."""
 
-import pytest
-
-from indexer.net.urls import drop_excluded, strip_session, valid_urls
+from indexer.net.urls import drop_excluded, valid_urls
 
 
 def test_valid_urls_canonicalizes_dedupes_and_counts_invalid() -> None:
@@ -40,23 +38,3 @@ def test_drop_excluded_matches_registrable_domains_only() -> None:
     ]
     assert dropped == 2
     assert drop_excluded(valid, frozenset()) == (valid, 0)
-
-
-@pytest.mark.parametrize(
-    ("url", "expected"),
-    [
-        (
-            "https://gb64.com/forum/app.php/feed?sid=4a54a14464f863ff21a8145560535d65",
-            "https://gb64.com/forum/app.php/feed",
-        ),
-        ("https://x.example/f.php?a=1&PHPSESSID=abc&b=%20", "https://x.example/f.php?a=1&b=%20"),
-        ("https://x.example/feed;jsessionid=ABC123?x=1", "https://x.example/feed?x=1"),
-        ("https://x.example/f?session_id=1&sessionid=2", "https://x.example/f"),
-        # Untouched: no session parameter, odd queries kept byte for byte.
-        ("https://x.example/index.php?forums/a.14/index.rss", None),
-        ("https://x.example/feed?side=1&sids=2", None),
-        ("https://x.example/feed/", None),
-    ],
-)
-def test_strip_session(url: str, expected: str | None) -> None:
-    assert strip_session(url) == (expected or url)

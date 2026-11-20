@@ -113,14 +113,14 @@ The sources and their licenses are listed on the [site's home page](https://feed
 than adding them. It picks the crawl that ended closest to `--years-ago` (5) years ago and
 downloads the first `--slice-mb` (25) MB of one random WAT file with a range request,
 dropping the record cut off at the end. [Common Crawl](https://commoncrawl.org)'s WAT files record
-the `<link>` elements of every crawled page; survivors collects every feed a page advertises with
-`<link rel="alternate">`, validates it like any input, applies `[exclude] domains`, removes session parameters (`sid`, `PHPSESSID`, `jsessionid`, ...), folds platform
-format variants into one URL (WordPress `/feed/atom/`, `/feed/rdf/`, `/feed/rss/`, `/feed/rss2/`
-become `/feed/`; Blogger `?alt=rss` becomes the default feed; Joomla `type=atom` becomes
-`type=rss`), skips WordPress category, tag and author feeds (`/category/news/feed/`, a subset of
-the main feed) and comment feeds (WordPress `/comments/feed/` and `?feed=comments-rss2`, Blogger
-`/feeds/comments/` and `/feeds/<post id>/comments/`) without fetching them, and checks the rest today with the guarded fetcher (no
-retries). A feed is proposed only if:
+the `<link>` elements of every crawled page; survivors reads the feeds each page advertises with
+`<link rel="alternate">`, validates them like any input and applies `[exclude] domains`. It never
+takes a WordPress category, tag or author feed (`/category/news/feed/`, a subset of the main feed)
+or a comment feed (WordPress `/comments/feed/` and `?feed=comments-rss2`, Blogger
+`/feeds/comments/` and `/feeds/<post id>/comments/`), and picks **one random feed link per page**
+from the rest. It checks the picks today with the guarded fetcher (no retries), and of the feeds
+that pass on one registrable domain it keeps the one with the shortest URL (ties by name), so one
+site is proposed once. A feed is proposed only if:
 
 - it parses, and its newest item is from the last `--active-days` (243, about 8 months) days (a
   date more than a day in the future doesn't count);

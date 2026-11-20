@@ -15,7 +15,6 @@ from indexer.survivors.filters import (
     _has_keyword,
     _is_active,
     _is_english,
-    canonical_format,
     is_archive_feed,
     is_comment_feed,
     served_url,
@@ -83,10 +82,10 @@ def test_scan_wat_collects_every_advertised_feed() -> None:
     result = scan_wat(data, PATH, frozenset({"youtube.com"}))
     assert result.pages == 6  # HTML pages only: the JSON capture is not counted
     assert result.pages_with_feed == 5
-    assert result.feeds == [
-        "https://blog.example/feed/",  # de-duplicated: advertised on two pages
-        "https://blog.example/comments/feed/",  # no per-site selection: kept
-        "https://www.other.example/rss.xml",  # relative href resolved
+    assert result.page_feeds == [  # per page; no YouTube, no ftp
+        ["https://blog.example/feed/", "https://blog.example/comments/feed/"],
+        ["https://blog.example/feed/"],
+        ["https://www.other.example/rss.xml"],  # relative href resolved
     ]
 
 
@@ -129,7 +128,7 @@ def test_complete_prefix_drops_a_record_cut_off_by_the_range() -> None:
     assert complete_prefix(cut) == first
     assert complete_prefix(whole[:5]) == b""
     assert complete_prefix(b"") == b""
-    assert scan_wat(complete_prefix(cut), PATH).feeds == ["https://a.example/feed"]
+    assert scan_wat(complete_prefix(cut), PATH).page_feeds == [["https://a.example/feed"]]
 
 
 def test_complete_prefix_with_records_larger_than_a_chunk() -> None:
@@ -252,34 +251,6 @@ def test_is_comment_feed(url: str, comments: bool) -> None:
     assert is_comment_feed(url) is comments
 
 
-@pytest.mark.parametrize(
-    ("url", "expected"),
-    [
-        ("https://allsportstucson.com/feed/atom/", "https://allsportstucson.com/feed/"),
-        ("https://x.example/feed/rss2", "https://x.example/feed/"),
-        ("https://x.example/blog/feed/rdf/", "https://x.example/blog/feed/"),
-        ("https://x.example/feed/", None),
-        ("https://x.example/feed/atom.xml", None),  # not the WordPress pattern
-        (
-            "https://blog.jeffcable.com/feeds/posts/default?alt=rss",
-            "https://blog.jeffcable.com/feeds/posts/default",
-        ),
-        (
-            "https://x.blogspot.com/feeds/posts/default?alt=rss&max=5",
-            "https://x.blogspot.com/feeds/posts/default?max=5",
-        ),
-        ("https://x.example/search?alt=rss", None),  # only under /feeds/
-        (
-            "https://ankarabasketbol.com/index.php?format=feed&type=atom",
-            "https://ankarabasketbol.com/index.php?format=feed&type=rss",
-        ),
-        ("https://x.example/index.php?type=atom", None),  # not a Joomla feed URL
-    ],
-)
-def test_canonical_format(url: str, expected: str | None) -> None:
-    assert canonical_format(url) == (expected or url)
-
-
 def test_served_url_is_https_after_redirects() -> None:
     assert served_url(checked("https://a.example/feed", 1)) == "https://a.example/feed"
     moved = checked("http://a.example/feed", 1, final_url="https://a.example/feed/")
@@ -287,28 +258,27 @@ def test_served_url_is_https_after_redirects() -> None:
     assert served_url(checked("http://a.example/feed", 1)) is None  # still plain http
     down = checked("https://a.example/feed", 1, final_url="http://a.example/feed")
     assert served_url(down) is None
-    with_sid = checked("http://f.example/feed?sid=abc", 1, final_url="https://f.example/feed?sid=x")
-    assert served_url(with_sid) == "https://f.example/feed"
     to_yt = checked("https://a.example/feed", 1, final_url="https://www.youtube.com/feeds/x")
     assert served_url(to_yt, frozenset({"youtube.com"})) is None
 
 
-async def test_survivors_keeps_active_english_feeds_served_over_https() -> None:
+async def test_survivors_one_link_per_page_and_the_shortest_url_per_domain() -> None:
     paths = [f"crawl-data/{OLD}/segments/1/wat/CC-MAIN-1-{i:05}.warc.wat.gz" for i in range(3)]
     slice_ = wat(
-        page(
-            "https://s.example/",
-            [feed_link("/feed/"), feed_link("/old/feed/"), feed_link("http://h.example/rss")],
-        ),
+        page("https://s.example/", [feed_link("/feed/"), feed_link("/comments/feed/")]),
+        page("https://s.example/a/", [feed_link("/category/news/feed/")]),  # nothing to pick
+        page("https://s.example/b/", [feed_link("/feed/")]),  # the same pick: fetched once
+        page("https://s.example/old/", [feed_link("/old/feed/")]),
+        page("http://h.example/", [feed_link("/rss")]),  # still plain http
         page("http://m0.example/", [feed_link("/feed")]),  # m0 and m1 redirect to one URL
         page("http://m1.example/", [feed_link("/feed")]),
         page("https://fr.example/", [feed_link("/fr/feed")]),
-        page("https://s.example/a/", [feed_link("/category/news/feed/")]),  # skipped
-        page("https://s.example/c/", [feed_link("/comments/feed/")]),  # skipped
-        page("https://s.example/b/", [feed_link("/feed/atom/")]),  # folds into /feed/
-        page("https://forum.example/", [feed_link("/feed?sid=1")]),  # one URL once stripped
+        page("https://forum.example/", [feed_link("/feed?sid=1")]),  # same length: by name
         page("https://forum.example/x", [feed_link("/feed?sid=2")]),
-        page("https://shared.example/", [feed_link("/feed/")]),
+        page("https://blog.example/", [feed_link("/feed/")]),  # shorter: kept
+        page("https://blog.example/p/", [feed_link("/posts/feed/")]),
+        page("https://multi.example/", [feed_link("/a.xml"), feed_link("/b.xml")]),  # one of two
+        page("https://shared.example/", [feed_link("/feed/")]),  # no dated items
         page("https://adult.example/", [feed_link("/feed/")]),  # excluded by keyword
         page("https://untitled.example/", [feed_link("/feed/")]),  # no title
         page("https://www.youtube.com/@x", [feed_link("/feeds/videos.xml")]),
@@ -340,7 +310,7 @@ async def test_survivors_keeps_active_english_feeds_served_over_https() -> None:
             if "/old/" in url:
                 rows.append(checked(url, 400))  # newest item too old
             elif "shared" in url:
-                rows.append(checked(url, None))  # no dated items
+                rows.append(checked(url, None))
             elif "/fr/" in url:
                 rows.append(checked(url, 3, language="fr"))
             elif "untitled" in url:
@@ -352,7 +322,7 @@ async def test_survivors_keeps_active_english_feeds_served_over_https() -> None:
             elif url.startswith("http://m"):  # moved to https: kept as the https target
                 rows.append(checked(url, 3, final_url="https://new.example/feed"))
             elif url.startswith("http://"):
-                rows.append(checked(url, 3))  # still plain http
+                rows.append(checked(url, 3))
             else:
                 rows.append(checked(url, 30))
         return rows
@@ -371,25 +341,23 @@ async def test_survivors_keeps_active_english_feeds_served_over_https() -> None:
     assert result.crawl == OLD
     assert len(sliced) == 1 and sliced[0].removeprefix(DATA_URL) in paths  # one random file
     assert result.scan.path == sliced[0].removeprefix(DATA_URL)
-    # s/feed/, s/old/feed/, h.example/rss, m0/feed, m1/feed, fr/feed, forum/feed (sid stripped),
-    # shared/feed/, adult/feed/, untitled/feed/. The category feed is never checked.
-    # No YouTube, nothing from the cut record, each URL checked once.
-    assert result.candidates == 10 == len(asked) == len(set(asked))
-    assert result.archive_feeds == 1 and not any("/category/" in u for u in asked)
-    assert result.comment_feeds == 1 and not any("/comments/" in u for u in asked)
-    assert "https://forum.example/feed" in asked
+    assert result.archive_feeds == 1 and result.comment_feeds == 1  # never picked
+    assert not any("/category/" in u or "/comments/" in u for u in asked)
+    assert result.candidates == 14 == len(asked) == len(set(asked))
+    assert len({"https://multi.example/a.xml", "https://multi.example/b.xml"} & set(asked)) == 1
     assert not any("youtube" in u or "cut.example" in u for u in asked)
-    assert result.working == 10
-    assert result.active == 8  # s/feed/, m0, m1, h.example (http), fr, forum, adult, untitled
-    assert result.english == 7  # not fr
-    assert result.rejected["untitled"] == 1
-    assert result.rejected["keyword"] == 1  # adult
-    assert result.rejected["not_https"] == 1  # h.example: still plain http
-    assert sorted(r.url for r in result.rows) == [
-        "https://forum.example/feed",
-        "https://new.example/feed",  # m0 and m1: one row
-        "https://s.example/feed/",
-    ]
+    assert result.working == 14
+    assert result.rejected == {
+        "inactive": 2,  # old, shared
+        "not_english": 1,
+        "untitled": 1,
+        "keyword": 1,
+        "not_https": 1,  # h.example
+    }
+    urls = sorted(r.url for r in result.rows)
+    assert urls[:2] == ["https://blog.example/feed/", "https://forum.example/feed?sid=1"]
+    assert urls[2] in {"https://multi.example/a.xml", "https://multi.example/b.xml"}
+    assert urls[3:] == ["https://new.example/feed", "https://s.example/feed/"]
     for row in result.rows:
         assert row.wat_url == sliced[0]  # credited to the WAT file it was found in
         assert row.language == "en"

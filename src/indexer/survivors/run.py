@@ -3,9 +3,11 @@ active today, proposed for review.
 
     1. pick the crawl closest to `years_ago` and one random WAT file of it      wat.py
     2. download the file's first slice and list the feeds its pages advertise   wat.py
-    3. skip archive and comment feeds, fold variants, drop URLs we already know filters.py
-    4. check the rest in random order, a batch at a time, keep those that pass  filters.py
-    5. stop once `max_feeds` pass
+    3. take one random feed link per page (not an archive or comment feed)      filters.py
+       and drop URLs we already know
+    4. check them in random order, a batch at a time, keep those that pass      filters.py
+       and, of those on one domain, the shortest URL
+    5. stop once `max_feeds` domains have one
 
 The fetching, checking and "do we know this URL" functions are passed in (the CLI gives the real
 ones, tests give fakes).
@@ -17,13 +19,13 @@ from collections import Counter
 from collections.abc import Awaitable, Callable, Iterable, Sequence
 from dataclasses import dataclass, field
 from datetime import UTC, datetime, timedelta
+from urllib.parse import urlsplit
 
 from indexer.check.runner import CheckRow
-from indexer.net.urls import strip_session
+from indexer.net.domains import registrable_domain
 from indexer.survivors.filters import (
     Reason,
     Rules,
-    canonical_format,
     is_archive_feed,
     is_comment_feed,
     rejection,
@@ -59,7 +61,7 @@ class SurvivorsResult:
     scan: WatScan  # the WAT slice that was read
     archive_feeds: int = 0  # WordPress category / tag / author feeds, skipped unchecked
     comment_feeds: int = 0  # comment feeds, skipped unchecked
-    candidates: int = 0  # distinct feed URLs left to consider
+    candidates: int = 0  # distinct picked URLs (one per page)
     known: int = 0  # already proposed or in inputs (before or after redirects): skipped
     checked: int = 0  # fewer than candidates when the run stopped early
     rejected: Counter[Reason] = field(default_factory=Counter)  # checked, failed a rule
@@ -111,16 +113,15 @@ async def survivors(
     data = await fetch_slice(wat_url)
     scan = scan_wat(complete_prefix(data), path, exclude)
     log.info(
-        "%.1f MB: %d pages, %d advertise a feed, %d valid feed URLs",
+        "%.1f MB: %d pages, %d advertise a feed",
         len(data) / 1e6,
         scan.pages,
         scan.pages_with_feed,
-        len(scan.feeds),
     )
     result = SurvivorsResult(crawl, scan)
 
     # 3. The URLs worth checking.
-    to_check = await _candidates(scan.feeds, result, known, rng)
+    to_check = await _candidates(scan.page_feeds, result, known, rng)
     log.info(
         "%d candidates (%d archive and %d comment feeds skipped, %d already known), %d to check",
         result.candidates,
@@ -131,37 +132,42 @@ async def survivors(
     )
 
     # 4-5. Check a batch at a time until enough pass.
-    passed: dict[str, Survivor] = {}  # by served URL: two found URLs can redirect to one
+    by_domain: dict[str, Survivor] = {}
     for start in range(0, len(to_check), _CHECK_BATCH):
         batch = to_check[start : start + _CHECK_BATCH]
         result.checked += len(batch)
         new = [s for row in await check(batch) if (s := _judge(row, rules, wat_url, result))]
         for survivor in await _unknown(new, known, result):
-            passed.setdefault(survivor.url, survivor)
-        log.info("checked %d of %d: %d pass", result.checked, len(to_check), len(passed))
-        if max_feeds is not None and len(passed) >= max_feeds:
+            domain = _domain(survivor.url)
+            best = by_domain.get(domain)
+            if best is None or (len(survivor.url), survivor.url) < (len(best.url), best.url):
+                by_domain[domain] = survivor
+        log.info("checked %d of %d: %d domains pass", result.checked, len(to_check), len(by_domain))
+        if max_feeds is not None and len(by_domain) >= max_feeds:
             break
-    result.rows = list(passed.values())[:max_feeds]
+    result.rows = list(by_domain.values())[:max_feeds]
     return result
 
 
 async def _candidates(
-    feeds: Iterable[str], result: SurvivorsResult, known: _Known, rng: random.Random
+    page_feeds: Iterable[list[str]], result: SurvivorsResult, known: _Known, rng: random.Random
 ) -> list[str]:
-    """The advertised feeds worth checking, in random order (so stopping early keeps a random
-    subset): archive and comment feeds skipped, session parameters stripped, format variants
-    folded into one URL, known URLs dropped. Counts archive_feeds, comment_feeds, candidates
-    and known."""
-    urls: set[str] = set()
-    for url in feeds:
-        if is_archive_feed(url):
-            result.archive_feeds += 1
-        elif is_comment_feed(url):
-            result.comment_feeds += 1
-        else:
-            urls.add(canonical_format(strip_session(url)))
-    result.candidates = len(urls)
-    order = sorted(urls)  # sorted first, so a seeded rng gives the same order every time
+    """One random feed link per page, archive and comment feeds aside, in random order (so
+    stopping early keeps a random subset), minus the URLs we already know."""
+    picks: set[str] = set()  # pages of one site often pick the same feed: fetch it once
+    for links in page_feeds:
+        eligible = []
+        for url in links:
+            if is_archive_feed(url):
+                result.archive_feeds += 1
+            elif is_comment_feed(url):
+                result.comment_feeds += 1
+            else:
+                eligible.append(url)
+        if eligible:
+            picks.add(rng.choice(eligible))
+    result.candidates = len(picks)
+    order = sorted(picks)  # sorted first, so a seeded rng gives the same order every time
     rng.shuffle(order)
     already = await known(order)
     result.known += len(already)
@@ -187,6 +193,11 @@ async def _unknown(
     already = await known([s.url for s in survivors])
     result.known += len(already)
     return [s for s in survivors if s.url not in already]
+
+
+def _domain(url: str) -> str:
+    host = (urlsplit(url).hostname or "").lower()
+    return registrable_domain(host) or host
 
 
 async def _nothing_known(urls: Sequence[str]) -> set[str]:

@@ -46,7 +46,8 @@ class WatScan:
     pages: int = 0  # HTML pages
     pages_with_feed: int = 0  # of those, pages advertising at least one feed
     feed_links: int = 0  # feed links on those pages
-    feeds: list[str] = field(default_factory=list)  # valid feed URLs, de-duplicated, in order
+    # per page with at least one: its valid feed links outside the excluded domains
+    page_feeds: list[list[str]] = field(default_factory=list)
 
 
 async def pick_wat_file(fetch: Fetch, target: datetime, rng: random.Random) -> tuple[str, str]:
@@ -114,10 +115,9 @@ def complete_prefix(data: bytes) -> bytes:
 
 
 def scan_wat(data: bytes, path: str, exclude: frozenset[str] = frozenset()) -> WatScan:
-    """Every feed URL advertised in a (complete) WAT slice, validated like any input, minus
-    `exclude` domains, de-duplicated by exact URL."""
+    """The feed links each page of a (complete) WAT slice advertises, validated like any input,
+    minus `exclude` domains."""
     scan = WatScan(path)
-    found: list[str] = []
     try:
         with gzip.open(io.BytesIO(data), "rb") as stream:
             for envelope in _metadata_envelopes(stream):
@@ -127,12 +127,12 @@ def scan_wat(data: bytes, path: str, exclude: frozenset[str] = frozenset()) -> W
                 scan.pages += 1
                 scan.pages_with_feed += bool(feeds)
                 scan.feed_links += len(feeds)
-                found.extend(feeds)
+                valid, _invalid = valid_urls(feeds)
+                valid, _excluded = drop_excluded(valid, exclude)
+                if valid:
+                    scan.page_feeds.append([url for url, _host in valid])
     except (OSError, EOFError) as exc:
         raise CommonCrawlError(f"{path}: {exc}") from exc
-    valid, _invalid = valid_urls(found)  # also drops repeats (most pages repeat their site's feed)
-    valid, _excluded = drop_excluded(valid, exclude)
-    scan.feeds = [url for url, _host in valid]
     return scan
 
 

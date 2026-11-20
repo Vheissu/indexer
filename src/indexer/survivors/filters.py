@@ -3,7 +3,6 @@
 Before checking, by URL alone:
     is_archive_feed   WordPress category / tag / author feeds are skipped
     is_comment_feed   comment feeds (WordPress, Blogger) are skipped
-    canonical_format  format variants of one feed are folded into one URL
 
 After checking, `rejection(row, rules)` gives the first rule a feed fails, or None if it passes:
     failed       the check failed (fetch or parse)
@@ -18,10 +17,10 @@ import re
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from typing import Literal
-from urllib.parse import urlsplit, urlunsplit
+from urllib.parse import urlsplit
 
 from indexer.check.runner import CheckRow
-from indexer.net.urls import drop_excluded, strip_session, valid_urls
+from indexer.net.urls import drop_excluded, valid_urls
 
 type Reason = Literal["failed", "inactive", "not_english", "untitled", "keyword", "not_https"]
 
@@ -34,8 +33,6 @@ _COMMENT_FEED = re.compile(
 )
 # WordPress without pretty links: ?feed=comments-rss2, ?feed=comments-atom
 _COMMENT_QUERY = re.compile(r"(?:^|&)feed=comments-", re.I)
-# WordPress /feed/atom/, /feed/rdf/, /feed/rss/, /feed/rss2/ -> /feed/
-_WORDPRESS_FORMAT = re.compile(r"(/feed)/(?:atom|rdf|rss2?)/?$", re.I)
 
 
 @dataclass(frozen=True, slots=True)
@@ -92,9 +89,9 @@ def _has_keyword(row: CheckRow, keywords: frozenset[str]) -> bool:
 
 
 def served_url(row: CheckRow, exclude: frozenset[str] = frozenset()) -> str | None:
-    """The URL the feed is served from today (after redirects, session parameters removed) if it
-    is a valid https URL outside the `exclude` domains (a redirect can lead anywhere); else None."""
-    valid, _invalid = valid_urls([strip_session(row.final_url or row.url)])
+    """The URL the feed is served from today (after redirects) if it is a valid https URL
+    outside the `exclude` domains (a redirect can lead anywhere); else None."""
+    valid, _invalid = valid_urls([row.final_url or row.url])
     valid, _excluded = drop_excluded(valid, exclude)
     if not valid or not valid[0][0].startswith("https://"):
         return None
@@ -114,26 +111,3 @@ def is_comment_feed(url: str) -> bool:
     """A feed of comments rather than posts (`/comments/feed/`, Blogger `/feeds/comments/`)."""
     parts = urlsplit(url)
     return bool(_COMMENT_FEED.search(parts.path) or _COMMENT_QUERY.search(parts.query))
-
-
-def canonical_format(url: str) -> str:
-    """One URL for a feed that platforms offer in several formats, so the copies collapse into
-    one candidate:
-        WordPress  /feed/atom/, /feed/rdf/, /feed/rss/, /feed/rss2/  ->  /feed/
-        Blogger    /feeds/...?alt=rss                               ->  /feeds/... (Atom)
-        Joomla     ?format=feed&type=atom                           ->  ?format=feed&type=rss
-    The rest of the query is kept byte for byte."""
-    parts = urlsplit(url)
-    path = _WORDPRESS_FORMAT.sub(r"\1/", parts.path)
-    params = parts.query.split("&") if parts.query else []
-    lowered = [p.lower() for p in params]
-    if path.lower().startswith("/feeds/"):  # Blogger
-        params = [p for p, low in zip(params, lowered, strict=True) if low != "alt=rss"]
-    elif "format=feed" in lowered:  # Joomla
-        params = [
-            "type=rss" if low == "type=atom" else p for p, low in zip(params, lowered, strict=True)
-        ]
-    query = "&".join(params)
-    if (path, query) == (parts.path, parts.query):
-        return url
-    return urlunsplit(parts._replace(path=path, query=query))
