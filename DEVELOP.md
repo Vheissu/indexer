@@ -117,7 +117,14 @@ the `<link>` elements of every crawled page; survivors reads the feeds each page
 `<link rel="alternate">`, validates them like any input and applies `[exclude] domains`. It never
 takes a WordPress category, tag or author feed (`/category/news/feed/`, a subset of the main feed)
 or a comment feed (WordPress `/comments/feed/` and `?feed=comments-rss2`, Blogger
-`/feeds/comments/` and `/feeds/<post id>/comments/`), and picks **one random feed link per page**
+`/feeds/comments/` and `/feeds/<post id>/comments/`). Every `http://` link is tried as `https://`.
+A link must also **look like a feed URL** (`feed_links.py`): at most 256 characters, at most 7
+slashes in the path and 25 characters in a path segment, a feed word somewhere (`rss`, `atom`,
+`feed`, `xml`, ...), none of the rejected patterns (a dated path like `/2021/04/`, `comments`,
+`sitemap.xml`, `alt=rss`, ...), and what follows the host one of the accepted shapes (`/feed/`,
+`/rss.xml`, `/atom.php`, `/app.php/feed`, `/<one segment>/feed/`, ...). Feeds outside those
+shapes are dropped, among them SPIP's `spip.php?page=backend`, `backend.php`, Blogger's
+`/feeds/posts/default` and FeedBurner. Survivors picks **one random feed link per page**
 from the rest, without session parameters (`sid`, `PHPSESSID`, `jsessionid`, ...). It checks the picks today with the guarded fetcher (no retries), and of the feeds
 that pass on one site it keeps the one with the shortest URL (ties by name), so one site is proposed
 once. A site is the host without `www.` (not the registrable domain, which would merge the users of
@@ -132,9 +139,8 @@ shared hosts like `fc2.com` or `free.fr`); on FeedBurner, the host and the first
   as a whole word.
   This list is for Common Crawl only: the curated lists and submissions are not filtered by it
   (tried on their 9,048 feeds, it would flag 14: 3 adult, the rest blogs like "Budgets Are Sexy");
-- it is **served over https today**: the URL after redirects is `https://`. An old `http://` URL
-  that now redirects to https is proposed as its https target; one still served over plain http
-  is skipped (no `https://` is tried);
+- it is **served over https today**: the URL after redirects is `https://` (links are tried as
+  `https://`; one that redirects back to plain http is skipped);
 - it is not already in `data/survivors.txt` or the inputs table.
 
 Feeds already there are skipped before checking (and again after, for the URL a redirect led

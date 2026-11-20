@@ -84,26 +84,33 @@ def test_scan_wat_collects_every_advertised_feed() -> None:
 
 
 def test_filter_page_links() -> None:
-    page_url = "https://s.example/2026/11/post/"
+    page_url = "https://s.example/blog/post/"
     links = [
         feed_link("/feed/"),
-        feed_link("feed/"),  # relative to the page: the post's own feed
+        feed_link("http://s.example/atom.xml"),  # tried on https
+        feed_link("feed/"),  # relative to the page: the post's own feed, two levels deep
         feed_link("/comments/feed/"),
         feed_link("/category/news/feed/"),
-        feed_link("https://forum.example/feed?sid=abc&x=1"),
+        feed_link("https://forum.example/app.php/feed?sid=abc"),  # one URL once stripped
+        feed_link("/2021/04/03/feed/"),  # a dated post
+        feed_link("/sitemap.xml"),
+        feed_link("/a-very-long-path-segment-indeed/feed/"),  # over 25 characters
+        feed_link("/a/b/c/d/e/f/g/feed/"),  # over 7 slashes
+        feed_link("/news-and-more"),  # no feed word
+        feed_link("/spip.php?page=backend"),  # a feed word, but not an accepted shape
         feed_link("https://www.youtube.com/feeds/videos.xml"),
         feed_link("ftp://s.example/feed"),
         feed_link("   "),
-        {"url": "/feed2/", "rel": "alternate", "type": "Application/RSS+XML; charset=utf-8"},
-        {"url": "/feed3/", "rel": "stylesheet", "type": "application/rss+xml"},
+        {"url": "/rss/", "rel": "alternate", "type": "Application/RSS+XML; charset=utf-8"},
+        {"url": "/rss2/", "rel": "stylesheet", "type": "application/rss+xml"},
         {"url": "/style.css", "rel": "stylesheet", "type": "text/css"},
         "not a link",
     ]
     assert filter_page_links(page_url, links, frozenset({"youtube.com"})) == [
         "https://s.example/feed/",
-        "https://s.example/2026/11/post/feed/",
-        "https://forum.example/feed?x=1",
-        "https://s.example/feed2/",
+        "https://s.example/atom.xml",
+        "https://forum.example/app.php/feed",
+        "https://s.example/rss/",
     ]
     assert filter_page_links(page_url, None) == []
 
@@ -290,7 +297,7 @@ async def test_survivors_one_link_per_page_and_the_shortest_url_per_domain() -> 
         page("https://s.example/a/", [feed_link("/category/news/feed/")]),  # nothing to pick
         page("https://s.example/b/", [feed_link("/feed/")]),  # the same pick: fetched once
         page("https://s.example/old/", [feed_link("/old/feed/")]),
-        page("http://h.example/", [feed_link("/rss")]),  # still plain http
+        page("http://h.example/", [feed_link("/rss")]),  # tried on https, which redirects to http
         page("http://m0.example/", [feed_link("/feed")]),  # m0 and m1 redirect to one URL
         page("http://m1.example/", [feed_link("/feed")]),
         page("https://fr.example/", [feed_link("/fr/feed")]),
@@ -298,11 +305,10 @@ async def test_survivors_one_link_per_page_and_the_shortest_url_per_domain() -> 
         page("https://forum.example/x", [feed_link("/feed?sid=2")]),
         page("https://a.free.fr/", [feed_link("/feed/")]),  # two users of one shared host
         page("https://b.free.fr/", [feed_link("/feed/")]),
-        page("https://x.example/", [feed_link("https://feeds.feedburner.com/x")]),  # two sites
-        page("https://y.example/", [feed_link("https://feeds.feedburner.com/y")]),
+        page("https://x.example/", [feed_link("https://feeds.feedburner.com/x")]),  # not a shape
         page("https://blog.example/", [feed_link("/feed/")]),  # shorter: kept
         page("https://blog.example/p/", [feed_link("/posts/feed/")]),
-        page("https://multi.example/", [feed_link("/a.xml"), feed_link("/b.xml")]),  # one of two
+        page("https://multi.example/", [feed_link("/a/feed"), feed_link("/b/feed")]),  # one of two
         page("https://shared.example/", [feed_link("/feed/")]),  # no dated items
         page("https://adult.example/", [feed_link("/feed/")]),  # excluded by keyword
         page("https://untitled.example/", [feed_link("/feed/")]),  # no title
@@ -344,10 +350,10 @@ async def test_survivors_one_link_per_page_and_the_shortest_url_per_domain() -> 
                 row = checked(url, 3)
                 row.title = "Free Porn Logins"
                 rows.append(row)
-            elif url.startswith("http://m"):  # moved to https: kept as the https target
+            elif "//m0." in url or "//m1." in url:  # both redirect to one URL
                 rows.append(checked(url, 3, final_url="https://new.example/feed"))
-            elif url.startswith("http://"):
-                rows.append(checked(url, 3))
+            elif "//h." in url:  # https redirects back to plain http
+                rows.append(checked(url, 3, final_url="http://h.example/rss"))
             else:
                 rows.append(checked(url, 30))
         return rows
@@ -367,11 +373,12 @@ async def test_survivors_one_link_per_page_and_the_shortest_url_per_domain() -> 
     assert len(sliced) == 1 and sliced[0].removeprefix(DATA_URL) in paths  # one random file
     assert result.scan.path == sliced[0].removeprefix(DATA_URL)
     assert not any("/category/" in u or "/comments/" in u for u in asked)
-    assert result.candidates == 17 == len(asked) == len(set(asked))
+    assert result.candidates == 15 == len(asked) == len(set(asked))
+    assert all(u.startswith("https://") for u in asked)
     assert "https://forum.example/feed" in asked
-    assert len({"https://multi.example/a.xml", "https://multi.example/b.xml"} & set(asked)) == 1
-    assert not any("youtube" in u or "cut.example" in u for u in asked)
-    assert result.working == 17
+    assert len({"https://multi.example/a/feed", "https://multi.example/b/feed"} & set(asked)) == 1
+    assert not any("youtube" in u or "cut.example" in u or "feedburner" in u for u in asked)
+    assert result.working == 15
     assert result.rejected == {
         "inactive": 2,  # old, shared
         "not_english": 1,
@@ -380,16 +387,14 @@ async def test_survivors_one_link_per_page_and_the_shortest_url_per_domain() -> 
         "not_https": 1,  # h.example
     }
     urls = sorted(r.url for r in result.rows)
-    assert urls[:6] == [
+    assert urls[:4] == [
         "https://a.free.fr/feed/",
         "https://b.free.fr/feed/",
         "https://blog.example/feed/",
-        "https://feeds.feedburner.com/x",
-        "https://feeds.feedburner.com/y",
         "https://forum.example/feed",
     ]
-    assert urls[6] in {"https://multi.example/a.xml", "https://multi.example/b.xml"}
-    assert urls[7:] == ["https://new.example/feed", "https://s.example/feed/"]
+    assert urls[4] in {"https://multi.example/a/feed", "https://multi.example/b/feed"}
+    assert urls[5:] == ["https://new.example/feed", "https://s.example/feed/"]
     for row in result.rows:
         assert row.wat_url == sliced[0]  # credited to the WAT file it was found in
         assert row.language == "en"
