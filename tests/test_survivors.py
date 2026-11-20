@@ -11,7 +11,7 @@ from datetime import UTC, datetime, timedelta
 import pytest
 
 from indexer.check.runner import CheckRow
-from indexer.survivors.feed_links import filter_page_links, is_archive_feed, is_comment_feed
+from indexer.survivors.feed_links import filter_page_links
 from indexer.survivors.filters import _has_keyword, _is_active, _is_english, served_url
 from indexer.survivors.run import _CHECK_BATCH, survivors
 from indexer.survivors.wat import (
@@ -239,42 +239,25 @@ def test_has_keyword(title: str | None, excluded: bool) -> None:
 
 
 @pytest.mark.parametrize(
-    ("url", "archive"),
+    "url",
     [
-        ("https://gazetashqiptare.al/category/bota/rajoni/feed/", True),
-        ("https://x.example/tag/python/feed", True),
-        ("https://x.example/author/jane/feed/atom/", True),
-        ("https://x.example/blog/category/news/feed/rss2/", True),
-        ("https://x.example/feed/", False),
-        ("https://x.example/category/feed/", False),  # no category name: not an archive
-        ("https://x.example/categories/news/feed/", False),
-        ("https://x.example/tag/python/", False),  # not a feed URL
-        ("https://x.example/feed/?cat=category/x/feed", False),  # the path only
+        # WordPress category, tag and author feeds
+        "https://gazetashqiptare.al/category/bota/rajoni/feed/",
+        "https://x.example/tag/python/feed",
+        "https://x.example/author/jane/feed/atom/",
+        "https://x.example/blog/category/news/feed/rss2/",
+        # comment feeds
+        "https://x.example/comments/feed/",
+        "https://x.example/blog/comments/feed",
+        "https://x.example/comments/feed/atom/",
+        "https://x.example/?feed=comments-rss2",
+        "https://x.example/index.php?p=1&feed=comments-atom",
+        "https://x.blogspot.com/feeds/comments/default",
+        "https://x.blogspot.com/feeds/123456789/comments/default?alt=rss",
     ],
 )
-def test_is_archive_feed(url: str, archive: bool) -> None:
-    assert is_archive_feed(url) is archive
-
-
-@pytest.mark.parametrize(
-    ("url", "comments"),
-    [
-        ("https://x.example/comments/feed/", True),
-        ("https://x.example/blog/comments/feed", True),
-        ("https://x.example/comments/feed/atom/", True),
-        ("https://x.example/?feed=comments-rss2", True),
-        ("https://x.example/index.php?p=1&feed=comments-atom", True),
-        ("https://x.blogspot.com/feeds/comments/default", True),
-        ("https://x.blogspot.com/feeds/123456789/comments/default?alt=rss", True),
-        ("https://x.example/feed/", False),
-        ("https://x.example/?feed=rss2", False),
-        ("https://x.blogspot.com/feeds/posts/default", False),
-        ("https://x.example/comments/", False),  # not a feed URL
-        ("https://x.example/no-comments/feed/", False),
-    ],
-)
-def test_is_comment_feed(url: str, comments: bool) -> None:
-    assert is_comment_feed(url) is comments
+def test_archive_and_comment_feeds_are_dropped(url: str) -> None:
+    assert filter_page_links("https://x.example/", [feed_link(url)]) == []
 
 
 def test_served_url_is_https_after_redirects() -> None:

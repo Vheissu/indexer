@@ -12,16 +12,6 @@ MAX_LENGTH = 256  # characters in the URL
 MAX_SLASHES = 7  # in the path
 MAX_SEGMENT = 25  # characters in the longest path segment
 
-# WordPress archive feeds: a category, tag or author subset of the site's main feed.
-_ARCHIVE_FEED = re.compile(r"/(?:category|tag|author)/.+/feed(?:/(?:rss2?|atom|rdf))?/?$", re.I)
-# Comment feeds: WordPress /comments/feed/ (and its formats), Blogger /feeds/comments/... and
-# /feeds/<post id>/comments/...
-_COMMENT_FEED = re.compile(
-    r"/comments/feed(?:/(?:rss2?|atom|rdf))?/?$|^/feeds/(?:\d+/)?comments/", re.I
-)
-# WordPress without pretty links: ?feed=comments-rss2, ?feed=comments-atom
-_COMMENT_QUERY = re.compile(r"(?:^|&)feed=comments-", re.I)
-
 # Somewhere in the URL.
 _FEED_INDICATORS = re.compile(
     r"(atom|rss|feed|rdf|xml|spip|synd|pod|api|backend\.php)", re.IGNORECASE
@@ -56,8 +46,8 @@ _ACCEPTED = [
 def filter_page_links(page: str, links: Any, exclude: frozenset[str] = frozenset()) -> list[str]:
     """The feed URLs worth checking among a page's `<link>` elements (as the WAT records them):
     rel="alternate" with a feed type, made absolute, on https, valid like any input, outside the
-    `exclude` domains, not an archive or comment feed, without session parameters, and shaped
-    like a feed URL (`_looks_like_a_feed`)."""
+    `exclude` domains, without session parameters, and shaped like a feed URL
+    (`_looks_like_a_feed`; that also rules out comment and WordPress archive feeds)."""
     urls: list[str] = []
     for link in links if isinstance(links, list) else []:
         if not isinstance(link, dict):
@@ -77,8 +67,6 @@ def filter_page_links(page: str, links: Any, exclude: frozenset[str] = frozenset
     valid, _excluded = drop_excluded(valid, exclude)
     kept = []
     for url, _host in valid:
-        if is_archive_feed(url) or is_comment_feed(url):
-            continue
         url = strip_session(url)
         if _looks_like_a_feed(url):
             kept.append(url)
@@ -98,15 +86,3 @@ def _looks_like_a_feed(url: str) -> bool:
         return False
     beyond_host = url[len(parts.scheme) + 3 + len(parts.netloc) :]
     return any(pattern.fullmatch(beyond_host) for pattern in _ACCEPTED)
-
-
-def is_archive_feed(url: str) -> bool:
-    """A WordPress category, tag or author feed (`/category/news/feed/`): a subset of the main
-    feed."""
-    return bool(_ARCHIVE_FEED.search(urlsplit(url).path))
-
-
-def is_comment_feed(url: str) -> bool:
-    """A feed of comments rather than posts (`/comments/feed/`, Blogger `/feeds/comments/`)."""
-    parts = urlsplit(url)
-    return bool(_COMMENT_FEED.search(parts.path) or _COMMENT_QUERY.search(parts.query))
