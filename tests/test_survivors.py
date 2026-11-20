@@ -11,14 +11,8 @@ from datetime import UTC, datetime, timedelta
 import pytest
 
 from indexer.check.runner import CheckRow
-from indexer.survivors.filters import (
-    _has_keyword,
-    _is_active,
-    _is_english,
-    is_archive_feed,
-    is_comment_feed,
-    served_url,
-)
+from indexer.survivors.feed_links import filter_page_links, is_archive_feed, is_comment_feed
+from indexer.survivors.filters import _has_keyword, _is_active, _is_english, served_url
 from indexer.survivors.run import _CHECK_BATCH, survivors
 from indexer.survivors.wat import (
     _INDEX_URL,
@@ -81,12 +75,37 @@ def test_scan_wat_collects_every_advertised_feed() -> None:
     )
     result = scan_wat(data, PATH, frozenset({"youtube.com"}))
     assert result.pages == 6  # HTML pages only: the JSON capture is not counted
-    assert result.pages_with_feed == 5
-    assert result.page_feeds == [  # per page; no YouTube, no ftp
-        ["https://blog.example/feed/", "https://blog.example/comments/feed/"],
+    assert result.pages_with_feed == 3  # with a feed worth checking
+    assert result.page_feeds == [  # per page; no comment feed, no YouTube, no ftp
+        ["https://blog.example/feed/"],
         ["https://blog.example/feed/"],
         ["https://www.other.example/rss.xml"],  # relative href resolved
     ]
+
+
+def test_filter_page_links() -> None:
+    page_url = "https://s.example/2026/11/post/"
+    links = [
+        feed_link("/feed/"),
+        feed_link("feed/"),  # relative to the page: the post's own feed
+        feed_link("/comments/feed/"),
+        feed_link("/category/news/feed/"),
+        feed_link("https://forum.example/feed?sid=abc&x=1"),
+        feed_link("https://www.youtube.com/feeds/videos.xml"),
+        feed_link("ftp://s.example/feed"),
+        feed_link("   "),
+        {"url": "/feed2/", "rel": "alternate", "type": "Application/RSS+XML; charset=utf-8"},
+        {"url": "/feed3/", "rel": "stylesheet", "type": "application/rss+xml"},
+        {"url": "/style.css", "rel": "stylesheet", "type": "text/css"},
+        "not a link",
+    ]
+    assert filter_page_links(page_url, links, frozenset({"youtube.com"})) == [
+        "https://s.example/feed/",
+        "https://s.example/2026/11/post/feed/",
+        "https://forum.example/feed?x=1",
+        "https://s.example/feed2/",
+    ]
+    assert filter_page_links(page_url, None) == []
 
 
 def test_wat_paths_keeps_only_well_formed_paths_of_the_crawl() -> None:
@@ -347,7 +366,6 @@ async def test_survivors_one_link_per_page_and_the_shortest_url_per_domain() -> 
     assert result.crawl == OLD
     assert len(sliced) == 1 and sliced[0].removeprefix(DATA_URL) in paths  # one random file
     assert result.scan.path == sliced[0].removeprefix(DATA_URL)
-    assert result.archive_feeds == 1 and result.comment_feeds == 1  # never picked
     assert not any("/category/" in u or "/comments/" in u for u in asked)
     assert result.candidates == 17 == len(asked) == len(set(asked))
     assert "https://forum.example/feed" in asked

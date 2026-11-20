@@ -2,8 +2,9 @@
 active today, proposed for review.
 
     1. pick the crawl closest to `years_ago` and one random WAT file of it      wat.py
-    2. download the file's first slice and list the feeds its pages advertise   wat.py
-    3. take one random feed link per page (not an archive or comment feed)      filters.py
+    2. download the file's first slice and list the feeds its pages advertise   wat.py,
+       minus those the URL rules skip                                          feed_links.py
+    3. take one random feed link per page
        and drop URLs we already know
     4. check them in random order, a batch at a time, keep those that pass      filters.py
        and, of those on one site, the shortest URL
@@ -22,12 +23,9 @@ from datetime import UTC, datetime, timedelta
 from urllib.parse import urlsplit
 
 from indexer.check.runner import CheckRow
-from indexer.net.urls import strip_session
 from indexer.survivors.filters import (
     Reason,
     Rules,
-    is_archive_feed,
-    is_comment_feed,
     rejection,
     served_url,
 )
@@ -59,8 +57,6 @@ class Survivor:
 class SurvivorsResult:
     crawl: str
     scan: WatScan  # the WAT slice that was read
-    archive_feeds: int = 0  # WordPress category / tag / author feeds, skipped unchecked
-    comment_feeds: int = 0  # comment feeds, skipped unchecked
     candidates: int = 0  # distinct picked URLs (one per page)
     known: int = 0  # already proposed or in inputs (before or after redirects): skipped
     checked: int = 0  # fewer than candidates when the run stopped early
@@ -123,10 +119,8 @@ async def survivors(
     # 3. The URLs worth checking.
     to_check = await _candidates(scan.page_feeds, result, known, rng)
     log.info(
-        "%d candidates (%d archive and %d comment feeds skipped, %d already known), %d to check",
+        "%d candidates (%d already known), %d to check",
         result.candidates,
-        result.archive_feeds,
-        result.comment_feeds,
         result.known,
         len(to_check),
     )
@@ -152,20 +146,9 @@ async def survivors(
 async def _candidates(
     page_feeds: Iterable[list[str]], result: SurvivorsResult, known: _Known, rng: random.Random
 ) -> list[str]:
-    """One random feed link per page, archive and comment feeds aside, in random order (so
-    stopping early keeps a random subset), minus the URLs we already know."""
-    picks: set[str] = set()  # pages of one site often pick the same feed: fetch it once
-    for links in page_feeds:
-        eligible = []
-        for url in links:
-            if is_archive_feed(url):
-                result.archive_feeds += 1
-            elif is_comment_feed(url):
-                result.comment_feeds += 1
-            else:
-                eligible.append(url)
-        if eligible:
-            picks.add(strip_session(rng.choice(eligible)))
+    """One random feed link per page, in random order (so stopping early keeps a random subset),
+    minus the URLs we already know."""
+    picks = {rng.choice(links) for links in page_feeds}  # one site's pages often pick one feed
     result.candidates = len(picks)
     order = sorted(picks)  # sorted first, so a seeded rng gives the same order every time
     rng.shuffle(order)

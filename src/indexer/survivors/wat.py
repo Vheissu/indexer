@@ -19,13 +19,11 @@ from collections.abc import Awaitable, Callable, Iterator
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from typing import Any, Protocol
-from urllib.parse import urljoin
 
-from indexer.net.urls import drop_excluded, valid_urls
+from indexer.survivors.feed_links import filter_page_links
 
 _INDEX_URL = "https://index.commoncrawl.org/collinfo.json"  # every crawl, with its dates
 DATA_URL = "https://data.commoncrawl.org/"
-_FEED_TYPES = frozenset({"application/rss+xml", "application/atom+xml", "application/rdf+xml"})
 
 _CRAWL_ID = re.compile(r"CC-MAIN-\d{4}-\d{2}")
 _WAT_PATH = re.compile(r"crawl-data/CC-MAIN-\d{4}-\d{2}/[A-Za-z0-9/._-]+\.warc\.wat\.gz")
@@ -115,22 +113,20 @@ def complete_prefix(data: bytes) -> bytes:
 
 
 def scan_wat(data: bytes, path: str, exclude: frozenset[str] = frozenset()) -> WatScan:
-    """The feed links each page of a (complete) WAT slice advertises, validated like any input,
-    minus `exclude` domains."""
+    """The feed URLs worth checking on each page of a (complete) WAT slice (feed_links.py)."""
     scan = WatScan(path)
     try:
         with gzip.open(io.BytesIO(data), "rb") as stream:
             for envelope in _metadata_envelopes(stream):
-                feeds = _advertised_feeds(envelope)
-                if feeds is None:
+                found = _head_links(envelope)
+                if found is None:
                     continue  # not an HTML page
                 scan.pages += 1
+                feeds = filter_page_links(*found, exclude)
                 scan.pages_with_feed += bool(feeds)
                 scan.feed_links += len(feeds)
-                valid, _invalid = valid_urls(feeds)
-                valid, _excluded = drop_excluded(valid, exclude)
-                if valid:
-                    scan.page_feeds.append([url for url, _host in valid])
+                if feeds:
+                    scan.page_feeds.append(feeds)
     except (OSError, EOFError) as exc:
         raise CommonCrawlError(f"{path}: {exc}") from exc
     return scan
@@ -170,23 +166,10 @@ def _warc_records(stream: _Readable) -> Iterator[tuple[dict[bytes, bytes], bytes
         yield headers, stream.read(length)
 
 
-def _advertised_feeds(envelope: dict[str, Any]) -> list[str] | None:
-    """The absolute feed URLs an HTML page advertises; None if the record is not an HTML page."""
+def _head_links(envelope: dict[str, Any]) -> tuple[str, Any] | None:
+    """(page URL, the `<link>` elements of its head) for an HTML page; None for anything else."""
     page = envelope.get("WARC-Header-Metadata", {}).get("WARC-Target-URI")
     response = envelope.get("Payload-Metadata", {}).get("HTTP-Response-Metadata", {})
     if not isinstance(page, str) or "HTML-Metadata" not in response:
         return None
-    links = response["HTML-Metadata"].get("Head", {}).get("Link", []) or []
-    feeds: list[str] = []
-    for link in links if isinstance(links, list) else []:
-        if not isinstance(link, dict):
-            continue
-        rel = str(link.get("rel", "")).lower().split()
-        kind = str(link.get("type", "")).split(";")[0].strip().lower()
-        href = link.get("url")
-        if "alternate" in rel and kind in _FEED_TYPES and isinstance(href, str) and href.strip():
-            try:
-                feeds.append(urljoin(page, href.strip()))
-            except ValueError:
-                continue
-    return feeds
+    return page, response["HTML-Metadata"].get("Head", {}).get("Link", []) or []

@@ -1,10 +1,7 @@
-"""Which Common Crawl feeds survivors proposes: the rules agreed with the user (see CLAUDE.md).
+"""Which checked Common Crawl feeds survivors proposes (the URL rules before checking are in
+feed_links.py).
 
-Before checking, by URL alone:
-    is_archive_feed   WordPress category / tag / author feeds are skipped
-    is_comment_feed   comment feeds (WordPress, Blogger) are skipped
-
-After checking, `rejection(row, rules)` gives the first rule a feed fails, or None if it passes:
+`rejection(row, rules)` gives the first rule a feed fails, or None if it passes:
     failed       the check failed (fetch or parse)
     inactive     no item from the last `active_days` days
     not_english  English is not among the languages detected on its items
@@ -17,22 +14,11 @@ import re
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from typing import Literal
-from urllib.parse import urlsplit
 
 from indexer.check.runner import CheckRow
 from indexer.net.urls import drop_excluded, strip_session, valid_urls
 
 type Reason = Literal["failed", "inactive", "not_english", "untitled", "keyword", "not_https"]
-
-# WordPress archive feeds: a category, tag or author subset of the site's main feed.
-_ARCHIVE_FEED = re.compile(r"/(?:category|tag|author)/.+/feed(?:/(?:rss2?|atom|rdf))?/?$", re.I)
-# Comment feeds: WordPress /comments/feed/ (and its formats), Blogger /feeds/comments/... and
-# /feeds/<post id>/comments/...
-_COMMENT_FEED = re.compile(
-    r"/comments/feed(?:/(?:rss2?|atom|rdf))?/?$|^/feeds/(?:\d+/)?comments/", re.I
-)
-# WordPress without pretty links: ?feed=comments-rss2, ?feed=comments-atom
-_COMMENT_QUERY = re.compile(r"(?:^|&)feed=comments-", re.I)
 
 
 @dataclass(frozen=True, slots=True)
@@ -97,18 +83,3 @@ def served_url(row: CheckRow, exclude: frozenset[str] = frozenset()) -> str | No
     if not valid or not valid[0][0].startswith("https://"):
         return None
     return valid[0][0]
-
-
-# --- the rules before checking --------------------------------------------------------------
-
-
-def is_archive_feed(url: str) -> bool:
-    """A WordPress category, tag or author feed (`/category/news/feed/`): a subset of the main
-    feed."""
-    return bool(_ARCHIVE_FEED.search(urlsplit(url).path))
-
-
-def is_comment_feed(url: str) -> bool:
-    """A feed of comments rather than posts (`/comments/feed/`, Blogger `/feeds/comments/`)."""
-    parts = urlsplit(url)
-    return bool(_COMMENT_FEED.search(parts.path) or _COMMENT_QUERY.search(parts.query))
