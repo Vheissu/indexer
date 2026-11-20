@@ -258,6 +258,8 @@ def test_served_url_is_https_after_redirects() -> None:
     assert served_url(checked("http://a.example/feed", 1)) is None  # still plain http
     down = checked("https://a.example/feed", 1, final_url="http://a.example/feed")
     assert served_url(down) is None
+    with_sid = checked("http://f.example/feed?sid=abc", 1, final_url="https://f.example/feed?sid=x")
+    assert served_url(with_sid) == "https://f.example/feed"
     to_yt = checked("https://a.example/feed", 1, final_url="https://www.youtube.com/feeds/x")
     assert served_url(to_yt, frozenset({"youtube.com"})) is None
 
@@ -273,8 +275,12 @@ async def test_survivors_one_link_per_page_and_the_shortest_url_per_domain() -> 
         page("http://m0.example/", [feed_link("/feed")]),  # m0 and m1 redirect to one URL
         page("http://m1.example/", [feed_link("/feed")]),
         page("https://fr.example/", [feed_link("/fr/feed")]),
-        page("https://forum.example/", [feed_link("/feed?sid=1")]),  # same length: by name
+        page("https://forum.example/", [feed_link("/feed?sid=1")]),  # one URL once stripped
         page("https://forum.example/x", [feed_link("/feed?sid=2")]),
+        page("https://a.free.fr/", [feed_link("/feed/")]),  # two users of one shared host
+        page("https://b.free.fr/", [feed_link("/feed/")]),
+        page("https://x.example/", [feed_link("https://feeds.feedburner.com/x")]),  # two sites
+        page("https://y.example/", [feed_link("https://feeds.feedburner.com/y")]),
         page("https://blog.example/", [feed_link("/feed/")]),  # shorter: kept
         page("https://blog.example/p/", [feed_link("/posts/feed/")]),
         page("https://multi.example/", [feed_link("/a.xml"), feed_link("/b.xml")]),  # one of two
@@ -343,10 +349,11 @@ async def test_survivors_one_link_per_page_and_the_shortest_url_per_domain() -> 
     assert result.scan.path == sliced[0].removeprefix(DATA_URL)
     assert result.archive_feeds == 1 and result.comment_feeds == 1  # never picked
     assert not any("/category/" in u or "/comments/" in u for u in asked)
-    assert result.candidates == 14 == len(asked) == len(set(asked))
+    assert result.candidates == 17 == len(asked) == len(set(asked))
+    assert "https://forum.example/feed" in asked
     assert len({"https://multi.example/a.xml", "https://multi.example/b.xml"} & set(asked)) == 1
     assert not any("youtube" in u or "cut.example" in u for u in asked)
-    assert result.working == 14
+    assert result.working == 17
     assert result.rejected == {
         "inactive": 2,  # old, shared
         "not_english": 1,
@@ -355,9 +362,16 @@ async def test_survivors_one_link_per_page_and_the_shortest_url_per_domain() -> 
         "not_https": 1,  # h.example
     }
     urls = sorted(r.url for r in result.rows)
-    assert urls[:2] == ["https://blog.example/feed/", "https://forum.example/feed?sid=1"]
-    assert urls[2] in {"https://multi.example/a.xml", "https://multi.example/b.xml"}
-    assert urls[3:] == ["https://new.example/feed", "https://s.example/feed/"]
+    assert urls[:6] == [
+        "https://a.free.fr/feed/",
+        "https://b.free.fr/feed/",
+        "https://blog.example/feed/",
+        "https://feeds.feedburner.com/x",
+        "https://feeds.feedburner.com/y",
+        "https://forum.example/feed",
+    ]
+    assert urls[6] in {"https://multi.example/a.xml", "https://multi.example/b.xml"}
+    assert urls[7:] == ["https://new.example/feed", "https://s.example/feed/"]
     for row in result.rows:
         assert row.wat_url == sliced[0]  # credited to the WAT file it was found in
         assert row.language == "en"

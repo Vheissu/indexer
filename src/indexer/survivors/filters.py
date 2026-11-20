@@ -20,7 +20,7 @@ from typing import Literal
 from urllib.parse import urlsplit
 
 from indexer.check.runner import CheckRow
-from indexer.net.urls import drop_excluded, valid_urls
+from indexer.net.urls import drop_excluded, strip_session, valid_urls
 
 type Reason = Literal["failed", "inactive", "not_english", "untitled", "keyword", "not_https"]
 
@@ -89,9 +89,10 @@ def _has_keyword(row: CheckRow, keywords: frozenset[str]) -> bool:
 
 
 def served_url(row: CheckRow, exclude: frozenset[str] = frozenset()) -> str | None:
-    """The URL the feed is served from today (after redirects) if it is a valid https URL
+    """The URL the feed is served from today (after redirects, session parameters removed) if
+    it is a valid https URL
     outside the `exclude` domains (a redirect can lead anywhere); else None."""
-    valid, _invalid = valid_urls([row.final_url or row.url])
+    valid, _invalid = valid_urls([strip_session(row.final_url or row.url)])
     valid, _excluded = drop_excluded(valid, exclude)
     if not valid or not valid[0][0].startswith("https://"):
         return None

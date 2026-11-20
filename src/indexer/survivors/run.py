@@ -6,8 +6,8 @@ active today, proposed for review.
     3. take one random feed link per page (not an archive or comment feed)      filters.py
        and drop URLs we already know
     4. check them in random order, a batch at a time, keep those that pass      filters.py
-       and, of those on one domain, the shortest URL
-    5. stop once `max_feeds` domains have one
+       and, of those on one site, the shortest URL
+    5. stop once `max_feeds` sites have one
 
 The fetching, checking and "do we know this URL" functions are passed in (the CLI gives the real
 ones, tests give fakes).
@@ -22,7 +22,7 @@ from datetime import UTC, datetime, timedelta
 from urllib.parse import urlsplit
 
 from indexer.check.runner import CheckRow
-from indexer.net.domains import registrable_domain
+from indexer.net.urls import strip_session
 from indexer.survivors.filters import (
     Reason,
     Rules,
@@ -132,20 +132,20 @@ async def survivors(
     )
 
     # 4-5. Check a batch at a time until enough pass.
-    by_domain: dict[str, Survivor] = {}
+    by_site: dict[str, Survivor] = {}
     for start in range(0, len(to_check), _CHECK_BATCH):
         batch = to_check[start : start + _CHECK_BATCH]
         result.checked += len(batch)
         new = [s for row in await check(batch) if (s := _judge(row, rules, wat_url, result))]
         for survivor in await _unknown(new, known, result):
-            domain = _domain(survivor.url)
-            best = by_domain.get(domain)
+            site = _site(survivor.url)
+            best = by_site.get(site)
             if best is None or (len(survivor.url), survivor.url) < (len(best.url), best.url):
-                by_domain[domain] = survivor
-        log.info("checked %d of %d: %d domains pass", result.checked, len(to_check), len(by_domain))
-        if max_feeds is not None and len(by_domain) >= max_feeds:
+                by_site[site] = survivor
+        log.info("checked %d of %d: %d sites pass", result.checked, len(to_check), len(by_site))
+        if max_feeds is not None and len(by_site) >= max_feeds:
             break
-    result.rows = list(by_domain.values())[:max_feeds]
+    result.rows = list(by_site.values())[:max_feeds]
     return result
 
 
@@ -165,7 +165,7 @@ async def _candidates(
             else:
                 eligible.append(url)
         if eligible:
-            picks.add(rng.choice(eligible))
+            picks.add(strip_session(rng.choice(eligible)))
     result.candidates = len(picks)
     order = sorted(picks)  # sorted first, so a seeded rng gives the same order every time
     rng.shuffle(order)
@@ -195,9 +195,14 @@ async def _unknown(
     return [s for s in survivors if s.url not in already]
 
 
-def _domain(url: str) -> str:
-    host = (urlsplit(url).hostname or "").lower()
-    return registrable_domain(host) or host
+def _site(url: str) -> str:
+    """The host without www., so users of shared hosts (x.blog.fc2.com, y.free.fr) stay apart.
+    FeedBurner hosts many sites' feeds: there, the first path segment names the site."""
+    parts = urlsplit(url)
+    host = (parts.hostname or "").lower().removeprefix("www.")
+    if host.endswith("feedburner.com"):
+        return host + "/" + parts.path.strip("/").split("/")[0]
+    return host
 
 
 async def _nothing_known(urls: Sequence[str]) -> set[str]:

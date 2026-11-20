@@ -118,9 +118,10 @@ the `<link>` elements of every crawled page; survivors reads the feeds each page
 takes a WordPress category, tag or author feed (`/category/news/feed/`, a subset of the main feed)
 or a comment feed (WordPress `/comments/feed/` and `?feed=comments-rss2`, Blogger
 `/feeds/comments/` and `/feeds/<post id>/comments/`), and picks **one random feed link per page**
-from the rest. It checks the picks today with the guarded fetcher (no retries), and of the feeds
-that pass on one registrable domain it keeps the one with the shortest URL (ties by name), so one
-site is proposed once. A feed is proposed only if:
+from the rest, without session parameters (`sid`, `PHPSESSID`, `jsessionid`, ...). It checks the picks today with the guarded fetcher (no retries), and of the feeds
+that pass on one site it keeps the one with the shortest URL (ties by name), so one site is proposed
+once. A site is the host without `www.` (not the registrable domain, which would merge the users of
+shared hosts like `fc2.com` or `free.fr`); on FeedBurner, the host and the first path segment. A feed is proposed only if:
 
 - it parses, and its newest item is from the last `--active-days` (243, about 8 months) days (a
   date more than a day in the future doesn't count);
