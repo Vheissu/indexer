@@ -17,6 +17,7 @@ from indexer.survivors.filters import (
     _is_english,
     canonical_format,
     is_archive_feed,
+    is_comment_feed,
     served_url,
 )
 from indexer.survivors.run import _CHECK_BATCH, survivors
@@ -231,6 +232,27 @@ def test_is_archive_feed(url: str, archive: bool) -> None:
 
 
 @pytest.mark.parametrize(
+    ("url", "comments"),
+    [
+        ("https://x.example/comments/feed/", True),
+        ("https://x.example/blog/comments/feed", True),
+        ("https://x.example/comments/feed/atom/", True),
+        ("https://x.example/?feed=comments-rss2", True),
+        ("https://x.example/index.php?p=1&feed=comments-atom", True),
+        ("https://x.blogspot.com/feeds/comments/default", True),
+        ("https://x.blogspot.com/feeds/123456789/comments/default?alt=rss", True),
+        ("https://x.example/feed/", False),
+        ("https://x.example/?feed=rss2", False),
+        ("https://x.blogspot.com/feeds/posts/default", False),
+        ("https://x.example/comments/", False),  # not a feed URL
+        ("https://x.example/no-comments/feed/", False),
+    ],
+)
+def test_is_comment_feed(url: str, comments: bool) -> None:
+    assert is_comment_feed(url) is comments
+
+
+@pytest.mark.parametrize(
     ("url", "expected"),
     [
         ("https://allsportstucson.com/feed/atom/", "https://allsportstucson.com/feed/"),
@@ -282,6 +304,7 @@ async def test_survivors_keeps_active_english_feeds_served_over_https() -> None:
         page("http://m1.example/", [feed_link("/feed")]),
         page("https://fr.example/", [feed_link("/fr/feed")]),
         page("https://s.example/a/", [feed_link("/category/news/feed/")]),  # skipped
+        page("https://s.example/c/", [feed_link("/comments/feed/")]),  # skipped
         page("https://s.example/b/", [feed_link("/feed/atom/")]),  # folds into /feed/
         page("https://forum.example/", [feed_link("/feed?sid=1")]),  # one URL once stripped
         page("https://forum.example/x", [feed_link("/feed?sid=2")]),
@@ -353,6 +376,7 @@ async def test_survivors_keeps_active_english_feeds_served_over_https() -> None:
     # No YouTube, nothing from the cut record, each URL checked once.
     assert result.candidates == 10 == len(asked) == len(set(asked))
     assert result.archive_feeds == 1 and not any("/category/" in u for u in asked)
+    assert result.comment_feeds == 1 and not any("/comments/" in u for u in asked)
     assert "https://forum.example/feed" in asked
     assert not any("youtube" in u or "cut.example" in u for u in asked)
     assert result.working == 10

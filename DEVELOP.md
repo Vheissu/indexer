@@ -118,7 +118,8 @@ the `<link>` elements of every crawled page; survivors collects every feed a pag
 format variants into one URL (WordPress `/feed/atom/`, `/feed/rdf/`, `/feed/rss/`, `/feed/rss2/`
 become `/feed/`; Blogger `?alt=rss` becomes the default feed; Joomla `type=atom` becomes
 `type=rss`), skips WordPress category, tag and author feeds (`/category/news/feed/`, a subset of
-the main feed) without fetching them, and checks the rest today with the guarded fetcher (no
+the main feed) and comment feeds (WordPress `/comments/feed/` and `?feed=comments-rss2`, Blogger
+`/feeds/comments/` and `/feeds/<post id>/comments/`) without fetching them, and checks the rest today with the guarded fetcher (no
 retries). A feed is proposed only if:
 
 - it parses, and its newest item is from the last `--active-days` (243, about 8 months) days (a

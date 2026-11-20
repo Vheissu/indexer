@@ -3,7 +3,7 @@ active today, proposed for review.
 
     1. pick the crawl closest to `years_ago` and one random WAT file of it      wat.py
     2. download the file's first slice and list the feeds its pages advertise   wat.py
-    3. skip archive feeds, fold format variants, drop URLs we already know      filters.py
+    3. skip archive and comment feeds, fold variants, drop URLs we already know filters.py
     4. check the rest in random order, a batch at a time, keep those that pass  filters.py
     5. stop once `max_feeds` pass
 
@@ -25,6 +25,7 @@ from indexer.survivors.filters import (
     Rules,
     canonical_format,
     is_archive_feed,
+    is_comment_feed,
     rejection,
     served_url,
 )
@@ -57,6 +58,7 @@ class SurvivorsResult:
     crawl: str
     scan: WatScan  # the WAT slice that was read
     archive_feeds: int = 0  # WordPress category / tag / author feeds, skipped unchecked
+    comment_feeds: int = 0  # comment feeds, skipped unchecked
     candidates: int = 0  # distinct feed URLs left to consider
     known: int = 0  # already proposed or in inputs (before or after redirects): skipped
     checked: int = 0  # fewer than candidates when the run stopped early
@@ -120,9 +122,10 @@ async def survivors(
     # 3. The URLs worth checking.
     to_check = await _candidates(scan.feeds, result, known, rng)
     log.info(
-        "%d candidates (%d archive feeds skipped, %d already known), %d to check",
+        "%d candidates (%d archive and %d comment feeds skipped, %d already known), %d to check",
         result.candidates,
         result.archive_feeds,
+        result.comment_feeds,
         result.known,
         len(to_check),
     )
@@ -146,12 +149,15 @@ async def _candidates(
     feeds: Iterable[str], result: SurvivorsResult, known: _Known, rng: random.Random
 ) -> list[str]:
     """The advertised feeds worth checking, in random order (so stopping early keeps a random
-    subset): archive feeds skipped, session parameters stripped, format variants folded into one
-    URL, known URLs dropped. Counts archive_feeds, candidates and known."""
+    subset): archive and comment feeds skipped, session parameters stripped, format variants
+    folded into one URL, known URLs dropped. Counts archive_feeds, comment_feeds, candidates
+    and known."""
     urls: set[str] = set()
     for url in feeds:
         if is_archive_feed(url):
             result.archive_feeds += 1
+        elif is_comment_feed(url):
+            result.comment_feeds += 1
         else:
             urls.add(canonical_format(strip_session(url)))
     result.candidates = len(urls)

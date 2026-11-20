@@ -2,6 +2,7 @@
 
 Before checking, by URL alone:
     is_archive_feed   WordPress category / tag / author feeds are skipped
+    is_comment_feed   comment feeds (WordPress, Blogger) are skipped
     canonical_format  format variants of one feed are folded into one URL
 
 After checking, `rejection(row, rules)` gives the first rule a feed fails, or None if it passes:
@@ -26,6 +27,13 @@ type Reason = Literal["failed", "inactive", "not_english", "untitled", "keyword"
 
 # WordPress archive feeds: a category, tag or author subset of the site's main feed.
 _ARCHIVE_FEED = re.compile(r"/(?:category|tag|author)/.+/feed(?:/(?:rss2?|atom|rdf))?/?$", re.I)
+# Comment feeds: WordPress /comments/feed/ (and its formats), Blogger /feeds/comments/... and
+# /feeds/<post id>/comments/...
+_COMMENT_FEED = re.compile(
+    r"/comments/feed(?:/(?:rss2?|atom|rdf))?/?$|^/feeds/(?:\d+/)?comments/", re.I
+)
+# WordPress without pretty links: ?feed=comments-rss2, ?feed=comments-atom
+_COMMENT_QUERY = re.compile(r"(?:^|&)feed=comments-", re.I)
 # WordPress /feed/atom/, /feed/rdf/, /feed/rss/, /feed/rss2/ -> /feed/
 _WORDPRESS_FORMAT = re.compile(r"(/feed)/(?:atom|rdf|rss2?)/?$", re.I)
 
@@ -100,6 +108,12 @@ def is_archive_feed(url: str) -> bool:
     """A WordPress category, tag or author feed (`/category/news/feed/`): a subset of the main
     feed."""
     return bool(_ARCHIVE_FEED.search(urlsplit(url).path))
+
+
+def is_comment_feed(url: str) -> bool:
+    """A feed of comments rather than posts (`/comments/feed/`, Blogger `/feeds/comments/`)."""
+    parts = urlsplit(url)
+    return bool(_COMMENT_FEED.search(parts.path) or _COMMENT_QUERY.search(parts.query))
 
 
 def canonical_format(url: str) -> str:

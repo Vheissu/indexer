@@ -44,7 +44,8 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   max-feeds default 20 (was 50) so it fits.
   Agreed filters: crawl closest to 5 years ago, first 25 MB of one random WAT file (one range
   request, random each run, no state; one file because the yield per MB is the same as several smaller slices); strip session params (`urls.strip_session`), fold WordPress/Blogger/Joomla format variants
-  (`canonical_format`), skip WordPress category/tag/author feeds
+  (`canonical_format`), skip WordPress category/tag/author feeds and comment feeds (WordPress `/comments/feed/`,
+  `?feed=comments-*`; Blogger `/feeds/comments/`, `/feeds/<id>/comments/`; agreed 2026-11-20)
   unchecked; check the rest now; insert only feeds whose newest item is
   from the last 243 days (~8 months), are **in English** (`en` among the languages detected on their items, agreed
   2026-11-18; what the feed declares is not read), **have a title** and are

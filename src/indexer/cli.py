@@ -220,8 +220,9 @@ async def _survivors(args: argparse.Namespace) -> int:
     )
     summary = (
         f"{args.slice_mb} MB of {result.scan.path.rsplit('/', 1)[-1]}:"
-        f" {result.candidates} feed URLs ({result.archive_feeds} category/tag/author feeds"
-        f" skipped, {result.known} already known), {result.checked} checked{stopped},"
+        f" {result.candidates} feed URLs ({result.archive_feeds} category/tag/author and"
+        f" {result.comment_feeds} comment feeds skipped, {result.known} already known),"
+        f" {result.checked} checked{stopped},"
         f" {result.working} working today, {result.active} with an item in the last"
         f" {args.active_days} days, {result.english} in English"
         f" ({result.rejected['untitled']} without a title,"
