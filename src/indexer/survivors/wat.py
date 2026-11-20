@@ -23,9 +23,9 @@ from urllib.parse import urljoin
 
 from indexer.net.urls import drop_excluded, valid_urls
 
-INDEX_URL = "https://index.commoncrawl.org/collinfo.json"  # every crawl, with its dates
+_INDEX_URL = "https://index.commoncrawl.org/collinfo.json"  # every crawl, with its dates
 DATA_URL = "https://data.commoncrawl.org/"
-FEED_TYPES = frozenset({"application/rss+xml", "application/atom+xml", "application/rdf+xml"})
+_FEED_TYPES = frozenset({"application/rss+xml", "application/atom+xml", "application/rdf+xml"})
 
 _CRAWL_ID = re.compile(r"CC-MAIN-\d{4}-\d{2}")
 _WAT_PATH = re.compile(r"crawl-data/CC-MAIN-\d{4}-\d{2}/[A-Za-z0-9/._-]+\.warc\.wat\.gz")
@@ -51,12 +51,12 @@ class WatScan:
 
 async def pick_wat_file(fetch: Fetch, target: datetime, rng: random.Random) -> tuple[str, str]:
     """(crawl id, WAT file path): a random WAT file of the crawl that ended closest to `target`."""
-    crawl = crawl_near(await fetch(INDEX_URL), target)
-    paths = wat_paths(await fetch(f"{DATA_URL}crawl-data/{crawl}/wat.paths.gz"), crawl)
+    crawl = _crawl_near(await fetch(_INDEX_URL), target)
+    paths = _wat_paths(await fetch(f"{DATA_URL}crawl-data/{crawl}/wat.paths.gz"), crawl)
     return crawl, rng.choice(paths)
 
 
-def crawl_near(collinfo: bytes, target: datetime) -> str:
+def _crawl_near(collinfo: bytes, target: datetime) -> str:
     """The crawl whose crawl period ended closest to `target`."""
     try:
         crawls = json.loads(collinfo)
@@ -75,7 +75,7 @@ def crawl_near(collinfo: bytes, target: datetime) -> str:
     return crawl
 
 
-def wat_paths(paths_gz: bytes, crawl: str) -> list[str]:
+def _wat_paths(paths_gz: bytes, crawl: str) -> list[str]:
     """The WAT file paths listed in a crawl's wat.paths.gz (only well-formed ones)."""
     try:
         text = gzip.decompress(paths_gz).decode("ascii", errors="replace")
@@ -184,7 +184,7 @@ def _advertised_feeds(envelope: dict[str, Any]) -> list[str] | None:
         rel = str(link.get("rel", "")).lower().split()
         kind = str(link.get("type", "")).split(";")[0].strip().lower()
         href = link.get("url")
-        if "alternate" in rel and kind in FEED_TYPES and isinstance(href, str) and href.strip():
+        if "alternate" in rel and kind in _FEED_TYPES and isinstance(href, str) and href.strip():
             try:
                 feeds.append(urljoin(page, href.strip()))
             except ValueError:

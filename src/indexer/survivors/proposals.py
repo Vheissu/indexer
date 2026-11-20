@@ -29,10 +29,10 @@ from xml.sax.saxutils import escape, quoteattr
 from indexer.sources import extract_urls
 from indexer.survivors.run import Survivor
 
-MAX_TITLE = 100
+_MAX_TITLE = 100
 
 
-def one_line(text: str | None, limit: int) -> str:
+def _one_line(text: str | None, limit: int) -> str:
     """Untrusted text as one line of printable characters, at most `limit` long."""
     printable = "".join(
         c if unicodedata.category(c)[0] not in "CZ" or c == " " else " " for c in text or ""
@@ -55,8 +55,8 @@ def render_entries(survivors: Iterable[Survivor], crawl: str, today: date) -> st
     for s in survivors:
         summary = " · ".join(
             [
-                one_line(s.title, MAX_TITLE) or "(no title)",
-                one_line(s.language, 200) or "(no language)",
+                _one_line(s.title, _MAX_TITLE) or "(no title)",
+                _one_line(s.language, 200) or "(no language)",
                 f"last post {s.last_item_date.date().isoformat()}",
             ]
         )
@@ -66,7 +66,7 @@ def render_entries(survivors: Iterable[Survivor], crawl: str, today: date) -> st
 
 def log_line(s: Survivor) -> str:
     """One line for the run's log: the URL, the newest item's date and the title."""
-    title = one_line(s.title, MAX_TITLE) or "(no title)"
+    title = _one_line(s.title, _MAX_TITLE) or "(no title)"
     return f"  + {s.url}  {s.last_item_date.date().isoformat()}  {title}"
 
 
@@ -84,19 +84,19 @@ def acceptance(proposed: int, checked: int) -> str:
 
 # GitHub rejects a pull request body or comment over 65,536 characters; the workflow adds a
 # short introduction to the first one.
-MAX_REPORT_CHARS = 60_000
+_MAX_REPORT_CHARS = 60_000
 
 
 def _feed_section(s: Survivor) -> str:
     lines = [
-        f"### {_code(one_line(s.title, MAX_TITLE))}",
+        f"### {_code(_one_line(s.title, _MAX_TITLE))}",
         "",
         f"- feed: {_code(s.url)}",
         f"- last post: {s.last_item_date.date().isoformat()}",
-        f"- languages: {_code(one_line(s.language, 200))}",
+        f"- languages: {_code(_one_line(s.language, 200))}",
         "- latest posts:" if s.item_links else "- latest posts: none with a link",
     ]
-    lines += [f"  - {_code(one_line(link, 300))}" for link in s.item_links]
+    lines += [f"  - {_code(_one_line(link, 300))}" for link in s.item_links]
     return "\n".join(lines) + "\n\n"
 
 
@@ -114,24 +114,24 @@ def render_report(
     """Markdown for the pull request: one section per proposed feed with its title, URL, last
     post, languages and the links of its latest posts, all as code spans (nothing clickable),
     to make spam easy to spot, after all of them as OPML (folded; left out if it would take
-    half the room). Never longer than MAX_REPORT_CHARS: feeds that don't fit are counted at the
+    half the room). Never longer than _MAX_REPORT_CHARS: feeds that don't fit are counted at the
     end (they are all in the diff)."""
     report = f"**{len(survivors)} feeds** from `{crawl}`, still active today. {summary}\n\n"
-    opml = _code_block(render_opml(survivors, crawl, generated), "xml")
-    if len(report) + len(opml) < MAX_REPORT_CHARS // 2:  # leave most of the room to the feeds
+    opml = _code_block(_render_opml(survivors, crawl, generated), "xml")
+    if len(report) + len(opml) < _MAX_REPORT_CHARS // 2:  # leave most of the room to the feeds
         report += (
             "<details><summary>All of them as OPML: save as a .opml file and import it into a"
             " feed reader</summary>\n\n" + opml + "\n</details>\n\n"
         )
     for shown, s in enumerate(survivors):
         section = _feed_section(s)
-        if len(report) + len(section) > MAX_REPORT_CHARS - 200:  # room for the note below
+        if len(report) + len(section) > _MAX_REPORT_CHARS - 200:  # room for the note below
             return report + f"... and {len(survivors) - shown} more feeds: see the diff.\n"
         report += section
     return report
 
 
-def render_opml(survivors: Iterable[Survivor], crawl: str, generated: datetime) -> str:
+def _render_opml(survivors: Iterable[Survivor], crawl: str, generated: datetime) -> str:
     """The proposed feeds as OPML, in proposal order, for importing into a feed reader during
     review. Titles are flattened to one printable line (no control characters, which XML
     forbids) and every value is escaped."""
@@ -145,7 +145,7 @@ def render_opml(survivors: Iterable[Survivor], crawl: str, generated: datetime) 
         "  <body>",
     ]
     for s in survivors:
-        title = quoteattr(one_line(s.title, MAX_TITLE) or s.url)
+        title = quoteattr(_one_line(s.title, _MAX_TITLE) or s.url)
         lines.append(
             f'    <outline type="rss" text={title} title={title} xmlUrl={quoteattr(s.url)}/>'
         )

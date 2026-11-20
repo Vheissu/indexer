@@ -33,11 +33,11 @@ from indexer.survivors.wat import DATA_URL, Fetch, WatScan, complete_prefix, pic
 # Progress of a run: `indexer survivors` shows it (INFO) on stderr.
 log = logging.getLogger("indexer.survivors")
 
-CHECK_BATCH = 200  # feeds checked at a time, so a run can stop once it has enough
+_CHECK_BATCH = 200  # feeds checked at a time, so a run can stop once it has enough
 
-type Check = Callable[[Sequence[str]], Awaitable[Iterable[CheckRow]]]
+type _Check = Callable[[Sequence[str]], Awaitable[Iterable[CheckRow]]]
 # Which of these URLs are already proposed or in the inputs table.
-type Known = Callable[[Sequence[str]], Awaitable[set[str]]]
+type _Known = Callable[[Sequence[str]], Awaitable[set[str]]]
 
 
 @dataclass(frozen=True, slots=True)
@@ -80,12 +80,12 @@ class SurvivorsResult:
 async def survivors(
     fetch: Fetch,
     fetch_slice: Fetch,
-    check: Check,
+    check: _Check,
     *,
     years_ago: int,
     active_days: int,
     max_feeds: int | None = None,
-    known: Known | None = None,
+    known: _Known | None = None,
     exclude: frozenset[str] = frozenset(),
     keywords: frozenset[str] = frozenset(),
     rng: random.Random | None = None,
@@ -129,8 +129,8 @@ async def survivors(
 
     # 4-5. Check a batch at a time until enough pass.
     passed: dict[str, Survivor] = {}  # by served URL: two found URLs can redirect to one
-    for start in range(0, len(to_check), CHECK_BATCH):
-        batch = to_check[start : start + CHECK_BATCH]
+    for start in range(0, len(to_check), _CHECK_BATCH):
+        batch = to_check[start : start + _CHECK_BATCH]
         result.checked += len(batch)
         new = [s for row in await check(batch) if (s := _judge(row, rules, wat_url, result))]
         for survivor in await _unknown(new, known, result):
@@ -143,7 +143,7 @@ async def survivors(
 
 
 async def _candidates(
-    feeds: Iterable[str], result: SurvivorsResult, known: Known, rng: random.Random
+    feeds: Iterable[str], result: SurvivorsResult, known: _Known, rng: random.Random
 ) -> list[str]:
     """The advertised feeds worth checking, in random order (so stopping early keeps a random
     subset): archive feeds skipped, session parameters stripped, format variants folded into one
@@ -173,7 +173,7 @@ def _judge(row: CheckRow, rules: Rules, wat_url: str, result: SurvivorsResult) -
 
 
 async def _unknown(
-    survivors: list[Survivor], known: Known, result: SurvivorsResult
+    survivors: list[Survivor], known: _Known, result: SurvivorsResult
 ) -> list[Survivor]:
     """Drops survivors whose served URL we already have (a redirect can lead to one)."""
     if not survivors:

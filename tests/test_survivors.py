@@ -12,23 +12,23 @@ import pytest
 
 from indexer.check.runner import CheckRow
 from indexer.survivors.filters import (
+    _has_keyword,
+    _is_active,
+    _is_english,
     canonical_format,
-    has_keyword,
-    is_active,
     is_archive_feed,
-    is_english,
     served_url,
 )
-from indexer.survivors.run import CHECK_BATCH, survivors
+from indexer.survivors.run import _CHECK_BATCH, survivors
 from indexer.survivors.wat import (
+    _INDEX_URL,
     DATA_URL,
-    INDEX_URL,
     CommonCrawlError,
     Fetch,
+    _crawl_near,
+    _wat_paths,
     complete_prefix,
-    crawl_near,
     scan_wat,
-    wat_paths,
 )
 
 CRAWL = "CC-MAIN-2026-43"
@@ -93,9 +93,9 @@ def test_wat_paths_keeps_only_well_formed_paths_of_the_crawl() -> None:
     listing = "\n".join(
         [PATH, "crawl-data/CC-MAIN-2026-38/segments/1/wat/x.warc.wat.gz", "../../etc/passwd", ""]
     )
-    assert wat_paths(gzip.compress(listing.encode()), CRAWL) == [PATH]
+    assert _wat_paths(gzip.compress(listing.encode()), CRAWL) == [PATH]
     with pytest.raises(CommonCrawlError):
-        wat_paths(gzip.compress(b"nothing useful"), CRAWL)
+        _wat_paths(gzip.compress(b"nothing useful"), CRAWL)
 
 
 NOW = datetime(2026, 11, 16, tzinfo=UTC)
@@ -111,13 +111,13 @@ def test_crawl_near_picks_the_crawl_that_ended_closest() -> None:
             {"id": "CC-MAIN-2020-50", "name": "no dates"},
         ]
     ).encode()
-    assert crawl_near(body, datetime(2021, 11, 25, tzinfo=UTC)) == OLD
+    assert _crawl_near(body, datetime(2021, 11, 25, tzinfo=UTC)) == OLD
     with pytest.raises(CommonCrawlError):
-        crawl_near(b"[]", NOW)
+        _crawl_near(b"[]", NOW)
     with pytest.raises(CommonCrawlError):
-        crawl_near(json.dumps([{"id": "../x", "to": "2021-01-01"}]).encode(), NOW)
+        _crawl_near(json.dumps([{"id": "../x", "to": "2021-01-01"}]).encode(), NOW)
     with pytest.raises(CommonCrawlError):
-        crawl_near(json.dumps([{"id": OLD, "to": "not a date"}]).encode(), NOW)
+        _crawl_near(json.dumps([{"id": OLD, "to": "not a date"}]).encode(), NOW)
 
 
 def test_complete_prefix_drops_a_record_cut_off_by_the_range() -> None:
@@ -169,13 +169,13 @@ def checked(
 
 
 def test_is_active() -> None:
-    assert is_active(checked("u", 10), NOW, 365)
-    assert is_active(checked("u", 365), NOW, 365)
-    assert not is_active(checked("u", 366), NOW, 365)
-    assert not is_active(checked("u", None), NOW, 365)  # no dated items
-    assert not is_active(checked("u", 1, error="http_5xx"), NOW, 365)
-    assert is_active(checked("u", -0.5), NOW, 365)  # time zones: up to a day ahead is fine
-    assert not is_active(checked("u", -3), NOW, 365)  # a future date is not trusted
+    assert _is_active(checked("u", 10), NOW, 365)
+    assert _is_active(checked("u", 365), NOW, 365)
+    assert not _is_active(checked("u", 366), NOW, 365)
+    assert not _is_active(checked("u", None), NOW, 365)  # no dated items
+    assert not _is_active(checked("u", 1, error="http_5xx"), NOW, 365)
+    assert _is_active(checked("u", -0.5), NOW, 365)  # time zones: up to a day ahead is fine
+    assert not _is_active(checked("u", -3), NOW, 365)  # a future date is not trusted
 
 
 @pytest.mark.parametrize(
@@ -188,7 +188,7 @@ def test_is_active() -> None:
     ],
 )
 def test_is_english(language: str | None, english: bool) -> None:
-    assert is_english(checked("u", 1, language=language)) is english
+    assert _is_english(checked("u", 1, language=language)) is english
 
 
 KEYWORDS = frozenset({"porn", "sex", "rape", "fetish"})
@@ -208,8 +208,8 @@ KEYWORDS = frozenset({"porn", "sex", "rape", "fetish"})
 )
 def test_has_keyword(title: str | None, excluded: bool) -> None:
     row = CheckRow("u", NOW, title=title)
-    assert has_keyword(row, KEYWORDS) is excluded
-    assert not has_keyword(row, frozenset())
+    assert _has_keyword(row, KEYWORDS) is excluded
+    assert not _has_keyword(row, frozenset())
 
 
 @pytest.mark.parametrize(
@@ -296,7 +296,7 @@ async def test_survivors_keeps_active_english_feeds_served_over_https() -> None:
         {"id": OLD, "to": "2021-12-09T00:00:00"},
     ]
     served = {
-        INDEX_URL: json.dumps(collinfo).encode(),
+        _INDEX_URL: json.dumps(collinfo).encode(),
         f"{DATA_URL}crawl-data/{OLD}/wat.paths.gz": gzip.compress("\n".join(paths).encode()),
     }
     sliced: list[str] = []
@@ -376,7 +376,7 @@ async def test_survivors_keeps_active_english_feeds_served_over_https() -> None:
 async def test_survivors_fails_when_the_slice_fails() -> None:
     path = f"crawl-data/{OLD}/segments/1/wat/CC-MAIN-1-00000.warc.wat.gz"
     served = {
-        INDEX_URL: json.dumps([{"id": OLD, "to": "2021-12-09T00:00:00"}]).encode(),
+        _INDEX_URL: json.dumps([{"id": OLD, "to": "2021-12-09T00:00:00"}]).encode(),
         f"{DATA_URL}crawl-data/{OLD}/wat.paths.gz": gzip.compress(path.encode()),
     }
 
@@ -397,7 +397,7 @@ def _one_slice(feeds: int) -> tuple[Fetch, Fetch]:
     """fetch and fetch_slice serving one WAT file with `feeds` sites, each advertising a feed."""
     path = f"crawl-data/{OLD}/segments/1/wat/CC-MAIN-1-00000.warc.wat.gz"
     served = {
-        INDEX_URL: json.dumps([{"id": OLD, "to": "2021-12-09T00:00:00"}]).encode(),
+        _INDEX_URL: json.dumps([{"id": OLD, "to": "2021-12-09T00:00:00"}]).encode(),
         f"{DATA_URL}crawl-data/{OLD}/wat.paths.gz": gzip.compress(path.encode()),
     }
     data = wat(*(page(f"https://s{i}.example/", [feed_link("/feed")]) for i in range(feeds)))
@@ -412,7 +412,7 @@ def _one_slice(feeds: int) -> tuple[Fetch, Fetch]:
 
 
 async def test_survivors_stops_once_enough_feeds_pass() -> None:
-    fetch, fetch_slice = _one_slice(CHECK_BATCH * 3)
+    fetch, fetch_slice = _one_slice(_CHECK_BATCH * 3)
     asked: list[str] = []
 
     async def check(urls: Sequence[str]) -> list[CheckRow]:
@@ -423,8 +423,8 @@ async def test_survivors_stops_once_enough_feeds_pass() -> None:
         fetch, fetch_slice, check, years_ago=5, active_days=365, max_feeds=10, now=NOW
     )
     assert len(result.rows) == 10
-    assert len(asked) == result.checked == CHECK_BATCH  # one batch was enough
-    assert result.candidates == CHECK_BATCH * 3
+    assert len(asked) == result.checked == _CHECK_BATCH  # one batch was enough
+    assert result.candidates == _CHECK_BATCH * 3
 
 
 async def test_survivors_skips_known_urls_before_and_after_checking() -> None:

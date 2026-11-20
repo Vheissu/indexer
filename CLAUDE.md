@@ -36,7 +36,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 - `survivors` **proposes, never inserts**: appends to `data/survivors.txt` (a `files` source, CC ToU license) and
   every survivors.yml run opens its own PR from a new branch `survivors-<UTC timestamp>` based on develop (never a reused
   branch, so old proposals can't be merged by mistake). Skips URLs already in develop's file or in inputs.
-  Untrusted titles/links: one line in the file (`proposals.one_line`), code spans in Markdown (no mentions/links).
+  Untrusted titles/links: one line in the file (`proposals._one_line`), code spans in Markdown (no mentions/links).
   PR report: one section per feed (title, URL, last post, detected languages, the links of the 3 latest posts, all code spans),
   for spotting spam; item links are parsed (`FeedInfo.item_links`, 3 newest) but never stored or fetched; the report
   never exceeds GitHub's 65,536-character limit (extra feeds are only counted). It starts with all proposals as OPML in a folded
@@ -54,7 +54,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   URLs rejected in review.
 - `[exclude] domains` (youtube.com, reddit.com) is matched by registrable domain and applied at load and in survivors.
 - `[commoncrawl] exclude_keywords` (adult / sexual-violence words; gambling words added 2026-11-17 after casino spam in a sample), **Common Crawl only**: survivors skips a feed with one as a whole word in its title
-  (`filters.has_keyword`, after the English filter). Agreed with the user on 2026-11-16 after porn in a survivors PR;
+  (`filters._has_keyword`, after the English filter). Agreed with the user on 2026-11-16 after porn in a survivors PR;
   never applied to the curated lists, submissions, load or export.
 - `data/submissions.txt`: user-submitted feeds via PR, last source in sources.toml, read via `files`; tested.
 - Common Crawl rows: source = WAT file URL, license `LicenseRef-CommonCrawl-ToU` (ranked last). No download

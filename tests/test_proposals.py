@@ -8,13 +8,13 @@ from defusedxml import ElementTree as SafeET
 
 from indexer.sources import extract_urls
 from indexer.survivors.proposals import (
-    MAX_REPORT_CHARS,
+    _MAX_REPORT_CHARS,
+    _one_line,
+    _render_opml,
     acceptance,
     known_urls,
     log_line,
-    one_line,
     render_entries,
-    render_opml,
     render_report,
 )
 from indexer.survivors.run import Survivor
@@ -57,9 +57,9 @@ def test_a_hostile_title_cannot_add_a_url_line() -> None:
 
 
 def test_one_line() -> None:
-    assert one_line("  a\tb\n\nc  ", 50) == "a b c"
-    assert one_line("x" * 120, 100) == "x" * 99 + "…"
-    assert one_line(None, 10) == ""
+    assert _one_line("  a\tb\n\nc  ", 50) == "a b c"
+    assert _one_line("x" * 120, 100) == "x" * 99 + "…"
+    assert _one_line(None, 10) == ""
     block = render_entries([survivor("https://a.example/f", None, None)], "C", date(2026, 1, 1))
     assert "# (no title) · (no language) · last post 2026-11-12" in block
 
@@ -99,7 +99,7 @@ def test_report_never_exceeds_the_github_limit() -> None:
         for i in range(500)
     ]
     report = render_report(many, "CC-MAIN-2021-49", "summary", NOW)
-    assert len(report) <= MAX_REPORT_CHARS
+    assert len(report) <= _MAX_REPORT_CHARS
     assert "<opml" not in report  # too big: left out, the room goes to the feeds
     shown = report.count("### ")
     assert 0 < shown < 500 and f"... and {500 - shown} more feeds: see the diff." in report
@@ -129,7 +129,7 @@ def test_opml_lists_every_proposal_in_order_escaped() -> None:
         survivor("https://a.example/feed?x=1&y=2", 'Tom & "Jerry" <b>\x00\x1b\n'),
         survivor("https://b.example/rss", None),
     ]
-    xml = render_opml(feeds, "CC-MAIN-2021-49", NOW)
+    xml = _render_opml(feeds, "CC-MAIN-2021-49", NOW)
     root = SafeET.fromstring(xml.encode())  # well-formed: control characters are gone
     assert root.findtext("./head/title") == "Proposed feeds from CC-MAIN-2021-49"
     outlines = root.findall("./body/outline")
@@ -149,5 +149,5 @@ def test_report_starts_with_the_opml_in_a_fence_nothing_can_close() -> None:
     fence = "``````"  # longer than the title's run of five
     start = report.index(fence + "xml\n") + len(fence + "xml\n")
     end = report.index(fence + "\n", start)
-    assert report[start:end] == render_opml(feeds, "CC-MAIN-2021-49", NOW)
+    assert report[start:end] == _render_opml(feeds, "CC-MAIN-2021-49", NOW)
     assert "<details><summary>" in report and "</details>" in report

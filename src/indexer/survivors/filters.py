@@ -42,13 +42,13 @@ def rejection(row: CheckRow, rules: Rules) -> Reason | None:
     """The first rule the checked feed fails, or None if it passes them all."""
     if row.error is not None:
         return "failed"
-    if not is_active(row, rules.now, rules.active_days):
+    if not _is_active(row, rules.now, rules.active_days):
         return "inactive"
-    if not is_english(row):
+    if not _is_english(row):
         return "not_english"
     if not row.title:
         return "untitled"
-    if has_keyword(row, rules.keywords):
+    if _has_keyword(row, rules.keywords):
         return "keyword"
     if served_url(row, rules.exclude) is None:
         return "not_https"
@@ -58,7 +58,7 @@ def rejection(row: CheckRow, rules: Rules) -> Reason | None:
 # --- the rules after checking ---------------------------------------------------------------
 
 
-def is_active(row: CheckRow, now: datetime, active_days: int) -> bool:
+def _is_active(row: CheckRow, now: datetime, active_days: int) -> bool:
     """Parsed today, and the newest item is from the last `active_days` days. A date more than a
     day in the future is not trusted."""
     date = row.last_item_date
@@ -67,13 +67,13 @@ def is_active(row: CheckRow, now: datetime, active_days: int) -> bool:
     return now - timedelta(days=active_days) <= date <= now + timedelta(days=1)
 
 
-def is_english(row: CheckRow) -> bool:
+def _is_english(row: CheckRow) -> bool:
     """English is among the languages detected on the feed's items (`en`, see
     `indexer.language`). What the feed declares is not read."""
     return "en" in {t.strip() for t in (row.language or "").split(",")}
 
 
-def has_keyword(row: CheckRow, keywords: frozenset[str]) -> bool:
+def _has_keyword(row: CheckRow, keywords: frozenset[str]) -> bool:
     """The feed's title contains one of `keywords` (lower case) as a whole word: not inside
     another word, so "sex" matches "Sex Toys" and "sex-ed" but not "Essex"."""
     if not keywords:
