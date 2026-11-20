@@ -37,8 +37,9 @@ from indexer.sources import (
     download,
     load_config,
 )
-from indexer.survivors import commoncrawl, proposals
-from indexer.survivors.commoncrawl import CommonCrawlError
+from indexer.survivors import proposals
+from indexer.survivors import run as survivors_run
+from indexer.survivors.wat import CommonCrawlError
 from indexer.topics import TOPICS_DIR, Post, TopicModel, TopicsError, build_index
 
 log = logging.getLogger("indexer")
@@ -198,8 +199,8 @@ async def _survivors(args: argparse.Namespace) -> int:
             async def known(urls: Sequence[str]) -> set[str]:
                 return {u for u in urls if u in in_file} | await db.known_inputs(list(urls))
 
-            commoncrawl.log.setLevel(logging.INFO)  # show the run's progress
-            result = await commoncrawl.survivors(
+            survivors_run.log.setLevel(logging.INFO)  # show the run's progress
+            result = await survivors_run.survivors(
                 fetch_once,
                 fetch_slice,
                 check,
@@ -218,13 +219,14 @@ async def _survivors(args: argparse.Namespace) -> int:
         " (stopped: enough feeds)" if result.checked < result.candidates - result.known else ""
     )
     summary = (
-        f"{args.slice_mb} MB of {result.file.path.rsplit('/', 1)[-1]}:"
+        f"{args.slice_mb} MB of {result.scan.path.rsplit('/', 1)[-1]}:"
         f" {result.candidates} feed URLs ({result.archive_feeds} category/tag/author feeds"
         f" skipped, {result.known} already known), {result.checked} checked{stopped},"
         f" {result.working} working today, {result.active} with an item in the last"
         f" {args.active_days} days, {result.english} in English"
-        f" ({result.untitled} without a title, {result.keyword_excluded} with an excluded"
-        f" keyword); acceptance {proposals.acceptance(len(new), result.checked)}"
+        f" ({result.rejected['untitled']} without a title,"
+        f" {result.rejected['keyword']} with an excluded keyword);"
+        f" acceptance {proposals.acceptance(len(new), result.checked)}"
     )
     print(f"{result.crawl}: {summary}: {len(new)} proposed in {args.file}")
     for survivor in new:

@@ -7,7 +7,6 @@ from pathlib import Path
 from defusedxml import ElementTree as SafeET
 
 from indexer.sources import extract_urls
-from indexer.survivors.commoncrawl import Survivor
 from indexer.survivors.proposals import (
     MAX_REPORT_CHARS,
     acceptance,
@@ -18,6 +17,7 @@ from indexer.survivors.proposals import (
     render_opml,
     render_report,
 )
+from indexer.survivors.run import Survivor
 
 NOW = datetime(2026, 11, 19, tzinfo=UTC)
 WAT = "https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1/wat/x.warc.wat.gz"

@@ -473,7 +473,7 @@ Source layout (`src/indexer/`):
 | `sources.py` | data/sources.toml and loading the lists into inputs |
 | `net/` | fetching untrusted URLs: `fetch.py` (the guarded fetcher), `validate.py` (URL rules, URL files), `resolver.py`, `ippolicy.py`, `urls.py`, `domains.py` |
 | `check/` | `runner.py` (one check per URL), `feed.py` (parsing RSS/Atom) |
-| `survivors/` | `commoncrawl.py` (WAT sampling and filters), `proposals.py` (survivors.txt and the PR report) |
+| `survivors/` | `run.py` (the pipeline, steps 1–5), `wat.py` (reading Common Crawl), `filters.py` (the agreed rules), `proposals.py` (survivors.txt and the PR report) |
 
 ```sh
 uv run pytest            # no network needed: local test server and fake DNS

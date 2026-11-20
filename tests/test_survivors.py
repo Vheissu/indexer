@@ -1,4 +1,4 @@
-"""Survivors from Common Crawl WAT files (synthetic files, fake fetch: no network)."""
+"""Survivors: reading WAT files, the rules, the pipeline (synthetic files, no network)."""
 
 import gzip
 import json
@@ -11,22 +11,23 @@ from datetime import UTC, datetime, timedelta
 import pytest
 
 from indexer.check.runner import CheckRow
-from indexer.survivors.commoncrawl import (
-    CHECK_BATCH,
-    DATA_URL,
-    INDEX_URL,
-    CommonCrawlError,
-    Fetch,
+from indexer.survivors.filters import (
     canonical_format,
-    complete_prefix,
-    crawl_near,
     has_keyword,
     is_active,
     is_archive_feed,
     is_english,
-    scan_wat,
     served_url,
-    survivors,
+)
+from indexer.survivors.run import CHECK_BATCH, survivors
+from indexer.survivors.wat import (
+    DATA_URL,
+    INDEX_URL,
+    CommonCrawlError,
+    Fetch,
+    complete_prefix,
+    crawl_near,
+    scan_wat,
     wat_paths,
 )
 
@@ -346,7 +347,7 @@ async def test_survivors_keeps_active_english_feeds_served_over_https() -> None:
     )
     assert result.crawl == OLD
     assert len(sliced) == 1 and sliced[0].removeprefix(DATA_URL) in paths  # one random file
-    assert result.file.path == sliced[0].removeprefix(DATA_URL)
+    assert result.scan.path == sliced[0].removeprefix(DATA_URL)
     # s/feed/, s/old/feed/, h.example/rss, m0/feed, m1/feed, fr/feed, forum/feed (sid stripped),
     # shared/feed/, adult/feed/, untitled/feed/. The category feed is never checked.
     # No YouTube, nothing from the cut record, each URL checked once.
@@ -357,8 +358,9 @@ async def test_survivors_keeps_active_english_feeds_served_over_https() -> None:
     assert result.working == 10
     assert result.active == 8  # s/feed/, m0, m1, h.example (http), fr, forum, adult, untitled
     assert result.english == 7  # not fr
-    assert result.untitled == 1
-    assert result.keyword_excluded == 1  # adult
+    assert result.rejected["untitled"] == 1
+    assert result.rejected["keyword"] == 1  # adult
+    assert result.rejected["not_https"] == 1  # h.example: still plain http
     assert sorted(r.url for r in result.rows) == [
         "https://forum.example/feed",
         "https://new.example/feed",  # m0 and m1: one row

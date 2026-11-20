@@ -27,7 +27,7 @@ from pathlib import Path
 from xml.sax.saxutils import escape, quoteattr
 
 from indexer.sources import extract_urls
-from indexer.survivors.commoncrawl import Survivor
+from indexer.survivors.run import Survivor
 
 MAX_TITLE = 100
 
