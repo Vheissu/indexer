@@ -117,7 +117,7 @@ def scan_wat(data: bytes, path: str, exclude: frozenset[str] = frozenset()) -> W
     """Every feed URL advertised in a (complete) WAT slice, validated like any input, minus
     `exclude` domains, de-duplicated by exact URL."""
     scan = WatScan(path)
-    found: dict[str, None] = {}  # an ordered set
+    found: list[str] = []
     try:
         with gzip.open(io.BytesIO(data), "rb") as stream:
             for envelope in _metadata_envelopes(stream):
@@ -127,10 +127,10 @@ def scan_wat(data: bytes, path: str, exclude: frozenset[str] = frozenset()) -> W
                 scan.pages += 1
                 scan.pages_with_feed += bool(feeds)
                 scan.feed_links += len(feeds)
-                found.update(dict.fromkeys(feeds))
+                found.extend(feeds)
     except (OSError, EOFError) as exc:
         raise CommonCrawlError(f"{path}: {exc}") from exc
-    valid, _invalid = valid_urls(found)
+    valid, _invalid = valid_urls(found)  # also drops repeats (most pages repeat their site's feed)
     valid, _excluded = drop_excluded(valid, exclude)
     scan.feeds = [url for url, _host in valid]
     return scan
