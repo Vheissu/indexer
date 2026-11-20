@@ -12,15 +12,10 @@ MAX_LENGTH = 256  # characters in the URL
 MAX_SLASHES = 7  # in the path
 MAX_SEGMENT = 25  # characters in the longest path segment
 
-# Somewhere in the URL.
-_FEED_INDICATORS = re.compile(
-    r"(atom|rss|feed|rdf|xml|spip|synd|pod|api|backend\.php)", re.IGNORECASE
-)
 # Anywhere in the URL: never a feed worth proposing.
 _REJECTED = [
     re.compile(r"/20[0-9]{2}/[0-9]{2}/"),  # a dated post
     re.compile(r"/comments"),
-    re.compile(r"/sitemap\.xml"),
     re.compile(r"comments/"),
     re.compile(r"feed=comments"),
     re.compile(r"commentId="),
@@ -76,7 +71,7 @@ def filter_page_links(page: str, links: Any, exclude: frozenset[str] = frozenset
 def _looks_like_a_feed(url: str) -> bool:
     """Short, not too deep, no rejected pattern, and what follows the host is an accepted shape."""
     parts = urlsplit(url)
-    if len(url) > MAX_LENGTH or not _FEED_INDICATORS.search(url):
+    if len(url) > MAX_LENGTH:
         return False
     if any(pattern.search(url) for pattern in _REJECTED):
         return False

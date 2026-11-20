@@ -179,13 +179,8 @@ async def _unknown(
 
 
 def _site(url: str) -> str:
-    """The host without www., so users of shared hosts (x.blog.fc2.com, y.free.fr) stay apart.
-    FeedBurner hosts many sites' feeds: there, the first path segment names the site."""
-    parts = urlsplit(url)
-    host = (parts.hostname or "").lower().removeprefix("www.")
-    if host.endswith("feedburner.com"):
-        return host + "/" + parts.path.strip("/").split("/")[0]
-    return host
+    """The host without www., so users of shared hosts (x.blog.fc2.com, y.free.fr) stay apart."""
+    return (urlsplit(url).hostname or "").lower().removeprefix("www.")
 
 
 async def _nothing_known(urls: Sequence[str]) -> set[str]:

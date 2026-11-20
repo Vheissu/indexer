@@ -119,16 +119,16 @@ takes a WordPress category, tag or author feed (`/category/news/feed/`, a subset
 or a comment feed (WordPress `/comments/feed/` and `?feed=comments-rss2`, Blogger
 `/feeds/comments/` and `/feeds/<post id>/comments/`). Every `http://` link is tried as `https://`.
 A link must also **look like a feed URL** (`feed_links.py`): at most 256 characters, at most 7
-slashes in the path and 25 characters in a path segment, a feed word somewhere (`rss`, `atom`,
-`feed`, `xml`, ...), none of the rejected patterns (a dated path like `/2021/04/`, `comments`,
-`sitemap.xml`, `alt=rss`, ...), and what follows the host one of the accepted shapes (`/feed/`,
+slashes in the path and 25 characters in a path segment, none of the rejected patterns (a dated
+path like `/2021/04/`, `comments`, `alt=rss`, ...), and what follows the host one of the accepted
+shapes (`/feed/`,
 `/rss.xml`, `/atom.php`, `/app.php/feed`, `/<one segment>/feed/`, ...). Feeds outside those
 shapes are dropped, among them SPIP's `spip.php?page=backend`, `backend.php`, Blogger's
 `/feeds/posts/default` and FeedBurner. Survivors picks **one random feed link per page**
 from the rest, without session parameters (`sid`, `PHPSESSID`, `jsessionid`, ...). It checks the picks today with the guarded fetcher (no retries), and of the feeds
 that pass on one site it keeps the one with the shortest URL (ties by name), so one site is proposed
 once. A site is the host without `www.` (not the registrable domain, which would merge the users of
-shared hosts like `fc2.com` or `free.fr`); on FeedBurner, the host and the first path segment. A feed is proposed only if:
+shared hosts like `fc2.com` or `free.fr`). A feed is proposed only if:
 
 - it parses, and its newest item is from the last `--active-days` (243, about 8 months) days (a
   date more than a day in the future doesn't count);
@@ -145,7 +145,7 @@ shared hosts like `fc2.com` or `free.fr`); on FeedBurner, the host and the first
 
 Feeds already there are skipped before checking (and again after, for the URL a redirect led
 to). The rest are checked in random order, 200 at a time, and the run stops once `--max-feeds`
-(50) pass, so a run proposes at most 50 and stops downloading early.
+(20) pass, so a run proposes at most 20 and stops checking early.
 
 The finds are appended to `data/survivors.txt`, each as a comment line (title, detected
 languages, date of the newest item), the WAT file it came from, and the URL. Each workflow run commits
