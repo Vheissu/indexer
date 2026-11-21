@@ -44,7 +44,7 @@ exclude_keywords = [
   # gambling
   "casino", "casinos", "online casino", "gambling", "betting", "sportsbook", "bookmaker",
   "poker", "baccarat", "roulette", "blackjack", "slots", "slot online", "slot gacor", "gacor",
-  "judi", "judi online", "togel", "sbobet", "maxwin",
+  "judi", "judi online", "togel", "sbobet", "maxwin", "bettor", "bettors",
   # pirated software and films (added 2026-11-21 after a warez feed)
   "crack", "cracked", "keygen", "torrent", "torrents", "camrip", "yify", "activated", "serial key",
   # sponsored posts (added 2026-11-21)

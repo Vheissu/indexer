@@ -21,6 +21,8 @@ feed_links.py).
                  ...", "Learn ...", "Explore ...", "Understand ..."): content farms
     title_echo   two recent posts' descriptions start with the post's own title: generated text
     reposted     a post credits another outlet ("... article appeared in the Guardian")
+    unwanted_url served from a URL the link rules reject (feed_links.is_unwanted), reached by a
+                 redirect
     not_https    not served over https today (or redirected to an excluded domain)
 
 The rules after `keyword` were agreed on 2026-11-21 from the reviews so far: simple, and
@@ -36,6 +38,7 @@ from typing import Literal
 from indexer.check.feed import RecentPost
 from indexer.check.runner import CheckRow
 from indexer.net.urls import drop_excluded, strip_session, valid_urls
+from indexer.survivors.feed_links import is_unwanted
 
 _MIN_TEXT_KEYWORDS = 3  # excluded words in a feed's subtitle and posts that exclude it
 
@@ -55,6 +58,7 @@ type Reason = Literal[
     "seo_summary",
     "title_echo",
     "reposted",
+    "unwanted_url",
     "not_https",
 ]
 
@@ -109,8 +113,11 @@ def rejection(row: CheckRow, rules: Rules) -> Reason | None:
         return "title_echo"
     if any(_REPOSTED.search(text) for text in texts):
         return "reposted"
-    if served_url(row, rules.exclude) is None:
+    served = served_url(row, rules.exclude)
+    if served is None:
         return "not_https"
+    if is_unwanted(served):
+        return "unwanted_url"
     return None
 
 

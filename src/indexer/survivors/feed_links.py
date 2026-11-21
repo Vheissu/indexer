@@ -32,12 +32,13 @@ _REJECTED = _patterns(
     r"alt=rss",
     r"/web-stories/",  # the Google Web Stories plugin, not posts
     # forums and wikis (agreed 2026-11-21: mostly change logs and noise in review)
-    r"^https?://forum\.",
+    r"[./-]forums?(?=[./?#-]|$)",  # a forum.* or forums.* host, a /forum/ or -forums/ path
     r"feed\.php",  # DokuWiki, phpBB
     r"app\.php/feed",  # phpBB
     r"syndication\.php",  # MyBB
     r"type=rss;action",  # SMF
     r"/activity/feed",  # BuddyPress member activity, not posts
+    r"/recent\.rss",  # Digital Commons: recently added papers, not posts
 )
 # WordPress serves its feed in several formats; /feed/ is the one we keep.
 _WORDPRESS_FORMAT = re.compile(r"/feed/(atom|rss|rss2|rdf)/?$", re.IGNORECASE)
@@ -52,7 +53,6 @@ _ACCEPTED = _patterns(
     # feed paths
     r"/(atom|rss|rss2|feed|feeds)(\.feed\.php)?/?",
     r"/(atom|rss|rss2|feed|feeds)\.xml",
-    r"/recent\.rss",
     r"/\?rss=1",
     r"\?com=rss",
     r"/(atom|rss|rss2|feed|feeds)\.php",
@@ -113,15 +113,21 @@ def _is_own_feed(page: str, url: str) -> bool:
     )
 
 
+def is_unwanted(url: str) -> bool:
+    """On a free domain or matching a rejected pattern: checked on the links before fetching,
+    and again on the URL a feed is served from after redirects."""
+    if (urlsplit(url).hostname or "").rsplit(".", 1)[-1] in FREE_TLDS:
+        return True
+    return any(pattern.search(url) for pattern in _REJECTED)
+
+
 def _looks_like_a_feed(url: str) -> bool:
     """Short, not too deep, not on a free domain, no rejected pattern, and what follows the host
     is an accepted shape."""
     parts = urlsplit(url)
     if len(url) > MAX_LENGTH:
         return False
-    if (parts.hostname or "").rsplit(".", 1)[-1] in FREE_TLDS:
-        return False
-    if any(pattern.search(url) for pattern in _REJECTED):
+    if is_unwanted(url):
         return False
     if parts.path.count("/") > MAX_SLASHES:
         return False

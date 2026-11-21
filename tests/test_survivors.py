@@ -12,7 +12,7 @@ import pytest
 
 from indexer.check.feed import RecentPost
 from indexer.check.runner import CheckRow
-from indexer.survivors.feed_links import filter_page_links
+from indexer.survivors.feed_links import filter_page_links, is_unwanted
 from indexer.survivors.filters import (
     Rules,
     _has_keyword,
@@ -680,3 +680,29 @@ def test_posts_without_any_text() -> None:
     row.recent_posts = (RecentPost("https://s.example/1", None, None),
                         RecentPost("https://s.example/2", "A title", None))  # fmt: skip
     assert rejection(row, Rules(NOW, 365)) is None
+
+
+@pytest.mark.parametrize(
+    ("url", "unwanted"),
+    [
+        ("https://forums.veeam.com/feed", True),
+        ("https://wimsbios.com/forum/feed", True),
+        ("https://pregame.com/pregame-forums/rss", True),
+        ("https://lib.example/recent.rss", True),  # Digital Commons
+        ("https://hightechforum.org/feed/", False),  # "forum" inside a word
+        ("https://magforum.wordpress.com/feed/", False),
+        ("https://tal.forum2.org/xml/rss", False),
+        ("https://blog.example/feed/", False),
+    ],
+)
+def test_unwanted_urls(url: str, unwanted: bool) -> None:
+    assert is_unwanted(url) is unwanted
+
+
+def test_a_redirect_to_an_unwanted_url_is_rejected() -> None:
+    row = checked(
+        "https://www.celestialheavens.com/forum/feed",
+        3,
+        final_url="https://www.celestialheavens.com/forums/app.php/feed",
+    )
+    assert rejection(row, Rules(NOW, 365)) == "unwanted_url"

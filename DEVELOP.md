@@ -123,10 +123,12 @@ A link must also **look like a feed URL** (`feed_links.py`): at most 256 charact
 slashes in the path and 25 characters in a path segment, none of the rejected patterns (a dated
 path like `/2021/04/`, `comments`, `alt=rss`, ...), and what follows the host one of the accepted
 shapes (`/feed/`,
-`/rss.xml`, `/atom.php`, `/<one segment>/feed/`, ...). Forums and wikis are dropped too: a host
-starting with `forum.`, `feed.php` (DokuWiki, phpBB), `app.php/feed` (phpBB), `syndication.php`
-(MyBB), `type=rss;action` (SMF) and BuddyPress's `/activity/feed`; their feeds are mostly edits,
-replies and sign-ups. So are feeds on
+`/rss.xml`, `/atom.php`, `/<one segment>/feed/`, ...). Forums and wikis are dropped too: "forum" or
+"forums" as a host label or path segment (`forums.example.com`, `/forum/`, `-forums/`, but not
+`hightechforum.org`), `feed.php` (DokuWiki, phpBB), `app.php/feed` (phpBB), `syndication.php`
+(MyBB), `type=rss;action` (SMF), BuddyPress's `/activity/feed` and Digital Commons'
+`/recent.rss`; their feeds are mostly edits, replies, sign-ups and papers. These rules are applied
+again to the URL a feed is served from after redirects (`unwanted_url`). So are feeds on
 the top-level domains Freenom gave away (`.tk`, `.ml`, `.ga`, `.cf`, `.gq`), mostly spam.
 WordPress's feed in another format (`/feed/atom/`, `/feed/rss2/`, `/feed/rss/`, `/feed/rdf/`) is
 read as its main feed, `/feed/`, so a feed already known or proposed isn't proposed again in

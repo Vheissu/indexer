@@ -243,7 +243,8 @@ async def _survivors(args: argparse.Namespace) -> int:
         f" {result.rejected['repeated']} repeating a post,"
         f" {result.rejected['seo_summary']} with SEO summaries,"
         f" {result.rejected['title_echo']} echoing titles,"
-        f" {result.rejected['reposted']} reposting other outlets);"
+        f" {result.rejected['reposted']} reposting other outlets,"
+        f" {result.rejected['unwanted_url']} redirected to an unwanted URL);"
         f" acceptance {proposals.acceptance(len(new), result.checked)}"
     )
     path = args.dir / proposals.file_name(started)
