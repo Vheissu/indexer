@@ -1,0 +1,373 @@
+# Proposed 2026-11-21 from CC-MAIN-2021-49. Uncomment the
+# URL of each feed to keep.
+
+# A Field Trip Life · en · last post 2026-10-31
+# score: 0.772
+# about: Books, places, and books that take you places
+# categories (on 10 posts): picture books 7, places 5, read
+#   aloud 5, book travel 4, bookish field trips 4,
+#   multicultural children's books 4, uncategorized 4,
+#   angela c. hawkins 2
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362287.26/wat/CC-MAIN-20211202175510-20211202205510-00345.warc.wat.gz
+# recent posts:
+#   - https://afieldtriplife.com/fortune-cookies-for-everyone-a-field-trip/
+#     FORTUNE COOKIES FOR EVERYONE – a field trip
+#     I have a confession to make. I save my favorite
+#     fortunes from fortune cookies. I can’t resist. They
+#     are often humorous, strange, and wise. Here are some
+#     examples: So, I was excited to find a perfect p
+#   - https://afieldtriplife.com/gander-the-town-that-welcomed-the-world/
+#     GANDER: The Town That Welcomed the World
+#     As many of us recall the tragic events that happened
+#     twenty-five years ago on September 11, 2001, we need
+#     to recognize that approximately 30% of the United
+#     States population was not yet alive when the
+#   - https://afieldtriplife.com/hoop-dreams-a-story-of-friendship-and-embracing-differences/
+#     HOOP DREAMS – a story of friendship and embracing
+#     differences
+#     I have been eagerly waiting for the launch of this new
+#     book, and I am excited to be able to share it on
+#     Perfect Picture Book Friday. It was written by a dear
+#     friend and was inspired by one of her beau
+https://afieldtriplife.com/feed/
+
+# Brian Crawford · en · last post 2026-10-22
+# score: 0.707
+# about: The website of Brian Anthony Crawford
+# categories (on 20 posts): personal 13, travel 12, czech
+#   republic 6, prague 5, canada 4, family 4, art 3, nature
+#   3
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362287.26/wat/CC-MAIN-20211202175510-20211202205510-00345.warc.wat.gz
+# recent posts:
+#   - https://briancrawford.com/2026/10/22/autumn-in-torrevieja-along-the-spanish-coast/
+#     Autumn in Torrevieja along the Spanish coast
+#     Torrevieja is a seaside city south of Alicante on the
+#     east coast of Spain. We’re here until mid-December,
+#     working remotely while living the Spanish lifestyle.
+#     This is Playa de los Locos in the northea
+#   - https://briancrawford.com/2026/09/18/summer-at-our-cottage-in-ontario/
+#     Summer at our cottage in Ontario
+#     After spending the first two weeks of June exploring
+#     Montreal, we came to our cottage in Ontario. I’ve been
+#     here since mid-June. I’ve lived in many places during
+#     my life: give or take a few years, I’v
+#   - https://briancrawford.com/2026/07/14/kayaking-at-dusk/
+#     Kayaking at dusk
+#     Twilight is my favorite time to be in a kayak. The
+#     light dims, and a cool breeze wafts over the water.
+#     The eastern sky turns a deep shade of purple. Glimmers
+#     of pink fringe any clouds in the west. Gra
+https://briancrawford.com/feed/
+
+# Ralph Hass Has The VOice...On and Off the Ice · en · last
+#   post 2026-06-01
+# score: 0.656
+# about: Ralph Hass voices all sorts of sports projects with
+#   exciting sprints to the finish! Clients include the
+#   NHL's Buffalo Sabres (17 seasons handling MSG-TV
+#   imaging) and Shaw TV in Canada (10 seasons voic
+# categories (on 25 posts): none
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362287.26/wat/CC-MAIN-20211202175510-20211202205510-00345.warc.wat.gz
+# recent posts:
+#   - https://hasthevoice.blogspot.com/2026/06/hockey-hoops-still-happening.html
+#     Hockey & Hoops Still Happening😎
+#     On my Instagram 16 months later. Happy 1st day of
+#     June! The Stanley Cup final begins tomorrow night🏆 Who
+#     are you picking between Carolina and Vegas? The NBA
+#     title is on the line beginning Wednesday as
+#   - https://hasthevoice.blogspot.com/2025/02/walk-through-snow-drive-thru-for-food.html
+#     Walk Through Snow, Drive-Thru for Food or Run Around
+#     for 🏀?
+#     All that is happening on my latest Instagram posts☑️
+#     So many zeroes as the milestone of 9️00 posts is hit🙌
+#     Thankful for good health and time to do all these
+#     things regularly ❤️
+#   - https://hasthevoice.blogspot.com/2022/12/color-commentary-and-movie-magic.html
+#     Color Commentary and Movie Magic🎬
+#     Blue (for the Sabres) on my Instagram today but white
+#     (for the snow) yesterday ❄🏂 A mix of the two before
+#     that with Elvis' " Blue Christmas" 🎄 Green for the win
+#     too! Unfortunately, TOO much snow in Bu
+https://hasthevoice.blogspot.com/feeds/posts/default
+
+# The Cobar Weekly · en · last post 2026-11-19
+# score: 0.628
+# about: Ph 6836 3616 | Serving the Cobar community for over
+#   40 years
+# categories (on 10 posts): 2026 10, 181126 7, local news 5,
+#   111126 3, local sport 3, 2026 di mcleod memorial day 1,
+#   back page 1, cobar miners race club 1
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362287.26/wat/CC-MAIN-20211202175510-20211202205510-00345.warc.wat.gz
+# recent posts:
+#   - https://cobarweekly.com.au/queenslanders-get-variety-and-adventure-on-trip-to-cobar/
+#     Queenslanders get variety and adventure on trip to
+#     Cobar
+#     The 2026 Queensland Variety 4WD Adventure, which
+#     finished in Cobar on Friday, lived up to its name
+#     providing participants with plenty of variety and
+#     adventure. The 34 car convoy carrying 72 participan
+#   - https://cobarweekly.com.au/polack-returned-to-lead-the-cobar-miners-race-club/
+#     Polack returned to lead the Cobar Miners Race Club
+#     The Cobar Miners Race Club will continue to be led by
+#     Tony Polack, with Polack returned as president at the
+#     club’s annual general meeting last Wednesday. The
+#     meeting just reached its quorum and Polack
+#   - https://cobarweekly.com.au/usos-barbers-fundraiser-for-a-cause-very-close-to-home/
+#     Uso’s Barber’s fundraiser for a cause very close to
+#     home
+#     The mayor, Jarrod Marsden, was one of a number of
+#     locals who called in for a fresh ‘do last Tuesday from
+#     Loma Atuau at The Uso’s Barber when 100 percent of the
+#     takings from all services were donated t
+https://cobarweekly.com.au/feed/
+
+# My Momma Taught Me · en · last post 2026-10-30
+# score: 0.603
+# categories (on 6 posts): online deals 4, amazon deals 2,
+#   walmart deals 2, bj's 1, target deals 1
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362287.26/wat/CC-MAIN-20211202175510-20211202205510-00345.warc.wat.gz
+# recent posts:
+#   - https://mymommataughtme.com/bjs-wholesale-club-42-savings-deals/
+#     BJ’s Wholesale Club 42% Savings Deals
+#     BJ’s Wholesale Club is having a great sale right now!
+#     You can find a few select different items are 42% off
+#     in celebration of their 42 years. Head on over here to
+#     find these deals. These deals run thr
+#   - https://mymommataughtme.com/ritz-fresh-stacks-crackers-variety-pack-low-price-online/
+#     RITZ Fresh Stacks Crackers Variety Pack Low Price
+#     Online
+#     Right now on Amazon you can find these Ritz Crackers
+#     marked down. They are also showing coupons to clip as
+#     available for a lower price. RITZ Fresh Stacks
+#     Crackers Variety Pack, 3 Flavors, 6 Multi Snac
+#   - https://mymommataughtme.com/corelle-vintage-pattern-dinnerware-sets-now-available-and-on-sale/
+#     Corelle Vintage Pattern Dinnerware Sets Now Available
+#     and on sale!
+#     When I saw this Corelle Vintage Dinnerware Set I knew
+#     I had to grab one. This is the exact set my
+#     grandmother had when I was growing up and used. I t
+#     was by far my favorite. I have the green set of he
+# rejected: commercial
+# https://mymommataughtme.com/feed/
+
+# Wellington Radio Yacht Club · en · last post 2026-11-13
+# score: 0.567
+# about: Home of IOM and AC15 Model Yacht Sailing for
+#   Wellngton New Zealand
+# categories (on 10 posts): iom 8, series results 8, ac 15 2
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362287.26/wat/CC-MAIN-20211202175510-20211202205510-00345.warc.wat.gz
+# recent posts:
+#   - https://wryc.org.nz/2026/11/13/live-scoring-murray-rountree-memorial-wellington-iom-championships-2026-evans-bay-14-15-nov/
+#     Live Scoring: Murray Rountree Memorial/ Wellington IOM
+#     Championships 2026 @ Evans Bay (14 – 15 Nov)
+#     Follow this link: Afleet Connect – MR 2026 Live
+#     Scoring.
+#   - https://wryc.org.nz/2026/11/07/wellington-iom-interclub-results-6/
+#     Wellington IOM Interclub Results
+#   - https://wryc.org.nz/2026/11/01/ac15-match-racing-spring-day-5-2/
+#     AC15 Match Racing Spring Day 5
+#     Strong Gusts threatening so chose B rigs over A this
+#     afternoon.Just as well as the wind picked up and even
+#     over powered the B rigs at times, especially later in
+#     the afternoon. Started with 3 boats but
+# rejected: notices
+# https://wryc.org.nz/feed/
+
+# GROW · en · last post 2026-11-14
+# score: 0.520
+# about: Grateful Recovering Online Women
+# categories (on 10 posts): current meeting 7, 2026 business
+#   meeting - october 6, uncategorized 6, 2026 october
+#   business meeting 5, current business meeting 4, 2026
+#   trusted servant reports 3, trusted servants 2, 2026
+#   group conscience decisions 1
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362287.26/wat/CC-MAIN-20211202175510-20211202205510-00345.warc.wat.gz
+# recent posts:
+#   - https://g-r-o-w.com/november-15-gratitude/
+#     November 15: Gratitude.
+#     Gratitude is the tool that grounds me in the present.
+#     I always wanted to be somewhere else, doing something
+#     else. The Continue Reading November 15: Gratitude. →
+#   - https://g-r-o-w.com/newcomer-rep-welcome-template/
+#     Newcomer Rep Welcome Template
+#     Newcomer Rep Welcome Template Hi, [newcomer name]! I
+#     am [newcomer rep name] and I’m an alcoholic, member
+#     here in GROW Continue Reading Newcomer Rep Welcome
+#     Template →
+#   - https://g-r-o-w.com/2026-business-meeting-october-7/
+#     2026 Business Meeting – October
+#     Newcomer Rep Welcome Letter Template Hi, [<em>newcomer
+#     name</em>]! I am [newcomer rep name] and I’m an
+#     alcoholic, member here in Continue Reading 2026
+#     Business Meeting – October →
+# rejected: notices
+# https://g-r-o-w.com/feed/
+
+# The Menzies Digest · en · last post 2026-11-06
+# score: 0.498
+# about: Fansite: News on actor Tobias Menzies
+# categories (on 10 posts): uncategorized 10
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362287.26/wat/CC-MAIN-20211202175510-20211202205510-00345.warc.wat.gz
+# recent posts:
+#   - https://tobiasmenzies.copperboom.us/2026/11/06/the-pelicot-trial-official-page/
+#     The Pelicot Trial Official Page
+#     A official page for the Pelicot Trial has been posted
+#     on the young vic
+#   - https://tobiasmenzies.copperboom.us/2026/11/06/the-pelicot-trial/
+#     The Pelicot Trial
+#     Tobias Menzies will be reading the Pelicot Trial at
+#     London County Hall on the 30th November 2026 at
+#     18:00pm
+#   - https://tobiasmenzies.copperboom.us/2026/10/29/royal-court-theatre-2027-x-naomi-in-blue-who-knows-music-video-28th-october-2026/
+#     Royal Court Theatre 2027 x Naomi in Blue: Who Knows
+#     Music Video (28th October 2026)
+#     A music video of the Royal Court Theatre 2027 x Naomi
+#     in Blue: Who Knows has been posted on the Royal Court
+#     Theatre youtube channel (28th October 2026)
+https://tobiasmenzies.copperboom.us/feed/
+
+# PunchDrunkGamer.com – PunchDrunkGamer | MMA News, Gaming
+#   News & Live Events · en · last post 2026-11-21
+# score: 0.493
+# about: PunchDrunkGamer delivers the action-packed coverage
+#   you crave.
+# categories (on 12 posts): mma fight videos 10, mma news 4,
+#   ufc fight night: procházka vs. stirling 4, ufc qatar 4,
+#   ufc qatar videos 4, ufc qatar: procházka vs stirling 4,
+#   brian ortega 2, dan hooker 2
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362287.26/wat/CC-MAIN-20211202175510-20211202205510-00345.warc.wat.gz
+# recent posts:
+#   - https://punchdrunkgamer.com/2026/11/21/kevin-vallejos-octagon-interview-ufc-qatar/
+#     Kevin Vallejos Octagon Interview | UFC Qatar
+#     Listen to Kevin Vallejos talk with Michael Bisping
+#     after his win at UFC Qatar. UFC Qatar RESULTS:
+#     https://ufc.ac/4zVI669 Watch UFC on Paramount Plus ➡️
+#     https://www.paramountplus.com/ Subscribe to get
+#   - https://punchdrunkgamer.com/2026/11/21/kevin-vallejos-defeats-aljamain-sterling-ufcqatar/
+#     KEVIN VALLEJOS DEFEATS ALJAMAIN STERLING #ufcqatar
+#     Watch UFC on Paramount Plus ➡️ https://ufc.ac/4rZnRQc
+#     Subscribe to get all the latest UFC content:
+#     https://ufc.ac/3u8FIJp Experience UFC live with UFC
+#     FIGHT PASS, the digital subscription service of t
+#   - https://punchdrunkgamer.com/2026/11/21/brian-tcity-ortega-has-just-retired-ufcqatar/
+#     Brian ‘TCITY’ Ortega has just retired! #ufcqatar
+#     Watch UFC on Paramount Plus ➡️ https://ufc.ac/4rZnRQc
+#     Subscribe to get all the latest UFC content:
+#     https://ufc.ac/3u8FIJp Experience UFC live with UFC
+#     FIGHT PASS, the digital subscription service of t
+# rejected: republished
+# https://punchdrunkgamer.com/feed/
+
+# Bled FC · en · last post 2026-06-16
+# score: 0.485
+# about: We play, we create, we explore
+# categories (on 10 posts): we create 6, jleague 4, we
+#   explore 4, cerezo osaka 1, dn8 1, kawasaki frontale 1,
+#   nagoya grampus 1, nike 1
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362287.26/wat/CC-MAIN-20211202175510-20211202205510-00345.warc.wat.gz
+# recent posts:
+#   - https://bledfc.com/pop-up-bled-fc-at-unthaitled/
+#     Pop-Up Bled FC at Unthaitled
+#     Come customize a limited Bled FC jersey, discover more
+#     than 10 years of photography exploring football in
+#     Asia, drink an iced Thai…
+#   - https://bledfc.com/an-com-chua-jersey/
+#     “Ăn Cơm Chưa?” Jersey
+#     Vietnamese parents don’t say “How are you?” or “I love
+#     you?”, they say “Em Ăn Cơm Chưa?” (Have you eaten
+#     yet?) Food…
+#   - https://bledfc.com/bled-fc-x-sorare-heritage-collection/
+#     Bled FC x Sorare “Heritage” collection
+#     We are proud and honored to have collaborated with
+#     Sorare, a fantasy football game, to create the new
+#     cards for the J-League…
+# rejected: commercial
+# https://bledfc.com/feed/
+
+# That Awkward Moment Movie · en · last post 2026-11-21
+# score: 0.480
+# about: Screens Worth Watching
+# categories (on 10 posts): tech 9, hardware 5, app reviews
+#   4, ai 3, stream picks 3, business 2, culture 2,
+#   cybersecurity 2
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362287.26/wat/CC-MAIN-20211202175510-20211202205510-00345.warc.wat.gz
+# recent posts:
+#   - https://thatawkwardmomentmovie.com/ai-assisted-riemann-hypothesis-proof.html
+#     Mathematician claims AI-assisted proof of Riemann
+#     hypothesis
+#     A mathematician claims AI-assisted proof of the
+#     Riemann hypothesis, a 150-year-old Millennium Prize
+#     problem, using Claude AI and Lean formal verification.
+#   - https://thatawkwardmomentmovie.com/sonos-price-cut-black-friday.html
+#     Sonos slashes prices on speakers, soundbars
+#     Sonos price cut gives up to 30% off speakers and
+#     soundbars until Nov. 30, with the Arc Ultra falling
+#     $250 to $849 and the Play portable at $239.
+#   - https://thatawkwardmomentmovie.com/lenovo-handheld-gaming-pc.html
+#     Lenovo handheld gaming PC leaked
+#     Lenovo may announce a relatively affordable handheld
+#     gaming PC, the Legion Go Beam, with a value design.
+# rejected: seo
+# https://thatawkwardmomentmovie.com/feed
+
+# Wicker Park Advisory Council · en · last post 2026-10-28
+# score: 0.438
+# about: A non-pofit supporting Wicker Park's namesake park.
+# categories (on 10 posts): events 4, news 3, programming 3
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362287.26/wat/CC-MAIN-20211202175510-20211202205510-00345.warc.wat.gz
+# recent posts:
+#   - https://wickerpark.org/petals-farm-a-longtime-wicker-park-farmers-market-vendor-and-family-owned-business/
+#     Petals Farm, a longtime Wicker Park Farmers Market
+#     vendor, and family-owned business
+#     Today the Wicker Park Farmer’s Market is one of
+#     Chicago’s biggest farmers markets. But did you know it
+#     got its start with just three vendors? One of those
+#     vendors was […]
+#   - https://wickerpark.org/boopalooza-barkpalooza-2026-recap/
+#     BooPalooza/BarkPalooza 2026 Recap
+#     BooPalooza / BarkPalooza is a much-anticipated annual
+#     tradition in Chicago. The family-friendly,
+#     dog-friendly event drew a crowd of over 4,500 people
+#     to Wicker Park on October 17, 2026! BooPalooza / [
+#   - https://wickerpark.org/hot-shots-sports-fall-2-session/
+#     Hot Shots Sports Fall 2 Session
+#     Register Here
+https://wickerpark.org/feed/
+
+# GetLoFi – Circuit Bending Synth – DIY – Cassette Tape
+#   Albums · en · last post 2026-06-26
+# score: 0.433
+# about: Circuit Bending Events Custom Instruments DIY Tips
+#   and Tricks. Cassette Tape and Record Full Albums I
+#   converted on YouTube. My eBay Auctions and Special
+#   Projects.
+# categories (on 10 posts): circuit bending general 5, full
+#   albums 3, cassette 1, full album 1, garage sale 1,
+#   pedals 1
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362287.26/wat/CC-MAIN-20211202175510-20211202205510-00345.warc.wat.gz
+# recent posts:
+#   - https://getlofi.com/experimental-garage-sale-2026-chicago-il/
+#     Experimental Garage Sale 2026 – Chicago, IL
+#     https://www.facebook.com/share/18jcAxXp6f/?mibextid=wwXIfr
+#   - https://getlofi.com/behringer-fx600/
+#     Behringer FX600
+#     Reader asked a question and its been a while since I
+#     thought about circuit bending guitar pedals, but here
+#     is some general knowledge that may be useful for
+#     someone to take the mystery out of this proc
+#   - https://getlofi.com/knife-ideas-dump/
+#     Knife Ideas Dump
+https://getlofi.com/feed/
