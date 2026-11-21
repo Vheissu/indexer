@@ -37,6 +37,7 @@ domains = ["youtube.com", "reddit.com"]
 # warez and sponsored posts. Accents are ignored ("casino" matches "Casinò").
 exclude_keywords = [
   "porn", "porno", "pornography", "pornstar", "pornstars", "xxx", "nsfw",
+  "spanking", "spanked", "otk", # added 2026-11-21 after a spanking site in a proposal
   "sex", "sexy", "nude", "nudes", "nudity", "naked", "erotic", "erotica", "hentai",
   "fetish", "fetishes", "bdsm", "milf", "milfs", "escort", "escorts", "camgirl", "camgirls",
   "onlyfans", "anal", "blowjob", "handjob", "cumshot", "creampie", "pussy", "boobs", "tits",

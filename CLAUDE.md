@@ -63,7 +63,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   Still open: a takeover guard, storing these checks (not stored now).
 - `[exclude] domains` (youtube.com, reddit.com) is matched by registrable domain and applied at load and in survivors.
 - `[commoncrawl] exclude_keywords` (adult / sexual-violence words; gambling words added 2026-11-17 after casino spam in a sample), **Common Crawl only**: survivors skips a feed with one (accents ignored; warez and sponsored-post words added 2026-11-21) as a whole word in its title,
-  or 3 or more in its subtitle and newest posts together (asked 2026-11-21; `filters._has_keyword`, after the English filter). Agreed with the user on 2026-11-16 after porn in a survivors PR;
+  or 3 or more in its subtitle, newest posts and their categories together (asked 2026-11-21; `filters._has_keyword`, after the English filter). Agreed with the user on 2026-11-16 after porn in a survivors PR;
   never applied to the curated lists, submissions, load or export.
 - `data/submissions.txt`: user-submitted feeds via PR, last source in sources.toml, read via `files`; tested.
 - Common Crawl rows: source = WAT file URL, license `LicenseRef-CommonCrawl-ToU` (ranked last). No download

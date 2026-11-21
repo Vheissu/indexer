@@ -158,8 +158,9 @@ def _is_english(row: CheckRow) -> bool:
 
 def _has_keyword(row: CheckRow, keywords: frozenset[str]) -> bool:
     """One of `keywords` (lower case) is in the feed's title, or they appear _MIN_TEXT_KEYWORDS
-    times or more in its subtitle, posts and recent posts' titles together (every occurrence
-    counts, so a recent post's title that is also among the posts counts twice). Whole words only:
+    times or more in its subtitle, posts, recent posts' titles and the posts' categories together
+    (every occurrence counts, so a recent post's title that is also among the posts counts twice,
+    and a category counts once per post that has it). Whole words only:
     "sex" matches "Sex Toys" and "sex-ed" but not "Essex". Accents are ignored: "casino" matches
     "Casinò"."""
     if not keywords:
@@ -170,7 +171,8 @@ def _has_keyword(row: CheckRow, keywords: frozenset[str]) -> bool:
     if pattern.search(_fold(row.title or "")):
         return True
     recent_titles = [post.title or "" for post in row.recent_posts]
-    text = _fold(" ".join([row.subtitle or "", *row.item_texts, *recent_titles]))
+    categories = [tag for tags in row.item_tags for tag in tags]
+    text = _fold(" ".join([row.subtitle or "", *row.item_texts, *recent_titles, *categories]))
     return len(pattern.findall(text)) >= _MIN_TEXT_KEYWORDS
 
 

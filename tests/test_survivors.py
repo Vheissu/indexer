@@ -740,3 +740,11 @@ def test_top_categories() -> None:
 
     tags = (("Recipes", "Kids"), ("recipes",), ("Kids", "kids"), (), ("  ",))
     assert _top_categories(tags) == (("kids", 2), ("recipes", 2))  # once per post, case ignored
+
+
+def test_keywords_count_categories() -> None:
+    row = checked("https://s.example/feed/", 3, title="I Love Discipline")
+    row.item_tags = (("otk", "punishment"), ("otk",), ("otk",))
+    assert _has_keyword(row, frozenset({"otk"}))  # a category on three posts
+    row.item_tags = (("otk",),)
+    assert not _has_keyword(row, frozenset({"otk"}))  # once is not enough

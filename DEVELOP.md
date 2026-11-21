@@ -161,7 +161,7 @@ shared hosts like `fc2.com` or `free.fr`). A feed is proposed only if:
   consultants' and agencies' good blogs;
 - its title contains none of the `[commoncrawl] exclude_keywords` in `data/sources.toml`
   as a whole word, and its subtitle, newest posts (title and start of each) and the titles of
-  its 3 most recent posts fewer than 3
+  its 3 most recent posts, and the categories of its posts (once per post), fewer than 3
   (every occurrence counts; accents are ignored, so "casino" matches "Casinò").
   This list is for Common Crawl only: the curated lists and submissions are not filtered by it
   (tried on their 9,048 feeds, it would flag 14: 3 adult, the rest blogs like "Budgets Are Sexy");
