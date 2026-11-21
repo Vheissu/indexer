@@ -30,7 +30,7 @@
 #     migrants en situation vulnérable (AMSV) organisent le
 #     21 novembre 2026 une conférence publique à Oujda, «
 #     Transformation des dynamiques migratoires et m
-# https://migreurop.org/spip.php?page=backend
+https://migreurop.org/spip.php?page=backend
 
 # Divisão de Observação da Terra e Geoinformática · en, pt ·
 #   last post 2026-11-11
@@ -91,7 +91,7 @@
 #   - https://lessywannagohome.blogspot.com/2026/11/enjoying-sun.html
 #     Enjoying the sun
 #     in response to The Weekend in B&W Brussels
-# https://lessywannagohome.blogspot.com/feeds/posts/default
+https://lessywannagohome.blogspot.com/feeds/posts/default
 
 # Valerie Vande Panne · en · last post 2026-07-24
 # found in
@@ -295,7 +295,7 @@
 #     It is year three of a devastating drought, famine, and
 #     extreme heat event around the globe. In the last three
 #     years, some two million people have
-# https://apreat.ovh/feed/
+https://apreat.ovh/feed/
 
 # iLive Toronto · en · last post 2026-11-21
 # about: Changing The Way YOU Listen To Radio
@@ -321,7 +321,7 @@
 #     cities on her forthcoming ‘Gentlewoman Tour’ in spring
 #     2027. The post Cleo Sol Expands Her ‘Gentlewoman Tour’
 #     To More Cities appeared first on SoulBou
-# https://to.i-liveradio.com/feed
+https://to.i-liveradio.com/feed
 
 # GeorgeModels Agency · en · last post 2026-11-19
 # found in
@@ -369,7 +369,7 @@
 #     came across a story that was too good not to share.
 #     The book is called The Masardis Saga, written by Paul
 #     M. Moureau, with a subtitle of Nineteenth
-# https://blog.jackmtn.com/feed/
+https://blog.jackmtn.com/feed/
 
 # Pinoy Manila · en · last post 2026-11-19
 # about: Your Digital Lifestyle Magazine
@@ -498,4 +498,4 @@
 #     Here’s all the news you might have missed over the
 #     past week: Headlines A Seoul district court dismissed
 #     Belift Lab‘s and Source Music‘s defamation law
-# https://seoulbeats.com/feed/
+https://seoulbeats.com/feed/
