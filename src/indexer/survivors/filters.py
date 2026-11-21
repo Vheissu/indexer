@@ -15,9 +15,10 @@ feed_links.py).
                  also left by sites that copy other feeds)
     sample_post  a recent post is WordPress's untouched sample post ("Hello world!"): an
                  abandoned or hijacked install
+    repeated     two recent posts have the same title and text (the same post published again)
     not_https    not served over https today (or redirected to an excluded domain)
 
-The five rules after `keyword` were agreed on 2026-11-21 from the reviews so far: simple, and
+The rules after `keyword` were agreed on 2026-11-21 from the reviews so far: simple, and
 they cost some good feeds, which is fine (Common Crawl has far more than we check).
 """
 
@@ -43,6 +44,7 @@ type Reason = Literal[
     "tracking",
     "seo_footer",
     "sample_post",
+    "repeated",
     "not_https",
 ]
 
@@ -83,6 +85,9 @@ def rejection(row: CheckRow, rules: Rules) -> Reason | None:
         return "seo_footer"
     if any(_SAMPLE_POST in text.lower() for text in texts):
         return "sample_post"
+    posts = [(post.title, post.description) for post in row.recent_posts if post.title]
+    if len(posts) != len(set(posts)):
+        return "repeated"
     if served_url(row, rules.exclude) is None:
         return "not_https"
     return None
@@ -108,7 +113,8 @@ def _is_english(row: CheckRow) -> bool:
 
 def _has_keyword(row: CheckRow, keywords: frozenset[str]) -> bool:
     """One of `keywords` (lower case) is in the feed's title, or they appear _MIN_TEXT_KEYWORDS
-    times or more in its subtitle and posts together (every occurrence counts). Whole words only:
+    times or more in its subtitle, posts and recent posts' titles together (every occurrence
+    counts, so a recent post's title that is also among the posts counts twice). Whole words only:
     "sex" matches "Sex Toys" and "sex-ed" but not "Essex". Accents are ignored: "casino" matches
     "Casinò"."""
     if not keywords:
@@ -118,7 +124,8 @@ def _has_keyword(row: CheckRow, keywords: frozenset[str]) -> bool:
     pattern = re.compile(rf"(?<![^\W_])(?:{words})(?![^\W_])")
     if pattern.search(_fold(row.title or "")):
         return True
-    text = _fold(" ".join([row.subtitle or "", *row.item_texts]))
+    recent_titles = [post.title or "" for post in row.recent_posts]
+    text = _fold(" ".join([row.subtitle or "", *row.item_texts, *recent_titles]))
     return len(pattern.findall(text)) >= _MIN_TEXT_KEYWORDS
 
 

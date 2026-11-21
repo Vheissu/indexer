@@ -38,6 +38,8 @@ _REJECTED = _patterns(
     r"syndication\.php",  # MyBB
     r"type=rss;action",  # SMF
 )
+# WordPress serves its feed in several formats; /feed/ is the one we keep.
+_WORDPRESS_FORMAT = re.compile(r"/feed/(atom|rss|rss2|rdf)/?$", re.IGNORECASE)
 # The whole of what follows the host must be one of these.
 _ACCEPTED = _patterns(
     # main feeds of platforms whose feed URL has no feed word in the path
@@ -62,9 +64,10 @@ _ACCEPTED = _patterns(
 def filter_page_links(page: str, links: Any, exclude: frozenset[str] = frozenset()) -> list[str]:
     """The feed URLs worth checking among a page's `<link>` elements (as the WAT records them):
     rel="alternate" with a feed type, made absolute, on https, valid like any input, outside the
-    `exclude` domains, without session parameters, shaped like a feed URL (`_looks_like_a_feed`;
-    that also rules out comment and WordPress archive feeds), and not the page's own feed when
-    the page offers another."""
+    `exclude` domains, without session parameters, WordPress's /feed/atom/, /feed/rss2/, ...
+    as /feed/ (one feed, already known or proposed under that URL), shaped like a feed URL
+    (`_looks_like_a_feed`; that also rules out comment and WordPress archive feeds), and not the
+    page's own feed when the page offers another."""
     urls: list[str] = []
     for link in links if isinstance(links, list) else []:
         if not isinstance(link, dict):
@@ -82,11 +85,20 @@ def filter_page_links(page: str, links: Any, exclude: frozenset[str] = frozenset
             urls.append(url)
     valid, _invalid = valid_urls(urls)
     valid, _excluded = drop_excluded(valid, exclude)
-    cleaned = [strip_session(url) for url, _host in valid]
+    cleaned = dict.fromkeys(_main_format(strip_session(url)) for url, _host in valid)
     kept = [url for url in cleaned if _looks_like_a_feed(url)]
     if len(kept) > 1:  # beside the site's feed, the page's own is a post's comments
         kept = [url for url in kept if not _is_own_feed(page, url)]
     return kept
+
+
+def _main_format(url: str) -> str:
+    """WordPress's feed in another format (/feed/atom/, /feed/rss2/, /feed/rss/, /feed/rdf/) as
+    its main feed URL, /feed/; any other URL unchanged."""
+    parts = urlsplit(url)
+    if parts.query or not _WORDPRESS_FORMAT.search(parts.path):
+        return url
+    return parts._replace(path=_WORDPRESS_FORMAT.sub("/feed/", parts.path)).geturl()
 
 
 def _is_own_feed(page: str, url: str) -> bool:

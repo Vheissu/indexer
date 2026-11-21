@@ -126,7 +126,10 @@ shapes (`/feed/`,
 `/rss.xml`, `/atom.php`, `/<one segment>/feed/`, ...). Forums and wikis are dropped too: a host
 starting with `forum.`, `feed.php` (DokuWiki, phpBB), `app.php/feed` (phpBB), `syndication.php`
 (MyBB) and `type=rss;action` (SMF); their feeds are mostly edits and replies. So are feeds on
-the top-level domains Freenom gave away (`.tk`, `.ml`, `.ga`, `.cf`, `.gq`), mostly spam. These
+the top-level domains Freenom gave away (`.tk`, `.ml`, `.ga`, `.cf`, `.gq`), mostly spam.
+WordPress's feed in another format (`/feed/atom/`, `/feed/rss2/`, `/feed/rss/`, `/feed/rdf/`) is
+read as its main feed, `/feed/`, so a feed already known or proposed isn't proposed again in
+another format. These
 rules only look at the URL and live in `feed_links.py`; the rules below need the checked feed and
 live in `filters.py`. Feeds outside those
 shapes are dropped (FeedBurner among them), except the main feeds of platforms without a feed
@@ -146,7 +149,8 @@ shared hosts like `fc2.com` or `free.fr`). A feed is proposed only if:
   below). The feed's own `<language>` is not read: WordPress says `en-US` unless the owner changes it;
 - it **has a title** and a **description** (subtitle);
 - its title contains none of the `[commoncrawl] exclude_keywords` in `data/sources.toml`
-  as a whole word, and its subtitle and newest posts (title and start of each) fewer than 3
+  as a whole word, and its subtitle, newest posts (title and start of each) and the titles of
+  its 3 most recent posts fewer than 3
   (every occurrence counts; accents are ignored, so "casino" matches "Casinò").
   This list is for Common Crawl only: the curated lists and submissions are not filtered by it
   (tried on their 9,048 feeds, it would flag 14: 3 adult, the rest blogs like "Budgets Are Sexy");
@@ -154,7 +158,8 @@ shared hosts like `fc2.com` or `free.fr`). A feed is proposed only if:
   `index.php?title=`) or has `utm_` tracking parameters in its link, and no post says "appeared
   first on" or "first appeared on" (the footer of SEO plugins, common on promotional sites and
   on sites that copy other feeds), and none is WordPress's untouched sample post ("Welcome to
-  WordPress. This is your first post": an abandoned or hijacked install). These simple rules also drop some good feeds, which is fine:
+  WordPress. This is your first post": an abandoned or hijacked install), and no two of them have
+  the same title and text (the same post published again). These simple rules also drop some good feeds, which is fine:
   there is far more in Common Crawl than survivors reads;
 - it is **served over https today**: the URL after redirects is `https://` (links are tried as
   `https://`; one that redirects back to plain http is skipped);

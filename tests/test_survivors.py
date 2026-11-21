@@ -598,3 +598,43 @@ def test_wordpress_sample_post() -> None:
 def test_free_domains_are_dropped_unchecked() -> None:
     links = [feed_link("https://maps.example.tk/rss.xml"), feed_link("https://a.example/feed/")]
     assert filter_page_links("https://a.example/", links) == ["https://a.example/feed/"]
+
+
+def test_wordpress_formats_count_as_the_main_feed() -> None:
+    links = [
+        feed_link("https://a.example/feed/atom/"),
+        feed_link("https://b.example/feed/rss2"),
+        feed_link("https://c.example/blog/feed/rdf/"),
+        feed_link("https://d.example/feed/"),
+        feed_link("https://d.example/feed/atom/"),  # the same feed twice: kept once
+    ]
+    assert filter_page_links("https://x.example/", links) == [
+        "https://a.example/feed/",
+        "https://b.example/feed/",
+        "https://c.example/blog/feed/",
+        "https://d.example/feed/",
+    ]
+
+
+def test_repeated_posts() -> None:
+    def judged(*posts: RecentPost) -> object:
+        row = checked("https://s.example/feed/", 3)
+        row.recent_posts = posts
+        return rejection(row, Rules(NOW, 365))
+
+    same = RecentPost("https://s.example/p-5/", "Invoicing errors", "PUE, PPD and REP explained")
+    assert judged(same, same._replace(link="https://s.example/p-6/")) == "repeated"
+    weekly = RecentPost("https://s.example/w-1/", "Friday Night Extravaganza!", "This week: A")
+    assert judged(weekly, weekly._replace(link="https://s.example/w-2/", description="B")) is None
+    untitled = RecentPost("https://s.example/1", None, None)
+    assert judged(untitled, untitled._replace(link="https://s.example/2")) is None
+
+
+def test_keywords_count_recent_post_titles() -> None:
+    row = checked("https://s.example/feed/", 3)
+    row.recent_posts = (
+        RecentPost("https://s.example/1", "Rape culture on campus", None),
+        RecentPost("https://s.example/2", "Fetish fashion", None),
+        RecentPost("https://s.example/3", "Porn studies", None),
+    )
+    assert _has_keyword(row, KEYWORDS)
