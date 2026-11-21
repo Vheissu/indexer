@@ -2,8 +2,9 @@
 # them is a labelled example: its URL uncommented = accepted; left commented out = rejected (a
 # `# rejected: <reason>` line above it is an optional note, see training.py REJECT_REASONS).
 # The text the reviewer saw (title, description, categories, recent posts) is cleaned up in
-# memory. Survivors trains the model on them at the start of each run (in memory, seconds) and
-# drops the proposals it scores lowest; `indexer train` prints the model's size and cut-off.
+# memory. Survivors trains the model on them (once per change to these files; kept, git-ignored,
+# in data/models/) and drops the proposals it scores lowest; `indexer train` prints its size and
+# cut-off.
 #
 # List only files produced with the current survivors rules and proposal format (2026-11-21:
 # the categories line, every rule up to the business words), so all examples look alike.

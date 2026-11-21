@@ -8,11 +8,14 @@ from pathlib import Path
 
 import pytest
 
+from indexer import training
 from indexer.check.feed import RecentPost
 from indexer.survivors.proposals import render_entries
 from indexer.survivors.run import Survivor
 from indexer.training import (
     TrainingError,
+    cached_model,
+    model_path,
     parse_proposals,
     reviewed_text,
     tokens,
@@ -161,3 +164,38 @@ def test_rejection_reasons_do_not_change_the_model(tmp_path: Path) -> None:  # t
     assert models[0].weights.shape[1] == 2
     assert (models[0].weights == models[1].weights).all()
     assert models[0].threshold == models[1].threshold
+
+
+def test_the_stored_model_is_reused_until_a_review_changes(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    (tmp_path / "a.txt").write_text(labelled_file(5))
+    config, models = tmp_path / "training.toml", tmp_path / "models"
+    config.write_text('files = ["a.txt"]\n')
+    first = cached_model(config, models)
+    stored = model_path(config, models)
+    assert [p.name for p in models.iterdir()] == [stored.name]
+
+    def no_training(config: Path) -> None:
+        raise AssertionError("trained although the model is stored")
+
+    with monkeypatch.context() as m:
+        m.setattr(training, "train_model", no_training)
+        loaded = cached_model(config, models)
+    assert loaded.vocab == first.vocab and loaded.threshold == first.threshold
+    assert (loaded.weights == first.weights).all()
+
+    (tmp_path / "a.txt").write_text(labelled_file(5).replace("# rejected: unsafe\n", "", 1))
+    assert model_path(config, models) != stored  # a changed review: a new name, trained again
+    cached_model(config, models)
+    assert [p.name for p in models.iterdir()] == [model_path(config, models).name]
+
+
+def test_a_model_that_cannot_be_stored_is_still_used(tmp_path: Path) -> None:
+    (tmp_path / "a.txt").write_text(labelled_file(5))
+    config = tmp_path / "training.toml"
+    config.write_text('files = ["a.txt"]\n')
+    (tmp_path / "models").write_text("not a directory")
+    model = cached_model(config, tmp_path / "models")  # trained, but the store fails
+    assert model.vocab == train_model(config).vocab
+    assert (tmp_path / "models").read_text() == "not a directory"

@@ -73,7 +73,7 @@ jobs:
 
       - name: Find surviving feeds
         run: |
-          mkdir -p output
+          mkdir -p output data/models
           HOST_UID="$(id -u)" HOST_GID="$(id -g)" docker compose run --rm --no-deps -T survivors \
             survivors --report output/survivors.md --slice-mb "$SLICE_MB" \
             --years-ago "$YEARS_AGO" --active-days "$ACTIVE_DAYS" --max-feeds "$MAX_FEEDS"

@@ -474,9 +474,12 @@ rejected. A `# rejected: <reason>` line just above a rejected URL (one of
 `training.REJECT_REASONS`: commercial, seo, press, republished, machine, forum, notices, unsafe,
 other) is an optional note for people: it is checked but the model doesn't use it. Its text is what the reviewer saw (title,
 description, categories, recent posts' titles and starts, without languages, dates, the WAT file,
-links or a score), cleaned up in memory. At the start of each run, survivors trains the classic
-cheap text classifier on them, in memory (seconds; nothing is stored or committed, so the repo
-doesn't grow with each retrain and the model is never out of date): TF-IDF over words and pairs
+links or a score), cleaned up in memory. Survivors trains the classic cheap text classifier on
+them (up to a minute) and keeps it in `data/models/proposals-<hash>.npz` (git-ignored; never
+committed, so the repo doesn't grow with each retrain). The hash covers `training.toml`, every
+listed file and `training.py`: a stored file is up to date by construction, so later runs load it
+instead of training, and a changed review or code gets a new name and is trained once (older
+files are removed; a directory it can't write to only costs the training time). TF-IDF over words and pairs
 of neighbouring words, then a logistic regression over accepted and rejected, in numpy. Training
 is deterministic: the same files always give the same model. The cut-off is the 30th percentile
 (`training.CUT`) of the examples' cross-validated scores. `indexer train` trains it the same way

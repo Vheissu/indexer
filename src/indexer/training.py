@@ -1,7 +1,7 @@
 """A filter for survivors' proposals, learned from past reviews: the reviewed proposal files
-listed in data/training.toml are read as labelled examples, a small model is trained on them in
-memory at the start of each survivors run (seconds; nothing is stored), and survivors drops the
-new proposals it scores lowest (about the bottom CUT of them).
+listed in data/training.toml are read as labelled examples, a small model is trained on them
+(up to a minute) and kept in data/models/ (not committed; `cached_model`), and survivors drops
+the new proposals it scores lowest (about the bottom CUT of them).
 
 A proposal file (survivors/proposals.py) holds one block per feed: comment lines with what the
 reviewer saw, then the feed's URL, uncommented if they accepted it, commented out if not; a
@@ -18,8 +18,14 @@ proposals (trained on 500): AUC 0.81; dropping the lowest 30% removed about half
 and 12% of the accepted feeds. One class per reason scored the same within noise (2026-11-22,
 0.816 vs 0.812) but needs a reason on every reject; two classes learn from plain reviews. Training
 is deterministic, so every run on the same files gets the same model.
+
+The stored model's file name is a hash of the config, every listed file and this module: a file
+that is there is up to date by construction, and any change to a review or to the code makes a
+new name, so survivors trains again (once) instead of using an old model.
 """
 
+import hashlib
+import logging
 import re
 import tomllib
 from collections import Counter
@@ -32,6 +38,7 @@ import numpy as np
 import numpy.typing as npt
 
 TRAINING_CONFIG = Path("data/training.toml")
+MODEL_DIR = Path("data/models")  # the stored model (git-ignored)
 CUT = 0.30  # drop about this share of proposals: those scored lowest
 # Why a feed was rejected, as a reviewer may note it above its commented-out URL (optional; not
 # used by the model, which only learns accepted or rejected).
@@ -203,3 +210,52 @@ def train_model(config: Path = TRAINING_CONFIG) -> ProposalModel:
         w = _fit(x[seen], y[seen], len(CLASSES))
         held_out[~seen] = _softmax(_with_bias(x[~seen]) @ w)[:, 0]
     return ProposalModel(vocab, idf, _fit(x, y, len(CLASSES)), float(np.quantile(held_out, CUT)))
+
+
+log = logging.getLogger(__name__)
+
+
+def model_path(config: Path = TRAINING_CONFIG, directory: Path = MODEL_DIR) -> Path:
+    """Where the model trained on `config` is stored: proposals-<hash>.npz, the hash covering the
+    config, each listed file (path and content) and this module's code."""
+    digest = hashlib.sha256(Path(__file__).read_bytes())
+    for path in [config, *training_files(config)]:
+        digest.update(path.as_posix().encode() + b"\0" + path.read_bytes() + b"\0")
+    return directory / f"proposals-{digest.hexdigest()[:16]}.npz"
+
+
+def cached_model(config: Path = TRAINING_CONFIG, directory: Path = MODEL_DIR) -> ProposalModel:
+    """The model trained on `config`: loaded from `model_path` if that file is there, else trained
+    and stored there (older proposals-*.npz files removed). A store that fails (e.g. a read-only
+    directory) is only logged: the trained model is still returned."""
+    path = model_path(config, directory)
+    if path.exists():
+        try:
+            with np.load(path, allow_pickle=False) as data:
+                vocab = {str(t): i for i, t in enumerate(data["terms"])}
+                return ProposalModel(
+                    vocab,
+                    np.asarray(data["idf"], dtype=np.float32),
+                    np.asarray(data["weights"], dtype=np.float32),
+                    float(data["threshold"]),
+                )
+        except (OSError, ValueError, KeyError) as exc:
+            log.warning("retraining: cannot read %s: %s", path, exc)
+    model = train_model(config)
+    try:
+        directory.mkdir(parents=True, exist_ok=True)
+        partial = path.with_suffix(".partial.npz")
+        np.savez_compressed(
+            partial,
+            terms=np.array(list(model.vocab)),
+            idf=model.idf,
+            weights=model.weights,
+            threshold=np.float64(model.threshold),
+        )
+        partial.replace(path)
+        for old in directory.glob("proposals-*.npz"):
+            if old != path:
+                old.unlink()
+    except OSError as exc:
+        log.warning("proposal filter not stored in %s: %s", directory, exc)
+    return model

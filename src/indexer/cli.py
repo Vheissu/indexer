@@ -56,6 +56,7 @@ from indexer.topics import (
 from indexer.training import (
     TRAINING_CONFIG,
     TrainingError,
+    cached_model,
     parse_proposals,
     train_model,
 )
@@ -304,11 +305,12 @@ async def _survivors(args: argparse.Namespace) -> int:
 def _filtered(
     survivors: list[Survivor], crawl: str, started: datetime, config: Path
 ) -> tuple[list[Survivor], int]:
-    """The survivors the model trained (now, in memory) on `config` keeps (training.py: those
-    scoring at least its threshold), each with its score, best first, and how many it dropped;
-    all of them, unscored, with a warning, if it cannot be trained."""
+    """The survivors the model trained on `config` keeps (training.py: those scoring at least its
+    threshold; the stored model if it is there, else trained now and stored), each with its score,
+    best first, and how many it dropped; all of them, unscored, with a warning, if it cannot be
+    trained."""
     try:
-        model = train_model(config)
+        model = cached_model(config)
     except (OSError, ValueError, TrainingError) as exc:
         print(f"warning: proposals not filtered: {exc}", file=sys.stderr)
         return survivors, 0
@@ -700,8 +702,8 @@ def _parser() -> argparse.ArgumentParser:
         "train",
         _train,
         "train the proposal filter on the reviewed proposal files --training lists and print its"
-        " size and cut-off (survivors trains it the same way at the start of each run; nothing is"
-        " written)",
+        " size and cut-off (survivors trains it the same way and keeps it in data/models/; this"
+        " writes nothing)",
     )
     tr.add_argument(
         "--training",

@@ -75,7 +75,8 @@ services:
     user: "${HOST_UID:-10001}:${HOST_GID:-10001}" # owns what it writes
     volumes:
       - ./data:/work/data:ro
-      - ./data/survivors:/work/data/survivors # the only folder it writes to
+      - ./data/survivors:/work/data/survivors # the proposals it writes
+      - ./data/models:/work/data/models # the proposal filter it trains once per review (git-ignored)
       - ./output:/work/output # the pull request report
     command: ["survivors", "--report", "output/survivors.md"]
 
