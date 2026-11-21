@@ -117,7 +117,7 @@ and two that run when a file in the repository changes:
 | `survivors` | Wednesdays | samples an old Common Crawl crawl, checks the feeds it finds, and proposes the active ones in a pull request |
 | `cleanup` | Sundays | deletes check results older than 8 months |
 | `undo` | when `data/undo.txt` changes | deletes the feed URLs listed there from the database and reports which were deleted and which were not found |
-| `embeddings` | when the topic list changes | recomputes the topic names' MiniLM embeddings (`data/topics/topics.npy`) and commits them |
+| `embeddings` | when the topic list changes | recomputes the MiniLM embedding sets in `data/embeddings/` (today the topic names') and commits them |
 
 Setup, commands, the data model and the security model are documented in
 [DEVELOP.md](DEVELOP.md).

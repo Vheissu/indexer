@@ -411,8 +411,8 @@ on …" removed; used only when the subtitle has at least 3 words of its own, si
 as "Feep! blog" dilutes the posts) are embedded with MiniLM (`all-MiniLM-L6-v2`, quantized ONNX, Apache-2.0; the image downloads the model and its
 tokenizer at a pinned revision and SHA-256 and sets `INDEXER_MINILM_MODEL` and
 `INDEXER_MINILM_TOKENIZER`), averaged into one vector and compared with every row of
-`data/topics/topics.npy`, the precomputed embeddings of the names in `data/topics/topics.txt` (one row
-per line, float16). Names are mapped to their canonical form with `data/topics/synonyms.tsv`, at the
+`data/embeddings/topics.npy`, the precomputed embeddings of the names in `data/topics/topics.txt`
+(one row per line, float16; the embedding set `topics`, see "Embedding sets" below). Names are mapped to their canonical form with `data/topics/synonyms.tsv`, at the
 check and again by export (so a new synonym shows at the next publish, not only as feeds are re-checked). A feed
 gets topics only if its best name beats its 8th best (distinct) name by at least 0.08: a vague
 feed scores many unrelated names about equally. It then gets up to 5 names within 0.02 of the
@@ -448,14 +448,22 @@ names about blogging when the subtitle is "Personal blog" or "Journal". Those na
 `personal`, `opinion`, `feeds`, `diary`, `hobbies`, `writing-life`, `blogging-about-blogging`, …)
 were removed from `topics.txt`, as were names that came out in the top 8 of many unrelated feeds
 in a 1,000-feed run (`social-software`, `webtech`, `brainstorming`, `bazaar`, `projects`,
-`future`). `data/topics/topics.json` records the SHA-256 of `topics.txt`, the model and the
-tokenizer the matrix was built from; `indexer run` refuses to start if any of them changed, so
-`topics.npy` must be rebuilt with them: `indexer embeddings` (compose service `embeddings`, no
-database, no network; about 20 s) embeds every name in `topics.txt` in file order, with `-` and
-`_` read as spaces, and rewrites `topics.npy` and `topics.json`. The `embeddings.yml` workflow does
-it on every push to develop that changes `topics.txt` or the `Dockerfile` (which pins the model),
-and commits the result to develop; it can also be started by hand. To add or remove a topic, edit
-`topics.txt` and let the workflow (or the command) rebuild the matrix. The quantized model's
+`future`). `indexer run` refuses to start if the topic set is stale; `indexer embeddings topics`
+embeds every name in `topics.txt` in file order, with `-` and `_` read as spaces. To add or remove
+a topic, edit `topics.txt` and let the workflow (or the command) rebuild the set.
+
+**Embedding sets.** Every precomputed MiniLM embedding lives in `data/embeddings/`, one set per
+name: `<name>.npy` (one unit-length row per text, float16) and `<name>.json` (rows, dimension, the
+model, and the SHA-256 of the model, the tokenizer and each source file, by its path from the
+repository root). Loading a set (`embeddings.read_set`) refuses it if any of those changed or the
+row count differs, so a stale set is never used; `embeddings.write_set` builds one. `indexer
+embeddings [NAME ...]` (compose service `embeddings`, no database, no network; about 20 s for
+`topics`) rebuilds the named sets, or all of them; the sets it knows are in `cli.EMBEDDING_SETS`
+(today only `topics`, from `data/topics/topics.txt`). The `embeddings.yml` workflow runs it on
+every push to develop that changes a set's source or the `Dockerfile` (which pins the model) and
+commits `data/embeddings/` to develop; it can also be started by hand. To add a set: a builder
+that calls `write_set` with its texts and source files, an entry in `cli.EMBEDDING_SETS`, and its
+sources in the workflow's `paths`. Never edit a set by hand. The quantized model's
 output depends slightly on which names share a batch, so a rebuild also moves unchanged names a
 little (cosine ~0.99 to their old vector); the same `topics.txt` always gives the same matrix. A feed with no
 English item gets no topics.

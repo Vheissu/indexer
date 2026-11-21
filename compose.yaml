@@ -100,7 +100,7 @@ services:
       - ./data/topics/synonyms.tsv:/work/data/topics/synonyms.tsv:ro
     command: ["export", "--output-dir", "output"]
 
-  # Rebuilds the topic matrix (data/topics/topics.npy and topics.json) from data/topics/topics.txt
+  # Rebuilds the embedding sets in data/embeddings/ (the set "topics" from data/topics/topics.txt)
   # with the image's MiniLM. No database, no network:
   #   HOST_UID=$(id -u) HOST_GID=$(id -g) docker compose run --rm embeddings
   embeddings:
@@ -114,7 +114,8 @@ services:
     network_mode: none
     user: "${HOST_UID:-10001}:${HOST_GID:-10001}" # owns what it writes
     volumes:
-      - ./data/topics:/work/data/topics
+      - ./data:/work/data:ro # the sources
+      - ./data/embeddings:/work/data/embeddings # the only folder it writes to
     command: ["embeddings"]
 
   # Deletes every indexer table and all data (needs --yes); the next liquibase run recreates

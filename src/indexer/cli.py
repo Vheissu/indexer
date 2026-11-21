@@ -25,6 +25,7 @@ from typing import Any
 
 from indexer.check.runner import CheckRow, run_checks
 from indexer.db import DEFAULT_DATABASE_URL, UNDO_TABLES, Database
+from indexer.embeddings import EMBEDDINGS_DIR, EmbeddingsError
 from indexer.errors import CheckError
 from indexer.export import DATA_URL, SITE_URL, ExportError, with_synonyms, write_output
 from indexer.language import MODEL_ENV, LanguageModel
@@ -140,8 +141,11 @@ def _topic_model() -> TopicModel | None:
     """The topic model, or None after printing why it could not be loaded."""
     try:
         return TopicModel.load()
-    except (OSError, ValueError, RuntimeError, TopicsError) as exc:
-        print(f"error: cannot load the topic model or data/topics: {exc}", file=sys.stderr)
+    except (OSError, ValueError, RuntimeError, TopicsError, EmbeddingsError) as exc:
+        print(
+            f"error: cannot load the topic model, data/topics or data/embeddings: {exc}",
+            file=sys.stderr,
+        )
         return None
 
 
@@ -618,13 +622,19 @@ def _parser() -> argparse.ArgumentParser:
     em = command(
         "embeddings",
         _embeddings,
-        "rebuild the topic matrix (topics.npy, topics.json) from topics.txt with MiniLM",
+        "rebuild embedding sets (<name>.npy, <name>.json) from their sources with MiniLM",
+    )
+    em.add_argument(
+        "names",
+        nargs="*",
+        metavar="NAME",
+        help=f"the sets to rebuild: {', '.join(EMBEDDING_SETS)} (default all)",
     )
     em.add_argument(
         "--directory",
         type=Path,
-        default=TOPICS_DIR,
-        help=f"holds topics.txt; the files are written there (default {TOPICS_DIR})",
+        default=EMBEDDINGS_DIR,
+        help=f"where the sets are written (default {EMBEDDINGS_DIR})",
     )
 
     lg = command(
@@ -648,13 +658,23 @@ async def _topics(args: argparse.Namespace) -> int:
     return 0
 
 
+# Every embedding set `indexer embeddings` builds: name -> builder(directory) -> rows written.
+EMBEDDING_SETS: dict[str, Callable[[Path], int]] = {
+    "topics": lambda directory: build_index(TOPICS_DIR, embeddings=directory),
+}
+
+
 async def _embeddings(args: argparse.Namespace) -> int:
-    try:
-        rows = build_index(args.directory)
-    except (OSError, TopicsError) as exc:
-        print(f"error: cannot build the topic matrix: {exc}", file=sys.stderr)
-        return 1
-    print(f"{rows} topic names embedded into {args.directory / 'topics.npy'}")
+    if unknown := [name for name in args.names if name not in EMBEDDING_SETS]:
+        print(f"error: unknown embedding sets: {', '.join(unknown)}", file=sys.stderr)
+        return 2
+    for name in args.names or EMBEDDING_SETS:
+        try:
+            rows = EMBEDDING_SETS[name](args.directory)
+        except (OSError, TopicsError, EmbeddingsError) as exc:
+            print(f"error: cannot build the embedding set {name}: {exc}", file=sys.stderr)
+            return 1
+        print(f"{name}: {rows} rows embedded into {args.directory / name}.npy")
     return 0
 
 

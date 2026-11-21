@@ -15,7 +15,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 | health checks | `indexer run --from-inputs` (or `run FILE`) | `check` | `check.yml` (every 3 h, 500 URLs, 3 h timeout) |
 | publish | `indexer export` | `export` | `publish.yml` (after each successful check run; on push to develop changing templates/, style.css, feedrule.svg or site.py; Mondays as fallback; manual too. Re-enabled 2026-11-19 at the user's request) |
 | retention | `indexer cleanup` | `cleanup` | `cleanup.yml` (Sundays) |
-| topic matrix | `indexer embeddings` | `embeddings` | `embeddings.yml` (on push to develop changing `data/topics/topics.txt` or `Dockerfile`; manual) |
+| embedding sets (`data/embeddings/`) | `indexer embeddings [NAME ...]` | `embeddings` | `embeddings.yml` (on push to develop changing a set's source, e.g. `data/topics/topics.txt`, or `Dockerfile`; manual) |
 | delete listed URLs | `indexer undo data/undo.txt` | `undo` | `undo.yml` (on push to develop changing `data/undo.txt`; manual) |
 | start over (all data) | `indexer drop-tables --yes` | `drop-tables` | `drop-tables.yml` (manual, typed confirmation) |
 
@@ -165,7 +165,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   title and subtitle counted like 3 items (`topics.about_text`: boilerplate removed; only if the subtitle has ≥ 3 words
   of its own, not just the name), is embedded with MiniLM (all-MiniLM-L6-v2,
   quantized ONNX, Apache-2.0; model and tokenizer pinned by revision and SHA-256 in the Dockerfile), averaged, and
-  compared with `data/topics/topics.npy` (the embeddings of `data/topics/topics.txt`, 6,079 names used by ≥ 5 listed feeds);
+  compared with `data/embeddings/topics.npy` (the embedding set `topics`, of `data/topics/topics.txt`, 6,079 names used by ≥ 5 listed feeds);
   names mapped through `data/topics/synonyms.tsv` (at the check, and again by export on the stored topics); a feed gets topics only if its best name beats its 8th best (distinct)
   by ≥ 0.08, then up to 5 within 0.02 of the best and ≥ 0.35, most similar first (`topics.py`; tuned 2026-11-18
   on 55 random feeds judged by hand: title + description beat titles alone; **precision first** (user's choice):
@@ -182,9 +182,11 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   Names about blogging rather than a subject were removed from topics.txt (journal, personal, opinion, feeds, diary,
   hobbies, boredom, writing-life, blogging-about-blogging, end-of-year, blogger…) and names that matched everything
   in a 1,000-feed run (social-software, webtech, brainstorming, bazaar, projects, future): precision first.
-  `data/topics/topics.json` holds the SHA-256 of topics.txt, the model and the tokenizer: loading refuses a stale matrix.
-  Rebuild with `indexer embeddings` (`topics.build_index`; never edit topics.npy by hand); embeddings.yml does it and
-  commits to develop (its own concurrency group: no database; network off in the container).
+  Embedding sets (asked 2026-11-21: one layout for all): `data/embeddings/<name>.npy` (float16, unit rows) + `<name>.json`
+  (rows, dim, model, SHA-256 of model, tokenizer and each source by repo-relative path); `embeddings.read_set` refuses a stale
+  set, `embeddings.write_set` builds one; MiniLM loading is in `embeddings.py`. `indexer embeddings [NAME ...]` rebuilds sets
+  listed in `cli.EMBEDDING_SETS` (only `topics` so far, via `topics.build_index`); never edit a set by hand; embeddings.yml
+  does it and commits `data/embeddings/` to develop (its own concurrency group: no database; network off in the container).
   No English item, no topics. Survivors does not compute topics.
 - `error` identifiers live in `src/indexer/errors.py` (e.g. `dns_nxdomain`, `rate_limited`, `not_a_feed`).
 

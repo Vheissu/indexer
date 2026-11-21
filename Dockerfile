@@ -20,8 +20,8 @@ COPY --from=build /app/.venv /app/.venv
 ADD --checksum=sha256:8f3472cfe8738a7b6099e8e999c3cbfae0dcd15696aac7d7738a8039db603e83 --chmod=644 \
     https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.ftz /opt/lid.176.ftz
 # MiniLM (all-MiniLM-L6-v2, quantized ONNX, and its tokenizer; Apache-2.0) for topics, at a pinned
-# revision and SHA-256. data/topics/topics.json records the same hashes: the topic matrix
-# (data/topics/topics.npy) must be rebuilt whenever these change.
+# revision and SHA-256. Every embedding set's data/embeddings/<name>.json records the same hashes:
+# the sets must be rebuilt (indexer embeddings) whenever these change.
 ADD --checksum=sha256:afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1 --chmod=644 \
     https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/onnx/model_quantized.onnx \
     /opt/minilm.onnx

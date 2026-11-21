@@ -10,36 +10,40 @@ its tags as the author wrote them. Each post's text is embedded with MiniLM (all
 quantized ONNX; Apache-2.0), and so are the feed's title and subtitle when the subtitle says
 something of its own (`about_text`); they are averaged into one vector (the feed text counting
 like ABOUT_WEIGHT posts), which is compared with the precomputed embedding of every topic name in
-data/topics/topics.txt (data/topics/topics.npy, one row per line, float16, unit length). Names are
+data/topics/topics.txt (the embedding set "topics": data/embeddings/topics.npy, one row per line,
+float16, unit length; see `indexer.embeddings`). Names are
 mapped to their canonical form with data/topics/synonyms.tsv (two names for one topic count once);
 see `feed_topics` for which are kept. Authors' tags are evidence (`author_topics`), and the
 first one stands in when nothing else gives a topic (`first_author_topic`).
 Inputs and thresholds were tuned by hand on random listed feeds (2026-11-18), precision first:
 about 85% of the topics right, on about half of the English feeds.
 
-data/topics/topics.json records the SHA-256 of topics.txt, the model and the tokenizer the matrix
-was built from: loading refuses a matrix that no longer matches them. `build_index` (`indexer
-embeddings`, the embeddings workflow) rebuilds both from topics.txt.
+data/embeddings/topics.json records the SHA-256 of topics.txt, the model and the tokenizer the
+matrix was built from: loading refuses a matrix that no longer matches them. `build_index`
+(`indexer embeddings topics`, the embeddings workflow) rebuilds it from topics.txt.
 """
 
-import hashlib
-import json
-import os
 import re
 import unicodedata
 from collections import Counter
-from collections.abc import Callable, Sequence
+from collections.abc import Sequence
 from dataclasses import dataclass, field
 from pathlib import Path
 
 import numpy as np
-import numpy.typing as npt
 
-MODEL_ENV = "INDEXER_MINILM_MODEL"  # the Docker image sets both
-TOKENIZER_ENV = "INDEXER_MINILM_TOKENIZER"
-DEFAULT_MODEL = Path("/opt/minilm.onnx")
-DEFAULT_TOKENIZER = Path("/opt/minilm-tokenizer.json")
-TOPICS_DIR = Path("data/topics")  # topics.txt, topics.npy, topics.json, synonyms.tsv
+from indexer.embeddings import (
+    EMBEDDINGS_DIR,
+    Embed,
+    Vectors,
+    load_embedder,
+    model_paths,
+    read_set,
+    write_set,
+)
+
+TOPICS_DIR = Path("data/topics")  # topics.txt, synonyms.tsv
+EMBEDDING_SET = "topics"  # the names' embeddings: data/embeddings/topics.npy and .json
 TOP = 5  # topics per feed, at most
 MIN_SCORE = 0.35  # cosine similarity between the texts' average and the topic name, at least
 MARGIN = 0.02  # a kept topic scores within this of the feed's best
@@ -62,11 +66,6 @@ _BOILERPLATE = re.compile(
     r"|\b(?:rss|atom|posts?) feed\b|\bwelcome to\b",
     re.IGNORECASE,
 )
-MAX_TOKENS = 128  # per item text (up to 300 characters, about 70 tokens)
-
-Vectors = npt.NDArray[np.float32]
-# Texts -> one unit-length row per text.
-Embed = Callable[[Sequence[str]], Vectors]
 _NOT_KEY = re.compile(r"[^a-z0-9+#]")
 
 
@@ -78,38 +77,6 @@ class TopicsError(Exception):
 class Post:
     text: str  # title and the start of the description, plain text
     tags: Sequence[str] = ()  # the author's tags, as written (evidence only)
-
-
-def sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
-
-
-def load_embedder(model: Path, tokenizer: Path) -> Embed:
-    """MiniLM: mean of the token vectors (padding excluded), scaled to unit length."""
-    import onnxruntime as ort  # type: ignore[import-untyped]  # ships no type hints
-    from tokenizers import Tokenizer
-
-    ort.set_default_logger_severity(3)  # errors only (it warns it can't save telemetry state)
-    ort.disable_telemetry_events()
-    tok = Tokenizer.from_file(str(tokenizer))
-    tok.enable_truncation(MAX_TOKENS)
-    tok.enable_padding()
-    session = ort.InferenceSession(str(model), providers=["CPUExecutionProvider"])
-    inputs = {i.name for i in session.get_inputs()}
-
-    def embed(texts: Sequence[str]) -> Vectors:
-        encoded = tok.encode_batch(list(texts))
-        ids = np.array([e.ids for e in encoded], dtype=np.int64)
-        mask = np.array([e.attention_mask for e in encoded], dtype=np.int64)
-        feed = {"input_ids": ids, "attention_mask": mask}
-        if "token_type_ids" in inputs:
-            feed["token_type_ids"] = np.zeros_like(ids)
-        hidden = np.asarray(session.run(None, feed)[0], dtype=np.float32)
-        pooled = (hidden * mask[..., None]).sum(1) / np.maximum(mask.sum(1, keepdims=True), 1)
-        norms = np.linalg.norm(pooled, axis=1, keepdims=True)
-        return (pooled / np.maximum(norms, 1e-12)).astype(np.float32)
-
-    return embed
 
 
 def read_synonyms(path: Path) -> dict[str, str]:
@@ -180,24 +147,18 @@ def author_topics(item_tags: Sequence[Sequence[str]], index: TopicIndex) -> set[
     return {topic for topic, n in counts.items() if n >= need}
 
 
-def load_index(directory: Path, model: Path, tokenizer: Path) -> TopicIndex:
-    """The topic names, their matrix and the synonyms; TopicsError if the matrix was built from
-    another topics.txt, model or tokenizer, or doesn't have one row per name."""
+def load_index(
+    directory: Path,
+    model: Path,
+    tokenizer: Path,
+    embeddings: Path = EMBEDDINGS_DIR,
+) -> TopicIndex:
+    """The topic names (`directory`/topics.txt), their embedding set (in `embeddings`) and the
+    synonyms; EmbeddingsError if the set was built from another topics.txt, model or tokenizer,
+    or doesn't have one row per name."""
     names_path = directory / "topics.txt"
     names = tuple(n for n in names_path.read_text(encoding="utf-8").splitlines() if n.strip())
-    meta = json.loads((directory / "topics.json").read_text(encoding="utf-8"))
-    for key, path in (
-        ("topics_sha256", names_path),
-        ("model_sha256", model),
-        ("tokenizer_sha256", tokenizer),
-    ):
-        if meta.get(key) != sha256(path):
-            raise TopicsError(
-                f"{directory / 'topics.npy'} is stale: {path} changed since it was built"
-            )
-    matrix = np.load(directory / "topics.npy").astype(np.float32)
-    if matrix.ndim != 2 or matrix.shape[0] != len(names):
-        raise TopicsError(f"topics.npy has shape {matrix.shape}, expected {len(names)} rows")
+    matrix = read_set(EMBEDDING_SET, len(names), [names_path], model, tokenizer, embeddings)
     return TopicIndex(names, matrix, read_synonyms(directory / "synonyms.tsv"))
 
 
@@ -207,24 +168,16 @@ def name_text(name: str) -> str:
     return name.replace("-", " ").replace("_", " ")
 
 
-def model_paths(model: Path | None, tokenizer: Path | None) -> tuple[Path, Path]:
-    """MiniLM's files: as given, else $INDEXER_MINILM_MODEL and $INDEXER_MINILM_TOKENIZER, else
-    the image's defaults."""
-    return (
-        model or Path(os.environ.get(MODEL_ENV) or DEFAULT_MODEL),
-        tokenizer or Path(os.environ.get(TOKENIZER_ENV) or DEFAULT_TOKENIZER),
-    )
-
-
 def build_index(
     directory: Path = TOPICS_DIR,
     model: Path | None = None,
     tokenizer: Path | None = None,
     embed: Embed | None = None,
+    embeddings: Path = EMBEDDINGS_DIR,
 ) -> int:
-    """Embed every name in `directory`/topics.txt (in file order) and write topics.npy (float16,
-    unit length, one row per name) and topics.json (the hashes `load_index` checks). `embed`
-    defaults to MiniLM (see `model_paths`). Returns the number of names."""
+    """Embed every name in `directory`/topics.txt (in file order) into the embedding set
+    "topics" in `embeddings` (the hashes `load_index` checks). `embed` defaults to MiniLM (see
+    `model_paths`). Returns the number of names."""
     model, tokenizer = model_paths(model, tokenizer)
     names_path = directory / "topics.txt"
     names = [n for n in names_path.read_text(encoding="utf-8").splitlines() if n.strip()]
@@ -232,19 +185,7 @@ def build_index(
         raise TopicsError(f"{names_path} has no topic names")
     embed = embed or load_embedder(model, tokenizer)
     texts = [name_text(n) for n in names]
-    matrix = np.vstack([embed(texts[i : i + 256]) for i in range(0, len(texts), 256)])
-    np.save(directory / "topics.npy", matrix.astype(np.float16))
-    meta = {
-        "rows": len(names),
-        "dim": int(matrix.shape[1]),
-        "dtype": "float16",
-        "topics_sha256": sha256(names_path),
-        "model_sha256": sha256(model),
-        "tokenizer_sha256": sha256(tokenizer),
-        "model": "Xenova/all-MiniLM-L6-v2 (quantized)",
-    }
-    (directory / "topics.json").write_text(json.dumps(meta, indent=1) + "\n", encoding="utf-8")
-    return len(names)
+    return write_set(EMBEDDING_SET, texts, [names_path], embed, model, tokenizer, embeddings)
 
 
 def about_text(title: str | None, subtitle: str | None) -> str | None:
@@ -356,12 +297,14 @@ class TopicModel:
         directory: Path = TOPICS_DIR,
         model: Path | None = None,
         tokenizer: Path | None = None,
+        embeddings: Path = EMBEDDINGS_DIR,
     ) -> "TopicModel":
-        """The topic files in `directory`; MiniLM from `model` and `tokenizer`, else
-        $INDEXER_MINILM_MODEL and $INDEXER_MINILM_TOKENIZER, else the image's defaults.
-        TopicsError if the matrix is stale (see `load_index`)."""
+        """The topic files in `directory` and their embedding set in `embeddings`; MiniLM from
+        `model` and `tokenizer`, else $INDEXER_MINILM_MODEL and $INDEXER_MINILM_TOKENIZER, else
+        the image's defaults. EmbeddingsError if the set is stale (see `load_index`)."""
         model, tokenizer = model_paths(model, tokenizer)
-        return cls(load_index(directory, model, tokenizer), load_embedder(model, tokenizer))
+        index = load_index(directory, model, tokenizer, embeddings)
+        return cls(index, load_embedder(model, tokenizer))
 
     def topics(
         self,

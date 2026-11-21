@@ -1,14 +1,13 @@
 """Topics from English item titles. A fake embedder and a tiny topic matrix stand in for MiniLM and
 data/topics (tests never need the model or the network)."""
 
-import hashlib
-import json
 from collections.abc import Sequence
 from pathlib import Path
 
 import numpy as np
 import pytest
 
+from indexer.embeddings import EmbeddingsError, Vectors, write_set
 from indexer.topics import (
     ABOUT_WEIGHT,
     AUTHOR_MIN_SCORE,
@@ -20,7 +19,6 @@ from indexer.topics import (
     TopicIndex,
     TopicModel,
     TopicsError,
-    Vectors,
     about_text,
     author_topics,
     build_index,
@@ -110,29 +108,26 @@ def test_read_synonyms_resolves_chains_and_skips_comments(tmp_path: Path) -> Non
     assert "bad line" not in syn
 
 
-def write_index(directory: Path, names: Sequence[str], model: Path, tokenizer: Path) -> None:
+def write_index(
+    directory: Path, names: Sequence[str], model: Path, tokenizer: Path, embeddings: Path
+) -> None:
+    """topics.txt and synonyms.tsv in `directory`, the "topics" embedding set in `embeddings`."""
     directory.mkdir(exist_ok=True)
     (directory / "topics.txt").write_text("".join(f"{n}\n" for n in names))
-    np.save(directory / "topics.npy", np.ones((len(names), 4), dtype=np.float16))
     (directory / "synonyms.tsv").write_text("old\tnew\n")
 
-    def sha(p: Path) -> str:
-        return hashlib.sha256(p.read_bytes()).hexdigest()
+    def ones(texts: Sequence[str]) -> Vectors:
+        return np.ones((len(texts), 4), dtype=np.float32)
 
-    meta = {
-        "topics_sha256": sha(directory / "topics.txt"),
-        "model_sha256": sha(model),
-        "tokenizer_sha256": sha(tokenizer),
-    }
-    (directory / "topics.json").write_text(json.dumps(meta))
+    write_set("topics", names, [directory / "topics.txt"], ones, model, tokenizer, embeddings)
 
 
 def test_load_index(tmp_path: Path) -> None:
     model, tokenizer = tmp_path / "m.onnx", tmp_path / "t.json"
     model.write_bytes(b"model")
     tokenizer.write_bytes(b"tokenizer")
-    write_index(tmp_path / "tags", ["a", "b"], model, tokenizer)
-    idx = load_index(tmp_path / "tags", model, tokenizer)
+    write_index(tmp_path / "tags", ["a", "b"], model, tokenizer, tmp_path / "emb")
+    idx = load_index(tmp_path / "tags", model, tokenizer, tmp_path / "emb")
     assert idx.names == ("a", "b") and idx.matrix.shape == (2, 4)
     assert idx.matrix.dtype == np.float32 and idx.synonyms == {"old": "new"}
 
@@ -143,14 +138,14 @@ def test_a_stale_matrix_is_refused(tmp_path: Path, changed: str) -> None:
     model.write_bytes(b"model")
     tokenizer.write_bytes(b"tokenizer")
     tags = tmp_path / "tags"
-    write_index(tags, ["a", "b"], model, tokenizer)
+    write_index(tags, ["a", "b"], model, tokenizer, tmp_path / "emb")
     {
         "topics": tags / "topics.txt",
         "model": model,
         "tokenizer": tokenizer,
     }[changed].write_text("changed\n")
-    with pytest.raises(TopicsError, match="stale"):
-        load_index(tags, model, tokenizer)
+    with pytest.raises(EmbeddingsError, match="stale"):
+        load_index(tags, model, tokenizer, tmp_path / "emb")
 
 
 def test_a_matrix_without_one_row_per_name_is_refused(tmp_path: Path) -> None:
@@ -158,10 +153,10 @@ def test_a_matrix_without_one_row_per_name_is_refused(tmp_path: Path) -> None:
     model.write_bytes(b"model")
     tokenizer.write_bytes(b"tokenizer")
     tags = tmp_path / "tags"
-    write_index(tags, ["a", "b"], model, tokenizer)
-    np.save(tags / "topics.npy", np.ones((3, 4), dtype=np.float16))
-    with pytest.raises(TopicsError, match="rows"):
-        load_index(tags, model, tokenizer)
+    write_index(tags, ["a", "b"], model, tokenizer, tmp_path / "emb")
+    np.save(tmp_path / "emb" / "topics.npy", np.ones((3, 4), dtype=np.float16))
+    with pytest.raises(EmbeddingsError, match="rows"):
+        load_index(tags, model, tokenizer, tmp_path / "emb")
 
 
 def test_tag_key_and_topic_of() -> None:
@@ -254,9 +249,10 @@ def test_build_index_then_load_it(tmp_path: Path) -> None:
         seen.extend(texts)
         return fake_embed(texts)
 
-    assert build_index(tags, model, tokenizer, embed) == 3
+    assert build_index(tags, model, tokenizer, embed, tmp_path / "emb") == 3
     assert seen == ["rust", "food", "python packaging"]  # words, in file order
-    idx = load_index(tags, model, tokenizer)  # the hashes match: not stale
+    assert sorted(p.name for p in (tmp_path / "emb").iterdir()) == ["topics.json", "topics.npy"]
+    idx = load_index(tags, model, tokenizer, tmp_path / "emb")  # the hashes match: not stale
     assert idx.names == ("rust", "food", "python-packaging") and idx.matrix.shape == (3, 8)
     assert np.allclose(idx.matrix, fake_embed(seen), atol=1e-3)  # float16
     assert name_text("web_dev-tools") == "web dev tools"
@@ -265,7 +261,7 @@ def test_build_index_then_load_it(tmp_path: Path) -> None:
 def test_build_index_refuses_an_empty_list(tmp_path: Path) -> None:
     (tmp_path / "topics.txt").write_text("\n")
     with pytest.raises(TopicsError, match="no topic names"):
-        build_index(tmp_path, tmp_path / "m", tmp_path / "t", fake_embed)
+        build_index(tmp_path, tmp_path / "m", tmp_path / "t", fake_embed, tmp_path / "emb")
 
 
 def test_the_authors_first_label_when_nothing_else_picks_a_topic() -> None:
