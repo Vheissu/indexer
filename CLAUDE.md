@@ -71,8 +71,10 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   per topic links.txt ≤ 50,000, feeds.opml ≤ 500, topic page ≤ 200 (most recently active; each file starts with the next one's feeds; 200 agreed 2026-11-17 for page size); index sorted by count.
   `all/{links.txt,feeds.opml}`: every listed feed, with a topic or not, uncapped.
   links.txt files are newest post first (a search page shows them in file order).
-  `previews/<2 hex>/<sha256 hex of the URL>.json` per listed feed (for a search page, e.g. feedrule.com): `{url, title, subtitle, bytes, last, languages, topics}`,
-  bytes = body size at the latest successful check, languages = the detected labels (list), topics = the feed's topics (list, most similar first). Hash, not hex of the URL (file name limit).
+  `previews/<2 hex>/<sha256 hex of the URL>.json` per listed feed (for a search page, e.g. feedrule.com): `{url, title, subtitle, bytes, last, languages, topics, source}`,
+  bytes = body size at the latest successful check, languages = the detected labels (list), topics = the feed's topics (list, most similar first),
+  source = `{name, license}`: the `site.SOURCES` entry inputs.source belongs to (`site.source_of`), else
+  `{null, source_license}`; null if not in inputs (no URL, by the user's choice). Hash, not hex of the URL (file name limit).
   `SPEC.md` at the repo root (hand-written: the output's file patterns and contents) is copied into the output by export
   (`--spec`, mounted read-only in compose); keep it in sync with the export (a test checks patterns and limits).
   **No Markdown in the output (except SPEC.md): the website is HTML** in `output/docs/` (`site.py`), served by GitHub Pages

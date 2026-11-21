@@ -216,8 +216,8 @@ class Database:
                 ORDER BY url, checked_at DESC
             )
             SELECT f.url, f.title, f.site_url, l.last_item_date, f.language, l.file_size, f.topics,
-                   f.subtitle
-            FROM feeds f JOIN latest_ok l USING (url)
+                   f.subtitle, i.source, i.source_license
+            FROM feeds f JOIN latest_ok l USING (url) LEFT JOIN inputs i USING (url)
             WHERE l.last_item_date > now() - make_interval(years => %s)
             """,
             (success_days, item_years),

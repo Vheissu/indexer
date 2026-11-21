@@ -4,6 +4,7 @@ directory."""
 import hashlib
 import json
 import re
+from dataclasses import replace
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -397,6 +398,8 @@ def test_previews(tmp_path: Path) -> None:
             48213,
             "rust, web-development",
             "  Notes on\n <i>Rust</i> ",
+            "https://raw.githubusercontent.com/simevidas/web-dev-feeds/master/feeds.opml",
+            "MIT",
         ),
         ListedFeed(long_url, "", None, None, None, None),
     ]
@@ -413,6 +416,10 @@ def test_previews(tmp_path: Path) -> None:
         "last": "2026-10-03",
         "languages": ["de", "en", "fr"],
         "topics": ["rust", "web-development"],  # as stored: most similar first
+        "source": {  # as the site's sources table shows it
+            "name": "simevidas/web-dev-feeds",
+            "license": "MIT",
+        },
     }
     other = json.loads((out / preview_path(long_url)).read_text(encoding="utf-8"))
     assert other == {
@@ -423,6 +430,7 @@ def test_previews(tmp_path: Path) -> None:
         "last": None,
         "languages": [],
         "topics": [],
+        "source": None,  # not in inputs
     }
     assert len(list((out / "previews").rglob("*.json"))) == 2
 
@@ -563,3 +571,21 @@ def test_with_synonyms_maps_stored_topics_at_publish_time() -> None:
         "movies": 1,
         "quantum": 1,
     }
+
+
+def test_preview_source_names_the_list() -> None:
+    def source(url: str | None, license: str | None = None) -> object:
+        doc = json.loads(render_preview(replace(feed(1), source=url, source_license=license)))
+        return doc["source"]
+
+    repo = "https://github.com/feedrule/indexer"
+    survivors = {"name": "data/survivors/", "license": "Common Crawl terms"}
+    assert source(f"{repo}/tree/develop/data/survivors", "LicenseRef-CommonCrawl-ToU") == survivors
+    assert source(f"{repo}/blob/develop/data/survivors.txt", "x") == survivors  # its old file
+    assert source("https://raw.githubusercontent.com/kagisearch/smallweb/main/smallweb.txt") == {
+        "name": "kagisearch/smallweb",
+        "license": "MIT",
+    }
+    unknown = "https://lists.example/feeds.opml"
+    assert source(unknown, "CC0-1.0") == {"name": None, "license": "CC0-1.0"}
+    assert source(None) is None

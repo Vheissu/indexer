@@ -75,6 +75,16 @@ SOURCES = (
            "MIT", "", "feeds submitted to the project", ""),
 )  # fmt: skip
 
+
+def source_of(url: str | None) -> Source | None:
+    """The entry of SOURCES an inputs.source URL belongs to: the first whose name (without a
+    trailing slash) is in the URL's path. That matches a list's raw file URLs
+    (raw.githubusercontent.com/kagisearch/smallweb/...) and this repository's files under any
+    branch or old name (.../data/survivors.txt). None if no entry matches."""
+    path = urlsplit(url).path if url else ""
+    return next((s for s in SOURCES if s.name.rstrip("/") in path), None)
+
+
 _env = Environment(
     loader=PackageLoader("indexer", "templates"),
     autoescape=select_autoescape(["html", "xml"]),

@@ -246,6 +246,10 @@ async def test_listed_feeds_rules() -> None:
     now = datetime.now(UTC)
     old_item = now.replace(year=now.year - 6)
     try:
+        await conn.execute("DELETE FROM inputs WHERE url LIKE %s", (base + "%",))
+        await db.upsert_inputs(
+            [InputRow(base + "ok", "https://lists.example/a.opml", "MIT")], {"MIT": 0}
+        )
         run_id = await db.start_run()
         cases = {
             "ok": CheckRow(url=base + "ok", checked_at=now, last_item_date=now, title="ok"),
@@ -265,8 +269,11 @@ async def test_listed_feeds_rules() -> None:
                 last_item_date=now,
             ),
         )
-        listed = {f.url for f in await db.listed_feeds(60, 5)}
-        assert {u for u in listed if u.startswith(base)} == {base + "ok"}
+        listed = {f.url: f for f in await db.listed_feeds(60, 5) if f.url.startswith(base)}
+        assert set(listed) == {base + "ok"}
+        ok = listed[base + "ok"]
+        assert (ok.source, ok.source_license) == ("https://lists.example/a.opml", "MIT")
+        await conn.execute("DELETE FROM inputs WHERE url LIKE %s", (base + "%",))
         await conn.execute("DELETE FROM health_checks WHERE run_id = %s", (run_id,))
         await conn.execute("DELETE FROM runs WHERE id = %s", (run_id,))
         await conn.execute("DELETE FROM feeds WHERE url LIKE %s", (base + "%",))

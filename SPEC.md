@@ -23,7 +23,9 @@ Topic names are lower-case `a-z`, `0-9`, `-`, `_`, `+` and `#` (`rust`, `web-dev
 Preview fields: `url` (the feed URL), `title`, `subtitle` (the feed's description), `bytes` (feed size at the last successful check),
 `last` (date of the newest post, `YYYY-MM-DD`), `languages` (the languages detected on its posts,
 as ISO 639 codes, sorted; empty if none), `topics` (topic names, most relevant first, at most 5;
-empty if none stands out; only those in `topic/topics.txt` have a folder). `title`, `subtitle`,
-`bytes` and `last` may be `null`.
+empty if none stands out; only those in `topic/topics.txt` have a folder), `source` (the list the
+feed was found in, as the site's sources table shows it: `name`, e.g. `kagisearch/smallweb`,
+and `license`, e.g. `MIT`, `CC0-1.0`, `Common Crawl terms`; `name` may be `null`, then
+`license` is an SPDX id). `title`, `subtitle`, `bytes`, `last` and `source` may be `null`.
 
 Titles and subtitles come from the feeds: treat them as untrusted plain text, never as HTML.

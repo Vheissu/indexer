@@ -54,6 +54,8 @@ class ListedFeed:
     file_size: int | None = None  # body bytes at the latest successful check
     topics: str | None = None  # from the English item titles, most similar first: "rust, wasm"
     subtitle: str | None = None  # Atom <subtitle> or RSS <description>
+    source: str | None = None  # inputs.source: the list file it came from (or its homepage)
+    source_license: str | None = None  # that list's SPDX license id
 
     def languages(self) -> list[str]:
         """The languages detected on the feed's items ("en"), sorted."""
@@ -162,13 +164,17 @@ def render_preview(feed: ListedFeed) -> str:
     """One feed's preview, for a search page showing the feeds of a topic's links.txt:
 
         {"url": "https://...", "title": "...", "subtitle": "...", "bytes": 48213,
-         "last": "2026-11-14", "languages": ["de", "en"], "topics": ["rust", "webassembly"]}
+         "last": "2026-11-14", "languages": ["de", "en"], "topics": ["rust", "webassembly"],
+         "source": {"name": "kagisearch/smallweb", "license": "MIT"}}
 
     url is the feed URL the file is named after, so a preview stands alone. title, subtitle,
     bytes (body size at the latest successful check) and last are null when unknown; languages
     are the languages detected on its items (sorted, empty if none); topics are its topics
     (names from data/topics/topics.txt, most similar first, empty if none; only those in
-    topic/topics.txt have a folder). The title and subtitle are untrusted plain text."""
+    topic/topics.txt have a folder); source is the list the feed came from, as the site's sources
+    table shows it (`site.source_of`: name and license); for a source missing from that table,
+    name is null and license its SPDX id; null for a feed not in inputs. The title and subtitle
+    are untrusted plain text."""
     doc = {
         "url": feed.url,
         "title": " ".join(feed.title.split()) or None if feed.title else None,
@@ -177,8 +183,17 @@ def render_preview(feed: ListedFeed) -> str:
         "last": feed.last_item_date.date().isoformat() if feed.last_item_date else None,
         "languages": feed.languages(),
         "topics": feed.topic_names(),
+        "source": _source(feed),
     }
     return json.dumps(doc, ensure_ascii=False, indent=2) + "\n"
+
+
+def _source(feed: ListedFeed) -> dict[str, str | None] | None:
+    if not feed.source:
+        return None
+    if (known := site.source_of(feed.source)) is not None:
+        return {"name": known.name, "license": known.license}
+    return {"name": None, "license": feed.source_license}
 
 
 # --- writing ----------------------------------------------------------------------------------
