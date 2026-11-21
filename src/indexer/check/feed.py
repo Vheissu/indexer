@@ -16,7 +16,7 @@ import urllib.parse
 from collections.abc import Iterable
 from dataclasses import dataclass
 from datetime import UTC, datetime
-from typing import TypedDict
+from typing import NamedTuple, TypedDict
 from xml.etree.ElementTree import Element, ParseError
 
 from defusedxml import DefusedXmlException
@@ -45,13 +45,23 @@ MAX_TEXT_ITEMS = 30  # items whose text is kept for language detection (first in
 MAX_ITEM_TEXT_LEN = 300  # title and the start of the description, per item
 MAX_ITEM_TAGS = 50  # categories kept per item (topics ignore an item with more than a few)
 MAX_TAG_LEN = 100
-MAX_ITEM_LINKS = 3  # links of the most recent items (for reviewing proposals; not stored)
-MAX_ITEM_LINK_LEN = 300
+MAX_RECENT_POSTS = 3  # the most recent items, for reviewing proposals (not stored)
+MAX_POST_LINK_LEN = 300
+MAX_POST_DESCRIPTION_LEN = 200
 AUDIO_EXTENSIONS = (".mp3", ".m4a", ".aac", ".ogg", ".oga", ".opus", ".wav", ".flac")
 VIDEO_EXTENSIONS = (".mp4", ".m4v", ".webm", ".mov", ".mkv")
 _TAG = re.compile(r"<[^>]*>")
 
 MAX_INT32 = 2**31 - 1
+
+
+class RecentPost(NamedTuple):
+    """One of a feed's most recent items, shown to reviewers of proposals. Untrusted text: the
+    link is as written in the feed (not resolved or validated) and never fetched."""
+
+    link: str
+    title: str | None
+    description: str | None
 
 
 @dataclass(frozen=True, slots=True)
@@ -67,9 +77,8 @@ class FeedInfo:
     # Descriptive fields, named after their Atom counterparts.
     title: str | None = None
     subtitle: str | None = None  # Atom <subtitle>, RSS <description>
-    # Each item's link as written in the feed (not resolved or validated: untrusted text, shown
-    # to reviewers, never fetched), distinct: the MAX_ITEM_LINKS most recent items, newest first.
-    item_links: tuple[str, ...] = ()
+    # The MAX_RECENT_POSTS most recent items with a link, newest first, distinct by link.
+    recent_posts: tuple[RecentPost, ...] = ()
     media_type: str | None = None  # text, podcast or video; None for an empty feed
     icon: str | None = None
     logo: str | None = None  # Atom <logo>, RSS <image><url>, <itunes:image>
@@ -362,13 +371,20 @@ def _rel_link(parent: Element, ns: str, rel: str, base: str | None) -> str | Non
     return None
 
 
-def _item_links(
-    items: Iterable[Element], ns: str, atom: bool, date_tags: tuple[str, ...]
-) -> tuple[str, ...]:
-    """The links of the MAX_ITEM_LINKS most recent items (undated items after dated ones, in
-    feed order), as written: RSS/RDF <link> text, Atom <link rel=alternate href>. Only
-    printable characters kept and the length capped; otherwise as-is."""
-    dated: list[tuple[float, int, str]] = []
+def _recent_posts(
+    items: Iterable[Element],
+    ns: str,
+    *,
+    atom: bool,
+    date_tags: tuple[str, ...],
+    title_tag: str,
+    description_tags: tuple[str, ...],
+) -> tuple[RecentPost, ...]:
+    """The MAX_RECENT_POSTS most recent items with a link (undated items after dated ones, in
+    feed order), distinct by link: the link as written (RSS/RDF <link> text, Atom <link
+    rel=alternate href>, only printable characters, length capped), the title, and the start
+    of the first non-empty description."""
+    dated: list[tuple[float, int, str, Element]] = []
     for position, item in enumerate(items):
         if atom:
             raw = next(
@@ -381,17 +397,27 @@ def _item_links(
             )
         else:
             raw = item.findtext(f"{ns}link")
-        text = "".join(c for c in (raw or "") if c.isprintable()).strip()[:MAX_ITEM_LINK_LEN]
-        if text:
+        link = "".join(c for c in (raw or "") if c.isprintable()).strip()[:MAX_POST_LINK_LEN]
+        if link:
             dates = [d for tag in date_tags if (d := parse_date(item.findtext(tag)))]
             newest = max(dates).timestamp() if dates else float("-inf")
-            dated.append((-newest, position, text))
-    found: dict[str, None] = {}
-    for _newest, _position, text in sorted(dated):
-        found.setdefault(text)
-        if len(found) == MAX_ITEM_LINKS:
+            dated.append((-newest, position, link, item))
+    posts: dict[str, RecentPost] = {}
+    for _newest, _position, link, item in sorted(dated, key=lambda d: (d[0], d[1])):
+        if link in posts:
+            continue
+        description = next(
+            (
+                text
+                for tag in description_tags
+                if (text := _text_of(item.find(tag), markup=True, limit=MAX_POST_DESCRIPTION_LEN))
+            ),
+            None,
+        )
+        posts[link] = RecentPost(link, _text_of(item.find(title_tag), markup=True), description)
+        if len(posts) == MAX_RECENT_POSTS:
             break
-    return tuple(found)
+    return tuple(posts.values())
 
 
 def _item_tags(item: Element) -> tuple[str, ...]:
@@ -442,7 +468,7 @@ def _item_texts(items: list[Element], title: str, descriptions: tuple[str, ...])
 class Description(TypedDict):
     title: str | None
     subtitle: str | None
-    item_links: tuple[str, ...]
+    recent_posts: tuple[RecentPost, ...]
     item_texts: tuple[str, ...]
     item_tags: tuple[tuple[str, ...], ...]
     media_type: str | None
@@ -462,7 +488,14 @@ def _describe(root: Element, kind: str, base: str | None) -> Description:
         return {
             "title": _text_of(channel.find("title"), markup=True),
             "subtitle": _text_of(channel.find("description"), markup=True, limit=MAX_SUBTITLE_LEN),
-            "item_links": _item_links(items, "", atom=False, date_tags=_RSS_DATES),
+            "recent_posts": _recent_posts(
+                items,
+                "",
+                atom=False,
+                date_tags=_RSS_DATES,
+                title_tag="title",
+                description_tags=("description", f"{CONTENT}encoded"),
+            ),
             **_item_texts(items, "title", ("description", f"{CONTENT}encoded")),
             "media_type": _media_type(items),
             "icon": clean_url(channel.findtext(f"{ATOM}icon"), base),
@@ -487,8 +520,13 @@ def _describe(root: Element, kind: str, base: str | None) -> Description:
                 root.find(f"{ns}subtitle") if ns == ATOM else root.find(f"{ns}tagline"),
                 limit=MAX_SUBTITLE_LEN,
             ),
-            "item_links": _item_links(
-                entries, ns, atom=True, date_tags=_ATOM_DATES if ns == ATOM else _ATOM03_DATES
+            "recent_posts": _recent_posts(
+                entries,
+                ns,
+                atom=True,
+                date_tags=_ATOM_DATES if ns == ATOM else _ATOM03_DATES,
+                title_tag=f"{ns}title",
+                description_tags=(f"{ns}summary", f"{ns}content"),
             ),
             **_item_texts(entries, f"{ns}title", (f"{ns}summary", f"{ns}content")),
             "media_type": _media_type(entries),
@@ -504,11 +542,18 @@ def _describe(root: Element, kind: str, base: str | None) -> Description:
     channel = root.find(f"{ns}channel")
     assert channel is not None
     items = root.findall(f"{RSS10}item") + root.findall(f"{RSS090}item")
-    links = _item_links(items, ns, atom=False, date_tags=_RDF_DATES)
+    recent_posts = _recent_posts(
+        items,
+        ns,
+        atom=False,
+        date_tags=_RDF_DATES,
+        title_tag=f"{ns}title",
+        description_tags=(f"{ns}description",),
+    )
     return {
         "title": _text_of(channel.find(f"{ns}title"), markup=True),
         "subtitle": _text_of(channel.find(f"{ns}description"), markup=True, limit=MAX_SUBTITLE_LEN),
-        "item_links": links[:MAX_ITEM_LINKS],
+        "recent_posts": recent_posts,
         **_item_texts(items, f"{ns}title", (f"{ns}description",)),
         "media_type": _media_type(items),
         "icon": None,

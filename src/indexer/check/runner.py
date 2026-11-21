@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from datetime import UTC, datetime
 from typing import Protocol
 
-from indexer.check.feed import parse_feed
+from indexer.check.feed import RecentPost, parse_feed
 from indexer.errors import CheckError, ErrorCode
 from indexer.language import feed_languages
 from indexer.net.domains import parent_domain_of
@@ -69,7 +69,7 @@ class CheckRow:
     logo: str | None = None
     rights: str | None = None
     license: str | None = None
-    item_links: tuple[str, ...] = ()  # used by survivors, not stored
+    recent_posts: tuple[RecentPost, ...] = ()  # used by survivors, not stored
     item_texts: tuple[str, ...] = ()  # the newest posts' title and start: survivors, not stored
     detail: str | None = None  # logged, not stored
 
@@ -112,7 +112,7 @@ async def check_one(
         row.new_feed_url = info.new_feed_url
         row.title = info.title
         row.subtitle = info.subtitle
-        row.item_links = info.item_links
+        row.recent_posts = info.recent_posts
         row.item_texts = info.item_texts
         if languages is not None:
             per_post = languages.post_languages(info.item_texts)

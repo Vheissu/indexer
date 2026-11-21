@@ -2,14 +2,21 @@
 
 Survivors does not insert into the database. It appends its finds to data/survivors.txt (a
 `lines` source in sources.toml, like submissions.txt), and the workflow proposes the change as a
-pull request. A reviewer deletes the URLs they don't want and merges; the daily input job then
-loads the file.
-
-Each entry is one comment line with what a reviewer needs, then the URL:
+pull request. Each entry is comment lines with what a reviewer needs, then the feed's URL,
+commented out too:
 
     # Miss Frugal Mommy · en · last post 2026-11-12
+    # about: Saving money with kids
     # found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/.../...warc.wat.gz
-    https://missfrugalmommy.com/feed/
+    # recent posts:
+    #   - https://missfrugalmommy.com/ten-ways/
+    #     Ten ways to save on groceries
+    #     We spend too much on food. Here are ten things that...
+    # https://missfrugalmommy.com/feed/
+
+A reviewer uncomments the URL line of each feed they want (deletes "# ") and merges; the daily
+input job then loads the uncommented URLs. Commented-out proposals still count as known, so a
+feed left out is not proposed again.
 
 Titles and links come from the feeds, so they are untrusted: in the file they are flattened to a
 single line of printable text (a title can never start a new, uncommented line), and in the
@@ -30,6 +37,7 @@ from indexer.sources import extract_urls
 from indexer.survivors.run import Survivor
 
 _MAX_TITLE = 100
+_MAX_SUBTITLE = 200
 
 
 def _one_line(text: str | None, limit: int) -> str:
@@ -41,12 +49,23 @@ def _one_line(text: str | None, limit: int) -> str:
     return flat if len(flat) <= limit else flat[: limit - 1].rstrip() + "…"
 
 
+# A proposal's URL line, commented out: "# " then the URL, alone on the line. Untrusted text is
+# never written that way (it always follows a label or an indent).
+_PROPOSED = re.compile(r"# (https?://\S+)")
+
+
 def known_urls(path: Path) -> set[str]:
-    """The URLs already in the file (comments ignored); none if it doesn't exist."""
+    """The URLs already in the file, accepted or commented out; none if it doesn't exist."""
     try:
-        return set(extract_urls(path.read_bytes(), "lines"))
+        data = path.read_bytes()
     except FileNotFoundError:
         return set()
+    proposed = {
+        m.group(1)
+        for line in data.decode("utf-8", errors="replace").splitlines()
+        if (m := _PROPOSED.fullmatch(line.strip()))
+    }
+    return set(extract_urls(data, "lines")) | proposed
 
 
 def render_entries(survivors: Iterable[Survivor], crawl: str, today: date) -> str:
@@ -60,7 +79,17 @@ def render_entries(survivors: Iterable[Survivor], crawl: str, today: date) -> st
                 f"last post {s.last_item_date.date().isoformat()}",
             ]
         )
-        out.append(f"# {summary}\n# found in {s.wat_url}\n{s.url}\n")
+        out.append(f"\n# {summary}\n")
+        if subtitle := _one_line(s.subtitle, _MAX_SUBTITLE):
+            out.append(f"# about: {subtitle}\n")
+        out.append(f"# found in {s.wat_url}\n")
+        out.append("# recent posts:\n" if s.recent_posts else "# recent posts: none with a link\n")
+        for post in s.recent_posts:
+            out.append(f"#   - {_one_line(post.link, 300)}\n")
+            for text in (_one_line(post.title, _MAX_TITLE), _one_line(post.description, 200)):
+                if text:
+                    out.append(f"#     {text}\n")
+        out.append(f"# {s.url}\n")
     return "".join(out)
 
 
@@ -94,9 +123,7 @@ def _feed_section(s: Survivor) -> str:
         f"- feed: {_code(s.url)}",
         f"- last post: {s.last_item_date.date().isoformat()}",
         f"- languages: {_code(_one_line(s.language, 200))}",
-        "- latest posts:" if s.item_links else "- latest posts: none with a link",
     ]
-    lines += [f"  - {_code(_one_line(link, 300))}" for link in s.item_links]
     return "\n".join(lines) + "\n\n"
 
 

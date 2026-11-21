@@ -3,7 +3,7 @@ from datetime import UTC, datetime
 import pytest
 from conftest import FIXTURES
 
-from indexer.check.feed import clean_url, parse_date, parse_feed
+from indexer.check.feed import FeedInfo, RecentPost, clean_url, parse_date, parse_feed
 from indexer.errors import CheckError, ErrorCode
 
 
@@ -185,7 +185,11 @@ def test_reencoding_keeps_the_xml_protections() -> None:
     assert error_of(bomb) == ErrorCode.PARSE_ERROR
 
 
-def test_item_links_as_written_distinct_in_order() -> None:
+def links(info: FeedInfo) -> tuple[str, ...]:
+    return tuple(post.link for post in info.recent_posts)
+
+
+def test_recent_post_links_as_written_distinct_in_order() -> None:
     rss = b"""<rss version="2.0"><channel><title>t</title>
       <item><link> https://a.example/1 </link></item>
       <item><link>/relative/2</link></item>
@@ -193,7 +197,7 @@ def test_item_links_as_written_distinct_in_order() -> None:
       <item><title>no link</title></item>
       <item><link>javascript:alert(1)</link></item>
     </channel></rss>"""
-    assert parse_feed(rss).item_links == (
+    assert links(parse_feed(rss)) == (
         "https://a.example/1",
         "/relative/2",  # as written: not resolved
         "javascript:alert(1)",  # not validated: shown to reviewers, never fetched
@@ -203,14 +207,14 @@ def test_item_links_as_written_distinct_in_order() -> None:
              <link href="https://a.example/post"/></entry>
       <entry><link rel="alternate" href="https://spam.example/x"/></entry>
     </feed>"""
-    assert parse_feed(atom).item_links == ("https://a.example/post", "https://spam.example/x")
+    assert links(parse_feed(atom)) == ("https://a.example/post", "https://spam.example/x")
     rdf = b"""<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
       xmlns="http://purl.org/rss/1.0/"><channel><title>t</title></channel>
       <item><link>https://a.example/r</link></item></rdf:RDF>"""
-    assert parse_feed(rdf).item_links == ("https://a.example/r",)
+    assert links(parse_feed(rdf)) == ("https://a.example/r",)
 
 
-def test_item_links_are_the_three_most_recent_items() -> None:
+def test_recent_posts_are_the_three_most_recent_items() -> None:
     rss = b"""<rss version="2.0"><channel><title>t</title>
       <item><link>https://a.example/old</link>
         <pubDate>Mon, 01 Jan 2024 00:00:00 GMT</pubDate></item>
@@ -222,7 +226,7 @@ def test_item_links_are_the_three_most_recent_items() -> None:
       <item><link>https://a.example/new</link>
         <pubDate>Mon, 01 Jul 2024 00:00:00 GMT</pubDate></item>
     </channel></rss>"""
-    assert parse_feed(rss).item_links == (
+    assert links(parse_feed(rss)) == (
         "https://a.example/newest",
         "https://a.example/new",
         "https://a.example/mid",
@@ -230,12 +234,28 @@ def test_item_links_are_the_three_most_recent_items() -> None:
     undated = b"""<rss version="2.0"><channel><title>t</title>
       <item><link>https://a.example/1</link></item><item><link>https://a.example/2</link></item>
     </channel></rss>"""
-    assert parse_feed(undated).item_links == ("https://a.example/1", "https://a.example/2")
+    assert links(parse_feed(undated)) == ("https://a.example/1", "https://a.example/2")
 
 
-def test_item_links_are_capped() -> None:
+def test_recent_post_links_are_capped() -> None:
     items = "".join(
         f"<item><link>https://a.example/{i}/{'x' * 400}</link></item>" for i in range(150)
     )
-    links = parse_feed(f'<rss version="2.0"><channel>{items}</channel></rss>'.encode()).item_links
-    assert len(links) == 3 and all(len(link) == 300 for link in links)
+    info = parse_feed(f'<rss version="2.0"><channel>{items}</channel></rss>'.encode())
+    assert len(info.recent_posts) == 3 and all(len(p.link) == 300 for p in info.recent_posts)
+
+
+def test_recent_posts_have_a_title_and_the_start_of_the_description() -> None:
+    rss = b"""<rss version="2.0"><channel><title>t</title>
+      <item><title>First &amp; best</title><link>https://a.example/1</link>
+        <description>&lt;p&gt;Hello &lt;b&gt;world&lt;/b&gt;&lt;/p&gt;</description></item>
+      <item><link>https://a.example/2</link></item>
+    </channel></rss>"""
+    assert parse_feed(rss).recent_posts == (
+        RecentPost("https://a.example/1", "First & best", "Hello world"),  # markup stripped
+        RecentPost("https://a.example/2", None, None),
+    )
+    item = f"<item><link>https://a.example/</link><description>{'x' * 900}</description></item>"
+    long = f'<rss version="2.0"><channel>{item}</channel></rss>'
+    (post,) = parse_feed(long.encode()).recent_posts
+    assert post.description is not None and len(post.description) == 200

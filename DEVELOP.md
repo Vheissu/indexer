@@ -152,23 +152,25 @@ Feeds already there are skipped before checking (and again after, for the URL a 
 to). The rest are checked in random order, 200 at a time, and the run stops once `--max-feeds`
 (20) pass, so a run proposes at most 20 and stops checking early.
 
-The finds are appended to `data/survivors.txt`, each as a comment line (title, detected
-languages, date of the newest item), the WAT file it came from, and the URL. Each workflow run commits
+The finds are appended to `data/survivors.txt`, each as comment lines: title, detected languages
+and date of the newest item, subtitle, the WAT file it came from, and its 3 most recent posts (link,
+title and the start of the description, one line each), then the URL, **commented out too**.
+Each workflow run commits
 that to a **new branch**, `survivors-<UTC timestamp>` (for example `survivors-20261119-041105`),
 and opens **its own pull request** into `develop`, with one
-section per feed: its title, URL, date of the newest item, languages, and the links of its 3
-latest posts as written, all as code spans so nothing is clickable and spam domains are easy to
-spot. The report stays under GitHub's 65,536-character limit: feeds that don't fit are only
+section per feed: its title, URL, date of the newest item and languages, as code spans so
+nothing is clickable (the recent posts are in the diff). The report stays under GitHub's 65,536-character limit: feeds that don't fit are only
 counted ("... and N more feeds: see the diff"). The description also holds all the proposed feeds
 as OPML in a folded code block: save it as a `.opml` file and import it into a feed reader to try
-them while reviewing. Review the diff, delete the URL line of any feed you don't want, and merge (or close the pull
-request to drop the whole batch): the
-input job then loads the file on the push to `develop` (source `survivors`, license
+them while reviewing. Review the diff, **uncomment** the URL line of each feed you want (delete the
+`# ` before it), and merge (or close the pull request to drop the whole batch): the input job then
+loads the uncommented URLs on the push to `develop` (source `survivors`, license
 `LicenseRef-CommonCrawl-ToU`, ranked last). Every run starts from `develop`, so a pull request never carries an older run's proposals.
 Two open pull requests both append to the end of the file, so merging one makes the other
 conflict: merge or close them in order (GitHub's "Update branch" or a rebase resolves it; keep both
-blocks). URLs in another open pull request are not skipped, so the same feed can be proposed twice. A deleted URL is not remembered after merging,
-so in the unlikely case a later random slice finds it again, it is proposed again.
+blocks). URLs in another open pull request are not skipped, so the same feed can be proposed twice. A URL left commented out
+counts as known (`proposals.known_urls`), so it is not proposed again; one deleted from the file is
+forgotten.
 
 Started by hand (Actions → survivors → Run workflow), the workflow takes `slice-mb`, `years-ago`
 `active-days` and `max-feeds` as inputs; the weekly run uses the defaults (25, 5, 243, 20).

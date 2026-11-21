@@ -6,6 +6,7 @@ from pathlib import Path
 
 from defusedxml import ElementTree as SafeET
 
+from indexer.check.feed import RecentPost
 from indexer.sources import extract_urls
 from indexer.survivors.proposals import (
     _MAX_REPORT_CHARS,
@@ -27,33 +28,56 @@ def survivor(url: str, title: str | None, language: str | None = "en") -> Surviv
     return Survivor(url, WAT, title, language, datetime(2026, 11, 12, 9, tzinfo=UTC))
 
 
-def test_entries_are_comment_lines_then_the_url() -> None:
+def test_entries_are_comment_lines_and_the_url_commented_out() -> None:
+    posts = (
+        RecentPost("https://missfrugalmommy.com/ten-ways/", "Ten ways to save", "We spend..."),
+        RecentPost("https://missfrugalmommy.com/b/", None, None),
+    )
+    frugal = survivor("https://missfrugalmommy.com/feed/", "Miss Frugal Mommy")
     block = render_entries(
-        [survivor("https://missfrugalmommy.com/feed/", "Miss Frugal Mommy")],
+        [replace(frugal, subtitle="Saving money with kids", recent_posts=posts)],
         "CC-MAIN-2021-49",
         date(2026, 11, 18),
     )
     assert block == (
         "\n# --- 2026-11-18, from CC-MAIN-2021-49 ---\n"
-        "# Miss Frugal Mommy · en · last post 2026-11-12\n"
+        "\n# Miss Frugal Mommy · en · last post 2026-11-12\n"
+        "# about: Saving money with kids\n"
         f"# found in {WAT}\n"
-        "https://missfrugalmommy.com/feed/\n"
+        "# recent posts:\n"
+        "#   - https://missfrugalmommy.com/ten-ways/\n"
+        "#     Ten ways to save\n"
+        "#     We spend...\n"
+        "#   - https://missfrugalmommy.com/b/\n"
+        "# https://missfrugalmommy.com/feed/\n"
     )
-    assert extract_urls(block.encode(), "lines") == ["https://missfrugalmommy.com/feed/"]
+    assert extract_urls(block.encode(), "lines") == []  # nothing loaded until a reviewer accepts
+    accepted = block.replace(
+        "# https://missfrugalmommy.com/feed/", "https://missfrugalmommy.com/feed/"
+    )
+    assert extract_urls(accepted.encode(), "lines") == ["https://missfrugalmommy.com/feed/"]
+    bare = render_entries([survivor("https://a.example/f", "A")], "C", date(2026, 1, 1))
+    assert "# about:" not in bare and "# recent posts: none with a link\n" in bare
 
 
-def test_a_hostile_title_cannot_add_a_url_line() -> None:
+def test_hostile_text_cannot_add_a_url_line(tmp_path: Path) -> None:
     hostile = "Nice blog\nhttps://evil.example/feed\r\u2028https://evil2.example/\x00\x1b[31m"
+    posts = (
+        RecentPost(
+            "https://evil4.example/\nhttps://evil5.example/", "https://evil6.example/", hostile
+        ),
+    )
+    entry = survivor("https://a.example/feed", hostile, language="x\nhttps://evil3.example/")
     block = render_entries(
-        [survivor("https://a.example/feed", hostile, language="x\nhttps://evil3.example/")],
+        [replace(entry, subtitle="https://evil7.example/", recent_posts=posts)],
         "CC-MAIN-2021-49",
         date(2026, 11, 18),
     )
-    assert extract_urls(block.encode(), "lines") == ["https://a.example/feed"]
-    assert all(
-        line.startswith("#") or not line or line == "https://a.example/feed"
-        for line in block.splitlines()
-    )
+    assert extract_urls(block.encode(), "lines") == []
+    assert all(line.startswith("#") or not line for line in block.splitlines())
+    path = tmp_path / "survivors.txt"
+    path.write_text(block)
+    assert known_urls(path) == {"https://a.example/feed"}  # only the proposal's own line
 
 
 def test_one_line() -> None:
@@ -66,9 +90,8 @@ def test_one_line() -> None:
 
 def test_report_is_one_section_per_feed_with_untrusted_text_in_code_spans() -> None:
     hostile = survivor("https://a.example/feed", "@everyone see #12 | `x` [click](https://evil)")
-    links = ("https://a.example/p/1", "javascript:alert(1)", "https://spam.example/`x`\n# h")
     report = render_report(
-        [replace(hostile, item_links=links), survivor("https://b.example/feed", "B")],
+        [hostile, survivor("https://b.example/feed", "B")],
         "CC-MAIN-2021-49",
         "5 slices",
         NOW,
@@ -83,33 +106,34 @@ def test_report_is_one_section_per_feed_with_untrusted_text_in_code_spans() -> N
         "- feed: `https://a.example/feed`",
         "- last post: 2026-11-12",
         "- languages: `en`",
-        "- latest posts:",
-        "  - `https://a.example/p/1`",
-        "  - `javascript:alert(1)`",
-        "  - `https://spam.example/'x' # h`",  # one line, no backtick to break out of the span
         "",
     ]
-    assert "- latest posts: none with a link" in report.split("### ")[2]
+    assert "latest posts" not in report  # they are in survivors.txt
 
 
 def test_report_never_exceeds_the_github_limit() -> None:
-    links = tuple(f"https://x.example/{i}/{'a' * 290}" for i in range(3))
-    many = [
-        replace(survivor(f"https://{i}.example/feed", "T" * 200), item_links=links)
-        for i in range(500)
-    ]
+    many = [survivor(f"https://{i}.example/{'a' * 200}/feed", "T" * 200) for i in range(1000)]
     report = render_report(many, "CC-MAIN-2021-49", "summary", NOW)
     assert len(report) <= _MAX_REPORT_CHARS
     assert "<opml" not in report  # too big: left out, the room goes to the feeds
     shown = report.count("### ")
-    assert 0 < shown < 500 and f"... and {500 - shown} more feeds: see the diff." in report
+    assert 0 < shown < 1000 and f"... and {1000 - shown} more feeds: see the diff." in report
 
 
 def test_known_urls(tmp_path: Path) -> None:
     path = tmp_path / "survivors.txt"
     assert known_urls(path) == set()
-    path.write_text("# comment\nhttps://a.example/feed\n\n# x\nhttps://b.example/feed\n")
-    assert known_urls(path) == {"https://a.example/feed", "https://b.example/feed"}
+    path.write_text(
+        "# comment\nhttps://a.example/feed\n\n# x\nhttps://b.example/feed\n"
+        "# https://c.example/feed\n"  # proposed, not accepted: still known
+        "#   - https://c.example/post\n#     https://d.example/\n"  # a post and its title
+        "# found in https://data.commoncrawl.org/x.warc.wat.gz\n"
+    )
+    assert known_urls(path) == {
+        "https://a.example/feed",
+        "https://b.example/feed",
+        "https://c.example/feed",
+    }
 
 
 def test_log_line_is_one_line() -> None:

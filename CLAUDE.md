@@ -37,8 +37,10 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   every survivors.yml run opens its own PR from a new branch `survivors-<UTC timestamp>` based on develop (never a reused
   branch, so old proposals can't be merged by mistake). Skips URLs already in develop's file or in inputs.
   Untrusted titles/links: one line in the file (`proposals._one_line`), code spans in Markdown (no mentions/links).
-  PR report: one section per feed (title, URL, last post, detected languages, the links of the 3 latest posts, all code spans),
-  for spotting spam; item links are parsed (`FeedInfo.item_links`, 3 newest) but never stored or fetched; the report
+  Each entry in the file (asked 2026-11-21): comment lines with title, languages, last post, subtitle, WAT file and the 3 most
+  recent posts (link, title, start of the description; `FeedInfo.recent_posts`, never stored or fetched), then the URL
+  **commented out**: a reviewer uncomments the feeds they want. Commented-out proposals count as known (not proposed again).
+  PR report: one section per feed (title, URL, last post, detected languages, all code spans); the report
   never exceeds GitHub's 65,536-character limit (extra feeds are only counted). It starts with all proposals as OPML in a folded
   code block (asked by the user on 2026-11-19; PRs can't hold attachments), fence longer than any backtick run in it;
   max-feeds default 20 (was 50) so it fits.
@@ -52,8 +54,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   2026-11-18; what the feed declares is not read), **have a title** and are
   **served over https today** (inserted as the URL after redirects; links are tried as https, and one that
   redirects back to plain http is skipped). Rejected as too complex: detecting one feed in several formats by its items (only the URL rules above).
-  Still open: a takeover guard, storing these checks (not stored now), remembering
-  URLs rejected in review.
+  Still open: a takeover guard, storing these checks (not stored now).
 - `[exclude] domains` (youtube.com, reddit.com) is matched by registrable domain and applied at load and in survivors.
 - `[commoncrawl] exclude_keywords` (adult / sexual-violence words; gambling words added 2026-11-17 after casino spam in a sample), **Common Crawl only**: survivors skips a feed with one as a whole word in its title,
   or 3 or more in its subtitle and newest posts together (asked 2026-11-21; `filters._has_keyword`, after the English filter). Agreed with the user on 2026-11-16 after porn in a survivors PR;

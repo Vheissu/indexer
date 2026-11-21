@@ -21,6 +21,7 @@ from dataclasses import dataclass, field
 from datetime import UTC, datetime, timedelta
 from urllib.parse import urlsplit
 
+from indexer.check.feed import RecentPost
 from indexer.check.runner import CheckRow
 from indexer.survivors.filters import (
     Reason,
@@ -50,7 +51,8 @@ class Survivor:
     title: str | None
     language: str | None  # detected on the items: "en, fr"
     last_item_date: datetime
-    item_links: tuple[str, ...] = ()  # each item's link as written in the feed (untrusted)
+    subtitle: str | None = None
+    recent_posts: tuple[RecentPost, ...] = ()  # newest first (untrusted text)
 
 
 @dataclass(slots=True)
@@ -181,7 +183,9 @@ def _judge(row: CheckRow, rules: Rules, wat_url: str, result: SurvivorsResult) -
         return None
     url = served_url(row, rules.exclude)
     assert url is not None and row.last_item_date is not None  # rejection() made sure
-    return Survivor(url, wat_url, row.title, row.language, row.last_item_date, row.item_links)
+    return Survivor(
+        url, wat_url, row.title, row.language, row.last_item_date, row.subtitle, row.recent_posts
+    )
 
 
 async def _unknown(

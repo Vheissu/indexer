@@ -97,8 +97,9 @@ jobs:
           git push -q "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$branch:$branch"
           {
             echo "Feeds from a ~5-year-old Common Crawl crawl that are still active, proposed for"
-            echo "\`data/survivors.txt\` by one survivors run. Review the diff: delete the URL line of"
-            echo "any feed you don't want, then merge; or close this pull request to drop them all."
+            echo "\`data/survivors.txt\` by one survivors run. Each URL is commented out: in the diff,"
+            echo "uncomment (delete \"# \" before) the URL of each feed you want, then merge; or close"
+            echo "this pull request to drop them all."
             echo
             cat output/survivors.md
           } > "$RUNNER_TEMP/body.md"
