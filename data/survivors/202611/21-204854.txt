@@ -32,7 +32,7 @@
 #     women’s fiction book, The Year of Goodbyes and Hellos
 #     (affiliate link) by Kelly Irvin. What is this book
 #     about? Determined to save Sherri’s life, Kri
-# https://lorainenunley.com/feed/
+https://lorainenunley.com/feed/
 
 # Chapters Through Life · en · last post 2026-11-20
 # score: 0.702
@@ -60,7 +60,7 @@
 #     and a deadly warlord mate. Just another day on the
 #     beat. Cops in Space: Vengeance Coletti Warlords Series
 #     Book 21 by Gail Koger Genre: SciFi Roman
-# https://chaptersthroughlife.blogspot.com/feeds/posts/default
+https://chaptersthroughlife.blogspot.com/feeds/posts/default
 
 # 5:4 · en · last post 2026-11-20
 # score: 0.688
@@ -89,7 +89,7 @@
 #     space special? i was instantly struck by this thought,
 #     walking into the main space of the Cricoteka cultural
 #     centre. The last time i was there, 12 m
-# https://5against4.com/feed/
+https://5against4.com/feed/
 
 # Cold Water Kitty · en · last post 2026-06-12
 # score: 0.687
@@ -117,7 +117,7 @@
 #     (by one of the divemasters – Hendro), and were driven
 #     to the harbor, where we got on one of the inflatables
 #     (that’s used as a dive tender) to rid
-# https://coldwaterkitty.blogspot.com/feeds/posts/default
+https://coldwaterkitty.blogspot.com/feeds/posts/default
 
 # The Doctor Who Show · en · last post 2026-11-14
 # score: 0.664
@@ -147,7 +147,7 @@
 #     Adventure, Illegal Alien. This story began life as an
 #     unproduced television script intended for Season 27.
 #     Britain is at war. Night after night t
-# https://thedwshow.net/feed/
+https://thedwshow.net/feed/
 
 # Words of Hope · en · last post 2026-11-19
 # score: 0.637
@@ -175,7 +175,7 @@
 #     I am spending time considering the emotion of fear
 #     perhaps because I am listening to an audio book by
 #     Charles Dickens.
-# https://crowellu.com/feed/
+https://crowellu.com/feed/
 
 # As I Went Walking · en · last post 2026-11-17
 # score: 0.546
@@ -202,7 +202,7 @@
 #     least, you have wondered about this. Right? Who names
 #     these things? It may be more complicated than you
 #     think. The Domestic Names Committee of the
-# https://www.asiwentwalking.com/feed/
+https://www.asiwentwalking.com/feed/
 
 # RadioChristianity · en · last post 2026-07-05
 # score: 0.545
@@ -227,6 +227,7 @@
 #   - https://radiochristianity.com/men-have-reached-their-breaking-point-with-women/
 #     Men have Reached Their Breaking Point with Women.
 #     by Jenny
+# rejected: other
 # https://radiochristianity.com/feed/
 
 # Bookangel.co.uk - Feed · en · last post 2026-11-21
@@ -256,6 +257,7 @@
 #     2026 Literary fiction (Fiction) A Christmas Carol in
 #     Prose; Being a Ghost Story of Christmas: Annotated
 #     with Introduction, Modern Footnotes, Recip
+# rejected: machine
 # https://bookangel.co.uk/feed/updates
 
 # Wexler Packaging · en · last post 2026-11-18
@@ -286,6 +288,7 @@
 #     forward to another exciting tradeshow season of
 #     connecting with customers, partners, and packaging
 #     professionals at two of the industry’s […] The
+# rejected: commercial
 # https://wexlerpackaging.com/feed/
 
 # gen kanai weblog · en · last post 2026-09-30
@@ -304,7 +307,7 @@
 #     Minami Torishima – Japan’s rare earth island
 #   - https://kanai.net/weblog/2026/05/ferrari-or-toyota/
 #     Ferrari or Toyota
-# https://kanai.net/weblog/feed/
+https://kanai.net/weblog/feed/
 
 # AutoDeal Blog · en · last post 2026-11-20
 # score: 0.477
@@ -326,6 +329,7 @@
 #     Looking at the new Ford Everest? Here’s a guide to
 #     everything that’s changed on Ford’s SUV for the 2026
 #     model year.
+# rejected: commercial
 # https://www.autodeal.com.ph/rss/articles.xml
 
 # Babcox Media · en · last post 2026-11-17
@@ -354,4 +358,5 @@
 #     begin with dashboards or analytics. Sometimes they
 #     start with a conversation. A recent automotive
 #     aftermarket roundtable revealed how listening to ind
+# rejected: commercial
 # https://babcox.com/feed/
