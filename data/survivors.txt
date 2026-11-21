@@ -9,3 +9,65 @@
 # Each entry: title · language · date of the newest tagged item · tags, then the Common Crawl
 # WAT file it was found in, then the feed URL. Titles and tags come from the feeds themselves.
 # Common Crawl terms of use: https://commoncrawl.org/terms-of-use
+
+# --- 2026-11-21, from CC-MAIN-2021-49 ---
+# INDAC · en · last post 2026-11-20
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://indac.org/feed/
+# Seán Crowe TD · en · last post 2026-11-13
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://seancrowe.ie/home/feed/
+# The Athenaeum · en · last post 2026-11-17
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://theath.ca/feed/
+# Eureka Global Art · en · last post 2026-08-27
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://eurekaglobalart.org/feed/
+# Masters Of Techno · en · last post 2026-10-30
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://mastersoftechno.com/feed/
+# Thyagaraju Central School · en · last post 2026-07-31
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://tcsedu.in/feed/
+# Wiki do LEG · en, pt · last post 2026-11-13
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://leg.ufpr.br/feed.php
+# QAU · en · last post 2026-11-16
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://qau.edu.pk/feed/atom/
+# Namibia Daily News · en · last post 2026-11-20
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://namibiadailynews.info/feed/
+# Daniel Rachel · en · last post 2026-09-24
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://danielrachel.com/feed/
+# The Horror Syndicate · en · last post 2026-11-08
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://thehorrorsyndicate.com/feed/
+# NJ Website Designs · en · last post 2026-10-16
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://hitusupdesigns.com/feed/
+# :: CASA :: · en · last post 2026-10-22
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://solutionarchive.com/atom.xml
+# Mohammed Nizami · en · last post 2026-06-14
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://nizami.co.uk/feed/
+# Thirdeye Cinemas · en, ta · last post 2026-11-19
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://thirdeyecinemas.com/feed/
+# Dr Atef official website · en · last post 2026-11-12
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://dratef.net/feed/
+# Supply My Hobby · en · last post 2026-08-31
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://supplymyhobby.com/feed/
+# Bruce Byers Consulting · en · last post 2026-09-28
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://www.brucebyersconsulting.com/feed/
+# Trachtenkapelle Ebersdorf · en · last post 2026-10-26
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://tk-ebersdorf.at/?feed=rss2
+# Prison Break FORUM Skazany na śmierć · en, pl · last post 2026-11-20
+# found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363405.77/wat/CC-MAIN-20211207170825-20211207200825-00578.warc.wat.gz
+https://prison-break.filmowo.net/app.php/feed
