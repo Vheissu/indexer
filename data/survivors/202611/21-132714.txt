@@ -25,7 +25,7 @@
 #     price [^except] until December 1st using coupon code
 #     "save50". They're DRM-free and compatible with any
 #     ebook reader. [^except]: All of their boo
-# https://ignorethecode.net/blog/rss/
+https://ignorethecode.net/blog/rss/
 
 # Adtech China · en · last post 2026-10-19
 # about: Alumina ceramic foam filter, aluminum degassing
@@ -98,7 +98,7 @@
 #     Scrapped, Not Saved: Why Historic Bridges Keep Losing
 #     Last year, the McPherson's Ford Bridge in Alleghany
 #     County, Virginia, came down for scrap.
-# https://bridgestunnels.com/feed/
+https://bridgestunnels.com/feed/
 
 # Bride & Blossom · en · last post 2026-10-20
 # about: New York City
@@ -268,7 +268,7 @@
 #     men–their toxicity, their lostness, the ways in which
 #     they have been failed, their search for meaning, their
 #     search for identity, their love affair wit
-# https://popculturephilosopher.com/feed/
+https://popculturephilosopher.com/feed/
 
 # Daniel Sherrier · en · last post 2026-08-23
 # about: Unleashing Imagination. Blurring Reality.
@@ -293,7 +293,7 @@
 #     up its serialization last week, but another milestone
 #     remains: publishing the final volume of stories in
 #     book form. The Green Shadow, the fourth a
-# https://danielsherrier.com/feed/
+https://danielsherrier.com/feed/
 
 # Underground Health Reporter · en · last post 2026-05-11
 # about: Your Daily Dose of Startling Discoveries in Health
@@ -403,7 +403,7 @@
 #     season with the OHL’s Kitchener Rangers. The
 #     19-year-old Arquette has 30 points in 22 games. He is
 #     an assistant captain with the Rangers. Arquette lead
-# https://cksn.ca/feed/
+https://cksn.ca/feed/
 
 # Afrocritik · en · last post 2026-11-20
 # about: Projecting africa: one word, one story at a time
@@ -431,4 +431,4 @@
 #     not be treated as disposable diversions, and that the
 #     university remains a fertile setting for examining a
 #     changing Nigerian society. By Joseph J
-# https://afrocritik.com/feed/
+https://afrocritik.com/feed/
