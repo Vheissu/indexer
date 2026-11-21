@@ -239,18 +239,22 @@ def test_submissions_file_is_valid() -> None:
     assert source is config.sources[-1]  # listed last: other lists keep credit on ties
 
 
-def test_survivors_file_is_valid() -> None:
-    """data/survivors.txt (proposals from `indexer survivors`, merged after review): every
-    entry is a valid, unique https URL, and the source reads it from the checkout."""
-    path = REPO_CONFIG.parent / "survivors.txt"
-    entries = extract_urls(path.read_bytes(), "lines")
+def test_survivors_files_are_valid() -> None:
+    """data/survivors/*.txt (proposals from `indexer survivors`, merged after review): every
+    accepted entry is a valid https URL, none twice across the files, and the source reads them
+    all from the checkout."""
+    entries = [
+        url
+        for path in sorted((REPO_CONFIG.parent / "survivors").glob("*.txt"))
+        for url in extract_urls(path.read_bytes(), "lines")
+    ]
     valid, invalid = valid_urls(entries)
-    assert invalid == 0, "survivors.txt has invalid URLs"
-    assert len(valid) == len(entries), "survivors.txt has duplicate URLs"
+    assert invalid == 0, "data/survivors/ has invalid URLs"
+    assert len(valid) == len(entries), "data/survivors/ has duplicate URLs"
     assert all(url.startswith("https://") for url, _host in valid)
     config = load_config(REPO_CONFIG)
     (source,) = [s for s in config.sources if s.name == "survivors"]
-    assert source.files == ("survivors.txt",) and not source.urls
+    assert source.files == ("survivors/*.txt",) and not source.urls
     assert source.license == "LicenseRef-CommonCrawl-ToU"
 
 
@@ -282,6 +286,27 @@ async def test_local_file_source(tmp_path: Path) -> None:
 
     _, failures = await download(SourcesConfig((source,), TIERS, tmp_path), files)
     assert "missing.txt" in failures["mine"]
+
+
+async def test_a_files_glob_reads_every_match(tmp_path: Path) -> None:
+    (tmp_path / "runs").mkdir()
+    (tmp_path / "runs" / "2.txt").write_text("https://b.example/feed\n")
+    (tmp_path / "runs" / "1.txt").write_text("https://a.example/feed\n# https://c.example/feed\n")
+    (tmp_path / "runs" / ".gitkeep").write_text("")
+    glob = Source("runs", "MIT", "lines", (), ("runs/*.txt",), homepage="https://h.example/")
+    downloaded, failures = await download(SourcesConfig((glob,), TIERS, tmp_path), FakeFiles({}))
+    assert failures == {}
+    assert [urls for _source, _where, urls in downloaded] == [
+        ["https://a.example/feed"],  # sorted by name; a commented-out URL is not loaded
+        ["https://b.example/feed"],
+    ]
+    empty = Source("none", "MIT", "lines", (), ("nothing/*.txt",))
+    assert await download(SourcesConfig((empty,), TIERS, tmp_path), FakeFiles({})) == ([], {})
+    (tmp_path / "outside.txt").write_text("https://x.example/feed\n")
+    (tmp_path / "runs" / "link.txt").symlink_to(tmp_path / "outside.txt")
+    nested = Source("runs", "MIT", "lines", (), ("*.txt",))
+    _, failures = await download(SourcesConfig((nested,), TIERS, tmp_path / "runs"), FakeFiles({}))
+    assert "outside" in failures["runs"]  # a symlink out of the config folder
 
 
 EXCLUDE = frozenset({"youtube.com", "reddit.com"})

@@ -33,9 +33,11 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 - **No quality filtering of inputs.** Inputs are candidates; publishing is a separate responsibility.
   **Agree any selection or quality heuristic with the user before implementing it.** (`discover`, which
   inserted the newest crawl's feeds unfiltered, was removed on 2026-11-16: survivors replaces it.)
-- `survivors` **proposes, never inserts**: appends to `data/survivors.txt` (a `files` source, CC ToU license) and
-  every survivors.yml run opens its own PR from a new branch `survivors-<UTC timestamp>` based on develop (never a reused
-  branch, so old proposals can't be merged by mistake). Skips URLs already in develop's file or in inputs.
+- `survivors` **proposes, never inserts**: writes a new file `data/survivors/<UTC timestamp>.txt` per run (asked 2026-11-21,
+  replacing the single `data/survivors.txt`: no huge file, no conflicts between open PRs; the `files` source is the glob
+  `survivors/*.txt`, CC ToU license; `files` entries may be glob patterns, sorted, none matching is fine) and
+  every survivors.yml run opens its own PR from a new branch `survivors-<UTC timestamp>` (the file's name) based on develop (never a reused
+  branch, so old proposals can't be merged by mistake). Skips URLs already in develop's files (accepted or commented out) or in inputs.
   Untrusted titles/links: one line in the file (`proposals._one_line`), code spans in Markdown (no mentions/links).
   Each entry in the file (asked 2026-11-21): comment lines with title, languages, last post, subtitle, WAT file and the 3 most
   recent posts (link, title, start of the description; `FeedInfo.recent_posts`, never stored or fetched), then the URL

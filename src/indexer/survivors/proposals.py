@@ -1,7 +1,8 @@
-"""Feeds found by `indexer survivors`, proposed for review in data/survivors.txt.
+"""Feeds found by `indexer survivors`, proposed for review in data/survivors/<timestamp>.txt.
 
-Survivors does not insert into the database. It appends its finds to data/survivors.txt (a
-`lines` source in sources.toml, like submissions.txt), and the workflow proposes the change as a
+Survivors does not insert into the database. Each run writes its finds to a new file in
+data/survivors/ (the `lines` source `survivors/*.txt` in sources.toml), so the folder never holds
+one huge file and two open pull requests never conflict; the workflow proposes the file as a
 pull request. Each entry is comment lines with what a reviewer needs, then the feed's URL,
 commented out too:
 
@@ -28,7 +29,7 @@ XML attributes, in a code block), to save and import into a feed reader while re
 import re
 import unicodedata
 from collections.abc import Iterable, Sequence
-from datetime import date, datetime
+from datetime import UTC, date, datetime
 from email.utils import format_datetime
 from pathlib import Path
 from xml.sax.saxutils import escape, quoteattr
@@ -54,23 +55,28 @@ def _one_line(text: str | None, limit: int) -> str:
 _PROPOSED = re.compile(r"# (https?://\S+)")
 
 
-def known_urls(path: Path) -> set[str]:
-    """The URLs already in the file, accepted or commented out; none if it doesn't exist."""
-    try:
+def known_urls(directory: Path) -> set[str]:
+    """The URLs already in the folder's .txt files, accepted or commented out."""
+    known: set[str] = set()
+    for path in sorted(directory.glob("*.txt")):
         data = path.read_bytes()
-    except FileNotFoundError:
-        return set()
-    proposed = {
-        m.group(1)
-        for line in data.decode("utf-8", errors="replace").splitlines()
-        if (m := _PROPOSED.fullmatch(line.strip()))
-    }
-    return set(extract_urls(data, "lines")) | proposed
+        known.update(extract_urls(data, "lines"))
+        for line in data.decode("utf-8", errors="replace").splitlines():
+            if m := _PROPOSED.fullmatch(line.strip()):
+                known.add(m.group(1))
+    return known
+
+
+def file_name(when: datetime) -> str:
+    """A run's file in data/survivors/: its UTC start time, e.g. 20261121-041105.txt."""
+    return when.astimezone(UTC).strftime("%Y%m%d-%H%M%S") + ".txt"
 
 
 def render_entries(survivors: Iterable[Survivor], crawl: str, today: date) -> str:
-    """A block to append to data/survivors.txt."""
-    out = [f"\n# --- {today.isoformat()}, from {crawl} ---\n"]
+    """A run's file in data/survivors/."""
+    out = [
+        f"# Proposed {today.isoformat()} from {crawl}. Uncomment the URL of each feed to keep.\n"
+    ]
     for s in survivors:
         summary = " · ".join(
             [

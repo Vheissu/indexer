@@ -83,7 +83,7 @@ def test_survivors_defaults() -> None:
     args = _parser().parse_args(["survivors"])
     assert (args.years_ago, args.slice_mb, args.active_days, args.max_feeds) == (5, 25, 243, 20)
     assert str(args.config) == "data/sources.toml"
-    assert str(args.file) == "data/survivors.txt" and args.report is None
+    assert str(args.dir) == "data/survivors" and args.report is None
 
 
 def test_drop_tables_needs_yes(capsys: pytest.CaptureFixture[str]) -> None:

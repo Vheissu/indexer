@@ -180,9 +180,10 @@ async def _survivors(args: argparse.Namespace) -> int:
         return 2
     if (languages := _language_model()) is None:
         return 2
+    started = datetime.now(UTC)
     slice_bytes = args.slice_mb * 1024 * 1024
     download = FetchConfig(deadline=900, max_body_bytes=slice_bytes + 1024 * 1024)
-    in_file = proposals.known_urls(args.file)
+    in_file = proposals.known_urls(args.dir)
     try:
         async with (
             _database(args) as db,
@@ -228,7 +229,8 @@ async def _survivors(args: argparse.Namespace) -> int:
         f" {result.rejected['keyword']} with an excluded keyword);"
         f" acceptance {proposals.acceptance(len(new), result.checked)}"
     )
-    print(f"{result.crawl}: {summary}: {len(new)} proposed in {args.file}")
+    path = args.dir / proposals.file_name(started)
+    print(f"{result.crawl}: {summary}: {len(new)} proposed in {path}")
     for survivor in new:
         print(proposals.log_line(survivor))
     print(
@@ -236,8 +238,7 @@ async def _survivors(args: argparse.Namespace) -> int:
         " of the checked feed URLs proposed"
     )
     if new:
-        with args.file.open("a", encoding="utf-8") as f:
-            f.write(proposals.render_entries(new, result.crawl, datetime.now(UTC).date()))
+        path.write_text(proposals.render_entries(new, result.crawl, started.date()), "utf-8")
         if args.report:
             args.report.write_text(
                 proposals.render_report(new, result.crawl, summary, datetime.now(UTC)),
@@ -434,11 +435,11 @@ def _parser() -> argparse.ArgumentParser:
         "--years-ago", type=int, default=5, help="age of the crawl to sample (default 5)"
     )
     sv.add_argument(
-        "--file",
+        "--dir",
         type=Path,
-        default=Path("data/survivors.txt"),
-        help="append proposals here; URLs already in it or in inputs are skipped"
-        " (default data/survivors.txt)",
+        default=Path("data/survivors"),
+        help="write proposals to a new <UTC time>.txt here; URLs already in its files or in"
+        " inputs are skipped (default data/survivors)",
     )
     sv.add_argument(
         "--report", type=Path, help="also write the proposals as Markdown (for the pull request)"

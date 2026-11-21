@@ -67,15 +67,15 @@ services:
       - ./data:/work/data:ro
     command: ["load-inputs", "data/sources.toml"]
 
-  # Proposes feeds from a ~5-year-old Common Crawl crawl that are still active today: appends
-  # them to data/survivors.txt (for a pull request) and writes output/survivors.md. Locally:
+  # Proposes feeds from a ~5-year-old Common Crawl crawl that are still active today: writes
+  # them to a new data/survivors/<UTC time>.txt (for a pull request) and output/survivors.md. Locally:
   #   mkdir -p output && HOST_UID=$(id -u) HOST_GID=$(id -g) docker compose run --rm survivors
   survivors:
     <<: *indexer
     user: "${HOST_UID:-10001}:${HOST_GID:-10001}" # owns what it writes
     volumes:
       - ./data:/work/data:ro
-      - ./data/survivors.txt:/work/data/survivors.txt # the only file it appends to
+      - ./data/survivors:/work/data/survivors # the only folder it writes to
       - ./output:/work/output # the pull request report
     command: ["survivors", "--report", "output/survivors.md"]
 

@@ -13,6 +13,7 @@ from indexer.survivors.proposals import (
     _one_line,
     _render_opml,
     acceptance,
+    file_name,
     known_urls,
     log_line,
     render_entries,
@@ -40,7 +41,7 @@ def test_entries_are_comment_lines_and_the_url_commented_out() -> None:
         date(2026, 11, 18),
     )
     assert block == (
-        "\n# --- 2026-11-18, from CC-MAIN-2021-49 ---\n"
+        "# Proposed 2026-11-18 from CC-MAIN-2021-49. Uncomment the URL of each feed to keep.\n"
         "\n# Miss Frugal Mommy · en · last post 2026-11-12\n"
         "# about: Saving money with kids\n"
         f"# found in {WAT}\n"
@@ -75,9 +76,8 @@ def test_hostile_text_cannot_add_a_url_line(tmp_path: Path) -> None:
     )
     assert extract_urls(block.encode(), "lines") == []
     assert all(line.startswith("#") or not line for line in block.splitlines())
-    path = tmp_path / "survivors.txt"
-    path.write_text(block)
-    assert known_urls(path) == {"https://a.example/feed"}  # only the proposal's own line
+    (tmp_path / "20261118-041105.txt").write_text(block)
+    assert known_urls(tmp_path) == {"https://a.example/feed"}  # only the proposal's own line
 
 
 def test_one_line() -> None:
@@ -120,20 +120,28 @@ def test_report_never_exceeds_the_github_limit() -> None:
     assert 0 < shown < 1000 and f"... and {1000 - shown} more feeds: see the diff." in report
 
 
-def test_known_urls(tmp_path: Path) -> None:
-    path = tmp_path / "survivors.txt"
-    assert known_urls(path) == set()
-    path.write_text(
-        "# comment\nhttps://a.example/feed\n\n# x\nhttps://b.example/feed\n"
+def test_known_urls_from_every_file_of_the_folder(tmp_path: Path) -> None:
+    assert known_urls(tmp_path) == set()
+    (tmp_path / "20261111-041105.txt").write_text("# comment\nhttps://a.example/feed\n")
+    (tmp_path / "20261118-041105.txt").write_text(
+        "# x\nhttps://b.example/feed\n"
         "# https://c.example/feed\n"  # proposed, not accepted: still known
         "#   - https://c.example/post\n#     https://d.example/\n"  # a post and its title
         "# found in https://data.commoncrawl.org/x.warc.wat.gz\n"
     )
-    assert known_urls(path) == {
+    (tmp_path / ".gitkeep").write_text("https://e.example/feed\n")  # not a .txt file
+    assert known_urls(tmp_path) == {
         "https://a.example/feed",
         "https://b.example/feed",
         "https://c.example/feed",
     }
+
+
+def test_file_name_is_the_utc_start_time() -> None:
+    from datetime import timedelta, timezone
+
+    when = datetime(2026, 11, 21, 6, 11, 5, tzinfo=timezone(timedelta(hours=2)))
+    assert file_name(when) == "20261121-041105.txt"
 
 
 def test_log_line_is_one_line() -> None:

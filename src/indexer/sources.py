@@ -1,11 +1,11 @@
 """Feed URLs from the lists named in a sources config (data/sources.toml).
 
 A source is a name, a license and one or more list files: `urls` (usually raw.githubusercontent.com
-URLs on a branch) and/or `files` (paths in this repository, relative to the config file, read
-from disk), so each load reads the lists as they are today: nothing is pinned, and new feeds
-added upstream arrive on their own. A source that fails (file gone, malformed) is skipped and
-reported; the other sources still load. Since the inputs table is append-only, a broken or
-truncated upstream file adds nothing harmful and removes nothing.
+URLs on a branch) and/or `files` (paths in this repository, relative to the config file, read from
+disk; a path may be a glob pattern like `survivors/*.txt`), so each load reads the lists as they
+are today: nothing is pinned, and new feeds added upstream arrive on their own. A source that fails
+(file gone, malformed) is skipped and reported; the other sources still load. Since the inputs
+table is append-only, a broken or truncated upstream file adds nothing harmful and removes nothing.
 
 Files are downloaded with the same guarded fetcher as the health checks and parsed with
 defusedxml (OPML) or as plain lines.
@@ -47,7 +47,7 @@ class Source:
     license: str  # SPDX id, as stated in the config
     format: Format
     urls: tuple[str, ...]  # list files fetched over HTTPS at load time
-    files: tuple[str, ...] = ()  # list files in this repository, relative to the config file
+    files: tuple[str, ...] = ()  # list files or glob patterns, relative to the config file
     homepage: str = ""
     notes: str = ""
 
@@ -110,7 +110,7 @@ def load_config(path: Path) -> SourcesConfig:
             raise SourceError(f"{where}: needs 'urls' and/or 'files'")
         for f in files:
             resolved = (path.parent / f).resolve()
-            if not resolved.is_relative_to(path.parent.resolve()):
+            if Path(f).is_absolute() or not resolved.is_relative_to(path.parent.resolve()):
                 raise SourceError(f"{where}: files must stay inside {path.parent}: {f}")
         for u in urls:
             if urllib.parse.urlsplit(u).scheme != "https":
@@ -215,7 +215,7 @@ async def download(config: SourcesConfig, fetch: Fetch) -> tuple[Downloaded, dic
                     files.append((source, url, extract_urls(body, source.format)))
                 except SourceError as exc:
                     raise SourceError(f"{url}: {exc}") from exc
-            for name in source.files:
+            for name in _expand(config.base_dir, source.files):
                 try:
                     body = (config.base_dir / name).read_bytes()
                 except OSError as exc:
@@ -230,6 +230,23 @@ async def download(config: SourcesConfig, fetch: Fetch) -> tuple[Downloaded, dic
             continue
         out.extend(files)
     return out, failures
+
+
+def _expand(base_dir: Path, files: tuple[str, ...]) -> list[str]:
+    """The files to read, relative to `base_dir`: a plain path as is (missing: an error when
+    read), a glob pattern as the files it matches today, sorted (none is fine). A match that
+    resolves outside `base_dir` (a symlink) is an error."""
+    names: list[str] = []
+    for name in files:
+        if not any(c in name for c in "*?["):
+            names.append(name)
+            continue
+        for match in sorted(base_dir.glob(name)):
+            if not match.resolve().is_relative_to(base_dir.resolve()):
+                raise SourceError(f"{name}: {match} is outside {base_dir}")
+            if match.is_file():
+                names.append(str(match.relative_to(base_dir)))
+    return names
 
 
 def collect_inputs(config: SourcesConfig, downloaded: Downloaded) -> InputsResult:

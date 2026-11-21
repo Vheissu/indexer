@@ -105,7 +105,8 @@ The sources and their licenses are listed on the [site's home page](https://feed
 
 `data/submissions.txt` is an ordinary source (`files = ["submissions.txt"]`), listed last in
 `data/sources.toml` so a feed that is also in another list keeps that list as its source.
-`uv run pytest` checks that every line of it (and of `data/survivors.txt`) is a valid, unique URL.
+`uv run pytest` checks that every line of it (and every accepted URL in `data/survivors/`) is a
+valid, unique URL.
 
 ### Survivors from an old crawl
 
@@ -146,17 +147,19 @@ shared hosts like `fc2.com` or `free.fr`). A feed is proposed only if:
   (tried on their 9,048 feeds, it would flag 14: 3 adult, the rest blogs like "Budgets Are Sexy");
 - it is **served over https today**: the URL after redirects is `https://` (links are tried as
   `https://`; one that redirects back to plain http is skipped);
-- it is not already in `data/survivors.txt` or the inputs table.
+- it is not already in a file in `data/survivors/` (accepted or commented out) or the inputs table.
 
 Feeds already there are skipped before checking (and again after, for the URL a redirect led
 to). The rest are checked in random order, 200 at a time, and the run stops once `--max-feeds`
 (20) pass, so a run proposes at most 20 and stops checking early.
 
-The finds are appended to `data/survivors.txt`, each as comment lines: title, detected languages
+The finds go to a new file per run, `data/survivors/<UTC time>.txt` (for example
+`data/survivors/20261119-041105.txt`), which the source `survivors` reads with the glob
+`files = ["survivors/*.txt"]`. Each feed is comment lines: title, detected languages
 and date of the newest item, subtitle, the WAT file it came from, and its 3 most recent posts (link,
 title and the start of the description, one line each), then the URL, **commented out too**.
 Each workflow run commits
-that to a **new branch**, `survivors-<UTC timestamp>` (for example `survivors-20261119-041105`),
+that file to a **new branch** with the same timestamp (for example `survivors-20261119-041105`),
 and opens **its own pull request** into `develop`, with one
 section per feed: its title, URL, date of the newest item and languages, as code spans so
 nothing is clickable (the recent posts are in the diff). The report stays under GitHub's 65,536-character limit: feeds that don't fit are only
@@ -166,11 +169,10 @@ them while reviewing. Review the diff, **uncomment** the URL line of each feed y
 `# ` before it), and merge (or close the pull request to drop the whole batch): the input job then
 loads the uncommented URLs on the push to `develop` (source `survivors`, license
 `LicenseRef-CommonCrawl-ToU`, ranked last). Every run starts from `develop`, so a pull request never carries an older run's proposals.
-Two open pull requests both append to the end of the file, so merging one makes the other
-conflict: merge or close them in order (GitHub's "Update branch" or a rebase resolves it; keep both
-blocks). URLs in another open pull request are not skipped, so the same feed can be proposed twice. A URL left commented out
-counts as known (`proposals.known_urls`), so it is not proposed again; one deleted from the file is
-forgotten.
+Each pull request adds its own file, so open pull requests never conflict and can be merged in any
+order. URLs in another open pull request are not skipped, so the same feed can be proposed twice. A URL left commented out
+counts as known (`proposals.known_urls` reads every file in the folder), so it is not proposed
+again; one deleted from its file is forgotten.
 
 Started by hand (Actions → survivors → Run workflow), the workflow takes `slice-mb`, `years-ago`
 `active-days` and `max-feeds` as inputs; the weekly run uses the defaults (25, 5, 243, 20).
@@ -277,7 +279,7 @@ canonical form the loader stores (e.g. `HTTPS://Example.com:443/feed` matches
 the URLs it found in no table. `undo.yml` runs it against Supabase on a push to `develop` that
 changes `data/undo.txt` (or by hand) and copies the report to the job summary. Re-running is
 harmless: deleted URLs are then reported as not found. A URL still listed in a source (a list in
-`sources.toml`, `survivors.txt`, `submissions.txt`) comes back with the next input load, so
+`sources.toml`, a file in `data/survivors/`, `submissions.txt`) comes back with the next input load, so
 remove it there as well.
 
 ## Starting over: drop-tables
@@ -488,7 +490,7 @@ Source layout (`src/indexer/`):
 | `sources.py` | data/sources.toml and loading the lists into inputs |
 | `net/` | fetching untrusted URLs: `fetch.py` (the guarded fetcher), `validate.py` (URL rules, URL files), `resolver.py`, `ippolicy.py`, `urls.py`, `domains.py` |
 | `check/` | `runner.py` (one check per URL), `feed.py` (parsing RSS/Atom) |
-| `survivors/` | `run.py` (the pipeline, steps 1–5), `wat.py` (reading Common Crawl), `feed_links.py` (the URL rules before checking: `filter_page_links`), `filters.py` (the rules after checking), `proposals.py` (survivors.txt and the PR report) |
+| `survivors/` | `run.py` (the pipeline, steps 1–5), `wat.py` (reading Common Crawl), `feed_links.py` (the URL rules before checking: `filter_page_links`), `filters.py` (the rules after checking), `proposals.py` (the data/survivors/ files and the PR report) |
 
 ```sh
 uv run pytest            # no network needed: local test server and fake DNS

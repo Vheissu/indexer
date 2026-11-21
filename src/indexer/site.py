@@ -68,7 +68,7 @@ SOURCES = (
     Source("matthiasjost/dotnet-creators-opml",
            "https://github.com/matthiasjost/dotnet-creators-opml",
            "MIT", "", "~140 .NET blogs", ""),
-    Source("data/survivors.txt", f"{REPO}/blob/develop/data/survivors.txt",
+    Source("data/survivors/", f"{REPO}/tree/develop/data/survivors",
            "Common Crawl terms", "https://commoncrawl.org/terms-of-use",
            "old feeds still active today, reviewed by hand", f"{REPO}#feeds-from-common-crawl"),
     Source("data/submissions.txt", f"{REPO}/blob/develop/data/submissions.txt",
