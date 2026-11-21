@@ -1,0 +1,501 @@
+# Proposed 2026-11-21 from CC-MAIN-2021-49. Uncomment the
+# URL of each feed to keep.
+
+# MIGREUROP · en, fr · last post 2026-11-19
+# about: Migreurop est un réseau européen et africain de
+#   militant·e·s et chercheur·euse·s dont l'objectif est de
+#   faire connaître et de lutter contre la généralisation de
+#   l'enfermement des étrangers et la multi
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - https://migreurop.org/article3640.html
+#     تأثيرات خارجة الحدود وعسكرتها على التنقل في المغرب وما
+#     وراءه
+#     تنظم شبكة ميغرووب (Migreurop) والجمعية المغربية
+#     لمساعدة المهاجرين في وضعية هشة (AMSV) ندوة عمومية
+#     بوجدة يوم 21 نونبر 2026، تحت عنوان «تحوّل ديناميات
+#     الهجرة وتعريض المنفيين للخطر: تأثيرات خارجة الحدود
+#   - https://migreurop.org/article3639.html
+#     Impacts of the externalisation and militarisation of
+#     borders on mobility in Morocco and beyond
+#     Migreurop and the Association marocaine d'aide aux
+#     migrants en situation vulnérable (AMSV) are organising
+#     a public conference in Oujda on 21 November 2026,
+#     "Transformation of migration dynamics and en
+#   - https://migreurop.org/article3638.html
+#     Impacts de l'externalisation et de la militarisation
+#     des frontières sur les mobilités au Maroc et a…
+#     Migreurop et l'Association marocaine d'aide aux
+#     migrants en situation vulnérable (AMSV) organisent le
+#     21 novembre 2026 une conférence publique à Oujda, «
+#     Transformation des dynamiques migratoires et m
+# https://migreurop.org/spip.php?page=backend
+
+# Divisão de Observação da Terra e Geoinformática · en, pt ·
+#   last post 2026-11-11
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - http://wiki.dpi.inpe.br/doku.php?id=ser301-2026:comentario_para_raquel_1&rev=1794356524&do=diff
+#     comentario_para_raquel_1 - criada
+#     Oi Raquel, Vamos lá. Ao fim você traz isso: "Em que
+#     medida a variação das áreas de desmatamento entre as
+#     bacias contribui para explicar a variação das áreas de
+#     vegetação secundária." Essa investigação
+#   - http://wiki.dpi.inpe.br/doku.php?id=ser301-2026:comentario_para_marcos_1&rev=1794356099&do=diff
+#     comentario_para_marcos_1 - criada
+#     Oi Marcos, Legal! MAS.. amibicioso. Muita coisa para
+#     fazer em tempo curto. As vezes menos é mais. Onde vejo
+#     problemas: 1 - A partir da camada de uso do solo do
+#     GeoSampa, será aplicado um procedimento
+#   - http://wiki.dpi.inpe.br/doku.php?id=ser301-2026:comentario_para_evandro_1&rev=1794355588&do=diff
+#     comentario_para_evandro_1 - criada
+#     Oi Evandro, Acho que é um caminho legal! E utilizar a
+#     Susan Cutter é bom também. Mas procure o paper
+#     classico de definição do SoVI, o método que ela
+#     propõe. Paola Cardoso que fez doutorado aqui comigo
+# https://wiki.dpi.inpe.br/feed.php
+
+# Mars Hill Baptist Church · en · last post 2026-04-16
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - https://marshillbaptistchurch.org/2026/04/16/facebook-events/
+#     Facebook Events
+#   - https://marshillbaptistchurch.org/2025/05/21/adult-vacation-bible-school-schedule/
+#     Adult Vacation Bible School Schedule
+#     We welcome all parents and adults to be part of the
+#     adult classes planned throughout the week at Mars
+#     Hill. Parents are encouraged to drop their children
+#     off and stick around for our “Adult VBS.” Belo
+#   - https://marshillbaptistchurch.org/2024/04/04/upcoming-events-calendar/
+#     Ongoing and Upcoming Events
+#     Ongoing Events October Prayer Focus – Pray for Senior
+#     Adults Red Box Ministry – We are collecting women’s
+#     gloves for our Red Box ministry this year.
+#     Specifications: One size fits all. Please remove th
+# https://marshillbaptistchurch.org/feed/
+
+# Sliku svoju ljubim II · en · last post 2026-11-18
+# about: PHOTO BLOG Click 2 TIMES Image to Enlarge
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - https://lessywannagohome.blogspot.com/2026/11/wordless-wednesday.html
+#     Wordless Wednesday
+#     in response to Sandee's Wordless Wednesday Zagreb
+#   - https://lessywannagohome.blogspot.com/2026/11/happy-tuesday_0134329049.html
+#     Happy Tuesday
+#     in response to Sandee's Happy Tuesday Zagreb, Croatia
+#   - https://lessywannagohome.blogspot.com/2026/11/enjoying-sun.html
+#     Enjoying the sun
+#     in response to The Weekend in B&W Brussels
+# https://lessywannagohome.blogspot.com/feeds/posts/default
+
+# Valerie Vande Panne · en · last post 2026-07-24
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - https://valerievandepanne.com/listen-and-shutup/
+#     Listen and Shutup
+#     I said it, and I stand by it. As quoted in the Great
+#     Lakes Echo: Rural Reporting Needs Trust, Common…
+#     Continue reading “Listen and Shutup” …
+#   - https://valerievandepanne.com/ive-retired-from-news-media/
+#     Changes–
+#     Please check out my IMDb page, FryBread.org, and my
+#     substack for the latest. Continue reading “Changes–” …
+#   - https://valerievandepanne.com/truth-reckoning-right-relationship-with-the-great-lakes-part-1-roundtable/
+#     Truth Reckoning & Right Relationship with the Great
+#     Lakes, Part 1 Roundtable
+#     Watch the CELDF conversation: Continue reading “Truth
+#     Reckoning & Right Relationship with the Great Lakes,
+#     Part 1 Roundtable” …
+# https://valerievandepanne.com/feed/
+
+# nopesport.com · en · last post 2026-10-28
+# about: creating O communities
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - http://forum.nopesport.com/viewtopic.php?t=16177&p=187524#p187524
+#     Discussion • Re: UK Urban League 2027
+#     The 22 selected races are below; thank you to the
+#     clubs involved. Sat 23rd Jan 2027EdinburghEUOC Sat
+#     30th Jan 2027WokinghamBKO Sun 7th Mar 2027BuckshawSROC
+#     Sat 10th Apr 2027TauntonQO Sun 11th Apr 2027
+#   - http://forum.nopesport.com/viewtopic.php?t=16178&p=187523#p187523
+#     Discussion • Return of the Dark Arts (NW)
+#     The first of the new season of North-West Night League
+#     events is on Saturday 7 November on Benson Knott, just
+#     north-east of Kendal and easily accessible from M6
+#     J37. This is a brand new area never pre
+#   - http://forum.nopesport.com/viewtopic.php?t=16177&p=187522#p187522
+#     Discussion • Re: UK Urban League 2027
+#     Could be hard to get entries for the LOG events before
+#     the closing dates Statistics: Posted by IanD — Fri Oct
+#     02, 2026 9:48 am
+# https://forum.nopesport.com/feed.php
+
+# Everyguyed · en · last post 2026-11-16
+# about: Advice on men's fashion, style, grooming.
+#   Simplified.
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - https://everyguyed.com/buy/buyers-guyed-winter-coats/
+#     Buyers Guyed: Winter Coats
+#     Choose a winter coat for the coldest part of the day
+#     you spend outside. A short walk between heated
+#     buildings and a long wait on a windy platform put
+#     different demands on a coat. Try it over the layer
+#   - https://everyguyed.com/buy/buyers-guyed-flannel-shirts/
+#     Buyer’s Guyed: Flannel Shirts
+#     Decide whether your flannel shirt will go under a
+#     jacket, over a T-shirt, or over another shirt. Try it
+#     in that role. A shirt that feels comfortable on its
+#     own can bind at the elbows once you put a la
+#   - https://everyguyed.com/accessories/buyers-guyed-leather-boots/
+#     Buyer’s Guyed: Leather Boots
+#     Choose leather boots for the surfaces you walk on and
+#     the socks you wear most. A smooth-soled dress boot and
+#     a lug-soled walking boot may look similar from above.
+#     Ask for a clear photo of the sole if
+# https://everyguyed.com/feed/
+
+# aNewDomain · en · last post 2026-11-10
+# about: Tech. Science. Politics. Now.
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - https://anewdomain.net/where-to-put-your-home-router-for-a-more-reliable-wi-fi-signal/
+#     Where to Put Your Home Router for a More Reliable
+#     Wi-Fi Signal
+#     A video call freezes in the spare room, but the laptop
+#     works fine in the kitchen. The router sits behind the
+#     television because that is where the cable enters the
+#     house. Before replacing any equipment
+#   - https://anewdomain.net/how-self-work-can-create-success/
+#     How Self Work Can Create Success
+#     Having success in life is not necessarily because of
+#     one’s intelligence or talent, but often is due to the
+#     inner work done on oneself. Learn more about how inner
+#     work leads to success in this infograp
+#   - https://anewdomain.net/a-new-regulation-on-packaging-set-for-2030/
+#     A New Regulation on Packaging Set For 2030
+#     In just 4 short years, the European Union will begin
+#     requiring that all packaging be designed to be
+#     recyclable, which means all items will be considered
+#     Grade A, B, or C. Learn more about one of the s
+# https://anewdomain.net/feed/
+
+# A&HT Preschool · en · last post 2026-11-17
+# about: A place to make new friends, learn, and grow!
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - https://ahtpreschool.com/2026/11/17/christmas-program-thursday-december-16th-900-am-no-regular-classes/
+#     Christmas Program-December 18th-9:00 AM-10:15ish-No
+#     regular classes
+#     We will be having a Christmas Program on Friday,
+#     December 18th, at 9:00 am in the church sanctuary.
+#     Please drop
+#   - https://ahtpreschool.com/2026/11/17/polar-express-pajama-day-wear-your-pajamas-to-school-on-thursday-december-10-2015/
+#     Polar Express Pajama Day-Wear your Pajamas-December
+#     11th!
+#     Christmas wouldn’t be the same without reading the
+#     modern day classic, “The Polar Express” by Chris Van
+#     Allsburg. This story
+#   - https://ahtpreschool.com/2026/11/17/our-holiday-giving-tree-2015/
+#     Our Holiday Giving Tree 2026
+#     The holidays “present” a wonderful time to talk to
+#     your children about giving and sharing. Not only is it
+#     nice
+# https://ahtpreschool.com/feed/
+
+# Halkins Business News · en · last post 2026-09-24
+# about: The Best in Business News
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - https://halkinsesitv1.org/peninsula-area-pool-contractor-can-transform-your-california-business/
+#     How a Peninsula Area Pool Contractor Can Transform
+#     Your California Business Property into a Luxury…
+#     California businesses have long understood the value
+#     of creating memorable environments. Across the
+#     Peninsula, commercial properties are no longer judged
+#     solely by their buildings, services, or interi
+#   - https://halkinsesitv1.org/boat-polish-and-business-boom/
+#     Business Boom: How Boat Polish Is Riding the Wave of a
+#     Growing Marine Industry
+#     The marine industry has always been closely tied to
+#     recreation, tourism, manufacturing, coastal economies,
+#     and the broader outdoor lifestyle. Today, it is also
+#     supporting an increasingly diverse netwo
+#   - https://halkinsesitv1.org/mobile-fuel-delivery-helps-salt-lake-valley-businesses/
+#     How Mobile Fuel Delivery Helps Salt Lake Valley
+#     Businesses Save Time and Money
+#     For businesses that depend on trucks, construction
+#     equipment, generators, machinery, and other
+#     fuel-powered assets, keeping everything running is
+#     part of the daily challenge. A vehicle sitting at a fu
+# https://halkinsesitv1.org/feed/
+
+# Astrology-Classes.com · en · last post 2026-10-31
+# about: Explore Astrology!
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - https://astrology-classes.com/astrology-classes/astrology-transits-november-2026-release-toxic-energy-and-move-forward.html
+#     Astrology Transits November 2026 – Release Toxic
+#     Energy and Move Forward
+#     carol_burley-ai-generated-8959919 from Pixabay We must
+#     be willing to let go of the life we planned so as to
+#     have the life that is waiting for us. – Joseph
+#     Campbell The above image is AI generated, whi
+#   - https://astrology-classes.com/astrology-classes/astrology-transits-october-2026-balance-love-and-harmony.html
+#     Astrology Transits October 2026 – Balance, Love and
+#     Harmony
+#     Image by Gerd Altmann from Pixabay “When we create
+#     peace and harmony and balance in our minds, we will
+#     find it in our lives.”—Louise L. Hay October 2026
+#     certainly is an interesting astrological month.
+#   - https://astrology-classes.com/astrology/astrology-transits-september-2026-%e2%94%80-tying-up-loose-ends.html
+#     Astrology Transits September 2026 ─ Tying Up Loose
+#     Ends
+#     123rf Silver Needle Pulling Red Thread_197002545_m
+#     “Some loose ends need to be tied up but still their
+#     threads are part of the tapestry. Some loose ends need
+#     to be re-woven. Some need to be pulled and
+# https://astrology-classes.com/feed
+
+# Un hobby… · en · last post 2026-11-03
+# about: La géologie, une science plus que passionnante ...
+#   et diverse
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - https://apreat.ovh/hottest-day-recorded-and-deleted-in-australia-was-51-7-c-in-bourke-in-1909/
+#     Hottest Day recorded and deleted in Australia was 51.7
+#     C in Bourke in 1909
+#     by J. Nova, Nov 2026 in JoNova The hottest day ever
+#     recorded in Australia with modern official equipment
+#     was Jan 3rd, 1909 in Bourke where the temperature
+#     blistered at 51.7C (125F). Yesterday the Hono
+#   - https://apreat.ovh/madame-otto-and-her-computer-crystal-balls/
+#     Madame Otto and Her Computer Crystal Balls
+#     by C. Morrison, Not 3, 2026 Fresh from a summer season
+#     in Mystic Meg’s fairground tent, the weather
+#     attribution queen Friederike Otto has returned to
+#     Imperial College to bring news that 50,391 heat-re
+#   - https://apreat.ovh/the-great-famine-of-the-21st-century-2/
+#     The Great Famine of the 21st Century
+#     by D. Siegel, Nov 1, 2026 in Clintel The year is 2078.
+#     It is year three of a devastating drought, famine, and
+#     extreme heat event around the globe. In the last three
+#     years, some two million people have
+# https://apreat.ovh/feed/
+
+# iLive Toronto · en · last post 2026-11-21
+# about: Changing The Way YOU Listen To Radio
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - https://to.i-liveradio.com/snoh-aalegra-immortalizes-a-legendary-love-is-on-the-run-in-supernova?utm_source=rss&utm_medium=rss&utm_campaign=snoh-aalegra-immortalizes-a-legendary-love-is-on-the-run-in-supernova
+#     Snoh Aalegra Immortalizes A ‘Legendary Love’ & Is On
+#     The Run In ‘Supernova’
+#     Snoh Aalegra bounces back after a breakup on her
+#     fourth album ‘Legendary Love’ and releases a cinematic
+#     visual for ‘Supernova.’ The post Snoh Aalegra
+#     Immortalizes A ‘Legendary Love’ & Is On The Run In
+#   - https://to.i-liveradio.com/peter-hernandez-1952-2026?utm_source=rss&utm_medium=rss&utm_campaign=peter-hernandez-1952-2026
+#     Peter Hernandez (1952-2026)
+#     Musician and performer Peter Hernandez, father to
+#     Bruno Mars and his five siblings, has passed away at
+#     74. The post Peter Hernandez (1952-2026) appeared
+#     first on SoulBounce.
+#   - https://to.i-liveradio.com/cleo-sol-expands-her-gentlewoman-tour-to-more-cities?utm_source=rss&utm_medium=rss&utm_campaign=cleo-sol-expands-her-gentlewoman-tour-to-more-cities
+#     Cleo Sol Expands Her ‘Gentlewoman Tour’ To More Cities
+#     Cleo Sol has her sights set on blessing even more
+#     cities on her forthcoming ‘Gentlewoman Tour’ in spring
+#     2027. The post Cleo Sol Expands Her ‘Gentlewoman Tour’
+#     To More Cities appeared first on SoulBou
+# https://to.i-liveradio.com/feed
+
+# GeorgeModels Agency · en · last post 2026-11-19
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - https://george-models.agency/julia-moore-katerine-zakharova-realesed-039-video-039-incandescence/
+#     Julia Moore / Katerine Zakharova – realesed #039
+#     (Video #039)… incandescence!!
+#     Producer: GM-groupDate: 19/11/2026Location: Uluvatu,
+#     Bali
+#   - https://george-models.agency/kira-petrova-realesed-019-video-019-illusion/
+#     Kira Petrova – realesed #019 (Video #019)… illusion!!
+#     Producer: GM-groupDate: 16/11/2026Location: Moscow,
+#     Russia
+#   - https://george-models.agency/karisha-terebun-realesed-007-2-sunlight-video-photoset/
+#     Karisha Terebun – realesed #007-2 (sunlight: video/
+#     photoset)
+#     Producer: GM-groupDate: 13/11/2026Location: Uluvatu,
+#     Bali
+# https://george-models.agency/feed/
+
+# Jack Mountain Bushcraft Media · en · last post 2026-11-20
+# about: Jack Mountain Bushcraft School Media Hub.
+#   Registered Master Maine Guide, Est. 1999.
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - https://blog.jackmtn.com/jmbb-1972/
+#     Migrating Student Portfolios To Markdown And Obsidian
+#     | JMB Blog 1972
+#     This time of year sees me reflecting on the past
+#     season and thinking about how to make things better.
+#     Lately I’ve been working on upgrading the backend of
+#     our programs. Our portfolio system requires s
+#   - https://blog.jackmtn.com/jmbb-1971/
+#     Things Are Different In The County | JMB Blog 1971
+#     There’s a new sign greeting visitors to Presque Isle.
+#     It’s on the south end of town on Route 1, constructed
+#     by the new owners of the Presque Isle hotel (formerly
+#     the inn and convention center). I was
+#   - https://blog.jackmtn.com/jmbb-1970/
+#     Maine Guides, Homemade Liquor And Defining The Border
+#     | JMB Blog 1970
+#     I’ve been reading a book from our local library and
+#     came across a story that was too good not to share.
+#     The book is called The Masardis Saga, written by Paul
+#     M. Moureau, with a subtitle of Nineteenth
+# https://blog.jackmtn.com/feed/
+
+# Pinoy Manila · en · last post 2026-11-19
+# about: Your Digital Lifestyle Magazine
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - https://pinoymanila.com/samsung-philippines-names-the-top-10-changemakers-of-solve-for-tomorrow-2026/
+#     Samsung Philippines Names the Top 10 Changemakers of
+#     Solve for Tomorrow 2026
+#     The results are in – Samsung unveils the finalists of
+#     Solve for Tomorrow 2026 in the Philippines, Know More
+#     The post Samsung Philippines Names the Top 10
+#     Changemakers of Solve for Tomorrow 2026 appear
+#   - https://pinoymanila.com/get-the-all-new-honor-play-20a-and-pad-x7b-with-exclusive-deals-online/
+#     Get the All-New HONOR Play 20A and Pad X7b with
+#     Exclusive Deals Online
+#     Discover exclusive offers on the HONOR Play 20A on
+#     Shopee and the HONOR Pad X7b on Know More The post Get
+#     the All-New HONOR Play 20A and Pad X7b with Exclusive
+#     Deals Online appeared first on Pinoy Man
+#   - https://pinoymanila.com/honor-600s-winner-goes-on-a-php-1-million-shopping-spree-at-sm-lanang/
+#     HONOR 600S Winner Goes on a PHP 1 Million Shopping
+#     Spree at SM Lanang
+#     HONOR Philippines and SM Store celebrate the lucky
+#     winner of the HONOR 600S PHP 1 Million Know More The
+#     post HONOR 600S Winner Goes on a PHP 1 Million
+#     Shopping Spree at SM Lanang appeared first on Pin
+# https://pinoymanila.com/feed/
+
+# Midnight Sun Gun Dog Association · en · last post
+#   2026-10-08
+# about: Our Dogs Hunt!
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - https://msgda.org/20267-msgda-event-dates/
+#     2027 MSGDA Event Dates
+#     Upcoming Events 2027 Event Dates * All dates are
+#     tentative and can change without notice. * MSGDA fun
+#     day -to include membership meeting, potluck
+#     BBQ.Saturday May 15, 2027, Boyd’s Farm Palmer. MSGDA A
+#   - https://msgda.org/elementor-5690/
+#     2025-2027 Waterfowl Season Regs
+#     Related Images:
+#   - https://msgda.org/elementor-5637/
+#     2026 MSGDA FUN DAY MAY 9th
+#     2026 MSGDA FUN DAY DETAILS Details regarding our May
+#     09 fun day now available. MSGDA Picnic Fun Hunt Test
+#     and Raffle – Midnight Sun Gun Dog Association Related
+#     Images:
+# https://msgda.org/feed/
+
+# Write Sarah Honey · en · last post 2026-10-14
+# about: Sweet, Sarcastic, Always Positive Stories for the
+#   Hot Messes Holding it Together.
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - https://writesarahhoney.com/how-to-master-effortless-holiday-planning/?utm_source=rss&utm_medium=rss&utm_campaign=how-to-master-effortless-holiday-planning
+#     How to Master Effortless Holiday Planning
+#     Plan a Calmer December: The Merry Mindset and The
+#     Bright Mindset Planners It’s the middle of October,
+#     which means two things. Christmas is just over ten
+#     weeks away, and Hanukkah begins at sundown on F
+#   - https://writesarahhoney.com/the-seasons-best-shades-on-sale-now/?utm_source=rss&utm_medium=rss&utm_campaign=the-seasons-best-shades-on-sale-now
+#     The Season’s Best Shades on Sale Now
+#     If you know me, you know I love a good pair of
+#     sunglasses and my Goodr shades are always in the
+#     rotation! They’re fun, lightweight, and perfect for
+#     everything from running errands to beach days and ca
+#   - https://writesarahhoney.com/what-happens-when-you-stop-treating-your-hobby-like-a-hobby/?utm_source=rss&utm_medium=rss&utm_campaign=what-happens-when-you-stop-treating-your-hobby-like-a-hobby
+#     What Happens When You Stop Treating Your Hobby Like a
+#     Hobby?
+#     What Happens When You Stop Treating Your Hobby Like a
+#     Hobby? I’m about to find out! For a long time, I
+#     treated creating content like a hobby. I posted. I
+#     shared things I loved. I tried affiliate links
+# https://writesarahhoney.com/feed/
+
+# Kaufman Civil Engineering · en · last post 2026-07-20
+# about: ...a David H Recht Engineering marketing website.
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - https://kaufmancivilengineering.com/flashing/339
+#     Flashing
+#     Flashing is a weatherproofing component made from
+#     thin, impervious materials such as metal or flexible
+#     membranes that prevent water from penetrating joints
+#     and openings in a building envelope. It is c
+#   - https://kaufmancivilengineering.com/how-x-bracing-improves-building-stability/335
+#     How X-Bracing Improves Building Stability
+#     According to Wikipedia, X-bracing is a structural
+#     engineering technique that uses diagonal members
+#     arranged in an “X” pattern to reduce lateral loads by
+#     transferring forces into a building’s exterior
+#   - https://kaufmancivilengineering.com/understanding-party-walls-in-modern-development/332
+#     Understanding Party Walls in Modern Development
+#     According to Wikipedia, a party wall is a wall shared
+#     by two adjoining properties, typically built along a
+#     property line with each owner sharing rights and
+#     responsibilities. In growing communities, pa
+# https://kaufmancivilengineering.com/feed
+
+# Seoulbeats · en · last post 2026-11-18
+# about: K-pop Analysis for Fans, by Fans | Hallyu, Korean
+#   entertainment, K-pop, K-dramas, Korean Variety
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363149.85/wat/CC-MAIN-20211205065810-20211205095810-00261.warc.wat.gz
+# recent posts:
+#   - https://seoulbeats.com/2026/11/for-your-viewing-pleasure-sharp-silhouettes/
+#     For Your Viewing Pleasure: Sharp Silhouettes
+#     Welcome back to another instalment of For Your Viewing
+#     Pleasure, where we take time out of the week to curate
+#     a set of photos from the K-pop landscape. Every outfit
+#     is the sum of its lines and edges,
+#   - https://seoulbeats.com/2026/11/unsung-artists-september-october-2026/
+#     Unsung Artists: September–October 2026
+#     By September or October, groups are often dropping
+#     their second or even third comeback, while many
+#     soloists are pivoting away from earlier group
+#     promotions. These late-year releases give artists room
+#   - https://seoulbeats.com/2026/11/week-in-review-11-9-to-11-15-2/
+#     Week in Review, 11/9 to 11/15
+#     Welcome to another edition of SB Week in Review.
+#     Here’s all the news you might have missed over the
+#     past week: Headlines A Seoul district court dismissed
+#     Belift Lab‘s and Source Music‘s defamation law
+# https://seoulbeats.com/feed/
