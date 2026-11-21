@@ -26,7 +26,7 @@ from typing import Any
 from indexer.check.runner import CheckRow, run_checks
 from indexer.db import DEFAULT_DATABASE_URL, UNDO_TABLES, Database
 from indexer.errors import CheckError
-from indexer.export import DATA_URL, SITE_URL, ExportError, write_output
+from indexer.export import DATA_URL, SITE_URL, ExportError, with_synonyms, write_output
 from indexer.language import MODEL_ENV, LanguageModel
 from indexer.net.fetch import FetchConfig, open_fetcher
 from indexer.net.validate import read_url_file, validate_url
@@ -40,7 +40,14 @@ from indexer.sources import (
 from indexer.survivors import proposals
 from indexer.survivors import run as survivors_run
 from indexer.survivors.wat import CommonCrawlError
-from indexer.topics import TOPICS_DIR, Post, TopicModel, TopicsError, build_index
+from indexer.topics import (
+    TOPICS_DIR,
+    Post,
+    TopicModel,
+    TopicsError,
+    build_index,
+    read_synonyms,
+)
 
 log = logging.getLogger("indexer")
 
@@ -310,8 +317,13 @@ async def _export(args: argparse.Namespace) -> int:
             file=sys.stderr,
         )
         return 2
+    try:
+        synonyms = read_synonyms(args.synonyms)
+    except OSError as exc:
+        print(f"error: cannot read the synonyms ({args.synonyms}): {exc}", file=sys.stderr)
+        return 1
     async with _database(args) as db:
-        feeds = await db.listed_feeds(args.success_days, args.item_years)
+        feeds = with_synonyms(await db.listed_feeds(args.success_days, args.item_years), synonyms)
     try:
         topics = write_output(
             args.output_dir,
@@ -510,6 +522,13 @@ def _parser() -> argparse.ArgumentParser:
         type=Path,
         default=Path("SPEC.md"),
         help="copied into the output as SPEC.md (default SPEC.md)",
+    )
+    ex.add_argument(
+        "--synonyms",
+        type=Path,
+        default=TOPICS_DIR / "synonyms.tsv",
+        help="topic names mapped to their canonical name before publishing"
+        f" (default {TOPICS_DIR / 'synonyms.tsv'})",
     )
     ex.add_argument(
         "--site-url",

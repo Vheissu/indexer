@@ -381,7 +381,8 @@ as "Feep! blog" dilutes the posts) are embedded with MiniLM (`all-MiniLM-L6-v2`,
 tokenizer at a pinned revision and SHA-256 and sets `INDEXER_MINILM_MODEL` and
 `INDEXER_MINILM_TOKENIZER`), averaged into one vector and compared with every row of
 `data/topics/topics.npy`, the precomputed embeddings of the names in `data/topics/topics.txt` (one row
-per line, float16). Names are mapped to their canonical form with `data/topics/synonyms.tsv`. A feed
+per line, float16). Names are mapped to their canonical form with `data/topics/synonyms.tsv`, at the
+check and again by export (so a new synonym shows at the next publish, not only as feeds are re-checked). A feed
 gets topics only if its best name beats its 8th best (distinct) name by at least 0.08: a vague
 feed scores many unrelated names about equally. It then gets up to 5 names within 0.02 of the
 best and at least 0.35, most similar first. Input and thresholds were tuned on 55 random listed

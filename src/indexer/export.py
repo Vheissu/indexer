@@ -6,7 +6,9 @@ repository's SPEC.md), and the website in output/docs/ (see `indexer.site`).
 
 A feed is listed when it had a successful check in the last `success_days` days and its newest
 item (as of its latest successful check) is less than `item_years` years old. Its topics are
-chosen from its posts (see `indexer.topics`). Only the `top` topics with the most listed feeds
+chosen from its posts when it is checked (see `indexer.topics`), and mapped again through
+data/topics/synonyms.tsv here (`with_synonyms`), so a new synonym is published without waiting
+for every feed to be checked again. Only the `top` topics with the most listed feeds
 get a directory; output/all has every listed feed, including those with no topic.
 
 Everything here comes from untrusted feeds, so text is escaped for HTML and XML, and topic
@@ -20,8 +22,8 @@ import json
 import re
 import shutil
 from collections import defaultdict
-from collections.abc import Iterable, Sequence
-from dataclasses import dataclass
+from collections.abc import Iterable, Mapping, Sequence
+from dataclasses import dataclass, replace
 from datetime import datetime
 from email.utils import format_datetime
 from importlib import resources
@@ -61,6 +63,17 @@ class ListedFeed:
         """The feed's topics, most similar first; only names that make a safe directory."""
         names = [t.strip() for t in (self.topics or "").split(",")]
         return [t for t in dict.fromkeys(names) if t and SLUG.fullmatch(topic_slug(t))]
+
+
+def with_synonyms(feeds: Iterable[ListedFeed], synonyms: Mapping[str, str]) -> list[ListedFeed]:
+    """The feeds with each stored topic mapped to its canonical name (variant -> canonical, as
+    `indexer.topics.read_synonyms` gives), keeping the order and the first of any repeats."""
+    mapped = []
+    for feed in feeds:
+        names = [synonyms.get(t.strip(), t.strip()) for t in (feed.topics or "").split(",")]
+        topics = ", ".join(dict.fromkeys(n for n in names if n)) or None
+        mapped.append(feed if topics == feed.topics else replace(feed, topics=topics))
+    return mapped
 
 
 def topic_slug(name: str) -> str:

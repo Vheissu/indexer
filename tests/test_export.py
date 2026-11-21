@@ -23,6 +23,7 @@ from indexer.export import (
     render_preview,
     top_topics,
     topic_slug,
+    with_synonyms,
     write_output,
 )
 from indexer.site import (
@@ -544,3 +545,21 @@ def test_show_more_reveals_the_rest_of_the_rows() -> None:
     assert f"const step = {SHOWN_ROWS}," in html
     (small,) = top_topics([feed(i, "x") for i in range(SHOWN_ROWS)], 1)
     assert 'id="more"' not in page(small)  # nothing more to show
+
+
+def test_with_synonyms_maps_stored_topics_at_publish_time() -> None:
+    synonyms = {"quantum-computing": "quantum", "quantum-physics": "quantum", "film": "movies"}
+    feeds = [
+        feed(1, "quantum-computing, rust, quantum-physics"),
+        feed(2, "film"),
+        feed(3, "rust"),
+        feed(4, None),
+    ]
+    mapped = with_synonyms(feeds, synonyms)
+    assert [f.topics for f in mapped] == ["quantum, rust", "movies", "rust", None]
+    assert mapped[2] is feeds[2] and mapped[3] is feeds[3]  # untouched
+    assert {t.name: len(t.feeds) for t in top_topics(mapped)} == {
+        "rust": 2,
+        "movies": 1,
+        "quantum": 1,
+    }

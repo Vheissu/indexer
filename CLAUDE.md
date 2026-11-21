@@ -160,7 +160,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   of its own, not just the name), is embedded with MiniLM (all-MiniLM-L6-v2,
   quantized ONNX, Apache-2.0; model and tokenizer pinned by revision and SHA-256 in the Dockerfile), averaged, and
   compared with `data/topics/topics.npy` (the embeddings of `data/topics/topics.txt`, 6,079 names used by ≥ 5 listed feeds);
-  names mapped through `data/topics/synonyms.tsv`; a feed gets topics only if its best name beats its 8th best (distinct)
+  names mapped through `data/topics/synonyms.tsv` (at the check, and again by export on the stored topics); a feed gets topics only if its best name beats its 8th best (distinct)
   by ≥ 0.08, then up to 5 within 0.02 of the best and ≥ 0.35, most similar first (`topics.py`; tuned 2026-11-18
   on 55 random feeds judged by hand: title + description beat titles alone; **precision first** (user's choice):
   ~77% of the model's topics right, on ~half the feeds; 0.04 gave ~65% on ~80%; a fixed threshold did worse). Authors' tags are evidence only, **never stored** (agreed 2026-11-18): the

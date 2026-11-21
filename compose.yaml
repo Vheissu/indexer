@@ -97,6 +97,7 @@ services:
     volumes:
       - ./output:/work/output
       - ./SPEC.md:/work/SPEC.md:ro
+      - ./data/topics/synonyms.tsv:/work/data/topics/synonyms.tsv:ro
     command: ["export", "--output-dir", "output"]
 
   # Rebuilds the topic matrix (data/topics/topics.npy and topics.json) from data/topics/topics.txt
