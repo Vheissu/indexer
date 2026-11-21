@@ -311,7 +311,8 @@ https://horsesass.org/feed/
 #     possible for musicians with disabilities
 #     The mission of the One-Handed Woodwinds Program is
 #     simple: remove barriers.
-https://unknews.unk.edu/feed/
+# rejected: press
+# https://unknews.unk.edu/feed/
 
 # Nukunu.net · en · last post 2026-08-14
 # about: You Are That

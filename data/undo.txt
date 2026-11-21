@@ -35,3 +35,12 @@ https://humanidades.uprrp.edu/visiondoble/feed/
 https://katalozi.net/feed
 https://westvolusiawolves.org/feed/
 https://loveprescot.co.uk/feed/
+
+# Merged survivors rejected on review of their latest posts, 2026-11-21 (commented out in data/survivors/)
+https://www.womansworld.com/feed
+https://www.yourweather.co.uk/feed/
+https://myanguillaexperience.com/feed/
+https://go.libhunt.com/newsletter/feed
+https://calagator.org/events.atom
+https://news.utoledo.edu/index.php/feed
+https://unknews.unk.edu/feed/

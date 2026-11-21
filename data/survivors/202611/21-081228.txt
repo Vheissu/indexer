@@ -468,7 +468,8 @@ https://mos.aminet.net/feed
 #     students, faculty and staff, earned the 2026
 #     Chronology Screenwriting Award. The post Theatre
 #     Professo
-https://news.utoledo.edu/index.php/feed
+# rejected: press
+# https://news.utoledo.edu/index.php/feed
 
 # The Chicago Blog · en · last post 2026-11-19
 # about: Smart and timely features from our books and

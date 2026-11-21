@@ -262,7 +262,8 @@ https://pure-essence.net/feed/
 #     boring
 #   - https://go.libhunt.com/newsletter/546
 #     💻 Issue 546 - Five Go exercises worth trying
-https://go.libhunt.com/newsletter/feed
+# rejected: republished
+# https://go.libhunt.com/newsletter/feed
 
 # Kiwipolitico · en · last post 2026-11-21
 # categories (on 20 posts): uncategorized 19, governance 17,
@@ -5094,7 +5095,8 @@ https://www.lankabusinessonline.com/feed/
 #     city streets for the honky-tonks of Nashville. And as
 #     a Georgia girl originally, it feels a little like
 #     coming home and reconnecting with my Souther
-https://www.womansworld.com/feed
+# rejected: commercial
+# https://www.womansworld.com/feed
 
 # Sales Success Stories · en · last post 2026-10-22
 # about: Hear the Secrets of World Class Sales Professionals
@@ -5190,7 +5192,8 @@ https://onekindesign.com/feed/
 #     Corporate Partner is that it never feels
 #     transactional. Liberty is a credit union, whichmeans
 #     it’s m
-https://myanguillaexperience.com/feed/
+# rejected: commercial
+# https://myanguillaexperience.com/feed/
 
 # Jo Cooks · en · last post 2026-11-19
 # about: Simple - Easy - Comfort
@@ -8314,7 +8317,8 @@ https://circulatingnow.nlm.nih.gov/feed/
 #     disrupted the polar vortex high above the Arctic.
 #     Could its effects reach the UK in December, bringing
 #     easterly winds, colder temperatures and even
-https://www.yourweather.co.uk/feed/
+# rejected: seo
+# https://www.yourweather.co.uk/feed/
 
 # Learning Earthways · en · last post 2026-11-13
 # about: journeying together to regain what was lost

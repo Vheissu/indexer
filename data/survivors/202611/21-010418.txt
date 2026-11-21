@@ -265,7 +265,8 @@ https://petesrocknewsandviews.com/feed/
 #   - http://calagator.org/events/1250482806
 #     PDX Code & Coffee - Happy Valley @ Peet's Coffee
 #     Saturday, November 13, 2027 from 10am-noon at Peet's Coffee
-https://calagator.org/events.atom
+# rejected: notices
+# https://calagator.org/events.atom
 
 # Blocks of Life · en · last post 2026-11-07
 # found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363598.57/wat/CC-MAIN-20211208205849-20211208235849-00417.warc.wat.gz
