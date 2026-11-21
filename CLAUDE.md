@@ -55,7 +55,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   from the last 243 days (~8 months), are **in English** (`en` among the languages detected on their items, agreed
   2026-11-18; what the feed declares is not read), **have a title** and **a description**, have no recent post
   linking to a wiki edit (`do=diff`, `rev=`, `oldid=`, `doku.php`, `index.php?title=`) or carrying `utm_` parameters,
-  no "appeared first on" / "first appeared on" in their posts, no WordPress sample post ("Welcome to WordPress. This is your first post"), no two recent posts with the same title and text, no two recent post descriptions starting "Discover/Learn/Explore/Understand/Uncover/Find out" (SEO meta descriptions) (simple rules agreed 2026-11-21 on 60 reviewed
+  no "appeared first on" / "first appeared on" in their posts, no WordPress sample post ("Welcome to WordPress. This is your first post"), no two recent posts with the same title and text, no two recent post descriptions starting "Discover/Learn/Explore/Understand/Uncover/Find out" (SEO meta descriptions), no two recent post descriptions starting with their own title (generated text), no "article appeared in" (reposts) (simple rules agreed 2026-11-21 on 60 reviewed
   proposals: they caught ~19 of 38 rejected and ~6 of 22 accepted; false positives are fine, Common Crawl is vast), and are
   **served over https today** (inserted as the URL after redirects; links are tried as https, and one that
   redirects back to plain http is skipped). Rejected as too complex: detecting one feed in several formats by its items (only the URL rules above).

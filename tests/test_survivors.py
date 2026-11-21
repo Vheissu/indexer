@@ -652,3 +652,19 @@ def test_seo_summaries() -> None:
     assert judged(*farm) == "seo_summary"
     assert judged("Discover how AI helps triage.", "We went hiking.", "A quiet week.") is None
     assert judged("Learning to knit, week 3.", "Explorers of the Arctic.", "x") is None  # words
+
+
+def test_title_echo_and_reposts() -> None:
+    def judged(*posts: tuple[str, str]) -> object:
+        row = checked("https://s.example/feed/", 3)
+        row.recent_posts = tuple(
+            RecentPost(f"https://s.example/{i}", t, d) for i, (t, d) in enumerate(posts)
+        )
+        return rejection(row, Rules(NOW, 365))
+
+    echo = ("BiP was first AMPylated in vitro", "BiP was first AMPylated  in vitro. helix and")
+    other = ("2a) A control", "2a) a control, we all also proven that")
+    assert judged(echo, other, ("x", "y")) == "title_echo"
+    assert judged(echo, ("x", "y"), ("z", "w")) is None  # one post only
+    reposted = ("Keach dies at 85", "(Carmel Dagan's article appeared in Variety.) Stacy Keach")
+    assert judged(reposted, ("x", "y")) == "reposted"

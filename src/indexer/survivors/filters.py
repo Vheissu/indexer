@@ -18,6 +18,8 @@ feed_links.py).
     repeated     two recent posts have the same title and text (the same post published again)
     seo_summary  two recent posts' descriptions start like an SEO meta description ("Discover
                  ...", "Learn ...", "Explore ...", "Understand ..."): content farms
+    title_echo   two recent posts' descriptions start with the post's own title: generated text
+    reposted     a post credits another outlet ("... article appeared in the Guardian")
     not_https    not served over https today (or redirected to an excluded domain)
 
 The rules after `keyword` were agreed on 2026-11-21 from the reviews so far: simple, and
@@ -30,6 +32,7 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta
 from typing import Literal
 
+from indexer.check.feed import RecentPost
 from indexer.check.runner import CheckRow
 from indexer.net.urls import drop_excluded, strip_session, valid_urls
 
@@ -48,12 +51,15 @@ type Reason = Literal[
     "sample_post",
     "repeated",
     "seo_summary",
+    "title_echo",
+    "reposted",
     "not_https",
 ]
 
 _WIKI_EDIT = re.compile(r"do=diff|[?&]rev=|oldid=|doku\.php|index\.php\?title=", re.IGNORECASE)
 _SAMPLE_POST = "welcome to wordpress. this is your first post"
 _SEO_SUMMARY = re.compile(r"(discover|learn|explore|understand|uncover|find out)\b", re.IGNORECASE)
+_REPOSTED = re.compile(r"article\s+appeared\s+in", re.IGNORECASE)
 _SEO_FOOTER = re.compile(r"appeared\s+first\s+on|first\s+appeared\s+on", re.IGNORECASE)
 
 
@@ -95,6 +101,10 @@ def rejection(row: CheckRow, rules: Rules) -> Reason | None:
     summaries = [post.description or "" for post in row.recent_posts]
     if sum(bool(_SEO_SUMMARY.match(text)) for text in summaries) >= 2:
         return "seo_summary"
+    if sum(_echoes_title(post) for post in row.recent_posts) >= 2:
+        return "title_echo"
+    if any(_REPOSTED.search(text) for text in texts):
+        return "reposted"
     if served_url(row, rules.exclude) is None:
         return "not_https"
     return None
@@ -134,6 +144,13 @@ def _has_keyword(row: CheckRow, keywords: frozenset[str]) -> bool:
     recent_titles = [post.title or "" for post in row.recent_posts]
     text = _fold(" ".join([row.subtitle or "", *row.item_texts, *recent_titles]))
     return len(pattern.findall(text)) >= _MIN_TEXT_KEYWORDS
+
+
+def _echoes_title(post: RecentPost) -> bool:
+    """The post's description starts with its title (case and spacing ignored)."""
+    title = " ".join((post.title or "").split()).lower()
+    description = " ".join((post.description or "").split()).lower()
+    return bool(title) and description.startswith(title)
 
 
 def _fold(text: str) -> str:
