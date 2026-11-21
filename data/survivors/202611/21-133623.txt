@@ -41,7 +41,7 @@
 #     spinach knishes, but with a Greek accent. Mix up a
 #     classic spinach/feta filling and wrap it in puff
 #     pastry (instead of filo) and voilà—an easy, bit
-# https://recipephany.com/?feed=rss2
+https://recipephany.com/?feed=rss2
 
 # ACME Meat Market · en · last post 2026-11-12
 # about: Edmonton's Butcher Shop Since 1921
@@ -219,7 +219,7 @@
 #     assumption of a single ground truth, treating
 #     variation as noise. AI researcher Barbara Plank argues
 #     that this variation is valuable information that AI sy
-# https://benniemols.blogspot.com/feeds/posts/default
+https://benniemols.blogspot.com/feeds/posts/default
 
 # Property Blotter · en · last post 2026-11-18
 # about: Lake Oswego Real Estate Blog
@@ -327,7 +327,7 @@
 #     center myself. This has been hard. I habitually just
 #     want to open the apps. Without the noise of the feeds
 #     I almost don’t know what to do with myself.
-# https://realityme.net/feed/
+https://realityme.net/feed/
 
 # Pixie Hill · en · last post 2026-11-16
 # about: Art, craft and other mess making inspired by the
@@ -354,7 +354,7 @@
 #     The Maltese Falcon. I watched the movie, took notes,
 #     made sketches. Right out of the gate the box I wanted
 #     to build the room in went missing. Then
-# https://blog.pixiehill.com/feeds/posts/default
+https://blog.pixiehill.com/feeds/posts/default
 
 # Alex Fund · en · last post 2026-11-02
 # about: helping people help themselves
@@ -423,7 +423,7 @@
 #     to its official non-emergency reporting mobile and web
 #     application, BOS:311. The update introduces a
 #     modernized design with faster, more intuitive
-# https://thebostonsun.com/feed/
+https://thebostonsun.com/feed/
 
 # Corporate Answer · en · last post 2026-10-02
 # about: Telecom VoiceMail VoIP
