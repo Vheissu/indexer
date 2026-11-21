@@ -295,7 +295,7 @@ https://lessywannagohome.blogspot.com/feeds/posts/default
 #     It is year three of a devastating drought, famine, and
 #     extreme heat event around the globe. In the last three
 #     years, some two million people have
-https://apreat.ovh/feed/
+# https://apreat.ovh/feed/
 
 # iLive Toronto · en · last post 2026-11-21
 # about: Changing The Way YOU Listen To Radio
@@ -321,7 +321,7 @@ https://apreat.ovh/feed/
 #     cities on her forthcoming ‘Gentlewoman Tour’ in spring
 #     2027. The post Cleo Sol Expands Her ‘Gentlewoman Tour’
 #     To More Cities appeared first on SoulBou
-https://to.i-liveradio.com/feed
+# https://to.i-liveradio.com/feed
 
 # GeorgeModels Agency · en · last post 2026-11-19
 # found in
