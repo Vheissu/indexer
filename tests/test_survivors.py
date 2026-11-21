@@ -141,6 +141,14 @@ def test_the_page_s_own_feed_only_beside_another() -> None:
     assert filter_page_links(home, stories) == ["https://s.example/feed/"]
 
 
+def test_url_rules_ignore_case() -> None:
+    home = "https://s.example/"
+    assert filter_page_links(home, [feed_link("/RSS")]) == ["https://s.example/RSS"]  # as written
+    assert filter_page_links(home, [feed_link("/Feeds/Posts/Default")]) != []
+    assert filter_page_links(home, [feed_link("/blog/Comments/feed/")]) == []
+    assert filter_page_links(home, [feed_link("/?Feed=Comments-rss2")]) == []
+
+
 def test_wat_paths_keeps_only_well_formed_paths_of_the_crawl() -> None:
     listing = "\n".join(
         [PATH, "crawl-data/CC-MAIN-2026-38/segments/1/wat/x.warc.wat.gz", "../../etc/passwd", ""]

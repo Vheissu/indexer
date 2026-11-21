@@ -12,38 +12,44 @@ MAX_LENGTH = 256  # characters in the URL
 MAX_SLASHES = 7  # in the path
 MAX_SEGMENT = 25  # characters in the longest path segment
 
+
+def _patterns(*regexes: str) -> list[re.Pattern[str]]:
+    """Compiled case-insensitive: `/RSS` is as much a feed path as `/rss`."""
+    return [re.compile(regex, re.IGNORECASE) for regex in regexes]
+
+
 # Anywhere in the URL: never a feed worth proposing.
-_REJECTED = [
-    re.compile(r"/20[0-9]{2}/[0-9]{2}/"),  # a dated post
-    re.compile(r"/comments"),
-    re.compile(r"comments/"),
-    re.compile(r"feed=comments"),
-    re.compile(r"commentId="),
-    re.compile(r"/comment/"),
-    re.compile(r":Recent"),
-    re.compile(r"alt=rss"),
-    re.compile(r"/web-stories/"),  # the Google Web Stories plugin, not posts
-]
+_REJECTED = _patterns(
+    r"/20[0-9]{2}/[0-9]{2}/",  # a dated post
+    r"/comments",
+    r"comments/",
+    r"feed=comments",
+    r"commentId=",
+    r"/comment/",
+    r":Recent",
+    r"alt=rss",
+    r"/web-stories/",  # the Google Web Stories plugin, not posts
+)
 # The whole of what follows the host must be one of these.
-_ACCEPTED = [
+_ACCEPTED = _patterns(
     # main feeds of platforms whose feed URL has no feed word in the path
-    re.compile(r"/feeds/posts/default"),  # Blogger
-    re.compile(r"/(index\.php)?\?feed=(rss2?|atom|rdf)"),  # WordPress without pretty links
-    re.compile(r"/(index\.php)?\?format=feed&type=(rss|atom)"),  # Joomla
-    re.compile(r"/spip\.php\?page=backend"),  # SPIP
-    re.compile(r"/backend\.php"),  # PHP-Nuke, XOOPS, old SPIP
+    r"/feeds/posts/default",  # Blogger
+    r"/(index\.php)?\?feed=(rss2?|atom|rdf)",  # WordPress without pretty links
+    r"/(index\.php)?\?format=feed&type=(rss|atom)",  # Joomla
+    r"/spip\.php\?page=backend",  # SPIP
+    r"/backend\.php",  # PHP-Nuke, XOOPS, old SPIP
     # feed paths
-    re.compile(r"/(atom|rss|rss2|feed|feeds)(\.feed\.php)?/?"),
-    re.compile(r"/(atom|rss|rss2|feed|feeds)\.xml"),
-    re.compile(r"/recent\.rss"),
-    re.compile(r"/\?rss=1"),
-    re.compile(r"\?com=rss"),
-    re.compile(r"/(atom|rss|rss2|feed|feeds)\.php"),
-    re.compile(r"/xml\.php\?rss=true"),
-    re.compile(r"/app\.php/feed"),
-    re.compile(r"/(atom|rss|feed|feeds)(/|\.)[a-zA-Z0-9_.-]+/?"),
-    re.compile(r"/[a-zA-Z0-9_.-]+(/|\.)(atom|rss|feed|feeds)/?"),
-]
+    r"/(atom|rss|rss2|feed|feeds)(\.feed\.php)?/?",
+    r"/(atom|rss|rss2|feed|feeds)\.xml",
+    r"/recent\.rss",
+    r"/\?rss=1",
+    r"\?com=rss",
+    r"/(atom|rss|rss2|feed|feeds)\.php",
+    r"/xml\.php\?rss=true",
+    r"/app\.php/feed",
+    r"/(atom|rss|feed|feeds)(/|\.)[a-zA-Z0-9_.-]+/?",
+    r"/[a-zA-Z0-9_.-]+(/|\.)(atom|rss|feed|feeds)/?",
+)
 
 
 def filter_page_links(page: str, links: Any, exclude: frozenset[str] = frozenset()) -> list[str]:
