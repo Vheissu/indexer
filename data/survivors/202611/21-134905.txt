@@ -1,0 +1,492 @@
+# Proposed 2026-11-21 from CC-MAIN-2021-49. Uncomment the
+# URL of each feed to keep.
+
+# Emilian Bold's blog · en · last post 2026-11-08
+# about: Broadcasting from the Romanian trenches
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358078.2/wat/CC-MAIN-20211127013935-20211127043935-00609.warc.wat.gz
+# recent posts:
+#   - https://blog.emilianbold.ro/2026/08/a-recent-os-on-old-asus-c201p.html
+#     A recent OS on the old Asus C201P
+#     There are people that easily sell and swap computers.
+#     I get somewhat attached to them, which explains why I
+#     have a growing collection of old gear. Even my first
+#     beige PC with a Cyrix CPU has been rest
+#   - https://blog.emilianbold.ro/2026/10/pearls-before-ais.html
+#     Pearls before AIs
+#     There's an interesting phenomenon I've noticed and I'm
+#     not sure I have a good word for it. One has various
+#     ideas jumping around in their head. Some of them are
+#     little pearls, beliefs big and small tha
+#   - https://blog.emilianbold.ro/2026/01/findus-and-christmas-tomte.html
+#     Findus and the Christmas Tomte
+#     Sven Nordqvist's Pettson and Findus series is beloved
+#     for its cozy portrayal of rural Swedish life. An
+#     eccentric old farmer, his talking cat in striped
+#     trousers, helpful (if gossipy) neighbors, and il
+# https://blog.emilianbold.ro/feeds/posts/default
+
+# DVB · en · last post 2026-11-21
+# about: Democratic Voice of Burma
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358078.2/wat/CC-MAIN-20211127013935-20211127043935-00609.warc.wat.gz
+# recent posts:
+#   - https://english.dvb.no/un-general-assembly-president-visits-rohingya-refugees-in-bangladesh-after-icj-ruling/
+#     UN General Assembly President visits Rohingya refugees
+#     in Bangladesh after ICJ ruling
+#     A day after the U.N.’s highest court found that
+#     Myanmar had committed genocide against the Rohingya,
+#     the President of the General Assembly visited the
+#     refugee camps in Cox’s Bazar, Bangladesh, urging
+#   - https://english.dvb.no/nug-and-knu-welcome-icj-genocide-ruling-urge-global-ban-on-arms-and-aviation-fuel-to-junta/
+#     NUG and KNU welcome ICJ genocide ruling, urge global
+#     ban on arms and aviation fuel to regime
+#     Myanmar’s National Unity Government (NUG) and the
+#     Karen National Union (KNU) have welcomed the landmark
+#     International Court of Justice (ICJ) judgment finding
+#     Myanmar responsible for genocide against t
+#   - https://english.dvb.no/rights-groups-urge-sanctions-after-top-un-court-finds-myanmar-committed-genocide-against-rohingya/
+#     Rights groups urge sanctions after ICJ rules Myanmar
+#     committed genocide against Rohingya
+#     Rights groups are calling for military and economic
+#     sanctions against Myanmar after the United Nations’
+#     highest court, in the first ruling of its kind,
+#     determined that the country committed genocide a
+# https://english.dvb.no/feed/
+
+# The Designer Monologues · en · last post 2026-11-04
+# about: The Meme-Mandated, Semi-Regularly-Updated,
+#   Occasionally Coherent Thoughts of G.M. Skarka
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358078.2/wat/CC-MAIN-20211127013935-20211127043935-00609.warc.wat.gz
+# recent posts:
+#   - https://gmskarka.com/2026/11/04/election-2026/
+#     Election 2026
+#     Well, that about sums it up, doesn’t it? The biggest
+#     sweep away from the incumbent party since the
+#     post-Watergate elections of the mid-70s. At the time
+#     of writing (3:13pm on Wednesday, November 4th),
+#   - https://gmskarka.com/2026/03/16/third-times-the-charm/
+#     Third Time’s The Charm
+#     Today, I released the newest product from Adamant
+#     Entertainment, the third edition of our 1930s Pulp
+#     Adventure RPG, THRILLING TALES (click on the cover to
+#     be taken to the product page at DriveThruRPG)
+#   - https://gmskarka.com/2026/03/03/gms-day-sale-at-drivethrurpg/
+#     GM’s Day Sale at DriveThruRPG
+#     I’ve posted about this over at the official Adamant
+#     Entertainment website, but I figured it wouldn’t hurt
+#     adding a post here on my personal site as well: We’re
+#     participating in the annual GM’s Day Sal
+# https://gmskarka.com/feed/
+
+# A Koala's Playground · en · last post 2026-11-20
+# about: I'll talk about dramas if I want to
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358078.2/wat/CC-MAIN-20211127013935-20211127043935-00609.warc.wat.gz
+# recent posts:
+#   - https://koalasplayground.com/2026/11/20/youth-romance-and-healing-c-drama-sunshine-through-the-rain-with-yang-chao-yue-and-dong-si-cheng-receives-extraordinarily-high-8-0-douban-ratings/
+#     Youth Romance and Healing C-drama Sunshine Through the
+#     Rain with Yang Chao Yue and Dong Si Cheng Re…
+#     I love me an underdog success story, and even better
+#     if you add a redemption arc to it as well. This month
+#     November 2026 C-dramas so far the biggest success has
+#     to be modern youth romance Sunshine Thr
+#   - https://koalasplayground.com/2026/11/19/lee-min-ho-and-park-gyu-young-confirmed-as-leads-for-2027-sbs-romantic-office-k-drama-virtual-love/
+#     Lee Min Ho and Park Gyu Young Confirmed as Leads for
+#     2027 SBS Romantic Office K-drama Virtual Love
+#     Well, at least these two are both age and height
+#     compatible with each other onscreen haha. K-ent is
+#     reporting that Lee Min Ho and Park Gyu Young are now
+#     confirmed for sure as the leads for the SBS K-d
+#   - https://koalasplayground.com/2026/11/18/modern-romance-drama-just-getting-married-to-star-li-yi-tong-and-li-yun-rui-with-filming-commencing-december-2026/
+#     Modern Romance Drama Just Getting Married to Star Li
+#     Yi Tong and Li Yun Rui with Filming Commencing…
+#     A new C-drama is reportedly kicking off filming soon,
+#     at the very end of November so just call it a December
+#     start date. It’s a MGTV modern romance titled 结婚而已 Jie
+#     Hun Er Yi or literal translation Jus
+# https://koalasplayground.com/feed/
+
+# Dainik Nation · en · last post 2026-11-16
+# about: News Portal
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358078.2/wat/CC-MAIN-20211127013935-20211127043935-00609.warc.wat.gz
+# recent posts:
+#   - https://dainiknation.com/2026/11/badrinath-temple-closes-for-winter-over-23-49-lakh-pilgrims-visit-during-yatra-season/
+#     Badrinath Temple Closes for Winter; Over 23.49 Lakh
+#     Pilgrims Visit During Yatra Season
+#     DAINIK NATION BUREAU/BADRINATH The portals of the
+#     revered Badrinath Temple were closed for the winter
+#     season on Monday evening amid Vedic chants and the
+#     observance of traditional religious rituals. Th
+#   - https://dainiknation.com/2026/11/harak-singh-rawat/
+#     Harak Singh Rawat facing unusual controversy now
+#     DAINIK NATION BUREAU/DEHRADUN Former Uttarakhand
+#     Cabinet Minister and senior Congress leader Harak
+#     Singh Rawat is facing an unusual controversy involving
+#     his personal life. His wife, Deepti Rawat, has
+#   - https://dainiknation.com/2026/08/nine-ias-pcs-officers-appointed-as-observer-for-sir-in-uttarakhand/
+#     Nine IAS/PCS officers appointed as Observer for SIR in
+#     Uttarakhand
+#     DAINIK NATION BUREAU/DEHRADUN Following on the ECI
+#     direction, Uttarakhand CEO Dr. BVRC Purushottam has
+#     appointed nine IAS/PCS officers as observer to oversee
+#     the disposal of claims and objections unde
+# https://dainiknation.com/feed/
+
+# Firestarter Ignite · en · last post 2026-11-09
+# about: ignite from within
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358078.2/wat/CC-MAIN-20211127013935-20211127043935-00609.warc.wat.gz
+# recent posts:
+#   - https://firestarterignite.com/the-giveaway/
+#     The Giveaway
+#     A week ago I launched a Devotion that was birthed out
+#     of my own walk with God and journey...
+#   - https://firestarterignite.com/bible-theme-wisdom/
+#     Wisdom
+#     Understanding the importance and difference of wisdom
+#     in a belivers life.
+#   - https://firestarterignite.com/bible-theme-gods-word/
+#     God’s Word
+#     Understanding the word of God and it's function in the
+#     life of a believer.
+# https://firestarterignite.com/feed/
+
+# Crafting Creatively · en · last post 2026-10-13
+# about: My little spot in blogland to share all things
+#   crafty and other random tidbits about my life, family
+#   and such!
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358078.2/wat/CC-MAIN-20211127013935-20211127043935-00609.warc.wat.gz
+# recent posts:
+#   - https://craftingcreatively.blogspot.com/2026/10/october-sketches-with-sweet-sketch.html
+#     October Sketches with Sweet Sketch Wednesday 2
+#     Hi there and thanks for taking the time to visit me
+#     today! I am excited to share 2 new cards with you for
+#     our October Sweet Sketch Wednesday 2 challenge! I am
+#     the lucky hostess this month and I sure h
+#   - https://craftingcreatively.blogspot.com/2026/09/september-sketches-with-sweet-sketch.html
+#     September Sketches with Sweet Sketch Wednesday 2
+#     Well hello there and welcome back to Crafting
+#     Creatively! I went missing in August and half of
+#     September now and I am not really sure where the time
+#     went! I am back now with our fab Sweet Sketch Wedne
+#   - https://craftingcreatively.blogspot.com/2026/07/christmas-in-july-and-relaxation-with.html
+#     ~Christmas in July and Relaxation with Sweet Sketch
+#     Wednesday 2
+#     Hi everyone! Gosh, it's been a minute but I'm back
+#     sharing my newest makes with you for the Sweet Sketch
+#     Wednesday 2 July challenge. As always Kathie has some
+#     amazing sketches for you along with a thr
+# https://craftingcreatively.blogspot.com/feeds/posts/default
+
+# Making Ripples · en · last post 2026-10-22
+# about: Ideas for staying creative and making a living in
+#   the post-corporate world
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358078.2/wat/CC-MAIN-20211127013935-20211127043935-00609.warc.wat.gz
+# recent posts:
+#   - https://makingripples.com/?p=4880
+#     Who Is On Your Team?
+#     Have you ever given thought to the number of
+#     individuals who help you survive? You may think of
+#     yourself as an independent spirit overcoming obstacles
+#     and building a life, but at any given point, you
+#   - https://makingripples.com/?p=4875
+#     Recent Observations About Memory
+#     I have recently become aware of distinct gaps in my
+#     memory. Others have noticed that I do not always
+#     remember events and places that we experienced in
+#     common, and are urging me to seek professional he
+#   - https://makingripples.com/?p=4872
+#     Are You Spending Your Immortality In A Productive Way?
+#     Version 2.0 One of the disadvantages of wearing a
+#     human body is that our concerns tend to be focused on
+#     keeping it fed and warm and securing safe shelter for
+#     it. There is a wonderful payoff in terms o
+# https://makingripples.com/?feed=rss2
+
+# INDIGITAL Gallery - Latest work · en · last post
+#   2026-10-09
+# about: Latest work published on INDIGITAL Gallery. Content
+#   is subject to copyright and cannot be used without prior
+#   licensing agreement.
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358078.2/wat/CC-MAIN-20211127013935-20211127043935-00609.warc.wat.gz
+# recent posts:
+#   - http://photo.indigitalrunway.com/-/galleries/e-commerce/womenswear/ss27-womenswear/paris-womens-ss27/backstage-lacoste-paris-womens-ss27/-/medias/01a11fa6-80c9-7147-afbf-d721225ddb52
+#     Lacoste_RTW_SS27_Backstage_140
+#     Published in Backstage Lacoste PARIS WOMENS SS27
+#   - http://photo.indigitalrunway.com/-/galleries/e-commerce/womenswear/ss27-womenswear/paris-womens-ss27/backstage-lacoste-paris-womens-ss27/-/medias/01a11fa6-81fb-7d4c-8b42-e508b31b84db
+#     Lacoste_RTW_SS27_Backstage_139
+#     Published in Backstage Lacoste PARIS WOMENS SS27
+#   - http://photo.indigitalrunway.com/-/galleries/e-commerce/womenswear/ss27-womenswear/paris-womens-ss27/backstage-lacoste-paris-womens-ss27/-/medias/01a11fa6-834b-7fdc-b90a-b26a1d4c5d34
+#     Lacoste_RTW_SS27_Backstage_136
+#     Published in Backstage Lacoste PARIS WOMENS SS27
+# https://photo.indigitalrunway.com/feed.rss
+
+# Republic Broadcasting Network · en · last post 2026-11-20
+# about: Because You CAN Handle The Truth!
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358078.2/wat/CC-MAIN-20211127013935-20211127043935-00609.warc.wat.gz
+# recent posts:
+#   - https://republicbroadcasting.org/news/americas-hidden-ai-advantage/
+#     America’s Hidden AI Advantage
+#     Source: ForeignAffairs.com | Council on Foreign
+#     Relations The United States—Not China—Dominates
+#     Diffusion BY Jeffrey Ding In the view of most
+#     observers, China is winning the race to diffuse
+#     artificial
+#   - https://republicbroadcasting.org/news/ukraine-not-russia-plotted-a-gleiwitz-like-false-flag-provocation-in-kaliningrad/
+#     Ukraine, Not Russia, Plotted A Gleiwitz-Like False
+#     Flag Provocation In Kaliningrad
+#     BY ANDREW KORYBKO SOURCE: Andrew Korybko’s Newsletter
+#     Assuming that Poland truly obtained intelligence
+#     indicating that some Ukrainians planned to infiltrate
+#     Kaliningrad, then Occam’s razor suggests th
+#   - https://republicbroadcasting.org/news/the-2026-midterms-were-compromised/
+#     The 2026 Midterms Were Compromised
+#     Source: AmericanThinker.com By Amil Imani The November
+#     2026 midterms did not deliver clean results. They
+#     delivered a cascade of red flags that any honest
+#     observer must confront. This left many America
+# https://republicbroadcasting.org/feed/
+
+# Patterico's Pontifications · en · last post 2026-11-20
+# about: Harangues that just make sense
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358078.2/wat/CC-MAIN-20211127013935-20211127043935-00609.warc.wat.gz
+# recent posts:
+#   - https://patterico.com/2026/11/20/weekend-open-thread-355/
+#     Weekend Open Thread
+#     [guest post by Dana] Let’s go! First news item New
+#     reporting from @TheAtlantic on the direct profits
+#     Jared Kushner earns from the wars he is allegedly
+#     negotiating to end https://t.co/nNcJpCUlDg — Anne
+#   - https://patterico.com/2026/11/18/trumps-kind-of-guy-shame-ourselves-and-make-putin-happy/
+#     Trump’s Kind of Guy: Shame Ourselves And Make Putin
+#     Happy (UPDATE ADDED)
+#     [guest post by Dana] Making Putin’s day: 🇷🇺 Russian
+#     flag has been put on the historical museum of Atlanta
+#     @MillenniumGate in memory of the the Russian
+#     Ambassador to the U.S. Alexander #Darchiev at the
+#   - https://patterico.com/2026/11/18/what-is-going-on/
+#     What Is Going On?!
+#     [guest post by Dana] Now that we know that claims made
+#     by the federal government about the latest cyber
+#     “disturbances” should be taken with a BIG grain of
+#     salt, it’s very clear that there is danger ah
+# https://patterico.com/feed/
+
+# Worcester Regional Chamber of Commerce · en · last post
+#   2026-04-14
+# about: RECRUIT | RETAIN | INCUBATE
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358078.2/wat/CC-MAIN-20211127013935-20211127043935-00609.warc.wat.gz
+# recent posts:
+#   - https://www.worcesterchamber.org/worcester-regional-chamber-commerce-urges-state-opt-federal-scholarship-tax-credit-highlighting-massive-benefits-local-non-profits-educational-institutions/
+#     Worcester Regional Chamber of Commerce Urges State to
+#     Opt-In to Federal Scholarship Tax Credit, Hig…
+#     WORCESTER, MA – The Worcester Regional Chamber of
+#     Commerce is calling on state leaders, including
+#     Governor Healey, to opt Massachusetts into the
+#     recently enacted Federal Scholarship Tax Credit
+#     program
+#   - https://www.worcesterchamber.org/startup-worcester-spotlight-wicked-wheels-puts-worcester-fast-track/
+#     StartUp Worcester Spotlight: Wicked Wheels Puts
+#     Worcester on the Fast Track
+#     By Michael Kane II For many Worcester residents,
+#     navigating the city’s famed “Seven Hills” can be a
+#     daily challenge, but for one entrepreneur, it became
+#     the foundation of an exciting new venture. We r
+#   - https://www.worcesterchamber.org/addressing-commonwealths-economic-competitiveness-issues-update-governors-council-competitiveness/
+#     Addressing the Commonwealth’s Economic Competitiveness
+#     Issues-An update on the Governor’s Council o…
+#     By Darnell Dunn Last fall, Governor Healey signed an
+#     Executive Order creating the Governor’s Advisory
+#     Council on Competitiveness to advise her on ways to
+#     drive economic growth and strengthen the state
+# https://www.worcesterchamber.org/feed/
+
+# ECEWS · en · last post 2026-09-10
+# about: Improving Education and Health in Nigeria
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358078.2/wat/CC-MAIN-20211127013935-20211127043935-00609.warc.wat.gz
+# recent posts:
+#   - https://ecews.org/70-healthcare-workers-certified-in-severe-malaria-case-management-enugu/
+#     70 Healthcare Workers Certified in Severe Malaria Case
+#     Management, Enugu
+#     ECEWS, through the Islamic Development Bank funded
+#     Malaria Control and Elimination Project, in
+#     collaboration with the National Malaria Elimination
+#     Program (NMEP) and the Enugu State Malaria Eliminatio
+#   - https://ecews.org/when-hope-took-flight-how-ecews-and-zipline-are-transforming-healthcare-in-remote-communities/
+#     When Hope Took Flight: How ECEWS and Zipline Are
+#     Transforming Healthcare in Remote Communities
+#     In many hard-to-reach communities across Cross River
+#     State, access to healthcare has long been determined
+#     not by the need for treatment, but by the challenges
+#     of reaching lifesaving services. Long dis
+#   - https://ecews.org/hope-restored-a-households-path-to-recovery-2/
+#     Hope Restored: A Household’s Path to Recovery
+#     Life dealt Modupe a cruel blow. A widow and mother of
+#     four, she watched her world collapse when her late
+#     husband’s family, citing baseless issues, tore three
+#     children from her arms. Moreover, they sei
+# https://ecews.org/feed/
+
+# CVB · en · last post 2026-11-15
+# about: Health & Fitness
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358078.2/wat/CC-MAIN-20211127013935-20211127043935-00609.warc.wat.gz
+# recent posts:
+#   - https://comprarvimaxnobrasil.com/1998.html
+#     How to Deal with Hair Loss Naturally and Quickly …
+#   - https://comprarvimaxnobrasil.com/north-memorial-health-clinics-hospitals-air-medical-transport-and-ambulance-providers.html
+#     North Memorial Health Clinics, Hospitals, Air Medical
+#     Transport And Ambulance Providers
+#     Get care the place and when you want it with same-day
+#     appointments at CHC Urgent Care. Out of an abundance
+#     of warning and to mitigate the spread of the
+#     coronavirus, or COVID-19, sure Chickasaw Nation
+#   - https://comprarvimaxnobrasil.com/understanding-health-insurance.html
+#     Understanding Health Insurance
+#     Tugu Insurance Health Insurance is a health insurance
+#     program for business geared toward groups/companies’
+#     employees. We provide dependable health insurance
+#     policy that take complete care of your medi
+# https://comprarvimaxnobrasil.com/feed
+
+# Ed's Beer Site · en · last post 2026-11-08
+# about: A site where a man with far too much interest in
+#   beer gets to write about it.
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358078.2/wat/CC-MAIN-20211127013935-20211127043935-00609.warc.wat.gz
+# recent posts:
+#   - https://edsbeer.blogspot.com/2026/06/a-visit-to-sarah-hughes-brewery.html
+#     A visit to Sarah Hughes brewery
+#     Having been a fan of Sarah Hughes Dark Ruby Mild since
+#     I was a teenager I was determined to visit the brewery
+#     when I heard that the Brewery History Society AGM was
+#     being hosted by Bathams . Sarah Hugh
+#   - https://edsbeer.blogspot.com/2026/10/crowing-about-crowlas.html
+#     Crowing about Crowlas
+#     A rainy day when you're on a climbing trip is not
+#     ideal . But when life gives you rain, go to the pub.
+#     On my way to Bosigran I'd spotted The Star Inn and
+#     thought "hmmm...isn't that an old favourite of
+#   - https://edsbeer.blogspot.com/2026/09/back-in-brapa.html
+#     Back in BRAPA
+#     After six (6) years I was back chauffeuring #PubMan Si
+#     as he ticks his way through the Good Book . And a
+#     great #PubMan he is - whilst I spent Saturday morning
+#     rolling round with sweaty men in skintigh
+# https://edsbeer.blogspot.com/feeds/posts/default
+
+# Thiet bi co khi mee · en · last post 2026-10-30
+# about: Lawn mower service
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358078.2/wat/CC-MAIN-20211127013935-20211127043935-00609.warc.wat.gz
+# recent posts:
+#   - https://thietbicokhimee.com/2026/10/30/first-home-buyer-housing-malaysia/
+#     First Home Buyer History and Housing Access in
+#     Malaysia
+#     Origins of the First Home Buyer Idea The idea of the
+#     first home buyer has long been tied to wider changes
+#     in society, housing markets, and family life. As
+#     cities grew and home ownership became a centr
+#   - https://thietbicokhimee.com/2026/10/27/pawn-shop-malaysia-guide/
+#     Pawn Shop Malaysia: History, Process and How to Choose
+#     Origins of Pawn Shop Malaysia Pawn shops in Malaysia
+#     have long served as a practical financial outlet for
+#     people who need fast access to cash without taking on
+#     a conventional loan. Their role can be t
+#   - https://thietbicokhimee.com/2026/10/27/why-sang-gerai-makes-a-dependable-meal-stop-on-busy-weekdays/
+#     Why Sang Gerai Makes a Dependable Meal Stop on Busy
+#     Weekdays
+#     Busy weekdays are rarely about finding the most
+#     exciting meal. They are about finding one that will
+#     not let you down. Between meetings, school runs and
+#     errands at the mall, what most people need is a
+# https://thietbicokhimee.com/feed/
+
+# SKGaleana · en · last post 2026-10-14
+# about: Expanding Imaginations Removes Limitations
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358078.2/wat/CC-MAIN-20211127013935-20211127043935-00609.warc.wat.gz
+# recent posts:
+#   - https://skgaleana.com/paw-patrol-the-dino-movie-printable-activity-sheets/
+#     PAW Patrol: The Dino Movie Printable Activity Sheets!
+#     Join Marshall, Ryder, the PAW Patrol pups, and their
+#     new friend Rex as they all team up to save Dino Island
+#     in PAW Patrol: The Dino Movie! This adventure is their
+#     biggest one yet! PAW Patrol: The Dino
+#   - https://skgaleana.com/paramount-pictures-paw-patrol-the-dino-movie-digital-code-giveaway-ends-10-19-2026/
+#     Paramount Pictures PAW Patrol: The Dino Movie Digital
+#     Code Giveaway – Ends 10-19-2026
+#     PAW Patrol: The Dino Movie is Available Now to Watch
+#     at Home! In their most epic movie adventure yet,The
+#     PAW Patrol pups crash land on a mysterious dinosaur
+#     island! There, they meet a new friend, Rex,
+#   - https://skgaleana.com/2026-holiday-gift-guide/
+#     ❄️2026 Holiday Gift Guide❄️
+#     There is something pure magic about wintertime! The
+#     crisp air, the snow twinkling like glitter on the
+#     trees, and all those cozy lights mean one big thing:
+#     the holiday season is officially here! Whethe
+# https://skgaleana.com/feed/
+
+# G33K Life · en · last post 2026-11-09
+# about: Comic book reviews, gaming news and stuff! Also may
+#   contain drawings and random thoughts. All from a guy who
+#   grew up in the 80s and love the 90s! Talk about
+#   something NEVER SEEN BEFORE~
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358078.2/wat/CC-MAIN-20211127013935-20211127043935-00609.warc.wat.gz
+# recent posts:
+#   - https://eyzmaster.blogspot.com/2026/11/mr-clayface.html
+#     #MR Clayface
+#     Little review for Clayface is up
+#     https://boxd.it/heMW4D #dccomics #movies #review #mr
+#     #batman #horror
+#   - https://eyzmaster.blogspot.com/2026/11/game-dragon-ball-ii-revenge-of-king.html
+#     #game Dragon Ball II Revenge of King Piccolo
+#     Another little retro gaming project completed! 🎮 Made
+#     and printed my own custom NES PAL cover art for Dragon
+#     Ball II Revenge of King Piccolo, to go with my
+#     translated Famicom repro cartridge! Tried to
+#   - https://eyzmaster.blogspot.com/2026/11/mr-backrooms-and-obsession.html
+#     #MR BACKROOMS and OBSESSION
+#     🎬 🍿 Finally catching up on my movie reviews! Just
+#     posted two new reviews over on Letterboxd! BACKROOMS
+#     https://letterboxd.com/eyzmaster/film/backrooms-2026/
+#     OBSESSION https://letterboxd.com/eyzmaster/
+# https://eyzmaster.blogspot.com/feeds/posts/default
+
+# Angie Quilts · en · last post 2026-11-16
+# about: Angie's Patchwork & Quilting shop. I don't really
+#   buy fabric to sell. I buy fabric for YOU to choose from.
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358078.2/wat/CC-MAIN-20211127013935-20211127043935-00609.warc.wat.gz
+# recent posts:
+#   - https://angiequilts.blogspot.com/2026/11/stitching-news_0644634875.html
+#     Stitching News
+#     Catching up on a few projects, in no particular order,
+#     as usual. Christabelle's sandwich. Again it was much
+#     larger as a sandwich than it was as a top... it's a
+#     common optical delusion with my customer
+#   - https://angiequilts.blogspot.com/2026/11/stitching-news.html
+#     Stitching News
+#     Good Grief, November! So many beautiful colours
+#     surrounding us as the nights draw in. I mean in
+#     nature, of course. As a quilter, my life is full of
+#     colour, permanently! My November calendar quilt is o
+#   - https://angiequilts.blogspot.com/2026/10/stitching-news_0538573996.html
+#     Stitching News
+#     Were home! It was another fabulous retreat where we
+#     were very well catered for. I think it's safe to
+#     declare that everyone fully enjoyed our 4 luxurious
+#     days of sewing time. Projects from toy elephant
+# https://angiequilts.blogspot.com/feeds/posts/default

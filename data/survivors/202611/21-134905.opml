@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Proposed feeds from CC-MAIN-2021-49</title>
+    <dateCreated>Sat, 21 Nov 2026 13:50:19 +0000</dateCreated>
+  </head>
+  <body>
+    <outline type="rss" text="Emilian Bold's blog" title="Emilian Bold's blog" xmlUrl="https://blog.emilianbold.ro/feeds/posts/default"/>
+    <outline type="rss" text="DVB" title="DVB" xmlUrl="https://english.dvb.no/feed/"/>
+    <outline type="rss" text="The Designer Monologues" title="The Designer Monologues" xmlUrl="https://gmskarka.com/feed/"/>
+    <outline type="rss" text="A Koala's Playground" title="A Koala's Playground" xmlUrl="https://koalasplayground.com/feed/"/>
+    <outline type="rss" text="Dainik Nation" title="Dainik Nation" xmlUrl="https://dainiknation.com/feed/"/>
+    <outline type="rss" text="Firestarter Ignite" title="Firestarter Ignite" xmlUrl="https://firestarterignite.com/feed/"/>
+    <outline type="rss" text="Crafting Creatively" title="Crafting Creatively" xmlUrl="https://craftingcreatively.blogspot.com/feeds/posts/default"/>
+    <outline type="rss" text="Making Ripples" title="Making Ripples" xmlUrl="https://makingripples.com/?feed=rss2"/>
+    <outline type="rss" text="INDIGITAL Gallery - Latest work" title="INDIGITAL Gallery - Latest work" xmlUrl="https://photo.indigitalrunway.com/feed.rss"/>
+    <outline type="rss" text="Republic Broadcasting Network" title="Republic Broadcasting Network" xmlUrl="https://republicbroadcasting.org/feed/"/>
+    <outline type="rss" text="Patterico's Pontifications" title="Patterico's Pontifications" xmlUrl="https://patterico.com/feed/"/>
+    <outline type="rss" text="Worcester Regional Chamber of Commerce" title="Worcester Regional Chamber of Commerce" xmlUrl="https://www.worcesterchamber.org/feed/"/>
+    <outline type="rss" text="ECEWS" title="ECEWS" xmlUrl="https://ecews.org/feed/"/>
+    <outline type="rss" text="CVB" title="CVB" xmlUrl="https://comprarvimaxnobrasil.com/feed"/>
+    <outline type="rss" text="Ed's Beer Site" title="Ed's Beer Site" xmlUrl="https://edsbeer.blogspot.com/feeds/posts/default"/>
+    <outline type="rss" text="Thiet bi co khi mee" title="Thiet bi co khi mee" xmlUrl="https://thietbicokhimee.com/feed/"/>
+    <outline type="rss" text="SKGaleana" title="SKGaleana" xmlUrl="https://skgaleana.com/feed/"/>
+    <outline type="rss" text="G33K Life" title="G33K Life" xmlUrl="https://eyzmaster.blogspot.com/feeds/posts/default"/>
+    <outline type="rss" text="Angie Quilts" title="Angie Quilts" xmlUrl="https://angiequilts.blogspot.com/feeds/posts/default"/>
+  </body>
+</opml>
