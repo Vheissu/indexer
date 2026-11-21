@@ -126,7 +126,8 @@ shapes (`/feed/`,
 `/rss.xml`, `/atom.php`, `/<one segment>/feed/`, ...). Forums and wikis are dropped too: "forum" or
 "forums" as a host label or path segment (`forums.example.com`, `/forum/`, `-forums/`, but not
 `hightechforum.org`), `feed.php` (DokuWiki, phpBB), `app.php/feed` (phpBB), `syndication.php`
-(MyBB), `type=rss;action` (SMF), BuddyPress's `/activity/feed` and Digital Commons'
+(MyBB), `type=rss;action` (SMF), Invision Community's `/rss/public` and `/rss/<n>-…`, BuddyPress's
+`/activity/feed` and Digital Commons'
 `/recent.rss`; their feeds are mostly edits, replies, sign-ups and papers. These rules are applied
 again to the URL a feed is served from after redirects (`unwanted_url`). So are feeds on
 the top-level domains Freenom gave away (`.tk`, `.ml`, `.ga`, `.cf`, `.gq`), mostly spam.
@@ -152,9 +153,12 @@ shared hosts like `fc2.com` or `free.fr`). A feed is proposed only if:
   below). The feed's own `<language>` is not read: WordPress says `en-US` unless the owner changes it;
 - it **has a title** and a **description** (subtitle), and at least one of its recent posts has
   a title or text;
-- neither its title nor its description names a business ("service(s)", "attorney(s)",
-  "agency", "book now", "supplies", "equipment", "shop"): company blogs. About 1 in 250 of the
-  listed feeds would be dropped by it, mostly consultants' and agencies' good blogs;
+- neither its title nor its description names a business or an organisation ("service(s)",
+  "attorney(s)", "agency", "book now", "supplies", "equipment", "shop", "company", "store",
+  "consultants", "law firm", "law group", "LLC", "radio station", "station for",
+  "congregation", "parish": `filters._BUSINESS_WORDS`), and its description doesn't start
+  "Jobs from" (job boards). About 1 in 140 of the listed feeds would be dropped by them, mostly
+  consultants' and agencies' good blogs;
 - its title contains none of the `[commoncrawl] exclude_keywords` in `data/sources.toml`
   as a whole word, and its subtitle, newest posts (title and start of each) and the titles of
   its 3 most recent posts fewer than 3

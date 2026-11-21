@@ -692,6 +692,8 @@ def test_posts_without_any_text() -> None:
         ("https://hightechforum.org/feed/", False),  # "forum" inside a word
         ("https://magforum.wordpress.com/feed/", False),
         ("https://tal.forum2.org/xml/rss", False),
+        ("https://www.gagadaily.com/rss/1-bandsintown.xml/", True),  # Invision Community
+        ("https://sims4studio.com/rss/public", True),
         ("https://blog.example/feed/", False),
     ],
 )
@@ -715,6 +717,10 @@ def test_a_redirect_to_an_unwanted_url_is_rejected() -> None:
         ("MONDOM communications", "Boutique Communications Agency", True),
         ("My Shop...granny likes it", "Irish-made gifts", True),
         ("TBJ Incorporated", "World Leader of Custom Stainless Steel Equipment", True),
+        ("MLT Aikins", "Western Canada's Law Firm", True),
+        ("93.9 WKYS", "Washington DC's Hip-Hop & R&B Radio Station", True),
+        ("UU Miami", "Unitarian Universalist Congregation of Miami", True),
+        ("Dogtown Media", "Mobile App Development Company", True),
         ("Workshop notes", "Woodworking at home", False),  # inside a word
         ("A Feed", "About things", False),
     ],
@@ -722,3 +728,8 @@ def test_a_redirect_to_an_unwanted_url_is_rejected() -> None:
 def test_business_words(title: str, subtitle: str, business: bool) -> None:
     row = checked("https://s.example/feed/", 3, title=title, subtitle=subtitle)
     assert (rejection(row, Rules(NOW, 365)) == "business") is business
+
+
+def test_job_boards() -> None:
+    row = checked("https://jobs.example/rss/", 3, subtitle="Jobs from Joblink | Leeds")
+    assert rejection(row, Rules(NOW, 365)) == "job_board"

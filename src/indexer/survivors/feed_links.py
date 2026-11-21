@@ -38,6 +38,7 @@ _REJECTED = _patterns(
     r"syndication\.php",  # MyBB
     r"type=rss;action",  # SMF
     r"/activity/feed",  # BuddyPress member activity, not posts
+    r"/rss/(public|\d+-)",  # Invision Community forums
     r"/recent\.rss",  # Digital Commons: recently added papers, not posts
 )
 # WordPress serves its feed in several formats; /feed/ is the one we keep.
