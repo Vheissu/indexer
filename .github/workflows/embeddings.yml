@@ -1,7 +1,6 @@
 # Rebuilds the embedding sets in data/embeddings/ (<name>.npy and <name>.json; see
-# src/indexer/embeddings.py) whenever their sources or the image's MiniLM change, retrains the
-# proposal filter in data/models/ (proposals.npz and .json; see src/indexer/training.py) whenever
-# the reviewed proposal files change, and commits them to the same branch. Loading refuses a stale set, so a change to a source (data/topics/topics.txt
+# src/indexer/embeddings.py) whenever their sources or the image's MiniLM change, and commits
+# them to the same branch. Loading refuses a stale set, so a change to a source (data/topics/topics.txt
 # for the set "topics") is followed by this run within minutes. Embeds repository files only: no
 # database, no network inside the container, nothing untrusted.
 #
@@ -13,14 +12,11 @@ on:
     branches: [develop]
     paths:
       - data/topics/topics.txt # the set "topics"
-      - data/training.toml # the proposal filter: the reviewed proposal files it lists
-      - data/survivors/*/*.txt
-      - src/indexer/training.py # the proposal filter's model
       - Dockerfile # the MiniLM model and tokenizer are pinned there
   workflow_dispatch:
 
 permissions:
-  contents: write # to push the rebuilt sets and filter
+  contents: write # to push the rebuilt sets
 
 concurrency:
   group: embeddings-${{ github.ref }}
@@ -41,19 +37,16 @@ jobs:
       - name: Build the embedding sets
         run: HOST_UID="$(id -u)" HOST_GID="$(id -g)" docker compose run --rm --no-deps -T embeddings
 
-      - name: Train the proposal filter
-        run: HOST_UID="$(id -u)" HOST_GID="$(id -g)" docker compose run --rm --no-deps -T embeddings train
-
-      - name: Commit the sets and the filter
+      - name: Commit the sets
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if [ -z "$(git status --porcelain -- data/embeddings data/models)" ]; then
-            echo "The embedding sets and the proposal filter are up to date."
+          if [ -z "$(git status --porcelain -- data/embeddings)" ]; then
+            echo "The embedding sets are up to date."
             exit 0
           fi
-          git add data/embeddings data/models
+          git add data/embeddings
           git -c user.name="github-actions[bot]" \
               -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-              commit -q -m "Rebuild the embedding sets and the proposal filter"
+              commit -q -m "Rebuild the embedding sets"
           git push -q "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${GITHUB_REF_NAME}"

@@ -1,4 +1,4 @@
-"""The proposal filter: examples from reviewed proposal files, the trained model on disk, its
+"""The proposal filter: examples from reviewed proposal files, the model trained on them, its
 scores and cut-off."""
 
 import re
@@ -13,8 +13,6 @@ from indexer.survivors.proposals import render_entries
 from indexer.survivors.run import Survivor
 from indexer.training import (
     TrainingError,
-    load_model,
-    model_paths,
     parse_proposals,
     reviewed_text,
     tokens,
@@ -116,47 +114,34 @@ def labelled_file(n: int) -> str:
     return text
 
 
-def test_train_store_load_and_score(tmp_path: Path) -> None:
+def test_train_and_score(tmp_path: Path) -> None:
     (tmp_path / "a.txt").write_text(labelled_file(10))
     config = tmp_path / "training.toml"
     config.write_text('files = ["a.txt"]\n')
-    out = tmp_path / "models"
-    trained = train_model(config, out)
-    assert sorted(p.name for p in out.iterdir()) == ["proposals.json", "proposals.npz"]
-    model = load_model(config, out)
-    assert model.vocab == trained.vocab and model.threshold == trained.threshold
+    model = train_model(config)
     good, bad = model.scores(["Frugal mom diary: saving money with kids", "Casino bonus slots"])
     assert good > 0.5 > bad and good > model.threshold
     assert model.scores([]) == []
-    assert train_model(config, out).threshold == trained.threshold  # deterministic
+    again = train_model(config)  # deterministic: every run gets the same model
+    assert again.threshold == model.threshold and (again.weights == model.weights).all()
+    assert not [p for p in tmp_path.iterdir() if p.name not in ("a.txt", "training.toml")]
 
 
 def test_the_cut_drops_rejects_and_keeps_accepted_feeds(tmp_path: Path) -> None:
     (tmp_path / "a.txt").write_text(labelled_file(10))
     (tmp_path / "training.toml").write_text('files = ["a.txt"]\n')
-    model = train_model(tmp_path / "training.toml", tmp_path / "models")
+    model = train_model(tmp_path / "training.toml")
     examples = parse_proposals(labelled_file(10))
     scores = model.scores([p.text for p in examples])
     dropped = [p for p, s in zip(examples, scores, strict=True) if s < model.threshold]
     assert dropped and not any(p.accepted for p in dropped)
 
 
-def test_a_changed_review_makes_the_model_stale(tmp_path: Path) -> None:
-    (tmp_path / "a.txt").write_text(labelled_file(3))
-    config = tmp_path / "training.toml"
-    config.write_text('files = ["a.txt"]\n')
-    train_model(config, tmp_path / "models")
-    (tmp_path / "a.txt").write_text(labelled_file(3).replace("# rejected: unsafe\n", "", 1))
-    with pytest.raises(TrainingError, match="stale"):
-        load_model(config, tmp_path / "models")
-
-
 def test_both_labels_are_needed(tmp_path: Path) -> None:
     (tmp_path / "a.txt").write_text(reviewed(GOOD))  # one feed, accepted
     (tmp_path / "training.toml").write_text('files = ["a.txt"]\n')
     with pytest.raises(TrainingError, match="both"):
-        train_model(tmp_path / "training.toml", tmp_path / "models")
-    assert not model_paths(tmp_path / "models")[0].exists()
+        train_model(tmp_path / "training.toml")
 
 
 def test_a_config_without_files_is_refused(tmp_path: Path) -> None:
@@ -172,7 +157,7 @@ def test_rejection_reasons_do_not_change_the_model(tmp_path: Path) -> None:  # t
     for name, body in (("with", text), ("without", re.sub(r"# rejected: \S+\n", "", text))):
         (tmp_path / f"{name}.txt").write_text(body)
         (tmp_path / f"{name}.toml").write_text(f'files = ["{name}.txt"]\n')
-        models.append(train_model(tmp_path / f"{name}.toml", tmp_path / name))
+        models.append(train_model(tmp_path / f"{name}.toml"))
     assert models[0].weights.shape[1] == 2
     assert (models[0].weights == models[1].weights).all()
     assert models[0].threshold == models[1].threshold

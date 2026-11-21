@@ -116,7 +116,6 @@ services:
     volumes:
       - ./data:/work/data:ro # the sources
       - ./data/embeddings:/work/data/embeddings # the sets (indexer embeddings)
-      - ./data/models:/work/data/models # the proposal filter (indexer train)
     command: ["embeddings"]
 
   # Deletes every indexer table and all data (needs --yes); the next liquibase run recreates

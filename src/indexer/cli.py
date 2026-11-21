@@ -54,10 +54,8 @@ from indexer.topics import (
     read_synonyms,
 )
 from indexer.training import (
-    MODEL_DIR,
     TRAINING_CONFIG,
     TrainingError,
-    load_model,
     parse_proposals,
     train_model,
 )
@@ -306,12 +304,12 @@ async def _survivors(args: argparse.Namespace) -> int:
 def _filtered(
     survivors: list[Survivor], crawl: str, started: datetime, config: Path
 ) -> tuple[list[Survivor], int]:
-    """The survivors the model trained on `config` keeps (training.py: those scoring at least
-    its threshold), each with its score, best first, and how many it dropped; all of them,
-    unscored, with a warning, if the model is missing or stale."""
+    """The survivors the model trained (now, in memory) on `config` keeps (training.py: those
+    scoring at least its threshold), each with its score, best first, and how many it dropped;
+    all of them, unscored, with a warning, if it cannot be trained."""
     try:
-        model = load_model(config)
-    except (OSError, ValueError, KeyError, TrainingError) as exc:
+        model = train_model(config)
+    except (OSError, ValueError, TrainingError) as exc:
         print(f"warning: proposals not filtered: {exc}", file=sys.stderr)
         return survivors, 0
     # each proposal's text exactly as a reviewer reads it in the file
@@ -701,20 +699,15 @@ def _parser() -> argparse.ArgumentParser:
     tr = command(
         "train",
         _train,
-        "train the proposal filter on the reviewed proposal files --training lists, and write"
-        " it to --directory (proposals.npz, proposals.json)",
+        "train the proposal filter on the reviewed proposal files --training lists and print its"
+        " size and cut-off (survivors trains it the same way at the start of each run; nothing is"
+        " written)",
     )
     tr.add_argument(
         "--training",
         type=Path,
         default=TRAINING_CONFIG,
         help=f"the list of reviewed proposal files (default {TRAINING_CONFIG})",
-    )
-    tr.add_argument(
-        "--directory",
-        type=Path,
-        default=MODEL_DIR,
-        help=f"where the model is written (default {MODEL_DIR})",
     )
 
     lg = command(
@@ -760,14 +753,11 @@ async def _embeddings(args: argparse.Namespace) -> int:
 
 async def _train(args: argparse.Namespace) -> int:
     try:
-        model = train_model(args.training, args.directory)
+        model = train_model(args.training)
     except (OSError, ValueError, TrainingError) as exc:
         print(f"error: cannot train the proposal filter: {exc}", file=sys.stderr)
         return 1
-    print(
-        f"proposal filter: {len(model.vocab)} terms, threshold {model.threshold:.3f},"
-        f" written to {args.directory}"
-    )
+    print(f"proposal filter: {len(model.vocab)} terms, threshold {model.threshold:.3f}")
     return 0
 
 

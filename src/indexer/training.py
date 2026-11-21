@@ -1,7 +1,7 @@
 """A filter for survivors' proposals, learned from past reviews: the reviewed proposal files
-listed in data/training.toml are read as labelled examples, a small model is trained on them
-(`indexer train`, the embeddings workflow, written to data/models/proposals.npz and .json), and
-survivors drops the new proposals it scores lowest (about the bottom CUT of them).
+listed in data/training.toml are read as labelled examples, a small model is trained on them in
+memory at the start of each survivors run (seconds; nothing is stored), and survivors drops the
+new proposals it scores lowest (about the bottom CUT of them).
 
 A proposal file (survivors/proposals.py) holds one block per feed: comment lines with what the
 reviewer saw, then the feed's URL, uncommented if they accepted it, commented out if not; a
@@ -16,13 +16,10 @@ its probability of "accepted". The cut-off is the CUT quantile of the examples' 
 scores, so it drops about CUT of proposals that look like the examples. Measured on 300 fresh
 proposals (trained on 500): AUC 0.81; dropping the lowest 30% removed about half of the rejects
 and 12% of the accepted feeds. One class per reason scored the same within noise (2026-11-22,
-0.816 vs 0.812) but needs a reason on every reject; two classes learn from plain reviews. The
-model's metadata pins the config and every listed file: a changed review makes it stale, and a
-stale model is never used.
+0.816 vs 0.812) but needs a reason on every reject; two classes learn from plain reviews. Training
+is deterministic, so every run on the same files gets the same model.
 """
 
-import hashlib
-import json
 import re
 import tomllib
 from collections import Counter
@@ -35,8 +32,6 @@ import numpy as np
 import numpy.typing as npt
 
 TRAINING_CONFIG = Path("data/training.toml")
-MODEL_DIR = Path("data/models")
-MODEL_NAME = "proposals"  # data/models/proposals.npz (weights) and proposals.json (metadata)
 CUT = 0.30  # drop about this share of proposals: those scored lowest
 # Why a feed was rejected, as a reviewer may note it above its commented-out URL (optional; not
 # used by the model, which only learns accepted or rejected).
@@ -188,21 +183,8 @@ class ProposalModel:
         return [float(p) for p in _softmax(_with_bias(x) @ self.weights)[:, 0]]
 
 
-def _sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
-
-
-def _sources(config: Path) -> dict[str, str]:
-    return {p.as_posix(): _sha256(p) for p in [config, *training_files(config)]}
-
-
-def model_paths(directory: Path = MODEL_DIR) -> tuple[Path, Path]:
-    """(weights, metadata): <directory>/proposals.npz and proposals.json."""
-    return directory / f"{MODEL_NAME}.npz", directory / f"{MODEL_NAME}.json"
-
-
-def train_model(config: Path = TRAINING_CONFIG, directory: Path = MODEL_DIR) -> ProposalModel:
-    """Train on every example of the files `config` lists and write the model; TrainingError
+def train_model(config: Path = TRAINING_CONFIG) -> ProposalModel:
+    """The model trained on every example of the files `config` lists, in memory; TrainingError
     unless both accepted and rejected examples occur."""
     examples = read_examples(config)
     y = np.array([_label(p) for p in examples], dtype=np.int64)
@@ -220,36 +202,4 @@ def train_model(config: Path = TRAINING_CONFIG, directory: Path = MODEL_DIR) -> 
         seen = folds != k
         w = _fit(x[seen], y[seen], len(CLASSES))
         held_out[~seen] = _softmax(_with_bias(x[~seen]) @ w)[:, 0]
-    model = ProposalModel(vocab, idf, _fit(x, y, len(CLASSES)), float(np.quantile(held_out, CUT)))
-    weights_path, meta_path = model_paths(directory)
-    directory.mkdir(parents=True, exist_ok=True)
-    np.savez_compressed(weights_path, terms=np.array(list(vocab)), idf=idf, weights=model.weights)
-    meta = {
-        "examples": len(examples),
-        "accepted": int((y == 0).sum()),
-        "classes": list(CLASSES),
-        "terms": len(vocab),
-        "cut": CUT,
-        "threshold": model.threshold,
-        "sources": _sources(config),
-    }
-    meta_path.write_text(json.dumps(meta, indent=1) + "\n", encoding="utf-8")
-    return model
-
-
-def load_model(config: Path = TRAINING_CONFIG, directory: Path = MODEL_DIR) -> ProposalModel:
-    """The stored model; TrainingError if it was trained on another config or review, or with
-    other classes (it is then stale: `indexer train` rebuilds it)."""
-    weights_path, meta_path = model_paths(directory)
-    meta = json.loads(meta_path.read_text(encoding="utf-8"))
-    if meta.get("sources") != _sources(config) or meta.get("classes") != list(CLASSES):
-        raise TrainingError(f"{weights_path} is stale: its training files changed since")
-    with np.load(weights_path, allow_pickle=False) as data:
-        terms = [str(t) for t in data["terms"]]
-        idf = np.asarray(data["idf"], dtype=np.float32)
-        weights = np.asarray(data["weights"], dtype=np.float32)
-    if weights.shape != (len(terms) + 1, len(CLASSES)) or idf.shape != (len(terms),):
-        raise TrainingError(f"{weights_path} has unexpected shapes")
-    return ProposalModel(
-        {t: i for i, t in enumerate(terms)}, idf, weights, float(meta["threshold"])
-    )
+    return ProposalModel(vocab, idf, _fit(x, y, len(CLASSES)), float(np.quantile(held_out, CUT)))
