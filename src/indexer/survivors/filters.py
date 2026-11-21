@@ -13,13 +13,16 @@ feed_links.py).
     tracking     a recent post link has utm_ tracking parameters
     seo_footer   a post says "appeared first on" or "first appeared on" (an SEO plugin's footer,
                  also left by sites that copy other feeds)
+    sample_post  a recent post is WordPress's untouched sample post ("Hello world!"): an
+                 abandoned or hijacked install
     not_https    not served over https today (or redirected to an excluded domain)
 
-The four rules after `keyword` were agreed on 2026-11-21 from the reviews so far: simple, and
+The five rules after `keyword` were agreed on 2026-11-21 from the reviews so far: simple, and
 they cost some good feeds, which is fine (Common Crawl has far more than we check).
 """
 
 import re
+import unicodedata
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from typing import Literal
@@ -39,10 +42,12 @@ type Reason = Literal[
     "wiki",
     "tracking",
     "seo_footer",
+    "sample_post",
     "not_https",
 ]
 
 _WIKI_EDIT = re.compile(r"do=diff|[?&]rev=|oldid=|doku\.php|index\.php\?title=", re.IGNORECASE)
+_SAMPLE_POST = "welcome to wordpress. this is your first post"
 _SEO_FOOTER = re.compile(r"appeared\s+first\s+on|first\s+appeared\s+on", re.IGNORECASE)
 
 
@@ -76,6 +81,8 @@ def rejection(row: CheckRow, rules: Rules) -> Reason | None:
     texts = [*row.item_texts, *(post.description or "" for post in row.recent_posts)]
     if any(_SEO_FOOTER.search(text) for text in texts):
         return "seo_footer"
+    if any(_SAMPLE_POST in text.lower() for text in texts):
+        return "sample_post"
     if served_url(row, rules.exclude) is None:
         return "not_https"
     return None
@@ -102,15 +109,23 @@ def _is_english(row: CheckRow) -> bool:
 def _has_keyword(row: CheckRow, keywords: frozenset[str]) -> bool:
     """One of `keywords` (lower case) is in the feed's title, or they appear _MIN_TEXT_KEYWORDS
     times or more in its subtitle and posts together (every occurrence counts). Whole words only:
-    "sex" matches "Sex Toys" and "sex-ed" but not "Essex"."""
+    "sex" matches "Sex Toys" and "sex-ed" but not "Essex". Accents are ignored: "casino" matches
+    "Casinò"."""
     if not keywords:
         return False
-    words = "|".join(re.escape(k) for k in sorted(keywords, key=len, reverse=True))
+    folded = sorted({_fold(k) for k in keywords}, key=len, reverse=True)
+    words = "|".join(re.escape(k) for k in folded)
     pattern = re.compile(rf"(?<![^\W_])(?:{words})(?![^\W_])")
-    if pattern.search((row.title or "").lower()):
+    if pattern.search(_fold(row.title or "")):
         return True
-    text = " ".join([row.subtitle or "", *row.item_texts]).lower()
+    text = _fold(" ".join([row.subtitle or "", *row.item_texts]))
     return len(pattern.findall(text)) >= _MIN_TEXT_KEYWORDS
+
+
+def _fold(text: str) -> str:
+    """Lower case without accents, for matching words: "Casinò" -> "casino"."""
+    decomposed = unicodedata.normalize("NFKD", text)
+    return "".join(c for c in decomposed if not unicodedata.combining(c)).casefold()
 
 
 def served_url(row: CheckRow, exclude: frozenset[str] = frozenset()) -> str | None:

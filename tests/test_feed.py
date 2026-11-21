@@ -1,4 +1,5 @@
 from datetime import UTC, datetime
+from html import escape as html_escape
 
 import pytest
 from conftest import FIXTURES
@@ -259,3 +260,18 @@ def test_recent_posts_have_a_title_and_the_start_of_the_description() -> None:
     long = f'<rss version="2.0"><channel>{item}</channel></rss>'
     (post,) = parse_feed(long.encode()).recent_posts
     assert post.description is not None and len(post.description) == 200
+
+
+def test_script_and_style_contents_are_not_text() -> None:
+    description = (
+        "<style>.sourceCode { overflow: visible; }</style><p>Benchmarks</p>"
+        "<SCRIPT type='text/javascript'>!function(r,u){}()</SCRIPT> mislead"
+        "<noscript>Enable JavaScript</noscript> us <script>never closed(){"
+    )
+    rss = f"""<rss version="2.0"><channel><title>t</title>
+      <item><title>A post</title><link>https://a.example/1</link>
+        <description>{html_escape(description)}</description></item>
+    </channel></rss>"""
+    info = parse_feed(rss.encode())
+    assert info.recent_posts[0].description == "Benchmarks mislead us"
+    assert info.item_texts == ("A post. Benchmarks mislead us",)

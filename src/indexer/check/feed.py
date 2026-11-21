@@ -51,6 +51,8 @@ MAX_POST_DESCRIPTION_LEN = 200
 AUDIO_EXTENSIONS = (".mp3", ".m4a", ".aac", ".ogg", ".oga", ".opus", ".wav", ".flac")
 VIDEO_EXTENSIONS = (".mp4", ".m4v", ".webm", ".mov", ".mkv")
 _TAG = re.compile(r"<[^>]*>")
+# Elements whose content is code, not text: dropped whole (to the end if never closed).
+_CODE = re.compile(r"<(script|style|noscript|template)\b.*?(</\1\s*>|$)", re.IGNORECASE | re.DOTALL)
 
 MAX_INT32 = 2**31 - 1
 
@@ -305,12 +307,13 @@ def _parse_root(root: Element, base_url: str | None) -> FeedInfo:
 
 def _text_of(el: Element | None, *, markup: bool = False, limit: int = MAX_TEXT_LEN) -> str | None:
     """Plain text of an element. markup=True strips tags from escaped HTML (RSS descriptions,
-    Atom type="html"); Atom type="xhtml" content is child elements, so itertext covers it."""
+    Atom type="html"), and the contents of script, style, noscript and template elements;
+    Atom type="xhtml" content is child elements, so itertext covers it."""
     if el is None:
         return None
     text = "".join(el.itertext())
     if markup or el.get("type") == "html":
-        text = html.unescape(_TAG.sub(" ", text))
+        text = html.unescape(_TAG.sub(" ", _CODE.sub(" ", text)))
     cleaned = _clean_text(text)
     return cleaned[:limit] if cleaned else None
 

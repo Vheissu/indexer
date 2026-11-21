@@ -237,7 +237,8 @@ async def _survivors(args: argparse.Namespace) -> int:
         f" {result.rejected['no_subtitle']} without a description,"
         f" {result.rejected['wiki']} wiki edits,"
         f" {result.rejected['tracking']} with tracking links,"
-        f" {result.rejected['seo_footer']} with an SEO footer);"
+        f" {result.rejected['seo_footer']} with an SEO footer,"
+        f" {result.rejected['sample_post']} with WordPress's sample post);"
         f" acceptance {proposals.acceptance(len(new), result.checked)}"
     )
     path = args.dir / proposals.file_name(started)

@@ -577,3 +577,24 @@ def test_simple_junk_rules() -> None:
     assert judged("x", post("https://s.example/p/", footer)) == "seo_footer"
     assert judged("x", texts="Big day. This article first appeared on Elsewhere") == "seo_footer"
     assert judged("x", post("https://s.example/p/", "It appeared on our first day.")) is None
+
+
+def test_keywords_ignore_accents() -> None:
+    assert _has_keyword(
+        CheckRow("u", NOW, title="Come è organizzato un casinò online"), frozenset({"casino"})
+    )
+    assert _has_keyword(CheckRow("u", NOW, title="CASINÒ"), frozenset({"casinò"}))
+
+
+def test_wordpress_sample_post() -> None:
+    row = checked("https://s.example/feed/", 3)
+    row.recent_posts = (
+        RecentPost("https://s.example/?p=1", "Hello world!", "Welcome to WordPress. This is your "
+                   "first post. Edit or delete it, then start writing!"),
+    )  # fmt: skip
+    assert rejection(row, Rules(NOW, 365)) == "sample_post"
+
+
+def test_free_domains_are_dropped_unchecked() -> None:
+    links = [feed_link("https://maps.example.tk/rss.xml"), feed_link("https://a.example/feed/")]
+    assert filter_page_links("https://a.example/", links) == ["https://a.example/feed/"]

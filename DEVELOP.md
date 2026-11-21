@@ -125,7 +125,10 @@ path like `/2021/04/`, `comments`, `alt=rss`, ...), and what follows the host on
 shapes (`/feed/`,
 `/rss.xml`, `/atom.php`, `/<one segment>/feed/`, ...). Forums and wikis are dropped too: a host
 starting with `forum.`, `feed.php` (DokuWiki, phpBB), `app.php/feed` (phpBB), `syndication.php`
-(MyBB) and `type=rss;action` (SMF); their feeds are mostly edits and replies. Feeds outside those
+(MyBB) and `type=rss;action` (SMF); their feeds are mostly edits and replies. So are feeds on
+the top-level domains Freenom gave away (`.tk`, `.ml`, `.ga`, `.cf`, `.gq`), mostly spam. These
+rules only look at the URL and live in `feed_links.py`; the rules below need the checked feed and
+live in `filters.py`. Feeds outside those
 shapes are dropped (FeedBurner among them), except the main feeds of platforms without a feed
 word in the path: Blogger `/feeds/posts/default`, WordPress without pretty links `/?feed=rss2`,
 Joomla `?format=feed&type=rss`, SPIP `spip.php?page=backend` and `backend.php`. Google Web
@@ -144,13 +147,14 @@ shared hosts like `fc2.com` or `free.fr`). A feed is proposed only if:
 - it **has a title** and a **description** (subtitle);
 - its title contains none of the `[commoncrawl] exclude_keywords` in `data/sources.toml`
   as a whole word, and its subtitle and newest posts (title and start of each) fewer than 3
-  (every occurrence counts).
+  (every occurrence counts; accents are ignored, so "casino" matches "Casinò").
   This list is for Common Crawl only: the curated lists and submissions are not filtered by it
   (tried on their 9,048 feeds, it would flag 14: 3 adult, the rest blogs like "Budgets Are Sexy");
 - none of its 3 most recent posts links to a wiki edit (`do=diff`, `rev=`, `oldid=`, `doku.php`,
   `index.php?title=`) or has `utm_` tracking parameters in its link, and no post says "appeared
   first on" or "first appeared on" (the footer of SEO plugins, common on promotional sites and
-  on sites that copy other feeds). These simple rules also drop some good feeds, which is fine:
+  on sites that copy other feeds), and none is WordPress's untouched sample post ("Welcome to
+  WordPress. This is your first post": an abandoned or hijacked install). These simple rules also drop some good feeds, which is fine:
   there is far more in Common Crawl than survivors reads;
 - it is **served over https today**: the URL after redirects is `https://` (links are tried as
   `https://`; one that redirects back to plain http is skipped);
@@ -449,7 +453,8 @@ docker compose run --rm --no-deps check topics --title "Food in Jars" \
 feed's labels.
 
 Text columns have
-markup stripped and whitespace collapsed, and are capped at 200 characters unless noted. URL
+markup stripped (with the contents of `script`, `style`, `noscript` and `template`, which are
+code, not text) and whitespace collapsed, and are capped at 200 characters unless noted. URL
 columns come from untrusted content: resolved against `final_url`, kept only if they are absolute
 `http(s)` URLs without control characters (up to 2048 characters), and never fetched.
 

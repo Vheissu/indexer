@@ -11,6 +11,8 @@ FEED_TYPES = frozenset({"application/rss+xml", "application/atom+xml", "applicat
 MAX_LENGTH = 256  # characters in the URL
 MAX_SLASHES = 7  # in the path
 MAX_SEGMENT = 25  # characters in the longest path segment
+# Top-level domains Freenom gave away for free: mostly spam (agreed 2026-11-21).
+FREE_TLDS = frozenset({"tk", "ml", "ga", "cf", "gq"})
 
 
 def _patterns(*regexes: str) -> list[re.Pattern[str]]:
@@ -99,9 +101,12 @@ def _is_own_feed(page: str, url: str) -> bool:
 
 
 def _looks_like_a_feed(url: str) -> bool:
-    """Short, not too deep, no rejected pattern, and what follows the host is an accepted shape."""
+    """Short, not too deep, not on a free domain, no rejected pattern, and what follows the host
+    is an accepted shape."""
     parts = urlsplit(url)
     if len(url) > MAX_LENGTH:
+        return False
+    if (parts.hostname or "").rsplit(".", 1)[-1] in FREE_TLDS:
         return False
     if any(pattern.search(url) for pattern in _REJECTED):
         return False

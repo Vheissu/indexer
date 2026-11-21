@@ -33,7 +33,8 @@ domains = ["youtube.com", "reddit.com"]
 # Common Crawl only (indexer survivors), not the lists below: a feed whose title contains one of
 # these as a whole word, or whose subtitle and newest posts contain 3 or more, (case ignored; "porn" matches "Porn Passwords" and
 # "porn-videos", not "pornography": list each form) is never proposed. Adult and sexual-violence
-# content found in old crawls, and gambling spam (added 2026-11-17 after casino feeds in a sample).
+# content found in old crawls, gambling spam (added 2026-11-17 after casino feeds in a sample),
+# warez and sponsored posts. Accents are ignored ("casino" matches "Casinò").
 exclude_keywords = [
   "porn", "porno", "pornography", "pornstar", "pornstars", "xxx", "nsfw",
   "sex", "sexy", "nude", "nudes", "nudity", "naked", "erotic", "erotica", "hentai",
@@ -44,6 +45,10 @@ exclude_keywords = [
   "casino", "casinos", "online casino", "gambling", "betting", "sportsbook", "bookmaker",
   "poker", "baccarat", "roulette", "blackjack", "slots", "slot online", "slot gacor", "gacor",
   "judi", "judi online", "togel", "sbobet", "maxwin",
+  # pirated software and films (added 2026-11-21 after a warez feed)
+  "crack", "cracked", "keygen", "torrent", "torrents", "camrip", "yify", "activated", "serial key",
+  # sponsored posts (added 2026-11-21)
+  "collab", "sponsored", "#ad",
 ]
 
 [[source]]
