@@ -22,6 +22,7 @@ _REJECTED = [
     re.compile(r"/comment/"),
     re.compile(r":Recent"),
     re.compile(r"alt=rss"),
+    re.compile(r"/web-stories/"),  # the Google Web Stories plugin, not posts
 ]
 # The whole of what follows the host must be one of these.
 _ACCEPTED = [
@@ -48,8 +49,9 @@ _ACCEPTED = [
 def filter_page_links(page: str, links: Any, exclude: frozenset[str] = frozenset()) -> list[str]:
     """The feed URLs worth checking among a page's `<link>` elements (as the WAT records them):
     rel="alternate" with a feed type, made absolute, on https, valid like any input, outside the
-    `exclude` domains, without session parameters, and shaped like a feed URL
-    (`_looks_like_a_feed`; that also rules out comment and WordPress archive feeds)."""
+    `exclude` domains, without session parameters, shaped like a feed URL (`_looks_like_a_feed`;
+    that also rules out comment and WordPress archive feeds), and not the page's own feed when
+    the page offers another."""
     urls: list[str] = []
     for link in links if isinstance(links, list) else []:
         if not isinstance(link, dict):
@@ -67,12 +69,22 @@ def filter_page_links(page: str, links: Any, exclude: frozenset[str] = frozenset
             urls.append(url)
     valid, _invalid = valid_urls(urls)
     valid, _excluded = drop_excluded(valid, exclude)
-    kept = []
-    for url, _host in valid:
-        url = strip_session(url)
-        if _looks_like_a_feed(url):
-            kept.append(url)
+    cleaned = [strip_session(url) for url, _host in valid]
+    kept = [url for url in cleaned if _looks_like_a_feed(url)]
+    if len(kept) > 1:  # beside the site's feed, the page's own is a post's comments
+        kept = [url for url in kept if not _is_own_feed(page, url)]
     return kept
+
+
+def _is_own_feed(page: str, url: str) -> bool:
+    """The feed of the page itself: the page's URL followed by /feed (not on the home page)."""
+    page_parts, parts = urlsplit(page), urlsplit(url)
+    page_path = page_parts.path.rstrip("/")
+    return (
+        bool(page_path)
+        and parts.hostname == page_parts.hostname
+        and parts.path.rstrip("/") == page_path + "/feed"
+    )
 
 
 def _looks_like_a_feed(url: str) -> bool:

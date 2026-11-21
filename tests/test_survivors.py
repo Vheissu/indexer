@@ -125,6 +125,22 @@ def test_filter_page_links() -> None:
     assert filter_page_links(page_url, None) == []
 
 
+def test_the_page_s_own_feed_only_beside_another() -> None:
+    post = "http://s.example/my-post/"
+    assert filter_page_links(post, [feed_link("/feed/"), feed_link("/my-post/feed/")]) == [
+        "https://s.example/feed/"  # the post's comments are dropped
+    ]
+    blog = "https://s.example/blog/"
+    assert filter_page_links(blog, [feed_link("/blog/feed/")]) == ["https://s.example/blog/feed/"]
+    home = "https://s.example/"
+    assert filter_page_links(home, [feed_link("/feed/"), feed_link("/rss.xml")]) == [
+        "https://s.example/feed/",
+        "https://s.example/rss.xml",
+    ]
+    stories = [feed_link("/feed/"), feed_link("/web-stories/feed/")]
+    assert filter_page_links(home, stories) == ["https://s.example/feed/"]
+
+
 def test_wat_paths_keeps_only_well_formed_paths_of_the_crawl() -> None:
     listing = "\n".join(
         [PATH, "crawl-data/CC-MAIN-2026-38/segments/1/wat/x.warc.wat.gz", "../../etc/passwd", ""]
@@ -283,7 +299,7 @@ def test_served_url_is_https_after_redirects() -> None:
     assert served_url(to_yt, frozenset({"youtube.com"})) is None
 
 
-async def test_survivors_one_link_per_page_and_the_shortest_url_per_domain() -> None:
+async def test_survivors_checks_every_link_and_keeps_the_shortest_url_per_site() -> None:
     paths = [f"crawl-data/{OLD}/segments/1/wat/CC-MAIN-1-{i:05}.warc.wat.gz" for i in range(3)]
     slice_ = wat(
         page("https://s.example/", [feed_link("/feed/"), feed_link("/comments/feed/")]),
@@ -301,7 +317,7 @@ async def test_survivors_one_link_per_page_and_the_shortest_url_per_domain() -> 
         page("https://x.example/", [feed_link("https://feeds.feedburner.com/x")]),  # not a shape
         page("https://blog.example/", [feed_link("/feed/")]),  # shorter: kept
         page("https://blog.example/p/", [feed_link("/posts/feed/")]),
-        page("https://multi.example/", [feed_link("/a/feed"), feed_link("/b/feed")]),  # one of two
+        page("https://multi.example/", [feed_link("/a/feed"), feed_link("/b/feed")]),  # both
         page("https://shared.example/", [feed_link("/feed/")]),  # no dated items
         page("https://adult.example/", [feed_link("/feed/")]),  # excluded by keyword
         page("https://untitled.example/", [feed_link("/feed/")]),  # no title
@@ -366,12 +382,12 @@ async def test_survivors_one_link_per_page_and_the_shortest_url_per_domain() -> 
     assert len(sliced) == 1 and sliced[0].removeprefix(DATA_URL) in paths  # one random file
     assert result.scan.path == sliced[0].removeprefix(DATA_URL)
     assert not any("/category/" in u or "/comments/" in u for u in asked)
-    assert result.candidates == 15 == len(asked) == len(set(asked))
+    assert result.candidates == 16 == len(asked) == len(set(asked))
     assert all(u.startswith("https://") for u in asked)
     assert "https://forum.example/feed" in asked
-    assert len({"https://multi.example/a/feed", "https://multi.example/b/feed"} & set(asked)) == 1
+    assert {"https://multi.example/a/feed", "https://multi.example/b/feed"} <= set(asked)
     assert not any("youtube" in u or "cut.example" in u or "feedburner" in u for u in asked)
-    assert result.working == 15
+    assert result.working == 16
     assert result.rejected == {
         "inactive": 2,  # old, shared
         "not_english": 1,
@@ -386,8 +402,11 @@ async def test_survivors_one_link_per_page_and_the_shortest_url_per_domain() -> 
         "https://blog.example/feed/",
         "https://forum.example/feed",
     ]
-    assert urls[4] in {"https://multi.example/a/feed", "https://multi.example/b/feed"}
-    assert urls[5:] == ["https://new.example/feed", "https://s.example/feed/"]
+    assert urls[4:] == [
+        "https://multi.example/a/feed",  # as short as /b/feed: by name
+        "https://new.example/feed",
+        "https://s.example/feed/",
+    ]
     for row in result.rows:
         assert row.wat_url == sliced[0]  # credited to the WAT file it was found in
         assert row.language == "en"

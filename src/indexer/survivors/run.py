@@ -4,8 +4,7 @@ active today, proposed for review.
     1. pick the crawl closest to `years_ago` and one random WAT file of it      wat.py
     2. download the file's first slice and list the feeds its pages advertise   wat.py,
        minus those the URL rules skip                                          feed_links.py
-    3. take one random feed link per page
-       and drop URLs we already know
+    3. drop the URLs we already know
     4. check them in random order, a batch at a time, keep those that pass      filters.py
        and, of those on one site, the shortest URL
     5. stop once `max_feeds` sites have one
@@ -57,7 +56,7 @@ class Survivor:
 class SurvivorsResult:
     crawl: str
     scan: WatScan  # the WAT slice that was read
-    candidates: int = 0  # distinct picked URLs (one per page)
+    candidates: int = 0  # distinct feed URLs
     known: int = 0  # already proposed or in inputs (before or after redirects): skipped
     checked: int = 0  # fewer than candidates when the run stopped early
     rejected: Counter[Reason] = field(default_factory=Counter)  # checked, failed a rule
@@ -146,11 +145,11 @@ async def survivors(
 async def _candidates(
     page_feeds: Iterable[list[str]], result: SurvivorsResult, known: _Known, rng: random.Random
 ) -> list[str]:
-    """One random feed link per page, in random order (so stopping early keeps a random subset),
-    minus the URLs we already know."""
-    picks = {rng.choice(links) for links in page_feeds}  # one site's pages often pick one feed
-    result.candidates = len(picks)
-    order = sorted(picks)  # sorted first, so a seeded rng gives the same order every time
+    """Every page's feed links, each once, in random order (so stopping early keeps a random
+    subset), minus the URLs we already know."""
+    urls = {url for links in page_feeds for url in links}  # one site's pages repeat its feed
+    result.candidates = len(urls)
+    order = sorted(urls)  # sorted first, so a seeded rng gives the same order every time
     rng.shuffle(order)
     already = await known(order)
     result.known += len(already)
