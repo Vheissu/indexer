@@ -123,8 +123,9 @@ slashes in the path and 25 characters in a path segment, none of the rejected pa
 path like `/2021/04/`, `comments`, `alt=rss`, ...), and what follows the host one of the accepted
 shapes (`/feed/`,
 `/rss.xml`, `/atom.php`, `/app.php/feed`, `/<one segment>/feed/`, ...). Feeds outside those
-shapes are dropped, among them SPIP's `spip.php?page=backend`, `backend.php`, Blogger's
-`/feeds/posts/default` and FeedBurner. Survivors picks **one random feed link per page**
+shapes are dropped (FeedBurner among them), except the main feeds of platforms without a feed
+word in the path: Blogger `/feeds/posts/default`, WordPress without pretty links `/?feed=rss2`,
+Joomla `?format=feed&type=rss`, SPIP `spip.php?page=backend` and `backend.php`. Survivors picks **one random feed link per page**
 from the rest, without session parameters (`sid`, `PHPSESSID`, `jsessionid`, ...). It checks the picks today with the guarded fetcher (no retries), and of the feeds
 that pass on one site it keeps the one with the shortest URL (ties by name), so one site is proposed
 once. A site is the host without `www.` (not the registrable domain, which would merge the users of

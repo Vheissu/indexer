@@ -45,7 +45,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   Agreed filters: crawl closest to 5 years ago, first 25 MB of one random WAT file (one range
   request, random each run, no state; one file because the yield per MB is the same as several smaller slices); one random feed link per page (agreed 2026-11-20, replacing format folding), session params stripped
   (`urls.strip_session`), every http link tried as https, only links shaped like a feed URL (`feed_links._looks_like_a_feed`:
-  length, depth, rejected and accepted patterns; the user's rules, 2026-11-21), which also rule out WordPress category/tag/author feeds and comment feeds (WordPress `/comments/feed/`,
+  length, depth, rejected and accepted patterns; the user's rules, 2026-11-21, plus the main feeds of Blogger, WordPress `?feed=rss2`, Joomla, SPIP and `backend.php`), which also rule out WordPress category/tag/author feeds and comment feeds (WordPress `/comments/feed/`,
   `?feed=comments-*`; Blogger `/feeds/comments/`, `/feeds/<id>/comments/`; agreed 2026-11-20)
   (skipped unchecked); check the picks now; of the feeds that pass on one site (host without `www.`, not the registrable domain: shared hosts like fc2.com or free.fr), keep the shortest URL (ties by name); insert only feeds whose newest item is
   from the last 243 days (~8 months), are **in English** (`en` among the languages detected on their items, agreed

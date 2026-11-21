@@ -25,6 +25,13 @@ _REJECTED = [
 ]
 # The whole of what follows the host must be one of these.
 _ACCEPTED = [
+    # main feeds of platforms whose feed URL has no feed word in the path
+    re.compile(r"/feeds/posts/default"),  # Blogger
+    re.compile(r"/(index\.php)?\?feed=(rss2?|atom|rdf)"),  # WordPress without pretty links
+    re.compile(r"/(index\.php)?\?format=feed&type=(rss|atom)"),  # Joomla
+    re.compile(r"/spip\.php\?page=backend"),  # SPIP
+    re.compile(r"/backend\.php"),  # PHP-Nuke, XOOPS, old SPIP
+    # feed paths
     re.compile(r"/(atom|rss|rss2|feed|feeds)(\.feed\.php)?/?"),
     re.compile(r"/(atom|rss|rss2|feed|feeds)\.xml"),
     re.compile(r"/recent\.rss"),

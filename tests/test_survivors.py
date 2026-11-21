@@ -97,7 +97,12 @@ def test_filter_page_links() -> None:
         feed_link("/a-very-long-path-segment-indeed/feed/"),  # over 25 characters
         feed_link("/a/b/c/d/e/f/g/feed/"),  # over 7 slashes
         feed_link("/news-and-more"),  # no feed word
-        feed_link("/spip.php?page=backend"),  # a feed word, but not an accepted shape
+        feed_link("/spip.php?page=backend"),  # SPIP
+        feed_link("https://x.blogspot.com/feeds/posts/default"),  # Blogger
+        feed_link("/?feed=rss2"),  # WordPress without pretty links
+        feed_link("/index.php?format=feed&type=atom"),  # Joomla
+        feed_link("/backend.php"),
+        feed_link("/spip.php?page=article&id=3"),  # not the feed page
         feed_link("https://www.youtube.com/feeds/videos.xml"),
         feed_link("ftp://s.example/feed"),
         feed_link("   "),
@@ -110,6 +115,11 @@ def test_filter_page_links() -> None:
         "https://s.example/feed/",
         "https://s.example/atom.xml",
         "https://forum.example/app.php/feed",
+        "https://s.example/spip.php?page=backend",
+        "https://x.blogspot.com/feeds/posts/default",
+        "https://s.example/?feed=rss2",
+        "https://s.example/index.php?format=feed&type=atom",
+        "https://s.example/backend.php",
         "https://s.example/rss/",
     ]
     assert filter_page_links(page_url, None) == []
