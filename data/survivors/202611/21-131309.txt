@@ -26,7 +26,7 @@
 #     Q&A About the New Gulf War Illness Diagnostic Code
 #     (2025),pdf Q&A About the New Gulf War Illness
 #     Diagnostic Code Effective October 1, 2025 In a t
-# https://veteransforcommonsense.org/feed/
+https://veteransforcommonsense.org/feed/
 
 # free-apps-android.com · en · last post 2026-11-21
 # about: Your daily source of Android apps, games, reviews,
@@ -211,7 +211,7 @@
 #     Delivering Genesis part one
 #     The universe was behind schedule, over budget, and,
 #     just as there was a single flare...
-# https://isciencemag.co.uk/feed/
+https://isciencemag.co.uk/feed/
 
 # SEGAbits – #1 Source for SEGA News · en · last post
 #   2026-11-18
@@ -240,7 +240,7 @@
 #     location for the all-new, high-octane adventure Crazy
 #     Taxi: World Tour. The India map rounds out the list of
 #     exciting locations players can experience in
-# https://segabits.com/feed/
+https://segabits.com/feed/
 
 # Security Affairs · en · last post 2026-11-20
 # about: Read, think, share … Security is everyone's
@@ -270,7 +270,7 @@
 #     devices into internal networks. Attackers have
 #     exploited a critical flaw, tracked as CVE-2026-76466
 #     (C
-# https://securityaffairs.com/feed
+https://securityaffairs.com/feed
 
 # ALLSPORTSTUCSON.com · en · last post 2026-11-21
 # about: Southern Arizona Sports Coverage
@@ -353,7 +353,7 @@
 #     on pause, a judge says. Shelby County Chancellor
 #     JoeDae Jenkins is expected to hear a new round of
 #     technical arguments on Dec. 2, and the takeove
-# https://tnedreport.com/feed/
+https://tnedreport.com/feed/
 
 # Harvest Home Animal Sanctuary · en · last post 2026-09-01
 # about: Saving lives, celebrating compassion
