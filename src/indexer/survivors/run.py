@@ -4,7 +4,7 @@ active today, proposed for review.
     1. pick the crawl closest to `years_ago` and one random WAT file of it      wat.py
     2. download the file's first slice and list the feeds its pages advertise   wat.py,
        minus those the URL rules skip                                          feed_links.py
-    3. drop the URLs we already know
+    3. drop the URLs we already know; at most 10 per site, the shortest first
     4. check them in random order, a batch at a time, keep those that pass      filters.py
        and, of those on one site, the shortest URL
     5. stop once `max_feeds` sites have one
@@ -15,7 +15,7 @@ ones, tests give fakes).
 
 import logging
 import random
-from collections import Counter
+from collections import Counter, defaultdict
 from collections.abc import Awaitable, Callable, Iterable, Sequence
 from dataclasses import dataclass, field
 from datetime import UTC, datetime, timedelta
@@ -34,6 +34,7 @@ from indexer.survivors.wat import DATA_URL, Fetch, WatScan, complete_prefix, pic
 log = logging.getLogger("indexer.survivors")
 
 _CHECK_BATCH = 200  # feeds checked at a time, so a run can stop once it has enough
+_MAX_PER_SITE = 10  # feeds checked per site, shortest URLs first (the shortest that passes wins)
 
 type _Check = Callable[[Sequence[str]], Awaitable[Iterable[CheckRow]]]
 # Which of these URLs are already proposed or in the inputs table.
@@ -58,6 +59,7 @@ class SurvivorsResult:
     scan: WatScan  # the WAT slice that was read
     candidates: int = 0  # distinct feed URLs
     known: int = 0  # already proposed or in inputs (before or after redirects): skipped
+    over_site_limit: int = 0  # new, but beyond a site's _MAX_PER_SITE shortest: not checked
     checked: int = 0  # fewer than candidates when the run stopped early
     rejected: Counter[Reason] = field(default_factory=Counter)  # checked, failed a rule
     rows: list[Survivor] = field(default_factory=list)  # passed every rule: the proposals
@@ -118,9 +120,11 @@ async def survivors(
     # 3. The URLs worth checking.
     to_check = await _candidates(scan.page_feeds, result, known, rng)
     log.info(
-        "%d candidates (%d already known), %d to check",
+        "%d candidates (%d already known, %d beyond %d per site), %d to check",
         result.candidates,
         result.known,
+        result.over_site_limit,
+        _MAX_PER_SITE,
         len(to_check),
     )
 
@@ -145,15 +149,29 @@ async def survivors(
 async def _candidates(
     page_feeds: Iterable[list[str]], result: SurvivorsResult, known: _Known, rng: random.Random
 ) -> list[str]:
-    """Every page's feed links, each once, in random order (so stopping early keeps a random
-    subset), minus the URLs we already know."""
+    """Every page's feed links, each once, minus the URLs we already know, at most
+    _MAX_PER_SITE per site, in random order (so stopping early keeps a random subset)."""
     urls = {url for links in page_feeds for url in links}  # one site's pages repeat its feed
     result.candidates = len(urls)
-    order = sorted(urls)  # sorted first, so a seeded rng gives the same order every time
-    rng.shuffle(order)
-    already = await known(order)
+    already = await known(sorted(urls))
     result.known += len(already)
-    return [url for url in order if url not in already]
+    new = _shortest_per_site(urls - already, _MAX_PER_SITE)
+    result.over_site_limit = len(urls) - len(already) - len(new)
+    order = sorted(new)  # sorted first, so a seeded rng gives the same order every time
+    rng.shuffle(order)
+    return order
+
+
+def _shortest_per_site(urls: Iterable[str], limit: int) -> list[str]:
+    """The `limit` shortest URLs of each site (ties by name)."""
+    by_site: dict[str, list[str]] = defaultdict(list)
+    for url in urls:
+        by_site[_site(url)].append(url)
+    return [
+        url
+        for site_urls in by_site.values()
+        for url in sorted(site_urls, key=lambda url: (len(url), url))[:limit]
+    ]
 
 
 def _judge(row: CheckRow, rules: Rules, wat_url: str, result: SurvivorsResult) -> Survivor | None:

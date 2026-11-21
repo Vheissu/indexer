@@ -476,6 +476,36 @@ async def test_survivors_stops_once_enough_feeds_pass() -> None:
     assert result.candidates == _CHECK_BATCH * 3
 
 
+async def test_survivors_checks_at_most_10_feeds_per_site_shortest_first() -> None:
+    links = [feed_link(f"/rss/{'s' * i}") for i in range(1, 13)]  # 12 section feeds
+    path = f"crawl-data/{OLD}/segments/1/wat/CC-MAIN-1-00000.warc.wat.gz"
+    served = {
+        _INDEX_URL: json.dumps([{"id": OLD, "to": "2021-12-09T00:00:00"}]).encode(),
+        f"{DATA_URL}crawl-data/{OLD}/wat.paths.gz": gzip.compress(path.encode()),
+    }
+    data = wat(
+        page("https://news.example/", links), page("https://b.example/", [feed_link("/feed")])
+    )
+
+    async def fetch(url: str) -> bytes:
+        return served[url]
+
+    async def fetch_slice(url: str) -> bytes:
+        return data
+
+    asked: list[str] = []
+
+    async def check(urls: Sequence[str]) -> list[CheckRow]:
+        asked.extend(urls)
+        return [checked(u, 3) for u in urls]
+
+    result = await survivors(fetch, fetch_slice, check, years_ago=5, active_days=365, now=NOW)
+    news = sorted(u for u in asked if "news." in u)
+    assert news == sorted(f"https://news.example/rss/{'s' * i}" for i in range(1, 11))
+    assert "https://b.example/feed" in asked
+    assert result.candidates == 13 and result.over_site_limit == 2
+
+
 async def test_survivors_skips_known_urls_before_and_after_checking() -> None:
     fetch, fetch_slice = _one_slice(3)
     asked: list[str] = []

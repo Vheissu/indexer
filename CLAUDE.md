@@ -47,7 +47,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   (`urls.strip_session`), every http link tried as https, only links shaped like a feed URL (`feed_links._looks_like_a_feed`:
   length, depth, rejected and accepted patterns; the user's rules, 2026-11-21, plus the main feeds of Blogger, WordPress `?feed=rss2`, Joomla, SPIP and `backend.php`; no `/web-stories/`; not the page's own `<page>/feed` when the page offers another), which also rule out WordPress category/tag/author feeds and comment feeds (WordPress `/comments/feed/`,
   `?feed=comments-*`; Blogger `/feeds/comments/`, `/feeds/<id>/comments/`; agreed 2026-11-20)
-  (skipped unchecked); check the rest now; of the feeds that pass on one site (host without `www.`, not the registrable domain: shared hosts like fc2.com or free.fr), keep the shortest URL (ties by name); insert only feeds whose newest item is
+  (skipped unchecked); check the rest now, at most 10 new URLs per site, shortest first (asked 2026-11-21); of the feeds that pass on one site (host without `www.`, not the registrable domain: shared hosts like fc2.com or free.fr), keep the shortest URL (ties by name); insert only feeds whose newest item is
   from the last 243 days (~8 months), are **in English** (`en` among the languages detected on their items, agreed
   2026-11-18; what the feed declares is not read), **have a title** and are
   **served over https today** (inserted as the URL after redirects; links are tried as https, and one that

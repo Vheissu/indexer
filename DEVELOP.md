@@ -128,7 +128,8 @@ word in the path: Blogger `/feeds/posts/default`, WordPress without pretty links
 Joomla `?format=feed&type=rss`, SPIP `spip.php?page=backend` and `backend.php`. Google Web
 Stories feeds (`/web-stories/`) are dropped, and so is the page's own feed (the page URL followed
 by `/feed`, a post's comments) when the page offers another. Session parameters (`sid`,
-`PHPSESSID`, `jsessionid`, ...) are removed. Survivors checks **every** remaining link, each URL once, today with the guarded fetcher (no retries), and of the feeds
+`PHPSESSID`, `jsessionid`, ...) are removed. Survivors checks **every** remaining link, each URL once and at most 10 per site (the shortest
+URLs first), today with the guarded fetcher (no retries), and of the feeds
 that pass on one site it keeps the one with the shortest URL (ties by name), so one site is proposed
 once. A site is the host without `www.` (not the registrable domain, which would merge the users of
 shared hosts like `fc2.com` or `free.fr`). A feed is proposed only if:
