@@ -1,0 +1,431 @@
+# Proposed 2026-11-21 from CC-MAIN-2021-49. Uncomment the
+# URL of each feed to keep.
+
+# With the British Army in Flanders & France · en · last
+#   post 2026-11-11
+# about: Visiting the men who fought and died
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358153.33/wat/CC-MAIN-20211127073536-20211127103536-00614.warc.wat.gz
+# recent posts:
+#   - https://thebignote.com/2026/11/11/the-men-who-came-home-a-memorial-part-seventeen-the-surrey-regiments/
+#     The Men Who Came Home – A Memorial Part Seventeen –
+#     The Surrey Regiments
+#     The Queen’s – The Royal West Surrey Regiment – lost
+#     7,399 men killed during the Great War. Bill, Ernest &
+#     George were not among them, but they fought, and
+#     suffered, for their country, just the same. T
+#   - https://thebignote.com/2026/10/25/the-road-to-passchendaele-new-irish-farm-cemetery-eighteen-years-on/
+#     The Road to Passchendaele: New Irish Farm Cemetery –
+#     Eighteen Years On
+#     That’s eighteen years since I last set foot in this
+#     cemetery, before you ask. And I don’t imagine it’s
+#     changed a huge amount, although you never know. At the
+#     time there was no ‘With the British Army i
+#   - https://thebignote.com/2026/10/10/fleet-war-memorial/
+#     Fleet War Memorial
+# https://thebignote.com/feed/
+
+# Investing in Rental Property · en · last post 2026-09-25
+# about: Property Articles
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358153.33/wat/CC-MAIN-20211127073536-20211127103536-00614.warc.wat.gz
+# recent posts:
+#   - https://cranerental.biz/2026/09/25/valuable-lessons-ive-learned-about-18/
+#     Valuable Lessons I’ve Learned About
+#     In-depth Building Records Prior To Acquiring When
+#     thinking about buying a home, whether it is a home, an
+#     investment, or a commercial room, carrying out
+#     detailed research study is important. Read more
+#   - https://cranerental.biz/2026/09/02/lessons-learned-about-21/
+#     Lessons Learned About
+#     Building Better Transaction Workflows for Real Estate
+#     Success When transaction processes are fragmented,
+#     delays occur, client trust erodes, and valuable deals
+#     can fall through. Implementing structured
+#   - https://cranerental.biz/2026/09/02/a-simple-plan-25/
+#     A Simple Plan:
+#     Leading real estate brokerages continuously adapt to
+#     shifting market conditions by empowering their agents
+#     and optimizing backend operations. By adopting
+#     cutting-edge tools, high-performing firms give
+# https://cranerental.biz/feed/
+
+# Lawn Fawn · en · last post 2026-11-21
+# about: the Lawn Fawn blog
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358153.33/wat/CC-MAIN-20211127073536-20211127103536-00614.warc.wat.gz
+# recent posts:
+#   - https://blog.lawnfawn.com/2026/11/lawn-fawn-video-11-21-26-christys-charming-cozy-dogs-howliday-card/
+#     Lawn Fawn Video {11.21.26} Christy’s Charming Cozy
+#     Dogs “Howliday” Card
+#     Christy joins us today to share another fantastic card
+#     design! She combined Cozy Dogs with Winter Forest
+#     Backdrop: Portrait to create a clever Christmas tree
+#     shaped stack of cute dogs! You can watch t
+#   - https://blog.lawnfawn.com/2026/11/mayras-whimsical-holiday-card-featuring-build-an-igloo/
+#     Mayra’s Whimsical Holiday Card Featuring
+#     Build-An-Igloo
+#     Mayra is with us today to inspire you with another
+#     brilliant card! She featured Build-An-Igloo with lots
+#     of holiday fun to create a card that is “snow much
+#     fun”! In addition to the glittery snow-cover
+#   - https://blog.lawnfawn.com/2026/11/francis-die-cut-card-with-build-an-igloo-and-giant-seasons-greetings/
+#     Franci’s Die-Cut Card with Build-An-Igloo and Giant
+#     Season’s Greetings
+#     Franci’s die-cut only card is so brilliant! She
+#     featured Build-An-Igloo with Giant Season’s Greetings.
+#     Franci inked the top third of her card with Distress
+#     inks in Broken China and Uncharted Mariner a
+# https://blog.lawnfawn.com/feed/
+
+# drbeeper · en · last post 2026-09-23
+# about: Art is how we decorate space, Music is how we
+#   decorate time
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358153.33/wat/CC-MAIN-20211127073536-20211127103536-00614.warc.wat.gz
+# recent posts:
+#   - https://drbeeper.com/2026/09/23/nostalgia-idealized-version-of-the-past-triggered-by-anxieties-of-the-present/
+#     Nostalgia: idealized version of the past triggered by
+#     anxieties of the present
+#     DrB 2026 sampler: Ω.08 [download] Sweet not sugary DrB
+#     2026 mixes: Sugar & Spice: All Things Nice [download]
+#     That’s what little girls are made of? [playlist link]
+#     Puppy Dog Tails [download] Such are l
+#   - https://drbeeper.com/2026/08/19/the-fundamental-cause-of-the-trouble-in-the-modern-world-today-is-that-the-stupid-are-cocksure-while-the-intelligent-are-full-of-doubt/
+#     “The fundamental cause of the trouble in the modern
+#     world today is that the stupid are cocksure whi…
+#     DrB 2026 sampler: Ω.04 [download] Charge! DrB 2026
+#     sampler: Ω.05 [download] Keep on target DrB 2026
+#     sampler: Ω.06 [download] Not all fun is happy fun DrB
+#     2026 sampler: Ω.07 [download] Surprises around
+#   - https://drbeeper.com/2026/07/02/id-trade-all-my-tomorrows-for-one-single-yesterday/
+#     I’d trade all my tomorrows for one single yesterday.
+#     DrB 2026 sampler: Ω.01 [download] A little off the top
+#     DrB 2025 sampler: Ω.02 [download] Old is new again DrB
+#     2025 sampler: Ω.03 [download] Riding the weird-o line
+# https://drbeeper.com/feed/
+
+# Grace Bible Church · en · last post 2026-11-15
+# about: Glorifying God By Making Disciples Of The Lord
+#   Jesus Christ
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358153.33/wat/CC-MAIN-20211127073536-20211127103536-00614.warc.wat.gz
+# recent posts:
+#   - https://www.gracebibleny.org/prerequisites-to-prayer-selected-scriptures
+#     Prerequisites to Prayer – Selected Scriptures
+#     (For link to audio & video recording on
+#     SermonAudio.com, click here ) (If you would like to
+#     receive Pastor Harris’ weekly sermons via e-mail,
+#     Click Here) (If you would like to download the
+#     PowerPoint
+#   - https://www.gracebibleny.org/12740-2
+#     The Proper Pattern of Prayer, Part 3 Matthew 6:11-15
+#     (For link to audio & video recording on
+#     SermonAudio.com, click here – The Proper Pattern of
+#     Prayer, Part 3) (If you would like to receive Pastor
+#     Harris’ weekly sermons via e-mail, Click Here) (If you
+#   - https://www.gracebibleny.org/the-proper-pattern-of-prayer-pt-2-matthew-610-14
+#     The Proper Pattern of Prayer, – Pt. 2 Matthew 6:10-14
+#     (For link to audio & video recording on
+#     SermonAudio.com, click here – The Pattern of Prayer,
+#     Pt. 2) (If you would like to receive Pastor Harris’
+#     weekly sermons via e-mail, Click Here) (If you would
+#     li
+# https://www.gracebibleny.org/feed
+
+# The Mansion of E · en · last post 2026-11-19
+# about: The Mansion of E is a large and mysterious
+#   structure perched on a cliff overlooking a very Specific
+#   Ocean, with a sprawling Basement and surrounding Forest.
+#   This strip details the existence of the Man
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358153.33/wat/CC-MAIN-20211127073536-20211127103536-00614.warc.wat.gz
+# recent posts:
+#   - https://mansionofe.the-comic.org/comics/pl/3167423/
+#     2026-11-19
+#     [[At the cart-rental window above the Undercity.]]
+#     Marilith: The sign doesn't mention optional things,
+#     Instead of riding in serene comfort in a cart, we
+#     could walk down the ramps. Lenore: With your pe
+#   - https://mansionofe.the-comic.org/comics/pl/3164086/
+#     2026-11-17
+#     [[At a window with clerk Danforth Drover, were carts
+#     can be optionally rented.]] Lenore: That list didn't
+#     say anything about cart rentals. Miss Marilith.
+#     Marilith:Hee. Indeed not. Lenore, internal: AR
+#   - https://mansionofe.the-comic.org/comics/pl/3156244/
+#     2026-11-14
+#     Lenore: Andthen Sylvester camehome andsold thehorses
+#     Lenore: Iwas soangry Itoldhim that hecouldnt… Lenore:
+#     No. Whydid I saythat? I readabout it. At Whovian.
+#     Lilithsent me- Marilith: Hee. That is somet
+# https://mansionofe.the-comic.org/rss/
+
+# DALAM PROSES UPGRADE · en · last post 2026-10-02
+# about: MOHON MAAF SEGALA KESULITAN
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358153.33/wat/CC-MAIN-20211127073536-20211127103536-00614.warc.wat.gz
+# recent posts:
+#   - https://arrawa-kuliahnusantara.blogspot.com/2026/10/hit-light-05-jujur-dalam-yakin.html
+#     HIT THE LIGHT 05 - JUJUR DALAM YAKIN
+#     USTAZ NUR HAFIZI HUSIN 01. Ustaz Nur Hafizi Husin -
+#     Samarul Jannah 15 [01.10.26]
+#     https://drive.google.com/file/d/133lZ3vzmpZB4FIvAa-o-PkLdi456qjT6/view?usp=drive_link
+#   - https://arrawa-kuliahnusantara.blogspot.com/2026/09/hit-light-04-ikhlas-menurut-ibnu.html
+#     HIT THE LIGHT 04 - IKHLAS MENURUT IBNU ATHOIILAH
+#     AS-SAKANDARI RAHI...
+#     USTAZ NUR HAFIZI HUSIN 01. Ustaz Nur Hafizi Husin -
+#     Haqaiq Tasawuf 171 [09.09.26] Tajuk - Ikhlas Menurut
+#     Ibnu Athoiilah As-Sakadari Rahi..
+#     https://drive.google.com/file/d/1vUK5Jyg3fdOcOyEp4VTtzzyQo1Lx
+#   - https://arrawa-kuliahnusantara.blogspot.com/2026/09/hit-light-03-menderhaka-kepada-ibubapa.html
+#     HIT THE LIGHT 03 - MENDERHAKA KEPADA IBUBAPA
+#     USTAZ NUR HAFIZI HUSIN 01. Ustaz Nur Hafizi Husin -
+#     Pedoman Buat Ahli Suluk 67 dan 68 Tajuk - Menderhaka
+#     Kepada Ibubapa 01
+#     https://drive.google.com/file/d/1O-Wf4U9XmotK7QymLRb2NtadzLgN_mKV/view?usp=dr
+# https://arrawa-kuliahnusantara.blogspot.com/feeds/posts/default
+
+# Lisa Ks Book Reviews · en · last post 2026-04-24
+# about: A blog for and about Cozy mysteries and their
+#   wonderful authors.
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358153.33/wat/CC-MAIN-20211127073536-20211127103536-00614.warc.wat.gz
+# recent posts:
+#   - https://lisaksbookthoughts.blogspot.com/2026/04/blog-post.html
+#   - https://lisaksbookthoughts.blogspot.com/2023/08/hello-dear-friends.html
+#     Hello, dear friends. Well, I have been gone much
+#     longer then planned. I'm so about that. While I get on
+#     Facebook and chime in, I've still been pretty much
+#     inside my own head. My goal is to get back to
+#   - https://lisaksbookthoughts.blogspot.com/2023/07/hello-my-friends.html
+#     Hello my friends. I wanted to check in after being
+#     quiet for so long. I'm doing well. I'm not sick. Not
+#     in a eat broth, get some sleep kinda way. Most of you
+#     already know that I have bi-polar as well
+# https://lisaksbookthoughts.blogspot.com/feeds/posts/default
+
+# The Pneuma Review · en · last post 2026-11-09
+# about: The Journal of Ministry Resources and Theology for
+#   Pentecostal and Charismatic Ministries & Leaders
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358153.33/wat/CC-MAIN-20211127073536-20211127103536-00614.warc.wat.gz
+# recent posts:
+#   - https://pneumareview.com/jacob-chengwei-feng-spirits-and-chinese-religiosity/
+#     Jacob Chengwei Feng: Spirit(s) and Chinese Religiosity
+#     Jacob Chengwei Feng, Spirit(s) and Chinese
+#     Religiosity: Retelling the History of Chinese
+#     Christianity from a Pentecost Perspective,
+#     Christianity and Renewal – Interdisciplinary Studies
+#     (Cham, Switzerl
+#   - https://pneumareview.com/it-all-comes-back-to-providence/
+#     It All Comes Back to Providence
+#     There is an underlying theme that runs throughout the
+#     Bible, and once we begin to understand it, it can
+#     produce a remarkable peace in the Christian life:
+#     nothing that happens catches God off guard. Go
+#   - https://pneumareview.com/gone-with-the-wind-and-the-famous-key-to-atlanta/
+#     Gone with the Wind and the Famous Key to Atlanta
+#     When Margaret Mitchell’s Gone with the Wind was
+#     released in 1936, it took the nation—and much of the
+#     English-speaking world—by storm. At more than 1,000
+#     pages, the novel told the story of a fictitious
+# https://pneumareview.com/feed/
+
+# Officially...Archangel641's Blog · en · last post
+#   2026-11-16
+# about: Hard Talk, Inspiration, Current Affairs, News
+#   Tit-Bits...
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358153.33/wat/CC-MAIN-20211127073536-20211127103536-00614.warc.wat.gz
+# recent posts:
+#   - https://archangel641.blogspot.com/2026/11/first-hand-footage-china-flies-first.html
+#     First-Hand Footage! China flies first electric
+#     aircraft, co-made by COMAC and CATL
+#   - https://archangel641.blogspot.com/2026/11/barreleye-this-strange-deep-sea-fish.html
+#     Barreleye: This strange deep-sea fish has eyes inside
+#     a see-through head | AMAZING ANIMALS
+#   - https://archangel641.blogspot.com/2026/11/3-ways-to-rewire-your-brain-to-feel.html
+#     3 Ways to Rewire Your Brain to Feel Happier Right Now
+#     By Meerabelle Dey
+#     When life throws a lot at us, it is hard to recognize
+#     our blessings amidst all the problems that we are
+#     facing. We may feel overwhelmed by our To Do List, or
+#     by a health or relationship issue. At time
+# https://archangel641.blogspot.com/feeds/posts/default
+
+# JOBBOJ | search USA jobs – learn job courses · en · last
+#   post 2026-06-29
+# about: Search USA jobs, companies and read employment
+#   news. Learn a job through online courses. Post jobs.
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358153.33/wat/CC-MAIN-20211127073536-20211127103536-00614.warc.wat.gz
+# recent posts:
+#   - https://jobboj.com/production-team-lead-2/
+#     Production Team Lead
+#     CA-Los Angeles, Morgan Services is seeking a motivated
+#     and hands-on ProductionTeam Lead to oversee the
+#     day-to-day operations of our garment and flat shipping
+#     departments at our Los Angeles, CA facilit
+#   - https://jobboj.com/system-entineer/
+#     System Entineer
+#     MI-Troy, SYSTEM ENGINEER: Develop vehicle topology and
+#     Electrical systems modules. Define gateway
+#     specifications and system interfaces. Systems
+#     Engineering focused on electronics systems, HW, SW,
+#     Inte
+#   - https://jobboj.com/senior-sap-consultant/
+#     Senior SAP Consultant
+#     IN-Zionsville, Novos Solutions LLC, Zionsville IN
+#     based Software Services Company requires following
+#     personnel: 1. Position Title: Senior SAP Consultant
+#     Number of positions: (Multiple) Position Duties
+# https://jobboj.com/feed/
+
+# Dunboyne AC · en · last post 2026-10-28
+# about: Athletic Club
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358153.33/wat/CC-MAIN-20211127073536-20211127103536-00614.warc.wat.gz
+# recent posts:
+#   - https://dunboyneathleticclub.com/2026-dublin-marathon/
+#     2026 Dublin Marathon
+#     The 2026 Dublin Marathon was one for the record books,
+#     with the strong winds not stopping brilliant
+#     performances from Dunboyne athletes across the 26.2
+#     miles. Just under 50 runners from Dunboyne AC to
+#   - https://eventmaster.ie/event/6je5IEpT5G
+#     2027 Dunboyne 10K Road Race !
+#     Sunday March 21st – REGISTRATION OPEN at
+#     eventmaster.ie !
+#   - https://dunboyneathleticclub.com/dunboyne-track-night-2026/
+#     Dunboyne Track Night 2026
+#     On Thursday August 27th Dunboyne AC held our annual
+#     track night. A really wet evening did not dampen the
+#     enthusiasm of the participants in the 5K timed races,
+#     with many achieving 5K PBs. The One Mile
+# https://dunboyneathleticclub.com/feed/
+
+# Jaffareadstoo.... · en · last post 2026-11-20
+# about: There's a little bit of book love going on as the
+#   cat crept in and curled at my side, read with me, read
+#   with me, softly he sighed ....
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358153.33/wat/CC-MAIN-20211127073536-20211127103536-00614.warc.wat.gz
+# recent posts:
+#   - https://jaffareadstoo.blogspot.com/2026/11/festive-reads-secrets-of-winter-escape.html
+#     🎄 Festive Reads ~ Secrets of a Winter Escape by Sue
+#     Moorcroft
+#     It’s that time of year again when I choose books which
+#     make perfect festive reading. These are stories which
+#     are easy enough to pick up and put down especially
+#     when life gets a bit frantic in the run
+#   - https://jaffareadstoo.blogspot.com/2026/11/festive-read-always-silver-lining-by.html
+#     🎄Festive Read ~ Always a Silver Lining by Jessica
+#     Redland
+#     It’s that time of year again when I choose books which
+#     make perfect festive reading. These are stories which
+#     are easy enough to pick up and put down especially
+#     when life gets a bit frantic in the run
+#   - https://jaffareadstoo.blogspot.com/2026/11/festive-read-christmas-party-ten-poems.html
+#     🎄Festive Read ~ Christmas Party : Ten Poems to Make
+#     Merry from Candlestick Press
+#     It’s that time of year again when I choose books which
+#     make perfect festive reading. These are stories which
+#     are easy enough to pick up and put down especially
+#     when life gets a bit frantic in the run
+# https://jaffareadstoo.blogspot.com/feeds/posts/default
+
+# Sri Sri Radha Radhanath Temple · en · last post 2026-11-19
+# about: International Society for Krishna Consciousness •
+#   Founder Acharya: His Divine Grace A. C. Bhaktivedanta
+#   Swami Prabhupada
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358153.33/wat/CC-MAIN-20211127073536-20211127103536-00614.warc.wat.gz
+# recent posts:
+#   - https://iskcondurban.net/kartik-2026-concludes/
+#     Kartik 2026 Concludes
+#     Dear Friends Kartik concludes in six days. We pray
+#     that you were able to take full advantage of this
+#     extraordinary time of year. Week Ahead Friday 20
+#     November Srila Gaura Kishor Das Babaji’s Disappear
+#   - https://iskcondurban.net/week-ahead-12-18-november-2026/
+#     Week Ahead 12-18 November 2026
+#     Dear Friends “He lives forever by his divine
+#     instructions, and the follower lives with him.” Srila
+#     Prabhupada wrote this to Srila Bhaktisiddhanta
+#     Sarasvati Thakur in the Dedication to Srimad Bhagavata
+#   - https://iskcondurban.net/week-ahead-5-11-november-2026/
+#     Week Ahead 5-11 November 2026
+#     Dear Friends A Meditation of Sri Giriraj Govardhan “Of
+#     all the devotees, this Govardhana Hill is the best! O
+#     my friends, this hill supplies Kṛṣṇa and Balarāma,
+#     along with Their calves, cows and cowher
+# https://iskcondurban.net/feed/
+
+# Manga Bookshelf · en · last post 2026-11-21
+# about: Discussion, Resources, Roundtables, & Reviews
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358153.33/wat/CC-MAIN-20211127073536-20211127103536-00614.warc.wat.gz
+# recent posts:
+#   - https://suitablefortreatment.mangabookshelf.com/2026/11/21/royal-spirits-are-a-royal-pain-give-me-a-regular-romance-vol-5/
+#     Royal Spirits Are a Royal Pain! Give Me a Regular
+#     Romance, Vol. 5
+#     By Rei Kazama and Fujiazuki. Released in Japan as
+#     “Tensei Reijō wa Seirei ni Aisarete Saikyō Desu……
+#     Dakedo Futsū ni Koi Shitai)” by TO Books. Released in
+#     North America by J-Novel Heart. Translated by
+#   - https://mangabookshelf.com/2026/11/19/manga-the-week-of-11-25-26/
+#     Manga the Week of 11/25/26
+#     SEAN: It’s Thanksgiving, at least if you’re in the US,
+#     and we have these manga and light novels to be
+#     thankful for. No debuts for Airship, but a plethora of
+#     print. We get Didn’t I Say to Make My Abili
+#   - https://suitablefortreatment.mangabookshelf.com/2026/11/19/a-tale-of-the-secret-saint-zero-vol-6/
+#     A Tale of the Secret Saint ZERO, Vol. 6
+#     By Touya and chibi. Released in Japan as “Tensei Sita
+#     Daiseijyo ha, Seijyo Dearuko Towohitakakusu ZERO” by
+#     Earth Star Novels. Released in North America by
+#     Airship. Translated by Sarah Burch. Adapted b
+# https://mangabookshelf.com/feed/
+
+# The Every Three Weekly · en · last post 2026-11-02
+# about: Better than sex, twice as often.
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358153.33/wat/CC-MAIN-20211127073536-20211127103536-00614.warc.wat.gz
+# recent posts:
+#   - https://everythreeweekly.com/2026/11/the-every-three-weekly-volume-28-edition-2/
+#     The Every Three Weekly — Volume 28, Edition 2
+#   - https://everythreeweekly.com/2026/10/the-every-three-weekly-volume-28-issue-1/
+#     The Every Three Weekly – Volume 28, Issue 1
+#   - https://everythreeweekly.com/2026/04/the-every-three-weekly-volume-27-issue-8/
+#     The Every Three Weekly – Volume 27, Issue 8
+# https://everythreeweekly.com/feed/
+
+# Cozy Mystery Book Deals & Free Cozy Mystery Books · en ·
+#   last post 2026-11-21
+# about: Sometimes all you need is a Cozy Mystery and a
+#   comfy Sofa!
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358153.33/wat/CC-MAIN-20211127073536-20211127103536-00614.warc.wat.gz
+# recent posts:
+#   - https://freecozymystery.com/2026/11/21/excellent-free-kindle-cozy-mystery-books-deals-65/
+#     Excellent Free Kindle Cozy Mystery Books, Deals
+#     Windows Desktop App, Books Butterfly Instant N.
+#     Promote Your Book to 4 Million Readers. Become A
+#     Bestselling Author. Free Kindle Cozy Mystery Books,
+#     Deals ***The Death of a Maven – A Small-Town Cozy M
+#   - https://freecozymystery.com/2026/11/20/free-usa-today-bestselling-author-cozy-mystery-terrific-reads-featuring-snapshots-and-secrets-free-kindle-cozy-mystery-books-deals/
+#     Free USA Today Bestselling Author Cozy Mystery,
+#     Terrific Reads Featuring Snapshots and Secrets, Fre…
+#     Windows Desktop App, Books Butterfly Instant N.
+#     Promote Your Book to 4 Million Readers. Become A
+#     Bestselling Author. Free Kindle Cozy Mystery Books,
+#     Deals ***Snapshots and Secrets (Juniper Valley Cozy
+#   - https://freecozymystery.com/2026/11/19/amazing-reads-featuring-sourdough-and-cyanide-by-victoria-kazarian-and-others-free-kindle-cozy-mystery-books-deals/
+#     Amazing Reads Featuring Sourdough and Cyanide by
+#     Victoria Kazarian and Others, Free Kindle Cozy Mys…
+#     Windows Desktop App, Books Butterfly Instant N.
+#     Promote Your Book to 4 Million Readers. Become A
+#     Bestselling Author. Free Kindle Cozy Mystery Books,
+#     Deals ***Sourdough and Cyanide – Laughing Loaf Bake
+# https://freecozymystery.com/feed/
