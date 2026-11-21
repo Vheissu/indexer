@@ -31,7 +31,7 @@ domains = ["youtube.com", "reddit.com"]
 
 [commoncrawl]
 # Common Crawl only (indexer survivors), not the lists below: a feed whose title contains one of
-# these as a whole word (case ignored; "porn" matches "Porn Passwords" and
+# these as a whole word, or whose subtitle and newest posts contain 3 or more, (case ignored; "porn" matches "Porn Passwords" and
 # "porn-videos", not "pornography": list each form) is never proposed. Adult and sexual-violence
 # content found in old crawls, and gambling spam (added 2026-11-17 after casino feeds in a sample).
 exclude_keywords = [

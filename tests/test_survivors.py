@@ -272,6 +272,17 @@ def test_has_keyword(title: str | None, excluded: bool) -> None:
     assert not _has_keyword(row, frozenset())
 
 
+def test_has_keyword_three_times_in_the_subtitle_and_posts() -> None:
+    def row(subtitle: str, *posts: str) -> CheckRow:
+        return CheckRow("u", NOW, title="A blog", subtitle=subtitle, item_texts=posts)
+
+    assert not _has_keyword(row("Porn studies", "On porn and film"), KEYWORDS)  # twice
+    assert _has_keyword(row("Porn studies", "On porn and film", "Rape culture"), KEYWORDS)
+    assert _has_keyword(row("", "sex sex sex"), KEYWORDS)  # every occurrence counts
+    assert not _has_keyword(row("Essex", "Essex news", "Essex sport"), KEYWORDS)  # not a word
+    assert not _has_keyword(row("", "sex sex sex"), frozenset())
+
+
 @pytest.mark.parametrize(
     "url",
     [

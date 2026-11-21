@@ -6,7 +6,8 @@ feed_links.py).
     inactive     no item from the last `active_days` days
     not_english  English is not among the languages detected on its items
     untitled     the feed has no title
-    keyword      its title contains an excluded keyword (`[commoncrawl] exclude_keywords`)
+    keyword      an excluded keyword (`[commoncrawl] exclude_keywords`) in its title, or 3 in its
+                 subtitle and posts
     not_https    not served over https today (or redirected to an excluded domain)
 """
 
@@ -17,6 +18,8 @@ from typing import Literal
 
 from indexer.check.runner import CheckRow
 from indexer.net.urls import drop_excluded, strip_session, valid_urls
+
+_MIN_TEXT_KEYWORDS = 3  # excluded words in a feed's subtitle and posts that exclude it
 
 type Reason = Literal["failed", "inactive", "not_english", "untitled", "keyword", "not_https"]
 
@@ -65,13 +68,17 @@ def _is_english(row: CheckRow) -> bool:
 
 
 def _has_keyword(row: CheckRow, keywords: frozenset[str]) -> bool:
-    """The feed's title contains one of `keywords` (lower case) as a whole word: not inside
-    another word, so "sex" matches "Sex Toys" and "sex-ed" but not "Essex"."""
+    """One of `keywords` (lower case) is in the feed's title, or they appear _MIN_TEXT_KEYWORDS
+    times or more in its subtitle and posts together (every occurrence counts). Whole words only:
+    "sex" matches "Sex Toys" and "sex-ed" but not "Essex"."""
     if not keywords:
         return False
     words = "|".join(re.escape(k) for k in sorted(keywords, key=len, reverse=True))
     pattern = re.compile(rf"(?<![^\W_])(?:{words})(?![^\W_])")
-    return pattern.search((row.title or "").lower()) is not None
+    if pattern.search((row.title or "").lower()):
+        return True
+    text = " ".join([row.subtitle or "", *row.item_texts]).lower()
+    return len(pattern.findall(text)) >= _MIN_TEXT_KEYWORDS
 
 
 def served_url(row: CheckRow, exclude: frozenset[str] = frozenset()) -> str | None:

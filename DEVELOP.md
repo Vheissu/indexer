@@ -140,7 +140,8 @@ shared hosts like `fc2.com` or `free.fr`). A feed is proposed only if:
   below). The feed's own `<language>` is not read: WordPress says `en-US` unless the owner changes it;
 - it **has a title**;
 - its title contains none of the `[commoncrawl] exclude_keywords` in `data/sources.toml`
-  as a whole word.
+  as a whole word, and its subtitle and newest posts (title and start of each) fewer than 3
+  (every occurrence counts).
   This list is for Common Crawl only: the curated lists and submissions are not filtered by it
   (tried on their 9,048 feeds, it would flag 14: 3 adult, the rest blogs like "Budgets Are Sexy");
 - it is **served over https today**: the URL after redirects is `https://` (links are tried as
