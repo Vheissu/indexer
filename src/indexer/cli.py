@@ -233,7 +233,11 @@ async def _survivors(args: argparse.Namespace) -> int:
         f" {result.working} working today, {result.active} with an item in the last"
         f" {args.active_days} days, {result.english} in English"
         f" ({result.rejected['untitled']} without a title,"
-        f" {result.rejected['keyword']} with an excluded keyword);"
+        f" {result.rejected['keyword']} with an excluded keyword,"
+        f" {result.rejected['no_subtitle']} without a description,"
+        f" {result.rejected['wiki']} wiki edits,"
+        f" {result.rejected['tracking']} with tracking links,"
+        f" {result.rejected['seo_footer']} with an SEO footer);"
         f" acceptance {proposals.acceptance(len(new), result.checked)}"
     )
     path = args.dir / proposals.file_name(started)

@@ -10,9 +10,17 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 
+from indexer.check.feed import RecentPost
 from indexer.check.runner import CheckRow
 from indexer.survivors.feed_links import filter_page_links
-from indexer.survivors.filters import _has_keyword, _is_active, _is_english, served_url
+from indexer.survivors.filters import (
+    Rules,
+    _has_keyword,
+    _is_active,
+    _is_english,
+    rejection,
+    served_url,
+)
 from indexer.survivors.run import _CHECK_BATCH, survivors
 from indexer.survivors.wat import (
     _INDEX_URL,
@@ -91,7 +99,12 @@ def test_filter_page_links() -> None:
         feed_link("feed/"),  # relative to the page: the post's own feed, two levels deep
         feed_link("/comments/feed/"),
         feed_link("/category/news/feed/"),
-        feed_link("https://forum.example/app.php/feed?sid=abc"),  # one URL once stripped
+        feed_link("https://board.example/rss.xml?sid=abc"),  # one URL once stripped
+        feed_link("https://forum.example/feed/"),  # a forum
+        feed_link("https://wiki.example/feed.php"),  # DokuWiki
+        feed_link("https://board.example/app.php/feed"),  # phpBB
+        feed_link("https://board.example/syndication.php?type=atom1.0"),  # MyBB
+        feed_link("https://board.example/index.php?type=rss;action=.xml"),  # SMF
         feed_link("/2021/04/03/feed/"),  # a dated post
         feed_link("/sitemap.xml"),
         feed_link("/a-very-long-path-segment-indeed/feed/"),  # over 25 characters
@@ -114,7 +127,7 @@ def test_filter_page_links() -> None:
     assert filter_page_links(page_url, links, frozenset({"youtube.com"})) == [
         "https://s.example/feed/",
         "https://s.example/atom.xml",
-        "https://forum.example/app.php/feed",
+        "https://board.example/rss.xml",
         "https://s.example/spip.php?page=backend",
         "https://x.blogspot.com/feeds/posts/default",
         "https://s.example/?feed=rss2",
@@ -215,6 +228,7 @@ def checked(
     final_url: str | None = None,
     language: str | None = "en",
     title: str | None = "A Feed",
+    subtitle: str | None = "About things",
 ) -> CheckRow:
     date = None if days_ago is None else NOW - timedelta(days=days_ago)
     return CheckRow(
@@ -225,6 +239,7 @@ def checked(
         error=error,
         language=language,
         title=title,
+        subtitle=subtitle,
     )
 
 
@@ -329,8 +344,8 @@ async def test_survivors_checks_every_link_and_keeps_the_shortest_url_per_site()
         page("http://m0.example/", [feed_link("/feed")]),  # m0 and m1 redirect to one URL
         page("http://m1.example/", [feed_link("/feed")]),
         page("https://fr.example/", [feed_link("/fr/feed")]),
-        page("https://forum.example/", [feed_link("/feed?sid=1")]),  # one URL once stripped
-        page("https://forum.example/x", [feed_link("/feed?sid=2")]),
+        page("https://board.example/", [feed_link("/feed?sid=1")]),  # one URL once stripped
+        page("https://board.example/x", [feed_link("/feed?sid=2")]),
         page("https://a.free.fr/", [feed_link("/feed/")]),  # two users of one shared host
         page("https://b.free.fr/", [feed_link("/feed/")]),
         page("https://x.example/", [feed_link("https://feeds.feedburner.com/x")]),  # not a shape
@@ -403,7 +418,7 @@ async def test_survivors_checks_every_link_and_keeps_the_shortest_url_per_site()
     assert not any("/category/" in u or "/comments/" in u for u in asked)
     assert result.candidates == 16 == len(asked) == len(set(asked))
     assert all(u.startswith("https://") for u in asked)
-    assert "https://forum.example/feed" in asked
+    assert "https://board.example/feed" in asked
     assert {"https://multi.example/a/feed", "https://multi.example/b/feed"} <= set(asked)
     assert not any("youtube" in u or "cut.example" in u or "feedburner" in u for u in asked)
     assert result.working == 16
@@ -419,7 +434,7 @@ async def test_survivors_checks_every_link_and_keeps_the_shortest_url_per_site()
         "https://a.free.fr/feed/",
         "https://b.free.fr/feed/",
         "https://blog.example/feed/",
-        "https://forum.example/feed",
+        "https://board.example/feed",
     ]
     assert urls[4:] == [
         "https://multi.example/a/feed",  # as short as /b/feed: by name
@@ -538,3 +553,27 @@ async def test_survivors_skips_known_urls_before_and_after_checking() -> None:
     assert "https://s0.example/feed" not in asked  # known before checking: never fetched
     assert [r.url for r in result.rows] == ["https://s2.example/feed"]
     assert result.known == 2
+
+
+def test_simple_junk_rules() -> None:
+    rules = Rules(NOW, 365)
+
+    def judged(
+        subtitle: str | None = "About things", *posts: RecentPost, texts: str = ""
+    ) -> object:
+        row = checked("https://s.example/feed/", 3, subtitle=subtitle)
+        row.recent_posts, row.item_texts = posts, (texts,) if texts else ()
+        return rejection(row, rules)
+
+    def post(link: str, description: str | None = None) -> RecentPost:
+        return RecentPost(link, "A post", description)
+
+    assert judged() is None
+    assert judged(None) == judged("  ") == "no_subtitle"
+    assert judged("x", post("https://w.example/doku.php?id=a&rev=1&do=diff")) == "wiki"
+    assert judged("x", post("https://w.example/index.php?title=A&oldid=3")) == "wiki"
+    assert judged("x", post("https://s.example/p/?utm_source=rss&utm_medium=rss")) == "tracking"
+    footer = "Great news. The post Great news appeared first on Other Site."
+    assert judged("x", post("https://s.example/p/", footer)) == "seo_footer"
+    assert judged("x", texts="Big day. This article first appeared on Elsewhere") == "seo_footer"
+    assert judged("x", post("https://s.example/p/", "It appeared on our first day.")) is None

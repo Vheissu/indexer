@@ -29,6 +29,12 @@ _REJECTED = _patterns(
     r":Recent",
     r"alt=rss",
     r"/web-stories/",  # the Google Web Stories plugin, not posts
+    # forums and wikis (agreed 2026-11-21: mostly change logs and noise in review)
+    r"^https?://forum\.",
+    r"feed\.php",  # DokuWiki, phpBB
+    r"app\.php/feed",  # phpBB
+    r"syndication\.php",  # MyBB
+    r"type=rss;action",  # SMF
 )
 # The whole of what follows the host must be one of these.
 _ACCEPTED = _patterns(
@@ -46,7 +52,6 @@ _ACCEPTED = _patterns(
     r"\?com=rss",
     r"/(atom|rss|rss2|feed|feeds)\.php",
     r"/xml\.php\?rss=true",
-    r"/app\.php/feed",
     r"/(atom|rss|feed|feeds)(/|\.)[a-zA-Z0-9_.-]+/?",
     r"/[a-zA-Z0-9_.-]+(/|\.)(atom|rss|feed|feeds)/?",
 )

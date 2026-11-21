@@ -49,11 +49,14 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   Agreed filters: crawl closest to 5 years ago, first 25 MB of one random WAT file (one range
   request, random each run, no state; one file because the yield per MB is the same as several smaller slices); every feed link of every page (2026-11-21: one random link per page, agreed 2026-11-20, was dropped once the URL rules removed most junk), session params stripped
   (`urls.strip_session`), every http link tried as https, only links shaped like a feed URL (`feed_links._looks_like_a_feed`:
-  length, depth, rejected and accepted patterns; the user's rules, 2026-11-21, plus the main feeds of Blogger, WordPress `?feed=rss2`, Joomla, SPIP and `backend.php`; no `/web-stories/`; not the page's own `<page>/feed` when the page offers another), which also rule out WordPress category/tag/author feeds and comment feeds (WordPress `/comments/feed/`,
+  length, depth, rejected and accepted patterns; the user's rules, 2026-11-21, plus the main feeds of Blogger, WordPress `?feed=rss2`, Joomla, SPIP and `backend.php`; no `/web-stories/`; no forums or wikis (host `forum.*`, `feed.php`, `app.php/feed`, `syndication.php`, `type=rss;action`, agreed 2026-11-21); not the page's own `<page>/feed` when the page offers another), which also rule out WordPress category/tag/author feeds and comment feeds (WordPress `/comments/feed/`,
   `?feed=comments-*`; Blogger `/feeds/comments/`, `/feeds/<id>/comments/`; agreed 2026-11-20)
   (skipped unchecked); check the rest now, at most 10 new URLs per site, shortest first (asked 2026-11-21); of the feeds that pass on one site (host without `www.`, not the registrable domain: shared hosts like fc2.com or free.fr), keep the shortest URL (ties by name); insert only feeds whose newest item is
   from the last 243 days (~8 months), are **in English** (`en` among the languages detected on their items, agreed
-  2026-11-18; what the feed declares is not read), **have a title** and are
+  2026-11-18; what the feed declares is not read), **have a title** and **a description**, have no recent post
+  linking to a wiki edit (`do=diff`, `rev=`, `oldid=`, `doku.php`, `index.php?title=`) or carrying `utm_` parameters,
+  no "appeared first on" / "first appeared on" in their posts (simple rules agreed 2026-11-21 on 60 reviewed
+  proposals: they caught ~19 of 38 rejected and ~6 of 22 accepted; false positives are fine, Common Crawl is vast), and are
   **served over https today** (inserted as the URL after redirects; links are tried as https, and one that
   redirects back to plain http is skipped). Rejected as too complex: detecting one feed in several formats by its items (only the URL rules above).
   Still open: a takeover guard, storing these checks (not stored now).

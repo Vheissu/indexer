@@ -8,7 +8,15 @@ feed_links.py).
     untitled     the feed has no title
     keyword      an excluded keyword (`[commoncrawl] exclude_keywords`) in its title, or 3 in its
                  subtitle and posts
+    no_subtitle  the feed has no description (subtitle)
+    wiki         a recent post links to a wiki edit (do=diff, rev=, oldid=, doku.php, ?title=)
+    tracking     a recent post link has utm_ tracking parameters
+    seo_footer   a post says "appeared first on" or "first appeared on" (an SEO plugin's footer,
+                 also left by sites that copy other feeds)
     not_https    not served over https today (or redirected to an excluded domain)
+
+The four rules after `keyword` were agreed on 2026-11-21 from the reviews so far: simple, and
+they cost some good feeds, which is fine (Common Crawl has far more than we check).
 """
 
 import re
@@ -21,7 +29,21 @@ from indexer.net.urls import drop_excluded, strip_session, valid_urls
 
 _MIN_TEXT_KEYWORDS = 3  # excluded words in a feed's subtitle and posts that exclude it
 
-type Reason = Literal["failed", "inactive", "not_english", "untitled", "keyword", "not_https"]
+type Reason = Literal[
+    "failed",
+    "inactive",
+    "not_english",
+    "untitled",
+    "keyword",
+    "no_subtitle",
+    "wiki",
+    "tracking",
+    "seo_footer",
+    "not_https",
+]
+
+_WIKI_EDIT = re.compile(r"do=diff|[?&]rev=|oldid=|doku\.php|index\.php\?title=", re.IGNORECASE)
+_SEO_FOOTER = re.compile(r"appeared\s+first\s+on|first\s+appeared\s+on", re.IGNORECASE)
 
 
 @dataclass(frozen=True, slots=True)
@@ -44,6 +66,16 @@ def rejection(row: CheckRow, rules: Rules) -> Reason | None:
         return "untitled"
     if _has_keyword(row, rules.keywords):
         return "keyword"
+    if not (row.subtitle or "").strip():
+        return "no_subtitle"
+    links = [post.link for post in row.recent_posts]
+    if any(_WIKI_EDIT.search(link) for link in links):
+        return "wiki"
+    if any("utm_" in link.lower() for link in links):
+        return "tracking"
+    texts = [*row.item_texts, *(post.description or "" for post in row.recent_posts)]
+    if any(_SEO_FOOTER.search(text) for text in texts):
+        return "seo_footer"
     if served_url(row, rules.exclude) is None:
         return "not_https"
     return None

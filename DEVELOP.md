@@ -123,7 +123,9 @@ A link must also **look like a feed URL** (`feed_links.py`): at most 256 charact
 slashes in the path and 25 characters in a path segment, none of the rejected patterns (a dated
 path like `/2021/04/`, `comments`, `alt=rss`, ...), and what follows the host one of the accepted
 shapes (`/feed/`,
-`/rss.xml`, `/atom.php`, `/app.php/feed`, `/<one segment>/feed/`, ...). Feeds outside those
+`/rss.xml`, `/atom.php`, `/<one segment>/feed/`, ...). Forums and wikis are dropped too: a host
+starting with `forum.`, `feed.php` (DokuWiki, phpBB), `app.php/feed` (phpBB), `syndication.php`
+(MyBB) and `type=rss;action` (SMF); their feeds are mostly edits and replies. Feeds outside those
 shapes are dropped (FeedBurner among them), except the main feeds of platforms without a feed
 word in the path: Blogger `/feeds/posts/default`, WordPress without pretty links `/?feed=rss2`,
 Joomla `?format=feed&type=rss`, SPIP `spip.php?page=backend` and `backend.php`. Google Web
@@ -139,12 +141,17 @@ shared hosts like `fc2.com` or `free.fr`). A feed is proposed only if:
   date more than a day in the future doesn't count);
 - it is **in English**: `en` is among the languages detected on its items (see `language`
   below). The feed's own `<language>` is not read: WordPress says `en-US` unless the owner changes it;
-- it **has a title**;
+- it **has a title** and a **description** (subtitle);
 - its title contains none of the `[commoncrawl] exclude_keywords` in `data/sources.toml`
   as a whole word, and its subtitle and newest posts (title and start of each) fewer than 3
   (every occurrence counts).
   This list is for Common Crawl only: the curated lists and submissions are not filtered by it
   (tried on their 9,048 feeds, it would flag 14: 3 adult, the rest blogs like "Budgets Are Sexy");
+- none of its 3 most recent posts links to a wiki edit (`do=diff`, `rev=`, `oldid=`, `doku.php`,
+  `index.php?title=`) or has `utm_` tracking parameters in its link, and no post says "appeared
+  first on" or "first appeared on" (the footer of SEO plugins, common on promotional sites and
+  on sites that copy other feeds). These simple rules also drop some good feeds, which is fine:
+  there is far more in Common Crawl than survivors reads;
 - it is **served over https today**: the URL after redirects is `https://` (links are tried as
   `https://`; one that redirects back to plain http is skipped);
 - it is not already in a file in `data/survivors/` (accepted or commented out) or the inputs table.
