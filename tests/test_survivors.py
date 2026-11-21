@@ -105,6 +105,7 @@ def test_filter_page_links() -> None:
         feed_link("https://board.example/app.php/feed"),  # phpBB
         feed_link("https://board.example/syndication.php?type=atom1.0"),  # MyBB
         feed_link("https://board.example/index.php?type=rss;action=.xml"),  # SMF
+        feed_link("https://club.example/activity/feed/"),  # BuddyPress
         feed_link("/2021/04/03/feed/"),  # a dated post
         feed_link("/sitemap.xml"),
         feed_link("/a-very-long-path-segment-indeed/feed/"),  # over 25 characters
@@ -240,6 +241,7 @@ def checked(
         language=language,
         title=title,
         subtitle=subtitle,
+        recent_posts=(RecentPost(url + "#post", "A post", "Some text"),),
     )
 
 
@@ -257,7 +259,7 @@ def test_is_active() -> None:
     ("language", "english"),
     [
         ("en", True),
-        ("de, en", True),  # English among others is enough
+        ("de, en", False),  # English must be the only language
         ("fr", False),
         (None, False),  # nothing detected
     ],
@@ -562,7 +564,8 @@ def test_simple_junk_rules() -> None:
         subtitle: str | None = "About things", *posts: RecentPost, texts: str = ""
     ) -> object:
         row = checked("https://s.example/feed/", 3, subtitle=subtitle)
-        row.recent_posts, row.item_texts = posts, (texts,) if texts else ()
+        row.recent_posts = posts or row.recent_posts
+        row.item_texts = (texts,) if texts else ()
         return rejection(row, rules)
 
     def post(link: str, description: str | None = None) -> RecentPost:
@@ -626,7 +629,7 @@ def test_repeated_posts() -> None:
     assert judged(same, same._replace(link="https://s.example/p-6/")) == "repeated"
     weekly = RecentPost("https://s.example/w-1/", "Friday Night Extravaganza!", "This week: A")
     assert judged(weekly, weekly._replace(link="https://s.example/w-2/", description="B")) is None
-    untitled = RecentPost("https://s.example/1", None, None)
+    untitled = RecentPost("https://s.example/1", None, "Same text")
     assert judged(untitled, untitled._replace(link="https://s.example/2")) is None
 
 
@@ -668,3 +671,12 @@ def test_title_echo_and_reposts() -> None:
     assert judged(echo, ("x", "y"), ("z", "w")) is None  # one post only
     reposted = ("Keach dies at 85", "(Carmel Dagan's article appeared in Variety.) Stacy Keach")
     assert judged(reposted, ("x", "y")) == "reposted"
+
+
+def test_posts_without_any_text() -> None:
+    row = checked("https://s.example/feed/", 3)
+    row.recent_posts = (RecentPost("https://s.example/1", None, None),)
+    assert rejection(row, Rules(NOW, 365)) == "no_text"
+    row.recent_posts = (RecentPost("https://s.example/1", None, None),
+                        RecentPost("https://s.example/2", "A title", None))  # fmt: skip
+    assert rejection(row, Rules(NOW, 365)) is None

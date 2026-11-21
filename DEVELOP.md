@@ -125,7 +125,8 @@ path like `/2021/04/`, `comments`, `alt=rss`, ...), and what follows the host on
 shapes (`/feed/`,
 `/rss.xml`, `/atom.php`, `/<one segment>/feed/`, ...). Forums and wikis are dropped too: a host
 starting with `forum.`, `feed.php` (DokuWiki, phpBB), `app.php/feed` (phpBB), `syndication.php`
-(MyBB) and `type=rss;action` (SMF); their feeds are mostly edits and replies. So are feeds on
+(MyBB), `type=rss;action` (SMF) and BuddyPress's `/activity/feed`; their feeds are mostly edits,
+replies and sign-ups. So are feeds on
 the top-level domains Freenom gave away (`.tk`, `.ml`, `.ga`, `.cf`, `.gq`), mostly spam.
 WordPress's feed in another format (`/feed/atom/`, `/feed/rss2/`, `/feed/rss/`, `/feed/rdf/`) is
 read as its main feed, `/feed/`, so a feed already known or proposed isn't proposed again in
@@ -145,9 +146,10 @@ shared hosts like `fc2.com` or `free.fr`). A feed is proposed only if:
 
 - it parses, and its newest item is from the last `--active-days` (243, about 8 months) days (a
   date more than a day in the future doesn't count);
-- it is **in English**: `en` is among the languages detected on its items (see `language`
+- it is **in English**: `en` is the only language detected on its items (see `language`
   below). The feed's own `<language>` is not read: WordPress says `en-US` unless the owner changes it;
-- it **has a title** and a **description** (subtitle);
+- it **has a title** and a **description** (subtitle), and at least one of its recent posts has
+  a title or text;
 - its title contains none of the `[commoncrawl] exclude_keywords` in `data/sources.toml`
   as a whole word, and its subtitle, newest posts (title and start of each) and the titles of
   its 3 most recent posts fewer than 3

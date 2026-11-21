@@ -235,6 +235,7 @@ async def _survivors(args: argparse.Namespace) -> int:
         f" ({result.rejected['untitled']} without a title,"
         f" {result.rejected['keyword']} with an excluded keyword,"
         f" {result.rejected['no_subtitle']} without a description,"
+        f" {result.rejected['no_text']} whose posts have no text,"
         f" {result.rejected['wiki']} wiki edits,"
         f" {result.rejected['tracking']} with tracking links,"
         f" {result.rejected['seo_footer']} with an SEO footer,"

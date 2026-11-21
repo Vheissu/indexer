@@ -37,6 +37,7 @@ _REJECTED = _patterns(
     r"app\.php/feed",  # phpBB
     r"syndication\.php",  # MyBB
     r"type=rss;action",  # SMF
+    r"/activity/feed",  # BuddyPress member activity, not posts
 )
 # WordPress serves its feed in several formats; /feed/ is the one we keep.
 _WORDPRESS_FORMAT = re.compile(r"/feed/(atom|rss|rss2|rdf)/?$", re.IGNORECASE)

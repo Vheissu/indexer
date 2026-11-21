@@ -4,11 +4,12 @@ feed_links.py).
 `rejection(row, rules)` gives the first rule a feed fails, or None if it passes:
     failed       the check failed (fetch or parse)
     inactive     no item from the last `active_days` days
-    not_english  English is not among the languages detected on its items
+    not_english  English is not the only language detected on its items
     untitled     the feed has no title
     keyword      an excluded keyword (`[commoncrawl] exclude_keywords`) in its title, or 3 in its
                  subtitle and posts
     no_subtitle  the feed has no description (subtitle)
+    no_text      none of its recent posts has a title or a description
     wiki         a recent post links to a wiki edit (do=diff, rev=, oldid=, doku.php, ?title=)
     tracking     a recent post link has utm_ tracking parameters
     seo_footer   a post says "appeared first on" or "first appeared on" (an SEO plugin's footer,
@@ -45,6 +46,7 @@ type Reason = Literal[
     "untitled",
     "keyword",
     "no_subtitle",
+    "no_text",
     "wiki",
     "tracking",
     "seo_footer",
@@ -85,6 +87,8 @@ def rejection(row: CheckRow, rules: Rules) -> Reason | None:
         return "keyword"
     if not (row.subtitle or "").strip():
         return "no_subtitle"
+    if not any(post.title or post.description for post in row.recent_posts):
+        return "no_text"
     links = [post.link for post in row.recent_posts]
     if any(_WIKI_EDIT.search(link) for link in links):
         return "wiki"
@@ -123,9 +127,10 @@ def _is_active(row: CheckRow, now: datetime, active_days: int) -> bool:
 
 
 def _is_english(row: CheckRow) -> bool:
-    """English is among the languages detected on the feed's items (`en`, see
-    `indexer.language`). What the feed declares is not read."""
-    return "en" in {t.strip() for t in (row.language or "").split(",")}
+    """English is the only language detected on the feed's items (`en`, see `indexer.language`;
+    agreed 2026-11-21: mixed-language feeds were mostly not worth it). What the feed declares is
+    not read."""
+    return {t.strip() for t in (row.language or "").split(",")} == {"en"}
 
 
 def _has_keyword(row: CheckRow, keywords: frozenset[str]) -> bool:
