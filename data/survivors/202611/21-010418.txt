@@ -57,7 +57,7 @@ https://pamela.avaraarts.com/feed/
 #   - https://blogthepoint.blogspot.com/2026/10/rip-krantiveer-tribute-to-nana-patekar.html
 #     RIP Krantiveer - A Tribute to Nana Patekar
 #     RIP Krantiveer - A Tribute to Nana Patekar Renowned actor Nana Patekar passed away today (8th October 2026) at 5.20 AM due to cardiac arrest at his home in Goa . His sudden death is shocking not only
-https://blogthepoint.blogspot.com/feeds/posts/default
+# https://blogthepoint.blogspot.com/feeds/posts/default
 
 # District 39 Educational Foundation · en · last post 2026-05-06
 # about: Inspiring Minds
@@ -251,7 +251,7 @@ https://kscequinox.com/feed/
 #   - https://petesrocknewsandviews.com/delour-interview/
 #     De’Lour – Interview
 #     Interview with Pete Devine of Pete’s Rock News and Views (https://petesrocknewsandviews.com) PD: How would you describe yourself or your band as an artist? D: I suppose i would describe us as a alt-ro
-# https://petesrocknewsandviews.com/feed/
+https://petesrocknewsandviews.com/feed/
 
 # Calagator: Events · en · last post 2026-11-17
 # found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363598.57/wat/CC-MAIN-20211208205849-20211208235849-00417.warc.wat.gz
@@ -265,7 +265,7 @@ https://kscequinox.com/feed/
 #   - http://calagator.org/events/1250482806
 #     PDX Code & Coffee - Happy Valley @ Peet's Coffee
 #     Saturday, November 13, 2027 from 10am-noon at Peet's Coffee
-# https://calagator.org/events.atom
+https://calagator.org/events.atom
 
 # Blocks of Life · en · last post 2026-11-07
 # found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964363598.57/wat/CC-MAIN-20211208205849-20211208235849-00417.warc.wat.gz
