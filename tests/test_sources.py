@@ -240,12 +240,12 @@ def test_submissions_file_is_valid() -> None:
 
 
 def test_survivors_files_are_valid() -> None:
-    """data/survivors/*.txt (proposals from `indexer survivors`, merged after review): every
+    """data/survivors/*/*.txt (proposals from `indexer survivors`, merged after review): every
     accepted entry is a valid https URL, none twice across the files, and the source reads them
     all from the checkout."""
     entries = [
         url
-        for path in sorted((REPO_CONFIG.parent / "survivors").glob("*.txt"))
+        for path in sorted((REPO_CONFIG.parent / "survivors").glob("*/*.txt"))
         for url in extract_urls(path.read_bytes(), "lines")
     ]
     valid, invalid = valid_urls(entries)
@@ -254,7 +254,7 @@ def test_survivors_files_are_valid() -> None:
     assert all(url.startswith("https://") for url, _host in valid)
     config = load_config(REPO_CONFIG)
     (source,) = [s for s in config.sources if s.name == "survivors"]
-    assert source.files == ("survivors/*.txt",) and not source.urls
+    assert source.files == ("survivors/*/*.txt",) and not source.urls
     assert source.license == "LicenseRef-CommonCrawl-ToU"
 
 

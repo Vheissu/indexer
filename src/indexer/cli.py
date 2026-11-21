@@ -238,6 +238,7 @@ async def _survivors(args: argparse.Namespace) -> int:
         " of the checked feed URLs proposed"
     )
     if new:
+        path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(proposals.render_entries(new, result.crawl, started.date()), "utf-8")
         if args.report:
             args.report.write_text(
@@ -438,8 +439,8 @@ def _parser() -> argparse.ArgumentParser:
         "--dir",
         type=Path,
         default=Path("data/survivors"),
-        help="write proposals to a new <UTC time>.txt here; URLs already in its files or in"
-        " inputs are skipped (default data/survivors)",
+        help="write proposals to a new <yyyymm>/<dd-HHMMSS>.txt here (UTC); URLs already in"
+        " its files or in inputs are skipped (default data/survivors)",
     )
     sv.add_argument(
         "--report", type=Path, help="also write the proposals as Markdown (for the pull request)"

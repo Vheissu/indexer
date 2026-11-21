@@ -153,9 +153,9 @@ Feeds already there are skipped before checking (and again after, for the URL a 
 to). The rest are checked in random order, 200 at a time, and the run stops once `--max-feeds`
 (20) pass, so a run proposes at most 20 and stops checking early.
 
-The finds go to a new file per run, `data/survivors/<UTC time>.txt` (for example
-`data/survivors/20261119-041105.txt`), which the source `survivors` reads with the glob
-`files = ["survivors/*.txt"]`. Each feed is comment lines: title, detected languages
+The finds go to a new file per run, `data/survivors/<yyyymm>/<dd-HHMMSS>.txt` in UTC (for example
+`data/survivors/202611/19-041105.txt`), which the source `survivors` reads with the glob
+`files = ["survivors/*/*.txt"]`. Each feed is comment lines: title, detected languages
 and date of the newest item, subtitle, the WAT file it came from, and its 3 most recent posts (link,
 title and the start of the description, one line each), then the URL, **commented out too**.
 Each workflow run commits

@@ -1,6 +1,6 @@
 # Proposes feeds from a ~5-year-old Common Crawl crawl that are still active: reads the first
 # 25 MB (input slice-mb) of one random WAT file, checks every feed found, and writes the ones that pass to
-# a new data/survivors/<UTC time>.txt in a new pull request (base develop). Nothing is inserted here:
+# a new data/survivors/<yyyymm>/<dd-HHMMSS>.txt (UTC) in a new pull request (base develop). Nothing is inserted here:
 # once the pull request is reviewed and merged, the input job loads the URLs uncommented in it.
 #
 # Every run starts from develop and pushes its own branch, survivors-<UTC timestamp>, so a pull
@@ -85,7 +85,7 @@ jobs:
             echo "Nothing new to propose."
             exit 0
           fi
-          stamp="$(basename "$file" .txt)" # the run's UTC start time
+          stamp="$(basename "$(dirname "$file")")$(basename "$file" .txt)" # yyyymmdd-HHMMSS, UTC
           branch="survivors-$stamp"
           git switch -q -c "$branch"
           git add "$file"

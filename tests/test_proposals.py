@@ -76,7 +76,8 @@ def test_hostile_text_cannot_add_a_url_line(tmp_path: Path) -> None:
     )
     assert extract_urls(block.encode(), "lines") == []
     assert all(line.startswith("#") or not line for line in block.splitlines())
-    (tmp_path / "20261118-041105.txt").write_text(block)
+    (tmp_path / "202611").mkdir()
+    (tmp_path / "202611" / "18-041105.txt").write_text(block)
     assert known_urls(tmp_path) == {"https://a.example/feed"}  # only the proposal's own line
 
 
@@ -122,8 +123,10 @@ def test_report_never_exceeds_the_github_limit() -> None:
 
 def test_known_urls_from_every_file_of_the_folder(tmp_path: Path) -> None:
     assert known_urls(tmp_path) == set()
-    (tmp_path / "20261111-041105.txt").write_text("# comment\nhttps://a.example/feed\n")
-    (tmp_path / "20261118-041105.txt").write_text(
+    (tmp_path / "202610").mkdir()
+    (tmp_path / "202611").mkdir()
+    (tmp_path / "202610" / "11-041105.txt").write_text("# comment\nhttps://a.example/feed\n")
+    (tmp_path / "202611" / "18-041105.txt").write_text(
         "# x\nhttps://b.example/feed\n"
         "# https://c.example/feed\n"  # proposed, not accepted: still known
         "#   - https://c.example/post\n#     https://d.example/\n"  # a post and its title
@@ -141,7 +144,7 @@ def test_file_name_is_the_utc_start_time() -> None:
     from datetime import timedelta, timezone
 
     when = datetime(2026, 11, 21, 6, 11, 5, tzinfo=timezone(timedelta(hours=2)))
-    assert file_name(when) == "20261121-041105.txt"
+    assert file_name(when) == "202611/21-041105.txt"
 
 
 def test_log_line_is_one_line() -> None:

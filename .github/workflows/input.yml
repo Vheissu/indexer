@@ -28,7 +28,7 @@ on:
     paths:
       - data/sources.toml
       - data/*.txt # repo lists read via `files` (submissions)
-      - data/survivors/*.txt # survivors: one file per run
+      - data/survivors/*/*.txt # survivors: one file per run
       - "!data/undo.txt" # not a source: the undo workflow reads it
 
 permissions:

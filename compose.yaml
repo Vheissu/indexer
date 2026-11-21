@@ -68,7 +68,7 @@ services:
     command: ["load-inputs", "data/sources.toml"]
 
   # Proposes feeds from a ~5-year-old Common Crawl crawl that are still active today: writes
-  # them to a new data/survivors/<UTC time>.txt (for a pull request) and output/survivors.md. Locally:
+  # them to a new data/survivors/<yyyymm>/<dd-HHMMSS>.txt (for a pull request) and output/survivors.md. Locally:
   #   mkdir -p output && HOST_UID=$(id -u) HOST_GID=$(id -g) docker compose run --rm survivors
   survivors:
     <<: *indexer

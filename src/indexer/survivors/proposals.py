@@ -1,9 +1,9 @@
 """Feeds found by `indexer survivors`, proposed for review in data/survivors/<timestamp>.txt.
 
 Survivors does not insert into the database. Each run writes its finds to a new file in
-data/survivors/ (the `lines` source `survivors/*.txt` in sources.toml), so the folder never holds
-one huge file and two open pull requests never conflict; the workflow proposes the file as a
-pull request. Each entry is comment lines with what a reviewer needs, then the feed's URL,
+data/survivors/<year><month>/ (the `lines` source `survivors/*/*.txt` in sources.toml), so no file
+grows huge and two open pull requests never conflict; the workflow proposes the file as a pull
+request. Each entry is comment lines with what a reviewer needs, then the feed's URL,
 commented out too:
 
     # Miss Frugal Mommy · en · last post 2026-11-12
@@ -56,9 +56,9 @@ _PROPOSED = re.compile(r"# (https?://\S+)")
 
 
 def known_urls(directory: Path) -> set[str]:
-    """The URLs already in the folder's .txt files, accepted or commented out."""
+    """The URLs already in the .txt files under the folder, accepted or commented out."""
     known: set[str] = set()
-    for path in sorted(directory.glob("*.txt")):
+    for path in sorted(directory.rglob("*.txt")):
         data = path.read_bytes()
         known.update(extract_urls(data, "lines"))
         for line in data.decode("utf-8", errors="replace").splitlines():
@@ -68,8 +68,8 @@ def known_urls(directory: Path) -> set[str]:
 
 
 def file_name(when: datetime) -> str:
-    """A run's file in data/survivors/: its UTC start time, e.g. 20261121-041105.txt."""
-    return when.astimezone(UTC).strftime("%Y%m%d-%H%M%S") + ".txt"
+    """A run's file under data/survivors/, from its UTC start time: 202611/21-041105.txt."""
+    return when.astimezone(UTC).strftime("%Y%m/%d-%H%M%S") + ".txt"
 
 
 def render_entries(survivors: Iterable[Survivor], crawl: str, today: date) -> str:

@@ -177,7 +177,7 @@ license = "LicenseRef-CommonCrawl-ToU"
 format = "lines"
 homepage = "https://github.com/feedrule/indexer/tree/develop/data/survivors"
 notes = "Feeds from a ~5-year-old Common Crawl crawl that are still active, proposed weekly by the survivors workflow as a pull request and reviewed before merging."
-files = ["survivors/*.txt"] # relative to this file: one file per run, every one read
+files = ["survivors/*/*.txt"] # relative to this file: survivors/<yyyymm>/<dd-HHMMSS>.txt, one per run
 
 [[source]]
 name = "submissions"

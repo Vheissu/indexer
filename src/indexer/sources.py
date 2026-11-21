@@ -2,7 +2,7 @@
 
 A source is a name, a license and one or more list files: `urls` (usually raw.githubusercontent.com
 URLs on a branch) and/or `files` (paths in this repository, relative to the config file, read from
-disk; a path may be a glob pattern like `survivors/*.txt`), so each load reads the lists as they
+disk; a path may be a glob pattern like `survivors/*/*.txt`), so each load reads the lists as they
 are today: nothing is pinned, and new feeds added upstream arrive on their own. A source that fails
 (file gone, malformed) is skipped and reported; the other sources still load. Since the inputs
 table is append-only, a broken or truncated upstream file adds nothing harmful and removes nothing.
