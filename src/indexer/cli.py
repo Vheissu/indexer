@@ -247,6 +247,9 @@ async def _survivors(args: argparse.Namespace) -> int:
     if new:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(proposals.render_entries(new, result.crawl, started.date()), "utf-8")
+        path.with_suffix(".opml").write_text(
+            proposals.render_opml(new, result.crawl, datetime.now(UTC)), "utf-8"
+        )
         if args.report:
             args.report.write_text(
                 proposals.render_report(new, result.crawl, summary, datetime.now(UTC)),
@@ -451,7 +454,8 @@ def _parser() -> argparse.ArgumentParser:
         "--dir",
         type=Path,
         default=Path("data/survivors"),
-        help="write proposals to a new <yyyymm>/<dd-HHMMSS>.txt here (UTC); URLs already in"
+        help="write proposals to a new <yyyymm>/<dd-HHMMSS>.txt here (UTC), and the same feeds"
+        " as OPML in a .opml file beside it; URLs already in"
         " its files or in inputs are skipped (default data/survivors)",
     )
     sv.add_argument(

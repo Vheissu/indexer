@@ -43,9 +43,9 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   recent posts (link, title, start of the description; `FeedInfo.recent_posts`, never stored or fetched), then the URL
   **commented out**: a reviewer uncomments the feeds they want. Commented-out proposals count as known (not proposed again).
   PR report: one section per feed (title, URL, last post, detected languages, all code spans); the report
-  never exceeds GitHub's 65,536-character limit (extra feeds are only counted). It starts with all proposals as OPML in a folded
-  code block (asked by the user on 2026-11-19; PRs can't hold attachments), fence longer than any backtick run in it;
-  max-feeds default 20 (was 50) so it fits.
+  never exceeds GitHub's 65,536-character limit (extra feeds are only counted). All proposals as OPML go in a
+  `<dd-HHMMSS>.opml` beside the .txt (committed with it; not a source), linked from the PR body for download
+  (moved out of the report at the user's request on 2026-11-21); max-feeds default 20 (was 50).
   Agreed filters: crawl closest to 5 years ago, first 25 MB of one random WAT file (one range
   request, random each run, no state; one file because the yield per MB is the same as several smaller slices); every feed link of every page (2026-11-21: one random link per page, agreed 2026-11-20, was dropped once the URL rules removed most junk), session params stripped
   (`urls.strip_session`), every http link tried as https, only links shaped like a feed URL (`feed_links._looks_like_a_feed`:

@@ -163,9 +163,9 @@ that file to a **new branch** with the same timestamp (for example `survivors-20
 and opens **its own pull request** into `develop`, with one
 section per feed: its title, URL, date of the newest item and languages, as code spans so
 nothing is clickable (the recent posts are in the diff). The report stays under GitHub's 65,536-character limit: feeds that don't fit are only
-counted ("... and N more feeds: see the diff"). The description also holds all the proposed feeds
-as OPML in a folded code block: save it as a `.opml` file and import it into a feed reader to try
-them while reviewing. Review the diff, **uncomment** the URL line of each feed you want (delete the
+counted ("... and N more feeds: see the diff"). The run also writes the proposed feeds as OPML
+next to the `.txt` file (same name, `.opml`; not read as a source), and the description links to
+it: download it and import it into a feed reader to try them while reviewing. Review the diff, **uncomment** the URL line of each feed you want (delete the
 `# ` before it), and merge (or close the pull request to drop the whole batch): the input job then
 loads the uncommented URLs on the push to `develop` (source `survivors`, license
 `LicenseRef-CommonCrawl-ToU`, ranked last). Every run starts from `develop`, so a pull request never carries an older run's proposals.

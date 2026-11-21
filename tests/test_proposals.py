@@ -11,12 +11,12 @@ from indexer.sources import extract_urls
 from indexer.survivors.proposals import (
     _MAX_REPORT_CHARS,
     _one_line,
-    _render_opml,
     acceptance,
     file_name,
     known_urls,
     log_line,
     render_entries,
+    render_opml,
     render_report,
 )
 from indexer.survivors.run import Survivor
@@ -130,7 +130,6 @@ def test_report_never_exceeds_the_github_limit() -> None:
     many = [survivor(f"https://{i}.example/{'a' * 200}/feed", "T" * 200) for i in range(1000)]
     report = render_report(many, "CC-MAIN-2021-49", "summary", NOW)
     assert len(report) <= _MAX_REPORT_CHARS
-    assert "<opml" not in report  # too big: left out, the room goes to the feeds
     shown = report.count("### ")
     assert 0 < shown < 1000 and f"... and {1000 - shown} more feeds: see the diff." in report
 
@@ -178,7 +177,7 @@ def test_opml_lists_every_proposal_in_order_escaped() -> None:
         survivor("https://a.example/feed?x=1&y=2", 'Tom & "Jerry" <b>\x00\x1b\n'),
         survivor("https://b.example/rss", None),
     ]
-    xml = _render_opml(feeds, "CC-MAIN-2021-49", NOW)
+    xml = render_opml(feeds, "CC-MAIN-2021-49", NOW)
     root = SafeET.fromstring(xml.encode())  # well-formed: control characters are gone
     assert root.findtext("./head/title") == "Proposed feeds from CC-MAIN-2021-49"
     outlines = root.findall("./body/outline")
@@ -188,15 +187,6 @@ def test_opml_lists_every_proposal_in_order_escaped() -> None:
     assert "<b>" not in xml  # escaped, never markup
 
 
-def test_report_starts_with_the_opml_in_a_fence_nothing_can_close() -> None:
-    feeds = [
-        survivor("https://a.example/feed", "````` break out"),
-        survivor("https://b.example/f", "B"),
-    ]
-    report = render_report(feeds, "CC-MAIN-2021-49", "summary", NOW)
-    assert report.index("<opml") < report.index("### ")  # before the sections
-    fence = "``````"  # longer than the title's run of five
-    start = report.index(fence + "xml\n") + len(fence + "xml\n")
-    end = report.index(fence + "\n", start)
-    assert report[start:end] == _render_opml(feeds, "CC-MAIN-2021-49", NOW)
-    assert "<details><summary>" in report and "</details>" in report
+def test_report_has_no_opml() -> None:  # it is in the .opml file the PR links to
+    report = render_report([survivor("https://a.example/feed", "A")], "C", "summary", NOW)
+    assert "<opml" not in report and "<details>" not in report

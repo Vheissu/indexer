@@ -27,8 +27,9 @@ feed left out is not proposed again.
 Titles and links come from the feeds, so they are untrusted: in the file they are flattened to a
 single line of printable text (a title can never start a new, uncommented line), and in the
 Markdown report they are shown in code spans, where GitHub neither renders markup nor turns
-@names into mentions or #numbers into links. The report also holds the feeds as OPML (escaped
-XML attributes, in a code block), to save and import into a feed reader while reviewing.
+@names into mentions or #numbers into links. Next to the .txt file, a run also writes the
+feeds as OPML (<dd-HHMMSS>.opml, escaped XML attributes; not read as a source), which the pull
+request links to, for trying them in a feed reader while reviewing.
 """
 
 import re
@@ -159,29 +160,14 @@ def _feed_section(s: Survivor) -> str:
     return "\n".join(lines) + "\n\n"
 
 
-def _code_block(text: str, language: str) -> str:
-    """A fenced code block, rendered literally. The fence is longer than any run of backticks
-    in the (untrusted) text, so nothing inside can close it."""
-    longest = max((len(run) for run in re.findall(r"`+", text)), default=0)
-    fence = "`" * max(3, longest + 1)
-    return f"{fence}{language}\n{text}{fence}\n"
-
-
 def render_report(
     survivors: Sequence[Survivor], crawl: str, summary: str, generated: datetime
 ) -> str:
     """Markdown for the pull request: one section per proposed feed with its title, URL, last
     post, languages and the links of its latest posts, all as code spans (nothing clickable),
-    to make spam easy to spot, after all of them as OPML (folded; left out if it would take
-    half the room). Never longer than _MAX_REPORT_CHARS: feeds that don't fit are counted at the
-    end (they are all in the diff)."""
+    to make spam easy to spot. Never longer than _MAX_REPORT_CHARS: feeds that don't fit are
+    counted at the end (they are all in the diff)."""
     report = f"**{len(survivors)} feeds** from `{crawl}`, still active today. {summary}\n\n"
-    opml = _code_block(_render_opml(survivors, crawl, generated), "xml")
-    if len(report) + len(opml) < _MAX_REPORT_CHARS // 2:  # leave most of the room to the feeds
-        report += (
-            "<details><summary>All of them as OPML: save as a .opml file and import it into a"
-            " feed reader</summary>\n\n" + opml + "\n</details>\n\n"
-        )
     for shown, s in enumerate(survivors):
         section = _feed_section(s)
         if len(report) + len(section) > _MAX_REPORT_CHARS - 200:  # room for the note below
@@ -190,10 +176,10 @@ def render_report(
     return report
 
 
-def _render_opml(survivors: Iterable[Survivor], crawl: str, generated: datetime) -> str:
-    """The proposed feeds as OPML, in proposal order, for importing into a feed reader during
-    review. Titles are flattened to one printable line (no control characters, which XML
-    forbids) and every value is escaped."""
+def render_opml(survivors: Iterable[Survivor], crawl: str, generated: datetime) -> str:
+    """The proposed feeds as OPML (the .opml file next to the run's .txt), in proposal order,
+    for importing into a feed reader during review. Titles are flattened to one printable line
+    (no control characters, which XML forbids) and every value is escaped."""
     lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<opml version="2.0">',

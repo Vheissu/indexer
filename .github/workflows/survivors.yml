@@ -80,7 +80,8 @@ jobs:
 
       - name: Propose them
         run: |
-          file="$(git ls-files --others --exclude-standard data/survivors)"
+          file="$(git ls-files --others --exclude-standard 'data/survivors/*.txt')"
+          opml="${file%.txt}.opml"
           if [ -z "$file" ]; then
             echo "Nothing new to propose."
             exit 0
@@ -88,7 +89,7 @@ jobs:
           stamp="$(basename "$(dirname "$file")")$(basename "$file" .txt)" # yyyymmdd-HHMMSS, UTC
           branch="survivors-$stamp"
           git switch -q -c "$branch"
-          git add "$file"
+          git add "$file" "$opml"
           git -c user.name="github-actions[bot]" \
               -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
               commit -q -m "Propose feeds from Common Crawl survivors, $stamp"
@@ -98,7 +99,9 @@ jobs:
             echo "\`$file\` by one survivors run. Each URL is commented out:"
             echo "[edit the file]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/edit/$branch/$file) on this"
             echo "branch, uncomment (delete \"# \" before) the URL of each feed you want, commit, then"
-            echo "merge; or close this pull request to drop them all."
+            echo "merge; or close this pull request to drop them all. To try them in a feed reader,"
+            echo "[download them as OPML]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/raw/$branch/$opml)"
+            echo "and import the file."
             echo
             cat output/survivors.md
           } > "$RUNNER_TEMP/body.md"
