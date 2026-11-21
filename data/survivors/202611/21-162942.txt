@@ -110,7 +110,7 @@
 #     Southampton at St. Mary’s Stadium. SOUTHAMPTON v
 #     BURNLEY Wednesday 9th December 2026 – kick off 8 p.m.
 #     Ticket Type Digital Allocation 1,875 Prices
-# https://www.uptheclarets.com/feed
+https://www.uptheclarets.com/feed
 
 # Web 7.0 Pando™ / Consort DSL™ / Hyperonomy™ Digital
 #   Identity Lab · en · last post 2026-10-11
@@ -171,7 +171,7 @@
 #     performance conscious websites, the placeholder images
 #     are not usually the focus. Having placeholder images
 #     that respect the actual proportion of
-# https://pure-essence.net/feed/
+https://pure-essence.net/feed/
 
 # The Speakers Group · en · last post 2026-11-19
 # about: Speakers Bureau, Motivational Keynote Speakers,
@@ -256,7 +256,7 @@
 #     boring
 #   - https://go.libhunt.com/newsletter/546
 #     💻 Issue 546 - Five Go exercises worth trying
-# https://go.libhunt.com/newsletter/feed
+https://go.libhunt.com/newsletter/feed
 
 # Kiwipolitico · en · last post 2026-11-21
 # categories (on 20 posts): uncategorized 19, governance 17,
@@ -283,7 +283,7 @@
 #     sayings that he believed would serve as good
 #     guideposts for his sons as they moved through life. I
 #     will not get into all of them, but one such sayin
-# https://www.kiwipolitico.com/feed/
+https://www.kiwipolitico.com/feed/
 
 # Flexigraze CIC · en · last post 2026-03-24
 # about: Conservation Grazing in North East England
@@ -311,7 +311,7 @@
 #     check on the ponies at Prestwick Carr, depending on
 #     where they were and how visible they were. A quick
 #     check from the gate revealed the full complinen
-# https://flexigraze.org.uk/feed/
+https://flexigraze.org.uk/feed/
 
 # GCSE TİME · en · last post 2026-06-13
 # about: GCSE Resources Download
@@ -401,7 +401,7 @@
 #     2026Originally published: October 28, 2016 by
 #     Dreamspinner PressLength: 336 pagesGenre:
 #     Contemporary/scienc
-# https://bookshelffantasies.com/feed/
+https://bookshelffantasies.com/feed/
 
 # Four-Legged Furballs · en · last post 2026-11-20
 # about: The furry ones with four legs run this joint. And
@@ -429,7 +429,7 @@
 #     about none other than her collar. After all, my mom
 #     always made Astrid the cutest little ribbon-like
 #     decorations for her collar, including this autumn
-# https://fourleggedfurballs.blogspot.com/feeds/posts/default
+https://fourleggedfurballs.blogspot.com/feeds/posts/default
 
 # James Cockroft · en · last post 2026-08-11
 # categories (on 10 posts): photobook 10, reviews 10,
@@ -456,7 +456,7 @@
 #     processes, and when I received an announcement email
 #     regarding Stanley/Barker’s publication of The
 #     Blueprints of Robert Rauschenberg and Susan Weil,
-# https://www.jamescockroft.com/feed/
+https://www.jamescockroft.com/feed/
 
 # The Big Words Blog Site · en · last post 2026-11-07
 # about: Big Words start conversations and open doors to new
@@ -540,7 +540,7 @@
 #     kidnapping and assaulting a woman at gunpoint in
 #     Pennsylvania was in court Friday after U.S. Marshals
 #     tracked him from Philadelphia to Connecticut. Ol
-# https://www.wtnh.com/feed/
+https://www.wtnh.com/feed/
 
 # Live In The Nautical · en · last post 2026-11-20
 # about: Your Nautical and Coffee Obsessed Best Friend: From
@@ -570,7 +570,7 @@
 #     Bonaro W. Overstreet Friyay Friends how is it the end
 #     of October? And dare I say it? but Christmas bells
 #     will be ringing? before anyone comes at me,
-# https://liveinthenautical.com/feed/
+https://liveinthenautical.com/feed/
 
 # Maria Russell Designs · en · last post 2026-11-06
 # about: Paper Crafting, DIYs, Mixed Media
@@ -599,7 +599,7 @@
 #     to share another project showcasing the Party Time
 #     Tails Stamp Set and coordinating dies. This stamp set
 #     pairs perfectly well with the About Birthd
-# https://mariarusselldesigns.com/feed/
+https://mariarusselldesigns.com/feed/
 
 # ckstudio · en · last post 2026-11-21
 # categories (on 10 posts): fashion photography 3, myntra 3,
@@ -777,7 +777,7 @@
 #     made a pile of slips of paper, wrote a book title on
 #     each one, put them in a tin jar, and started letting
 #     the grandson choose which book I should r
-# https://absolutelypositivelydebbie.com/feed/
+https://absolutelypositivelydebbie.com/feed/
 
 # AXEL Plastics · en · last post 2026-09-10
 # about: Mold Release and Process Aid Additives
@@ -891,7 +891,7 @@
 #     publicly humiliating employees, making violent
 #     threats, and ridiculing people in front of their
 #     colleagues, sometimes calling the treatment a neces
-# https://sfist.com/rss/
+https://sfist.com/rss/
 
 # African Examiner · en · last post 2026-11-21
 # about: Get latest Africa’s breaking news, politics
@@ -920,7 +920,7 @@
 #     it’s members and citizens of Enugu state on the need
 #     to participate actively in the upcoming 2027 general
 #     elections, the Catholic Diocese of Enugu
-# https://www.africanexaminer.com/feed/
+https://www.africanexaminer.com/feed/
 
 # Novak Djokovic · en · last post 2026-11-04
 # about: The official website
@@ -1037,7 +1037,7 @@
 #     outlet”, Morningstar members Jake Lysaght, Joe Mutch,
 #     Sonny Setz, and Liam Egerton came together to “blend
 #     walls of fuzz, 90s grit, shoegaze drones and S
-# https://www.soundspheremag.com/feed/
+https://www.soundspheremag.com/feed/
 
 # where the journey takes me 2 · en · last post 2026-11-12
 # about: crafting a simple, sustainable and organised life
@@ -1065,7 +1065,7 @@
 #     craft work yesterday morning. I say morning, yet, by
 #     the time I had swung into action and ironed
 #     yesterday’s washing, then found some of the craft mat
-# https://wherethejourneytakesme2.blog/feed/
+https://wherethejourneytakesme2.blog/feed/
 
 # Allsportspk · en · last post 2026-07-31
 # about: Allsportspk
@@ -1188,7 +1188,7 @@
 #     Nurjan Mirahmadi أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ
 #     ٱلْرَّجِيمِ بِسْمِ ٱللَّهِ ٱلرَّحْمٰنِ ٱلرَّحِيم A’uzu
 #     Billahi Minash Shaitanir Rajeem Bismil
-# https://nurmuhammad.com/feed/
+https://nurmuhammad.com/feed/
 
 # WTOP News · en · last post 2026-11-21
 # about: News Happens Here
@@ -1218,7 +1218,7 @@
 #     facility, touting what it says is its continued
 #     capability to strike if the war with the United States
 #     and Israel accelerates once more. Meanwhil
-# https://wtop.com/feed/
+https://wtop.com/feed/
 
 # Avenuegh.com · en · last post 2026-04-10
 # about: Online Portal For Education, Jobs & Scholarship
@@ -1410,7 +1410,7 @@
 #   - https://jugorockforever.blogspot.com/2026/11/zdenka-kovacicek-hello-mr-elton-john_01114625048.html
 #     ZDENKA KOVAČIČEK - Hello Mr. Elton John (1976) Single
 #     ZDENKA KOVAČIČEK fifth single record from 1976.
-# https://jugorockforever.blogspot.com/feeds/posts/default
+https://jugorockforever.blogspot.com/feeds/posts/default
 
 # TechRT · en · last post 2026-11-14
 # about: Technology, Real Time
@@ -1474,7 +1474,7 @@
 #     extraordinary worlds where witches pursue forbidden
 #     power, ancestral spirits influence human destinies,
 #     sacred kingdoms conceal ancient secrets, and ordinary
-# https://dnbstories.com/feed
+https://dnbstories.com/feed
 
 # KRQE NEWS 13 - Breaking News, Albuquerque News, New Mexico
 #   News, Weather, and Videos · en · last post 2026-11-21
@@ -1504,7 +1504,7 @@
 #     Friday night into Saturday morning across east-central
 #     and southeastern New Mexico. Our next storm system
 #     will move into northwest New Mexico earl
-# https://www.krqe.com/feed/
+https://www.krqe.com/feed/
 
 # Together We Play · en · last post 2026-11-19
 # about: Exploring the ideas, designs and possibilities that
@@ -1565,7 +1565,7 @@
 #     pine, Pausy is a simple Whack-A-Mole-style game. Pets
 #     push down on the paw shaped leavers and little
 #     creatures pop up. The top …
-# https://coolhunting.com/feed/
+https://coolhunting.com/feed/
 
 # Mark Lawrence · en · last post 2026-11-18
 # about: Click my name to navigate this blog.
@@ -1591,7 +1591,7 @@
 #     your eyes! (The cover here is followed by the rough
 #     and then the line drawing - both stages that cover
 #     artists share with the publisher art departmen
-# https://www.marklawrence.buzz/feeds/posts/default
+https://www.marklawrence.buzz/feeds/posts/default
 
 # SqueakSource · en · last post 2026-11-20
 # about: SqueakSource all projects RSS feed
@@ -1637,7 +1637,7 @@
 #     LGBTQ+ travelers keep coming back
 #     Inside a luxury LGBTQ+ expedition cruise where most
 #     passengers are repeat customers.
-# https://www.gaycities.com/articles/feed/
+https://www.gaycities.com/articles/feed/
 
 # Territorial Imperatives · en · last post 2026-06-04
 # about: A highly opinionated blog about music and the
@@ -1668,7 +1668,7 @@
 #     head. The electric automobile, pronounced dead on
 #     arrival, has miraculously seen a rebirth. EV owners,
 #     until very recently shocked at the low pri
-# https://territorialimperatives.com/feed/
+https://territorialimperatives.com/feed/
 
 # LAFPI · en · last post 2026-11-16
 # about: Let's Get to Work!
@@ -1697,7 +1697,7 @@
 #     of Cara Meyers’ solo show, “Show Me Your Dick: A
 #     Lifetime of Dating in a Larger Body,” during the
 #     Hollywood Fringe Festival this past summer. But
-# https://lafpi.com/feed/
+https://lafpi.com/feed/
 
 # Big Bend Sentinel · en · last post 2026-11-20
 # about: News from Marfa since 1926.
@@ -1726,7 +1726,7 @@
 #     rolled on Highway 90 east of Marfa. Lee Robert Whitter
 #     of Alpine was pronounced dead at the scene of the
 #     crash, which occurred at mile marker 922
-# https://bigbendsentinel.com/feed/
+https://bigbendsentinel.com/feed/
 
 # Malheur County Oregon · en · last post 2026-10-15
 # about: Malheur County Official Web Site
@@ -1926,7 +1926,7 @@
 #     the Billy Penn newsletter today. Felix Molina has
 #     worked with the Philadelphia Streets Department for
 #     almost five years […] The post Philly’s new
-# https://billypenn.com/feed/
+https://billypenn.com/feed/
 
 # Hudson County View · en · last post 2026-11-21
 # about: Hudson County View is an independent media outlet
@@ -1959,7 +1959,7 @@
 #     of $10 million in losses from online scams after their
 #     cyber unit made a recent arrest. By John Heinis/Hudson
 #     County View Jersey City Police Offi
-# https://hudsoncountyview.com/feed/
+https://hudsoncountyview.com/feed/
 
 # Castle Studies Trust Blog · en · last post 2026-11-08
 # about: Advancing the understanding of castles
@@ -1989,7 +1989,7 @@
 #     Heneb archaeologist Chris Matthews look at the new
 #     survey work funded by the Castle Studies Trust that
 #     has helped clarify the buried archaeology of
-# https://castlestudiestrust.org/blog/feed/
+https://castlestudiestrust.org/blog/feed/
 
 # Well Dressed Dad – It is a proper menswear blog. Like,
 #   with original words and opinions and suchlik… · en ·
@@ -2020,7 +2020,7 @@
 #     heads to the spectacular west coast to meet Solveig,
 #     founder of Indigo Indigo, a fabric and sewing pattern
 #     business based near the famous Lysefjo
-# https://welldresseddad.com/feed/
+https://welldresseddad.com/feed/
 
 # ESO Recruitment Portal · en · last post 2026-11-19
 # about: Welcome to the European Southern Observatory (ESO)
@@ -2066,7 +2066,7 @@
 #     scene is heating up again with fresh concepts,
 #     creative dishes and Insta-worthy spaces that are too
 #     good not to share. Ready to dig in? Here are 10
-# https://singaporefoodie.com/feed/
+https://singaporefoodie.com/feed/
 
 # 06880 · en · last post 2026-11-21
 # about: Where Westport meets the world
@@ -2086,7 +2086,7 @@
 #   - https://06880danwoog.com/2026/11/21/and-the-startup-westport-pitch-competition-winner-is/
 #     And The StartUp Westport Pitch Competition Winner Is …
 #     4 companies vie for $25,000 Continue reading →
-# https://06880danwoog.com/feed/
+https://06880danwoog.com/feed/
 
 # KXAN Austin · en · last post 2026-11-21
 # categories (on 30 posts): top stories 29, news 27, local
@@ -2116,7 +2116,7 @@
 #     Legislative Session, a group of local veterans from
 #     the state's Veterans of Foreign Wars have laid out
 #     their legislative priorities, including altern
-# https://www.kxan.com/feed/
+https://www.kxan.com/feed/
 
 # HMAUS Signal · en · last post 2026-05-30
 # about: Hawaii Macintosh & Apple Users' Society…connecting
@@ -2311,7 +2311,7 @@
 #     These 5 questions can help federal employees and
 #     retirees cut 2026 taxes, from TSP Roth conversions to
 #     withholding and charitable giving.
-# https://www.fedsmith.com/feed/
+https://www.fedsmith.com/feed/
 
 # Customs Today Newspaper · en · last post 2026-11-21
 # about: Pakistan's first indepth Newspaper on Customs
@@ -2368,7 +2368,7 @@
 #     Trains and Festivals
 #     Model trains, a downtown parade and a Victorian
 #     Christmas, with DART doing the driving.
-# https://fyi50plus.com/feed/
+https://fyi50plus.com/feed/
 
 # Brett Armstrong · en · last post 2026-10-31
 # about: It's about writing and doing good with the
@@ -2397,7 +2397,7 @@
 #     damp one where I live. Very befitting of a discussion
 #     about the village of Bracken. When Anargen and his
 #     friends first encounter the small collec
-# https://brettarmstrong.net/feed/
+https://brettarmstrong.net/feed/
 
 # looking up/looking down · en · last post 2026-10-16
 # about: an occasional blog about writing, reading and
@@ -2427,7 +2427,7 @@
 #     for a writer. I’ve a tendency to live inside my head,
 #     oblivious to left and right, up and down. And so when
 #     I first began writing, many years ago
-# https://amandacurtin.com/feed/
+https://amandacurtin.com/feed/
 
 # Religion Dispatches · en · last post 2026-11-17
 # about: The latest research published by Religion
@@ -2456,7 +2456,7 @@
 #     Democrats, Trump’s response to this historic midterm
 #     rebuke appears to be not retreat but escalation.
 #     Almost immediately, he fired Susie Wiles and e
-# https://religiondispatches.org/feed
+https://religiondispatches.org/feed
 
 # Beyond Sushi · en · last post 2026-11-18
 # about: Beyond Sushi Vegan Restaurant in NYC
@@ -2514,7 +2514,7 @@
 #     recipe
 #     Indulge yourself with this super delicious cookie
 #     recipe that uses chocolate, Guinness, and Baileys!
-# https://www.irishcentral.com/feeds/section-articles.atom
+https://www.irishcentral.com/feeds/section-articles.atom
 
 # HITC · en · last post 2026-11-21
 # about: Breaking news, analysis, transfer updates and
@@ -2546,7 +2546,7 @@
 #     everyone else. The Chicago Bulls icon is still many
 #     people’s GOAT, and everything he did during his
 #     playing ...
-# https://www.hitc.com/feed/
+https://www.hitc.com/feed/
 
 # Ottenheimer Library · en · last post 2026-11-19
 # about: UA Little Rock
@@ -2601,7 +2601,7 @@
 #     NC: 2026 Holiday Guide
 #     Here are some events across central NC the whole
 #     family can enjoy together.
-# https://abc11.com/feed/
+https://abc11.com/feed/
 
 # WP Tavern · en · last post 2026-11-18
 # about: WordPress News — Free as in Beer.
@@ -2632,7 +2632,7 @@
 #     in connecting WordPress plugin companies with web
 #     hosting providers. We discussed was how plugin
 #     creators frequently lack marketing strategies af
-# https://wptavern.com/feed/
+https://wptavern.com/feed/
 
 # LOUD WOMEN · en · last post 2026-11-20
 # about: Putting more women on more stages, and turning up
@@ -2662,7 +2662,7 @@
 #     latest single ‘Don’t Know’, a hip-hop soul fusion
 #     exploring the aftermath of a relationship breakdown.
 #     Blending distorted sounds with layered, emo
-# https://loudwomen.org/feed/
+https://loudwomen.org/feed/
 
 # Measure Manage · en · last post 2026-07-08
 # categories (on 10 posts): quantity surveying 4, material
@@ -2838,7 +2838,7 @@
 #     a farm, bonded with a golden retriever at his new
 #     home, and they walk the kids to the bus stop.
 #     subscribe to the Laughing Squid Newsletter The pos
-# https://laughingsquid.com/feed/
+https://laughingsquid.com/feed/
 
 # RAW CHILI | RAWCHILI.COM · en · last post 2026-11-21
 # about: RAWCHILI.COM | MLB FANBASE | NFL FANBASE | NBA
@@ -2937,7 +2937,7 @@
 #     addictive features harm children's mental health and
 #     mislead parents about the platform's safety risks. The
 #     post Kaul sues TikTok over youth mental hea
-# https://wislawjournal.com/feed/
+https://wislawjournal.com/feed/
 
 # H-Archive · en · last post 2026-04-01
 # categories (on 25 posts): none
@@ -2963,7 +2963,7 @@
 #     the games we have with the frostgrave ruleset. In
 #     times of social distancing, we decided not to be
 #     stopped by Covid 19 from having fun and dubbed fo
-# https://h-archive.blogspot.com/feeds/posts/default
+https://h-archive.blogspot.com/feeds/posts/default
 
 # Warp Door · en · last post 2026-11-19
 # about: Warp Door
@@ -2985,7 +2985,7 @@
 #     Will you be able to build a fortress to stand the test
 #     of time, or will that pesky hero send your work
 #     crumbling to the ground?
-# https://warpdoor.com/rss/
+https://warpdoor.com/rss/
 
 # Going Places, Far & Near · en · last post 2026-11-20
 # about: Because travel is a life-enhancing, relationship
@@ -3017,7 +3017,7 @@
 #     on Christmas morning – it is all the lead up, the
 #     anticipation, the awe at the holiday decorations,
 #     lights, and happenings. Many places that are ye
-# https://goingplacesfarandnear.com/feed/
+https://goingplacesfarandnear.com/feed/
 
 # THRacing · en · last post 2026-11-20
 # about: THR Tarnhorn Racing
@@ -3112,7 +3112,7 @@
 #     teams in the NFL and are tied with a handful of teams
 #     with a five-game win streak. That culminated in an
 #     absolute whooping of the Pittsburgh Steeler
-# https://www.cincyjungle.com/rss/index.xml
+https://www.cincyjungle.com/rss/index.xml
 
 # CCWP · en · last post 2026-11-19
 # about: together, fearless and unified
@@ -3161,7 +3161,7 @@
 #   - https://www.wellingtonadvertiser.com/driver-airlifted-after-highway-6-crash/
 #     Driver airlifted after Highway 6 crash
 #     Wellington OPP cruiser struck at road closure
-# https://www.wellingtonadvertiser.com/rss/
+https://www.wellingtonadvertiser.com/rss/
 
 # Connexus Church · en · last post 2026-04-29
 # about: Watch Church Online
@@ -3248,7 +3248,7 @@
 #     Ten weeks of NFL action are in the books, and the
 #     season is starting to take shape. And by “shape,” I
 #     mean “Drake Maye from us.” Oh well, say la …
-# https://footballabsurdity.com/feed/
+https://footballabsurdity.com/feed/
 
 # Full - MMA WEEKLY · en · last post 2026-11-21
 # about: MMAWeekly.com is a UFC and MMA news and fan site,
@@ -3274,7 +3274,7 @@
 #     GTA 6 seems to have almost everything any gamer could
 #     wish for, even an encounter that pokes fun at MMA
 #     culture.
-# https://www.mmaweekly.com/.rss/feed/e730bac4-af18-40d3-ab6a-08fd2c1f4bff.xml
+https://www.mmaweekly.com/.rss/feed/e730bac4-af18-40d3-ab6a-08fd2c1f4bff.xml
 
 # Doctor's Nutrition · en · last post 2026-07-03
 # about: We take the guess work out of nutrition!
@@ -3390,7 +3390,7 @@
 #     with AI-Powered Exposure Management
 #     Torrance, California, USA, 19th November 2026,
 #     CyberNewswire
-# https://www.nextbigfuture.com/feed
+https://www.nextbigfuture.com/feed
 
 # BC Bookmarks · en · last post 2026-11-19
 # about: Literary news from the Boston College community
@@ -3419,7 +3419,7 @@
 #     Free in the Age of Anxiety (Thesis/Penguin Random
 #     House, 2026), Research Professor of Psychology Peter
 #     Gray contends that adult overprotection is a
-# https://bcbookmarks.com/feed/
+https://bcbookmarks.com/feed/
 
 # The Siasat Daily · en · last post 2026-11-21
 # about: Latest Hyderabad News, Bollywood, World News
@@ -3450,7 +3450,7 @@
 #     in the 2002 Bilkis Bano gangrape and murder case,
 #     released by the Supreme Court, issued a statement
 #     denying her claims that she was neither inform
-# https://www.siasat.com/feed/
+https://www.siasat.com/feed/
 
 # CampusIDNews · en · last post 2026-11-19
 # about: Campus card, mobile credential, identity and
@@ -3514,7 +3514,7 @@
 #     Amazon USA, Amazon Canada. Nearly all deals are
 #     available on this BHphoto Holiday page too (Click
 #     here). Europe: Amazon Germany, Amazon UK, Amazon F
-# https://www.sonyalpharumors.com/feed/
+https://www.sonyalpharumors.com/feed/
 
 # HowStuffWorks - Learn How Everything Works! · en · last
 #   post 2026-11-20
@@ -3542,7 +3542,7 @@
 #     Meet Asherah, the ancient Levantine goddess whose name
 #     appears in biblical passages, inscriptions and debates
 #     about early Israelite worship.
-# https://syndication.howstuffworks.com/rss/HSW
+https://syndication.howstuffworks.com/rss/HSW
 
 # COUNTRY SQUIRE MAGAZINE · en · last post 2026-11-21
 # about: A Leading Platform for Voices from the Overlooked
@@ -3571,7 +3571,7 @@
 #     Ducks The white-tailed sea eagle, once driven to
 #     near-extinction along the Baltic coastline by DDT and
 #     industrial chemicals known as PCBs, has made
-# https://countrysquire.co.uk/feed/
+https://countrysquire.co.uk/feed/
 
 # The Side Hustle Show · en · last post 2026-11-19
 # about: The Side Hustle Show is the entrepreneurship
@@ -3623,7 +3623,7 @@
 #   - https://www.decanter.com/wine/usa/top-50-us-wines-2026-20-11/
 #     Top 50 US wines 2026: 20-11
 #     Nearly there...
-# https://www.decanter.com/feed/
+https://www.decanter.com/feed/
 
 # CaughtOffside · en · last post 2026-11-21
 # about: Football transfer rumours, news and Gossip from the
@@ -3656,7 +3656,7 @@
 #     has been tipped to make Fulham defender Antonee
 #     Robinson his very first signing at Old Trafford. That
 #     is according to a report from Football Inside
-# https://www.caughtoffside.com/feed/
+https://www.caughtoffside.com/feed/
 
 # Betsy's Health Foods: Always taking your health & your
 #   budget to heart · en · last post 2026-11-10
@@ -3715,7 +3715,7 @@
 #     Diaconu spent most of his time after school outdoors,
 #     playing soccer or biking. Diaconu later moved to the
 #     US with a foreign exchange teaching pro
-# https://www.ameshighweb.com/feed/
+https://www.ameshighweb.com/feed/
 
 # Media Beat | IU Libraries Blogs · en · last post
 #   2026-11-19
@@ -3744,7 +3744,7 @@
 #     shorter here in Bloomington, finding ways to stay warm
 #     and positive becomes especially important. Between
 #     chilly walks across campus, studying for fi
-# https://blogs.libraries.indiana.edu/mediabeat/feed/
+https://blogs.libraries.indiana.edu/mediabeat/feed/
 
 # The Hog Ring · en · last post 2026-11-20
 # about: Auto Upholstery Community
@@ -3771,7 +3771,7 @@
 #     A seat belt can be buckled and still be worn
 #     incorrectly. ZF LIFETEC aims to change that using
 #     infrared technology.
-# https://thehogring.com/feed/
+https://thehogring.com/feed/
 
 # The Collegian · en · last post 2026-11-20
 # about: South Dakota State University's Independent
@@ -3801,7 +3801,7 @@
 #     deployed by the U.S. military. The number of students,
 #     the branch of the military and the locations where
 #     they are headed... The post Students navigate
-# https://sdsucollegian.com/feed/
+https://sdsucollegian.com/feed/
 
 # Cratin Computing Co., Inc · en · last post 2026-11-20
 # categories (on 10 posts): web & cloud 3, business 2,
@@ -3859,7 +3859,7 @@
 #     more than a century, and LAIKA’s Wildwood is the
 #     newest proof. The award-winning Oregon animation
 #     studio’s long-awaited film opened on 23 October 202
-# https://oregonconfluence.com/feed/
+https://oregonconfluence.com/feed/
 
 # Macmillan Library · en · last post 2026-11-19
 # about: Macmillan Library
@@ -3918,7 +3918,7 @@
 #     weather conditions, including high tides and winds, as
 #     advised by the National Weather Service. Refunds for
 #     tickets will be processed automatically
-# https://rockviewlive.com/feed/
+https://rockviewlive.com/feed/
 
 # Defend Democracy Press · en · last post 2026-11-21
 # about: Defending Democracy in Greece and Europe
@@ -3948,7 +3948,7 @@
 #     interview of Major General Mohsen Rezaei on Iranian
 #     state television, Saturday 31 October 2026. Mohsen
 #     Rezaei is Secretary of Iran’s Supreme Nation
-# https://www.defenddemocracy.press/feed/
+https://www.defenddemocracy.press/feed/
 
 # Point Me to the Plane · en · last post 2026-11-14
 # about: Your Guide To Points, Planes, Hotels, and Deals
@@ -3978,7 +3978,7 @@
 #     and fascinating country. The cuisine, culture, and
 #     history all create a trip you'll long remember. I
 #     travel there as often as I can.
-# https://pointmetotheplane.boardingarea.com/feed/
+https://pointmetotheplane.boardingarea.com/feed/
 
 # Panyaden · en · last post 2026-08-26
 # categories (on 8 posts): ib curriculum 5, uncategorized 3
@@ -4037,7 +4037,7 @@
 #     to share the story of Taik Ki (TK) Lee, FSA, Managing
 #     Director and APAC Head of Aon Life Advisory and
 #     Solutions. For TK, actuarial science has alwa
-# https://www.theactuarymagazine.org/feed/
+https://www.theactuarymagazine.org/feed/
 
 # CnEVPost · en · last post 2026-11-21
 # about: China EV news, data, insights and more
@@ -4067,7 +4067,7 @@
 #     50 constituents, with the changes taking effect on
 #     December 7. For details, please visit CnEVPost
 #     (cnev.co).
-# https://cnevpost.com/feed/
+https://cnevpost.com/feed/
 
 # Crowlas & Ludgvan WI · en · last post 2026-11-15
 # about: Inspiring Women
@@ -4123,7 +4123,7 @@
 #     decade. Companies, technologies, and new applications
 #     are placing demands on the space engineers of the
 #     future. In autumn 2027, Chalmers Universi
-# https://eijournal.com/feed
+https://eijournal.com/feed
 
 # Hackaday · en · last post 2026-11-21
 # about: Fresh hacks every day
@@ -4151,7 +4151,7 @@
 #     straightforward, but the interfaces on offer are often
 #     disappointing. But happily there’s another way, which
 #     is to transform the HDMI into CSI …read more
-# https://hackaday.com/feed/
+https://hackaday.com/feed/
 
 # Talbot Spy · en · last post 2026-11-21
 # about: Covering the public affairs and arts of Talbot
@@ -4181,7 +4181,7 @@
 #     suggestions of a wine trio, we are featuring a quartet
 #     of wine selections that Emily selected as pairings to
 #     our Thanksgiving Menu. Three are customer
-# https://talbotspy.org/feed/
+https://talbotspy.org/feed/
 
 # South Leeds Life · en · last post 2026-11-21
 # about: What's happening in Beeston, Belle Isle,
@@ -4211,7 +4211,7 @@
 #     over the coming week in South Leeds We start this week
 #     at St Cross Church in Middleton (LS10 4HT) which is
 #     holding its Christmas Fair on Saturday
-# https://southleedslife.com/feed/
+https://southleedslife.com/feed/
 
 # Tulips in Little Rock · en · last post 2026-11-20
 # about: Tulips in Little Rock is a charming local
@@ -4325,7 +4325,7 @@
 #     Denny stained glass detail | "Embodying Advent: Making
 #     Unique Nativities" with Steven Homestead | "Come Bring
 #     Your Burdens to God" | "On God's Shou
-# https://artandtheology.org/feed/
+https://artandtheology.org/feed/
 
 # THE DOUG HENNING PROJECT · en · last post 2026-05-01
 # about: WHERE MAGIC AND WONDER LIVE!
@@ -4354,7 +4354,7 @@
 #     It’s the kind of show that is spoken of reverently in
 #     terms of magic history. However, for those who saw it
 #     at the time, there supposedly wasn’t
-# https://doughenningproject.com/feed/
+https://doughenningproject.com/feed/
 
 # Lucky DeVille Tattoo · en · last post 2026-11-20
 # about: Tattoos, Piercing, Body Art | Buffalo, NY
@@ -4411,7 +4411,7 @@
 #     about CESSA, Illinois's mobile crisis response system,
 #     and how you can get involved if you are interested in
 #     seeing more people who are in mental /
-# https://jessicagimeno.com/feed/
+https://jessicagimeno.com/feed/
 
 # drbeeper · en · last post 2026-09-23
 # about: Art is how we decorate space, Music is how we
@@ -4439,7 +4439,7 @@
 #     DrB 2026 sampler: Ω.01 [download] A little off the top
 #     DrB 2025 sampler: Ω.02 [download] Old is new again DrB
 #     2025 sampler: Ω.03 [download] Riding the weird-o line
-# https://drbeeper.com/feed/
+https://drbeeper.com/feed/
 
 # Jeremy Novy · en · last post 2026-08-14
 # about: Stencil Art and Murals
@@ -4458,7 +4458,7 @@
 #   - https://youtu.be/n8UNzt9DpNM#new_tab
 #     TMJ4: Koi fish murals defaced with anti-LGBTQ slur
 #     weeks before Pride Month
-# https://jeremynovystencils.com/feed/
+https://jeremynovystencils.com/feed/
 
 # The Student Life · en · last post 2026-11-21
 # about: Claremont Colleges News
@@ -4489,7 +4489,7 @@
 #     ethnic studies departments across the country have
 #     faced cuts or consolidations. These threats, and
 #     proposed IRS regulations on Pomona College, w
-# https://tsl.news/feed/
+https://tsl.news/feed/
 
 # Star Martial Arts LTD · en · last post 2026-11-02
 # about: Taekwondo Classes for All Ages & All Abilities in
@@ -4550,7 +4550,7 @@
 #     not affect the contents of my review and all opinions
 #     are my own. The Faerie Handmaid by Louisa Morgan
 #     Mogsy’s Rating: 4 of 5 stars Genre: Fantas
-# https://bibliosanctum.com/feed/
+https://bibliosanctum.com/feed/
 
 # All About Anime and Manga · en · last post 2026-11-21
 # about: By Otaku for Otaku
@@ -4580,7 +4580,7 @@
 #     right? Here are 10 fan wishes for Penelope Eckhart's
 #     adaptation, from fluid animation and full-length
 #     episodes to faithful storytelling, strong v
-# https://allanimemags.com/feed/
+https://allanimemags.com/feed/
 
 # OC TALK RADIO · en · last post 2026-11-21
 # about: Giving OC Businesses a Voice on the Internet
@@ -4658,7 +4658,7 @@
 #   - https://transdiffusion.org/2026/11/12/meet-bob-holness-of-take-a-letter/
 #     Meet Bob Holness of Take a Letter
 #     Robert Holness at home and at work in 1962
-# https://transdiffusion.org/feed/
+https://transdiffusion.org/feed/
 
 # V for Verbatim · en · last post 2026-07-29
 # about: V's Official Blog
@@ -4687,7 +4687,7 @@
 #     sports-related, it needs an occasional update. So let
 #     me distinguish mine by beginning with something
 #     provocative: the 2025 Seattle Seahawks team is one
-# https://v-for-verbatim.com/feed/
+https://v-for-verbatim.com/feed/
 
 # Velvet Chainsaw · en · last post 2026-10-29
 # about: Helping Improve annual meetings, conferences and
@@ -4853,7 +4853,7 @@
 #     the Hedgehog x Godzilla, talking to some wonderful
 #     people about this exciting crossover that's been years
 #     in the making. This post was originally i
-# https://www.nickmarino.net/feed/
+https://www.nickmarino.net/feed/
 
 # OODAloop · en · last post 2026-11-20
 # about: Understand tomorrow, today.
@@ -4882,7 +4882,7 @@
 #     and Privacy Operations Center uncovered a security
 #     incident that required the Information Services
 #     Division to reset all database passwords across
-# https://oodaloop.com/feed/
+https://oodaloop.com/feed/
 
 # ABC30 RSS Feed · en · last post 2026-11-21
 # about: Keep up with news from your local ABC station.
@@ -4910,7 +4910,7 @@
 #     collapsed during a physical education class and later
 #     died, has filed a wrongful death lawsuit against
 #     Fresno Unified School District and several scho
-# https://abc30.com/feed/
+https://abc30.com/feed/
 
 # Lanka Business Online · en · last post 2026-11-20
 # categories (on 10 posts): watch tower 3, technology 2, 000
@@ -4943,7 +4943,7 @@
 #     connects them can give fresh purpose to a longstanding
 #     friendship. By Dr. Ranjith Krishnan, Associate
 #     Professor, Christ University, Delhi NCR, India S
-# https://www.lankabusinessonline.com/feed/
+https://www.lankabusinessonline.com/feed/
 
 # National Health Law Program · en · last post 2026-11-18
 # categories (on 10 posts): uncategorized 7, a proper scare:
@@ -5008,7 +5008,7 @@
 #     city streets for the honky-tonks of Nashville. And as
 #     a Georgia girl originally, it feels a little like
 #     coming home and reconnecting with my Souther
-# https://www.womansworld.com/feed
+https://www.womansworld.com/feed
 
 # Sales Success Stories · en · last post 2026-10-22
 # about: Hear the Secrets of World Class Sales Professionals
@@ -5071,7 +5071,7 @@
 #     A-frame cabin was constructed in 1962, nestled at the
 #     base of Nub’s Nob ski hill near Harbor Springs,
 #     Michigan. This location is so ideal, the famil
-# https://onekindesign.com/feed/
+https://onekindesign.com/feed/
 
 # My Anguilla Experience · en · last post 2026-05-30
 # about: My Anguilla Experience can be your Anguilla
@@ -5103,7 +5103,7 @@
 #     Corporate Partner is that it never feels
 #     transactional. Liberty is a credit union, whichmeans
 #     it’s m
-# https://myanguillaexperience.com/feed/
+https://myanguillaexperience.com/feed/
 
 # Jo Cooks · en · last post 2026-11-19
 # about: Simple - Easy - Comfort
@@ -5131,7 +5131,7 @@
 #     a bright squeeze of lemon. Green Bean Almondine comes
 #     together in 30 minutes and looks like the fanciest
 #     thing on the table. I’d put this next to
-# https://www.jocooks.com/feed/
+https://www.jocooks.com/feed/
 
 # Grenada League for Adult Development (GLAD) · en · last
 #   post 2026-11-06
@@ -5182,7 +5182,7 @@
 #     one of the defendants charged with narcotics
 #     violations in conjunction with the death of my friend
 #     and collaborator Michael K. Williams. It was w
-# https://davidsimon.com/feed/
+https://davidsimon.com/feed/
 
 # Trade Ready · en · last post 2026-11-18
 # about: Blog for International Trade Experts
@@ -5243,7 +5243,7 @@
 #     travel destination. Those who understand this country
 #     is more than the islands it’s famous for also know
 #     it’s even better in the off seasons. For t
-# https://luxemagazineottawa.com/feed/
+https://luxemagazineottawa.com/feed/
 
 # Max Rohde · en · last post 2026-11-16
 # about: small wins that add up
@@ -5264,7 +5264,7 @@
 #     Toggle Between Light and Dark Mode in Windows using
 #     PowerShell
 #     It's possible with a simple script!
-# https://maxrohde.com/rss/
+https://maxrohde.com/rss/
 
 # Times Lifestyle · en · last post 2026-11-16
 # about: An array of frolic buzz!
@@ -5354,7 +5354,7 @@
 #     treaty negotiations on the use of autonomous weapons
 #     systems in armed conflict, with human rights groups
 #     urging action as deployments increase
-# https://www.computerweekly.com/rss/Latest-IT-news.xml
+https://www.computerweekly.com/rss/Latest-IT-news.xml
 
 # American Patriot Daily · en · last post 2026-11-21
 # about: News for America
@@ -5445,7 +5445,7 @@
 #     journey with me through A2Z. I’m truly grateful to
 #     each of you—for reading, for your thoughtful comments,
 #     and for the love you’ve shown throughout. Your
-# https://trinalooksback.wordpress.com/feed/
+https://trinalooksback.wordpress.com/feed/
 
 # Bobby Carroll's Movie Diary · en · last post 2026-11-20
 # about: Blockbusters and flops, firm favourites and
@@ -5472,7 +5472,7 @@
 #     Linda Darnell in this film noir where a down to his
 #     last dollar con man arrives in a town with a
 #     delinquent waitress, a heavenly heiress and a trave
-# https://bcmoviediary.com/feed/
+https://bcmoviediary.com/feed/
 
 # Luxury Yacht Charter & Superyacht News · en · last post
 #   2026-11-18
@@ -5614,7 +5614,7 @@
 #     Michael Kors Sunglasses: Celine Ring: Finaste
 #     Earrings: Finaste Heels: Shein Collaboration note –
 #     this outfit is sponsored by The Pretty Dress Compa
-# https://mandyvictoria.com/feed/
+https://mandyvictoria.com/feed/
 
 # Loopz · en · last post 2026-08-03
 # about: Deep house music for your soul
@@ -5671,7 +5671,7 @@
 #     Latina as a late capstone event to round out Hispanic
 #     Heritage Month. It acts as a way to look into the
 #     cultures of several Spanish-speaking countr
-# https://fitchburgpoint.com/feed/
+https://fitchburgpoint.com/feed/
 
 # Bee Culture Magazine · en · last post 2026-11-16
 # about: The Magazine of American Beekeeping
@@ -5699,7 +5699,7 @@
 #     Fischer Imagine buying a new home, zoned for mixed
 #     residential/agricultural use, and then having the town
 #     property board refuse approval for beehives on
-# https://beeculture.com/feed/
+https://beeculture.com/feed/
 
 # SPM Window Cleaning · en · last post 2026-10-19
 # categories (on 10 posts): property maintenance 8, bin
@@ -5757,7 +5757,7 @@
 #     to start thinking about getting together with family
 #     and friends, trying not to dry out turkeys, and making
 #     sure the […] The post Ava Boyd Takes on
-# https://www.whatcomtalk.com/feed/
+https://www.whatcomtalk.com/feed/
 
 # New Beginning Christian Ministries International · en ·
 #   last post 2026-09-29
@@ -5782,7 +5782,7 @@
 #     God is a good God and He is Faithful according to all
 #     His Promises. All of them, every promise in His Word
 #     is available for you.
-# https://newbeginninginternational.net/feed/
+https://newbeginninginternational.net/feed/
 
 # Decorating Matters · en · last post 2026-11-16
 # about: Serving the painting and decorating industry since
@@ -5870,7 +5870,7 @@
 #     charges following an investigation into over $536,000
 #     in alleged financial misconduct at a sheltered
 #     workshop for adults with disabilities.
-# https://www.ozarksfirst.com/feed/
+https://www.ozarksfirst.com/feed/
 
 # Stepping Toes · en · last post 2026-11-14
 # about: Things said on this site possibly can upset someone
@@ -5898,7 +5898,7 @@
 #     Am I angry at self? Proud? How do I feel about my
 #     achievements? Do I like my eyebrows? My hair? What can
 #     I do to be better? Sometimes I mock myself
-# https://steppingtoes.wordpress.com/feed/
+https://steppingtoes.wordpress.com/feed/
 
 # Men Style Fashion · en · last post 2026-11-20
 # about: We Show You How
@@ -5987,7 +5987,7 @@
 #     (WNBA) Atlanta Dream fell short after the 4-minute
 #     mark of being tied up during the WNBA Championship
 #     game against the Golden State Valkyries. Wit
-# https://splashmags.com/feed/
+https://splashmags.com/feed/
 
 # LinuxForDevices · en · last post 2026-11-17
 # about: Linux tutorials, open-source news, and device setup
@@ -6163,7 +6163,7 @@
 #     the proper term for this musician is "manualist."
 #     YouTuber der schaelm expertly manipulates his hands,
 #     using the pocket between his palms to push a
-# https://www.neatorama.com/feed/
+https://www.neatorama.com/feed/
 
 # BeautyFrizz · en · last post 2026-11-12
 # categories (on 10 posts): skin care 4, reviews 3, beauty
@@ -6206,7 +6206,7 @@
 #     ❤️🔥❤️ - ORANGE CHICKEN AND FRIED RICE - ❤️🔥❤️
 #   - https://ninasrecipes4u.blogspot.com/2026/10/beef-macaroni.html
 #     ❤️🔥❤️ - BEEF MACARONI - ❤️🔥❤️
-# https://ninasrecipes4u.blogspot.com/feeds/posts/default
+https://ninasrecipes4u.blogspot.com/feeds/posts/default
 
 # BILYONARYO Business · en · last post 2026-11-21
 # categories (on 10 posts): banner story 4, banner 1 2, golf
@@ -6249,7 +6249,7 @@
 #     abandoning take-off a murmuration of dried leaves
 #   - https://tinywords.com/2026/11/18/50980/
 #     fencepost crow the stoop in my father’s shadow
-# https://tinywords.com/feed/
+https://tinywords.com/feed/
 
 # Open Briefing · en · last post 2026-11-02
 # about: For action under pressure
@@ -6419,7 +6419,7 @@
 #     Diocesan College, Cape Town War Memorial Chapel
 #     Centenary Celebration Readings: Philippians 1: 1 -11;
 #     Psalm 111; Luke 14:1 -6 May I speak in the
-# https://archbishop.anglicanchurchsa.org/feeds/posts/default
+https://archbishop.anglicanchurchsa.org/feeds/posts/default
 
 # Statcounter Blog. · en · last post 2026-11-09
 # categories (on 6 posts): features 5, news 2, cro 1, paid
@@ -6503,7 +6503,7 @@
 #     annual family photos. He brought a special treat of a
 #     camera that took me back to using iMac’s in the
 #     computer lab in school. A Sony Digital Mavica
-# https://unsupervised.ca/feed/
+https://unsupervised.ca/feed/
 
 # denelecampbell · en · last post 2026-11-06
 # about: Author
@@ -6531,7 +6531,7 @@
 #     development of artificial intelligence are: Automation
 #     and Efficiency: Streamlining repetitive or dangerous
 #     tasks to free up human time and reduc
-# https://denelecampbell.com/feed/
+https://denelecampbell.com/feed/
 
 # California Globe · en · last post 2026-11-21
 # about: California Political News
@@ -6558,7 +6558,7 @@
 #     Mechanics of Budget Bills Junior
 #     A Budget Bill Junior directly modifies the uncodified
 #     chaptered text of the annual Budget Act
-# https://californiaglobe.com/feed/
+https://californiaglobe.com/feed/
 
 # Flighty's plot · en · last post 2026-11-15
 # categories (on 10 posts): flighty's plot 10, armchair
@@ -6581,7 +6581,7 @@
 #     the plot most days through October. I ended the month
 #     yesterday by digging out, and sieving, two builder’s
 #     buckets worth of compost (over 25 litres)
-# https://flightplot.wordpress.com/feed/
+https://flightplot.wordpress.com/feed/
 
 # Dragon Fire Tactical · en · last post 2026-07-05
 # about: Get Tactical Be Strategic
@@ -6642,7 +6642,7 @@
 #     megachurch operative, it is an uncanny, almost
 #     supernatural ability to sense which way the cultural
 #     wind is blowing and immediately change the col
-# https://pulpitandpen.org/feed/
+https://pulpitandpen.org/feed/
 
 # windsoriteDOTca News · en · last post 2026-11-21
 # about: windsor ontario's local breaking news neighbourhood
@@ -6671,7 +6671,7 @@
 #     reproduction of this content, in whole or part, is
 #     strictly prohibited under the Copyright Act, RSC 1985,
 #     c C-42. All rights reserved.
-# https://windsorite.ca/feed/
+https://windsorite.ca/feed/
 
 # Geotechnical Society of Edmonton · en · last post
 #   2026-10-06
@@ -6791,7 +6791,7 @@
 #     seeds and the pumpkin. Roasted onions and made
 #     focaccia. Gonna feast on this with the pumpkin soup I
 #     made from my roasted pumpkin.I watched about half
-# https://jenniferleefogerty.com/feed/
+https://jenniferleefogerty.com/feed/
 
 # Just Bags Luggage Center · en · last post 2026-11-18
 # about: Just Bags Luggage Center has everything you need
@@ -6837,7 +6837,7 @@
 #     each book on several categories including writing,
 #     originality, plot development, character development,
 #     and enjoyment. This year each of our pane
-# https://thereadersroom.org/feed/
+https://thereadersroom.org/feed/
 
 # Praise Indy · en · last post 2026-11-20
 # about: Praise Indy - Indy's Inspiration Station | New
@@ -6901,7 +6901,7 @@
 #     how stressful it all was after our 0-0 draw at Forest.
 #     Here I am again, stressed, wailing. Two weeks to go.
 #     Not to freak you out too much, but here
-# https://eastlower.co.uk/feed/
+https://eastlower.co.uk/feed/
 
 # DVIDS RSS Feed: Audio · en · last post 2026-11-20
 # about: DVIDS RSS Feed: Audio
@@ -6962,7 +6962,7 @@
 #     fitness updates ahead of Sunday’s La Liga clash with
 #     Villarreal at Camp Nou. Speaking at a press conference
 #     on Saturday, the coach confirmed Andrea
-# https://www.barcablaugranes.com/rss/index.xml
+https://www.barcablaugranes.com/rss/index.xml
 
 # The Rational Pessimist · en · last post 2026-11-19
 # about: Frank S. Robinson's blog on life, society,
@@ -6991,7 +6991,7 @@
 #     could vote in Mississippi. After last Tuesday’s
 #     election, this felt like a different country. Back to
 #     the one I loved. A defeated New York GOP Congre
-# https://rationaloptimist.wordpress.com/feed/
+https://rationaloptimist.wordpress.com/feed/
 
 # London Digital Twin Research Centre · en · last post
 #   2026-11-21
@@ -7053,7 +7053,7 @@
 #     Prevention of Organised Crime Bill can be passed by a
 #     simple majority in Parliament, subject to several
 #     amendments. The post Sri Lanka’s organised cri
-# https://www.onlanka.com/feed
+https://www.onlanka.com/feed
 
 # Ghana Latest Football News, Live Scores, Results -
 #   GHANAsoccernet · en · last post 2026-11-21
@@ -7088,7 +7088,7 @@
 #     aspirations of being a great example to the next
 #     generation of Ghanaian footballers.Â The Sheffield
 #     United star holds the record for being the most cappe
-# https://ghanasoccernet.com/rss
+https://ghanasoccernet.com/rss
 
 # Carol Thompson Images, Inc. · en · last post 2026-11-20
 # about: Color Analysis, Cosmetics, Skincare,
@@ -7288,7 +7288,7 @@
 #     Wizkid join forces for an Afro-juggernaut of a single,
 #     and Julien Baker announces her first solo album in six
 #     years: it’s Wonderlist beabadobee –
-# https://www.wonderlandmagazine.com/feed/
+https://www.wonderlandmagazine.com/feed/
 
 # In Love with PAPER!! · en · last post 2026-11-13
 # categories (on 25 posts): none
@@ -7313,7 +7313,7 @@
 #     Merry Little Christmas blog . Our theme is always
 #     Anything Goes Christmas. Supplies: Tim Holtz - Holiday
 #     Greetings stamps Versa Mark + Ranger Gold
-# https://inlovewithpaper.blogspot.com/feeds/posts/default
+https://inlovewithpaper.blogspot.com/feeds/posts/default
 
 # www.theregister.com - Articles · en · last post 2026-11-21
 # about: Articles from www.theregister.com
@@ -7336,7 +7336,7 @@
 #     NASA Mars rover and orbiter suffer glitches
 #     It isn't only systems on Earth suffering technical
 #     problems
-# https://api.theregister.com/api/v1/article?orderBy=published&site_id=2&remapper=rss&content=node
+https://api.theregister.com/api/v1/article?orderBy=published&site_id=2&remapper=rss&content=node
 
 # successcds · en · last post 2026-10-21
 # categories (on 20 posts): career-qna 15, edunews 4,
@@ -7390,7 +7390,7 @@
 #     detectives within the Los Angeles Police Department
 #     for allegedly unlawful interrogation and investigation
 #     following a stillbirth she had in 2024 —
-# https://michiganadvance.com/feed/
+https://michiganadvance.com/feed/
 
 # Tin Tức · en · last post 2026-11-20
 # about: Huyndai Cà Mau, Huyndai Nam Bình, Huyndai, huyndai
@@ -7563,7 +7563,7 @@
 #     the House of Blues in Las Vegas for a performance that
 #     completely exceeded my expectations. Having never
 #     attended one of his shows and only being f
-# https://zrockr.com/feed/
+https://zrockr.com/feed/
 
 # Coinomi · en · last post 2026-11-21
 # about: Offering Latest Cryptocurrency, Bitcoin News
@@ -7687,7 +7687,7 @@
 #     injections, our beloved veterans, and welcomes! I
 #     think it’s safe to say that no matter what person you
 #     voted for on November 3rd, we’re all trying t
-# https://rocklandtimes.com/feed/
+https://rocklandtimes.com/feed/
 
 # The Metropole · en · last post 2026-11-20
 # about: The Official Blog of the Urban History Association
@@ -7717,7 +7717,7 @@
 #     the City.“ By Colin J. Wood Philadelphian financier
 #     George Gandy arrived in the Tampa Bay region in 1915
 #     to establish a development company to bu
-# https://themetropole.blog/feed/
+https://themetropole.blog/feed/
 
 # The Central Trend · en · last post 2026-11-20
 # about: The Student Voice of Forest Hills Central
@@ -7746,7 +7746,7 @@
 #     Detective Comics Universe (DCU) films—timeline-wise—is
 #     pretty good, but doesn’t bring anything new to the
 #     superhero formula. I wasn’t exactly blown away
-# https://thecentraltrend.com/feed/
+https://thecentraltrend.com/feed/
 
 # WPBS | Serving Northern New York and Eastern Ontario · en
 #   · last post 2026-11-18
@@ -7807,7 +7807,7 @@
 #     authority, alongside commitments to hold national
 #     elections within two years. The UN Security Council
 #     has exten
-# https://www.libyanexpress.com/feed/
+https://www.libyanexpress.com/feed/
 
 # Rock Paper Shotgun Latest Articles Feed · en · last post
 #   2026-11-21
@@ -7838,7 +7838,7 @@
 #     together to pick what we consider to be the best 100
 #     games you can play on PC. There's very little science
 #     involved, and we try not to get too hung up
-# https://www.rockpapershotgun.com/feed
+https://www.rockpapershotgun.com/feed
 
 # scrappystickyinkymess · en · last post 2026-11-21
 # categories (on 10 posts): challenges 6, collage 5,
@@ -7865,7 +7865,7 @@
 #     mini-collages from a Mindful Community challenge. The
 #     plan had been to have completed 52 of them so I could
 #     sit the book on my desk and flip to a new
-# https://scrappystickyinkymess.wordpress.com/feed/
+https://scrappystickyinkymess.wordpress.com/feed/
 
 # Salafi Sounds · en · last post 2026-11-16
 # about: المكتبة السلفية Salafi Publications
@@ -7894,7 +7894,7 @@
 #     All praise is due to Allah, the Lord of all
 #     creation—and may He extol the Messenger in the highest
 #     company [...more]
-# https://www.salafisounds.com/feed/
+https://www.salafisounds.com/feed/
 
 # World Site Index · en · last post 2026-10-22
 # about: World Site Index
@@ -8012,7 +8012,7 @@
 #     For SLEEK EV CEO and co-founder Ben Tunveenukoon,
 #     changing an industry begins with understanding
 #     people’s everyday frustrations
-# https://www.thepeakmagazine.com.sg/_plat/api/rss.xml
+https://www.thepeakmagazine.com.sg/_plat/api/rss.xml
 
 # The Morning Lead · en · last post 2026-11-21
 # categories (on 30 posts): none
@@ -8134,7 +8134,7 @@
 #     Combat Exhaustion, 1943
 #     November 11 is Veteran’s Day, and to mark the occasion
 #     Circulating Now has invited guest […]
-# https://circulatingnow.nlm.nih.gov/feed/
+https://circulatingnow.nlm.nih.gov/feed/
 
 # Meteored UK · en · last post 2026-11-21
 # about: Weather News - Stay up to date with international
@@ -8166,7 +8166,7 @@
 #     disrupted the polar vortex high above the Arctic.
 #     Could its effects reach the UK in December, bringing
 #     easterly winds, colder temperatures and even
-# https://www.yourweather.co.uk/feed/
+https://www.yourweather.co.uk/feed/
 
 # Learning Earthways · en · last post 2026-11-13
 # about: journeying together to regain what was lost
@@ -8195,7 +8195,7 @@
 #     work on giving something very helpful back to the land
 #     that gives us life. We continue with our decades-old
 #     practice of regenerating this ecosystem
-# https://learningearthways.net/feed/
+https://learningearthways.net/feed/
 
 # NSMB Articles · en · last post 2026-11-20
 # about: The latest NSMB.com articles as they're publised
@@ -8219,7 +8219,7 @@
 #     Some adjustments, some component swaps, volume spacers
 #     and moar pressure have altered the nature of this
 #     well-priced eMTB ( Comments : 4 )
-# https://nsmb.com/articles/rss/
+https://nsmb.com/articles/rss/
 
 # Holovision.TV · en · last post 2026-10-24
 # about: HOLOVISION.TV IS ON THE HIVE PLATFORM
@@ -8323,7 +8323,7 @@
 #     girls’ varsity water polo opened its season against
 #     Glendora High School with a 15-13 loss, unable to
 #     recover from an early deficit, on Nov. 10 at the
-# https://breaolindawildcat.com/feed/
+https://breaolindawildcat.com/feed/
 
 # Digital Matters | Luc Vanier Faculty Fellow, Fall 2025 ·
 #   en · last post 2026-06-19
@@ -8382,7 +8382,7 @@
 #     From Dark Dimensions An Unspeakable Presence Awakens,
 #     the decimating second LP by Seattle-based blackened
 #     sludge metal henchmen STRICKEN, preceding
-# https://thehorrortimes.com/feed/
+https://thehorrortimes.com/feed/
 
 # janaaxline · en · last post 2026-07-25
 # about: Find your passion. Live your dream.
@@ -8439,7 +8439,7 @@
 #     Instagram. This hop is a spin off from the annual
 #     suicide awareness hop. We are a group of cardmakers
 #     who want to actually send out some sunshine.
-# https://simplybeautifulcreations.blogspot.com/feeds/posts/default
+https://simplybeautifulcreations.blogspot.com/feeds/posts/default
 
 # Anne Riggs · en · last post 2026-10-26
 # about: visual artist, teaching artist, registered NDIS
@@ -8468,7 +8468,7 @@
 #     creativity that celebrates the creative makers in
 #     Bayside. Held for the first time in February 2025,
 #     it’s back in 2026. I opened my studio on the wee
-# https://anneriggs.com/feed/
+https://anneriggs.com/feed/
 
 # Apex Display · en · last post 2026-10-19
 # about: Experience shopfitting freedom like never before
@@ -8528,4 +8528,4 @@
 #     Hill Civic Association website www.bhcivic.org or call
 #     the office (617-227-1922) for more information on any
 #     meetings or events. Charles Street Beau
-# https://beaconhilltimes.com/feed/
+https://beaconhilltimes.com/feed/
