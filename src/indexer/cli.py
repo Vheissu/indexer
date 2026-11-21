@@ -9,6 +9,7 @@ Commands, in pipeline order:
   drop-tables  delete every table of this project (all data); needs --yes
   topics       the topics of some text (no feed, no database): to try the topic model
   languages    the languages of some text (no feed, no database): to try the language model
+  train        train the proposal filter on the reviewed proposal files in data/training.toml
 """
 
 import argparse
@@ -19,6 +20,7 @@ import os
 import sys
 from collections import Counter
 from collections.abc import AsyncIterator, Awaitable, Callable, Coroutine, Mapping, Sequence
+from dataclasses import replace
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -40,6 +42,7 @@ from indexer.sources import (
 )
 from indexer.survivors import proposals
 from indexer.survivors import run as survivors_run
+from indexer.survivors.run import Survivor
 from indexer.survivors.wat import CommonCrawlError
 from indexer.topics import (
     TOPICS_DIR,
@@ -48,6 +51,14 @@ from indexer.topics import (
     TopicsError,
     build_index,
     read_synonyms,
+)
+from indexer.training import (
+    MODEL_DIR,
+    TRAINING_CONFIG,
+    TrainingError,
+    load_model,
+    parse_proposals,
+    train_model,
 )
 
 log = logging.getLogger("indexer")
@@ -252,6 +263,9 @@ async def _survivors(args: argparse.Namespace) -> int:
         f" {result.rejected['unwanted_url']} redirected to an unwanted URL);"
         f" acceptance {proposals.acceptance(len(new), result.checked)}"
     )
+    if new and args.training.exists():
+        new, dropped = _filtered(new, result.crawl, started, args.training)
+        summary += f"; {dropped} dropped by the model trained on past reviews"
     path = args.dir / proposals.file_name(started)
     print(f"{result.crawl}: {summary}: {len(new)} proposed in {path}")
     for survivor in new:
@@ -272,6 +286,30 @@ async def _survivors(args: argparse.Namespace) -> int:
                 encoding="utf-8",
             )
     return 0
+
+
+def _filtered(
+    survivors: list[Survivor], crawl: str, started: datetime, config: Path
+) -> tuple[list[Survivor], int]:
+    """The survivors the model trained on `config` keeps (training.py: those scoring at least
+    its threshold), each with its score, best first, and how many it dropped; all of them,
+    unscored, with a warning, if the model is missing or stale."""
+    try:
+        model = load_model(config)
+    except (OSError, ValueError, KeyError, TrainingError) as exc:
+        print(f"warning: proposals not filtered: {exc}", file=sys.stderr)
+        return survivors, 0
+    # each proposal's text exactly as a reviewer reads it in the file
+    texts = [
+        p.text for p in parse_proposals(proposals.render_entries(survivors, crawl, started.date()))
+    ]
+    scored = [
+        replace(s, score=score) for s, score in zip(survivors, model.scores(texts), strict=True)
+    ]
+    kept = sorted(
+        (s for s in scored if (s.score or 0.0) >= model.threshold), key=lambda s: -(s.score or 0.0)
+    )
+    return kept, len(scored) - len(kept)
 
 
 async def _run(args: argparse.Namespace) -> int:
@@ -475,6 +513,14 @@ def _parser() -> argparse.ArgumentParser:
         " its files or in inputs are skipped (default data/survivors)",
     )
     sv.add_argument(
+        "--training",
+        type=Path,
+        default=TRAINING_CONFIG,
+        help="score each proposal with the model trained on the reviewed proposal files listed"
+        " here, drop the lowest-scoring and list the rest best first; skipped if the file is"
+        f" missing (default {TRAINING_CONFIG})",
+    )
+    sv.add_argument(
         "--report",
         type=Path,
         help="also write the run's summary as Markdown (for the pull request)",
@@ -637,6 +683,25 @@ def _parser() -> argparse.ArgumentParser:
         help=f"where the sets are written (default {EMBEDDINGS_DIR})",
     )
 
+    tr = command(
+        "train",
+        _train,
+        "train the proposal filter on the reviewed proposal files --training lists, and write"
+        " it to --directory (proposals.npz, proposals.json)",
+    )
+    tr.add_argument(
+        "--training",
+        type=Path,
+        default=TRAINING_CONFIG,
+        help=f"the list of reviewed proposal files (default {TRAINING_CONFIG})",
+    )
+    tr.add_argument(
+        "--directory",
+        type=Path,
+        default=MODEL_DIR,
+        help=f"where the model is written (default {MODEL_DIR})",
+    )
+
     lg = command(
         "languages",
         _languages,
@@ -675,6 +740,19 @@ async def _embeddings(args: argparse.Namespace) -> int:
             print(f"error: cannot build the embedding set {name}: {exc}", file=sys.stderr)
             return 1
         print(f"{name}: {rows} rows embedded into {args.directory / name}.npy")
+    return 0
+
+
+async def _train(args: argparse.Namespace) -> int:
+    try:
+        model = train_model(args.training, args.directory)
+    except (OSError, ValueError, TrainingError) as exc:
+        print(f"error: cannot train the proposal filter: {exc}", file=sys.stderr)
+        return 1
+    print(
+        f"proposal filter: {len(model.vocab)} terms, threshold {model.threshold:.3f},"
+        f" written to {args.directory}"
+    )
     return 0
 
 

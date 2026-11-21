@@ -136,6 +136,7 @@ https://borg.com/feed/
 #     wondering what really happened in the Phoenix real
 #     estate market in 2025 and where 2026 is heading,
 #     you’re not alone. Headlines swung between hyp
+# rejected: commercial
 # https://phoenixwaterfronttalk.com/feed/
 
 # American Vegan Society · en · last post 2026-11-20
@@ -163,6 +164,7 @@ https://borg.com/feed/
 #     Philadelphia, and the story of that group along with
 #     others illustrates our city’s seminal role in American
 #     veg history. The tour departs from Front
+# rejected: notices
 # https://americanvegan.org/feed/
 
 # Thistles and Kiwis · en · last post 2026-11-19
@@ -214,6 +216,7 @@ https://thistlesandkiwis.org/feed/
 #     designer / illustrator pls) We're seeking a creative
 #     Apparel/Fashion Designer to develop garments from
 #     concept to complete tech pack, based on an establi
+# rejected: machine
 # https://www.dk.freelancer.com/rss.xml
 
 # 3DPut · en · last post 2026-11-20
@@ -243,6 +246,7 @@ https://thistlesandkiwis.org/feed/
 #     Best 3D Printer Maintenance & Cleaning Kits 2026:
 #     Complete Buyer’s Guide
 #     repair test
+# rejected: seo
 # https://3dput.com/feed/
 
 # Fresh Essays Samples · en · last post 2026-04-15
@@ -272,6 +276,7 @@ https://thistlesandkiwis.org/feed/
 #     China’s enormous contiguous region was significantly
 #     powerful to East Asia’s economy. This paper addresses
 #     these aspects and explores the role of
+# rejected: seo
 # https://blog.freshessays.com/feed
 
 # Kaua'i Daily News · en · last post 2026-11-20
@@ -301,6 +306,7 @@ https://thistlesandkiwis.org/feed/
 #     for murdering a lawyer whose body was never found.
 #     Tomasz Kosowski was found guilty of first-degree
 #     murder in September for the death of 41-year-ol
+# rejected: republished
 # https://www.kauaidailynews.com/feed/
 
 # London Theatre Direct - Atom feed · en · last post
@@ -332,6 +338,7 @@ https://thistlesandkiwis.org/feed/
 #     Willy Wonka in the brand-new musical production of
 #     Charlie and the Chocolate Factory , opening at the
 #     London Coliseum on 4 June 2027 for a strictl
+# rejected: commercial
 # https://de.londontheatredirect.com/NewsFeed/Atom
 
 # Gadgetify · en · last post 2026-11-21
@@ -361,6 +368,7 @@ https://thistlesandkiwis.org/feed/
 #     days, especially the ones you can run on their own
 #     computer. The XAIStack AI NAS is a workstation with
 #     enough power to run Opus 4.6 or GPT 5.6 Sol
+# rejected: seo
 # https://www.gadgetify.com/feed/
 
 # Checkout · en · last post 2026-11-20
@@ -384,6 +392,7 @@ https://thistlesandkiwis.org/feed/
 #     Britain and the European Union sealed deals on easing
 #     food trade and boosting youth mobility to reset ties
 #     at a summit on Friday.
+# rejected: press
 # https://www.checkout.ie/feed
 
 # Canine Journal · en · last post 2026-11-16
@@ -416,6 +425,7 @@ https://thistlesandkiwis.org/feed/
 #     Discover 20 incredibly affectionate dog breeds,
 #     including devoted cuddlers, playful companions, and
 #     gentl
+# rejected: seo
 # https://www.caninejournal.com/feed/
 
 # Interaksyon · en · last post 2026-11-20
@@ -477,6 +487,7 @@ https://interaksyon.philstar.com/feed/
 #     Tennessee, Memphis is the place you’ll want to visit
 #     if you’re a big fan of Elvis Presley and Johnny Cash.
 #     Many popular songs originated in this place
+# rejected: seo
 # https://trip101.com/feed
 
 # Christian Womanhood · en · last post 2026-11-04
@@ -565,6 +576,7 @@ https://sueannporter.com/feed/
 #     project from a row of menu boards mounted above a busy
 #     counter. Both use digital signage, but they call for
 #     different amounts of installation work, t
+# rejected: seo
 # https://techpatio.com/feed
 
 # PocketSuite · en · last post 2026-11-19
@@ -598,6 +610,7 @@ https://sueannporter.com/feed/
 #     automatically from the completed appointments on a
 #     groomer’s calendar and the commission or hourly rate
 #     you’ve set for them, with two-tap processing instead
+# rejected: commercial
 # https://pocketsuite.io/feed/
 
 # Founterior.com · en · last post 2026-10-25
@@ -629,6 +642,7 @@ https://sueannporter.com/feed/
 #     regardless of the season. One simple way to improve
 #     indoor comfort is by using a humidifier. Dry indoor
 #     air
+# rejected: seo
 # https://founterior.com/feed/
 
 # Top Documentary Films · en · last post 2026-11-20
@@ -783,6 +797,7 @@ https://jonathangreenauthor.blogspot.com/feeds/posts/default
 #     partners to advance their interests abroad as
 #     weakening multilateral security arrangements give way
 #     to narrower partnerships. With the US preoccu
+# rejected: other
 # https://rozenbergquarterly.com/feed/
 
 # Martech Zone · en · last post 2026-11-21
@@ -846,6 +861,7 @@ https://martech.zone/feed/
 #     Features & Costs Quick Answer VoIP phone systems help
 #     estate agents manage office calls, shared branch
 #     numbers, mobile negotiators and property enqu
+# rejected: commercial
 # https://compareyourbusinesscosts.co.uk/feed
 
 # Mobile Computing Today · en · last post 2026-10-26
@@ -877,6 +893,7 @@ https://martech.zone/feed/
 #     maxillary bone loss, and growing adoption of
 #     graft-free implant procedures are supporting the
 #     expansion of t
+# rejected: press
 # https://mobilecomputingtoday.co.uk/feed/
 
 # Intercede International · en · last post 2026-10-13
@@ -909,6 +926,7 @@ https://martech.zone/feed/
 #     communities in Nepal’s Rasuwa and Nuwakot
 #     districts—leaving 1,000+ deaths and 4,000 people
 #     missing. I
+# rejected: notices
 # https://www.intercedenow.ca/feed/
 
 # I Love Classic Soul · en · last post 2026-11-21
@@ -937,6 +955,7 @@ https://martech.zone/feed/
 #     chosen by editors. However, Billboard may receive a
 #     commission on orders placed through its retail links,
 #     and the retailer may receive certain audi
+# rejected: republished
 # https://iloveclassicsoul.com/feed/
 
 # Press Insider Daily · en · last post 2026-11-17
@@ -967,6 +986,7 @@ https://martech.zone/feed/
 #     focus of the Federal Aviation Administration’s
 #     investigation into a nationwide ground stop that
 #     disrupted U.S. air travel on Friday, November 13. The
+# rejected: republished
 # https://pressinsiderdaily.com/feed/
 
 # runningandthecity · en · last post 2026-09-06
@@ -1052,6 +1072,7 @@ https://lance-bebopspokenhere.blogspot.com/feeds/posts/default
 #     customer communication with technical service calls.
 #     Missed calls obviously translate to missed business,
 #     with studies indicating that 85% of custom
+# rejected: seo
 # https://linkseed.info/feed/
 
 # Jon Gray Lang.com · en · last post 2026-10-22
@@ -1167,6 +1188,7 @@ https://natehoff.com/feed/
 #     commercial properties can quickly lose the polished
 #     look they carried through the warmer months. Fall
 #     color plantings solve that problem by refre
+# rejected: commercial
 # https://jfcgm.com/feed/
 
 # AnaStpaul · en · last post 2026-11-21
@@ -1307,6 +1329,7 @@ https://hans.gerwitz.com/feeds/notes.rss
 #     someone as "the last Windows XP stronghold" I'm not
 #     surprised if the owner actually pulled the plug,
 #     himself not being into daily driving Windows XP an
+# rejected: forum
 # https://www.vogons.org/feed
 
 # Stattus4 · en · last post 2026-10-29
@@ -1340,6 +1363,7 @@ https://hans.gerwitz.com/feeds/notes.rss
 #     April 26th to 29th in Rio de Janeiro. The event is the
 #     leading global forum dedicated to reducing water loss;
 #     the cleantech company was one of the s
+# rejected: commercial
 # https://stattus4.com/en/feed/
 
 # FEDweek · en · last post 2026-11-20
@@ -1488,6 +1512,7 @@ https://www.adigae.com/feed/
 #     They fail because they teach controls before
 #     motivation, replace play with text, and end on a dead
 #     screen. This guide breaks down five common tut
+# rejected: seo
 # https://game-developers.org/feed
 
 # Photographic Rhodes · en · last post 2026-11-09
@@ -1516,6 +1541,7 @@ https://www.adigae.com/feed/
 #     Park a couple weeks ago! I absolutely love the grasses
 #     and flowers popping up behind them. I met this family
 #     a few years ago at our kiddos’ swim tea
+# rejected: commercial
 # https://photographicrhodes.com/feed/
 
 # studiploma.com · en · last post 2026-07-01
@@ -1548,6 +1574,7 @@ https://www.adigae.com/feed/
 #     Oregon state College fake degree certificate. Eastern
 #     Oregon State University is located in the small town
 #     of Lagland, Oregon, USA. It was founde
+# rejected: unsafe
 # https://studiploma.com/feed
 
 # Insurance Agencies Inc. Blog · en · last post 2026-11-02
@@ -1574,6 +1601,7 @@ https://www.adigae.com/feed/
 #     protects you from many hazards that are prevalent
 #     outside. Unfortunately, there are a lot of dangers
 #     lurking around your home. Under the right condi
+# rejected: commercial
 # https://www.insuranceagenciesinc.com/blog/rss/
 
 # Shenandoah Valley Bicycle Coalition · en · last post
@@ -1605,6 +1633,7 @@ https://www.adigae.com/feed/
 #     Western Slope Volunteer of the Year Written by Penny
 #     Shelton Trail work is about more than moving dirt,
 #     clearing brush or maintaining the trails we lo
+# rejected: notices
 # https://svbcoalition.org/feed/
 
 # Stamping Ground · en · last post 2026-11-18
@@ -1660,6 +1689,7 @@ https://stamping-ground.blogspot.com/feeds/posts/default
 #     A learning management system (LMS) is software for
 #     creating, delivering and tracking courses. Here's how
 #     an LMS works, its features and how to choose one.
+# rejected: seo
 # https://pqrnews.com/feed/
 
 # Queso Suizo · en · last post 2026-08-25
@@ -1711,6 +1741,7 @@ https://www.queso-suizo.com/feeds/posts/default
 #     ACCC warns against misleading ‘storewide’ or ‘limited
 #     time’ Black Friday sales claims
 #     10 November 2026
+# rejected: press
 # https://www.accc.gov.au/rss/media_releases.xml
 
 # Pashto News and Current Affairs Channel | Khyber News · en
@@ -1853,6 +1884,7 @@ https://www.queerty.com/feed/
 #     Need
 #   - https://www.acceptancerate.com/article/university-of-florida-early-decision-2026-11-17/
 #     UF Early Decision 2027: Deadline, Binding Rules & Odds
+# rejected: seo
 # https://www.acceptancerate.com/feed/
 
 # BelleNews.com · en · last post 2026-11-20
@@ -1885,6 +1917,7 @@ https://www.queerty.com/feed/
 #     decades-old copper wiring with modern fiber-optic
 #     cables triggered the longest nationwide grounding of
 #     U.S. flights since the September 11, 2001 t
+# rejected: republished
 # https://bellenews.com/feed/
 
 # Curiosmos · en · last post 2026-11-03
@@ -1915,6 +1948,7 @@ https://www.queerty.com/feed/
 #     body drew Francis Tiso to Tibet. His investigation
 #     opens a window onto the rainbow-body tradition and its
 #     witnesses. The post Tibet’s Rainbow Body
+# rejected: seo
 # https://curiosmos.com/feed/
 
 # Tea, Cake and Football – Grounds of the UK · en · last
@@ -2004,6 +2038,7 @@ https://mwnation.com/feed/
 #     acquisition of Kilsby Williams. The deal offers
 #     opportunities for Bishop Fleming to expand into South
 #     Wa
+# rejected: press
 # https://www.consultancy.uk/rss/consultancy_rssfeed.xml
 
 # Eurasia Review · en · last post 2026-11-21
@@ -2107,6 +2142,7 @@ https://theunfoundpodcast.com/feed/
 #     of firms can both play a key role in helping job
 #     hunters achieve success, they are fundamentally two
 #     different things—operating on two totally diff
+# rejected: commercial
 # https://www.career-horizons.com/feed/
 
 # Mari Alexander · en · last post 2026-11-10
@@ -2197,6 +2233,7 @@ https://dailypost.ng/feed/
 #     They’re not just stylish; they’re super practical and
 #     add a touch of elegance, especially in homes that get
 #     a lot of sun and have those awesome beach
+# rejected: commercial
 # https://brisbane-shutters.com/feed/
 
 # Heat Nation · en · last post 2026-11-20
@@ -2258,6 +2295,7 @@ https://heatnation.com/feed/
 #     boards! There is no other beach town in California
 #     that is more deeply rooted in surf culture Continue
 #     reading
+# rejected: press
 # https://artquenchmagazine.com/feed/
 
 # Kashmir Reader · en · last post 2026-11-21
@@ -2346,6 +2384,7 @@ https://www.nerdly.co.uk/feed/
 #     comes down to just money. Lifestyle goals, geographic
 #     flexibility, and how attached you actually are to a
 #     specific location all factor in, and gett
+# rejected: seo
 # https://bwestate.org/feed/
 
 # Eagle Ridge Chevrolet Buick GMC Ltd. · en · last post
@@ -2378,6 +2417,7 @@ https://www.nerdly.co.uk/feed/
 #     temperatures in Coquitlam to snow-covered mountain
 #     highways, timing your winter tire changeover in BC
 #     correctly ca
+# rejected: commercial
 # https://www.eagleridgegm.com/feed/
 
 # Frank's Cars in the Hood · en · last post 2026-11-20
@@ -2458,6 +2498,7 @@ https://www.chicitysports.com/feed/
 #     growth, hybrid teams, employee comfort, smart space
 #     planning while limiting disruption and costs over
 #     time. The post The Importance of Creating an
+# rejected: seo
 # https://mindxmaster.com/feed/
 
 # Andrew Lalchan Photographer · en · last post 2026-11-16
@@ -2486,6 +2527,7 @@ https://www.chicitysports.com/feed/
 #     autumn changes. As we reach mid-autumn, summer still
 #     feels like it's clinging on; October brings another
 #     busy month, especially across London and Wat
+# rejected: commercial
 # https://blog.andrewlalchan.co.uk/feed/
 
 # Sophisticated Bitch · en · last post 2026-11-21
@@ -2517,6 +2559,7 @@ https://www.chicitysports.com/feed/
 #     sabotage. It started with something almost laughable:
 #     an unknown enemy taking over the remote controls that
 #     allow central operators to adjust the temp
+# rejected: republished
 # https://sophisticatedbitch.com/feed/
 
 # Ierokipia Municipality · en · last post 2026-10-31
@@ -2544,6 +2587,7 @@ https://www.chicitysports.com/feed/
 #     DISTRICT OFFICE WILL REMAIN CLOSED FOR THE PERIOD
 #     07/09/2026 – 18/09/2024. FOR PUBLIC SERVICE, YOU MAY
 #     CONTACT THE OFFICES OF THE FINANCE DEPARTME
+# rejected: notices
 # https://ierokipia.org.cy/en/feed/
 
 # Travel Guide · en · last post 2026-10-23
@@ -2570,6 +2614,7 @@ https://www.chicitysports.com/feed/
 #     Most Beautiful Places to Visit
 #     Slovenia is one of Europe’s most captivating hidden
 #     gems, a small but remarkably diverse country…
+# rejected: seo
 # https://trithuctot.com/feed/
 
 # Building Futures Pediatric Therapy · en · last post
@@ -2598,6 +2643,7 @@ https://www.chicitysports.com/feed/
 #     a child practicing speech sounds or learning new
 #     words. But speech-language pathologists also help
 #     children develop another important part of com
+# rejected: commercial
 # https://buildingfutures.life/feed/
 
 # MonetizeMore · en · last post 2026-11-13
@@ -2628,6 +2674,7 @@ https://www.chicitysports.com/feed/
 #     bidder within a demand source. Google Ad Manager’s
 #     per-bidder floors give publishers the option to set
 #     different floor prices for individual program
+# rejected: commercial
 # https://www.monetizemore.com/feed/
 
 # Iraq Business News · en · last post 2026-11-21
@@ -2691,6 +2738,7 @@ https://www.iraq-businessnews.com/feed/
 #     judging panel for the Gerald Edelman Family Business
 #     of the Year Award at the 2026 Lloyds British Business
 #     Excellence Awards.
+# rejected: commercial
 # https://www.wrssystems.co.uk/feed/
 
 # Urban One on TV Columbus · en · last post 2026-11-20
@@ -2724,6 +2772,7 @@ https://www.iraq-businessnews.com/feed/
 #     show on Peacock, opening up about parenting, their
 #     relationship, and Nelly's love for Ashanti's
 #     postpartum body.
+# rejected: republished
 # https://urbanonetvcolumbus.com/feed/
 
 # Road Trip Queen · en · last post 2026-11-10
@@ -2849,6 +2898,7 @@ https://www.lkldnow.com/feed/
 #     than clean teeth. It is about feeling confident every
 #     time you smile at a beach gathering, a dinner on ...
 #     The post What Makes a Top Dentist in Ne
+# rejected: commercial
 # https://newportbeach-dentist.com/feed/
 
 # Arts Huntsville · en · last post 2026-10-02
@@ -2879,6 +2929,7 @@ https://www.lkldnow.com/feed/
 #     collection return in 2026, now entering their second
 #     year of bringing visitors inside Huntsville’s
 #     architectural landmark. These free, docent-led t
+# rejected: notices
 # https://www.artshuntsville.org/feed/
 
 # Cranberry Corporate · en · last post 2026-10-05
@@ -2914,6 +2965,7 @@ https://www.lkldnow.com/feed/
 #     planners, and marketing managers how to use customized
 #     children’s apparel to boost brand engagement and
 #     community goodwill. It breaks down the key bus
+# rejected: commercial
 # https://www.cranberrycorporate.co.za/feed/
 
 # Case Auctions · en · last post 2026-10-19
@@ -2942,6 +2994,7 @@ https://www.lkldnow.com/feed/
 #     1st and Sunday, August 2nd at our Main Gallery in
 #     Knoxville and features fine art, antiques, and jewelry
 #     from Southern institutions, collections, an
+# rejected: commercial
 # https://caseantiques.com/feed/
 
 # Michigan Lakes and Streams Association, INC · en · last
@@ -2971,6 +3024,7 @@ https://www.lkldnow.com/feed/
 #     offering $35,000 in grant funding for 2027 to support
 #     local organizations conducting aquatic invasive
 #     species outreach and boater education efforts ac
+# rejected: notices
 # https://mymlsa.org/feed/
 
 # Aroona Luxury Boat Charters · en · last post 2026-05-23
@@ -3003,6 +3057,7 @@ https://www.lkldnow.com/feed/
 #     with Aroona Luxury Boat Charters, but honestly, those
 #     words barely scratch the surface of what this trip
 #     gave us. It’s hard to explain how much y
+# rejected: commercial
 # https://aroonaluxuryboatcharters.com.au/feed/
 
 # Steve Haas Travel · en · last post 2026-10-04
@@ -3090,6 +3145,7 @@ https://imjeffreyrex.com/feed/
 #     5-minute message holds, 6,500-nit daytime brightness,
 #     50% changeable area max, and annual $97.25 fees per
 #     face. The post Houston EMC Rules: Brightness,
+# rejected: commercial
 # https://nationalsigns.com/feed/
 
 # Shannon A. Thompson · en · last post 2026-10-14
@@ -3149,6 +3205,7 @@ https://shannonathompson.com/feed/
 #     Health Privacy Exploring the acoustic and visual
 #     porosity of the modern apartment and its impact on our
 #     personal medical sanctuary. Curating a pr
+# rejected: seo
 # https://projpi.com/feed/
 
 # Journal of the American Revolution · en · last post
@@ -3265,6 +3322,7 @@ https://toy.photography/feed/
 #     discuss issues related to import of steel on 25th
 #     November 2026 in Steel Room, 3rd Floor, GPOA- 3,
 #     Netaji Nagar New Delhi. Companies and associations
+# rejected: republished
 # https://globalgreenews.com/feed/
 
 # Media Diversified · en · last post 2026-09-14
@@ -3349,6 +3407,7 @@ https://majorlinux.com/feed/
 #     Production: Challenges and Opportunities Beyond
 #     Creativity Led by Houda Bakkali Organized by Alliance
 #     Française de Xela Date: September 30, 2026 |
+# rejected: commercial
 # https://houdabakkali.com/feed/
 
 # HostAdvice Blog · en · last post 2026-11-19
@@ -3379,6 +3438,7 @@ https://majorlinux.com/feed/
 #     It is usually 99.9%, sometimes 99.95% or 99.99%, and
 #     it sits on the pricing page next to the storage and
 #     bandwidth numbers as if it were just as
+# rejected: seo
 # https://he.hostadvice.com/blog/feed/
 
 # Gixmi · en · last post 2026-11-18
@@ -3409,6 +3469,7 @@ https://majorlinux.com/feed/
 #     shaped instead by the specific demographics and
 #     geography of each neighbourhood. Over the past several
 #     years, the western suburbs, spanning Andheri W
+# rejected: unsafe
 # https://www.gixmi.com/feed/
 
 # SurveyMonkey · en · last post 2026-11-19
@@ -3426,6 +3487,7 @@ https://majorlinux.com/feed/
 #   - https://www.surveymonkey.com/curiosity/surveymonkey-gemini-integration/?ut_source=rss
 #     Create and analyze SurveyMonkey surveys directly in
 #     Gemini
+# rejected: commercial
 # https://www.surveymonkey.com/feed/
 
 # Minuttia · en · last post 2026-10-27
@@ -3453,6 +3515,7 @@ https://majorlinux.com/feed/
 #     (since ChatGPT launched in November 2022), and it has
 #     already changed how brands approach online visibility.
 #     Yet despite widespread adoption, conve
+# rejected: commercial
 # https://minuttia.com/feed/
 
 # Silver Screen Classics · en · last post 2026-07-18
@@ -3562,6 +3625,7 @@ https://www.laurenscountyadvertiser.net/feed/
 #     carnival was packing up their gear and heading to
 #     their next venue, my wife had a small gathering on my
 #     patio to celebrate my birthday! My son surpr
+# rejected: commercial
 # https://www.costassupermarket.com/feed/
 
 # Get Digital Products · en · last post 2026-09-19
@@ -3593,6 +3657,7 @@ https://www.laurenscountyadvertiser.net/feed/
 #     one-person brand style guide that fits on a single
 #     page and gets used beats a twenty-page brand book that
 #     gets opened once. The test is not whethe
+# rejected: commercial
 # https://getdigitalproducts.com/feed/
 
 # Fortress Power · en · last post 2026-11-17
@@ -3626,6 +3691,7 @@ https://www.laurenscountyadvertiser.net/feed/
 #     Are Eligible for the 30% Federal Investment Tax Credit
 #     Langhorne, PA – November 3, 2026: Fortress Power, a
 #     leading manufacturer of advanced energ
+# rejected: commercial
 # https://www.fortresspower.com/feed/
 
 # TechUnwrapped · en · last post 2026-11-19
@@ -3656,6 +3722,7 @@ https://www.laurenscountyadvertiser.net/feed/
 #     – what are they? In order to understand why virtual
 #     numbers are necessary, we need to first understand how
 #     they function. In a virtual phone numb
+# rejected: seo
 # https://techunwrapped.com/feed/
 
 # Born2Invest · en · last post 2026-11-20
@@ -3686,6 +3753,7 @@ https://www.laurenscountyadvertiser.net/feed/
 #     billion in 2026, up 17%, and passed 1 million patients
 #     for the first time, according to consultancy Kaya
 #     Mind’s annual yearbook. Prices are falling and
+# rejected: press
 # https://born2invest.com/feed/
 
 # TF O'Brien · en · last post 2026-11-20
@@ -3711,6 +3779,7 @@ https://www.laurenscountyadvertiser.net/feed/
 #     cooler evenings, so your furnace may not be getting
 #     much of a workout just yet. But as temperatures
 #     continue to drop, it’s important to know whethe
+# rejected: commercial
 # https://tfobrien.com/feed/
 
 # Lucy Wyndham-Read · en · last post 2026-11-17
@@ -3736,6 +3805,7 @@ https://www.laurenscountyadvertiser.net/feed/
 #     Intensity Boosts Results
 #     Tai Chi Walking for Weight Loss – Powerful Interval
 #     Moves That Work
+# rejected: commercial
 # https://lwrfitness.com/feed/
 
 # USC Institute on Inequalities in Global Health · en · last
@@ -3769,6 +3839,7 @@ https://www.laurenscountyadvertiser.net/feed/
 #     comes to a close, we are proud to share the USC
 #     Institute on Inequalities in Global Health 2025
 #     Annual... Read More » The post 2025 Annual Report
+# rejected: notices
 # https://globalhealth.usc.edu/feed/
 
 # AUR Newest Packages · en · last post 2026-11-21
@@ -3786,6 +3857,7 @@ https://www.laurenscountyadvertiser.net/feed/
 #   - http://aur.archlinux.org/packages/wiso-steuer-2027
 #     wiso-steuer-2027
 #     File your German tax return for the tax year 2026
+# rejected: machine
 # https://aur.archlinux.org/rss/
 
 # Auto Insurance Maw · en · last post 2026-09-29
@@ -3818,6 +3890,7 @@ https://www.laurenscountyadvertiser.net/feed/
 #     change the appearance of a vehicle. But when it comes
 #     to the front windows, UK drivers need to be careful.
 #     The law does not ban all front window ti
+# rejected: seo
 # https://autoinsurancemaw.info/feed/
 
 # Authority Press WireAuthority Press Wire · en · last post
@@ -3851,6 +3924,7 @@ https://www.laurenscountyadvertiser.net/feed/
 #     discussing total tax-free retirement Listen to the
 #     interview on the Business Innovators Radio Network:
 #     https://businessinnovatorsradio.com/interview-
+# rejected: press
 # https://authoritypresswire.com/feed/
 
 # EDM Joy | Best EDM Music News, New EDM DJ News · en · last
@@ -3883,6 +3957,7 @@ https://www.laurenscountyadvertiser.net/feed/
 #     response to underground club culture and a
 #     vinyl-focused mission, the label aims to build a
 #     platform wh
+# rejected: press
 # https://edmjoy.com/feed/
 
 # Dinar Chronicles · en · last post 2026-11-21
@@ -3913,6 +3988,7 @@ https://www.laurenscountyadvertiser.net/feed/
 #     All posts from Friday, November 20, 2026. This will be
 #     useful for those of you who may have missed something
 #     on this date.
+# rejected: unsafe
 # https://dinarchronicles.com/feed/
 
 # DVB · en · last post 2026-11-21
@@ -3968,6 +4044,7 @@ https://english.dvb.no/feed/
 #     time, the company says Oregon reside
 #   - https://crescentcitytimes.com/2026/11/lighthouse-quilt-guild-december-5th/
 #     Lighthouse Quilt Guild – December 5th
+# rejected: republished
 # https://crescentcitytimes.com/feed/
 
 # Abel Tasman · en · last post 2026-07-07
@@ -3996,6 +4073,7 @@ https://english.dvb.no/feed/
 #     trusty campervan, Queenie. As a child, I thought of
 #     myself as a West Coaster. It wasn’t until later in
 #     life that I realised Murchison, where I was
+# rejected: commercial
 # https://www.abeltasman.com/feed/
 
 # It is high, it is far, it is... caught! · en · last post
@@ -4054,6 +4132,7 @@ https://johnsterling.blogspot.com/feeds/posts/default
 #     Goddess Fish Promotions . Karen Christino will be
 #     awarding a $20 Amazon/BN gift card to a randomly drawn
 #     winner. Click on the tour banner to see t
+# rejected: press
 # https://edgarbooks.blogspot.com/feeds/posts/default
 
 # PortNews IAA · en · last post 2026-11-21
@@ -4155,6 +4234,7 @@ https://rss.libsyn.com/shows/18840/destinations/14075.xml
 #     The best Plausible Analytics alternatives depend on
 #     the job you need done. For privacy-first web
 #     reporting, Fathom, Simple Analytics, and Pirsch are
+# rejected: commercial
 # https://salespanel.io/blog/feed/
 
 # Cerenzia Foods · en · last post 2026-05-24
@@ -4184,6 +4264,7 @@ https://rss.libsyn.com/shows/18840/destinations/14075.xml
 #     Landscape in 2026 As we step into 2026, the restaurant
 #     industry stands at an intriguing crossroad, shaped by
 #     a combination of technological advancements,
+# rejected: commercial
 # https://cerenziafoods.com/feed/
 
 # HEAVY Magazine · en · last post 2026-11-21
@@ -4330,6 +4411,7 @@ https://ktla.com/feed/
 #     installment of their annual Chaos Dinner on Wednesday,
 #     November 11 at Sunset Tower Hotel in Los Angeles.
 #     “Chaos Dinner 4.0” celebrated the upcoming Season
+# rejected: press
 # https://laguestlist.com/feed/
 
 # France Book Tours · en · last post 2026-07-15
@@ -4360,6 +4442,7 @@ https://ktla.com/feed/
 #     The source novel for Puccini’s opera Madame Butterfly!
 #     First published in French in 1887 First new English
 #     translation in over a century, by Clémenc
+# rejected: press
 # https://francebooktours.com/feed/
 
 # newZWire · en · last post 2026-11-13
@@ -4421,6 +4504,7 @@ https://newzwire.live/feed/
 #     Detroit Moped Works Team 🚨 There’s a lot happening at
 #     Detroit Moped Works, and we wanted to take a minute to
 #     give you a full update — about current serv
+# rejected: commercial
 # https://detroitmopedworks.com/feed/
 
 # Weekly World News · en · last post 2026-11-20
@@ -4453,6 +4537,7 @@ https://newzwire.live/feed/
 #     Editor@weeklyworldnews.com for all your questions.
 #     Maybe I’ll answer. You can always dream, huh? MARRIAGE
 #     BY
+# rejected: other
 # https://weeklyworldnews.com/feed/
 
 # Growing Up in the Lord for Boys · en · last post
@@ -4480,6 +4565,7 @@ https://newzwire.live/feed/
 #     that as long as I’m not lusting in any way, then
 #     masturbating is fine? I’ve read lots of your articles
 #     on the…
+# rejected: unsafe
 # https://growingupboys.info/feed/
 
 # Latest Resources and Articles from IndiaTravelBlog.com ·
@@ -4509,6 +4595,7 @@ https://newzwire.live/feed/
 #     Ayurvedic resort cum hospital in Cherai, Kerala and
 #     really enjoyed their facilities. Check out this blog
 #     to learn more about what I experienced there.
+# rejected: seo
 # https://www.indiatravelblog.com/rss/Resources.aspx
 
 # It Is What It Is · en · last post 2026-11-15
@@ -4526,6 +4613,7 @@ https://newzwire.live/feed/
 #   - https://hrexach.wordpress.com/2026/11/15/to-start-the-day-%f0%9f%8c%bb-wishes-for-this-sun-day-yall-%f0%9f%8c%bb/
 #     To Start the Day …. “🌻 ‘Wishes for This Sun-Day,
 #     Y’all’ 🌻 …. “!!
+# rejected: republished
 # https://hrexach.wordpress.com/feed/
 
 # Brainware University Blogs · en · last post 2026-11-06
@@ -4551,6 +4639,7 @@ https://newzwire.live/feed/
 #     from Undergraduate to Postgraduate Study?
 #     Psychology is often introduced as the study of the
 #     human
+# rejected: commercial
 # https://www.brainwareuniversity.ac.in/blog/feed/
 
 # mvslalgeria.org · en · last post 2026-11-20
@@ -4580,6 +4669,7 @@ https://newzwire.live/feed/
 #     age groups and cultures. Dance could be severe in
 #     tonehttps://www.mvslalgeria.org such as when it is
 #     used to express a culture’s historical past o
+# rejected: unsafe
 # https://www.mvslalgeria.org/feed
 
 # Sacred Cow Chips · en · last post 2026-11-15
@@ -4667,6 +4757,7 @@ https://joyamead.com/feed/
 #     injury during a soccer match against members of the
 #     City Hall press corps Thursday night, leaving the
 #     35-year-old Democrat on crutches with a torn
+# rejected: unsafe
 # https://resistthemainstream.com/feed/
 
 # Linda Scandore · en · last post 2026-10-23
@@ -4892,6 +4983,7 @@ https://www.grmag.com/feed/
 #     early
 #     The Presentation of Mary commemorates the child Mary's
 #     dedication in the temple, a Memorial on November 21.
+# rejected: seo
 # https://catholicletters.com/feed/
 
 # Welcome… · en · last post 2026-11-21
@@ -5025,6 +5117,7 @@ https://themuslimtimes.info/feed/
 #     Explore a structured approach to bond laddering
 #     designed to help investors turn retirement assets into
 #     more predictable cash flow.
+# rejected: commercial
 # https://www.dividend.com/feed/
 
 # Conservation West Virginia · en · last post 2026-09-21
@@ -5053,6 +5146,7 @@ https://themuslimtimes.info/feed/
 #     of American history. Ordinary people – many of them
 #     recent immigrants – could obtain land on which to
 #     sustain families with very little more than
+# rejected: notices
 # https://www.conservewv.org/feed/
 
 # A Dalectable Life · en · last post 2026-11-18
@@ -5109,6 +5203,7 @@ https://adelectablelife.com/feed/
 #     (China) is a strong all-around phone set to launch in
 #     November 2026 for around USD 625 (Rs 58,399) approx.
 #     It has a glass front and aluminum frame,
+# rejected: seo
 # https://www.oispice.com/feed/
 
 # iLEAD Exploration · en · last post 2026-11-17
@@ -5134,6 +5229,7 @@ https://adelectablelife.com/feed/
 #     growth together with their Educational Facilitators
 #     (EFs). Through discussion and reflection, learners
 #     will self-assess their development on the follow
+# rejected: notices
 # https://ileadexploration.org/feed/
 
 # MuggleNet · en · last post 2026-11-19
@@ -5316,6 +5412,7 @@ https://cricketaddictor.com/feed/
 #     “Cursum Perficio,” the title track and fourth single
 #     from its latest album. The black-and-white clip was
 #     directed by Don Argott, known for his work on
+# rejected: republished
 # https://www.967thewolf.net/feed/
 
 # Rajvansh · en · last post 2026-07-20
@@ -5346,6 +5443,7 @@ https://cricketaddictor.com/feed/
 #     Fashion business has seen several transformations.
 #     “You can see this in the increase of shops selling
 #     clothes from many brands. People don’t enjoy smal
+# rejected: commercial
 # https://rajvanshaligarh.com/feed/
 
 # Michael Pillsbury · en · last post 2026-11-17
@@ -5373,6 +5471,7 @@ https://cricketaddictor.com/feed/
 #     to discuss scrutiny surrounding Nvidia’s AI chip sales
 #     to China. Fox News contributor Michael Pillsbury joins
 #     ‘Kudlow’ to discuss the growing scru
+# rejected: republished
 # https://michaelpillsbury.net/feed/
 
 # EnglishClub.com · en · last post 2026-11-11
@@ -5400,6 +5499,7 @@ https://cricketaddictor.com/feed/
 #     Stress and Intonation Quiz. You can complete this
 #     multiple-choice pronunciation test online or print it
 #     out for classroom use. Review your answers a
+# rejected: other
 # https://www.englishclub.com/feed.xml
 
 # NaijaCover.Com · en · last post 2026-11-20
@@ -5430,6 +5530,7 @@ https://cricketaddictor.com/feed/
 #     November 20th, 2026 The Inspector-General of Police,
 #     Olatunji Disu, has urged hospitals and medical
 #     personnel across Nigeria to treat gunshot victims
+# rejected: republished
 # https://naijacover.com/feed/
 
 # Aberdeenshire AFA · en · last post 2026-11-17
@@ -5458,6 +5559,7 @@ https://cricketaddictor.com/feed/
 #     SATURDAY 14TH NOVEMBER 2026 ALL KICK OFFS 130PM UNLESS
 #     STATED OTHERWISE The Only Sport Third Round Rothesay
 #     Brandane v Tolbooth Replays Bervie Caled
+# rejected: notices
 # https://aberdeenshireafa.com/feed/
 
 # My Colour is Blue · en · last post 2026-09-03
@@ -5537,6 +5639,7 @@ https://daanimeblog.com/feed/
 #     Easter egg hunt in Germany
 #     Three people, including a 10-month-old girl, were
 #     killed Sunday when high winds toppled a tree…
+# rejected: republished
 # https://surveyguides.info/feed
 
 # New Releases · en · last post 2026-11-21
@@ -5559,6 +5662,7 @@ https://daanimeblog.com/feed/
 #     lisachenko/z-engine (8.6.1)
 #     Write PHP extensions in pure PHP: direct FFI access to
 #     the Zend Engine internals
+# rejected: machine
 # https://packagist.org/feeds/releases.rss
 
 # NTFC Local 6546 AFT / IFT · en · last post 2026-10-05
@@ -5587,6 +5691,7 @@ https://daanimeblog.com/feed/
 #     Picnic in downtown Champaign, Illinois! Come and
 #     celebrate with the people who make America work!
 #     Monday, September 7 This Free event is made poss
+# rejected: notices
 # https://www.local6546.org/feed/
 
 # FUCHSIA · en · last post 2026-11-20
@@ -5671,6 +5776,7 @@ https://www.mattevanoff.com/feed/
 #     Acer Configuration Manager appears to be an older Acer
 #     Windows utility, not a core Windows feature. Verify
 #     the exact component before uninstalling it.
+# rejected: seo
 # https://techshift.net/feed/
 
 # The Hoxton Trend · en · last post 2026-11-16
@@ -5726,4 +5832,5 @@ https://thehoxtontrend.com/feed/
 #     Maarten van Cauwenberghe
 #     Maarten van Cauwenberghe: The dogs did an absolutely
 #     fantastic job..
+# rejected: commercial
 # https://www.amundsenrace.com/feed/

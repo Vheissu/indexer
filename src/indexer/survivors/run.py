@@ -56,6 +56,7 @@ class Survivor:
     recent_posts: tuple[RecentPost, ...] = ()  # newest first (untrusted text)
     categories: tuple[tuple[str, int], ...] = ()  # the authors' categories: (name, posts), top
     posts_read: int = 0  # posts whose categories were counted
+    score: float | None = None  # probability of being accepted (training.py's model)
 
 
 @dataclass(slots=True)

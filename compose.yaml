@@ -115,7 +115,8 @@ services:
     user: "${HOST_UID:-10001}:${HOST_GID:-10001}" # owns what it writes
     volumes:
       - ./data:/work/data:ro # the sources
-      - ./data/embeddings:/work/data/embeddings # the only folder it writes to
+      - ./data/embeddings:/work/data/embeddings # the sets (indexer embeddings)
+      - ./data/models:/work/data/models # the proposal filter (indexer train)
     command: ["embeddings"]
 
   # Deletes every indexer table and all data (needs --yes); the next liquibase run recreates

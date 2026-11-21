@@ -460,13 +460,36 @@ row count differs, so a stale set is never used; `embeddings.write_set` builds o
 embeddings [NAME ...]` (compose service `embeddings`, no database, no network; about 20 s for
 `topics`) rebuilds the named sets, or all of them; the sets it knows are in `cli.EMBEDDING_SETS`
 (today only `topics`, from `data/topics/topics.txt`). The `embeddings.yml` workflow runs it on
-every push to develop that changes a set's source or the `Dockerfile` (which pins the model) and
-commits `data/embeddings/` to develop; it can also be started by hand. To add a set: a builder
+every push to develop that changes a set's source or the `Dockerfile` (which pins the model),
+retrains the proposal filter (below) and commits `data/embeddings/` and `data/models/` to develop; it can also be started by hand. To add a set: a builder
 that calls `write_set` with its texts and source files, an entry in `cli.EMBEDDING_SETS`, and its
 sources in the workflow's `paths`. Never edit a set by hand. The quantized model's
 output depends slightly on which names share a batch, so a rebuild also moves unchanged names a
 little (cosine ~0.99 to their old vector); the same `topics.txt` always gives the same matrix. A feed with no
 English item gets no topics.
+
+**Proposal filter.** `data/training.toml` lists reviewed proposal files (paths relative to it).
+Every feed in them is a labelled example: accepted if the reviewer uncommented its URL, else
+rejected, with the reason from a `# rejected: <reason>` line just above the URL (one of
+`training.REJECT_REASONS`: commercial, seo, press, republished, machine, forum, notices, unsafe,
+other; a reject without one counts as `other`). Its text is what the reviewer saw (title,
+description, categories, recent posts' titles and starts, without languages, dates, the WAT file,
+links or a score), cleaned up in memory. `indexer train` (compose service `embeddings`, run by the
+embeddings workflow when a training file changes; seconds) fits the classic cheap text classifier
+on them: TF-IDF over words and pairs of neighbouring words, then a logistic regression over
+accepted and the 9 reasons, in numpy. It writes `data/models/proposals.npz` (terms, IDF, weights)
+and `proposals.json` (the source files' hashes, the classes, the cut-off). The cut-off is the 30th
+percentile (`training.CUT`) of the examples' cross-validated scores. When survivors runs, each new
+proposal's text (taken from its own rendered block) gets its probability of "accepted"; proposals
+below the cut-off are dropped (only counted, in the summary), the rest are written best first with
+`# score: 0.874` under the title (`--training`; with a warning and no filtering if the model is
+missing or stale: a changed review or config makes it stale). List only files made with the
+current survivors rules and proposal format, so all examples look alike, and label each reject's
+reason when reviewing. Measured on 2026-11-21 (trained on PRs #18 and #19, 500 feeds; tested on
+300 fresh proposals made with today's rules, labelled the same way): AUC 0.82 (MiniLM centroids
+0.76, MiniLM vectors, character n-grams and a pretrained text-quality model did no better);
+dropping the lowest 30% removed about half the rejects and 10% of the accepted feeds. The score
+rose by about 0.025 per doubling of the examples, so it improves slowly as reviews are added.
 
 To try the model on any text, without a feed or a database, each TEXT being one post:
 

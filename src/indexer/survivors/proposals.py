@@ -98,6 +98,8 @@ def render_entries(survivors: Iterable[Survivor], crawl: str, today: date) -> st
             ]
         )
         out.append("\n" + _comment(summary))
+        if s.score is not None:
+            out.append(f"# score: {s.score:.3f}\n")
         if subtitle := _one_line(s.subtitle, _MAX_SUBTITLE):
             out.append(_comment(f"about: {subtitle}"))
         if s.posts_read:
