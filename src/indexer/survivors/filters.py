@@ -16,6 +16,8 @@ feed_links.py).
     sample_post  a recent post is WordPress's untouched sample post ("Hello world!"): an
                  abandoned or hijacked install
     repeated     two recent posts have the same title and text (the same post published again)
+    seo_summary  two recent posts' descriptions start like an SEO meta description ("Discover
+                 ...", "Learn ...", "Explore ...", "Understand ..."): content farms
     not_https    not served over https today (or redirected to an excluded domain)
 
 The rules after `keyword` were agreed on 2026-11-21 from the reviews so far: simple, and
@@ -45,11 +47,13 @@ type Reason = Literal[
     "seo_footer",
     "sample_post",
     "repeated",
+    "seo_summary",
     "not_https",
 ]
 
 _WIKI_EDIT = re.compile(r"do=diff|[?&]rev=|oldid=|doku\.php|index\.php\?title=", re.IGNORECASE)
 _SAMPLE_POST = "welcome to wordpress. this is your first post"
+_SEO_SUMMARY = re.compile(r"(discover|learn|explore|understand|uncover|find out)\b", re.IGNORECASE)
 _SEO_FOOTER = re.compile(r"appeared\s+first\s+on|first\s+appeared\s+on", re.IGNORECASE)
 
 
@@ -88,6 +92,9 @@ def rejection(row: CheckRow, rules: Rules) -> Reason | None:
     posts = [(post.title, post.description) for post in row.recent_posts if post.title]
     if len(posts) != len(set(posts)):
         return "repeated"
+    summaries = [post.description or "" for post in row.recent_posts]
+    if sum(bool(_SEO_SUMMARY.match(text)) for text in summaries) >= 2:
+        return "seo_summary"
     if served_url(row, rules.exclude) is None:
         return "not_https"
     return None

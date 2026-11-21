@@ -638,3 +638,17 @@ def test_keywords_count_recent_post_titles() -> None:
         RecentPost("https://s.example/3", "Porn studies", None),
     )
     assert _has_keyword(row, KEYWORDS)
+
+
+def test_seo_summaries() -> None:
+    def judged(*descriptions: str) -> object:
+        row = checked("https://s.example/feed/", 3)
+        row.recent_posts = tuple(
+            RecentPost(f"https://s.example/{i}", f"Post {i}", d) for i, d in enumerate(descriptions)
+        )
+        return rejection(row, Rules(NOW, 365))
+
+    farm = ("Explore legal cannabis options in BC.", "Learn about car title loans in Ocala.", "x")
+    assert judged(*farm) == "seo_summary"
+    assert judged("Discover how AI helps triage.", "We went hiking.", "A quiet week.") is None
+    assert judged("Learning to knit, week 3.", "Explorers of the Arctic.", "x") is None  # words

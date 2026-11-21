@@ -159,7 +159,9 @@ shared hosts like `fc2.com` or `free.fr`). A feed is proposed only if:
   first on" or "first appeared on" (the footer of SEO plugins, common on promotional sites and
   on sites that copy other feeds), and none is WordPress's untouched sample post ("Welcome to
   WordPress. This is your first post": an abandoned or hijacked install), and no two of them have
-  the same title and text (the same post published again). These simple rules also drop some good feeds, which is fine:
+  the same title and text (the same post published again), and no two of their descriptions
+  start like an SEO meta description ("Discover", "Learn", "Explore", "Understand", "Uncover",
+  "Find out": content farms). These simple rules also drop some good feeds, which is fine:
   there is far more in Common Crawl than survivors reads;
 - it is **served over https today**: the URL after redirects is `https://` (links are tried as
   `https://`; one that redirects back to plain http is skipped);
