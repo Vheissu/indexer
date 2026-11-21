@@ -102,7 +102,7 @@
 #     Moore, Paul Giamatti and filmmaker Jesse Eisenberg for
 #     a music and conversation event tied to The Debut. A24
 #     lists the film for theaters on Decemb
-# https://freddyo.com/feed/
+https://freddyo.com/feed/
 
 # Absolute Cambodia Travel · en · last post 2026-08-07
 # about: Cambodia Tours
@@ -223,7 +223,7 @@
 #     You’re on the ground and Boy, you’re afraid. Afraid of
 #     being on the ground. On the ground floor where there
 #     is more Threat than there […]
-# https://barry-williams.com/feed/atom/
+https://barry-williams.com/feed/atom/
 
 # HorsesAss.Org · en · last post 2026-11-21
 # about: The straight poop on WA politics & the press
@@ -248,7 +248,7 @@
 #     nightmare SNL: Post-Midterm The Resistance: ♫ Mambo
 #     No. 8! Eight Little Flips! ♬ Ari Melber: The magnitude
 #     of the Blue Wave Jimmy Kimmel: Трамп spins
-# https://horsesass.org/feed/
+https://horsesass.org/feed/
 
 # WHJE 91.3 · en · last post 2026-11-19
 # about: The Voice of the Carmel Greyhounds
@@ -311,7 +311,7 @@
 #     possible for musicians with disabilities
 #     The mission of the One-Handed Woodwinds Program is
 #     simple: remove barriers.
-# https://unknews.unk.edu/feed/
+https://unknews.unk.edu/feed/
 
 # Nukunu.net · en · last post 2026-08-14
 # about: You Are That
@@ -358,7 +358,7 @@
 #     million in grants to hundreds of local fire
 #     departments that will deliver vital life safety
 #     education to Massachusetts’ most vulnerable residents
-# https://everettindependent.com/feed/
+https://everettindependent.com/feed/
 
 # Musings from Brian J. Noggle · en · last post 2026-11-20
 # about: To be able to say "Noggle," you first must be able
@@ -384,7 +384,7 @@
 #     of the First Crusade, and The Story of De Soto, was
 #     published by the F.A. Owens company as an inexpensive
 #     textbook probably for one-room school hou
-# https://brianjnoggle.com/blog/feed/
+https://brianjnoggle.com/blog/feed/
 
 # El Apostadero TV · en · last post 2026-11-06
 # about: EL APOSTADERO presenta lo mejor de las actividades
@@ -428,7 +428,7 @@
 #     visible; } pre > code.sourceCode { white-space: pre;
 #     position: relative; } pre > code.sourceCode > span {
 #     display: inline-block; line-height: 1.2
-# https://databasearchitects.blogspot.com/feeds/posts/default
+https://databasearchitects.blogspot.com/feeds/posts/default
 
 # The Bookwyrm's Hoard · en · last post 2026-11-15
 # about: Book reviews, bookish news, and more
@@ -450,7 +450,7 @@
 #     working on the paperwork and logistics arising from
 #     Dad's death. (I squeezed in a little reading time, and
 #     bought a book or two.)
-# https://bookwyrmshoard.com/feed/
+https://bookwyrmshoard.com/feed/
 
 # Lineage 2 maps from deMEV · en · last post 2026-11-11
 # about: Lineage 2 maps from deMEV
