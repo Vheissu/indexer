@@ -42,6 +42,7 @@ from indexer.sources import (
 )
 from indexer.survivors import proposals
 from indexer.survivors import run as survivors_run
+from indexer.survivors.filters import Reason
 from indexer.survivors.run import Survivor
 from indexer.survivors.wat import CommonCrawlError
 from indexer.topics import (
@@ -191,6 +192,25 @@ async def _load_inputs(args: argparse.Namespace) -> int:
     return _sources_exit_code(failures, len(config.sources))
 
 
+# The survivors rules' rejection counters and how the run report names them, in rule order.
+_REJECTIONS: tuple[tuple[Reason, str], ...] = (
+    ("untitled", "without a title"),
+    ("keyword", "with an excluded keyword"),
+    ("no_text", "whose posts have no text"),
+    ("business", "businesses or organisations"),
+    ("job_board", "job boards"),
+    ("wiki", "wiki edits"),
+    ("tracking", "with tracking links"),
+    ("seo_footer", "with an SEO footer"),
+    ("sample_post", "with WordPress's sample post"),
+    ("repeated", "repeating a post"),
+    ("seo_summary", "with SEO summaries"),
+    ("title_echo", "echoing titles"),
+    ("reposted", "reposting other outlets"),
+    ("unwanted_url", "redirected to an unwanted URL"),
+)
+
+
 async def _survivors(args: argparse.Namespace) -> int:
     if min(args.slice_mb, args.years_ago, args.active_days, args.max_feeds) < 1:
         print(
@@ -241,31 +261,26 @@ async def _survivors(args: argparse.Namespace) -> int:
     stopped = (
         " (stopped: enough feeds)" if result.checked < result.candidates - result.known else ""
     )
-    summary = (
-        f"{args.slice_mb} MB of {result.scan.path.rsplit('/', 1)[-1]}:"
-        f" {result.candidates} feed URLs ({result.known} already known),"
-        f" {result.checked} checked{stopped},"
-        f" {result.working} working today, {result.active} with an item in the last"
-        f" {args.active_days} days, {result.english} in English"
-        f" ({result.rejected['untitled']} without a title,"
-        f" {result.rejected['keyword']} with an excluded keyword,"
-        f" {result.rejected['no_text']} whose posts have no text,"
-        f" {result.rejected['business']} businesses or organisations,"
-        f" {result.rejected['job_board']} job boards,"
-        f" {result.rejected['wiki']} wiki edits,"
-        f" {result.rejected['tracking']} with tracking links,"
-        f" {result.rejected['seo_footer']} with an SEO footer,"
-        f" {result.rejected['sample_post']} with WordPress's sample post,"
-        f" {result.rejected['repeated']} repeating a post,"
-        f" {result.rejected['seo_summary']} with SEO summaries,"
-        f" {result.rejected['title_echo']} echoing titles,"
-        f" {result.rejected['reposted']} reposting other outlets,"
-        f" {result.rejected['unwanted_url']} redirected to an unwanted URL);"
-        f" acceptance {proposals.acceptance(len(new), result.checked)}"
-    )
+    steps = [
+        f"{args.slice_mb} MB of {result.scan.path.rsplit('/', 1)[-1]}",
+        f"{result.candidates} feed URLs ({result.known} already known)",
+        f"{result.checked} checked{stopped}",
+        f"{result.working} working today",
+        f"{result.active} with an item in the last {args.active_days} days",
+        f"{result.english} in English",
+        f"{len(new)} passed the rules: {proposals.acceptance(len(new), result.checked)}"
+        " of the checked",
+    ]
+    rejected = [(n, label) for key, label in _REJECTIONS if (n := result.rejected[key])]
     if new and args.training.exists():
         new, dropped = _filtered(new, result.crawl, started, args.training)
-        summary += f"; {dropped} dropped by the model trained on past reviews"
+        steps.append(f"{dropped} dropped by the model trained on past reviews")
+    summary = (
+        "; ".join(steps)
+        + " (rules: "
+        + (", ".join(f"{n} {label}" for n, label in rejected) or "none rejected")
+        + ")"
+    )
     path = args.dir / proposals.file_name(started)
     print(f"{result.crawl}: {summary}: {len(new)} proposed in {path}")
     for survivor in new:
@@ -282,7 +297,7 @@ async def _survivors(args: argparse.Namespace) -> int:
         )
         if args.report:
             args.report.write_text(
-                proposals.render_report(len(new), result.crawl, summary),
+                proposals.render_report(len(new), result.crawl, steps, rejected),
                 encoding="utf-8",
             )
     return 0

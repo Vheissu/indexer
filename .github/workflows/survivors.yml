@@ -96,12 +96,15 @@ jobs:
           git push -q "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$branch:$branch"
           {
             echo "Feeds from a ~5-year-old Common Crawl crawl that are still active, proposed for"
-            echo "\`$file\` by one survivors run. Each URL is commented out:"
-            echo "[edit the file]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/edit/$branch/$file) on this"
-            echo "branch, uncomment (delete \"# \" before) the URL of each feed you want, commit, then"
-            echo "merge; or close this pull request to drop them all. To try them in a feed reader,"
-            echo "[download them as OPML]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/raw/$branch/$opml)"
-            echo "and import the file."
+            echo "\`$file\` by one survivors run. Every URL is commented out."
+            echo
+            echo "**To review**"
+            echo
+            echo "- [Edit the file]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/edit/$branch/$file) on this branch:"
+            echo "  uncomment (delete \"# \" before) the URL of each feed to keep, commit, then merge."
+            echo "- Or close this pull request to drop them all."
+            echo "- To try them in a feed reader, [download them as OPML]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/raw/$branch/$opml)"
+            echo "  and import the file."
             echo
             cat output/survivors.md
           } > "$RUNNER_TEMP/body.md"

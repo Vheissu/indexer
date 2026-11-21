@@ -35,7 +35,7 @@ a source), which the pull request links to, for trying them in a feed reader whi
 import re
 import textwrap
 import unicodedata
-from collections.abc import Iterable
+from collections.abc import Iterable, Sequence
 from datetime import UTC, date, datetime
 from email.utils import format_datetime
 from pathlib import Path
@@ -143,10 +143,18 @@ def acceptance(proposed: int, checked: int) -> str:
     return f"{share} ({proposed} of {checked})"
 
 
-def render_report(proposed: int, crawl: str, summary: str) -> str:
-    """Markdown for the pull request: how many feeds were proposed and the run's summary. The
-    feeds themselves are reviewed in the proposal file (untrusted text stays out of the PR)."""
-    return f"**{proposed} feeds** from `{crawl}`, still active today. {summary}\n"
+def render_report(
+    proposed: int, crawl: str, steps: Sequence[str], rejected: Sequence[tuple[int, str]]
+) -> str:
+    """Markdown for the pull request: how many feeds were proposed, the run's steps and what each
+    rule rejected (most first, zero counts left out), as bullet lists. The feeds themselves are
+    reviewed in the proposal file (untrusted text stays out of the PR)."""
+    lines = [f"**{proposed} feeds** from `{crawl}`, still active today.", "", "**Run**", ""]
+    lines += [f"- {step}" for step in steps]
+    lines += ["", "**Rejected by the rules**", ""]
+    by_count = sorted(rejected, key=lambda r: -r[0])
+    lines += [f"- {n} {label}" for n, label in by_count] or ["- none"]
+    return "\n".join(lines) + "\n"
 
 
 def render_opml(survivors: Iterable[Survivor], crawl: str, generated: datetime) -> str:

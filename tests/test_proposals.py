@@ -112,10 +112,22 @@ def test_one_line() -> None:
 
 
 def test_report_is_only_the_summary() -> None:  # the feeds are reviewed in the file
-    report = render_report(2, "CC-MAIN-2021-49", "25 MB of x.warc.wat.gz: 900 feed URLs")
+    report = render_report(
+        2,
+        "CC-MAIN-2021-49",
+        ["25 MB of x.warc.wat.gz", "900 feed URLs (0 already known)"],
+        [(1, "without a title"), (4, "with an SEO footer")],
+    )
     assert report == (
-        "**2 feeds** from `CC-MAIN-2021-49`, still active today. 25 MB of x.warc.wat.gz:"
-        " 900 feed URLs\n"
+        "**2 feeds** from `CC-MAIN-2021-49`, still active today.\n\n**Run**\n\n"
+        "- 25 MB of x.warc.wat.gz\n- 900 feed URLs (0 already known)\n\n"
+        "**Rejected by the rules**\n\n- 4 with an SEO footer\n- 1 without a title\n"
+    )
+
+
+def test_report_without_rejections() -> None:
+    assert render_report(1, "C", ["10 checked"], []).endswith(
+        "**Rejected by the rules**\n\n- none\n"
     )
 
 
