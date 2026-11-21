@@ -15,9 +15,9 @@
  ],
  "terms": 10003,
  "cut": 0.3,
- "threshold": 0.43105053901672363,
+ "threshold": 0.431050181388855,
  "sources": {
-  "data/training.toml": "ad81ffce73ee6ec1b8f7e5928679e06d58e89e16450cdf2891d9a693e6e71192",
+  "data/training.toml": "d8d9bf90b89814c4386ee98965ffd26984e0f35269de99561cfe13b9c5e89d4f",
   "data/survivors/202611/21-161034.txt": "5685e027528105ba65aa03641dbbb13582d27aca5cdf019c81dcebf890ecaf5e",
   "data/survivors/202611/21-162942.txt": "2ae4b4da980993c1e78652b8f85986e42c52e174981f6c129cea6ab63cddf7f3"
  }
