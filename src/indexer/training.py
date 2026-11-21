@@ -6,16 +6,17 @@ survivors drops the new proposals it scores lowest (about the bottom CUT of them
 A proposal file (survivors/proposals.py) holds one block per feed: comment lines with what the
 reviewer saw, then the feed's URL, uncommented if they accepted it, commented out if not; a
 rejected feed's block may name why, on the line just above the URL: `# rejected: <reason>`
-(one of REJECT_REASONS). Each block becomes a `Proposal`: the URL, the label, the reason and the
-reviewer's text with the bookkeeping removed (languages, dates, the WAT file, post links, a
-score), all in memory.
+(one of REJECT_REASONS; a note for people, checked but not used by the model). Each block
+becomes a `Proposal`: the URL, the label, the reason and the reviewer's text with the
+bookkeeping removed (languages, dates, the WAT file, post links, a score), all in memory.
 
 The model is the classic cheap text classifier: TF-IDF over words and word pairs, then a
-logistic regression over CLASSES ("accepted" and each reason; an unlabelled reject counts as
-"other"), trained in numpy. A proposal's score is its probability of "accepted". The cut-off is
-the CUT quantile of the examples' cross-validated scores, so it drops about CUT of proposals that
-look like the examples. Measured on 300 fresh proposals (2026-11-21, trained on 500): AUC 0.82;
-dropping the lowest 30% removed about half of the rejects and 10% of the accepted feeds. The
+logistic regression over CLASSES (accepted or rejected), trained in numpy. A proposal's score is
+its probability of "accepted". The cut-off is the CUT quantile of the examples' cross-validated
+scores, so it drops about CUT of proposals that look like the examples. Measured on 300 fresh
+proposals (trained on 500): AUC 0.81; dropping the lowest 30% removed about half of the rejects
+and 12% of the accepted feeds. One class per reason scored the same within noise (2026-11-22,
+0.816 vs 0.812) but needs a reason on every reject; two classes learn from plain reviews. The
 model's metadata pins the config and every listed file: a changed review makes it stale, and a
 stale model is never used.
 """
@@ -37,7 +38,8 @@ TRAINING_CONFIG = Path("data/training.toml")
 MODEL_DIR = Path("data/models")
 MODEL_NAME = "proposals"  # data/models/proposals.npz (weights) and proposals.json (metadata)
 CUT = 0.30  # drop about this share of proposals: those scored lowest
-# Why a feed was rejected, as a reviewer writes it above its commented-out URL.
+# Why a feed was rejected, as a reviewer may note it above its commented-out URL (optional; not
+# used by the model, which only learns accepted or rejected).
 REJECT_REASONS = (
     "commercial",  # a business's own marketing, shop or service blog
     "seo",  # generic SEO, affiliate or guest-post content
@@ -115,7 +117,7 @@ def read_examples(config: Path = TRAINING_CONFIG) -> list[Proposal]:
     return [p for path in training_files(config) for p in parse_proposals(path.read_text("utf-8"))]
 
 
-CLASSES = ("accepted", *REJECT_REASONS)
+CLASSES = ("accepted", "rejected")
 MIN_DF = 2  # a term must occur in this many examples to be used
 L2 = 1e-3  # weight penalty
 STEPS = 400  # Adam steps (full batch)
@@ -131,7 +133,7 @@ def tokens(text: str) -> list[str]:
 
 
 def _label(p: Proposal) -> int:
-    return 0 if p.accepted else CLASSES.index(p.reason or "other")
+    return 0 if p.accepted else 1
 
 
 def _features(docs: Sequence[list[str]], vocab: dict[str, int], idf: Matrix) -> Matrix:

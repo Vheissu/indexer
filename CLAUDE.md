@@ -190,9 +190,10 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   No English item, no topics. Survivors does not compute topics.
 - Proposal filter (agreed 2026-11-21 after testing MiniLM centroids/vectors, char n-grams, a pretrained quality model;
   this is the agreed quality heuristic for survivors): `indexer train` fits TF-IDF (words + word pairs) and a numpy
-  logistic regression over accepted + `training.REJECT_REASONS` on the reviewed proposal files in `data/training.toml`
-  (today PR #18's and #19's, the only ones made with the current rules and format); label = URL uncommented or not, reason
-  = the `# rejected: <reason>` line above a commented URL, text = what the reviewer saw (cleanup in memory). Written to
+  logistic regression over accepted / rejected on the reviewed proposal files in `data/training.toml`
+  (today PR #18's and #19's, the only ones made with the current rules and format); label = URL uncommented or not (binary
+  agreed 2026-11-22: same AUC as one class per reason, no reason labelling needed; a `# rejected: <reason>` line is an
+  optional, unused note), text = what the reviewer saw (cleanup in memory). Written to
   `data/models/proposals.{npz,json}` (pinned to the sources' hashes; a stale model is refused), retrained by embeddings.yml.
   Survivors drops proposals scoring below the cut-off (the 30th percentile of the examples' cross-validated scores,
   `training.CUT`), only counting them in the summary, and writes the rest best first with `# score:`. Never run MiniLM,

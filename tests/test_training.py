@@ -1,6 +1,7 @@
 """The proposal filter: examples from reviewed proposal files, the trained model on disk, its
 scores and cut-off."""
 
+import re
 from dataclasses import replace
 from datetime import UTC, date, datetime
 from pathlib import Path
@@ -162,3 +163,16 @@ def test_a_config_without_files_is_refused(tmp_path: Path) -> None:
     (tmp_path / "training.toml").write_text('files = "a.txt"\n')
     with pytest.raises(TrainingError, match="list of paths"):
         training_files(tmp_path / "training.toml")
+
+
+def test_rejection_reasons_do_not_change_the_model(tmp_path: Path) -> None:  # two classes
+    text = labelled_file(10)
+    assert "# rejected: " in text
+    models = []
+    for name, body in (("with", text), ("without", re.sub(r"# rejected: \S+\n", "", text))):
+        (tmp_path / f"{name}.txt").write_text(body)
+        (tmp_path / f"{name}.toml").write_text(f'files = ["{name}.txt"]\n')
+        models.append(train_model(tmp_path / f"{name}.toml", tmp_path / name))
+    assert models[0].weights.shape[1] == 2
+    assert (models[0].weights == models[1].weights).all()
+    assert models[0].threshold == models[1].threshold

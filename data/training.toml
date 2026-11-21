@@ -1,6 +1,6 @@
 # Reviewed proposal files the proposal filter is trained on, relative to this file. Each feed in
-# them is a labelled example: its URL uncommented = accepted; left commented out = rejected, for
-# the reason on the `# rejected: <reason>` line above it (src/indexer/training.py REJECT_REASONS).
+# them is a labelled example: its URL uncommented = accepted; left commented out = rejected (a
+# `# rejected: <reason>` line above it is an optional note, see training.py REJECT_REASONS).
 # The text the reviewer saw (title, description, categories, recent posts) is cleaned up in
 # memory. `indexer train` writes the model to data/models/ (the embeddings workflow retrains it
 # when this file or a listed file changes); survivors drops the proposals it scores lowest.

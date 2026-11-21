@@ -470,25 +470,26 @@ English item gets no topics.
 
 **Proposal filter.** `data/training.toml` lists reviewed proposal files (paths relative to it).
 Every feed in them is a labelled example: accepted if the reviewer uncommented its URL, else
-rejected, with the reason from a `# rejected: <reason>` line just above the URL (one of
+rejected. A `# rejected: <reason>` line just above a rejected URL (one of
 `training.REJECT_REASONS`: commercial, seo, press, republished, machine, forum, notices, unsafe,
-other; a reject without one counts as `other`). Its text is what the reviewer saw (title,
+other) is an optional note for people: it is checked but the model doesn't use it. Its text is what the reviewer saw (title,
 description, categories, recent posts' titles and starts, without languages, dates, the WAT file,
 links or a score), cleaned up in memory. `indexer train` (compose service `embeddings`, run by the
-embeddings workflow when a training file changes; seconds) fits the classic cheap text classifier
+embeddings workflow when a training file or `training.py` changes; seconds) fits the classic cheap text classifier
 on them: TF-IDF over words and pairs of neighbouring words, then a logistic regression over
-accepted and the 9 reasons, in numpy. It writes `data/models/proposals.npz` (terms, IDF, weights)
+accepted and rejected, in numpy. It writes `data/models/proposals.npz` (terms, IDF, weights)
 and `proposals.json` (the source files' hashes, the classes, the cut-off). The cut-off is the 30th
 percentile (`training.CUT`) of the examples' cross-validated scores. When survivors runs, each new
 proposal's text (taken from its own rendered block) gets its probability of "accepted"; proposals
 below the cut-off are dropped (only counted, in the summary), the rest are written best first with
 `# score: 0.874` under the title (`--training`; with a warning and no filtering if the model is
 missing or stale: a changed review or config makes it stale). List only files made with the
-current survivors rules and proposal format, so all examples look alike, and label each reject's
-reason when reviewing. Measured on 2026-11-21 (trained on PRs #18 and #19, 500 feeds; tested on
+current survivors rules and proposal format, so all examples look alike. Measured on 2026-11-21 (trained on PRs #18 and #19, 500 feeds; tested on
 300 fresh proposals made with today's rules, labelled the same way): AUC 0.82 (MiniLM centroids
 0.76, MiniLM vectors, character n-grams and a pretrained text-quality model did no better);
-dropping the lowest 30% removed about half the rejects and 10% of the accepted feeds. The score
+dropping the lowest 30% removed about half the rejects and 10% of the accepted feeds. On
+2026-11-22 one class per reason was replaced by two (accepted, rejected): AUC 0.81, the same
+within noise, and every plain review becomes training data without labelling reasons. The score
 rose by about 0.025 per doubling of the examples, so it improves slowly as reviews are added.
 
 To try the model on any text, without a feed or a database, each TEXT being one post:

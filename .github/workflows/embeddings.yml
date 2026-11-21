@@ -15,6 +15,7 @@ on:
       - data/topics/topics.txt # the set "topics"
       - data/training.toml # the proposal filter: the reviewed proposal files it lists
       - data/survivors/*/*.txt
+      - src/indexer/training.py # the proposal filter's model
       - Dockerfile # the MiniLM model and tokenizer are pinned there
   workflow_dispatch:
 
