@@ -234,7 +234,6 @@ async def _survivors(args: argparse.Namespace) -> int:
         f" {args.active_days} days, {result.english} in English"
         f" ({result.rejected['untitled']} without a title,"
         f" {result.rejected['keyword']} with an excluded keyword,"
-        f" {result.rejected['no_subtitle']} without a description,"
         f" {result.rejected['no_text']} whose posts have no text,"
         f" {result.rejected['business']} businesses or organisations,"
         f" {result.rejected['job_board']} job boards,"

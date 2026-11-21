@@ -572,7 +572,7 @@ def test_simple_junk_rules() -> None:
         return RecentPost(link, "A post", description)
 
     assert judged() is None
-    assert judged(None) == judged("  ") == "no_subtitle"
+    assert judged(None) is None  # no description is fine: many good blogs have none
     assert judged("x", post("https://w.example/doku.php?id=a&rev=1&do=diff")) == "wiki"
     assert judged("x", post("https://w.example/index.php?title=A&oldid=3")) == "wiki"
     assert judged("x", post("https://s.example/p/?utm_source=rss&utm_medium=rss")) == "tracking"

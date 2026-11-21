@@ -8,7 +8,6 @@ feed_links.py).
     untitled     the feed has no title
     keyword      an excluded keyword (`[commoncrawl] exclude_keywords`) in its title, or 3 in its
                  subtitle and posts
-    no_subtitle  the feed has no description (subtitle)
     no_text      none of its recent posts has a title or a description
     business     its title or description names a business or an organisation (_BUSINESS:
                  service(s), agency, shop, company, law firm, radio station, parish, ...)
@@ -51,7 +50,6 @@ type Reason = Literal[
     "not_english",
     "untitled",
     "keyword",
-    "no_subtitle",
     "no_text",
     "business",
     "job_board",
@@ -105,8 +103,6 @@ def rejection(row: CheckRow, rules: Rules) -> Reason | None:
         return "untitled"
     if _has_keyword(row, rules.keywords):
         return "keyword"
-    if not (row.subtitle or "").strip():
-        return "no_subtitle"
     if not any(post.title or post.description for post in row.recent_posts):
         return "no_text"
     if _BUSINESS.search(f"{row.title} {row.subtitle}"):

@@ -151,8 +151,8 @@ shared hosts like `fc2.com` or `free.fr`). A feed is proposed only if:
   date more than a day in the future doesn't count);
 - it is **in English**: `en` is the only language detected on its items (see `language`
   below). The feed's own `<language>` is not read: WordPress says `en-US` unless the owner changes it;
-- it **has a title** and a **description** (subtitle), and at least one of its recent posts has
-  a title or text;
+- it **has a title**, and at least one of its recent posts has a title or text (a missing
+  description is fine: removed on 2026-11-21, it would have dropped 1 in 7 of the listed feeds);
 - neither its title nor its description names a business or an organisation ("service(s)",
   "attorney(s)", "agency", "book now", "supplies", "equipment", "shop", "company", "store",
   "consultants", "law firm", "law group", "LLC", "radio station", "station for",
