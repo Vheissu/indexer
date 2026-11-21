@@ -24,7 +24,7 @@
 #     ‘The man in black fled across the desert, and the
 #     gunslinger followed.’ A couple of days before the end
 #     of June, I returned to The Dark Tower for
-# https://bloginbasket.com/?feed=rss2
+https://bloginbasket.com/?feed=rss2
 
 # Das Lexikon der Filmbegriffe · de, en · last post
 #   2026-11-09
@@ -74,7 +74,7 @@
 #     MARY’S (9-2) AT NO. 2 MICA MOUNTAIN (10-1) THE RUNDOWN
 #     Mica Mountain is on a nine-game playoff winning streak
 #     dating to its 2024 state title run. The
-# https://allsportstucson.com/feed/
+https://allsportstucson.com/feed/
 
 # Between the Lines · en · last post 2026-11-20
 # found in
@@ -124,7 +124,7 @@
 #     key dates and deadlines for the Gorton and Denton
 #     Parliamentary election 2026. Sections: Candidates The
 #     following people have been confirmed as c
-# https://levenshulmecommunity.org.uk/feed/
+https://levenshulmecommunity.org.uk/feed/
 
 # iPhone iPad Review · en · last post 2026-11-21
 # about: iPhone & iPad Accessory Reviews 2026
@@ -221,7 +221,7 @@
 #     and solar powered. Not got call sign just yet but will
 #     be C5/M1KTA or ??? Power will be off solar panel, 100W
 #     12V Foldable Solar Panel Kit Monocr
-# https://m1kta-qrp.blogspot.com/feeds/posts/default
+https://m1kta-qrp.blogspot.com/feeds/posts/default
 
 # Unite News · en · last post 2026-11-21
 # found in
@@ -246,7 +246,7 @@
 #     The post ‘Devastating for this community’: Mamdani,
 #     Sharpton and others remember Javits Frimpong at teen’s
 #     funeral appeared first on Unite News .
-# https://unitenewsonline.org/feed/
+https://unitenewsonline.org/feed/
 
 # King World News · en · last post 2026-11-21
 # found in
@@ -298,7 +298,7 @@
 #     It’s in difficult times that we discover what we’re
 #     really made of. A challenge spurs us to dig deep,
 #     motivating us to nurture that wondrous seed t
-# https://writer.gailgcollins.com/feed/
+https://writer.gailgcollins.com/feed/
 
 # The Owner-Builder Network · en · last post 2026-11-18
 # about: Helping Owner-Builders and DIYers do it better and
@@ -376,7 +376,7 @@
 #     Most Common Reloading Mistakes”. Listed below are the
 #     Top Ten mistakes hand-loaders can make, at least
 #     according to Shooting Times. What do you thi
-# https://bulletin.accurateshooter.com/feed/
+https://bulletin.accurateshooter.com/feed/
 
 # MotorMavens • Car Culture & Photography · en · last post
 #   2026-07-15
@@ -405,7 +405,7 @@
 #     always feels like the first day of school for people
 #     who’ve been part of the sport for years. Everyone
 #     shows up with new cars, new liveries, new ra
-# https://motormavens.com/feed/
+https://motormavens.com/feed/
 
 # bloof books: news · en · last post 2026-04-06
 # found in
@@ -424,7 +424,7 @@
 #     refused me for the past two years this morning I had
 #     to pay property taxes on my house thenI shoute
 #   - https://news.bloofbooks.com/2024/04/spring.html
-# https://news.bloofbooks.com/feeds/posts/default
+https://news.bloofbooks.com/feeds/posts/default
 
 # Aminet · en · last post 2026-11-21
 # about: Aminet
@@ -440,7 +440,7 @@
 #   - http://mos.aminet.net/package/pix/picon/WinUAEDXIcons
 #     WinUAEDXIcons.zip (pix/picon)
 #     HD games icons for WinUAE
-# https://mos.aminet.net/feed
+https://mos.aminet.net/feed
 
 # UToledo News · en · last post 2026-11-20
 # about: The University of Toledo News
@@ -468,7 +468,7 @@
 #     students, faculty and staff, earned the 2026
 #     Chronology Screenwriting Award. The post Theatre
 #     Professo
-# https://news.utoledo.edu/index.php/feed
+https://news.utoledo.edu/index.php/feed
 
 # The Chicago Blog · en · last post 2026-11-19
 # about: Smart and timely features from our books and
@@ -495,4 +495,4 @@
 #     in Chicago, in the publishing world, we already have
 #     our minds on spring. We’re excited to share a little
 #     preview of seven books (among so many!)
-# https://pressblog.uchicago.edu/feed
+https://pressblog.uchicago.edu/feed
