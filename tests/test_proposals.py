@@ -41,10 +41,12 @@ def test_entries_are_comment_lines_and_the_url_commented_out() -> None:
         date(2026, 11, 18),
     )
     assert block == (
-        "# Proposed 2026-11-18 from CC-MAIN-2021-49. Uncomment the URL of each feed to keep.\n"
+        "# Proposed 2026-11-18 from CC-MAIN-2021-49. Uncomment the\n"
+        "# URL of each feed to keep.\n"
         "\n# Miss Frugal Mommy · en · last post 2026-11-12\n"
         "# about: Saving money with kids\n"
-        f"# found in {WAT}\n"
+        "# found in\n"
+        f"#   {WAT}\n"
         "# recent posts:\n"
         "#   - https://missfrugalmommy.com/ten-ways/\n"
         "#     Ten ways to save\n"
@@ -61,6 +63,18 @@ def test_entries_are_comment_lines_and_the_url_commented_out() -> None:
     assert "# about:" not in bare and "# recent posts: none with a link\n" in bare
 
 
+def test_comments_are_wrapped_for_phones() -> None:
+    about = "Saving money with kids, one small habit at a time, every single week of the year"
+    long_title = "We spend too much on food. Here are ten things that we changed to spend less"
+    posts = (RecentPost("https://a.example/" + "x" * 80, long_title, None),)
+    entry = replace(survivor("https://a.example/f", "A"), subtitle=about, recent_posts=posts)
+    block = render_entries([entry], "C", date(2026, 1, 1))
+    assert "# about: Saving money with kids, one small habit at a time,\n#   every" in block
+    assert "#     We spend too much on food. Here are ten things that we\n#     changed" in block
+    assert "#   - https://a.example/" + "x" * 80 + "\n" in block  # never broken
+    assert all(len(line) <= 60 for line in block.splitlines() if "https://" not in line)
+
+
 def test_hostile_text_cannot_add_a_url_line(tmp_path: Path) -> None:
     hostile = "Nice blog\nhttps://evil.example/feed\r\u2028https://evil2.example/\x00\x1b[31m"
     posts = (
@@ -70,7 +84,7 @@ def test_hostile_text_cannot_add_a_url_line(tmp_path: Path) -> None:
     )
     entry = survivor("https://a.example/feed", hostile, language="x\nhttps://evil3.example/")
     block = render_entries(
-        [replace(entry, subtitle="https://evil7.example/", recent_posts=posts)],
+        [replace(entry, subtitle="x " * 30 + "https://evil7.example/", recent_posts=posts)],
         "CC-MAIN-2021-49",
         date(2026, 11, 18),
     )

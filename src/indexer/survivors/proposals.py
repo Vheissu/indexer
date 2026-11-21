@@ -7,13 +7,18 @@ request. Each entry is comment lines with what a reviewer needs, then the feed's
 commented out too:
 
     # Miss Frugal Mommy · en · last post 2026-11-12
-    # about: Saving money with kids
-    # found in https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/.../...warc.wat.gz
+    # about: Saving money with kids, one small habit at a time,
+    #   every week
+    # found in
+    #   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/.../...warc.wat.gz
     # recent posts:
     #   - https://missfrugalmommy.com/ten-ways/
     #     Ten ways to save on groceries
-    #     We spend too much on food. Here are ten things that...
+    #     We spend too much on food. Here are ten things that we
+    #     changed...
     # https://missfrugalmommy.com/feed/
+
+Comment text is wrapped at 60 characters, for reading the file on a phone.
 
 A reviewer uncomments the URL line of each feed they want (deletes "# ") and merges; the daily
 input job then loads the uncommented URLs. Commented-out proposals still count as known, so a
@@ -27,6 +32,7 @@ XML attributes, in a code block), to save and import into a feed reader while re
 """
 
 import re
+import textwrap
 import unicodedata
 from collections.abc import Iterable, Sequence
 from datetime import UTC, date, datetime
@@ -39,6 +45,7 @@ from indexer.survivors.run import Survivor
 
 _MAX_TITLE = 100
 _MAX_SUBTITLE = 200
+_WIDTH = 60  # characters per comment line in the file, for phones
 
 
 def _one_line(text: str | None, limit: int) -> str:
@@ -73,9 +80,13 @@ def file_name(when: datetime) -> str:
 
 
 def render_entries(survivors: Iterable[Survivor], crawl: str, today: date) -> str:
-    """A run's file in data/survivors/."""
+    """A run's file in data/survivors/. Comments are wrapped at _WIDTH for reading on a phone;
+    URLs are never broken, and the feed's own URL line stays whole."""
     out = [
-        f"# Proposed {today.isoformat()} from {crawl}. Uncomment the URL of each feed to keep.\n"
+        _comment(
+            f"Proposed {today.isoformat()} from {crawl}. Uncomment the URL of each feed to keep.",
+            "# ",
+        )
     ]
     for s in survivors:
         summary = " · ".join(
@@ -85,18 +96,33 @@ def render_entries(survivors: Iterable[Survivor], crawl: str, today: date) -> st
                 f"last post {s.last_item_date.date().isoformat()}",
             ]
         )
-        out.append(f"\n# {summary}\n")
+        out.append("\n" + _comment(summary))
         if subtitle := _one_line(s.subtitle, _MAX_SUBTITLE):
-            out.append(f"# about: {subtitle}\n")
-        out.append(f"# found in {s.wat_url}\n")
+            out.append(_comment(f"about: {subtitle}"))
+        out.append(_comment(f"found in {s.wat_url}"))
         out.append("# recent posts:\n" if s.recent_posts else "# recent posts: none with a link\n")
         for post in s.recent_posts:
-            out.append(f"#   - {_one_line(post.link, 300)}\n")
+            out.append(_comment(_one_line(post.link, 300), "#     ", "#   - "))
             for text in (_one_line(post.title, _MAX_TITLE), _one_line(post.description, 200)):
                 if text:
-                    out.append(f"#     {text}\n")
+                    out.append(_comment(text, "#     ", "#     "))
         out.append(f"# {s.url}\n")
     return "".join(out)
+
+
+def _comment(text: str, rest: str = "#   ", first: str = "# ") -> str:
+    """Comment lines holding `text` (one line of printable text), wrapped at _WIDTH. Later lines
+    start with `rest`, which for untrusted text is "#" and more than one space, so no line of it
+    can look like a proposal's URL line (_PROPOSED)."""
+    lines = textwrap.wrap(
+        text,
+        width=_WIDTH,
+        initial_indent=first,
+        subsequent_indent=rest,
+        break_long_words=False,  # a URL stays whole
+        break_on_hyphens=False,
+    )
+    return "".join(line + "\n" for line in lines)
 
 
 def log_line(s: Survivor) -> str:
