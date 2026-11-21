@@ -187,14 +187,14 @@ to). The rest are checked in random order, 200 at a time, and the run stops once
 The finds go to a new file per run, `data/survivors/<yyyymm>/<dd-HHMMSS>.txt` in UTC (for example
 `data/survivors/202611/19-041105.txt`), which the source `survivors` reads with the glob
 `files = ["survivors/*/*.txt"]`. Each feed is comment lines: title, detected languages
-and date of the newest item, subtitle, the WAT file it came from, and its 3 most recent posts (link,
+and date of the newest item, subtitle, the categories its authors gave its first posts (the 8
+most used, with the number of posts), the WAT file it came from, and its 3 most recent posts (link,
 title and the start of the description, one line each), then the URL, **commented out too**.
 Each workflow run commits
 that file to a **new branch** with the same timestamp (for example `survivors-20261119-041105`),
-and opens **its own pull request** into `develop`, with one
-section per feed: its title, URL, date of the newest item and languages, as code spans so
-nothing is clickable (the recent posts are in the diff). The report stays under GitHub's 65,536-character limit: feeds that don't fit are only
-counted ("... and N more feeds: see the diff"). The run also writes the proposed feeds as OPML
+and opens **its own pull request** into `develop`, whose description links to the file in
+GitHub's editor and gives the run's summary; the feeds themselves are only in the file, so no
+untrusted text reaches the pull request. The run also writes the proposed feeds as OPML
 next to the `.txt` file (same name, `.opml`; not read as a source), and the description links to
 it: download it and import it into a feed reader to try them while reviewing. Review the diff, **uncomment** the URL line of each feed you want (delete the
 `# ` before it), and merge (or close the pull request to drop the whole batch): the input job then
@@ -523,7 +523,7 @@ Source layout (`src/indexer/`):
 | `sources.py` | data/sources.toml and loading the lists into inputs |
 | `net/` | fetching untrusted URLs: `fetch.py` (the guarded fetcher), `validate.py` (URL rules, URL files), `resolver.py`, `ippolicy.py`, `urls.py`, `domains.py` |
 | `check/` | `runner.py` (one check per URL), `feed.py` (parsing RSS/Atom) |
-| `survivors/` | `run.py` (the pipeline, steps 1–5), `wat.py` (reading Common Crawl), `feed_links.py` (the URL rules before checking: `filter_page_links`), `filters.py` (the rules after checking), `proposals.py` (the data/survivors/ files and the PR report) |
+| `survivors/` | `run.py` (the pipeline, steps 1–5), `wat.py` (reading Common Crawl), `feed_links.py` (the URL rules before checking: `filter_page_links`), `filters.py` (the rules after checking), `proposals.py` (the data/survivors/ files, their OPML and the PR summary) |
 
 ```sh
 uv run pytest            # no network needed: local test server and fake DNS

@@ -733,3 +733,10 @@ def test_business_words(title: str, subtitle: str, business: bool) -> None:
 def test_job_boards() -> None:
     row = checked("https://jobs.example/rss/", 3, subtitle="Jobs from Joblink | Leeds")
     assert rejection(row, Rules(NOW, 365)) == "job_board"
+
+
+def test_top_categories() -> None:
+    from indexer.survivors.run import _top_categories
+
+    tags = (("Recipes", "Kids"), ("recipes",), ("Kids", "kids"), (), ("  ",))
+    assert _top_categories(tags) == (("kids", 2), ("recipes", 2))  # once per post, case ignored

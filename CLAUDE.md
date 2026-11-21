@@ -38,12 +38,13 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   `survivors/*/*.txt`, CC ToU license; `files` entries may be glob patterns, sorted, none matching is fine) and
   every survivors.yml run opens its own PR from a new branch `survivors-<UTC timestamp>` (the file's name) based on develop (never a reused
   branch, so old proposals can't be merged by mistake). Skips URLs already in develop's files (accepted or commented out) or in inputs.
-  Untrusted titles/links: one line in the file (`proposals._one_line`), code spans in Markdown (no mentions/links).
-  Each entry in the file (asked 2026-11-21): comment lines with title, languages, last post, subtitle, WAT file and the 3 most
+  Untrusted titles/categories/links: one line in the file (`proposals._one_line`); none of it goes in the PR.
+  Each entry in the file (asked 2026-11-21): comment lines with title, languages, last post, subtitle, the authors' top 8
+  categories on the first posts with counts (`run._top_categories` from `FeedInfo.item_tags`, never stored), WAT file and the 3 most
   recent posts (link, title, start of the description; `FeedInfo.recent_posts`, never stored or fetched), then the URL
   **commented out**: a reviewer uncomments the feeds they want. Commented-out proposals count as known (not proposed again).
-  PR report: one section per feed (title, URL, last post, detected languages, all code spans); the report
-  never exceeds GitHub's 65,536-character limit (extra feeds are only counted). All proposals as OPML go in a
+  PR body: the edit link, the OPML link and the run's summary only, no feed listed (asked 2026-11-21: the
+  feeds are reviewed in the file). All proposals as OPML go in a
   `<dd-HHMMSS>.opml` beside the .txt (committed with it; not a source), linked from the PR body for download
   (moved out of the report at the user's request on 2026-11-21); max-feeds default 20 (was 50).
   Agreed filters: crawl closest to 5 years ago, first 25 MB of one random WAT file (one range

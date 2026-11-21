@@ -71,6 +71,7 @@ class CheckRow:
     license: str | None = None
     recent_posts: tuple[RecentPost, ...] = ()  # used by survivors, not stored
     item_texts: tuple[str, ...] = ()  # the newest posts' title and start: survivors, not stored
+    item_tags: tuple[tuple[str, ...], ...] = ()  # each of item_texts' categories: survivors only
     detail: str | None = None  # logged, not stored
 
 
@@ -114,6 +115,7 @@ async def check_one(
         row.subtitle = info.subtitle
         row.recent_posts = info.recent_posts
         row.item_texts = info.item_texts
+        row.item_tags = info.item_tags
         if languages is not None:
             per_post = languages.post_languages(info.item_texts)
             labels = feed_languages(per_post)

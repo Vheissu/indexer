@@ -9,6 +9,7 @@ commented out too:
     # Miss Frugal Mommy · en · last post 2026-11-12
     # about: Saving money with kids, one small habit at a time,
     #   every week
+    # categories (on 30 posts): budgeting 12, kids 9, recipes 4
     # found in
     #   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/.../...warc.wat.gz
     # recent posts:
@@ -24,18 +25,17 @@ A reviewer uncomments the URL line of each feed they want (deletes "# ") and mer
 input job then loads the uncommented URLs. Commented-out proposals still count as known, so a
 feed left out is not proposed again.
 
-Titles and links come from the feeds, so they are untrusted: in the file they are flattened to a
-single line of printable text (a title can never start a new, uncommented line), and in the
-Markdown report they are shown in code spans, where GitHub neither renders markup nor turns
-@names into mentions or #numbers into links. Next to the .txt file, a run also writes the
-feeds as OPML (<dd-HHMMSS>.opml, escaped XML attributes; not read as a source), which the pull
-request links to, for trying them in a feed reader while reviewing.
+Titles, categories and links come from the feeds, so they are untrusted: in the file they are
+flattened to a single line of printable text (a title can never start a new, uncommented line).
+The pull request only says how many feeds were proposed and the run's summary. Next to the .txt
+file, a run also writes the feeds as OPML (<dd-HHMMSS>.opml, escaped XML attributes; not read as
+a source), which the pull request links to, for trying them in a feed reader while reviewing.
 """
 
 import re
 import textwrap
 import unicodedata
-from collections.abc import Iterable, Sequence
+from collections.abc import Iterable
 from datetime import UTC, date, datetime
 from email.utils import format_datetime
 from pathlib import Path
@@ -100,6 +100,9 @@ def render_entries(survivors: Iterable[Survivor], crawl: str, today: date) -> st
         out.append("\n" + _comment(summary))
         if subtitle := _one_line(s.subtitle, _MAX_SUBTITLE):
             out.append(_comment(f"about: {subtitle}"))
+        if s.posts_read:
+            names = ", ".join(f"{_one_line(name, 50)} {n}" for name, n in s.categories) or "none"
+            out.append(_comment(f"categories (on {s.posts_read} posts): {names}"))
         out.append(_comment(f"found in {s.wat_url}"))
         out.append("# recent posts:\n" if s.recent_posts else "# recent posts: none with a link\n")
         for post in s.recent_posts:
@@ -132,48 +135,16 @@ def log_line(s: Survivor) -> str:
     return f"  + {s.url}  {s.last_item_date.date().isoformat()}  {title}"
 
 
-def _code(text: str) -> str:
-    """Untrusted text as an inline code span: rendered literally, so no links, mentions or
-    markup. Backticks inside would end the span, so they become quotes."""
-    return "`" + text.replace("`", "'") + "`" if text else "—"
-
-
 def acceptance(proposed: int, checked: int) -> str:
     """The share of the checked feed URLs that were proposed, e.g. "0.87% (104 of 11944)"."""
     share = f"{100 * proposed / checked:.2f}%" if checked else "n/a"
     return f"{share} ({proposed} of {checked})"
 
 
-# GitHub rejects a pull request body or comment over 65,536 characters; the workflow adds a
-# short introduction to the first one.
-_MAX_REPORT_CHARS = 60_000
-
-
-def _feed_section(s: Survivor) -> str:
-    lines = [
-        f"### {_code(_one_line(s.title, _MAX_TITLE))}",
-        "",
-        f"- feed: {_code(s.url)}",
-        f"- last post: {s.last_item_date.date().isoformat()}",
-        f"- languages: {_code(_one_line(s.language, 200))}",
-    ]
-    return "\n".join(lines) + "\n\n"
-
-
-def render_report(
-    survivors: Sequence[Survivor], crawl: str, summary: str, generated: datetime
-) -> str:
-    """Markdown for the pull request: one section per proposed feed with its title, URL, last
-    post, languages and the links of its latest posts, all as code spans (nothing clickable),
-    to make spam easy to spot. Never longer than _MAX_REPORT_CHARS: feeds that don't fit are
-    counted at the end (they are all in the diff)."""
-    report = f"**{len(survivors)} feeds** from `{crawl}`, still active today. {summary}\n\n"
-    for shown, s in enumerate(survivors):
-        section = _feed_section(s)
-        if len(report) + len(section) > _MAX_REPORT_CHARS - 200:  # room for the note below
-            return report + f"... and {len(survivors) - shown} more feeds: see the diff.\n"
-        report += section
-    return report
+def render_report(proposed: int, crawl: str, summary: str) -> str:
+    """Markdown for the pull request: how many feeds were proposed and the run's summary. The
+    feeds themselves are reviewed in the proposal file (untrusted text stays out of the PR)."""
+    return f"**{proposed} feeds** from `{crawl}`, still active today. {summary}\n"
 
 
 def render_opml(survivors: Iterable[Survivor], crawl: str, generated: datetime) -> str:

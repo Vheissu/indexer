@@ -264,7 +264,7 @@ async def _survivors(args: argparse.Namespace) -> int:
         )
         if args.report:
             args.report.write_text(
-                proposals.render_report(new, result.crawl, summary, datetime.now(UTC)),
+                proposals.render_report(len(new), result.crawl, summary),
                 encoding="utf-8",
             )
     return 0
@@ -471,7 +471,9 @@ def _parser() -> argparse.ArgumentParser:
         " its files or in inputs are skipped (default data/survivors)",
     )
     sv.add_argument(
-        "--report", type=Path, help="also write the proposals as Markdown (for the pull request)"
+        "--report",
+        type=Path,
+        help="also write the run's summary as Markdown (for the pull request)",
     )
     sv.add_argument(
         "--slice-mb",

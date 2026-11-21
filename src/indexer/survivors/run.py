@@ -35,6 +35,7 @@ from indexer.survivors.wat import DATA_URL, Fetch, WatScan, complete_prefix, pic
 log = logging.getLogger("indexer.survivors")
 
 _CHECK_BATCH = 200  # feeds checked at a time, so a run can stop once it has enough
+_MAX_CATEGORIES = 8  # categories shown per proposed feed
 _MAX_PER_SITE = 10  # feeds checked per site, shortest URLs first (the shortest that passes wins)
 
 type _Check = Callable[[Sequence[str]], Awaitable[Iterable[CheckRow]]]
@@ -53,6 +54,8 @@ class Survivor:
     last_item_date: datetime
     subtitle: str | None = None
     recent_posts: tuple[RecentPost, ...] = ()  # newest first (untrusted text)
+    categories: tuple[tuple[str, int], ...] = ()  # the authors' categories: (name, posts), top
+    posts_read: int = 0  # posts whose categories were counted
 
 
 @dataclass(slots=True)
@@ -184,8 +187,25 @@ def _judge(row: CheckRow, rules: Rules, wat_url: str, result: SurvivorsResult) -
     url = served_url(row, rules.exclude)
     assert url is not None and row.last_item_date is not None  # rejection() made sure
     return Survivor(
-        url, wat_url, row.title, row.language, row.last_item_date, row.subtitle, row.recent_posts
+        url,
+        wat_url,
+        row.title,
+        row.language,
+        row.last_item_date,
+        row.subtitle,
+        row.recent_posts,
+        _top_categories(row.item_tags),
+        len(row.item_tags),
     )
+
+
+def _top_categories(item_tags: Sequence[Sequence[str]]) -> tuple[tuple[str, int], ...]:
+    """The categories the authors gave the feed's first posts, most used first (ties by name):
+    (name, number of posts), case ignored, at most _MAX_CATEGORIES. Untrusted text, shown to
+    reviewers only."""
+    counts = Counter(tag for tags in item_tags for tag in {t.strip().lower() for t in tags} if tag)
+    ranked = sorted(counts.items(), key=lambda item: (-item[1], item[0]))
+    return tuple(ranked[:_MAX_CATEGORIES])
 
 
 async def _unknown(

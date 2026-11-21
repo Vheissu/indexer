@@ -1,4 +1,4 @@
-"""Rendering survivors' proposals: data/survivors.txt entries and the pull request report."""
+"""Rendering survivors' proposals: the proposal file and the pull request summary."""
 
 from dataclasses import replace
 from datetime import UTC, date, datetime
@@ -9,7 +9,6 @@ from defusedxml import ElementTree as SafeET
 from indexer.check.feed import RecentPost
 from indexer.sources import extract_urls
 from indexer.survivors.proposals import (
-    _MAX_REPORT_CHARS,
     _one_line,
     acceptance,
     file_name,
@@ -36,7 +35,15 @@ def test_entries_are_comment_lines_and_the_url_commented_out() -> None:
     )
     frugal = survivor("https://missfrugalmommy.com/feed/", "Miss Frugal Mommy")
     block = render_entries(
-        [replace(frugal, subtitle="Saving money with kids", recent_posts=posts)],
+        [
+            replace(
+                frugal,
+                subtitle="Saving money with kids",
+                recent_posts=posts,
+                categories=(("budgeting", 12), ("kids", 9)),
+                posts_read=30,
+            )
+        ],
         "CC-MAIN-2021-49",
         date(2026, 11, 18),
     )
@@ -45,6 +52,7 @@ def test_entries_are_comment_lines_and_the_url_commented_out() -> None:
         "# URL of each feed to keep.\n"
         "\n# Miss Frugal Mommy · en · last post 2026-11-12\n"
         "# about: Saving money with kids\n"
+        "# categories (on 30 posts): budgeting 12, kids 9\n"
         "# found in\n"
         f"#   {WAT}\n"
         "# recent posts:\n"
@@ -103,35 +111,26 @@ def test_one_line() -> None:
     assert "# (no title) · (no language) · last post 2026-11-12" in block
 
 
-def test_report_is_one_section_per_feed_with_untrusted_text_in_code_spans() -> None:
-    hostile = survivor("https://a.example/feed", "@everyone see #12 | `x` [click](https://evil)")
-    report = render_report(
-        [hostile, survivor("https://b.example/feed", "B")],
-        "CC-MAIN-2021-49",
-        "5 slices",
-        NOW,
+def test_report_is_only_the_summary() -> None:  # the feeds are reviewed in the file
+    report = render_report(2, "CC-MAIN-2021-49", "25 MB of x.warc.wat.gz: 900 feed URLs")
+    assert report == (
+        "**2 feeds** from `CC-MAIN-2021-49`, still active today. 25 MB of x.warc.wat.gz:"
+        " 900 feed URLs\n"
     )
-    assert "**2 feeds** from `CC-MAIN-2021-49`" in report and "|" not in report.replace(
-        "@everyone see #12 | ", ""
-    )  # no table
-    first = report.split("### ")[1].splitlines()
-    assert first == [
-        "`@everyone see #12 | 'x' [click](https://evil)`",
-        "",
-        "- feed: `https://a.example/feed`",
-        "- last post: 2026-11-12",
-        "- languages: `en`",
-        "",
-    ]
-    assert "latest posts" not in report  # they are in survivors.txt
 
 
-def test_report_never_exceeds_the_github_limit() -> None:
-    many = [survivor(f"https://{i}.example/{'a' * 200}/feed", "T" * 200) for i in range(1000)]
-    report = render_report(many, "CC-MAIN-2021-49", "summary", NOW)
-    assert len(report) <= _MAX_REPORT_CHARS
-    shown = report.count("### ")
-    assert 0 < shown < 1000 and f"... and {1000 - shown} more feeds: see the diff." in report
+def test_categories_line() -> None:
+    hostile = replace(
+        survivor("https://a.example/feed", "A"),
+        categories=(("news\n# https://evil.example/", 3), ("uncategorized", 30)),
+        posts_read=30,
+    )
+    block = render_entries([hostile], "C", date(2026, 1, 1))
+    assert "# categories (on 30 posts): news #" in block
+    assert "# https://evil.example/" not in block.splitlines()  # never a proposal's URL line
+    assert "uncategorized 30" in block
+    none = replace(survivor("https://b.example/feed", "B"), posts_read=5)
+    assert "# categories (on 5 posts): none\n" in render_entries([none], "C", date(2026, 1, 1))
 
 
 def test_known_urls_from_every_file_of_the_folder(tmp_path: Path) -> None:
@@ -185,8 +184,3 @@ def test_opml_lists_every_proposal_in_order_escaped() -> None:
     assert outlines[0].get("title") == outlines[0].get("text") == 'Tom & "Jerry" <b>'
     assert outlines[1].get("title") == "https://b.example/rss"  # no title: the URL
     assert "<b>" not in xml  # escaped, never markup
-
-
-def test_report_has_no_opml() -> None:  # it is in the .opml file the PR links to
-    report = render_report([survivor("https://a.example/feed", "A")], "C", "summary", NOW)
-    assert "<opml" not in report and "<details>" not in report
