@@ -152,6 +152,9 @@ shared hosts like `fc2.com` or `free.fr`). A feed is proposed only if:
   below). The feed's own `<language>` is not read: WordPress says `en-US` unless the owner changes it;
 - it **has a title** and a **description** (subtitle), and at least one of its recent posts has
   a title or text;
+- neither its title nor its description names a business ("service(s)", "attorney(s)",
+  "agency", "book now", "supplies", "equipment", "shop"): company blogs. About 1 in 250 of the
+  listed feeds would be dropped by it, mostly consultants' and agencies' good blogs;
 - its title contains none of the `[commoncrawl] exclude_keywords` in `data/sources.toml`
   as a whole word, and its subtitle, newest posts (title and start of each) and the titles of
   its 3 most recent posts fewer than 3

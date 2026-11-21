@@ -706,3 +706,19 @@ def test_a_redirect_to_an_unwanted_url_is_rejected() -> None:
         final_url="https://www.celestialheavens.com/forums/app.php/feed",
     )
     assert rejection(row, Rules(NOW, 365)) == "unwanted_url"
+
+
+@pytest.mark.parametrize(
+    ("title", "subtitle", "business"),
+    [
+        ("UK Document Services", "direct to your door", True),
+        ("MONDOM communications", "Boutique Communications Agency", True),
+        ("My Shop...granny likes it", "Irish-made gifts", True),
+        ("TBJ Incorporated", "World Leader of Custom Stainless Steel Equipment", True),
+        ("Workshop notes", "Woodworking at home", False),  # inside a word
+        ("A Feed", "About things", False),
+    ],
+)
+def test_business_words(title: str, subtitle: str, business: bool) -> None:
+    row = checked("https://s.example/feed/", 3, title=title, subtitle=subtitle)
+    assert (rejection(row, Rules(NOW, 365)) == "business") is business

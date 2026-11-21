@@ -10,6 +10,8 @@ feed_links.py).
                  subtitle and posts
     no_subtitle  the feed has no description (subtitle)
     no_text      none of its recent posts has a title or a description
+    business     its title or description names a business: service(s), attorney(s), agency,
+                 book now, supplies, equipment, shop
     wiki         a recent post links to a wiki edit (do=diff, rev=, oldid=, doku.php, ?title=)
     tracking     a recent post link has utm_ tracking parameters
     seo_footer   a post says "appeared first on" or "first appeared on" (an SEO plugin's footer,
@@ -50,6 +52,7 @@ type Reason = Literal[
     "keyword",
     "no_subtitle",
     "no_text",
+    "business",
     "wiki",
     "tracking",
     "seo_footer",
@@ -63,6 +66,11 @@ type Reason = Literal[
 ]
 
 _WIKI_EDIT = re.compile(r"do=diff|[?&]rev=|oldid=|doku\.php|index\.php\?title=", re.IGNORECASE)
+# Words that mark a company's site (agreed 2026-11-21: on the listed feeds about 1 in 250
+# harmless feeds has one; in a 200-feed survivors batch they caught 7 company blogs).
+_BUSINESS = re.compile(
+    r"\b(services?|attorneys?|agency|book now|supplies|equipment|shop)\b", re.IGNORECASE
+)
 _SAMPLE_POST = "welcome to wordpress. this is your first post"
 _SEO_SUMMARY = re.compile(r"(discover|learn|explore|understand|uncover|find out)\b", re.IGNORECASE)
 _REPOSTED = re.compile(r"article\s+appeared\s+in", re.IGNORECASE)
@@ -93,6 +101,8 @@ def rejection(row: CheckRow, rules: Rules) -> Reason | None:
         return "no_subtitle"
     if not any(post.title or post.description for post in row.recent_posts):
         return "no_text"
+    if _BUSINESS.search(f"{row.title} {row.subtitle}"):
+        return "business"
     links = [post.link for post in row.recent_posts]
     if any(_WIKI_EDIT.search(link) for link in links):
         return "wiki"
