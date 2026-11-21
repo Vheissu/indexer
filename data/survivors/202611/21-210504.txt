@@ -30,7 +30,7 @@
 #     book, and I am excited to be able to share it on
 #     Perfect Picture Book Friday. It was written by a dear
 #     friend and was inspired by one of her beau
-# https://afieldtriplife.com/feed/
+https://afieldtriplife.com/feed/
 
 # Brian Crawford · en · last post 2026-10-22
 # score: 0.707
@@ -59,7 +59,7 @@
 #     light dims, and a cool breeze wafts over the water.
 #     The eastern sky turns a deep shade of purple. Glimmers
 #     of pink fringe any clouds in the west. Gra
-# https://briancrawford.com/feed/
+https://briancrawford.com/feed/
 
 # Ralph Hass Has The VOice...On and Off the Ice · en · last
 #   post 2026-06-01
@@ -91,7 +91,7 @@
 #     (for the snow) yesterday ❄🏂 A mix of the two before
 #     that with Elvis' " Blue Christmas" 🎄 Green for the win
 #     too! Unfortunately, TOO much snow in Bu
-# https://hasthevoice.blogspot.com/feeds/posts/default
+https://hasthevoice.blogspot.com/feeds/posts/default
 
 # The Cobar Weekly · en · last post 2026-11-19
 # score: 0.628
@@ -123,7 +123,7 @@
 #     locals who called in for a fresh ‘do last Tuesday from
 #     Loma Atuau at The Uso’s Barber when 100 percent of the
 #     takings from all services were donated t
-# https://cobarweekly.com.au/feed/
+https://cobarweekly.com.au/feed/
 
 # My Momma Taught Me · en · last post 2026-10-30
 # score: 0.603
@@ -152,6 +152,7 @@
 #     I had to grab one. This is the exact set my
 #     grandmother had when I was growing up and used. I t
 #     was by far my favorite. I have the green set of he
+# rejected: commercial
 # https://mymommataughtme.com/feed/
 
 # Wellington Radio Yacht Club · en · last post 2026-11-13
@@ -175,6 +176,7 @@
 #     afternoon.Just as well as the wind picked up and even
 #     over powered the B rigs at times, especially later in
 #     the afternoon. Started with 3 boats but
+# rejected: notices
 # https://wryc.org.nz/feed/
 
 # GROW · en · last post 2026-11-14
@@ -205,6 +207,7 @@
 #     name</em>]! I am [newcomer rep name] and I’m an
 #     alcoholic, member here in Continue Reading 2026
 #     Business Meeting – October →
+# rejected: notices
 # https://g-r-o-w.com/feed/
 
 # The Menzies Digest · en · last post 2026-11-06
@@ -229,7 +232,7 @@
 #     A music video of the Royal Court Theatre 2027 x Naomi
 #     in Blue: Who Knows has been posted on the Royal Court
 #     Theatre youtube channel (28th October 2026)
-# https://tobiasmenzies.copperboom.us/feed/
+https://tobiasmenzies.copperboom.us/feed/
 
 # PunchDrunkGamer.com – PunchDrunkGamer | MMA News, Gaming
 #   News & Live Events · en · last post 2026-11-21
@@ -261,6 +264,7 @@
 #     Subscribe to get all the latest UFC content:
 #     https://ufc.ac/3u8FIJp Experience UFC live with UFC
 #     FIGHT PASS, the digital subscription service of t
+# rejected: republished
 # https://punchdrunkgamer.com/feed/
 
 # Bled FC · en · last post 2026-06-16
@@ -287,6 +291,7 @@
 #     We are proud and honored to have collaborated with
 #     Sorare, a fantasy football game, to create the new
 #     cards for the J-League…
+# rejected: commercial
 # https://bledfc.com/feed/
 
 # That Awkward Moment Movie · en · last post 2026-11-21
@@ -313,6 +318,7 @@
 #     Lenovo handheld gaming PC leaked
 #     Lenovo may announce a relatively affordable handheld
 #     gaming PC, the Legion Go Beam, with a value design.
+# rejected: seo
 # https://thatawkwardmomentmovie.com/feed
 
 # Wicker Park Advisory Council · en · last post 2026-10-28
@@ -338,7 +344,7 @@
 #   - https://wickerpark.org/hot-shots-sports-fall-2-session/
 #     Hot Shots Sports Fall 2 Session
 #     Register Here
-# https://wickerpark.org/feed/
+https://wickerpark.org/feed/
 
 # GetLoFi – Circuit Bending Synth – DIY – Cassette Tape
 #   Albums · en · last post 2026-06-26
@@ -364,4 +370,4 @@
 #     someone to take the mystery out of this proc
 #   - https://getlofi.com/knife-ideas-dump/
 #     Knife Ideas Dump
-# https://getlofi.com/feed/
+https://getlofi.com/feed/
