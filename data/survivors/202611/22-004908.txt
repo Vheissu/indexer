@@ -1,0 +1,374 @@
+# Proposed 2026-11-22 from CC-MAIN-2021-49. Uncomment the
+# URL of each feed to keep.
+
+# Big V Riot Squad · en · last post 2026-10-26
+# score: 0.711
+# categories (on 25 posts): tcm 5, marlon brando 3, alfred
+#   hitchcock 2, myrna loy 2, rip 2, turner classic movies
+#   2, wallace ford 2, warner brothers 2
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362571.17/wat/CC-MAIN-20211203000401-20211203030401-00523.warc.wat.gz
+# recent posts:
+#   - https://bigvriotsquad.blogspot.com/2026/10/the-musk-movie-october.html
+#     The Musk Movie -- October 26, 2026
+#     npr.org Alex Gibney's latest movie, Musk , disappeared
+#     from theaters and was blocked from buying ads on
+#     social media sites. Elon Musk is threatening to sue. I
+#     am going to see if I can find it on a str
+#   - https://bigvriotsquad.blogspot.com/2026/10/high-treason-october-25-2026.html
+#     High Treason -- October 25, 2026
+#     listal.com I have seen some strange movies recently.
+#     High Treason was one of them. It was made in 1929.
+#     Like Alfred Hitchcock's Blackmail , it started being
+#     shot as a silent movie and became a talkie.
+#   - https://bigvriotsquad.blogspot.com/2026/10/blog-post.html
+#     Angela Lansbury 100 -- October 16, 2026
+#     listal.com Wildly talented actress, singer and dancer
+#     Angela Lansbury was born 100 years ago today, on
+#     16-October-1925. She was one of the last links to old
+#     Hollywood. She could play good people and b
+https://bigvriotsquad.blogspot.com/feeds/posts/default
+
+# DawatMedia24 · en · last post 2026-11-21
+# score: 0.704
+# about: Media24 invitation
+# categories (on 10 posts): world news 5, sports 2,
+#   afghanistan news 1, ahmad fawad arsala 1, japan rugby
+#   team 1, norsk - norwegian 1, opinion 1, refugee &
+#   immigration 1
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362571.17/wat/CC-MAIN-20211203000401-20211203030401-00523.warc.wat.gz
+# recent posts:
+#   - https://dawatmedia24.com/world/vance-avoids-endorsement-of-trumps-iran-nuclear-claims/
+#     Vance Avoids Endorsement of Trump’s Iran Nuclear
+#     Claims
+#     At a White House news conference on Friday, U.S. Vice
+#     President JD Vance refrained from endorsing former
+#     President Donald Trump’s assertion that Iran was on
+#     the verge of acquiring a nuclear weapon las
+#   - https://dawatmedia24.com/sports/liverpool-set-to-face-manchester-united-in-premier-league-clash/
+#     Liverpool Set to Face Manchester United in Premier
+#     League Clash
+#     In a highly anticipated match, Liverpool will host
+#     Manchester United in the English Premier League,
+#     highlighting one of the sport’s most intense
+#     rivalries. This encounter is particularly significant
+#     a
+#   - https://dawatmedia24.com/world/90-million-displaced-people-at-risk-from-climate-threats-un-refugee-agency-warns/
+#     90 Million Displaced People at Risk from Climate
+#     Threats, UN Refugee Agency Warns
+#     Nearly 90 million forcibly displaced people are living
+#     in countries increasingly exposed to climate-related
+#     droughts, floods and extreme heat, UNHCR said ahead of
+#     the COP31 climate summit, warning tha
+# https://dawatmedia24.com/feed/
+
+# Strong As An Ox And Nearly As Smart · en · last post
+#   2026-05-19
+# score: 0.673
+# about: My younger brother Ron and I were very big for our
+#   age. When people told Pop, "You have really good looking
+#   boys," Pop would smile and agree: "Yep, they're strong
+#   as an ox and nearly as smart."
+# categories (on 25 posts): christmas letters 6, global
+#   warming alarmists 4, global warming naturally 4, taxes
+#   3, liberalism 2, social security reform 2, climate
+#   change ignorance 1, coast life 1
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362571.17/wat/CC-MAIN-20211203000401-20211203030401-00523.warc.wat.gz
+# recent posts:
+#   - https://strongasanoxandnearlyassmart.blogspot.com/2024/11/our-2024-christmas-letter.html
+#     Our 2024 Christmas Letter
+#     Can a Christmas letter be a record of all the things
+#     we didn’t do? Would anyone want to read it? Well, we
+#     didn’t go to Brazil. In fact we never have gone to
+#     Brazil, so why report that now after over 8
+#   - https://strongasanoxandnearlyassmart.blogspot.com/2026/03/iran-stop-slaughter-of-innocents.html
+#     Iran: Stop the Slaughter of Innocents
+#     Iran is now such a strategic threat that it made
+#     confrontation unavoidable. By the time of the current
+#     conflict, Iran was widely understood to possess the
+#     technical capability to produce multiple nucl
+#   - https://strongasanoxandnearlyassmart.blogspot.com/2026/03/longevity-differences-between-united.html
+#     Longevity Differences Between the United States and
+#     Europe: The Role of Lifestyle Versus Medical Ca…
+#     Recent data indicate that life expectancy in the
+#     United States is approximately 78–79 years , compared
+#     to about 81–82 years in Europe , depending on how
+#     Europe is defined. It is important to note that
+https://strongasanoxandnearlyassmart.blogspot.com/feeds/posts/default
+
+# CANAAN'S REST · en · last post 2026-11-21
+# score: 0.655
+# about: A quiet place set apart for the purpose of hearing
+#   God's voice
+# categories (on 10 posts): sister judy 9, whispers 9, the
+#   arena 1
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362571.17/wat/CC-MAIN-20211203000401-20211203030401-00523.warc.wat.gz
+# recent posts:
+#   - https://canaansrest.org/november-21-2026-2/
+#     November 21, 2026
+#     Dear Ones,Hope you are having a good weekend and also
+#     enjoyed our son’s input on the website. Today you are
+#     getting an email on aging as I have been sick the last
+#     couple days and feel rather old with
+#   - https://canaansrest.org/depart-from-me/
+#     Depart From Me
+#     This is Kurt Hendrickson. Mom, Dad, and I have talked
+#     about their “retirement” from blogging, and they
+#     encouraged me to consider posting from time to time. I
+#     have to admit, the idea felt completely fo
+#   - https://canaansrest.org/november-6-2026/
+#     November 6, 2026
+#     Dear Ones,Hope you are enjoying each day with the Lord
+#     and letting the Spirit infuse you with His love. The
+#     question for you today is: Do you feel you are more
+#     self-less today than you were in the pas
+# https://canaansrest.org/feed/
+
+# Healthnuttxo · en · last post 2026-05-10
+# score: 0.649
+# about: Healthy food & product reviews!
+# categories (on 10 posts): lisa the health nutt 9, 4 1/2
+#   stars 3, healthnuttxo 3, 3 1/2 stars 2, gluten free 2,
+#   review 2, 0 stars 1, 1 star 1
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362571.17/wat/CC-MAIN-20211203000401-20211203030401-00523.warc.wat.gz
+# recent posts:
+#   - https://healthnuttxo.com/2026/05/10/struesli-granola-redefined-with-tiger-nuts/
+#     Struesli Granola Redefined with Tiger Nuts
+#     Granola…Can we all agree it’s just DELICIOUS?! Out of
+#     the bag by the handful, with milk, with yogurt and
+#     fruit… just amazing. However, as we can probably also
+#     agree, usually... [Continue Reading]
+#   - https://healthnuttxo.com/2026/03/15/magos-whole-egg-chips/
+#     Magos Whole Egg Chips
+#     Of all the low carb snack varieties…I certainly have
+#     not heard of EGG chips before. Given that I have Type
+#     1 Diabetes, I do love me a low carb snack... [Continue
+#     Reading]
+#   - https://healthnuttxo.com/2026/02/14/queen-st-bakery-bread-with-benefits/
+#     Queen St. Bakery Bread with Benefits
+#     Bread with benefits??? What??? Queen St. Bakery offers
+#     a variety of nutrient dense, gluten free breads. The
+#     breads are also non GMO, and certified vegan. The
+#     story is quite adorable... [Continue Readi
+# https://healthnuttxo.com/feed/
+
+# 2 Hop Heads · en · last post 2026-09-08
+# score: 0.645
+# about: Two brothers sharing their love for the good stuff
+# categories (on 10 posts): stout 4, ipa's 3, pilsners 1,
+#   saisons/farmhouse ale 1, sours 1
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362571.17/wat/CC-MAIN-20211203000401-20211203030401-00523.warc.wat.gz
+# recent posts:
+#   - https://2hopheads.com/alesmith-speedway-stout-w-coffee-imperial-stout/
+#     Alesmith ‘Speedway Stout w Coffee’ Imperial Stout
+#     Rating: “Speedway Stout’s ominous, pitch-black
+#     appearance has become a hallmark of this modern-day
+#     classic. Chocolate and roasted malts dominate the
+#     flavor, supported by notes of dark fruit, toffee, a
+#   - https://2hopheads.com/banks-cake-eater-krush-citra-ddh-oat-cream-dipa/
+#     Banks ‘Cake Eater – Krush & Citra’ DDH Oat Cream DIPA
+#     Rating: “Soft, plush, and stacked with hops. Krush and
+#     Citra bring waves of ripe stone fruit and citrus zest,
+#     cushioned by a silky oat cream body. Big on flavour
+#     but easy on the edges, so you can have
+#   - https://2hopheads.com/jervis-bay-point-perp-pilsner/
+#     Jervis Bay ‘Point Perp’ Pilsner
+#     Rating: “An old-school classic style meets the new
+#     world in our twist on a pilsner. Cool fermented with
+#     European yeast for a dry, crisp finish but with
+#     flavour and aroma imparted through delicate use
+# https://2hopheads.com/feed/
+
+# Dance from Spain · en · last post 2026-07-24
+# score: 0.548
+# about: The digital catalog of Spanish Dance Companies
+# categories (on 10 posts): contemporary 6, theatre 6,
+#   medium format 5, adults 4, non-conventional 4, all
+#   audiences 3, small format 3, young audience 3
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362571.17/wat/CC-MAIN-20211203000401-20211203030401-00523.warc.wat.gz
+# recent posts:
+#   - https://dancefromspain.feced.org/en/foundational/
+#     Foundational
+#     Contemporary dance came late to Spain. Many of the
+#     trailblazing companies are still active today and we
+#     wish to shed light on their tenacity, constancy,
+#     resilience and permanence through looking at th
+#   - https://dancefromspain.feced.org/en/cia-juan-berlanga-2/
+#     Cía. Juan Berlanga
+#     Juan Berlanga – Biography Juan Berlanga (Úbeda, 1990)
+#     is a dancer, choreographer, and artistic director. He
+#     trained at the Mariemma Professional Dance
+#     Conservatory in Madrid (2014) and holds a BA in F
+#   - https://dancefromspain.feced.org/en/la-silla-2/
+#     La Silla
+# https://dancefromspain.feced.org/en/feed/
+
+# Cryptomundo · en · last post 2026-09-25
+# score: 0.504
+# about: for Bigfoot, Lake Monsters, Sea Serpents and More
+# categories (on 10 posts): bigfoot report 10, cryptozoology
+#   9, bigfoot 7, sasquatch 7, pop culture 6, eyewitness
+#   accounts 5, videos 5, cryptozoologists 4
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362571.17/wat/CC-MAIN-20211203000401-20211203030401-00523.warc.wat.gz
+# recent posts:
+#   - https://cryptomundo.com/bigfoot-report/mountain-dew-bigfoot-bounty/
+#     Mountain Dew $1 Million Bigfoot Bounty
+#     For decades, Bigfoot believers have chased shaky
+#     photos and grainy footage that never closed the case.
+#     Today, Hard Mountain Dew is joining the hunt to launch
+#     its first-ever Bigfoot Bounty – a $1 milli
+#   - https://cryptomundo.com/bigfoot-report/lost-in-bigfoot-country-the-10-greatest-missing-aircraft-mysteries-of-the-pacific-northwest-and-alaska/
+#     Lost in Bigfoot Country: The 10 Greatest Missing
+#     Aircraft Mysteries of the Pacific Northwest and Al…
+#     These remote forests also happen to be among the most
+#     active regions for Bigfoot sightings, causing some
+#     missing-aircraft stories to become woven into local
+#     Sasquatch lore.
+#   - https://cryptomundo.com/bigfoot-report/beasts-in-the-mist/
+#     Beasts in the Mist
+#     "What a bankrupt world it would be if you refused to
+#     believe things existed until you actually had seen a
+#     specimen in a museum. I mean, there are lots of things
+#     we are prepared to believe exist withou
+# https://cryptomundo.com/feed/
+
+# Newsletter - Pet Trade Xtra – Issue 44 2026 · en · last
+#   post 2026-11-18
+# score: 0.477
+# categories (on 24 posts): right side articles cover 12,
+#   articles top 11, feature story 1
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362571.17/wat/CC-MAIN-20211203000401-20211203030401-00523.warc.wat.gz
+# recent posts:
+#   - https://pettradextra.newsweaver.com/Newsletter/17d9lx9rzv5?lang=en&rss=true
+#     Pet business planner earns industry recommendation
+#     Rachel Spencer’s Your Pet Business Content Planner has
+#     earned TDTS Recommended status following six months of
+#     independent testing by 30 pet professionals...
+#   - https://pettradextra.newsweaver.com/Newsletter/z7vzrg72haw?lang=en&rss=true
+#     Journalist launches multi-media canine platform
+#     A new multimedia journalism platform dedicated to the
+#     stories, issues and people shaping the world of dogs
+#     has officially launched...
+#   - https://pettradextra.newsweaver.com/Newsletter/1hupvikt004?lang=en&rss=true
+#     Vet expert shares the top three breeds most prone to
+#     respiratory illnesses
+#     Can dogs catch colds as the winter flu season begins?
+#     Petplan’s vet expert, Dr Brian Faulkner (FRCVS),
+#     explains the symptoms to watch for this winter...
+# https://pettradextra.newsweaver.com/Newsletter/rss/
+
+# Marq Spusta · en · last post 2026-10-07
+# score: 0.472
+# categories (on 10 posts): posters 5, screen print poster
+#   5, news posts 3, studio 3, 7" x 7" 2, poster 2, screen
+#   print 2, widespread panic 2
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362571.17/wat/CC-MAIN-20211203000401-20211203030401-00523.warc.wat.gz
+# recent posts:
+#   - https://marqspusta.com/studio-projects/studio-posters/yahn-dawn-pretty-lights-poster/
+#     Yahn Dawn / Pretty Lights Poster
+#     [ See image gallery at marqspusta.com ] Share/Bookmark
+#   - https://marqspusta.com/studio-projects/studio-illustration/league-champions-dogfish-head-x-eaux-claires/
+#     League Champions (Dogfish Head x Eaux Claires)
+#     [ See image gallery at marqspusta.com ] Share/Bookmark
+#   - https://marqspusta.com/studio-projects/studio-posters/widespread-panic-a-western-jaunt/
+#     Widespread Panic – A Western Jaunt
+#     [ See image gallery at marqspusta.com ] Share/Bookmark
+https://marqspusta.com/feed/
+
+# BayLUG · en · last post 2026-11-03
+# score: 0.451
+# about: Welcome to BayLUG!
+# categories (on 10 posts): baylug news 10
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362571.17/wat/CC-MAIN-20211203000401-20211203030401-00523.warc.wat.gz
+# recent posts:
+#   - https://baylug.org/brick-realm-2026/
+#     Brick Realm 2026
+#     Over the 2026 Halloween weekend, BayLUG participated
+#     in the first annual Brick Realm Expo. This event was
+#     held at the Hyatt Regency Santa Clara, the former home
+#     of Bricks by […]
+#   - https://baylug.org/maker-faire-bay-area-20th-anniversary/
+#     Maker Faire Bay Area 20th Anniversary
+#     This September, BayLUG participated in the 20th
+#     anniversary of Maker Faire Bay Area. It is now located
+#     at Mare Island in Vallejo, and we have been
+#     participating since it started […]
+#   - https://baylug.org/virtual-win-at-brickcon/
+#     Virtual Win at BrickCon!
+#     Written by BayLUG member Margaret Robinson. I’ve been
+#     going to BrickCon for several years and have always
+#     enjoyed their commitment to running a virtual version
+#     of the convention. This is […]
+# https://baylug.org/feed/
+
+# How To Think Positive · en · last post 2026-11-21
+# score: 0.428
+# about: Get Out of The Hole of Negative Thinking
+# categories (on 10 posts): boundaries 4, relationships 4,
+#   communication 3, self compassion 3, emotional exhaustion
+#   2, emotional safety 2, positive thinking 2, self esteem
+#   2
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362571.17/wat/CC-MAIN-20211203000401-20211203030401-00523.warc.wat.gz
+# recent posts:
+#   - https://howtothinkpositive.net/missing-someone-does-not-mean-go-back/
+#     You Miss Them. That Doesn’t Mean You Should Go Back.
+#     It hits you at the strangest times. A song. A smell. A
+#     photo that surfaces without warning. And suddenly you
+#     miss them so much it feels like a sign—like your heart
+#     is telling you to reach out, to try
+#   - https://howtothinkpositive.net/how-to-trust-yourself-again/
+#     How to Trust Yourself After Ignoring Your Own Needs
+#     You said yes when you meant no. You ignored the
+#     tiredness. You pushed down that quiet voice. And now?
+#     Decisions feel impossible. You second-guess
+#     everything. You ask everyone else what to do—because s
+#   - https://howtothinkpositive.net/the-humility-paradox-why-no-one-is-better-than-me-might-be-the-most-grounded-thing-you-can-say/
+#     The Humility Paradox: Why “No One Is Better Than Me”
+#     Might Be the Most Grounded Thing You Can Say
+#     The bold shift you didn't know you needed There is a
+#     sentence that sounds dangerously like arrogance the
+#     first time you hear it: "I'm not better than you, but
+#     nobody's better than me." It makes you st
+# https://howtothinkpositive.net/feed/
+
+# Penske Used Trucks · en · last post 2026-08-26
+# score: 0.409
+# about: Penske Used Trucks
+# categories (on 30 posts): used truck center 17, used truck
+#   dealership 17, used trucks in california 3, used trucks
+#   in atlanta 2, used trucks in georgia 2, used trucks in
+#   new jersey 2, used trucks in north carolina 2, used
+#   trucks in texas 2
+# found in
+#   https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964362571.17/wat/CC-MAIN-20211203000401-20211203030401-00523.warc.wat.gz
+# recent posts:
+#   - https://www.penskeusedtrucks.com/cash-off-discounts/
+#     Save Up to $7,000 on Select Penske Used Trucks
+#     Penske is offering discounts on select used vehicles.
+#     Find your deal below. Cargo Vans Save Up to $3,000 on
+#     Select Cargo Vans 1 Promo Code 125CV3K Search Cargo
+#     Vans Light Duty Trucks Save Up to $3,000
+#   - https://www.penskeusedtrucks.com/vehicles-listings/
+#     Vehicle Inventory
+#     Search Penske's complete inventory and buy direct. We
+#     make it easy for you to find the right equipment for
+#     your customers. On this dealer-exclusive page, access
+#     our complete inventory at any time in a
+#   - https://www.penskeusedtrucks.com/used-truck-centers/monmouth-junction/
+#     Monmouth Junction
+#     Monmouth Junction Used Truck Center Penske’s Monmouth
+#     Junction, New Jersey Used Truck Center is conveniently
+#     located off US-1/I-95 in New Jersey and is
+#     approximately a one-hour drive from Philadelphia
+# https://www.penskeusedtrucks.com/feeds/feed.rss
