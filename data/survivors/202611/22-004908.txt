@@ -27,7 +27,7 @@
 #     Angela Lansbury was born 100 years ago today, on
 #     16-October-1925. She was one of the last links to old
 #     Hollywood. She could play good people and b
-# https://bigvriotsquad.blogspot.com/feeds/posts/default
+https://bigvriotsquad.blogspot.com/feeds/posts/default
 
 # DawatMedia24 · en · last post 2026-11-21
 # score: 0.704
@@ -96,7 +96,7 @@
 #     United States is approximately 78–79 years , compared
 #     to about 81–82 years in Europe , depending on how
 #     Europe is defined. It is important to note that
-# https://strongasanoxandnearlyassmart.blogspot.com/feeds/posts/default
+https://strongasanoxandnearlyassmart.blogspot.com/feeds/posts/default
 
 # CANAAN'S REST · en · last post 2026-11-21
 # score: 0.655
@@ -282,7 +282,7 @@
 #   - https://marqspusta.com/studio-projects/studio-posters/widespread-panic-a-western-jaunt/
 #     Widespread Panic – A Western Jaunt
 #     [ See image gallery at marqspusta.com ] Share/Bookmark
-# https://marqspusta.com/feed/
+https://marqspusta.com/feed/
 
 # BayLUG · en · last post 2026-11-03
 # score: 0.451
