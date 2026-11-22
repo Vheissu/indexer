@@ -552,6 +552,7 @@ Source layout (`src/indexer/`):
 | --- | --- |
 | `cli.py` | the `indexer` commands |
 | `db.py` | all database reads and writes (SQL through psycopg) |
+| `sql/` | the SQL statements db.py runs, one per file |
 | `models.py` | the tables as dataclasses, checked against the migrated schema by a test |
 | `errors.py` | the error identifiers |
 | `export.py` | the published lists (data files) |

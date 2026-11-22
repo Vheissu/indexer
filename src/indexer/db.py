@@ -1,10 +1,13 @@
-"""Postgres reads and writes, in SQL through psycopg. Liquibase owns the schema (db/changelog);
-this module never creates it. The tables are described in models.py."""
+"""Postgres reads and writes, in SQL through psycopg: the statements are in sql/, one per file,
+except the INSERTs built from models.py. Liquibase owns the schema (db/changelog); this module
+never creates it."""
 
 import asyncio
+import functools
 import ipaddress
 from collections.abc import Mapping, Sequence
 from datetime import UTC, datetime
+from importlib.resources import files
 from typing import Self
 
 import psycopg
@@ -26,6 +29,12 @@ OWN_TABLES = (
     "databasechangelog",
     "databasechangeloglock",
 )
+
+
+@functools.cache
+def _query(name: str) -> str:
+    """The statement in sql/<name>.sql."""
+    return files("indexer").joinpath("sql", f"{name}.sql").read_text()
 
 
 def _insert_sql(model: Model, replace_on: str | None) -> sql.Composed:
@@ -61,24 +70,6 @@ def _inet(value: str | None) -> IPAddress | None:
         return ipaddress.ip_address(value.split("%")[0]) if value else None
     except ValueError:
         return None
-
-
-# Insert new URLs; for a URL already present, replace its source only when the new license is
-# strictly more permissive (lower tier). Unknown licenses rank last. first_seen_at and
-# last_checked_at are never touched here.
-_UPSERT_INPUTS = """
-INSERT INTO inputs AS i (url, source, source_license)
-SELECT url, source, source_license FROM inputs_load
-ON CONFLICT (url) DO UPDATE
-SET source = EXCLUDED.source, source_license = EXCLUDED.source_license
-WHERE coalesce(
-          (%(tiers)s::int[])[array_position(%(licenses)s::text[], EXCLUDED.source_license)],
-          2147483647)
-    < coalesce(
-          (%(tiers)s::int[])[array_position(%(licenses)s::text[], i.source_license)],
-          2147483647)
-RETURNING (xmax::text = '0') AS inserted
-"""
 
 
 def _health_check(run_id: int, row: CheckRow) -> HealthCheck:
@@ -125,26 +116,20 @@ class Database:
         return (await self._insert(Run(started_at=datetime.now(UTC)))).id
 
     async def finish_run(self, run_id: int) -> None:
-        await self._conn.execute(
-            "UPDATE runs SET finished_at = %s WHERE id = %s", (datetime.now(UTC), run_id)
-        )
+        params = {"finished_at": datetime.now(UTC), "run_id": run_id}
+        await self._conn.execute(_query("finish_run"), params)
 
     async def select_batch(self, size: int, stale_days: int) -> list[str]:
         """A uniformly random sample of inputs never checked, or last checked more than
         `stale_days` ago. Each run is a fresh random draw; a URL checked recently is excluded,
         so repeated runs work through every URL before revisiting any."""
-        cur = await self._conn.execute(
-            "SELECT url FROM inputs"
-            " WHERE last_checked_at IS NULL"
-            "    OR last_checked_at < now() - make_interval(days => %s)"
-            " ORDER BY random() LIMIT %s",
-            (stale_days, size),
-        )
+        params = {"size": size, "stale_days": stale_days}
+        cur = await self._conn.execute(_query("select_batch"), params)
         return [row[0] for row in await cur.fetchall()]
 
     async def known_inputs(self, urls: Sequence[str]) -> set[str]:
         """Those of `urls` that are already inputs."""
-        cur = await self._conn.execute("SELECT url FROM inputs WHERE url = ANY(%s)", (list(urls),))
+        cur = await self._conn.execute(_query("known_inputs"), {"urls": list(urls)})
         return {row[0] for row in await cur.fetchall()}
 
     async def insert_check(self, run_id: int, row: CheckRow) -> None:
@@ -160,10 +145,8 @@ class Database:
                 # Descriptive metadata lives once per feed, not on every check. A parsed feed
                 # replaces all of it: a field the feed dropped becomes null.
                 await self._insert(_feed(row), replace_on="url")
-            await self._conn.execute(
-                "UPDATE inputs SET last_checked_at = %s WHERE url = %s",
-                (row.checked_at, row.url),
-            )
+            params = {"checked_at": row.checked_at, "url": row.url}
+            await self._conn.execute(_query("mark_checked"), params)
 
     async def upsert_inputs(
         self, rows: Sequence[InputRow], license_tiers: Mapping[str, int]
@@ -172,16 +155,11 @@ class Database:
         licenses = list(license_tiers)
         params = {"licenses": licenses, "tiers": [license_tiers[x] for x in licenses]}
         async with self._lock, self._conn.transaction(), self._conn.cursor() as cur:
-            await cur.execute(
-                "CREATE TEMP TABLE inputs_load (url text, source text, source_license text)"
-                " ON COMMIT DROP"
-            )
-            async with cur.copy(
-                "COPY inputs_load (url, source, source_license) FROM STDIN"
-            ) as copy:
+            await cur.execute(_query("create_inputs_load"))
+            async with cur.copy(_query("copy_inputs_load")) as copy:
                 for row in rows:
                     await copy.write_row((row.url, row.source, row.source_license))
-            await cur.execute(_UPSERT_INPUTS, params)
+            await cur.execute(_query("upsert_inputs"), params)
             changed = [r[0] for r in await cur.fetchall()]
         inserted = sum(changed)
         return inserted, len(changed) - inserted
@@ -190,21 +168,8 @@ class Database:
         """Feeds with a successful check in the last `success_days` days whose newest item, as
         of their latest successful check, is less than `item_years` years old."""
         cur = self._conn.cursor(row_factory=class_row(ListedFeed))
-        await cur.execute(
-            """
-            WITH latest_ok AS (
-                SELECT DISTINCT ON (url) url, last_item_date, file_size
-                FROM health_checks
-                WHERE error IS NULL AND checked_at > now() - make_interval(days => %s)
-                ORDER BY url, checked_at DESC
-            )
-            SELECT f.url, f.title, f.site_url, l.last_item_date, f.language, l.file_size, f.topics,
-                   f.subtitle, i.source, i.source_license
-            FROM feeds f JOIN latest_ok l USING (url) LEFT JOIN inputs i USING (url)
-            WHERE l.last_item_date > now() - make_interval(years => %s)
-            """,
-            (success_days, item_years),
-        )
+        params = {"success_days": success_days, "item_years": item_years}
+        await cur.execute(_query("listed_feeds"), params)
         return await cur.fetchall()
 
     async def drop_all_tables(self) -> list[str]:
@@ -212,16 +177,12 @@ class Database:
         migration rebuilds an empty schema. Only the tables named in OWN_TABLES: other tables in
         the database (Supabase's, another app's) are never touched. Returns those that existed."""
         async with self._lock, self._conn.transaction():
-            cur = await self._conn.execute(
-                "SELECT tablename FROM pg_tables"
-                " WHERE schemaname = current_schema() AND tablename = ANY(%s) ORDER BY tablename",
-                (list(OWN_TABLES),),
-            )
+            cur = await self._conn.execute(_query("own_tables"), {"tables": list(OWN_TABLES)})
             existing = [row[0] for row in await cur.fetchall()]
             if existing:
                 await self._conn.execute(
-                    sql.SQL("DROP TABLE {} CASCADE").format(
-                        sql.SQL(", ").join(sql.Identifier(t) for t in existing)
+                    sql.SQL(_query("drop_tables")).format(
+                        tables=sql.SQL(", ").join(sql.Identifier(t) for t in existing)
                     )
                 )
             return existing
@@ -233,10 +194,8 @@ class Database:
         async with self._lock, self._conn.transaction():
             for table in UNDO_TABLES:
                 cur = await self._conn.execute(
-                    sql.SQL("DELETE FROM {} WHERE url = ANY(%s) RETURNING url").format(
-                        sql.Identifier(table)
-                    ),
-                    (list(urls),),
+                    sql.SQL(_query("delete_urls")).format(table=sql.Identifier(table)),
+                    {"urls": list(urls)},
                 )
                 for (url,) in await cur.fetchall():
                     counts = found.setdefault(url, dict.fromkeys(UNDO_TABLES, 0))
@@ -247,14 +206,7 @@ class Database:
         """Delete health checks older than `months`, then runs that are older than that and
         have no checks left. feeds and inputs are untouched. Returns (checks, runs) deleted."""
         async with self._lock, self._conn.transaction():
-            cur = await self._conn.execute(
-                "DELETE FROM health_checks WHERE checked_at < now() - make_interval(months => %s)",
-                (months,),
-            )
+            cur = await self._conn.execute(_query("delete_old_checks"), {"months": months})
             checks = cur.rowcount
-            cur = await self._conn.execute(
-                "DELETE FROM runs r WHERE r.started_at < now() - make_interval(months => %s)"
-                " AND NOT EXISTS (SELECT 1 FROM health_checks h WHERE h.run_id = r.id)",
-                (months,),
-            )
+            cur = await self._conn.execute(_query("delete_empty_runs"), {"months": months})
             return checks, cur.rowcount
