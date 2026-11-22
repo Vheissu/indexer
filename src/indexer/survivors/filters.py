@@ -137,6 +137,9 @@ def rejection(row: CheckRow, rules: Rules) -> Reason | None:
     return None
 
 
+# --- the rules after checking ---------------------------------------------------------------
+
+
 def served_url(row: CheckRow, exclude: frozenset[str] = frozenset()) -> str | None:
     """The URL the feed is served from today (after redirects, session parameters removed) if
     it is a valid https URL
@@ -146,9 +149,6 @@ def served_url(row: CheckRow, exclude: frozenset[str] = frozenset()) -> str | No
     if not valid or not valid[0][0].startswith("https://"):
         return None
     return valid[0][0]
-
-
-# --- the rules after checking ---------------------------------------------------------------
 
 
 def _is_active(row: CheckRow, now: datetime, active_days: int) -> bool:

@@ -504,6 +504,50 @@ async def _drop_tables(args: argparse.Namespace) -> int:
     return 0
 
 
+async def _topics(args: argparse.Namespace) -> int:
+    if (model := _topic_model()) is None:
+        return 2
+    tags = [[t.strip() for t in group.split(",") if t.strip()] for group in args.tags]
+    posts = [Post(text, tags[i] if i < len(tags) else ()) for i, text in enumerate(args.text)]
+    for topic in model.topics(posts, args.title, args.subtitle):
+        print(topic)
+    return 0
+
+
+async def _embeddings(args: argparse.Namespace) -> int:
+    if unknown := [name for name in args.names if name not in EMBEDDING_SETS]:
+        print(f"error: unknown embedding sets: {', '.join(unknown)}", file=sys.stderr)
+        return 2
+    for name in args.names or EMBEDDING_SETS:
+        try:
+            rows = EMBEDDING_SETS[name](args.directory)
+        except (OSError, TopicsError, EmbeddingsError) as exc:
+            print(f"error: cannot build the embedding set {name}: {exc}", file=sys.stderr)
+            return 1
+        print(f"{name}: {rows} rows embedded into {args.directory / name}.npy")
+    return 0
+
+
+async def _train(args: argparse.Namespace) -> int:
+    try:
+        model = train_model(args.training)
+    except (OSError, ValueError, TrainingError) as exc:
+        print(f"error: cannot train the proposal filter: {exc}", file=sys.stderr)
+        return 1
+    print(f"proposal filter: {len(model.vocab)} terms, threshold {model.threshold:.3f}")
+    return 0
+
+
+async def _languages(args: argparse.Namespace) -> int:
+    if (model := _language_model()) is None:
+        return 2
+    for text, code in zip(args.text, model.post_languages(args.text), strict=True):
+        shown = "(too short)" if code is None else code or "(unknown)"
+        print(f"{shown:12} {' '.join(text.split())[:70]}")
+    print(f"feed: {', '.join(model.languages(args.text)) or '(none)'}")
+    return 0
+
+
 # --- argument parsing ----------------------------------------------------------------------------
 
 
@@ -743,47 +787,3 @@ def _parser() -> argparse.ArgumentParser:
     lg.add_argument("text", nargs="+", metavar="TEXT", help="a post's text")
 
     return parser
-
-
-async def _topics(args: argparse.Namespace) -> int:
-    if (model := _topic_model()) is None:
-        return 2
-    tags = [[t.strip() for t in group.split(",") if t.strip()] for group in args.tags]
-    posts = [Post(text, tags[i] if i < len(tags) else ()) for i, text in enumerate(args.text)]
-    for topic in model.topics(posts, args.title, args.subtitle):
-        print(topic)
-    return 0
-
-
-async def _embeddings(args: argparse.Namespace) -> int:
-    if unknown := [name for name in args.names if name not in EMBEDDING_SETS]:
-        print(f"error: unknown embedding sets: {', '.join(unknown)}", file=sys.stderr)
-        return 2
-    for name in args.names or EMBEDDING_SETS:
-        try:
-            rows = EMBEDDING_SETS[name](args.directory)
-        except (OSError, TopicsError, EmbeddingsError) as exc:
-            print(f"error: cannot build the embedding set {name}: {exc}", file=sys.stderr)
-            return 1
-        print(f"{name}: {rows} rows embedded into {args.directory / name}.npy")
-    return 0
-
-
-async def _train(args: argparse.Namespace) -> int:
-    try:
-        model = train_model(args.training)
-    except (OSError, ValueError, TrainingError) as exc:
-        print(f"error: cannot train the proposal filter: {exc}", file=sys.stderr)
-        return 1
-    print(f"proposal filter: {len(model.vocab)} terms, threshold {model.threshold:.3f}")
-    return 0
-
-
-async def _languages(args: argparse.Namespace) -> int:
-    if (model := _language_model()) is None:
-        return 2
-    for text, code in zip(args.text, model.post_languages(args.text), strict=True):
-        shown = "(too short)" if code is None else code or "(unknown)"
-        print(f"{shown:12} {' '.join(text.split())[:70]}")
-    print(f"feed: {', '.join(model.languages(args.text)) or '(none)'}")
-    return 0
