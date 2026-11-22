@@ -3,11 +3,13 @@
 import asyncio
 import os
 from datetime import UTC, datetime
+from typing import get_args, get_type_hints
 
 import pytest
 
 from indexer.check.runner import CheckRow
 from indexer.db import Database
+from indexer.models import MODELS, IPAddress, columns
 from indexer.sources import InputRow
 
 DSN = os.environ.get("INDEXER_TEST_DATABASE_URL")
@@ -387,4 +389,39 @@ async def test_drop_all_tables_drops_only_our_tables() -> None:
         assert await db.drop_all_tables() == []  # nothing left to drop: no error
     finally:
         await db._conn.execute("DROP SCHEMA IF EXISTS indexer_drop_test CASCADE")
+        await db.close()
+
+
+async def test_models_match_the_schema() -> None:
+    """models.py describes every column Liquibase creates: same names, types and nullability."""
+    assert DSN is not None
+    pg_types = {
+        int: {"smallint", "integer", "bigint"},
+        str: {"text"},
+        bool: {"boolean"},
+        datetime: {"timestamp with time zone"},
+        IPAddress: {"inet"},
+    }
+    db = await Database.connect(DSN)
+    try:
+        for model in MODELS:
+            cur = await db._conn.execute(
+                "SELECT column_name, data_type, is_nullable = 'YES' FROM information_schema.columns"
+                " WHERE table_schema = current_schema() AND table_name = %s",
+                (model.TABLE,),
+            )
+            schema = {name: (pg_type, nullable) for name, pg_type, nullable in await cur.fetchall()}
+            hints = get_type_hints(model)
+            described = {}
+            for name in columns(model):
+                hint = hints[name]
+                nullable = type(None) in get_args(hint)
+                base = next((a for a in get_args(hint) if a is not type(None)), hint)
+                described[name] = (base, nullable)
+            assert set(described) == set(schema), model.TABLE
+            for name, (base, nullable) in described.items():
+                pg_type, pg_nullable = schema[name]
+                assert pg_type in pg_types[base], (model.TABLE, name, pg_type)
+                assert nullable == pg_nullable, (model.TABLE, name)
+    finally:
         await db.close()

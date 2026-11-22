@@ -1,4 +1,5 @@
-"""Postgres writes. Liquibase owns the schema (db/changelog); this module never creates it."""
+"""Postgres reads and writes, in SQL through psycopg. Liquibase owns the schema (db/changelog);
+this module never creates it. The tables are described in models.py."""
 
 import asyncio
 import ipaddress
@@ -8,9 +9,11 @@ from typing import Self
 
 import psycopg
 from psycopg import sql
+from psycopg.rows import class_row
 
 from indexer.check.runner import CheckRow
 from indexer.export import ListedFeed
+from indexer.models import Feed, HealthCheck, IPAddress, Model, columns, values
 from indexer.sources import InputRow
 
 DEFAULT_DATABASE_URL = "postgresql://indexer@127.0.0.1:5432/indexer"  # password: $PGPASSWORD
@@ -24,49 +27,38 @@ OWN_TABLES = (
     "databasechangeloglock",
 )
 
-_INSERT_CHECK = """
-INSERT INTO health_checks (
-    run_id, checked_at, url, final_url, http_status, parent_domain, last_item_date,
-    redirected, file_size, item_count, fetch_time_ms, response_time_ms, ttl, error,
-    etag, last_modified, first_redirect_status, ip_address
-) VALUES (
-    %(run_id)s, %(checked_at)s, %(url)s, %(final_url)s, %(http_status)s, %(parent_domain)s,
-    %(last_item_date)s, %(redirected)s, %(file_size)s, %(item_count)s, %(fetch_time_ms)s,
-    %(response_time_ms)s, %(ttl)s, %(error)s, %(etag)s, %(last_modified)s,
-    %(first_redirect_status)s, %(ip_address)s
-)
-"""
 
+def _insert(model: Model, *, replace_on: str | None = None) -> sql.Composed:
+    """INSERT of one row of `model` with %(column)s parameters; with `replace_on`, a row whose
+    `replace_on` column already exists gets every other column replaced instead."""
+    cols = columns(model, writable=True)
+    stmt = sql.SQL("INSERT INTO {} ({}) VALUES ({})").format(
+        sql.Identifier(model.TABLE),
+        sql.SQL(", ").join(map(sql.Identifier, cols)),
+        sql.SQL(", ").join(map(sql.Placeholder, cols)),
+    )
+    if replace_on is None:
+        return stmt
+    return stmt + sql.SQL(" ON CONFLICT ({}) DO UPDATE SET {}").format(
+        sql.Identifier(replace_on),
+        sql.SQL(", ").join(
+            sql.SQL("{0} = EXCLUDED.{0}").format(sql.Identifier(c)) for c in cols if c != replace_on
+        ),
+    )
+
+
+_INSERT_CHECK = _insert(HealthCheck)
 # Descriptive metadata lives once per feed (feeds), not on every check. A parsed feed
-# overwrites all of it (a field the feed dropped becomes null) and clears any discovered URL.
-FEED_METADATA = (
-    "feed_kind",
-    "generator",
-    "title",
-    "subtitle",
-    "language",
-    "topics",
-    "media_type",
-    "icon",
-    "logo",
-    "rights",
-    "license",
-    "site_url",
-    "self_url",
-    "new_feed_url",
-)
-
-_UPSERT_FEED = (
-    "INSERT INTO feeds AS f (url, updated_at, parsed_at, "
-    + ", ".join(FEED_METADATA)
-    + ") VALUES (%(url)s, %(checked_at)s, %(checked_at)s, "
-    + ", ".join(f"%({c})s" for c in FEED_METADATA)
-    + ") ON CONFLICT (url) DO UPDATE SET updated_at = EXCLUDED.updated_at,"
-    " parsed_at = EXCLUDED.parsed_at, " + ", ".join(f"{c} = EXCLUDED.{c}" for c in FEED_METADATA)
-)
+# overwrites all of it: a field the feed dropped becomes null.
+_UPSERT_FEED = _insert(Feed, replace_on="url")
+# The columns a CheckRow fills under the same name.
+_CHECK_FIELDS = [
+    c for c in columns(HealthCheck, writable=True) if c not in ("run_id", "ip_address")
+]
+FEED_METADATA = [c for c in columns(Feed) if c not in ("url", "updated_at", "parsed_at")]
 
 
-def _inet(value: str | None) -> ipaddress.IPv4Address | ipaddress.IPv6Address | None:
+def _inet(value: str | None) -> IPAddress | None:
     try:
         return ipaddress.ip_address(value.split("%")[0]) if value else None
     except ValueError:
@@ -91,29 +83,14 @@ RETURNING (xmax::text = '0') AS inserted
 """
 
 
-def _check_params(run_id: int, row: CheckRow) -> dict[str, object]:
-    params: dict[str, object] = {
-        "run_id": run_id,
-        "checked_at": row.checked_at,
-        "url": row.url,
-        "final_url": row.final_url,
-        "http_status": row.http_status,
-        "parent_domain": row.parent_domain,
-        "last_item_date": row.last_item_date,
-        "redirected": row.redirected,
-        "file_size": row.file_size,
-        "item_count": row.item_count,
-        "fetch_time_ms": row.fetch_time_ms,
-        "response_time_ms": row.response_time_ms,
-        "ttl": row.ttl,
-        "error": row.error,
-        "etag": row.etag,
-        "last_modified": row.last_modified,
-        "first_redirect_status": row.first_redirect_status,
-        "ip_address": _inet(row.ip_address),
-    }
-    params.update({name: getattr(row, name) for name in FEED_METADATA})
-    return params
+def _health_check(run_id: int, row: CheckRow) -> HealthCheck:
+    fields = {name: getattr(row, name) for name in _CHECK_FIELDS}
+    return HealthCheck(run_id=run_id, ip_address=_inet(row.ip_address), **fields)
+
+
+def _feed(row: CheckRow) -> Feed:
+    metadata = {name: getattr(row, name) for name in FEED_METADATA}
+    return Feed(url=row.url, updated_at=row.checked_at, parsed_at=row.checked_at, **metadata)
 
 
 # Tables `undo` deletes a URL from, in deletion order.
@@ -173,11 +150,10 @@ class Database:
           check failed;
         - `inputs.last_checked_at`, if the URL is an input (any outcome: a failing feed waits
           its turn like the rest)."""
-        params = _check_params(run_id, row)
         async with self._lock, self._conn.transaction():
-            await self._conn.execute(_INSERT_CHECK, params)
+            await self._conn.execute(_INSERT_CHECK, values(_health_check(run_id, row)))
             if row.error is None:
-                await self._conn.execute(_UPSERT_FEED, params)
+                await self._conn.execute(_UPSERT_FEED, values(_feed(row)))
             await self._conn.execute(
                 "UPDATE inputs SET last_checked_at = %s WHERE url = %s",
                 (row.checked_at, row.url),
@@ -207,7 +183,8 @@ class Database:
     async def listed_feeds(self, success_days: int, item_years: int) -> list[ListedFeed]:
         """Feeds with a successful check in the last `success_days` days whose newest item, as
         of their latest successful check, is less than `item_years` years old."""
-        cur = await self._conn.execute(
+        cur = self._conn.cursor(row_factory=class_row(ListedFeed))
+        await cur.execute(
             """
             WITH latest_ok AS (
                 SELECT DISTINCT ON (url) url, last_item_date, file_size
@@ -222,7 +199,7 @@ class Database:
             """,
             (success_days, item_years),
         )
-        return [ListedFeed(*row) for row in await cur.fetchall()]
+        return await cur.fetchall()
 
     async def drop_all_tables(self) -> list[str]:
         """Drop every table this project owns, Liquibase's bookkeeping included, so the next

@@ -551,7 +551,8 @@ Source layout (`src/indexer/`):
 | path | contents |
 | --- | --- |
 | `cli.py` | the `indexer` commands |
-| `db.py` | all database reads and writes |
+| `db.py` | all database reads and writes (SQL through psycopg) |
+| `models.py` | the tables as dataclasses, checked against the migrated schema by a test |
 | `errors.py` | the error identifiers |
 | `export.py` | the published lists (data files) |
 | `site.py` | the website in `output/docs/`: prepares the data for the Jinja templates in `templates/` |
