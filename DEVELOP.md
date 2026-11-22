@@ -545,6 +545,8 @@ Text from feeds is escaped wherever it is published. The User-Agent is
 
 ## Development
 
+New to machine learning? ML.md explains the concepts behind the models used here.
+
 Source layout (`src/indexer/`):
 
 | path | contents |
