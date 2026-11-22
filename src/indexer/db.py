@@ -13,7 +13,7 @@ from psycopg.rows import class_row
 
 from indexer.check.runner import CheckRow
 from indexer.export import ListedFeed
-from indexer.models import Feed, HealthCheck, IPAddress, Model, columns, values
+from indexer.models import Feed, HealthCheck, Input, IPAddress, Model, Run, columns, values
 from indexer.sources import InputRow
 
 DEFAULT_DATABASE_URL = "postgresql://indexer@127.0.0.1:5432/indexer"  # password: $PGPASSWORD
@@ -28,29 +28,27 @@ OWN_TABLES = (
 )
 
 
-def _insert(model: Model, *, replace_on: str | None = None) -> sql.Composed:
-    """INSERT of one row of `model` with %(column)s parameters; with `replace_on`, a row whose
-    `replace_on` column already exists gets every other column replaced instead."""
+def _insert_sql(model: Model, replace_on: str | None) -> sql.Composed:
+    """INSERT INTO <table> (<writable columns>) VALUES (%(column)s, ...)
+    [ON CONFLICT (<replace_on>) DO UPDATE SET <column> = EXCLUDED.<column>, ...] RETURNING *"""
     cols = columns(model, writable=True)
     stmt = sql.SQL("INSERT INTO {} ({}) VALUES ({})").format(
         sql.Identifier(model.TABLE),
         sql.SQL(", ").join(map(sql.Identifier, cols)),
         sql.SQL(", ").join(map(sql.Placeholder, cols)),
     )
-    if replace_on is None:
-        return stmt
-    return stmt + sql.SQL(" ON CONFLICT ({}) DO UPDATE SET {}").format(
-        sql.Identifier(replace_on),
-        sql.SQL(", ").join(
-            sql.SQL("{0} = EXCLUDED.{0}").format(sql.Identifier(c)) for c in cols if c != replace_on
-        ),
-    )
+    if replace_on is not None:
+        stmt += sql.SQL(" ON CONFLICT ({}) DO UPDATE SET {}").format(
+            sql.Identifier(replace_on),
+            sql.SQL(", ").join(
+                sql.SQL("{0} = EXCLUDED.{0}").format(sql.Identifier(c))
+                for c in cols
+                if c != replace_on
+            ),
+        )
+    return stmt + sql.SQL(" RETURNING *")
 
 
-_INSERT_CHECK = _insert(HealthCheck)
-# Descriptive metadata lives once per feed (feeds), not on every check. A parsed feed
-# overwrites all of it: a field the feed dropped becomes null.
-_UPSERT_FEED = _insert(Feed, replace_on="url")
 # The columns a CheckRow fills under the same name.
 _CHECK_FIELDS = [
     c for c in columns(HealthCheck, writable=True) if c not in ("run_id", "ip_address")
@@ -112,13 +110,19 @@ class Database:
     async def close(self) -> None:
         await self._conn.close()
 
+    async def _insert[R: (Run, HealthCheck, Input, Feed)](
+        self, row: R, *, replace_on: str | None = None
+    ) -> R:
+        """Store `row` and return it as stored, with the columns the database fills (ids,
+        defaults). With `replace_on`, a row that already has that column's value is replaced."""
+        cur = self._conn.cursor(row_factory=class_row(type(row)))
+        await cur.execute(_insert_sql(type(row), replace_on), values(row))
+        stored = await cur.fetchone()
+        assert stored is not None
+        return stored
+
     async def start_run(self) -> int:
-        cur = await self._conn.execute(
-            "INSERT INTO runs (started_at) VALUES (%s) RETURNING id", (datetime.now(UTC),)
-        )
-        row = await cur.fetchone()
-        assert row is not None
-        return int(row[0])
+        return (await self._insert(Run(started_at=datetime.now(UTC)))).id
 
     async def finish_run(self, run_id: int) -> None:
         await self._conn.execute(
@@ -151,9 +155,11 @@ class Database:
         - `inputs.last_checked_at`, if the URL is an input (any outcome: a failing feed waits
           its turn like the rest)."""
         async with self._lock, self._conn.transaction():
-            await self._conn.execute(_INSERT_CHECK, values(_health_check(run_id, row)))
+            await self._insert(_health_check(run_id, row))
             if row.error is None:
-                await self._conn.execute(_UPSERT_FEED, values(_feed(row)))
+                # Descriptive metadata lives once per feed, not on every check. A parsed feed
+                # replaces all of it: a field the feed dropped becomes null.
+                await self._insert(_feed(row), replace_on="url")
             await self._conn.execute(
                 "UPDATE inputs SET last_checked_at = %s WHERE url = %s",
                 (row.checked_at, row.url),
