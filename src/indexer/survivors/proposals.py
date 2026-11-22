@@ -42,7 +42,8 @@ from pathlib import Path
 from xml.sax.saxutils import escape, quoteattr
 
 from indexer.sources import extract_urls
-from indexer.survivors.run import Survivor
+from indexer.survivors.filters import Reason
+from indexer.survivors.run import Survivor, SurvivorsResult
 
 _MAX_TITLE = 100
 _MAX_SUBTITLE = 200
@@ -51,6 +52,23 @@ _WIDTH = 60  # characters per comment line in the file, for phones
 
 # A proposal's URL line, commented out: "# " then the URL, alone on the line. Untrusted text is
 # never written that way (it always follows a label or an indent).
+# The rules' rejection counters and how the run summary names them, in rule order.
+REJECTIONS: tuple[tuple[Reason, str], ...] = (
+    ("untitled", "without a title"),
+    ("keyword", "with an excluded keyword"),
+    ("no_text", "whose posts have no text"),
+    ("business", "businesses or organisations"),
+    ("job_board", "job boards"),
+    ("wiki", "wiki edits"),
+    ("tracking", "with tracking links"),
+    ("seo_footer", "with an SEO footer"),
+    ("sample_post", "with WordPress's sample post"),
+    ("repeated", "repeating a post"),
+    ("seo_summary", "with SEO summaries"),
+    ("title_echo", "echoing titles"),
+    ("reposted", "reposting other outlets"),
+    ("unwanted_url", "redirected to an unwanted URL"),
+)
 _PROPOSED = re.compile(r"# (https?://\S+)")
 
 
@@ -153,6 +171,37 @@ def render_opml(survivors: Iterable[Survivor], crawl: str, generated: datetime) 
         )
     lines += ["  </body>", "</opml>"]
     return "\n".join(lines) + "\n"
+
+
+def funnel(result: SurvivorsResult, slice_mb: int, active_days: int) -> list[str]:
+    """The run's steps, from the WAT slice to the feeds that passed the rules, one line each,
+    for the log and the pull request."""
+    passed = len(result.rows)
+    stopped = (
+        " (stopped: enough feeds)" if result.checked < result.candidates - result.known else ""
+    )
+    return [
+        f"{slice_mb} MB of {result.scan.path.rsplit('/', 1)[-1]}",
+        f"{result.candidates} feed URLs ({result.known} already known)",
+        f"{result.checked} checked{stopped}",
+        f"{result.working} working today",
+        f"{result.active} with an item in the last {active_days} days",
+        f"{result.english} in English",
+        f"{passed} passed the rules: {acceptance(passed, result.checked)} of the checked",
+    ]
+
+
+def rejections(result: SurvivorsResult) -> list[tuple[int, str]]:
+    """How many feeds each rule rejected, with its name, in rule order; rules that rejected none
+    are left out."""
+    return [(n, label) for key, label in REJECTIONS if (n := result.rejected[key])]
+
+
+def write_files(path: Path, survivors: Sequence[Survivor], crawl: str, started: datetime) -> None:
+    """The proposal file at `path` (for review) and the same feeds as OPML beside it."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(render_entries(survivors, crawl, started.date()), "utf-8")
+    path.with_suffix(".opml").write_text(render_opml(survivors, crawl, datetime.now(UTC)), "utf-8")
 
 
 def _one_line(text: str | None, limit: int) -> str:

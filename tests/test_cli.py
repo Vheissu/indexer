@@ -8,16 +8,18 @@ from pathlib import Path
 import pytest
 
 from indexer.check.runner import CheckRow
-from indexer.cli import _log_failure, _parser, _print_failures, _sources_exit_code
+from indexer.cli import parser
+from indexer.cli.load_inputs import print_failures, sources_exit_code
+from indexer.cli.run import log_failure
 
 
 def test_run_from_file() -> None:
-    args = _parser().parse_args(["run", "data/urls.txt"])
+    args = parser().parse_args(["run", "data/urls.txt"])
     assert str(args.file) == "data/urls.txt" and not args.from_inputs
 
 
 def test_run_from_inputs_defaults() -> None:
-    args = _parser().parse_args(["run", "--from-inputs"])
+    args = parser().parse_args(["run", "--from-inputs"])
     assert args.from_inputs and args.file is None
     assert (args.batch, args.stale_days) == (500, 14)
 
@@ -25,20 +27,20 @@ def test_run_from_inputs_defaults() -> None:
 @pytest.mark.parametrize("argv", [["run"], ["run", "urls.txt", "--from-inputs"]])
 def test_run_needs_exactly_one_source(argv: list[str]) -> None:
     with pytest.raises(SystemExit):
-        _parser().parse_args(argv)
+        parser().parse_args(argv)
 
 
 def test_skipped_source_is_a_warning_not_a_failure() -> None:
-    assert _sources_exit_code({"a": "404"}, total=7) == 0
-    assert _sources_exit_code({}, total=7) == 0
-    assert _sources_exit_code({str(i): "x" for i in range(3)}, total=3) == 1  # nothing loaded
+    assert sources_exit_code({"a": "404"}, total=7) == 0
+    assert sources_exit_code({}, total=7) == 0
+    assert sources_exit_code({str(i): "x" for i in range(3)}, total=3) == 1  # nothing loaded
 
 
 def test_github_actions_warning_annotation(
     monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
 ) -> None:
     monkeypatch.setenv("GITHUB_ACTIONS", "true")
-    _print_failures({"submissions": "https://x.example/a: http_4xx 404\n100%"})
+    print_failures({"submissions": "https://x.example/a: http_4xx 404\n100%"})
     out, err = capsys.readouterr()
     assert out == (
         "::warning title=Source skipped::submissions: https://x.example/a: http_4xx 404%0A100%25\n"
@@ -50,7 +52,7 @@ def test_no_annotation_outside_actions(
     monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
 ) -> None:
     monkeypatch.delenv("GITHUB_ACTIONS", raising=False)
-    _print_failures({"a": "gone"})
+    print_failures({"a": "gone"})
     out, err = capsys.readouterr()
     assert out == "" and "a" in err
 
@@ -58,9 +60,9 @@ def test_no_annotation_outside_actions(
 def test_verbose_logs_failures_only(caplog: pytest.LogCaptureFixture) -> None:
     now = datetime.now(UTC)
     caplog.set_level(logging.INFO, logger="indexer")
-    _log_failure(CheckRow(url="https://ok.example/feed", checked_at=now, item_count=3))
+    log_failure(CheckRow(url="https://ok.example/feed", checked_at=now, item_count=3))
     assert caplog.text == ""
-    _log_failure(
+    log_failure(
         CheckRow(
             url="https://bad.example/feed",
             checked_at=now,
@@ -80,7 +82,7 @@ def test_cleanup_refuses_to_cut_into_the_export_window(capsys: pytest.CaptureFix
 
 
 def test_survivors_defaults() -> None:
-    args = _parser().parse_args(["survivors"])
+    args = parser().parse_args(["survivors"])
     assert (args.years_ago, args.slice_mb, args.active_days, args.max_feeds) == (5, 25, 243, 20)
     assert str(args.config) == "data/sources.toml"
     assert str(args.dir) == "data/survivors" and args.report is None
@@ -114,6 +116,7 @@ def test_undo_reports_deleted_and_not_found(
     import contextlib
 
     from indexer import cli
+    from indexer.cli import undo as undo_command
 
     fake = FakeUndoDb()
 
@@ -121,7 +124,7 @@ def test_undo_reports_deleted_and_not_found(
     async def database(_args: object) -> AsyncIterator[FakeUndoDb]:
         yield fake
 
-    monkeypatch.setattr(cli, "_database", database)
+    monkeypatch.setattr(undo_command, "database", database)
     undo = tmp_path / "undo.txt"
     undo.write_text(
         "# comment\nhttps://a.example/feed\n\nHTTPS://B.example:443/rss\n"

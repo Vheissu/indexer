@@ -12,13 +12,18 @@ from indexer.survivors.proposals import (
     _one_line,
     acceptance,
     file_name,
+    funnel,
     known_urls,
     log_line,
+    rejections,
     render_entries,
     render_opml,
     render_report,
+    write_files,
 )
-from indexer.survivors.run import Survivor
+from indexer.survivors.run import Survivor, SurvivorsResult
+from indexer.survivors.scoring import keep_likely
+from indexer.survivors.wat import WatScan
 
 NOW = datetime(2026, 11, 19, tzinfo=UTC)
 WAT = "https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1/wat/x.warc.wat.gz"
@@ -196,3 +201,57 @@ def test_opml_lists_every_proposal_in_order_escaped() -> None:
     assert outlines[0].get("title") == outlines[0].get("text") == 'Tom & "Jerry" <b>'
     assert outlines[1].get("title") == "https://b.example/rss"  # no title: the URL
     assert "<b>" not in xml  # escaped, never markup
+
+
+def test_funnel_and_rejections_summarise_a_run() -> None:
+    result = SurvivorsResult(
+        crawl="CC-MAIN-2021-49",
+        scan=WatScan("crawl-data/CC-MAIN-2021-49/segments/1/wat/x.warc.wat.gz"),
+        candidates=120,
+        known=20,
+        checked=50,  # stopped before the 100 new ones were all checked
+        rows=[survivor("https://a.example/feed", "A"), survivor("https://b.example/feed", "B")],
+    )
+    result.rejected.update({"failed": 10, "inactive": 15, "not_english": 5, "keyword": 0})
+    result.rejected.update({"untitled": 3, "tracking": 1})
+    assert funnel(result, 25, 243) == [
+        "25 MB of x.warc.wat.gz",
+        "120 feed URLs (20 already known)",
+        "50 checked (stopped: enough feeds)",
+        "40 working today",
+        "25 with an item in the last 243 days",
+        "20 in English",
+        "2 passed the rules: 4.00% (2 of 50) of the checked",
+    ]
+    # rule order, rules that rejected none left out
+    assert rejections(result) == [(3, "without a title"), (1, "with tracking links")]
+
+
+def test_write_files_writes_the_proposals_and_their_opml(tmp_path: Path) -> None:
+    path = tmp_path / "202611" / "19-000000.txt"
+    feeds = [survivor("https://a.example/feed", "A")]
+    write_files(path, feeds, "CC-MAIN-2021-49", NOW)
+    assert path.read_text("utf-8") == render_entries(feeds, "CC-MAIN-2021-49", NOW.date())
+    assert "https://a.example/feed" in path.with_suffix(".opml").read_text("utf-8")
+
+
+class FakeModel:
+    """Scores each proposal by its feed's title: Alpha 0.9, Bravo 0.2, Charlie 0.6."""
+
+    threshold = 0.5
+
+    def scores(self, texts: list[str]) -> list[float]:
+        by_title = {"Alpha": 0.9, "Bravo": 0.2, "Charlie": 0.6}
+        return [next(v for k, v in by_title.items() if k in t) for t in texts]
+
+
+def test_keep_likely_drops_low_scores_and_sorts_the_rest_best_first() -> None:
+    feeds = [
+        survivor(f"https://{t[0].lower()}.example/feed", t) for t in ("Alpha", "Bravo", "Charlie")
+    ]
+    kept, dropped = keep_likely(feeds, FakeModel(), "CC-MAIN-2021-49", NOW.date())  # type: ignore[arg-type]
+    assert [(s.url, s.score) for s in kept] == [
+        ("https://a.example/feed", 0.9),
+        ("https://c.example/feed", 0.6),
+    ]
+    assert dropped == 1

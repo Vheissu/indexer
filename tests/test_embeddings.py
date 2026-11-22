@@ -8,7 +8,8 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from indexer.cli import EMBEDDING_SETS, main
+from indexer.cli import main
+from indexer.cli.embeddings import EMBEDDING_SETS
 from indexer.embeddings import EmbeddingsError, Vectors, read_set, set_paths, write_set
 
 

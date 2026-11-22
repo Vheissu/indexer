@@ -550,7 +550,7 @@ Source layout (`src/indexer/`):
 
 | path | contents |
 | --- | --- |
-| `cli.py` | the `indexer` commands |
+| `cli/` | the `indexer` commands, one module each (`NAME`, `HELP`, `add_arguments`, `run`), listed in `__init__.py`; `common.py`: what several share |
 | `db/database.py` | all database reads and writes (SQL through psycopg) |
 | `db/sql/` | the SQL statements database.py runs, one per file |
 | `db/models.py` | the tables as dataclasses, checked against the migrated schema by a test |
@@ -560,7 +560,7 @@ Source layout (`src/indexer/`):
 | `sources.py` | data/sources.toml and loading the lists into inputs |
 | `net/` | fetching untrusted URLs: `fetch.py` (the guarded fetcher), `validate.py` (URL rules, URL files), `resolver.py`, `ippolicy.py`, `urls.py`, `domains.py` |
 | `check/` | `runner.py` (one check per URL), `feed.py` (parsing RSS/Atom) |
-| `survivors/` | `run.py` (the pipeline, steps 1–5), `wat.py` (reading Common Crawl), `feed_links.py` (the URL rules before checking: `filter_page_links`), `filters.py` (the rules after checking), `proposals.py` (the data/survivors/ files, their OPML and the PR summary) |
+| `survivors/` | `run.py` (the pipeline, steps 1–5), `wat.py` (reading Common Crawl), `feed_links.py` (the URL rules before checking: `filter_page_links`), `filters.py` (the rules after checking), `proposals.py` (the data/survivors/ files, their OPML, the run summary and the PR report), `scoring.py` (dropping proposals the trained model scores low) |
 
 ```sh
 uv run pytest            # no network needed: local test server and fake DNS
