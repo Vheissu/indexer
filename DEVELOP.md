@@ -78,7 +78,7 @@ nothing.
 [[source]]
 name = "kagi-smallweb"
 license = "MIT"
-format = "lines"                    # or "opml"
+format = "lines"                    # or "opml", or "proposals" (survivors' YAML files)
 homepage = "https://github.com/kagisearch/smallweb"
 urls = ["https://raw.githubusercontent.com/kagisearch/smallweb/main/smallweb.txt"]
 ```
@@ -178,30 +178,34 @@ shared hosts like `fc2.com` or `free.fr`). A feed is proposed only if:
   there is far more in Common Crawl than survivors reads;
 - it is **served over https today**: the URL after redirects is `https://` (links are tried as
   `https://`; one that redirects back to plain http is skipped);
-- it is not already in a file in `data/survivors/` (accepted or commented out) or the inputs table.
+- it is not already in a file in `data/survivors/` (accepted or not) or the inputs table.
 
 Feeds already there are skipped before checking (and again after, for the URL a redirect led
 to). The rest are checked in random order, 200 at a time, and the run stops once `--max-feeds`
 (20) pass, so a run proposes at most 20 and stops checking early.
 
-The finds go to a new file per run, `data/survivors/<yyyymm>/<dd-HHMMSS>.txt` in UTC (for example
-`data/survivors/202611/19-041105.txt`), which the source `survivors` reads with the glob
-`files = ["survivors/*/*.txt"]`. Each feed is comment lines: title, detected languages
-and date of the newest item, subtitle, the categories its authors gave its first posts (the 8
-most used, with the number of posts), the WAT file it came from, and its 3 most recent posts (link,
-title and the start of the description, one line each), then the URL, **commented out too**.
+The finds go to a new file per run, `data/survivors/<yyyymm>/<dd-HHMMSS>.yaml` in UTC (for example
+`data/survivors/202611/19-041105.yaml`), which the source `survivors` reads with
+`format = "proposals"` and the glob `files = ["survivors/*/*.yaml"]`. The file is YAML: a comment
+header, then one document per feed, separated by `---`: `url`, `accept: false`, `title`,
+`language`, `last_post` (the newest item's date), `about` (the subtitle), `posts_read` and
+`categories` (the 8 categories its authors used most on those posts, with counts), `found_in`
+(the WAT file) and `recent_posts` (the 3 most recent: `link`, `title` and `description`, the
+start of the description as lines of at most 60 characters, for phones). Untrusted text is
+flattened to one line and written by `yaml.safe_dump`, which quotes anything YAML would read as
+something else; files are read with `yaml.safe_load_all`.
 Each workflow run commits
 that file to a **new branch** with the same timestamp (for example `survivors-20261119-041105`),
 and opens **its own pull request** into `develop`, whose description links to the file in
 GitHub's editor and gives the run's summary; the feeds themselves are only in the file, so no
 untrusted text reaches the pull request. The run also writes the proposed feeds as OPML
-next to the `.txt` file (same name, `.opml`; not read as a source), and the description links to
-it: download it and import it into a feed reader to try them while reviewing. Review the diff, **uncomment** the URL line of each feed you want (delete the
-`# ` before it), and merge (or close the pull request to drop the whole batch): the input job then
-loads the uncommented URLs on the push to `develop` (source `survivors`, license
+next to the `.yaml` file (same name, `.opml`; not read as a source), and the description links to
+it: download it and import it into a feed reader to try them while reviewing. Review the diff, set **`accept: true`** on each feed you want (optionally
+`reason: <reason>` on a rejected one, see below), and merge (or close the pull request to drop the whole batch): the input job then
+loads the accepted feeds on the push to `develop` (source `survivors`, license
 `LicenseRef-CommonCrawl-ToU`, ranked last). Every run starts from `develop`, so a pull request never carries an older run's proposals.
 Each pull request adds its own file, so open pull requests never conflict and can be merged in any
-order. URLs in another open pull request are not skipped, so the same feed can be proposed twice. A URL left commented out
+order. URLs in another open pull request are not skipped, so the same feed can be proposed twice. A feed left at `accept: false`
 counts as known (`proposals.known_urls` reads every file in the folder), so it is not proposed
 again; one deleted from its file is forgotten.
 
@@ -468,12 +472,12 @@ little (cosine ~0.99 to their old vector); the same `topics.txt` always gives th
 English item gets no topics.
 
 **Proposal filter.** `data/training.toml` lists reviewed proposal files (paths relative to it).
-Every feed in them is a labelled example: accepted if the reviewer uncommented its URL, else
-rejected. A `# rejected: <reason>` line just above a rejected URL (one of
+Every feed in them is a labelled example: `accept: true` or `accept: false`. A
+`reason: <reason>` on a rejected feed (one of
 `training.REJECT_REASONS`: commercial, seo, press, republished, machine, forum, notices, unsafe,
 other) is an optional note for people: it is checked but the model doesn't use it. Its text is what the reviewer saw (title,
-description, categories, recent posts' titles and starts, without languages, dates, the WAT file,
-links or a score), cleaned up in memory. Survivors trains the classic cheap text classifier on
+about, categories, recent posts' titles and descriptions; not the language, dates, the WAT file,
+links or a score), read from those fields. Survivors trains the classic cheap text classifier on
 them (up to a minute) and keeps it in `data/models/proposals-<hash>.npz` (git-ignored; never
 committed, so the repo doesn't grow with each retrain). The hash covers `training.toml`, every
 listed file and `survivors/training.py`: a stored file is up to date by construction, so later runs load it

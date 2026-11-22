@@ -1,7 +1,7 @@
 # Proposes feeds from a ~5-year-old Common Crawl crawl that are still active: reads the first
 # 25 MB (input slice-mb) of one random WAT file, checks every feed found, and writes the ones that pass to
-# a new data/survivors/<yyyymm>/<dd-HHMMSS>.txt (UTC) in a new pull request (base develop). Nothing is inserted here:
-# once the pull request is reviewed and merged, the input job loads the URLs uncommented in it.
+# a new data/survivors/<yyyymm>/<dd-HHMMSS>.yaml (UTC) in a new pull request (base develop). Nothing is inserted here:
+# once the pull request is reviewed and merged, the input job loads the feeds marked accept: true in it.
 #
 # Every run starts from develop and pushes its own branch, survivors-<UTC timestamp>, so a pull
 # request only ever holds that run's finds: older proposals are never carried along. Requires the
@@ -80,13 +80,13 @@ jobs:
 
       - name: Propose them
         run: |
-          file="$(git ls-files --others --exclude-standard 'data/survivors/*.txt')"
-          opml="${file%.txt}.opml"
+          file="$(git ls-files --others --exclude-standard 'data/survivors/*.yaml')"
+          opml="${file%.yaml}.opml"
           if [ -z "$file" ]; then
             echo "Nothing new to propose."
             exit 0
           fi
-          stamp="$(basename "$(dirname "$file")")$(basename "$file" .txt)" # yyyymmdd-HHMMSS, UTC
+          stamp="$(basename "$(dirname "$file")")$(basename "$file" .yaml)" # yyyymmdd-HHMMSS, UTC
           branch="survivors-$stamp"
           git switch -q -c "$branch"
           git add "$file" "$opml"
@@ -96,12 +96,12 @@ jobs:
           git push -q "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$branch:$branch"
           {
             echo "Feeds from a ~5-year-old Common Crawl crawl that are still active, proposed for"
-            echo "\`$file\` by one survivors run. Every URL is commented out."
+            echo "\`$file\` by one survivors run. Every feed starts at accept: false."
             echo
             echo "**To review**"
             echo
             echo "- [Edit the file]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/edit/$branch/$file) on this branch:"
-            echo "  uncomment (delete \"# \" before) the URL of each feed to keep, commit, then merge."
+            echo "  set \`accept: true\` on each feed to keep, commit, then merge."
             echo "- Or close this pull request to drop them all."
             echo "- To try them in a feed reader, [download them as OPML]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/raw/$branch/$opml)"
             echo "  and import the file."

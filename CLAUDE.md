@@ -33,19 +33,23 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 - **No quality filtering of inputs.** Inputs are candidates; publishing is a separate responsibility.
   **Agree any selection or quality heuristic with the user before implementing it.** (`discover`, which
   inserted the newest crawl's feeds unfiltered, was removed on 2026-11-16: survivors replaces it.)
-- `survivors` **proposes, never inserts**: writes a new file `data/survivors/<yyyymm>/<dd-HHMMSS>.txt` (UTC) per run (asked 2026-11-21,
+- `survivors` **proposes, never inserts**: writes a new file `data/survivors/<yyyymm>/<dd-HHMMSS>.yaml` (UTC) per run (asked 2026-11-21,
   replacing the single `data/survivors.txt`: no huge file, no conflicts between open PRs; the `files` source is the glob
-  `survivors/*/*.txt`, CC ToU license; `files` entries may be glob patterns, sorted, none matching is fine) and
+  `survivors/*/*.yaml`, format `proposals`, CC ToU license; `files` entries may be glob patterns, sorted, none matching is fine) and
   every survivors.yml run opens its own PR from a new branch `survivors-<UTC timestamp>` (the file's name) based on develop (never a reused
-  branch, so old proposals can't be merged by mistake). Skips URLs already in develop's files (accepted or commented out) or in inputs.
+  branch, so old proposals can't be merged by mistake). Skips URLs already in develop's files (accepted or not) or in inputs.
   Untrusted titles/categories/links: one line in the file (`proposals._one_line`); none of it goes in the PR.
-  Each entry in the file (asked 2026-11-21): comment lines with title, languages, last post, subtitle, the authors' top 8
-  categories on the first posts with counts (`run._top_categories` from `FeedInfo.item_tags`, never stored), WAT file and the 3 most
-  recent posts (link, title, start of the description; `FeedInfo.recent_posts`, never stored or fetched), then the URL
-  **commented out**: a reviewer uncomments the feeds they want. Commented-out proposals count as known (not proposed again).
+  The file is YAML (asked 2026-11-22, replacing comment blocks in .txt files, converted once): a comment header, then one
+  document per feed separated by `---`, fields easy to parse: url, `accept: false` by default, title, language, last_post,
+  about, posts_read and categories (the authors' top 8 with counts, `run._top_categories` from `FeedInfo.item_tags`, never
+  stored), found_in (the WAT file), recent_posts (3: link, title, description as a list of lines ≤ 60 characters for phones;
+  `FeedInfo.recent_posts`, never stored or fetched); lists and mappings in block style, one item per line. Written with
+  `yaml.safe_dump` (quotes anything that would parse as something else, no aliases), read with `yaml.safe_load_all`
+  (`sources.proposal_documents`). A reviewer sets `accept: true` on the feeds they want; only those are loaded.
+  Proposals left at false count as known (not proposed again).
   PR body: the edit link, the OPML link and the run's summary only, no feed listed (asked 2026-11-21: the
   feeds are reviewed in the file). All proposals as OPML go in a
-  `<dd-HHMMSS>.opml` beside the .txt (committed with it; not a source), linked from the PR body for download
+  `<dd-HHMMSS>.opml` beside the .yaml (committed with it; not a source), linked from the PR body for download
   (moved out of the report at the user's request on 2026-11-21); max-feeds default 20 (was 50).
   Agreed filters: crawl closest to 5 years ago, first 25 MB of one random WAT file (one range
   request, random each run, no state; one file because the yield per MB is the same as several smaller slices); every feed link of every page (2026-11-21: one random link per page, agreed 2026-11-20, was dropped once the URL rules removed most junk), session params stripped
@@ -192,9 +196,9 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 - Proposal filter (agreed 2026-11-21 after testing MiniLM centroids/vectors, char n-grams, a pretrained quality model;
   this is the agreed quality heuristic for survivors): survivors fits TF-IDF (words + word pairs) and a numpy
   logistic regression over accepted / rejected on the reviewed proposal files in `data/training.toml`
-  (today PR #18's and #19's, the only ones made with the current rules and format); label = URL uncommented or not (binary
-  agreed 2026-11-22: same AUC as one class per reason, no reason labelling needed; a `# rejected: <reason>` line is an
-  optional, unused note), text = what the reviewer saw (cleanup in memory). Trained by survivors (up to a minute,
+  (today PR #18's and #19's, the only ones made with the current rules and format); label = `accept: true` or false (binary
+  agreed 2026-11-22: same AUC as one class per reason, no reason labelling needed; a `reason: <reason>` field is an
+  optional, unused note), text = what the reviewer saw (title, about, categories, posts' titles and descriptions). Trained by survivors (up to a minute,
   deterministic) and kept in git-ignored `data/models/proposals-<hash of training.toml, the listed files and survivors/training.py>.npz`:
   reused while present, retrained when the hash changes; never committed (agreed 2026-11-22: no model binaries in git
   history). `indexer train` prints its size and cut-off.

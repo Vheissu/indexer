@@ -43,7 +43,7 @@ def add_arguments(parser: argparse.ArgumentParser) -> None:
         "--dir",
         type=Path,
         default=Path("data/survivors"),
-        help="write proposals to a new <yyyymm>/<dd-HHMMSS>.txt here (UTC), and the same feeds"
+        help="write proposals to a new <yyyymm>/<dd-HHMMSS>.yaml here (UTC), and the same feeds"
         " as OPML in a .opml file beside it; URLs already in"
         " its files or in inputs are skipped (default data/survivors)",
     )

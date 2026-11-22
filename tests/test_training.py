@@ -38,9 +38,17 @@ GOOD = Survivor(
 BAD = replace(GOOD, url="https://bad.example/feed", title="Casino Deals", recent_posts=())
 
 
+def decide(text: str, url: str, accept: bool = False, reason: str | None = None) -> str:
+    """The proposal file with the feed at `url` reviewed: accepted, or rejected with a reason."""
+    review = f"accept: {'true' if accept else 'false'}\n" + (
+        f"reason: {reason}\n" if reason else ""
+    )
+    return text.replace(f"url: {url}\naccept: false\n", f"url: {url}\n{review}")
+
+
 def reviewed(*survivors: Survivor, accept: str = GOOD.url) -> str:
     text = render_entries(survivors, "CC-MAIN-2021-49", date(2026, 11, 21))
-    return text.replace(f"# {accept}\n", f"{accept}\n")
+    return decide(text, accept, accept=True)
 
 
 def test_parse_proposals_gives_label_and_reviewed_text() -> None:
@@ -55,31 +63,43 @@ def test_parse_proposals_gives_label_and_reviewed_text() -> None:
 
 
 def test_a_rejection_reason_is_read_and_not_part_of_the_text() -> None:
-    text = reviewed(GOOD, BAD).replace(f"# {BAD.url}\n", f"# rejected: unsafe\n# {BAD.url}\n")
+    text = decide(reviewed(GOOD, BAD), BAD.url, reason="unsafe")
     good, bad = parse_proposals(text)
     assert (good.reason, bad.reason) == (None, "unsafe")
     assert bad.text == parse_proposals(reviewed(GOOD, BAD))[1].text
 
 
 @pytest.mark.parametrize(
-    ("line", "url"), [("# rejected: boring", BAD.url), ("# rejected: seo", GOOD.url)]
+    ("old", "new"),
+    [
+        (f"url: {BAD.url}\naccept: false\n", f"url: {BAD.url}\naccept: false\nreason: boring\n"),
+        (f"url: {GOOD.url}\naccept: true\n", f"url: {GOOD.url}\naccept: true\nreason: seo\n"),
+        (f"url: {BAD.url}\naccept: false\n", f"url: {BAD.url}\naccept: maybe\n"),
+        (f"url: {BAD.url}\n", "url: [unclosed\n"),
+        (f"url: {BAD.url}\n", ""),
+    ],
+    ids=["unknown reason", "reason on accepted", "accept not a boolean", "malformed", "no url"],
 )
-def test_an_unknown_reason_or_a_reason_on_an_accepted_feed_fails(line: str, url: str) -> None:
+def test_a_malformed_review_fails(old: str, new: str) -> None:
     text = reviewed(GOOD, BAD)
-    target = f"{url}\n" if url == GOOD.url else f"# {url}\n"
+    assert old in text
     with pytest.raises(TrainingError):
-        parse_proposals(text.replace(target, f"{line}\n{target}"))
+        parse_proposals(text.replace(old, new))
 
 
-def test_a_score_line_is_not_part_of_the_text() -> None:
+def test_a_score_is_not_part_of_the_text() -> None:
     (scored,) = parse_proposals(reviewed(replace(GOOD, score=0.031)))
-    assert "# score: 0.031" in reviewed(replace(GOOD, score=0.031))
+    assert "\nscore: 0.031\n" in reviewed(replace(GOOD, score=0.031))
     assert scored.text == parse_proposals(reviewed(GOOD))[0].text
 
 
-def test_reviewed_text_handles_a_wrapped_summary() -> None:
-    joined = "Midnight Sun Gun Dog Association · en · last post 2026-10-08 about: Our Dogs Hunt!"
-    assert reviewed_text(joined) == "Midnight Sun Gun Dog Association about: Our Dogs Hunt!"
+def test_reviewed_text_joins_a_description_s_lines() -> None:
+    feed = {
+        "title": "A",
+        "categories": {},
+        "recent_posts": [{"link": "https://a.example/p", "description": ["one two", "three"]}],
+    }
+    assert reviewed_text(feed) == "A categories: none one two three"
 
 
 def test_tokens_are_words_and_word_pairs() -> None:
@@ -111,28 +131,28 @@ def labelled_file(n: int) -> str:
     ]
     text = render_entries([*good, *bad], "CC-MAIN-2021-49", date(2026, 11, 21))
     for s in good:
-        text = text.replace(f"# {s.url}\n", f"{s.url}\n")
+        text = decide(text, s.url, accept=True)
     for s in bad:
-        text = text.replace(f"# {s.url}\n", f"# rejected: unsafe\n# {s.url}\n")
+        text = decide(text, s.url, reason="unsafe")
     return text
 
 
 def test_train_and_score(tmp_path: Path) -> None:
-    (tmp_path / "a.txt").write_text(labelled_file(10))
+    (tmp_path / "a.yaml").write_text(labelled_file(10))
     config = tmp_path / "training.toml"
-    config.write_text('files = ["a.txt"]\n')
+    config.write_text('files = ["a.yaml"]\n')
     model = train_model(config)
     good, bad = model.scores(["Frugal mom diary: saving money with kids", "Casino bonus slots"])
     assert good > 0.5 > bad and good > model.threshold
     assert model.scores([]) == []
     again = train_model(config)  # deterministic: every run gets the same model
     assert again.threshold == model.threshold and (again.weights == model.weights).all()
-    assert not [p for p in tmp_path.iterdir() if p.name not in ("a.txt", "training.toml")]
+    assert not [p for p in tmp_path.iterdir() if p.name not in ("a.yaml", "training.toml")]
 
 
 def test_the_cut_drops_rejects_and_keeps_accepted_feeds(tmp_path: Path) -> None:
-    (tmp_path / "a.txt").write_text(labelled_file(10))
-    (tmp_path / "training.toml").write_text('files = ["a.txt"]\n')
+    (tmp_path / "a.yaml").write_text(labelled_file(10))
+    (tmp_path / "training.toml").write_text('files = ["a.yaml"]\n')
     model = train_model(tmp_path / "training.toml")
     examples = parse_proposals(labelled_file(10))
     scores = model.scores([p.text for p in examples])
@@ -141,25 +161,25 @@ def test_the_cut_drops_rejects_and_keeps_accepted_feeds(tmp_path: Path) -> None:
 
 
 def test_both_labels_are_needed(tmp_path: Path) -> None:
-    (tmp_path / "a.txt").write_text(reviewed(GOOD))  # one feed, accepted
-    (tmp_path / "training.toml").write_text('files = ["a.txt"]\n')
+    (tmp_path / "a.yaml").write_text(reviewed(GOOD))  # one feed, accepted
+    (tmp_path / "training.toml").write_text('files = ["a.yaml"]\n')
     with pytest.raises(TrainingError, match="both"):
         train_model(tmp_path / "training.toml")
 
 
 def test_a_config_without_files_is_refused(tmp_path: Path) -> None:
-    (tmp_path / "training.toml").write_text('files = "a.txt"\n')
+    (tmp_path / "training.toml").write_text('files = "a.yaml"\n')
     with pytest.raises(TrainingError, match="list of paths"):
         training_files(tmp_path / "training.toml")
 
 
 def test_rejection_reasons_do_not_change_the_model(tmp_path: Path) -> None:  # two classes
     text = labelled_file(10)
-    assert "# rejected: " in text
+    assert "\nreason: unsafe\n" in text
     models = []
-    for name, body in (("with", text), ("without", re.sub(r"# rejected: \S+\n", "", text))):
-        (tmp_path / f"{name}.txt").write_text(body)
-        (tmp_path / f"{name}.toml").write_text(f'files = ["{name}.txt"]\n')
+    for name, body in (("with", text), ("without", re.sub(r"reason: \S+\n", "", text))):
+        (tmp_path / f"{name}.yaml").write_text(body)
+        (tmp_path / f"{name}.toml").write_text(f'files = ["{name}.yaml"]\n')
         models.append(train_model(tmp_path / f"{name}.toml"))
     assert models[0].weights.shape[1] == 2
     assert (models[0].weights == models[1].weights).all()
@@ -169,9 +189,9 @@ def test_rejection_reasons_do_not_change_the_model(tmp_path: Path) -> None:  # t
 def test_the_stored_model_is_reused_until_a_review_changes(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    (tmp_path / "a.txt").write_text(labelled_file(5))
+    (tmp_path / "a.yaml").write_text(labelled_file(5))
     config, models = tmp_path / "training.toml", tmp_path / "models"
-    config.write_text('files = ["a.txt"]\n')
+    config.write_text('files = ["a.yaml"]\n')
     first = cached_model(config, models)
     stored = model_path(config, models)
     assert [p.name for p in models.iterdir()] == [stored.name]
@@ -185,16 +205,16 @@ def test_the_stored_model_is_reused_until_a_review_changes(
     assert loaded.vocab == first.vocab and loaded.threshold == first.threshold
     assert (loaded.weights == first.weights).all()
 
-    (tmp_path / "a.txt").write_text(labelled_file(5).replace("# rejected: unsafe\n", "", 1))
+    (tmp_path / "a.yaml").write_text(labelled_file(5).replace("reason: unsafe\n", "", 1))
     assert model_path(config, models) != stored  # a changed review: a new name, trained again
     cached_model(config, models)
     assert [p.name for p in models.iterdir()] == [model_path(config, models).name]
 
 
 def test_a_model_that_cannot_be_stored_is_still_used(tmp_path: Path) -> None:
-    (tmp_path / "a.txt").write_text(labelled_file(5))
+    (tmp_path / "a.yaml").write_text(labelled_file(5))
     config = tmp_path / "training.toml"
-    config.write_text('files = ["a.txt"]\n')
+    config.write_text('files = ["a.yaml"]\n')
     (tmp_path / "models").write_text("not a directory")
     model = cached_model(config, tmp_path / "models")  # trained, but the store fails
     assert model.vocab == train_model(config).vocab

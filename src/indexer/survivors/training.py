@@ -3,12 +3,12 @@ listed in data/training.toml are read as labelled examples, a small model is tra
 (up to a minute) and kept in data/models/ (not committed; `cached_model`), and survivors drops
 the new proposals it scores lowest (about the bottom CUT of them).
 
-A proposal file (survivors/proposals.py) holds one block per feed: comment lines with what the
-reviewer saw, then the feed's URL, uncommented if they accepted it, commented out if not; a
-rejected feed's block may name why, on the line just above the URL: `# rejected: <reason>`
-(one of REJECT_REASONS; a note for people, checked but not used by the model). Each block
-becomes a `Proposal`: the URL, the label, the reason and the reviewer's text with the
-bookkeeping removed (languages, dates, the WAT file, post links, a score), all in memory.
+A proposal file (survivors/proposals.py) holds one YAML document per feed: what the reviewer
+saw, and `accept: true` if they accepted it; a rejected feed may say why: `reason: <reason>`
+(one of REJECT_REASONS; a note for people, checked but not used by the model). Each feed
+becomes a `Proposal`: the URL, the label, the reason and the text the reviewer read (title,
+about, categories, the recent posts' titles and descriptions; not the bookkeeping: language,
+dates, the WAT file, post links, a score), all in memory.
 
 The model is the classic cheap text classifier: TF-IDF over words and word pairs, then a
 logistic regression over CLASSES (accepted or rejected), trained in numpy. A proposal's score is
@@ -33,15 +33,18 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from itertools import pairwise
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import numpy.typing as npt
 
+from indexer.sources import SourceError, proposal_documents
+
 TRAINING_CONFIG = Path("data/training.toml")
 MODEL_DIR = Path("data/models")  # the stored model (git-ignored)
 CUT = 0.30  # drop about this share of proposals: those scored lowest
-# Why a feed was rejected, as a reviewer may note it above its commented-out URL (optional; not
-# used by the model, which only learns accepted or rejected).
+# Why a feed was rejected, as a reviewer may note it (`reason:`, optional; not used by the model,
+# which only learns accepted or rejected).
 REJECT_REASONS = (
     "commercial",  # a business's own marketing, shop or service blog
     "seo",  # generic SEO, affiliate or guest-post content
@@ -53,11 +56,6 @@ REJECT_REASONS = (
     "unsafe",  # scams, spam, conspiracy, gambling, adult content
     "other",
 )
-
-
-_URL_LINE = re.compile(r"(# )?(https?://\S+)")
-_REASON_LINE = re.compile(r"# rejected: (\S+)")
-_SUMMARY_TAIL = re.compile(r" · [^·]* · last post \S+")  # " · en · last post 2026-11-12"
 
 
 CLASSES = ("accepted", "rejected")
@@ -95,35 +93,37 @@ def training_files(config: Path = TRAINING_CONFIG) -> list[Path]:
 
 def parse_proposals(text: str) -> list[Proposal]:
     """Every feed in a proposal file's text, in order: its URL, whether it was accepted, the
-    text the reviewer saw and the reason it was rejected, if given. TrainingError on an
-    unknown reason or a reason on an accepted feed."""
+    text the reviewer saw and the reason it was rejected, if given. TrainingError on a malformed
+    file, an `accept` that isn't true or false, an unknown reason or a reason on an accepted
+    feed."""
+    try:
+        feeds = proposal_documents(text.encode("utf-8"))
+    except SourceError as exc:
+        raise TrainingError(str(exc)) from exc
     proposals = []
-    for block in text.split("\n\n"):
-        lines = block.strip("\n").split("\n")
-        if not (m := _URL_LINE.fullmatch(lines[-1])):
-            continue  # the file's header
-        url, accepted, reason = m.group(2), m.group(1) is None, None
-        if len(lines) > 1 and (r := _REASON_LINE.fullmatch(lines[-2])):
-            reason, lines = r.group(1), lines[:-2] + lines[-1:]
+    for feed in feeds:
+        url, accepted, reason = feed["url"], feed.get("accept"), feed.get("reason")
+        if not isinstance(accepted, bool):
+            raise TrainingError(f"{url}: accept must be true or false")
+        if reason is not None:
             if accepted:
                 raise TrainingError(f"{url}: accepted, but has a rejection reason")
             if reason not in REJECT_REASONS:
                 raise TrainingError(f"{url}: unknown rejection reason {reason!r}")
-        comments = " ".join(line.lstrip("#").strip() for line in lines[:-1])
-        proposals.append(Proposal(url, accepted, reviewed_text(comments), reason))
+        proposals.append(Proposal(url, accepted, reviewed_text(feed), reason))
     return proposals
 
 
-def reviewed_text(comments: str) -> str:
-    """A proposal's comment lines (joined) without the bookkeeping: title, description,
-    categories and the recent posts' titles and starts remain."""
-    text = _SUMMARY_TAIL.sub("", comments, count=1)
-    text = re.sub(r"score: [+-]?\d+\.\d+", " ", text)
-    text = re.sub(r"found in \S+", " ", text)
-    text = re.sub(r"- https?://\S+", " ", text)  # a recent post's link
-    text = text.replace("recent posts: none with a link", " ").replace("recent posts:", " ")
-    text = re.sub(r"categories \(on \d+ posts\):", "categories:", text)
-    return " ".join(text.split())
+def reviewed_text(feed: dict[str, Any]) -> str:
+    """What the reviewer read about a feed, as one line: title, about, categories, and each
+    recent post's title and description."""
+    parts = [str(feed.get("title") or ""), f"about: {feed['about']}" if feed.get("about") else ""]
+    if "categories" in feed:
+        names = ", ".join(f"{k} {n}" for k, n in (feed["categories"] or {}).items())
+        parts.append(f"categories: {names or 'none'}")
+    for post in feed.get("recent_posts") or []:
+        parts += [str(post.get("title") or ""), " ".join(post.get("description") or [])]
+    return " ".join(" ".join(parts).split())
 
 
 def read_examples(config: Path = TRAINING_CONFIG) -> list[Proposal]:

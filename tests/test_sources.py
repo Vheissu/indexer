@@ -14,6 +14,7 @@ from indexer.sources import (
     download,
     extract_urls,
     load_config,
+    proposal_documents,
 )
 
 REPO_CONFIG = Path(__file__).parent.parent / "data" / "sources.toml"
@@ -208,6 +209,35 @@ def test_extract_lines() -> None:
     assert extract_urls(body, "lines") == ["https://a.example/feed", "https://b.example/rss"]
 
 
+def test_extract_proposals_reads_only_accepted_feeds() -> None:
+    body = (
+        b"# header\n---\nurl: https://a.example/feed\naccept: true\n"
+        b"---\nurl: https://b.example/rss\naccept: false\n"
+        b"---\nurl: https://c.example/rss\naccept: 'true'\n"  # a string, not a yes
+        b"---\nurl: https://d.example/rss\n"  # not reviewed
+    )
+    assert extract_urls(body, "proposals") == ["https://a.example/feed"]
+    assert [f["url"] for f in proposal_documents(body)][1:] == [
+        "https://b.example/rss",
+        "https://c.example/rss",
+        "https://d.example/rss",
+    ]
+
+
+@pytest.mark.parametrize(
+    "body",
+    [
+        b"---\nurl: [unclosed\n",
+        b"---\n- a list\n",
+        b"---\ntitle: no url\n",
+        b"---\nurl: !!python/object/apply:os.system [echo]\n",  # safe_load refuses tags
+    ],
+)
+def test_a_malformed_proposal_file_is_refused(body: bytes) -> None:
+    with pytest.raises(SourceError):
+        extract_urls(body, "proposals")
+
+
 # --- inputs ----------------------------------------------------------------------------------
 
 
@@ -253,21 +283,23 @@ def test_submissions_file_is_valid() -> None:
 
 
 def test_survivors_files_are_valid() -> None:
-    """data/survivors/*/*.txt (proposals from `indexer survivors`, merged after review): every
-    accepted entry is a valid https URL, none twice across the files, and the source reads them
-    all from the checkout."""
-    entries = [
-        url
-        for path in sorted((REPO_CONFIG.parent / "survivors").glob("*/*.txt"))
-        for url in extract_urls(path.read_bytes(), "lines")
-    ]
+    """data/survivors/*/*.yaml (proposals from `indexer survivors`, merged after review): every
+    feed says accept: true or false, every accepted one is a valid https URL, none twice across
+    the files, and the source reads them all from the checkout."""
+    paths = sorted((REPO_CONFIG.parent / "survivors").glob("*/*.yaml"))
+    assert paths and not list((REPO_CONFIG.parent / "survivors").glob("*/*.txt"))
+    for path in paths:
+        feeds = proposal_documents(path.read_bytes())
+        assert all(isinstance(f.get("accept"), bool) for f in feeds), path
+    entries = [url for path in paths for url in extract_urls(path.read_bytes(), "proposals")]
     valid, invalid = valid_urls(entries)
     assert invalid == 0, "data/survivors/ has invalid URLs"
     assert len(valid) == len(entries), "data/survivors/ has duplicate URLs"
     assert all(url.startswith("https://") for url, _host in valid)
     config = load_config(REPO_CONFIG)
     (source,) = [s for s in config.sources if s.name == "survivors"]
-    assert source.files == ("survivors/*/*.txt",) and not source.urls
+    assert source.files == ("survivors/*/*.yaml",) and not source.urls
+    assert source.format == "proposals"
     assert source.license == "LicenseRef-CommonCrawl-ToU"
 
 

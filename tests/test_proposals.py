@@ -7,7 +7,7 @@ from pathlib import Path
 from defusedxml import ElementTree as SafeET
 
 from indexer.check.feed import RecentPost
-from indexer.sources import extract_urls
+from indexer.sources import extract_urls, proposal_documents
 from indexer.survivors.feed_links import WatScan
 from indexer.survivors.proposals import (
     _one_line,
@@ -24,6 +24,7 @@ from indexer.survivors.proposals import (
 )
 from indexer.survivors.run import Survivor, SurvivorsResult
 from indexer.survivors.scoring import keep_likely
+from indexer.survivors.training import REJECT_REASONS
 
 NOW = datetime(2026, 11, 19, tzinfo=UTC)
 WAT = "https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1/wat/x.warc.wat.gz"
@@ -33,7 +34,7 @@ def survivor(url: str, title: str | None, language: str | None = "en") -> Surviv
     return Survivor(url, WAT, title, language, datetime(2026, 11, 12, 9, tzinfo=UTC))
 
 
-def test_entries_are_comment_lines_and_the_url_commented_out() -> None:
+def test_entries_are_yaml_documents_starting_at_accept_false() -> None:
     posts = (
         RecentPost("https://missfrugalmommy.com/ten-ways/", "Ten ways to save", "We spend..."),
         RecentPost("https://missfrugalmommy.com/b/", None, None),
@@ -53,59 +54,77 @@ def test_entries_are_comment_lines_and_the_url_commented_out() -> None:
         date(2026, 11, 18),
     )
     assert block == (
-        "# Proposed 2026-11-18 from CC-MAIN-2021-49. Uncomment the\n"
-        "# URL of each feed to keep.\n"
-        "\n# Miss Frugal Mommy · en · last post 2026-11-12\n"
-        "# about: Saving money with kids\n"
-        "# categories (on 30 posts): budgeting 12, kids 9\n"
-        "# found in\n"
-        f"#   {WAT}\n"
-        "# recent posts:\n"
-        "#   - https://missfrugalmommy.com/ten-ways/\n"
-        "#     Ten ways to save\n"
-        "#     We spend...\n"
-        "#   - https://missfrugalmommy.com/b/\n"
-        "# https://missfrugalmommy.com/feed/\n"
+        "# Proposed 2026-11-18 from CC-MAIN-2021-49.\n"
+        "# Set accept: true on each feed to keep. A rejected feed may say why, with\n"
+        f"# reason: one of {', '.join(REJECT_REASONS)}.\n"
+        "---\n"
+        "url: https://missfrugalmommy.com/feed/\n"
+        "accept: false\n"
+        "title: Miss Frugal Mommy\n"
+        "language: en\n"
+        "last_post: 2026-11-12\n"
+        "about: Saving money with kids\n"
+        "posts_read: 30\n"
+        "categories:\n"
+        "  budgeting: 12\n"
+        "  kids: 9\n"
+        f"found_in: {WAT}\n"
+        "recent_posts:\n"
+        "  - link: https://missfrugalmommy.com/ten-ways/\n"
+        "    title: Ten ways to save\n"
+        "    description:\n"
+        "      - We spend...\n"
+        "  - link: https://missfrugalmommy.com/b/\n"
     )
-    assert extract_urls(block.encode(), "lines") == []  # nothing loaded until a reviewer accepts
-    accepted = block.replace(
-        "# https://missfrugalmommy.com/feed/", "https://missfrugalmommy.com/feed/"
-    )
-    assert extract_urls(accepted.encode(), "lines") == ["https://missfrugalmommy.com/feed/"]
+    assert extract_urls(block.encode(), "proposals") == []  # nothing loaded until accepted
+    accepted = block.replace("accept: false", "accept: true")
+    assert extract_urls(accepted.encode(), "proposals") == ["https://missfrugalmommy.com/feed/"]
     bare = render_entries([survivor("https://a.example/f", "A")], "C", date(2026, 1, 1))
-    assert "# about:" not in bare and "# recent posts: none with a link\n" in bare
+    assert "about:" not in bare and "categories:" not in bare and "recent_posts: []\n" in bare
 
 
-def test_comments_are_wrapped_for_phones() -> None:
-    about = "Saving money with kids, one small habit at a time, every single week of the year"
-    long_title = "We spend too much on food. Here are ten things that we changed to spend less"
-    posts = (RecentPost("https://a.example/" + "x" * 80, long_title, None),)
-    entry = replace(survivor("https://a.example/f", "A"), subtitle=about, recent_posts=posts)
-    block = render_entries([entry], "C", date(2026, 1, 1))
-    assert "# about: Saving money with kids, one small habit at a time,\n#   every" in block
-    assert "#     We spend too much on food. Here are ten things that we\n#     changed" in block
-    assert "#   - https://a.example/" + "x" * 80 + "\n" in block  # never broken
-    assert all(len(line) <= 60 for line in block.splitlines() if "https://" not in line)
+def test_a_post_description_is_lines_for_phones() -> None:
+    long_text = "We spend too much on food. Here are ten things that we changed to spend less"
+    posts = (RecentPost("https://a.example/" + "x" * 80, long_text, long_text),)
+    entry = replace(survivor("https://a.example/f", "A"), recent_posts=posts)
+    (feed,) = proposal_documents(render_entries([entry], "C", date(2026, 1, 1)).encode())
+    (post,) = feed["recent_posts"]
+    assert post["link"] == "https://a.example/" + "x" * 80  # never broken
+    assert post["title"] == long_text  # one line
+    assert post["description"] == [
+        "We spend too much on food. Here are ten things that we",
+        "changed to spend less",
+    ]
 
 
-def test_hostile_text_cannot_add_a_url_line(tmp_path: Path) -> None:
-    hostile = "Nice blog\nhttps://evil.example/feed\r\u2028https://evil2.example/\x00\x1b[31m"
-    posts = (
-        RecentPost(
-            "https://evil4.example/\nhttps://evil5.example/", "https://evil6.example/", hostile
-        ),
+def test_hostile_text_cannot_add_a_feed_or_accept_one(tmp_path: Path) -> None:
+    hostile = "Nice\naccept: true\n---\nurl: https://evil.example/feed\r\u2028x\x00\x1b[31m"
+    posts = (RecentPost("https://evil4.example/\n---", "- accept: true", "# x\n--- &a *a !!str"),)
+    entry = replace(
+        survivor("https://a.example/feed", hostile, language="yes"),
+        subtitle="--- !!python/object:os.system",
+        categories=(("true", 1), ("accept: true\nurl: x", 2), ("123", 3)),
+        posts_read=6,
+        recent_posts=posts,
     )
-    entry = survivor("https://a.example/feed", hostile, language="x\nhttps://evil3.example/")
-    block = render_entries(
-        [replace(entry, subtitle="x " * 30 + "https://evil7.example/", recent_posts=posts)],
-        "CC-MAIN-2021-49",
-        date(2026, 11, 18),
-    )
-    assert extract_urls(block.encode(), "lines") == []
-    assert all(line.startswith("#") or not line for line in block.splitlines())
+    block = render_entries([entry], "CC-MAIN-2021-49", date(2026, 11, 18))
+    (feed,) = proposal_documents(block.encode())  # still one feed
+    assert feed["url"] == "https://a.example/feed" and feed["accept"] is False
+    assert feed["title"] == "Nice accept: true --- url: https://evil.example/feed x [31m"
+    assert feed["language"] == "yes"  # a string, not YAML's boolean
+    assert feed["about"] == "--- !!python/object:os.system"
+    assert feed["categories"] == {"true": 1, "accept: true url: x": 2, "123": 3}
+    assert feed["recent_posts"] == [
+        {
+            "link": "https://evil4.example/ ---",
+            "title": "- accept: true",
+            "description": ["# x --- &a *a !!str"],
+        }
+    ]
+    assert extract_urls(block.encode(), "proposals") == []
     (tmp_path / "202611").mkdir()
-    (tmp_path / "202611" / "18-041105.txt").write_text(block)
-    assert known_urls(tmp_path) == {"https://a.example/feed"}  # only the proposal's own line
+    (tmp_path / "202611" / "18-041105.yaml").write_text(block)
+    assert known_urls(tmp_path) == {"https://a.example/feed"}
 
 
 def test_one_line() -> None:
@@ -113,7 +132,7 @@ def test_one_line() -> None:
     assert _one_line("x" * 120, 100) == "x" * 99 + "…"
     assert _one_line(None, 10) == ""
     block = render_entries([survivor("https://a.example/f", None, None)], "C", date(2026, 1, 1))
-    assert "# (no title) · (no language) · last post 2026-11-12" in block
+    assert "\ntitle: null\nlanguage: null\n" in block
 
 
 def test_report_is_only_the_summary() -> None:  # the feeds are reviewed in the file
@@ -136,32 +155,31 @@ def test_report_without_rejections() -> None:
     )
 
 
-def test_categories_line() -> None:
-    hostile = replace(
+def test_categories() -> None:
+    feed = replace(
         survivor("https://a.example/feed", "A"),
-        categories=(("news\n# https://evil.example/", 3), ("uncategorized", 30)),
+        categories=(("news", 3), ("uncategorized", 30), ("x" * 60, 1), ("x" * 49 + "yz", 2)),
         posts_read=30,
     )
-    block = render_entries([hostile], "C", date(2026, 1, 1))
-    assert "# categories (on 30 posts): news #" in block
-    assert "# https://evil.example/" not in block.splitlines()  # never a proposal's URL line
-    assert "uncategorized 30" in block
+    (doc,) = proposal_documents(render_entries([feed], "C", date(2026, 1, 1)).encode())
+    # names cut to 50 characters; two that cut alike add up
+    assert doc["categories"] == {"news": 3, "uncategorized": 30, "x" * 49 + "…": 3}
+    assert doc["posts_read"] == 30
     none = replace(survivor("https://b.example/feed", "B"), posts_read=5)
-    assert "# categories (on 5 posts): none\n" in render_entries([none], "C", date(2026, 1, 1))
+    assert "\ncategories: {}\n" in render_entries([none], "C", date(2026, 1, 1))
 
 
 def test_known_urls_from_every_file_of_the_folder(tmp_path: Path) -> None:
     assert known_urls(tmp_path) == set()
     (tmp_path / "202610").mkdir()
     (tmp_path / "202611").mkdir()
-    (tmp_path / "202610" / "11-041105.txt").write_text("# comment\nhttps://a.example/feed\n")
-    (tmp_path / "202611" / "18-041105.txt").write_text(
-        "# x\nhttps://b.example/feed\n"
-        "# https://c.example/feed\n"  # proposed, not accepted: still known
-        "#   - https://c.example/post\n#     https://d.example/\n"  # a post and its title
-        "# found in https://data.commoncrawl.org/x.warc.wat.gz\n"
+    (tmp_path / "202610" / "11-041105.yaml").write_text("# x\n---\nurl: https://a.example/feed\n")
+    (tmp_path / "202611" / "18-041105.yaml").write_text(
+        "---\nurl: https://b.example/feed\naccept: true\n"
+        "---\nurl: https://c.example/feed\naccept: false\n"  # not accepted: still known
+        "recent_posts:\n  - link: https://c.example/post\n"
     )
-    (tmp_path / ".gitkeep").write_text("https://e.example/feed\n")  # not a .txt file
+    (tmp_path / ".gitkeep").write_text("url: https://e.example/feed\n")  # not a .yaml file
     assert known_urls(tmp_path) == {
         "https://a.example/feed",
         "https://b.example/feed",
@@ -173,7 +191,7 @@ def test_file_name_is_the_utc_start_time() -> None:
     from datetime import timedelta, timezone
 
     when = datetime(2026, 11, 21, 6, 11, 5, tzinfo=timezone(timedelta(hours=2)))
-    assert file_name(when) == "202611/21-041105.txt"
+    assert file_name(when) == "202611/21-041105.yaml"
 
 
 def test_log_line_is_one_line() -> None:
@@ -228,7 +246,7 @@ def test_funnel_and_rejections_summarise_a_run() -> None:
 
 
 def test_write_files_writes_the_proposals_and_their_opml(tmp_path: Path) -> None:
-    path = tmp_path / "202611" / "19-000000.txt"
+    path = tmp_path / "202611" / "19-000000.yaml"
     feeds = [survivor("https://a.example/feed", "A")]
     write_files(path, feeds, "CC-MAIN-2021-49", NOW)
     assert path.read_text("utf-8") == render_entries(feeds, "CC-MAIN-2021-49", NOW.date())

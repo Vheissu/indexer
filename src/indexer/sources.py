@@ -2,13 +2,14 @@
 
 A source is a name, a license and one or more list files: `urls` (usually raw.githubusercontent.com
 URLs on a branch) and/or `files` (paths in this repository, relative to the config file, read from
-disk; a path may be a glob pattern like `survivors/*/*.txt`), so each load reads the lists as they
+disk; a path may be a glob pattern like `survivors/*/*.yaml`), so each load reads the lists as they
 are today: nothing is pinned, and new feeds added upstream arrive on their own. A source that fails
 (file gone, malformed) is skipped and reported; the other sources still load. Since the inputs
 table is append-only, a broken or truncated upstream file adds nothing harmful and removes nothing.
 
 Files are downloaded with the same guarded fetcher as the health checks and parsed with
-defusedxml (OPML) or as plain lines.
+defusedxml (OPML), as plain lines, or as proposal files (YAML, read with yaml.safe_load_all: only
+feeds marked `accept: true` count).
 
 collect_inputs() turns the downloaded lists into rows for the `inputs` table: every valid URL
 (the same scheme, credential and port rules as a check), minus excluded domains, each credited
@@ -27,6 +28,7 @@ from pathlib import Path
 from typing import Any, Literal
 from xml.etree.ElementTree import ParseError
 
+import yaml
 from defusedxml import DefusedXmlException
 from defusedxml import ElementTree as SafeET
 
@@ -34,7 +36,8 @@ from indexer.net.urls import drop_excluded, valid_urls
 
 type Fetch = Callable[[str], Awaitable[bytes]]
 _XML_URL_ATTR = re.compile(rb"""\bxmlUrl\s*=\s*(?:"([^"<]*)"|'([^'<]*)')""")
-Format = Literal["opml", "lines"]
+Format = Literal["opml", "lines", "proposals"]
+FORMATS: tuple[Format, ...] = ("opml", "lines", "proposals")
 
 
 # (source, where the list was found, feed URLs). "Where" is the file's URL, or for a file in
@@ -97,8 +100,8 @@ def load_config(path: Path) -> SourcesConfig:
         name = _require(raw, "name", str, where)
         where = f"source '{name}'"
         fmt = _require(raw, "format", str, where)
-        if fmt not in ("opml", "lines"):
-            raise SourceError(f"{where}: format must be 'opml' or 'lines'")
+        if fmt not in FORMATS:
+            raise SourceError(f"{where}: format must be one of {', '.join(FORMATS)}")
         urls = raw.get("urls", [])
         files = raw.get("files", [])
         for key, value in (("urls", urls), ("files", files)):
@@ -152,7 +155,10 @@ def load_config(path: Path) -> SourcesConfig:
 
 
 def extract_urls(body: bytes, fmt: Format) -> list[str]:
-    """Feed URLs from one file: OPML xmlUrl attributes, or one URL per line."""
+    """Feed URLs from one file: OPML xmlUrl attributes, one URL per line, or the accepted feeds
+    of a proposal file."""
+    if fmt == "proposals":
+        return [str(d["url"]) for d in proposal_documents(body) if d.get("accept") is True]
     if fmt == "opml":
         try:
             root = SafeET.fromstring(body, forbid_dtd=True)
@@ -165,6 +171,21 @@ def extract_urls(body: bytes, fmt: Format) -> list[str]:
         return [u.strip() for el in root.iter("outline") if (u := el.get("xmlUrl"))]
     text = body.decode("utf-8", errors="replace")
     return [s for line in text.splitlines() if (s := line.strip()) and not s.startswith("#")]
+
+
+def proposal_documents(body: bytes) -> list[dict[str, Any]]:
+    """The feeds of a proposal file (data/survivors/, written by survivors/proposals.py): one
+    YAML document per feed, each a mapping with at least a `url`. Read with safe_load_all, which
+    builds only plain values (no tags, no objects). SourceError if it isn't such a file."""
+    try:
+        documents = list(yaml.safe_load_all(body.decode("utf-8", errors="replace")))
+    except yaml.YAMLError as exc:
+        raise SourceError(f"malformed proposal file: {exc}") from exc
+    feeds = [d for d in documents if d is not None]  # a comment-only header is no document
+    for d in feeds:
+        if not isinstance(d, dict) or not isinstance(d.get("url"), str):
+            raise SourceError("malformed proposal file: every feed needs a url")
+    return feeds
 
 
 async def download(config: SourcesConfig, fetch: Fetch) -> tuple[Downloaded, dict[str, str]]:

@@ -180,10 +180,10 @@ urls = [
 [[source]]
 name = "survivors"
 license = "LicenseRef-CommonCrawl-ToU"
-format = "lines"
+format = "proposals" # YAML, one document per feed; only feeds with accept: true are loaded
 homepage = "https://github.com/feedrule/indexer/tree/develop/data/survivors"
 notes = "Feeds from a ~5-year-old Common Crawl crawl that are still active, proposed weekly by the survivors workflow as a pull request and reviewed before merging."
-files = ["survivors/*/*.txt"] # relative to this file: survivors/<yyyymm>/<dd-HHMMSS>.txt, one per run
+files = ["survivors/*/*.yaml"] # relative to this file: survivors/<yyyymm>/<dd-HHMMSS>.yaml, one per run
 
 [[source]]
 name = "submissions"
