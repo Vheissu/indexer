@@ -31,7 +31,7 @@ def add_arguments(parser: argparse.ArgumentParser) -> None:
         "--batch", type=int, default=500, help="batch size with --from-inputs (default 500)"
     )
     parser.add_argument(
-        "--minimum-check-cooldown-minutes",
+        "--check-cooldown-minutes",
         type=int,
         default=1440,
         help="with --from-inputs, never pick an input checked less than this many minutes ago"
@@ -47,10 +47,10 @@ def add_arguments(parser: argparse.ArgumentParser) -> None:
 
 
 async def run(args: argparse.Namespace) -> int:
-    cooldown = args.minimum_check_cooldown_minutes
+    cooldown = args.check_cooldown_minutes
     if args.from_inputs and (args.batch < 1 or cooldown < 0):
         print(
-            "error: --batch must be positive and --minimum-check-cooldown-minutes not negative",
+            "error: --batch must be positive and --check-cooldown-minutes not negative",
             file=sys.stderr,
         )
         return 2

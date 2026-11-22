@@ -239,7 +239,7 @@ the next weekly run picks another file.
 ```sh
 uv run indexer run FILE                     # every URL in a text file
 uv run indexer run --from-inputs            # the 500 most outdated inputs
-uv run indexer run --from-inputs --batch 50 --minimum-check-cooldown-minutes 60 -v
+uv run indexer run --from-inputs --batch 50 --check-cooldown-minutes 60 -v
 ```
 
 A URL file has one URL per line; blank lines and `#` comments are ignored, and duplicates are
@@ -248,7 +248,7 @@ checked once. `data/urls.txt` is a 100-feed sample of
 
 `--from-inputs` checks the `--batch` most outdated inputs: those never checked first, then the
 longest since their last check (ties in random order, so a batch doesn't bunch up on one host).
-An input checked less than `--minimum-check-cooldown-minutes` ago (1440: a day) is never picked.
+An input checked less than `--check-cooldown-minutes` ago (1440: a day) is never picked.
 Storing a result sets `last_checked_at` whatever the outcome, so repeated runs work through every
 URL before revisiting any: at 8 runs a day of 500, a full pass over ~47,000 curated inputs takes
 about 12 days, and a new input is checked in the next run.

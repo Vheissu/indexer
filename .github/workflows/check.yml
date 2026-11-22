@@ -14,7 +14,7 @@ on:
         description: URLs to check
         type: number
         default: 500
-      minimum-check-cooldown-minutes:
+      check-cooldown-minutes:
         description: Never pick a URL checked less than this many minutes ago
         type: number
         default: 1440
@@ -43,7 +43,7 @@ jobs:
       # Scheduled runs have no inputs: fall back to the defaults. Passed through the
       # environment, never interpolated into the script.
       BATCH: ${{ inputs.batch || 500 }}
-      COOLDOWN_MINUTES: ${{ inputs.minimum-check-cooldown-minutes || 1440 }}
+      COOLDOWN_MINUTES: ${{ inputs.check-cooldown-minutes || 1440 }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -58,5 +58,5 @@ jobs:
       - name: Check a batch
         run: >-
           docker compose run --rm --no-deps -T check
-          run --from-inputs --batch "$BATCH" --minimum-check-cooldown-minutes "$COOLDOWN_MINUTES"
+          run --from-inputs --batch "$BATCH" --check-cooldown-minutes "$COOLDOWN_MINUTES"
           --concurrency 50 -v

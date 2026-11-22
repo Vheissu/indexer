@@ -73,7 +73,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 - Common Crawl rows: source = WAT file URL, license `LicenseRef-CommonCrawl-ToU` (ranked last). No download
   retries: if the slice fails to download (e.g. a 503), the run fails; next week's run tries again. Feed health checks never retry.
 - Batches: the `--batch` most outdated inputs, never checked first, then oldest `last_checked_at` (ties random);
-  none checked within `--minimum-check-cooldown-minutes` (1440, agreed 2026-11-22); storing a
+  none checked within `--check-cooldown-minutes` (1440, agreed 2026-11-22); storing a
   row sets `inputs.last_checked_at` whatever the outcome.
 - Export: success in the last 180 days and an item in the last year (5 until 2026-11-18, changed with the user to match the site text); every topic with a feed gets a page (`--top-topics` caps it, default none: the 2000 cap was removed 2026-11-19 at the user's request; `feeds.topics`; agreed 2026-11-18:
   everything published is about topics, no tags; languages only in previews);
