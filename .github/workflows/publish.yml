@@ -1,5 +1,5 @@
-# Publishes the lists after every successful check run, on a push to develop that changes the site's
-# templates, styles or site.py, weekly as a fallback, or by hand:
+# Publishes the lists after every successful check run, on a push to develop that changes
+# the site package (src/indexer/site/), weekly as a fallback, or by hand:
 # regenerates output/ from Supabase (feeds with a successful check in
 # the last 6 months and a post in the last year, every topic) and force-pushes it as a single
 # fresh commit to the `output` branch. The branch has no history: each publish replaces it.
@@ -14,10 +14,7 @@ on:
   push: # a change to how the site looks
     branches: [develop]
     paths:
-      - src/indexer/templates/**
-      - src/indexer/style.css
-      - src/indexer/feedrule.svg
-      - src/indexer/site.py
+      - src/indexer/site/**
   workflow_dispatch:
   workflow_run: # right after a check run, so the published lists follow the database
     workflows: [check]

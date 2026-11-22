@@ -261,11 +261,11 @@ back yet.
 every listed feed) and `output/previews/` (one JSON file per listed feed, for a client-side search
 page: fetch a topic's `links.txt`, then the previews of the results shown; see
 `export.preview_path` and `export.render_preview`). `links.txt` files are most recently active
-first. It also writes the website, `output/docs/` (`src/indexer/site.py`): `index.html` (the 50 largest
+first. It also writes the website, `output/docs/` (`src/indexer/site/`): `index.html` (the 50 largest
 topics, a search box over all of them, and the sources),
 `topic/<slug>/index.html` for every topic (the 200 most recently active feeds, each with a
 feedrule.com link prefilled with the feed and its other topics), `style.css` and `feedrule.svg` (package data:
-`src/indexer/style.css`, `src/indexer/feedrule.svg`), `sitemap.xml` and `.nojekyll`. Topic pages with fewer than 3 feeds are marked `noindex` and left out of
+`src/indexer/site/style.css`, `src/indexer/site/feedrule.svg`), `sitemap.xml` and `.nojekyll`. Topic pages with fewer than 3 feeds are marked `noindex` and left out of
 the sitemap (near-empty pages would count as thin content); they are still linked and searchable. Pages link
 `style.css?v=<hash of its content>`, so browsers load a changed stylesheet at once. GitHub Pages
 serves the `output` branch's `/docs` folder; the pages link the data files on
@@ -276,7 +276,7 @@ no Markdown in the output except `SPEC.md`.
 The files and listing rules are described in the [README](README.md#which-feeds-are-listed). The
 limits are options: `--top-topics` (default: all), `--success-days`, `--item-years`. A topic's `<slug>` is its name with `+`
 spelled `plus` and `#` spelled `sharp` (`export.topic_slug`). Titles and
-URLs come from the feeds: the pages are Jinja templates (`src/indexer/templates/`) with
+URLs come from the feeds: the pages are Jinja templates (`src/indexer/site/templates/`) with
 autoescaping on, the OPML is escaped by hand, and only http(s) URLs become
 links (a site URL could be `javascript:`); feed and site links are `rel="nofollow"`. `SPEC.md`,
 the hand-written description of these files at the repository root, is copied into the output
@@ -290,9 +290,8 @@ mkdir -p output && HOST_UID=$(id -u) HOST_GID=$(id -g) docker compose run --rm e
 
 `publish.yml` force-pushes `output/` as a single fresh commit to the `output` branch, which never
 accumulates history. It runs right after each successful check run (`workflow_run`, which uses the
-file as it is on the default branch), on a push to develop that changes `src/indexer/templates/`,
-`style.css`, `feedrule.svg` or `site.py`, on Mondays as a fallback, and when started by hand
-(Actions → publish → Run workflow). It only reads the database.
+file as it is on the default branch), on a push to develop that changes `src/indexer/site/`, on
+Mondays as a fallback, and when started by hand (Actions → publish → Run workflow). It only reads the database.
 
 ## Cleanup
 
@@ -556,7 +555,7 @@ Source layout (`src/indexer/`):
 | `db/models.py` | the tables as dataclasses, checked against the migrated schema by a test |
 | `errors.py` | the error identifiers |
 | `export.py` | the published lists (data files) |
-| `site.py` | the website in `output/docs/`: prepares the data for the Jinja templates in `templates/` |
+| `site/` | the website in `output/docs/`: `__init__.py` prepares the data for the Jinja templates in `templates/`; `style.css`, `feedrule.svg` |
 | `sources.py` | data/sources.toml and loading the lists into inputs |
 | `net/` | fetching untrusted URLs: `fetch.py` (the guarded fetcher), `validate.py` (URL rules, URL files), `resolver.py`, `ippolicy.py`, `urls.py`, `domains.py` |
 | `check/` | `runner.py` (one check per URL), `feed.py` (parsing RSS/Atom) |

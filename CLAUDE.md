@@ -13,7 +13,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 | inputs from lists | `indexer load-inputs data/sources.toml` | `input` | `input.yml` (daily; on push to develop/main changing `data/sources.toml` or `data/*.txt`, except `undo.txt`) |
 | old CC feeds still active, proposed by PR | `indexer survivors` | `survivors` | `survivors.yml` (Wednesdays) |
 | health checks | `indexer run --from-inputs` (or `run FILE`) | `check` | `check.yml` (every 3 h, 500 URLs, 3 h timeout) |
-| publish | `indexer export` | `export` | `publish.yml` (after each successful check run; on push to develop changing templates/, style.css, feedrule.svg or site.py; Mondays as fallback; manual too. Re-enabled 2026-11-19 at the user's request) |
+| publish | `indexer export` | `export` | `publish.yml` (after each successful check run; on push to develop changing src/indexer/site/; Mondays as fallback; manual too. Re-enabled 2026-11-19 at the user's request) |
 | retention | `indexer cleanup` | `cleanup` | `cleanup.yml` (Sundays) |
 | embedding sets (`data/embeddings/`) | `indexer embeddings [NAME ...]` | `embeddings` | `embeddings.yml` (on push to develop changing a set's source, e.g. `data/topics/topics.txt`, or `Dockerfile`; manual) |
 | delete listed URLs | `indexer undo data/undo.txt` | `undo` | `undo.yml` (on push to develop changing `data/undo.txt`; manual) |
@@ -81,18 +81,18 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   `{null, source_license}`; null if not in inputs (no URL, by the user's choice). Hash, not hex of the URL (file name limit).
   `SPEC.md` at the repo root (hand-written: the output's file patterns and contents) is copied into the output by export
   (`--spec`, mounted read-only in compose); keep it in sync with the export (a test checks patterns and limits).
-  **No Markdown in the output (except SPEC.md): the website is HTML** in `output/docs/` (`site.py`), served by GitHub Pages
+  **No Markdown in the output (except SPEC.md): the website is HTML** in `output/docs/` (`site/`), served by GitHub Pages
   from the output branch's `/docs` (agreed 2026-11-17: pages that rank, links to feedrule.com without GitHub's nofollow,
   github.io keeps any thin-content risk off feedrule.com). Index (the 50 largest topics, a search box over all of them from an inline JSON list,
   no links to the all/ files (too big), sources table `site.SOURCES`: update it with data/sources.toml) and one page per topic (200 rows = the first of feeds.opml; under `site.MIN_INDEXED_FEEDS` (3) feeds: `noindex` and not in the sitemap, agreed 2026-11-19 against thin content); sitemap.xml, .nojekyll, canonical
   URLs (`--site-url`). Data files stay outside docs/ and are linked on raw.githubusercontent.com (`--data-url`), so they
   don't count toward the Pages limit. Colours: feedrule.com's (Tailwind zinc + orange), light and dark. Jinja templates
-  (`src/indexer/templates/`: base, index, topic, sitemap) with autoescaping on and StrictUndefined; `site.py` only prepares
+  (`src/indexer/site/templates/`: base, index, topic, sitemap) with autoescaping on and StrictUndefined; `site/__init__.py` only prepares
   the data. No front-end framework, no build step; small inline scripts (topic filter; "Show more" on topic pages: 20 rows, then 20 more per click,
   `site.SHOWN_ROWS`), pages work without them (all 200 rows are in the HTML).
   The stylesheet is linked as `style.css?v=<content hash>` (`site.STYLE_VERSION`: Pages caches it 10 minutes). The header links
   the GitHub repository ("Open source").
-  Each feed row starts with feedrule.com's icon (`src/indexer/feedrule.svg`, copied to docs/) linking to
+  Each feed row starts with feedrule.com's icon (`src/indexer/site/feedrule.svg`, copied to docs/) linking to
   `https://feedrule.com/?feed=<feed URL, percent-encoded except : and />` (`site.feedrule_link`). Untrusted text is
   HTML-escaped; only http(s) URLs become links (`site.safe_href`); feed and site links are rel="nofollow", feedrule's not.
   Row: title and a "Website" link (after the plain-text domain) go to the website (the feed's `site_url`, else its domain's home page), the subtitle under the title (one line,
@@ -106,7 +106,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 
 ## Stack and conventions
 
-- Source in `src/indexer/`: `errors.py`, `export.py` (data files), `site.py` (HTML site), `sources.py` (sources.toml, list loading),
+- Source in `src/indexer/`: `errors.py`, `export.py` (data files), `site/` (HTML site: code, Jinja templates, style.css, feedrule.svg), `sources.py` (sources.toml, list loading),
   `topics.py` (topics from plain text: no RSS, no languages, no database; `TopicModel.topics(posts, title, subtitle)`),
   `language.py` (languages from plain text, same style; `LanguageModel.post_languages(texts)` / `.languages(texts)`) at the top;
   `cli/` (one module per command: `NAME`, `HELP`, `add_arguments(parser)`, `run(args)`, listed in `cli/__init__.py`'s `COMMANDS`; `common.py` for what several share; commands stay thin: parse, call a module, print), `net/` (guarded fetcher, URL validation, resolver, IP policy), `db/` (everything about the database: `database.py`, all SQL through psycopg; `sql/`, its statements, one per file, except the INSERTs built from the models; `models.py`, the tables as dataclasses: database.py builds column lists from them; a DB test checks them against the schema, so update them with every changeset), `check/` (runner, feed parser), `survivors/` (Common Crawl, proposals).

@@ -286,7 +286,7 @@ def write_output(
         shutil.copyfile(spec, path / "SPEC.md")
     listed = len({f.url for t in topics for f in t.feeds})
     docs.mkdir(exist_ok=True)
-    package = resources.files("indexer")
+    package = resources.files(site)
     for name in (site.ICON, site.STYLE):
         (docs / name).write_bytes(package.joinpath(name).read_bytes())
     (docs / ".nojekyll").write_text("")
