@@ -1,6 +1,6 @@
 # Reviewed proposal files the proposal filter is trained on, relative to this file. Each feed in
 # them is a labelled example: its URL uncommented = accepted; left commented out = rejected (a
-# `# rejected: <reason>` line above it is an optional note, see training.py REJECT_REASONS).
+# `# rejected: <reason>` line above it is an optional note, see survivors/training.py REJECT_REASONS).
 # The text the reviewer saw (title, description, categories, recent posts) is cleaned up in
 # memory. Survivors trains the model on them (once per change to these files; kept, git-ignored,
 # in data/models/) and drops the proposals it scores lowest; `indexer train` prints its size and

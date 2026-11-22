@@ -11,7 +11,7 @@ from pathlib import Path
 import pytest
 from defusedxml import ElementTree as SafeET
 
-from indexer.export import (
+from indexer.publish.export import (
     LINKS_MAX,
     MARKER,
     OPML_MAX,
@@ -27,7 +27,7 @@ from indexer.export import (
     with_synonyms,
     write_output,
 )
-from indexer.site import (
+from indexer.publish.site import (
     INDEX_TOPICS,
     MIN_INDEXED_FEEDS,
     PAGE_ROWS,

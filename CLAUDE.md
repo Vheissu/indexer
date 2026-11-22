@@ -13,7 +13,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 | inputs from lists | `indexer load-inputs data/sources.toml` | `input` | `input.yml` (daily; on push to develop/main changing `data/sources.toml` or `data/*.txt`, except `undo.txt`) |
 | old CC feeds still active, proposed by PR | `indexer survivors` | `survivors` | `survivors.yml` (Wednesdays) |
 | health checks | `indexer run --from-inputs` (or `run FILE`) | `check` | `check.yml` (every 3 h, 500 URLs, 3 h timeout) |
-| publish | `indexer export` | `export` | `publish.yml` (after each successful check run; on push to develop changing src/indexer/site/; Mondays as fallback; manual too. Re-enabled 2026-11-19 at the user's request) |
+| publish | `indexer export` | `export` | `publish.yml` (after each successful check run; on push to develop changing src/indexer/publish/; Mondays as fallback; manual too. Re-enabled 2026-11-19 at the user's request) |
 | retention | `indexer cleanup` | `cleanup` | `cleanup.yml` (Sundays) |
 | embedding sets (`data/embeddings/`) | `indexer embeddings [NAME ...]` | `embeddings` | `embeddings.yml` (on push to develop changing a set's source, e.g. `data/topics/topics.txt`, or `Dockerfile`; manual) |
 | delete listed URLs | `indexer undo data/undo.txt` | `undo` | `undo.yml` (on push to develop changing `data/undo.txt`; manual) |
@@ -87,12 +87,12 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   no links to the all/ files (too big), sources table `site.SOURCES`: update it with data/sources.toml) and one page per topic (200 rows = the first of feeds.opml; under `site.MIN_INDEXED_FEEDS` (3) feeds: `noindex` and not in the sitemap, agreed 2026-11-19 against thin content); sitemap.xml, .nojekyll, canonical
   URLs (`--site-url`). Data files stay outside docs/ and are linked on raw.githubusercontent.com (`--data-url`), so they
   don't count toward the Pages limit. Colours: feedrule.com's (Tailwind zinc + orange), light and dark. Jinja templates
-  (`src/indexer/site/templates/`: base, index, topic, sitemap) with autoescaping on and StrictUndefined; `site/__init__.py` only prepares
+  (`src/indexer/publish/templates/`: base, index, topic, sitemap) with autoescaping on and StrictUndefined; `publish/site.py` only prepares
   the data. No front-end framework, no build step; small inline scripts (topic filter; "Show more" on topic pages: 20 rows, then 20 more per click,
   `site.SHOWN_ROWS`), pages work without them (all 200 rows are in the HTML).
   The stylesheet is linked as `style.css?v=<content hash>` (`site.STYLE_VERSION`: Pages caches it 10 minutes). The header links
   the GitHub repository ("Open source").
-  Each feed row starts with feedrule.com's icon (`src/indexer/site/feedrule.svg`, copied to docs/) linking to
+  Each feed row starts with feedrule.com's icon (`src/indexer/publish/feedrule.svg`, copied to docs/) linking to
   `https://feedrule.com/?feed=<feed URL, percent-encoded except : and />` (`site.feedrule_link`). Untrusted text is
   HTML-escaped; only http(s) URLs become links (`site.safe_href`); feed and site links are rel="nofollow", feedrule's not.
   Row: title and a "Website" link (after the plain-text domain) go to the website (the feed's `site_url`, else its domain's home page), the subtitle under the title (one line,
@@ -106,10 +106,11 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 
 ## Stack and conventions
 
-- Source in `src/indexer/`: `errors.py`, `export.py` (data files), `site/` (HTML site: code, Jinja templates, style.css, feedrule.svg), `sources.py` (sources.toml, list loading),
-  `topics.py` (topics from plain text: no RSS, no languages, no database; `TopicModel.topics(posts, title, subtitle)`),
-  `language.py` (languages from plain text, same style; `LanguageModel.post_languages(texts)` / `.languages(texts)`) at the top;
-  `cli/` (one module per command: `NAME`, `HELP`, `add_arguments(parser)`, `run(args)`, listed in `cli/__init__.py`'s `COMMANDS`; `common.py` for what several share; commands stay thin: parse, call a module, print), `net/` (guarded fetcher, URL validation, resolver, IP policy), `db/` (everything about the database: `database.py`, all SQL through psycopg; `sql/`, its statements, one per file, except the INSERTs built from the models; `models.py`, the tables as dataclasses: database.py builds column lists from them; a DB test checks them against the schema, so update them with every changeset), `check/` (runner, feed parser), `survivors/` (Common Crawl, proposals).
+- Source in `src/indexer/`: `errors.py`, `sources.py` (sources.toml, list loading) at the top;
+  `publish/` (`export.py`, the data files; `site.py`, the HTML site, with its Jinja templates, style.css and feedrule.svg),
+  `text/` (models on plain text: no RSS, no database; `topics.py`, `TopicModel.topics(posts, title, subtitle)`; `language.py`,
+  `LanguageModel.post_languages(texts)` / `.languages(texts)`; `embeddings.py`, MiniLM and the embedding sets),
+  `cli/` (one module per command: `NAME`, `HELP`, `add_arguments(parser)`, `run(args)`, listed in `cli/__init__.py`'s `COMMANDS`; `common.py` for what several share; commands stay thin: parse, call a module, print), `net/` (guarded fetcher, URL validation, resolver, IP policy), `db/` (everything about the database: `database.py`, all SQL through psycopg; `sql/`, its statements, one per file, except the INSERTs built from the models; `models.py`, the tables as dataclasses: database.py builds column lists from them; a DB test checks them against the schema, so update them with every changeset), `check/` (runner, feed parser), `survivors/` (Common Crawl, proposals, `training.py`: the proposal filter).
 - Python 3.13 with **uv** (commit `uv.lock`), ruff (lint + format), type hints everywhere, `mypy --strict src`.
 - Tests use pytest with a local server, fake DNS and synthetic files. **Tests never touch the network.**
   Database tests run only when `INDEXER_TEST_DATABASE_URL` is set.
@@ -158,7 +159,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 - `feeds`: latest metadata per URL, updated in place (replaced on a parsed check, kept on failure). Descriptive fields use Atom names.
   `language`: the feed's labels, detected per item (agreed 2026-11-18; what the feed declares is not read): the categories the feeds publish are **not
   extracted any more**; each of the first 30 items' text (title + start of the description, not stored) goes through
-  fastText lid.176 (`language.py`, model pinned by checksum in the Dockerfile, CC BY-SA 3.0); a language
+  fastText lid.176 (`text/language.py`, model pinned by checksum in the Dockerfile, CC BY-SA 3.0); a language
   becomes its ISO 639 code when it is on ≥ 2 items and ≥ 20% of the items with ≥ 40 characters of text. Several
   languages give several labels, sorted, comma separated.
   `topics` (agreed 2026-11-18): the text (title + start of the description) of the items detected as `en`, plus the feed's own
@@ -167,7 +168,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   quantized ONNX, Apache-2.0; model and tokenizer pinned by revision and SHA-256 in the Dockerfile), averaged, and
   compared with `data/embeddings/topics.npy` (the embedding set `topics`, of `data/topics/topics.txt`, 6,079 names used by ≥ 5 listed feeds);
   names mapped through `data/topics/synonyms.tsv` (at the check, and again by export on the stored topics); a feed gets topics only if its best name beats its 8th best (distinct)
-  by ≥ 0.08, then up to 5 within 0.02 of the best and ≥ 0.35, most similar first (`topics.py`; tuned 2026-11-18
+  by ≥ 0.08, then up to 5 within 0.02 of the best and ≥ 0.35, most similar first (`text/topics.py`; tuned 2026-11-18
   on 55 random feeds judged by hand: title + description beat titles alone; **precision first** (user's choice):
   ~77% of the model's topics right, on ~half the feeds; 0.04 gave ~65% on ~80%; a fixed threshold did worse). Authors' tags are evidence only, **never stored** (agreed 2026-11-18): the
   parser reads each item's categories in memory (`FeedInfo.item_tags`); a topic they name (spelling folds, singular/
@@ -184,7 +185,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   in a 1,000-feed run (social-software, webtech, brainstorming, bazaar, projects, future): precision first.
   Embedding sets (asked 2026-11-21: one layout for all): `data/embeddings/<name>.npy` (float16, unit rows) + `<name>.json`
   (rows, dim, model, SHA-256 of model, tokenizer and each source by repo-relative path); `embeddings.read_set` refuses a stale
-  set, `embeddings.write_set` builds one; MiniLM loading is in `embeddings.py`. `indexer embeddings [NAME ...]` rebuilds sets
+  set, `embeddings.write_set` builds one; MiniLM loading is in `text/embeddings.py`. `indexer embeddings [NAME ...]` rebuilds sets
   listed in `cli.EMBEDDING_SETS` (only `topics` so far, via `topics.build_index`); never edit a set by hand; embeddings.yml
   does it and commits `data/embeddings/` to develop (its own concurrency group: no database; network off in the container).
   No English item, no topics. Survivors does not compute topics.
@@ -194,7 +195,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   (today PR #18's and #19's, the only ones made with the current rules and format); label = URL uncommented or not (binary
   agreed 2026-11-22: same AUC as one class per reason, no reason labelling needed; a `# rejected: <reason>` line is an
   optional, unused note), text = what the reviewer saw (cleanup in memory). Trained by survivors (up to a minute,
-  deterministic) and kept in git-ignored `data/models/proposals-<hash of training.toml, the listed files and training.py>.npz`:
+  deterministic) and kept in git-ignored `data/models/proposals-<hash of training.toml, the listed files and survivors/training.py>.npz`:
   reused while present, retrained when the hash changes; never committed (agreed 2026-11-22: no model binaries in git
   history). `indexer train` prints its size and cut-off.
   Survivors drops proposals scoring below the cut-off (the 30th percentile of the examples' cross-validated scores,

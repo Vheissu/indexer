@@ -161,7 +161,7 @@ def _is_active(row: CheckRow, now: datetime, active_days: int) -> bool:
 
 
 def _is_english(row: CheckRow) -> bool:
-    """English is the only language detected on the feed's items (`en`, see `indexer.language`;
+    """English is the only language detected on the feed's items (`en`, see `indexer.text.language`;
     agreed 2026-11-21: mixed-language feeds were mostly not worth it). What the feed declares is
     not read."""
     return {t.strip() for t in (row.language or "").split(",")} == {"en"}

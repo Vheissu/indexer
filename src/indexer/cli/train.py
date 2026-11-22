@@ -4,7 +4,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from indexer.training import TRAINING_CONFIG, TrainingError, train_model
+from indexer.survivors.training import TRAINING_CONFIG, TrainingError, train_model
 
 NAME = "train"
 HELP = (

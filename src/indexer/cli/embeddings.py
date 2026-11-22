@@ -5,8 +5,8 @@ import sys
 from collections.abc import Callable
 from pathlib import Path
 
-from indexer.embeddings import EMBEDDINGS_DIR, EmbeddingsError
-from indexer.topics import TOPICS_DIR, TopicsError, build_index
+from indexer.text.embeddings import EMBEDDINGS_DIR, EmbeddingsError
+from indexer.text.topics import TOPICS_DIR, TopicsError, build_index
 
 NAME = "embeddings"
 HELP = "rebuild embedding sets (<name>.npy, <name>.json) from their sources with MiniLM"

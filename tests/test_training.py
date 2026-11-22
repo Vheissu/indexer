@@ -8,11 +8,11 @@ from pathlib import Path
 
 import pytest
 
-from indexer import training
 from indexer.check.feed import RecentPost
+from indexer.survivors import training
 from indexer.survivors.proposals import render_entries
 from indexer.survivors.run import Survivor
-from indexer.training import (
+from indexer.survivors.training import (
     TrainingError,
     cached_model,
     model_path,

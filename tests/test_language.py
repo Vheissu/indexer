@@ -3,7 +3,7 @@
 
 import pytest
 
-from indexer.language import MIN_TEXT_LEN, LanguageModel
+from indexer.text.language import MIN_TEXT_LEN, LanguageModel
 
 
 def fake(text: str) -> str | None:

@@ -9,10 +9,10 @@ from typing import Protocol
 
 from indexer.check.feed import RecentPost, parse_feed
 from indexer.errors import CheckError, ErrorCode
-from indexer.language import feed_languages
 from indexer.net.domains import parent_domain_of
 from indexer.net.fetch import FetchResult
-from indexer.topics import Post
+from indexer.text.language import feed_languages
+from indexer.text.topics import Post
 
 log = logging.getLogger(__name__)
 
@@ -21,11 +21,11 @@ class SupportsFetch(Protocol):
     async def fetch(self, raw_url: str) -> FetchResult: ...
 
 
-class SupportsLanguages(Protocol):  # indexer.language.LanguageModel
+class SupportsLanguages(Protocol):  # indexer.text.language.LanguageModel
     def post_languages(self, texts: Sequence[str]) -> list[str | None]: ...
 
 
-class SupportsTopics(Protocol):  # indexer.topics.TopicModel
+class SupportsTopics(Protocol):  # indexer.text.topics.TopicModel
     def topics(
         self,
         posts: Sequence[Post],
@@ -62,8 +62,8 @@ class CheckRow:
     new_feed_url: str | None = None
     title: str | None = None
     subtitle: str | None = None
-    language: str | None = None  # detected on the items: "de, en" (indexer.language)
-    topics: str | None = None  # from the English items, most similar first (indexer.topics)
+    language: str | None = None  # detected on the items: "de, en" (indexer.text.language)
+    topics: str | None = None  # from the English items, most similar first (indexer.text.topics)
     media_type: str | None = None
     icon: str | None = None
     logo: str | None = None

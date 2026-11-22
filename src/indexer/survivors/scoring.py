@@ -6,7 +6,7 @@ from datetime import date
 
 from indexer.survivors import proposals
 from indexer.survivors.run import Survivor
-from indexer.training import ProposalModel, parse_proposals
+from indexer.survivors.training import ProposalModel, parse_proposals
 
 
 def keep_likely(

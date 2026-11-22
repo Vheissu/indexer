@@ -9,11 +9,11 @@ from collections.abc import AsyncIterator, Awaitable, Callable, Mapping
 from pathlib import Path
 
 from indexer.db import DEFAULT_DATABASE_URL, Database
-from indexer.embeddings import EmbeddingsError
-from indexer.language import MODEL_ENV, LanguageModel
 from indexer.net.fetch import FetchConfig, open_fetcher
 from indexer.sources import SourceError, SourcesConfig, load_config
-from indexer.topics import TopicModel, TopicsError
+from indexer.text.embeddings import EmbeddingsError
+from indexer.text.language import MODEL_ENV, LanguageModel
+from indexer.text.topics import TopicModel, TopicsError
 
 type BodyFetch = Callable[..., Awaitable[bytes]]  # fetch(url, headers=None) -> body
 

@@ -19,8 +19,8 @@ from indexer.net.fetch import FetchConfig, open_fetcher
 from indexer.survivors import proposals
 from indexer.survivors import run as survivors_run
 from indexer.survivors.scoring import keep_likely
+from indexer.survivors.training import TRAINING_CONFIG, TrainingError, cached_model
 from indexer.survivors.wat import CommonCrawlError
-from indexer.training import TRAINING_CONFIG, TrainingError, cached_model
 
 NAME = "survivors"
 HELP = (

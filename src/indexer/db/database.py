@@ -16,7 +16,7 @@ from psycopg.rows import class_row
 
 from indexer.check.runner import CheckRow
 from indexer.db.models import Feed, HealthCheck, Input, IPAddress, Model, Run, columns, values
-from indexer.export import ListedFeed
+from indexer.publish.export import ListedFeed
 from indexer.sources import InputRow
 
 DEFAULT_DATABASE_URL = "postgresql://indexer@127.0.0.1:5432/indexer"  # password: $PGPASSWORD

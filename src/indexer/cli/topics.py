@@ -3,7 +3,7 @@
 import argparse
 
 from indexer.cli.common import topic_model
-from indexer.topics import Post
+from indexer.text.topics import Post
 
 NAME = "topics"
 HELP = (

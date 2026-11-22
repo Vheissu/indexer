@@ -6,8 +6,8 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from indexer.cli.common import add_database_url, database
-from indexer.export import DATA_URL, SITE_URL, ExportError, with_synonyms, write_output
-from indexer.topics import TOPICS_DIR, read_synonyms
+from indexer.publish.export import DATA_URL, SITE_URL, ExportError, with_synonyms, write_output
+from indexer.text.topics import TOPICS_DIR, read_synonyms
 
 NAME = "export"
 HELP = "write the data files (output/topic/<topic>/...) and the website (output/docs/)"

@@ -6,7 +6,7 @@ from conftest import url
 from indexer.check.runner import CheckRow, run_checks
 from indexer.net.domains import registrable_domain
 from indexer.net.fetch import FetchResult
-from indexer.topics import Post
+from indexer.text.topics import Post
 
 
 class ExplodingFetcher:

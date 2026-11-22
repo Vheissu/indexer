@@ -1,5 +1,5 @@
 # Rebuilds the embedding sets in data/embeddings/ (<name>.npy and <name>.json; see
-# src/indexer/embeddings.py) whenever their sources or the image's MiniLM change, and commits
+# src/indexer/text/embeddings.py) whenever their sources or the image's MiniLM change, and commits
 # them to the same branch. Loading refuses a stale set, so a change to a source (data/topics/topics.txt
 # for the set "topics") is followed by this run within minutes. Embeds repository files only: no
 # database, no network inside the container, nothing untrusted.

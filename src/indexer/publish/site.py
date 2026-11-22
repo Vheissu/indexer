@@ -4,7 +4,7 @@ active feeds), a stylesheet, feedrule.com's icon, a sitemap and .nojekyll. The d
 (links.txt, OPML, previews) stay outside docs/ and are linked on raw.githubusercontent.com,
 so they don't count toward the Pages size limit.
 
-The pages are Jinja templates (site/templates/) with autoescaping on, so every value from
+The pages are Jinja templates (publish/templates/) with autoescaping on, so every value from
 a feed is escaped unless marked safe (nothing is). Escaping does not make a URL safe, so a link
 is only written for an http(s) URL (`safe_href`: a feed's site URL could be `javascript:`).
 Links to the feeds and their sites are rel="nofollow"; links to feedrule.com are not.
@@ -22,7 +22,7 @@ from urllib.parse import quote, urlsplit
 from jinja2 import Environment, PackageLoader, StrictUndefined, select_autoescape
 
 if TYPE_CHECKING:
-    from indexer.export import ListedFeed, Topic
+    from indexer.publish.export import ListedFeed, Topic
 
 PAGE_ROWS = 200  # feeds on a topic page (the first ones of its feeds.opml)
 SHOWN_ROWS = 20  # of those, shown at first; "Show more" reveals as many again (all without script)
@@ -32,11 +32,12 @@ FILTER_MATCHES = 100  # topics the filter box shows at most
 FEEDRULE = "https://feedrule.com/"
 FEEDRULE_FORM = "https://feedrule.com/?feed="  # the email-digest form, prefilled with a feed
 REPO = "https://github.com/feedrule/indexer"
+FILES = files("indexer.publish")  # the templates, stylesheet and icon sit next to this module
 ICON = "feedrule.svg"
 STYLE = "style.css"
 # Pages link the stylesheet as style.css?v=<hash of its content>: GitHub Pages lets browsers
 # cache it for 10 minutes, and a new URL makes them load a changed stylesheet right away.
-STYLE_VERSION = hashlib.sha256(files(__name__).joinpath(STYLE).read_bytes()).hexdigest()[:12]
+STYLE_VERSION = hashlib.sha256(FILES.joinpath(STYLE).read_bytes()).hexdigest()[:12]
 # Topic pages with fewer feeds are published (and linked) but marked noindex and left out of the
 # sitemap: near-empty pages would count as thin content against the whole site. A page loses the
 # mark on its own once its topic grows.
@@ -44,7 +45,7 @@ MIN_INDEXED_FEEDS = 3
 
 
 _env = Environment(
-    loader=PackageLoader(__name__, "templates"),
+    loader=PackageLoader("indexer.publish", "templates"),
     autoescape=select_autoescape(["html", "xml"]),
     undefined=StrictUndefined,  # a typo in a template fails the export instead of rendering ""
     trim_blocks=True,

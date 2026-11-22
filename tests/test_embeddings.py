@@ -10,7 +10,7 @@ import pytest
 
 from indexer.cli import main
 from indexer.cli.embeddings import EMBEDDING_SETS
-from indexer.embeddings import EmbeddingsError, Vectors, read_set, set_paths, write_set
+from indexer.text.embeddings import EmbeddingsError, Vectors, read_set, set_paths, write_set
 
 
 def fake_embed(texts: Sequence[str]) -> Vectors:

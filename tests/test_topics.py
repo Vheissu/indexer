@@ -7,8 +7,8 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from indexer.embeddings import EmbeddingsError, Vectors, write_set
-from indexer.topics import (
+from indexer.text.embeddings import EmbeddingsError, Vectors, write_set
+from indexer.text.topics import (
     ABOUT_WEIGHT,
     AUTHOR_MIN_SCORE,
     MARGIN,

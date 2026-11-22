@@ -2,11 +2,11 @@
 the topic names in output/topic/topics.txt (most feeds first), every listed feed in
 output/all/{links.txt,feeds.opml} (with a topic or not), one small JSON preview per listed feed in
 output/previews/ (for a search page, see `preview_path` and `render_preview`), a copy of the
-repository's SPEC.md), and the website in output/docs/ (see `indexer.site`).
+repository's SPEC.md), and the website in output/docs/ (see `indexer.publish.site`).
 
 A feed is listed when it had a successful check in the last `success_days` days and its newest
 item (as of its latest successful check) is less than `item_years` years old. Its topics are
-chosen from its posts when it is checked (see `indexer.topics`), and mapped again through
+chosen from its posts when it is checked (see `indexer.text.topics`), and mapped again through
 data/topics/synonyms.tsv here (`with_synonyms`), so a new synonym is published without waiting
 for every feed to be checked again. Only the `top` topics with the most listed feeds
 get a directory; output/all has every listed feed, including those with no topic.
@@ -26,12 +26,11 @@ from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, replace
 from datetime import datetime
 from email.utils import format_datetime
-from importlib import resources
 from pathlib import Path
 from xml.sax.saxutils import escape as xml_escape
 from xml.sax.saxutils import quoteattr
 
-from indexer import site
+from indexer.publish import site
 
 MARKER = ".indexer-output"
 SLUG = re.compile(r"[a-z0-9_-]{1,100}")
@@ -69,7 +68,7 @@ class ListedFeed:
 
 def with_synonyms(feeds: Iterable[ListedFeed], synonyms: Mapping[str, str]) -> list[ListedFeed]:
     """The feeds with each stored topic mapped to its canonical name (variant -> canonical, as
-    `indexer.topics.read_synonyms` gives), keeping the order and the first of any repeats."""
+    `indexer.text.topics.read_synonyms` gives), keeping the order and the first of any repeats."""
     mapped = []
     for feed in feeds:
         names = [synonyms.get(t.strip(), t.strip()) for t in (feed.topics or "").split(",")]
@@ -286,9 +285,8 @@ def write_output(
         shutil.copyfile(spec, path / "SPEC.md")
     listed = len({f.url for t in topics for f in t.feeds})
     docs.mkdir(exist_ok=True)
-    package = resources.files(site)
     for name in (site.ICON, site.STYLE):
-        (docs / name).write_bytes(package.joinpath(name).read_bytes())
+        (docs / name).write_bytes(site.FILES.joinpath(name).read_bytes())
     (docs / ".nojekyll").write_text("")
     ranked = by_popularity(topics)
     (docs / "index.html").write_text(

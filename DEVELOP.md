@@ -261,11 +261,11 @@ back yet.
 every listed feed) and `output/previews/` (one JSON file per listed feed, for a client-side search
 page: fetch a topic's `links.txt`, then the previews of the results shown; see
 `export.preview_path` and `export.render_preview`). `links.txt` files are most recently active
-first. It also writes the website, `output/docs/` (`src/indexer/site/`): `index.html` (the 50 largest
+first. It also writes the website, `output/docs/` (`src/indexer/publish/site.py`): `index.html` (the 50 largest
 topics, a search box over all of them, and the sources),
 `topic/<slug>/index.html` for every topic (the 200 most recently active feeds, each with a
 feedrule.com link prefilled with the feed and its other topics), `style.css` and `feedrule.svg` (package data:
-`src/indexer/site/style.css`, `src/indexer/site/feedrule.svg`), `sitemap.xml` and `.nojekyll`. Topic pages with fewer than 3 feeds are marked `noindex` and left out of
+`src/indexer/publish/style.css`, `src/indexer/publish/feedrule.svg`), `sitemap.xml` and `.nojekyll`. Topic pages with fewer than 3 feeds are marked `noindex` and left out of
 the sitemap (near-empty pages would count as thin content); they are still linked and searchable. Pages link
 `style.css?v=<hash of its content>`, so browsers load a changed stylesheet at once. GitHub Pages
 serves the `output` branch's `/docs` folder; the pages link the data files on
@@ -276,7 +276,7 @@ no Markdown in the output except `SPEC.md`.
 The files and listing rules are described in the [README](README.md#which-feeds-are-listed). The
 limits are options: `--top-topics` (default: all), `--success-days`, `--item-years`. A topic's `<slug>` is its name with `+`
 spelled `plus` and `#` spelled `sharp` (`export.topic_slug`). Titles and
-URLs come from the feeds: the pages are Jinja templates (`src/indexer/site/templates/`) with
+URLs come from the feeds: the pages are Jinja templates (`src/indexer/publish/templates/`) with
 autoescaping on, the OPML is escaped by hand, and only http(s) URLs become
 links (a site URL could be `javascript:`); feed and site links are `rel="nofollow"`. `SPEC.md`,
 the hand-written description of these files at the repository root, is copied into the output
@@ -290,7 +290,7 @@ mkdir -p output && HOST_UID=$(id -u) HOST_GID=$(id -g) docker compose run --rm e
 
 `publish.yml` force-pushes `output/` as a single fresh commit to the `output` branch, which never
 accumulates history. It runs right after each successful check run (`workflow_run`, which uses the
-file as it is on the default branch), on a push to develop that changes `src/indexer/site/`, on
+file as it is on the default branch), on a push to develop that changes `src/indexer/publish/`, on
 Mondays as a fallback, and when started by hand (Actions → publish → Run workflow). It only reads the database.
 
 ## Cleanup
@@ -393,7 +393,7 @@ check keeps the last known values.
 | `icon`, `logo` | Atom `<icon>`; Atom `<logo>`, RSS `<image><url>` or `<itunes:image>` |
 | `rights`, `license` | Atom `<rights>`, RSS `<copyright>` or `dc:rights`; a license URL (`link rel="license"`, `creativeCommons:license`) |
 
-The categories feeds publish are not read. `language` comes from `language.py` (plain text only, like `topics.py`): the text of
+The categories feeds publish are not read. `language` comes from `text/language.py` (plain text only, like `text/topics.py`): the text of
 each of the first 30 items (title and the start of the description, markup stripped, up to 300
 characters; kept in memory, never stored) goes through fastText's language identification model
 `lid.176.ftz` (176 languages; the Docker image downloads it at a pinned SHA-256 and sets
@@ -402,7 +402,7 @@ of text are skipped. A language becomes a label, an ISO 639 code, when it is det
 least 2 items and 20% of the judged items; labels are sorted and comma separated. Export
 lists them in the previews; only English items are used for topics.
 
-`topics` comes from `topics.py`, which works on plain text only (no RSS parsing, no language
+`topics` comes from `text/topics.py`, which works on plain text only (no RSS parsing, no language
 detection, no database): the checker gives it the text of each item detected as English (its title and
 the start of its description, as used for language detection) and the feed's own title and
 subtitle (counted like 3 items; boilerplate such as "Just another WordPress site" or "Recent content
@@ -476,7 +476,7 @@ description, categories, recent posts' titles and starts, without languages, dat
 links or a score), cleaned up in memory. Survivors trains the classic cheap text classifier on
 them (up to a minute) and keeps it in `data/models/proposals-<hash>.npz` (git-ignored; never
 committed, so the repo doesn't grow with each retrain). The hash covers `training.toml`, every
-listed file and `training.py`: a stored file is up to date by construction, so later runs load it
+listed file and `survivors/training.py`: a stored file is up to date by construction, so later runs load it
 instead of training, and a changed review or code gets a new name and is trained once (older
 files are removed; a directory it can't write to only costs the training time). TF-IDF over words and pairs
 of neighbouring words, then a logistic regression over accepted and rejected, in numpy. Training
@@ -554,12 +554,12 @@ Source layout (`src/indexer/`):
 | `db/sql/` | the SQL statements database.py runs, one per file |
 | `db/models.py` | the tables as dataclasses, checked against the migrated schema by a test |
 | `errors.py` | the error identifiers |
-| `export.py` | the published lists (data files) |
-| `site/` | the website in `output/docs/`: `__init__.py` prepares the data for the Jinja templates in `templates/`; `style.css`, `feedrule.svg` |
+| `publish/` | the output: `export.py` (the published lists, data files) and `site.py` (the website in `output/docs/`: prepares the data for the Jinja templates in `templates/`; `style.css`, `feedrule.svg`) |
 | `sources.py` | data/sources.toml and loading the lists into inputs |
 | `net/` | fetching untrusted URLs: `fetch.py` (the guarded fetcher), `validate.py` (URL rules, URL files), `resolver.py`, `ippolicy.py`, `urls.py`, `domains.py` |
 | `check/` | `runner.py` (one check per URL), `feed.py` (parsing RSS/Atom) |
-| `survivors/` | `run.py` (the pipeline, steps 1–5), `wat.py` (reading Common Crawl), `feed_links.py` (the URL rules before checking: `filter_page_links`), `filters.py` (the rules after checking), `proposals.py` (the data/survivors/ files, their OPML, the run summary and the PR report), `scoring.py` (dropping proposals the trained model scores low) |
+| `survivors/` | `run.py` (the pipeline, steps 1–5), `wat.py` (reading Common Crawl), `feed_links.py` (the URL rules before checking: `filter_page_links`), `filters.py` (the rules after checking), `proposals.py` (the data/survivors/ files, their OPML, the run summary and the PR report), `scoring.py` (dropping proposals the trained model scores low), `training.py` (training that model on reviewed proposals) |
+| `text/` | models on plain text: `topics.py`, `language.py` (fastText), `embeddings.py` (MiniLM and the embedding sets in data/embeddings/) |
 
 ```sh
 uv run pytest            # no network needed: local test server and fake DNS

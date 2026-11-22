@@ -11,7 +11,7 @@ quantized ONNX; Apache-2.0), and so are the feed's title and subtitle when the s
 something of its own (`about_text`); they are averaged into one vector (the feed text counting
 like ABOUT_WEIGHT posts), which is compared with the precomputed embedding of every topic name in
 data/topics/topics.txt (the embedding set "topics": data/embeddings/topics.npy, one row per line,
-float16, unit length; see `indexer.embeddings`). Names are
+float16, unit length; see `indexer.text.embeddings`). Names are
 mapped to their canonical form with data/topics/synonyms.tsv (two names for one topic count once);
 see `feed_topics` for which are kept. Authors' tags are evidence (`author_topics`), and the
 first one stands in when nothing else gives a topic (`first_author_topic`).
@@ -32,7 +32,7 @@ from pathlib import Path
 
 import numpy as np
 
-from indexer.embeddings import (
+from indexer.text.embeddings import (
     EMBEDDINGS_DIR,
     Embed,
     Vectors,
