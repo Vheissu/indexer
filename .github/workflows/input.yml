@@ -15,7 +15,7 @@
 #   SUPABASE_DB_PASSWORD  the database password
 #
 # Everything runs through docker compose, exactly as locally: the same images (Dockerfile,
-# db/liquibase.Dockerfile) and the same hardened containers. `--no-deps` keeps compose from
+# src/indexer/db/liquibase/liquibase.Dockerfile) and the same hardened containers. `--no-deps` keeps compose from
 # starting the local postgres service; the environment below points it at Supabase instead.
 name: input
 

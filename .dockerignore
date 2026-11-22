@@ -5,5 +5,5 @@
 .ruff_cache
 .mypy_cache
 data
-db
+src/indexer/db/liquibase
 tests

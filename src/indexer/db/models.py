@@ -1,6 +1,6 @@
 """The tables, as plain dataclasses: one field per column, named and typed like it (`X | None`
-for a nullable column). Liquibase owns the schema (db/changelog); these only describe it, and a
-database test checks that they match it. database.py builds its column lists from them."""
+for a nullable column). Liquibase owns the schema (liquibase/changelog); these only describe it,
+and a database test checks that they match it. database.py builds its column lists from them."""
 
 import ipaddress
 from dataclasses import dataclass, field, fields

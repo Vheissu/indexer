@@ -42,7 +42,7 @@ services:
 
   liquibase:
     build:
-      context: db
+      context: src/indexer/db/liquibase
       dockerfile: liquibase.Dockerfile
     image: indexer-liquibase:5.0.4-pg42.7.14
     depends_on:
@@ -55,7 +55,7 @@ services:
       LIQUIBASE_COMMAND_USERNAME: ${LIQUIBASE_COMMAND_USERNAME:-indexer}
       LIQUIBASE_COMMAND_PASSWORD: ${LIQUIBASE_COMMAND_PASSWORD:-${POSTGRES_PASSWORD:-}}
     volumes:
-      - ./db/changelog:/liquibase/changelog:ro
+      - ./src/indexer/db/liquibase/changelog:/liquibase/changelog:ro
     command: ["--changelog-file=db.changelog-master.yaml", "update"]
 
   # Loads every URL from the lists in data/sources.toml into the inputs table and exits.

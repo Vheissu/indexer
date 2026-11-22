@@ -114,14 +114,14 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   `publish/` (`export.py`, the data files; `site.py`, the HTML site, with its Jinja templates, style.css and feedrule.svg),
   `text/` (models on plain text: no RSS, no database; `topics.py`, `TopicModel.topics(posts, title, subtitle)`; `language.py`,
   `LanguageModel.post_languages(texts)` / `.languages(texts)`; `embeddings.py`, MiniLM and the embedding sets),
-  `cli/` (one module per command: `NAME`, `HELP`, `add_arguments(parser)`, `run(args)`, listed in `cli/__init__.py`'s `COMMANDS`; `common.py` for what several share; commands stay thin: parse, call a module, print), `net/` (guarded fetcher, URL validation, resolver, IP policy), `db/` (everything about the database: `database.py`, all SQL through psycopg; `sql/`, its statements, one per file, except the INSERTs built from the models; `models.py`, the tables as dataclasses: database.py builds column lists from them; a DB test checks them against the schema, so update them with every changeset), `check/` (runner, feed parser), `survivors/` (Common Crawl: `wat.py` only reads WAT files and imports nothing from indexer; proposals; `training.py`: the proposal filter).
+  `cli/` (one module per command: `NAME`, `HELP`, `add_arguments(parser)`, `run(args)`, listed in `cli/__init__.py`'s `COMMANDS`; `common.py` for what several share; commands stay thin: parse, call a module, print), `net/` (guarded fetcher, URL validation, resolver, IP policy), `db/` (everything about the database: `database.py`, all SQL through psycopg; `sql/`, its statements, one per file, except the INSERTs built from the models; `liquibase/`, the changelog and Liquibase's Dockerfile, not Python; `models.py`, the tables as dataclasses: database.py builds column lists from them; a DB test checks them against the schema, so update them with every changeset), `check/` (runner, feed parser), `survivors/` (Common Crawl: `wat.py` only reads WAT files and imports nothing from indexer; proposals; `training.py`: the proposal filter).
 - Python 3.13 with **uv** (commit `uv.lock`), ruff (lint + format), type hints everywhere, `mypy --strict src`.
 - Tests use pytest with a local server, fake DNS and synthetic files. **Tests never touch the network.**
   Database tests run only when `INDEXER_TEST_DATABASE_URL` is set.
 - Pin exact versions for images and actions (actions by commit SHA). This machine is aarch64: pick images that
-  publish arm64. Liquibase 5 ships no JDBC drivers: `db/liquibase.Dockerfile` adds the pinned, checksummed
+  publish arm64. Liquibase 5 ships no JDBC drivers: `src/indexer/db/liquibase/liquibase.Dockerfile` adds the pinned, checksummed
   PostgreSQL driver; bump image, driver version and checksum together.
-- Liquibase owns the schema: `db/changelog/changes/NNN-*.yaml`, each listed in `db.changelog-master.yaml`.
+- Liquibase owns the schema: `src/indexer/db/liquibase/changelog/changes/NNN-*.yaml` (the changelog and its Dockerfile sit in the db package, outside the wheel and the app image), each listed in `db.changelog-master.yaml`.
   **Never edit an existing changeset; add a new one.** `001-schema` (author `feedrule-indexer`) squashes the former
   001–009; it was edited on 2026-11-17 (reset databases, at the user's request: author, MARK_RAN removed, dead columns dropped; on 2026-11-18 the former 002–005, languages and topics, folded in after another reset). Squash or edit
   only when asked; on a database that has data, a squash needs a new id, a MARK_RAN precondition and a schema dump diff.

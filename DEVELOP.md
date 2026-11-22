@@ -18,7 +18,7 @@ file doesn't repeat them.
 | **delete every table and all data** | `indexer drop-tables --yes` | `drop-tables` | `drop-tables.yml` (manual) |
 
 All state is in Postgres: locally the compose `postgres` service, in deployment Supabase. The
-schema is managed by Liquibase (`db/changelog`).
+schema is managed by Liquibase (`src/indexer/db/liquibase/changelog`).
 
 ## Quick start
 
@@ -559,6 +559,7 @@ Source layout (`src/indexer/`):
 | `db/database.py` | all database reads and writes (SQL through psycopg) |
 | `db/sql/` | the SQL statements database.py runs, one per file |
 | `db/models.py` | the tables as dataclasses, checked against the migrated schema by a test |
+| `db/liquibase/` | the schema: Liquibase's changelog (`changelog/changes/NNN-*.yaml`) and its Dockerfile; not Python, left out of the wheel and the app image |
 | `errors.py` | the error identifiers |
 | `publish/` | the output: `export.py` (the published lists, data files) and `site.py` (the website in `output/docs/`: prepares the data for the Jinja templates in `templates/`; `style.css`, `feedrule.svg`) |
 | `sources.py` | data/sources.toml and loading the lists into inputs |
@@ -577,8 +578,8 @@ The database tests run when `INDEXER_TEST_DATABASE_URL` is set, e.g.
 `INDEXER_TEST_DATABASE_URL=postgresql://indexer@127.0.0.1:5432/indexer`, with the password in
 `PGPASSWORD`.
 
-The schema lives in `db/changelog/changes/NNN-*.yaml`, each listed in
-`db/changelog/db.changelog-master.yaml`. Never edit an existing changeset: add a new numbered file,
+The schema lives in `src/indexer/db/liquibase/changelog/changes/NNN-*.yaml`, each listed in
+`src/indexer/db/liquibase/changelog/db.changelog-master.yaml`. Never edit an existing changeset: add a new numbered file,
 list it in the master changelog, and run `docker compose run --rm liquibase`. Liquibase 5 ships no
-JDBC drivers, so `db/liquibase.Dockerfile` adds the PostgreSQL driver at a pinned version,
+JDBC drivers, so `src/indexer/db/liquibase/liquibase.Dockerfile` adds the PostgreSQL driver at a pinned version,
 verified by its SHA-256 checksum.

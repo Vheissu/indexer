@@ -55,3 +55,8 @@ testpaths = ["tests"]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 filterwarnings = ["ignore::aiohttp.web_exceptions.NotAppKeyWarning"]
+
+[tool.uv.build-backend]
+# Liquibase's changelog and Dockerfile live in the db package but are not Python: keep them out
+# of the wheel (the app image never needs them; compose builds and mounts them on their own).
+wheel-exclude = ["indexer/db/liquibase"]

@@ -1,6 +1,6 @@
 """Postgres reads and writes, in SQL through psycopg: the statements are in sql/, one per file,
-except the INSERTs built from models.py. Liquibase owns the schema (db/changelog); this module
-never creates it."""
+except the INSERTs built from models.py. Liquibase owns the schema (liquibase/changelog); this
+module never creates it."""
 
 import asyncio
 import functools
@@ -20,7 +20,8 @@ from indexer.publish.export import ListedFeed
 from indexer.sources import InputRow
 
 DEFAULT_DATABASE_URL = "postgresql://indexer@127.0.0.1:5432/indexer"  # password: $PGPASSWORD
-# Every table this project creates (db/changelog), plus Liquibase's own: what drop-tables drops.
+# Every table this project creates (liquibase/changelog), plus Liquibase's own: what drop-tables
+# drops.
 OWN_TABLES = (
     "health_checks",
     "runs",
