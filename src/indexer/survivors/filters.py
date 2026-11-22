@@ -137,6 +137,17 @@ def rejection(row: CheckRow, rules: Rules) -> Reason | None:
     return None
 
 
+def served_url(row: CheckRow, exclude: frozenset[str] = frozenset()) -> str | None:
+    """The URL the feed is served from today (after redirects, session parameters removed) if
+    it is a valid https URL
+    outside the `exclude` domains (a redirect can lead anywhere); else None."""
+    valid, _invalid = valid_urls([strip_session(row.final_url or row.url)])
+    valid, _excluded = drop_excluded(valid, exclude)
+    if not valid or not valid[0][0].startswith("https://"):
+        return None
+    return valid[0][0]
+
+
 # --- the rules after checking ---------------------------------------------------------------
 
 
@@ -187,14 +198,3 @@ def _fold(text: str) -> str:
     """Lower case without accents, for matching words: "Casinò" -> "casino"."""
     decomposed = unicodedata.normalize("NFKD", text)
     return "".join(c for c in decomposed if not unicodedata.combining(c)).casefold()
-
-
-def served_url(row: CheckRow, exclude: frozenset[str] = frozenset()) -> str | None:
-    """The URL the feed is served from today (after redirects, session parameters removed) if
-    it is a valid https URL
-    outside the `exclude` domains (a redirect can lead anywhere); else None."""
-    valid, _invalid = valid_urls([strip_session(row.final_url or row.url)])
-    valid, _excluded = drop_excluded(valid, exclude)
-    if not valid or not valid[0][0].startswith("https://"):
-        return None
-    return valid[0][0]

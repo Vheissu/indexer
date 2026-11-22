@@ -43,48 +43,6 @@ STYLE_VERSION = hashlib.sha256(files("indexer").joinpath(STYLE).read_bytes()).he
 MIN_INDEXED_FEEDS = 3
 
 
-class Source(NamedTuple):
-    name: str
-    url: str
-    license: str
-    license_url: str  # or ""
-    feeds: str  # what it has
-    how: str  # a "how" link, or ""
-
-
-# The source lists and their licenses, shown on the index. Update with data/sources.toml.
-SOURCES = (
-    Source("kagisearch/smallweb", "https://github.com/kagisearch/smallweb",
-           "MIT", "", "~44,000 personal sites", ""),
-    Source("outcoldman/hackernews-personal-blogs",
-           "https://github.com/outcoldman/hackernews-personal-blogs",
-           "MIT", "", "~1,230 Hacker News users' blogs", ""),
-    Source("simevidas/web-dev-feeds", "https://github.com/simevidas/web-dev-feeds",
-           "MIT", "", "~1,070 web development blogs", ""),
-    Source("plenaryapp/awesome-rss-feeds", "https://github.com/plenaryapp/awesome-rss-feeds",
-           "CC0-1.0", "", "~750 by topic, and news sites by country", ""),
-    Source("tuan3w/awesome-tech-rss", "https://github.com/tuan3w/awesome-tech-rss",
-           "CC0-1.0", "", "~140 startups, science, technology", ""),
-    Source("matthiasjost/dotnet-creators-opml",
-           "https://github.com/matthiasjost/dotnet-creators-opml",
-           "MIT", "", "~140 .NET blogs", ""),
-    Source("data/survivors/", f"{REPO}/tree/develop/data/survivors",
-           "Common Crawl terms", "https://commoncrawl.org/terms-of-use",
-           "old feeds still active today, reviewed by hand", f"{REPO}#feeds-from-common-crawl"),
-    Source("data/submissions.txt", f"{REPO}/blob/develop/data/submissions.txt",
-           "MIT", "", "feeds submitted to the project", ""),
-)  # fmt: skip
-
-
-def source_of(url: str | None) -> Source | None:
-    """The entry of SOURCES an inputs.source URL belongs to: the first whose name (without a
-    trailing slash) is in the URL's path. That matches a list's raw file URLs
-    (raw.githubusercontent.com/kagisearch/smallweb/...) and this repository's files under any
-    branch or old name (.../data/survivors.txt). None if no entry matches."""
-    path = urlsplit(url).path if url else ""
-    return next((s for s in SOURCES if s.name.rstrip("/") in path), None)
-
-
 _env = Environment(
     loader=PackageLoader("indexer", "templates"),
     autoescape=select_autoescape(["html", "xml"]),
@@ -98,6 +56,24 @@ _env.policies["json.dumps_kwargs"] = {"separators": (",", ":")}  # compact topic
 _env.globals.update(
     icon=ICON, style=f"{STYLE}?v={STYLE_VERSION}", feedrule=FEEDRULE, repo=REPO, noindex=False
 )
+
+
+class Source(NamedTuple):
+    name: str
+    url: str
+    license: str
+    license_url: str  # or ""
+    feeds: str  # what it has
+    how: str  # a "how" link, or ""
+
+
+def source_of(url: str | None) -> Source | None:
+    """The entry of SOURCES an inputs.source URL belongs to: the first whose name (without a
+    trailing slash) is in the URL's path. That matches a list's raw file URLs
+    (raw.githubusercontent.com/kagisearch/smallweb/...) and this repository's files under any
+    branch or old name (.../data/survivors.txt). None if no entry matches."""
+    path = urlsplit(url).path if url else ""
+    return next((s for s in SOURCES if s.name.rstrip("/") in path), None)
 
 
 def safe_href(url: str | None) -> str | None:
@@ -131,23 +107,6 @@ def subtitle_line(feed: ListedFeed, label: str) -> str:
     if len(text) > SUBTITLE_CHARS:
         text = text[: SUBTITLE_CHARS - 1].rstrip() + "…"
     return text
-
-
-def _row(feed: ListedFeed, current: str, published: Mapping[str, str]) -> dict[str, object]:
-    parts = urlsplit(feed.url)
-    # the feed's website, or else the home page of the feed's own domain
-    site = safe_href(feed.site_url) or safe_href(f"{parts.scheme}://{parts.netloc}/") or ""
-    label = " ".join((feed.title or "").split()) or feed.url
-    return {
-        "label": label,
-        "subtitle": subtitle_line(feed, label),
-        "feed": safe_href(feed.url) or "",
-        "site": site,
-        "host": urlsplit(site).hostname or "",
-        "feedrule": feedrule_href(feed.url),
-        "topics": other_topics(feed, current, published),
-        "date": feed.last_item_date.date().isoformat() if feed.last_item_date else "",
-    }
 
 
 def render_topic_page(
@@ -225,3 +184,44 @@ def render_index(
 def render_sitemap(topics: Iterable[Topic], generated: datetime, site_url: str) -> str:
     urls = [site_url] + [f"{site_url}topic/{t.slug}/" for t in topics if indexed(t)]
     return _env.get_template("sitemap.xml").render(urls=urls, day=generated.date().isoformat())
+
+
+# The source lists and their licenses, shown on the index. Update with data/sources.toml.
+SOURCES = (
+    Source("kagisearch/smallweb", "https://github.com/kagisearch/smallweb",
+           "MIT", "", "~44,000 personal sites", ""),
+    Source("outcoldman/hackernews-personal-blogs",
+           "https://github.com/outcoldman/hackernews-personal-blogs",
+           "MIT", "", "~1,230 Hacker News users' blogs", ""),
+    Source("simevidas/web-dev-feeds", "https://github.com/simevidas/web-dev-feeds",
+           "MIT", "", "~1,070 web development blogs", ""),
+    Source("plenaryapp/awesome-rss-feeds", "https://github.com/plenaryapp/awesome-rss-feeds",
+           "CC0-1.0", "", "~750 by topic, and news sites by country", ""),
+    Source("tuan3w/awesome-tech-rss", "https://github.com/tuan3w/awesome-tech-rss",
+           "CC0-1.0", "", "~140 startups, science, technology", ""),
+    Source("matthiasjost/dotnet-creators-opml",
+           "https://github.com/matthiasjost/dotnet-creators-opml",
+           "MIT", "", "~140 .NET blogs", ""),
+    Source("data/survivors/", f"{REPO}/tree/develop/data/survivors",
+           "Common Crawl terms", "https://commoncrawl.org/terms-of-use",
+           "old feeds still active today, reviewed by hand", f"{REPO}#feeds-from-common-crawl"),
+    Source("data/submissions.txt", f"{REPO}/blob/develop/data/submissions.txt",
+           "MIT", "", "feeds submitted to the project", ""),
+)  # fmt: skip
+
+
+def _row(feed: ListedFeed, current: str, published: Mapping[str, str]) -> dict[str, object]:
+    parts = urlsplit(feed.url)
+    # the feed's website, or else the home page of the feed's own domain
+    site = safe_href(feed.site_url) or safe_href(f"{parts.scheme}://{parts.netloc}/") or ""
+    label = " ".join((feed.title or "").split()) or feed.url
+    return {
+        "label": label,
+        "subtitle": subtitle_line(feed, label),
+        "feed": safe_href(feed.url) or "",
+        "site": site,
+        "host": urlsplit(site).hostname or "",
+        "feedrule": feedrule_href(feed.url),
+        "topics": other_topics(feed, current, published),
+        "date": feed.last_item_date.date().isoformat() if feed.last_item_date else "",
+    }

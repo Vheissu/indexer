@@ -57,6 +57,18 @@ _CODE = re.compile(r"<(script|style|noscript|template)\b.*?(</\1\s*>|$)", re.IGN
 MAX_INT32 = 2**31 - 1
 
 
+# Where each format keeps an item's date.
+_RSS_DATES = ("pubDate", f"{DC}date", f"{ATOM}updated", f"{ATOM}published")
+_ATOM_DATES = (f"{ATOM}updated", f"{ATOM}published")
+_ATOM03_DATES = (f"{ATOM03}modified", f"{ATOM03}issued", f"{ATOM03}created")
+_RDF_DATES = (f"{DC}date", f"{DCTERMS}modified", f"{DCTERMS}issued")
+
+
+_DECLARED_ENCODING = re.compile(
+    rb"""^(?:\xef\xbb\xbf)?\s*<\?xml\s[^>]*?\bencoding\s*=\s*["']([A-Za-z0-9._:-]{1,40})["']"""
+)
+
+
 class RecentPost(NamedTuple):
     """One of a feed's most recent items, shown to reviewers of proposals. Untrusted text: the
     link is as written in the feed (not resolved or validated) and never fetched."""
@@ -110,6 +122,57 @@ def clean_url(value: str | None, base: str | None = None) -> str | None:
     return joined
 
 
+def parse_date(text: str | None) -> datetime | None:
+    """RFC 822 (RSS) or ISO 8601 (Atom, Dublin Core). Naive times are taken as UTC."""
+    if not text or not (value := text.strip()):
+        return None
+    parsers = (_iso, _rfc822) if value[:4].isdigit() else (_rfc822, _iso)
+    for parser in parsers:
+        try:
+            dt = parser(value)
+        except (ValueError, TypeError, IndexError, OverflowError):
+            continue
+        if dt is not None:
+            return dt if dt.tzinfo is not None else dt.replace(tzinfo=UTC)
+    return None
+
+
+def parse_feed(body: bytes, base_url: str | None = None) -> FeedInfo:
+    """Raise CheckError unless body is a feed. base_url resolves relative links."""
+    if not _looks_like_markup(body):
+        raise CheckError(ErrorCode.NOT_A_FEED, "body is not XML")
+    try:
+        try:
+            root = _parse_xml(body)
+        except DefusedXmlException:
+            raise  # a ValueError too: handled below, never retried
+        except (ValueError, LookupError):
+            # Expat refuses a declared multi-byte or unknown encoding: re-encode and retry.
+            root = _parse_xml(_as_utf8(body))
+    except DefusedXmlException as exc:
+        raise CheckError(ErrorCode.PARSE_ERROR, f"forbidden XML: {type(exc).__name__}") from exc
+    except ParseError as exc:
+        if _looks_like_html(body):
+            raise CheckError(ErrorCode.NOT_A_FEED, "HTML document") from exc
+        raise CheckError(ErrorCode.PARSE_ERROR, str(exc)) from exc
+
+    info = _parse_root(root, base_url)
+    return dataclasses.replace(info, **_describe(root, info.kind, base_url))
+
+
+class Description(TypedDict):
+    title: str | None
+    subtitle: str | None
+    recent_posts: tuple[RecentPost, ...]
+    item_texts: tuple[str, ...]
+    item_tags: tuple[tuple[str, ...], ...]
+    media_type: str | None
+    icon: str | None
+    logo: str | None
+    rights: str | None
+    license: str | None
+
+
 def _clean_text(value: str | None) -> str | None:
     if not value:
         return None
@@ -143,21 +206,6 @@ def _atom_generator(root: Element, ns: str) -> str | None:
     return _clean_text(text)
 
 
-def parse_date(text: str | None) -> datetime | None:
-    """RFC 822 (RSS) or ISO 8601 (Atom, Dublin Core). Naive times are taken as UTC."""
-    if not text or not (value := text.strip()):
-        return None
-    parsers = (_iso, _rfc822) if value[:4].isdigit() else (_rfc822, _iso)
-    for parser in parsers:
-        try:
-            dt = parser(value)
-        except (ValueError, TypeError, IndexError, OverflowError):
-            continue
-        if dt is not None:
-            return dt if dt.tzinfo is not None else dt.replace(tzinfo=UTC)
-    return None
-
-
 def _rfc822(value: str) -> datetime | None:
     return email.utils.parsedate_to_datetime(value)
 
@@ -174,13 +222,6 @@ def _newest(items: Iterable[Element], tags: tuple[str, ...]) -> datetime | None:
             if dt is not None and (newest is None or dt > newest):
                 newest = dt
     return newest
-
-
-# Where each format keeps an item's date.
-_RSS_DATES = ("pubDate", f"{DC}date", f"{ATOM}updated", f"{ATOM}published")
-_ATOM_DATES = (f"{ATOM}updated", f"{ATOM}published")
-_ATOM03_DATES = (f"{ATOM03}modified", f"{ATOM03}issued", f"{ATOM03}created")
-_RDF_DATES = (f"{DC}date", f"{DCTERMS}modified", f"{DCTERMS}issued")
 
 
 def _ttl(text: str | None) -> int | None:
@@ -203,11 +244,6 @@ def _looks_like_html(body: bytes) -> bool:
     return head.startswith((b"<!doctype html", b"<html")) or b"<html" in head
 
 
-_DECLARED_ENCODING = re.compile(
-    rb"""^(?:\xef\xbb\xbf)?\s*<\?xml\s[^>]*?\bencoding\s*=\s*["']([A-Za-z0-9._:-]{1,40})["']"""
-)
-
-
 def _parse_xml(body: bytes) -> Element:
     return SafeET.fromstring(body, forbid_dtd=False, forbid_entities=True, forbid_external=True)
 
@@ -226,29 +262,6 @@ def _as_utf8(body: bytes) -> bytes:
     except LookupError as exc:
         raise CheckError(ErrorCode.PARSE_ERROR, f"unknown encoding {name[:40]}") from exc
     return body[: match.start(1)] + b"UTF-8" + rest.encode("utf-8")
-
-
-def parse_feed(body: bytes, base_url: str | None = None) -> FeedInfo:
-    """Raise CheckError unless body is a feed. base_url resolves relative links."""
-    if not _looks_like_markup(body):
-        raise CheckError(ErrorCode.NOT_A_FEED, "body is not XML")
-    try:
-        try:
-            root = _parse_xml(body)
-        except DefusedXmlException:
-            raise  # a ValueError too: handled below, never retried
-        except (ValueError, LookupError):
-            # Expat refuses a declared multi-byte or unknown encoding: re-encode and retry.
-            root = _parse_xml(_as_utf8(body))
-    except DefusedXmlException as exc:
-        raise CheckError(ErrorCode.PARSE_ERROR, f"forbidden XML: {type(exc).__name__}") from exc
-    except ParseError as exc:
-        if _looks_like_html(body):
-            raise CheckError(ErrorCode.NOT_A_FEED, "HTML document") from exc
-        raise CheckError(ErrorCode.PARSE_ERROR, str(exc)) from exc
-
-    info = _parse_root(root, base_url)
-    return dataclasses.replace(info, **_describe(root, info.kind, base_url))
 
 
 def _parse_root(root: Element, base_url: str | None) -> FeedInfo:
@@ -466,19 +479,6 @@ def _item_texts(items: list[Element], title: str, descriptions: tuple[str, ...])
             texts.append(text[:MAX_ITEM_TEXT_LEN])
             tags.append(_item_tags(item))
     return {"item_texts": tuple(texts), "item_tags": tuple(tags)}
-
-
-class Description(TypedDict):
-    title: str | None
-    subtitle: str | None
-    recent_posts: tuple[RecentPost, ...]
-    item_texts: tuple[str, ...]
-    item_tags: tuple[tuple[str, ...], ...]
-    media_type: str | None
-    icon: str | None
-    logo: str | None
-    rights: str | None
-    license: str | None
 
 
 def _describe(root: Element, kind: str, base: str | None) -> Description:

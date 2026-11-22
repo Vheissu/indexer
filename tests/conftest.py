@@ -68,27 +68,10 @@ class RecordingSocketFactory:
         return sock
 
 
-@pytest.fixture(autouse=True)
-def _no_real_dns(monkeypatch: pytest.MonkeyPatch) -> None:
-    """Fail loudly if anything tries real name resolution."""
-    real = socket.getaddrinfo
-
-    def guarded(host: object, *args: object, **kwargs: object) -> object:
-        if host not in (None, "127.0.0.1", "::1", "localhost", "0.0.0.0", b"127.0.0.1"):
-            raise AssertionError(f"test attempted real DNS lookup of {host!r}")
-        return real(host, *args, **kwargs)  # type: ignore[arg-type]
-
-    monkeypatch.setattr(socket, "getaddrinfo", guarded)
-
-
 @functools.cache
 def make_gzip_bomb() -> bytes:
     """64 MiB of zeros, gzipped to about 64 KiB."""
     return gzip.compress(b"\0" * (64 * 1024 * 1024), compresslevel=9)
-
-
-def _feed_bytes(name: str) -> bytes:
-    return (FIXTURES / name).read_bytes()
 
 
 def build_app() -> web.Application:
@@ -282,6 +265,23 @@ def make_fetcher(
 
 def url(server: TestServer, path: str, host: str = "feeds.test") -> str:
     return f"http://{host}:{server.port}{path}"
+
+
+@pytest.fixture(autouse=True)
+def _no_real_dns(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Fail loudly if anything tries real name resolution."""
+    real = socket.getaddrinfo
+
+    def guarded(host: object, *args: object, **kwargs: object) -> object:
+        if host not in (None, "127.0.0.1", "::1", "localhost", "0.0.0.0", b"127.0.0.1"):
+            raise AssertionError(f"test attempted real DNS lookup of {host!r}")
+        return real(host, *args, **kwargs)  # type: ignore[arg-type]
+
+    monkeypatch.setattr(socket, "getaddrinfo", guarded)
+
+
+def _feed_bytes(name: str) -> bytes:
+    return (FIXTURES / name).read_bytes()
 
 
 __all__ = ["FakeDNS", "Fetcher", "RecordingSocketFactory", "local_policy", "url"]

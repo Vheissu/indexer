@@ -49,15 +49,6 @@ _MAX_SUBTITLE = 200
 _WIDTH = 60  # characters per comment line in the file, for phones
 
 
-def _one_line(text: str | None, limit: int) -> str:
-    """Untrusted text as one line of printable characters, at most `limit` long."""
-    printable = "".join(
-        c if unicodedata.category(c)[0] not in "CZ" or c == " " else " " for c in text or ""
-    )
-    flat = " ".join(printable.split())
-    return flat if len(flat) <= limit else flat[: limit - 1].rstrip() + "…"
-
-
 # A proposal's URL line, commented out: "# " then the URL, alone on the line. Untrusted text is
 # never written that way (it always follows a label or an indent).
 _PROPOSED = re.compile(r"# (https?://\S+)")
@@ -116,21 +107,6 @@ def render_entries(survivors: Iterable[Survivor], crawl: str, today: date) -> st
     return "".join(out)
 
 
-def _comment(text: str, rest: str = "#   ", first: str = "# ") -> str:
-    """Comment lines holding `text` (one line of printable text), wrapped at _WIDTH. Later lines
-    start with `rest`, which for untrusted text is "#" and more than one space, so no line of it
-    can look like a proposal's URL line (_PROPOSED)."""
-    lines = textwrap.wrap(
-        text,
-        width=_WIDTH,
-        initial_indent=first,
-        subsequent_indent=rest,
-        break_long_words=False,  # a URL stays whole
-        break_on_hyphens=False,
-    )
-    return "".join(line + "\n" for line in lines)
-
-
 def log_line(s: Survivor) -> str:
     """One line for the run's log: the URL, the newest item's date and the title."""
     title = _one_line(s.title, _MAX_TITLE) or "(no title)"
@@ -177,3 +153,27 @@ def render_opml(survivors: Iterable[Survivor], crawl: str, generated: datetime) 
         )
     lines += ["  </body>", "</opml>"]
     return "\n".join(lines) + "\n"
+
+
+def _one_line(text: str | None, limit: int) -> str:
+    """Untrusted text as one line of printable characters, at most `limit` long."""
+    printable = "".join(
+        c if unicodedata.category(c)[0] not in "CZ" or c == " " else " " for c in text or ""
+    )
+    flat = " ".join(printable.split())
+    return flat if len(flat) <= limit else flat[: limit - 1].rstrip() + "…"
+
+
+def _comment(text: str, rest: str = "#   ", first: str = "# ") -> str:
+    """Comment lines holding `text` (one line of printable text), wrapped at _WIDTH. Later lines
+    start with `rest`, which for untrusted text is "#" and more than one space, so no line of it
+    can look like a proposal's URL line (_PROPOSED)."""
+    lines = textwrap.wrap(
+        text,
+        width=_WIDTH,
+        initial_indent=first,
+        subsequent_indent=rest,
+        break_long_words=False,  # a URL stays whole
+        break_on_hyphens=False,
+    )
+    return "".join(line + "\n" for line in lines)

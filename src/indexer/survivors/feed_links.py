@@ -13,54 +13,8 @@ MAX_SLASHES = 7  # in the path
 MAX_SEGMENT = 25  # characters in the longest path segment
 # Top-level domains Freenom gave away for free: mostly spam (agreed 2026-11-21).
 FREE_TLDS = frozenset({"tk", "ml", "ga", "cf", "gq"})
-
-
-def _patterns(*regexes: str) -> list[re.Pattern[str]]:
-    """Compiled case-insensitive: `/RSS` is as much a feed path as `/rss`."""
-    return [re.compile(regex, re.IGNORECASE) for regex in regexes]
-
-
-# Anywhere in the URL: never a feed worth proposing.
-_REJECTED = _patterns(
-    r"/20[0-9]{2}/[0-9]{2}/",  # a dated post
-    r"/comments",
-    r"comments/",
-    r"feed=comments",
-    r"commentId=",
-    r"/comment/",
-    r":Recent",
-    r"alt=rss",
-    r"/web-stories/",  # the Google Web Stories plugin, not posts
-    # forums and wikis (agreed 2026-11-21: mostly change logs and noise in review)
-    r"[./-]forums?(?=[./?#-]|$)",  # a forum.* or forums.* host, a /forum/ or -forums/ path
-    r"feed\.php",  # DokuWiki, phpBB
-    r"app\.php/feed",  # phpBB
-    r"syndication\.php",  # MyBB
-    r"type=rss;action",  # SMF
-    r"/activity/feed",  # BuddyPress member activity, not posts
-    r"/rss/(public|\d+-)",  # Invision Community forums
-    r"/recent\.rss",  # Digital Commons: recently added papers, not posts
-)
 # WordPress serves its feed in several formats; /feed/ is the one we keep.
 _WORDPRESS_FORMAT = re.compile(r"/feed/(atom|rss|rss2|rdf)/?$", re.IGNORECASE)
-# The whole of what follows the host must be one of these.
-_ACCEPTED = _patterns(
-    # main feeds of platforms whose feed URL has no feed word in the path
-    r"/feeds/posts/default",  # Blogger
-    r"/(index\.php)?\?feed=(rss2?|atom|rdf)",  # WordPress without pretty links
-    r"/(index\.php)?\?format=feed&type=(rss|atom)",  # Joomla
-    r"/spip\.php\?page=backend",  # SPIP
-    r"/backend\.php",  # PHP-Nuke, XOOPS, old SPIP
-    # feed paths
-    r"/(atom|rss|rss2|feed|feeds)(\.feed\.php)?/?",
-    r"/(atom|rss|rss2|feed|feeds)\.xml",
-    r"/\?rss=1",
-    r"\?com=rss",
-    r"/(atom|rss|rss2|feed|feeds)\.php",
-    r"/xml\.php\?rss=true",
-    r"/(atom|rss|feed|feeds)(/|\.)[a-zA-Z0-9_.-]+/?",
-    r"/[a-zA-Z0-9_.-]+(/|\.)(atom|rss|feed|feeds)/?",
-)
 
 
 def filter_page_links(page: str, links: Any, exclude: frozenset[str] = frozenset()) -> list[str]:
@@ -94,6 +48,19 @@ def filter_page_links(page: str, links: Any, exclude: frozenset[str] = frozenset
     return kept
 
 
+def is_unwanted(url: str) -> bool:
+    """On a free domain or matching a rejected pattern: checked on the links before fetching,
+    and again on the URL a feed is served from after redirects."""
+    if (urlsplit(url).hostname or "").rsplit(".", 1)[-1] in FREE_TLDS:
+        return True
+    return any(pattern.search(url) for pattern in _REJECTED)
+
+
+def _patterns(*regexes: str) -> list[re.Pattern[str]]:
+    """Compiled case-insensitive: `/RSS` is as much a feed path as `/rss`."""
+    return [re.compile(regex, re.IGNORECASE) for regex in regexes]
+
+
 def _main_format(url: str) -> str:
     """WordPress's feed in another format (/feed/atom/, /feed/rss2/, /feed/rss/, /feed/rdf/) as
     its main feed URL, /feed/; any other URL unchanged."""
@@ -114,14 +81,6 @@ def _is_own_feed(page: str, url: str) -> bool:
     )
 
 
-def is_unwanted(url: str) -> bool:
-    """On a free domain or matching a rejected pattern: checked on the links before fetching,
-    and again on the URL a feed is served from after redirects."""
-    if (urlsplit(url).hostname or "").rsplit(".", 1)[-1] in FREE_TLDS:
-        return True
-    return any(pattern.search(url) for pattern in _REJECTED)
-
-
 def _looks_like_a_feed(url: str) -> bool:
     """Short, not too deep, not on a free domain, no rejected pattern, and what follows the host
     is an accepted shape."""
@@ -136,3 +95,44 @@ def _looks_like_a_feed(url: str) -> bool:
         return False
     beyond_host = url[len(parts.scheme) + 3 + len(parts.netloc) :]
     return any(pattern.fullmatch(beyond_host) for pattern in _ACCEPTED)
+
+
+# Anywhere in the URL: never a feed worth proposing.
+_REJECTED = _patterns(
+    r"/20[0-9]{2}/[0-9]{2}/",  # a dated post
+    r"/comments",
+    r"comments/",
+    r"feed=comments",
+    r"commentId=",
+    r"/comment/",
+    r":Recent",
+    r"alt=rss",
+    r"/web-stories/",  # the Google Web Stories plugin, not posts
+    # forums and wikis (agreed 2026-11-21: mostly change logs and noise in review)
+    r"[./-]forums?(?=[./?#-]|$)",  # a forum.* or forums.* host, a /forum/ or -forums/ path
+    r"feed\.php",  # DokuWiki, phpBB
+    r"app\.php/feed",  # phpBB
+    r"syndication\.php",  # MyBB
+    r"type=rss;action",  # SMF
+    r"/activity/feed",  # BuddyPress member activity, not posts
+    r"/rss/(public|\d+-)",  # Invision Community forums
+    r"/recent\.rss",  # Digital Commons: recently added papers, not posts
+)
+# The whole of what follows the host must be one of these.
+_ACCEPTED = _patterns(
+    # main feeds of platforms whose feed URL has no feed word in the path
+    r"/feeds/posts/default",  # Blogger
+    r"/(index\.php)?\?feed=(rss2?|atom|rdf)",  # WordPress without pretty links
+    r"/(index\.php)?\?format=feed&type=(rss|atom)",  # Joomla
+    r"/spip\.php\?page=backend",  # SPIP
+    r"/backend\.php",  # PHP-Nuke, XOOPS, old SPIP
+    # feed paths
+    r"/(atom|rss|rss2|feed|feeds)(\.feed\.php)?/?",
+    r"/(atom|rss|rss2|feed|feeds)\.xml",
+    r"/\?rss=1",
+    r"\?com=rss",
+    r"/(atom|rss|rss2|feed|feeds)\.php",
+    r"/xml\.php\?rss=true",
+    r"/(atom|rss|feed|feeds)(/|\.)[a-zA-Z0-9_.-]+/?",
+    r"/[a-zA-Z0-9_.-]+(/|\.)(atom|rss|feed|feeds)/?",
+)

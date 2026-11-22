@@ -55,39 +55,6 @@ async def pick_wat_file(fetch: Fetch, target: datetime, rng: random.Random) -> t
     return crawl, rng.choice(paths)
 
 
-def _crawl_near(collinfo: bytes, target: datetime) -> str:
-    """The crawl whose crawl period ended closest to `target`."""
-    try:
-        crawls = json.loads(collinfo)
-        dated = [
-            (abs(datetime.fromisoformat(str(c["to"])).replace(tzinfo=UTC) - target), str(c["id"]))
-            for c in crawls
-            if isinstance(c, dict) and "to" in c and "id" in c
-        ]
-    except (ValueError, TypeError) as exc:
-        raise CommonCrawlError(f"unexpected collinfo.json: {exc!r}") from exc
-    if not dated:
-        raise CommonCrawlError("collinfo.json lists no dated crawls")
-    crawl = min(dated)[1]
-    if not _CRAWL_ID.fullmatch(crawl):
-        raise CommonCrawlError(f"unexpected crawl id {crawl!r}")
-    return crawl
-
-
-def _wat_paths(paths_gz: bytes, crawl: str) -> list[str]:
-    """The WAT file paths listed in a crawl's wat.paths.gz (only well-formed ones)."""
-    try:
-        text = gzip.decompress(paths_gz).decode("ascii", errors="replace")
-    except (OSError, EOFError) as exc:
-        raise CommonCrawlError(f"wat.paths.gz: {exc}") from exc
-    paths = [
-        p for p in text.split() if _WAT_PATH.fullmatch(p) and p.startswith(f"crawl-data/{crawl}/")
-    ]
-    if not paths:
-        raise CommonCrawlError(f"no WAT paths for {crawl}")
-    return paths
-
-
 def complete_prefix(data: bytes) -> bytes:
     """The leading complete gzip members of a range download, so the record the range cut off
     is dropped, not misread."""
@@ -130,6 +97,39 @@ def scan_wat(data: bytes, path: str, exclude: frozenset[str] = frozenset()) -> W
     except (OSError, EOFError) as exc:
         raise CommonCrawlError(f"{path}: {exc}") from exc
     return scan
+
+
+def _crawl_near(collinfo: bytes, target: datetime) -> str:
+    """The crawl whose crawl period ended closest to `target`."""
+    try:
+        crawls = json.loads(collinfo)
+        dated = [
+            (abs(datetime.fromisoformat(str(c["to"])).replace(tzinfo=UTC) - target), str(c["id"]))
+            for c in crawls
+            if isinstance(c, dict) and "to" in c and "id" in c
+        ]
+    except (ValueError, TypeError) as exc:
+        raise CommonCrawlError(f"unexpected collinfo.json: {exc!r}") from exc
+    if not dated:
+        raise CommonCrawlError("collinfo.json lists no dated crawls")
+    crawl = min(dated)[1]
+    if not _CRAWL_ID.fullmatch(crawl):
+        raise CommonCrawlError(f"unexpected crawl id {crawl!r}")
+    return crawl
+
+
+def _wat_paths(paths_gz: bytes, crawl: str) -> list[str]:
+    """The WAT file paths listed in a crawl's wat.paths.gz (only well-formed ones)."""
+    try:
+        text = gzip.decompress(paths_gz).decode("ascii", errors="replace")
+    except (OSError, EOFError) as exc:
+        raise CommonCrawlError(f"wat.paths.gz: {exc}") from exc
+    paths = [
+        p for p in text.split() if _WAT_PATH.fullmatch(p) and p.startswith(f"crawl-data/{crawl}/")
+    ]
+    if not paths:
+        raise CommonCrawlError(f"no WAT paths for {crawl}")
+    return paths
 
 
 class _Readable(Protocol):

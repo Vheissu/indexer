@@ -67,6 +67,42 @@ type BodyFetch = Callable[..., Awaitable[bytes]]  # fetch(url, headers=None) -> 
 type Handler = Callable[[argparse.Namespace], Coroutine[Any, Any, int]]
 
 
+# The survivors rules' rejection counters and how the run report names them, in rule order.
+_REJECTIONS: tuple[tuple[Reason, str], ...] = (
+    ("untitled", "without a title"),
+    ("keyword", "with an excluded keyword"),
+    ("no_text", "whose posts have no text"),
+    ("business", "businesses or organisations"),
+    ("job_board", "job boards"),
+    ("wiki", "wiki edits"),
+    ("tracking", "with tracking links"),
+    ("seo_footer", "with an SEO footer"),
+    ("sample_post", "with WordPress's sample post"),
+    ("repeated", "repeating a post"),
+    ("seo_summary", "with SEO summaries"),
+    ("title_echo", "echoing titles"),
+    ("reposted", "reposting other outlets"),
+    ("unwanted_url", "redirected to an unwanted URL"),
+)
+
+
+# Every embedding set `indexer embeddings` builds: name -> builder(directory) -> rows written.
+EMBEDDING_SETS: dict[str, Callable[[Path], int]] = {
+    "topics": lambda directory: build_index(TOPICS_DIR, embeddings=directory),
+}
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = _parser().parse_args(argv)
+    logging.basicConfig(
+        level=logging.INFO if getattr(args, "verbose", False) else logging.WARNING,
+        format="%(message)s",
+        stream=sys.stderr,
+    )
+    handler: Handler = args.handler
+    return asyncio.run(handler(args))
+
+
 # --- shared helpers ------------------------------------------------------------------------------
 
 
@@ -189,25 +225,6 @@ async def _load_inputs(args: argparse.Namespace) -> int:
             )
     _print_failures(failures)
     return _sources_exit_code(failures, len(config.sources))
-
-
-# The survivors rules' rejection counters and how the run report names them, in rule order.
-_REJECTIONS: tuple[tuple[Reason, str], ...] = (
-    ("untitled", "without a title"),
-    ("keyword", "with an excluded keyword"),
-    ("no_text", "whose posts have no text"),
-    ("business", "businesses or organisations"),
-    ("job_board", "job boards"),
-    ("wiki", "wiki edits"),
-    ("tracking", "with tracking links"),
-    ("seo_footer", "with an SEO footer"),
-    ("sample_post", "with WordPress's sample post"),
-    ("repeated", "repeating a post"),
-    ("seo_summary", "with SEO summaries"),
-    ("title_echo", "echoing titles"),
-    ("reposted", "reposting other outlets"),
-    ("unwanted_url", "redirected to an unwanted URL"),
-)
 
 
 async def _survivors(args: argparse.Namespace) -> int:
@@ -738,12 +755,6 @@ async def _topics(args: argparse.Namespace) -> int:
     return 0
 
 
-# Every embedding set `indexer embeddings` builds: name -> builder(directory) -> rows written.
-EMBEDDING_SETS: dict[str, Callable[[Path], int]] = {
-    "topics": lambda directory: build_index(TOPICS_DIR, embeddings=directory),
-}
-
-
 async def _embeddings(args: argparse.Namespace) -> int:
     if unknown := [name for name in args.names if name not in EMBEDDING_SETS]:
         print(f"error: unknown embedding sets: {', '.join(unknown)}", file=sys.stderr)
@@ -776,14 +787,3 @@ async def _languages(args: argparse.Namespace) -> int:
         print(f"{shown:12} {' '.join(text.split())[:70]}")
     print(f"feed: {', '.join(model.languages(args.text)) or '(none)'}")
     return 0
-
-
-def main(argv: list[str] | None = None) -> int:
-    args = _parser().parse_args(argv)
-    logging.basicConfig(
-        level=logging.INFO if getattr(args, "verbose", False) else logging.WARNING,
-        format="%(message)s",
-        stream=sys.stderr,
-    )
-    handler: Handler = args.handler
-    return asyncio.run(handler(args))

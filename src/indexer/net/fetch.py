@@ -1,5 +1,7 @@
 """Fetch one untrusted URL with manual redirects, a deadline and a decompressed-size cap."""
 
+from __future__ import annotations  # methods are annotated with private classes defined below
+
 import asyncio
 import contextlib
 import contextvars
@@ -45,6 +47,9 @@ _attempts: contextvars.ContextVar[list[str] | None] = contextvars.ContextVar(
 )
 
 
+_DNS_NOT_FOUND = {socket.EAI_NONAME, getattr(socket, "EAI_NODATA", socket.EAI_NONAME)}
+
+
 @dataclass(frozen=True, slots=True)
 class FetchConfig:
     deadline: float = 7.0  # whole fetch: every hop, headers and body
@@ -79,22 +84,6 @@ class FetchResult:
     last_modified: str | None = None
 
 
-def _validator(value: str | None) -> str | None:
-    """A header value safe to store and send back: printable ASCII, bounded length."""
-    if not value:
-        return None
-    value = value.strip()
-    if not value or len(value) > MAX_VALIDATOR_LEN:
-        return None
-    if not all(0x20 <= ord(c) < 0x7F for c in value):
-        return None
-    return value
-
-
-def _ms(seconds: float) -> int:
-    return round(seconds * 1000)
-
-
 class HostLimiter:
     """At most `per_host` concurrent requests per hostname."""
 
@@ -108,75 +97,6 @@ class HostLimiter:
         if sem is None:
             sem = self._sems[key] = asyncio.Semaphore(self._per_host)
         return sem
-
-
-class _HostSlot:
-    """Holds one host's slot; moving to another host releases the old slot first."""
-
-    def __init__(self, limiter: HostLimiter) -> None:
-        self._limiter = limiter
-        self._sem: asyncio.Semaphore | None = None
-
-    async def move_to(self, host: str) -> None:
-        sem = self._limiter.get(host)
-        if sem is self._sem:
-            return
-        self.release()
-        await sem.acquire()
-        self._sem = sem
-
-    def release(self) -> None:
-        if self._sem is not None:
-            self._sem.release()
-            self._sem = None
-
-
-def _content_encoding(value: str | None) -> str | None:
-    """Return 'gzip', 'deflate' or None (identity); raise for anything else."""
-    codings = [c.strip().lower() for c in (value or "").split(",")]
-    codings = [c for c in codings if c and c != "identity"]
-    if not codings:
-        return None
-    if len(codings) == 1 and codings[0] in ("gzip", "x-gzip"):
-        return "gzip"
-    if len(codings) == 1 and codings[0] == "deflate":
-        return "deflate"
-    raise CheckError(ErrorCode.UNSUPPORTED_ENCODING, value or "")
-
-
-class _Inflater:
-    """Incremental gzip/deflate decoding that never produces more than the cap allows."""
-
-    def __init__(self, encoding: str) -> None:
-        self._encoding = encoding
-        # 47 = auto-detect a gzip or zlib header. Raw deflate is tried if zlib fails at once.
-        self._d = zlib.decompressobj(wbits=47)
-        self._started = False
-
-    def feed(self, chunk: bytes, remaining: int) -> bytes:
-        try:
-            data = self._d.decompress(chunk, remaining + 1)
-        except zlib.error as exc:
-            if self._encoding == "deflate" and not self._started:
-                self._d = zlib.decompressobj(wbits=-15)
-                self._started = True
-                return self.feed(chunk, remaining)
-            raise CheckError(ErrorCode.DECODE_ERROR, str(exc)) from exc
-        self._started = True
-        if len(data) > remaining or self._d.unconsumed_tail:
-            raise CheckError(ErrorCode.TOO_LARGE, "decompressed body over the size limit")
-        return data
-
-    def finish(self, remaining: int) -> bytes:
-        try:
-            data = self._d.flush(remaining + 1)
-        except zlib.error as exc:
-            raise CheckError(ErrorCode.DECODE_ERROR, str(exc)) from exc
-        if len(data) > remaining:
-            raise CheckError(ErrorCode.TOO_LARGE, "decompressed body over the size limit")
-        if not self._d.eof:
-            raise CheckError(ErrorCode.DECODE_ERROR, "truncated compressed body")
-        return data
 
 
 async def read_body(resp: aiohttp.ClientResponse, max_bytes: int) -> bytes:
@@ -201,33 +121,6 @@ async def read_body(resp: aiohttp.ClientResponse, max_bytes: int) -> bytes:
     if inflater is not None:
         out += inflater.finish(max_bytes - len(out))
     return bytes(out)
-
-
-def _iter_chain(exc: BaseException) -> list[BaseException]:
-    seen: list[BaseException] = []
-    stack: list[BaseException] = [exc]
-    while stack and len(seen) < 20:
-        cur = stack.pop()
-        if any(cur is s for s in seen):
-            continue
-        seen.append(cur)
-        for nxt in (cur.__cause__, cur.__context__, getattr(cur, "os_error", None)):
-            if isinstance(nxt, BaseException):
-                stack.append(nxt)
-        if isinstance(cur, BaseExceptionGroup):
-            stack.extend(cur.exceptions)
-    return seen
-
-
-_DNS_NOT_FOUND = {socket.EAI_NONAME, getattr(socket, "EAI_NODATA", socket.EAI_NONAME)}
-
-
-def _dns_code(errno: int | None) -> ErrorCode:
-    if errno in _DNS_NOT_FOUND:
-        return ErrorCode.DNS_NXDOMAIN
-    if errno == socket.EAI_AGAIN:
-        return ErrorCode.DNS_TEMPORARY
-    return ErrorCode.DNS_ERROR
 
 
 def classify_exception(exc: BaseException) -> tuple[ErrorCode, str]:
@@ -302,25 +195,6 @@ def create_session(
     )
 
 
-def _peer_address(resp: aiohttp.ClientResponse) -> str | None:
-    conn = resp.connection
-    transport = conn.transport if conn is not None else None
-    peer = transport.get_extra_info("peername") if transport is not None else None
-    return str(peer[0]) if peer else None
-
-
-def _recording(factory: SocketFactoryType) -> SocketFactoryType:
-    """Note each address a socket is created for, so a failed connection can be reported."""
-
-    def wrapped(addr_info: AddrInfoType) -> socket.socket:
-        sock = factory(addr_info)
-        if (attempts := _attempts.get()) is not None:
-            attempts.append(str(addr_info[4][0]))
-        return sock
-
-    return wrapped
-
-
 class Fetcher:
     def __init__(
         self,
@@ -333,9 +207,6 @@ class Fetcher:
         self._policy = policy
         self._global = asyncio.Semaphore(config.concurrency)
         self._hosts = HostLimiter(config.per_host)
-
-    def _validate(self, url: str | URL) -> URL:
-        return validate_url(url, allowed_ports=self._config.allowed_ports, policy=self._policy)
 
     async def fetch(self, raw_url: str, headers: Mapping[str, str] | None = None) -> FetchResult:
         """Never raises (except on cancellation): failures are reported in result.error.
@@ -382,6 +253,9 @@ class Fetcher:
         if result.error is not None:
             result.body = None
         return result
+
+    def _validate(self, url: str | URL) -> URL:
+        return validate_url(url, allowed_ports=self._config.allowed_ports, policy=self._policy)
 
     async def _follow(
         self,
@@ -453,3 +327,131 @@ async def open_fetcher(
     factory = _recording(socket_factory or guarded_socket_factory(policy))
     async with create_session(config, resolver=resolver, socket_factory=factory) as session:
         yield Fetcher(session, config, policy)
+
+
+def _validator(value: str | None) -> str | None:
+    """A header value safe to store and send back: printable ASCII, bounded length."""
+    if not value:
+        return None
+    value = value.strip()
+    if not value or len(value) > MAX_VALIDATOR_LEN:
+        return None
+    if not all(0x20 <= ord(c) < 0x7F for c in value):
+        return None
+    return value
+
+
+def _ms(seconds: float) -> int:
+    return round(seconds * 1000)
+
+
+class _HostSlot:
+    """Holds one host's slot; moving to another host releases the old slot first."""
+
+    def __init__(self, limiter: HostLimiter) -> None:
+        self._limiter = limiter
+        self._sem: asyncio.Semaphore | None = None
+
+    async def move_to(self, host: str) -> None:
+        sem = self._limiter.get(host)
+        if sem is self._sem:
+            return
+        self.release()
+        await sem.acquire()
+        self._sem = sem
+
+    def release(self) -> None:
+        if self._sem is not None:
+            self._sem.release()
+            self._sem = None
+
+
+def _content_encoding(value: str | None) -> str | None:
+    """Return 'gzip', 'deflate' or None (identity); raise for anything else."""
+    codings = [c.strip().lower() for c in (value or "").split(",")]
+    codings = [c for c in codings if c and c != "identity"]
+    if not codings:
+        return None
+    if len(codings) == 1 and codings[0] in ("gzip", "x-gzip"):
+        return "gzip"
+    if len(codings) == 1 and codings[0] == "deflate":
+        return "deflate"
+    raise CheckError(ErrorCode.UNSUPPORTED_ENCODING, value or "")
+
+
+class _Inflater:
+    """Incremental gzip/deflate decoding that never produces more than the cap allows."""
+
+    def __init__(self, encoding: str) -> None:
+        self._encoding = encoding
+        # 47 = auto-detect a gzip or zlib header. Raw deflate is tried if zlib fails at once.
+        self._d = zlib.decompressobj(wbits=47)
+        self._started = False
+
+    def feed(self, chunk: bytes, remaining: int) -> bytes:
+        try:
+            data = self._d.decompress(chunk, remaining + 1)
+        except zlib.error as exc:
+            if self._encoding == "deflate" and not self._started:
+                self._d = zlib.decompressobj(wbits=-15)
+                self._started = True
+                return self.feed(chunk, remaining)
+            raise CheckError(ErrorCode.DECODE_ERROR, str(exc)) from exc
+        self._started = True
+        if len(data) > remaining or self._d.unconsumed_tail:
+            raise CheckError(ErrorCode.TOO_LARGE, "decompressed body over the size limit")
+        return data
+
+    def finish(self, remaining: int) -> bytes:
+        try:
+            data = self._d.flush(remaining + 1)
+        except zlib.error as exc:
+            raise CheckError(ErrorCode.DECODE_ERROR, str(exc)) from exc
+        if len(data) > remaining:
+            raise CheckError(ErrorCode.TOO_LARGE, "decompressed body over the size limit")
+        if not self._d.eof:
+            raise CheckError(ErrorCode.DECODE_ERROR, "truncated compressed body")
+        return data
+
+
+def _iter_chain(exc: BaseException) -> list[BaseException]:
+    seen: list[BaseException] = []
+    stack: list[BaseException] = [exc]
+    while stack and len(seen) < 20:
+        cur = stack.pop()
+        if any(cur is s for s in seen):
+            continue
+        seen.append(cur)
+        for nxt in (cur.__cause__, cur.__context__, getattr(cur, "os_error", None)):
+            if isinstance(nxt, BaseException):
+                stack.append(nxt)
+        if isinstance(cur, BaseExceptionGroup):
+            stack.extend(cur.exceptions)
+    return seen
+
+
+def _dns_code(errno: int | None) -> ErrorCode:
+    if errno in _DNS_NOT_FOUND:
+        return ErrorCode.DNS_NXDOMAIN
+    if errno == socket.EAI_AGAIN:
+        return ErrorCode.DNS_TEMPORARY
+    return ErrorCode.DNS_ERROR
+
+
+def _peer_address(resp: aiohttp.ClientResponse) -> str | None:
+    conn = resp.connection
+    transport = conn.transport if conn is not None else None
+    peer = transport.get_extra_info("peername") if transport is not None else None
+    return str(peer[0]) if peer else None
+
+
+def _recording(factory: SocketFactoryType) -> SocketFactoryType:
+    """Note each address a socket is created for, so a failed connection can be reported."""
+
+    def wrapped(addr_info: AddrInfoType) -> socket.socket:
+        sock = factory(addr_info)
+        if (attempts := _attempts.get()) is not None:
+            attempts.append(str(addr_info[4][0]))
+        return sock
+
+    return wrapped

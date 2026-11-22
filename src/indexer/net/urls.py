@@ -8,6 +8,9 @@ from indexer.errors import CheckError
 from indexer.net.domains import registrable_domain
 from indexer.net.validate import validate_url
 
+SESSION_PARAMS = frozenset({"sid", "phpsessid", "jsessionid", "sessionid", "session_id"})
+_PATH_SESSION = re.compile(r";jsessionid=[^/?#]*", re.IGNORECASE)
+
 
 def valid_urls(urls: Iterable[str]) -> tuple[list[tuple[str, str]], int]:
     """(canonical URL, lower-case host) pairs, in order and de-duplicated, for the URLs that
@@ -38,10 +41,6 @@ def drop_excluded(
         return valid, 0
     kept = [(url, host) for url, host in valid if registrable_domain(host) not in exclude]
     return kept, len(valid) - len(kept)
-
-
-SESSION_PARAMS = frozenset({"sid", "phpsessid", "jsessionid", "sessionid", "session_id"})
-_PATH_SESSION = re.compile(r";jsessionid=[^/?#]*", re.IGNORECASE)
 
 
 def strip_session(url: str) -> str:

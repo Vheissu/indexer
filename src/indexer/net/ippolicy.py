@@ -67,12 +67,6 @@ def embedded_ipv4(ip: IPv6Address) -> IPv4Address | None:
     return None
 
 
-def _is_public_v4(ip: IPv4Address) -> bool:
-    if any(ip in net for net in BLOCKED_V4):
-        return False
-    return ip.is_global and not ip.is_multicast and not ip.is_reserved
-
-
 def is_public_ip(ip: IPAddress | str) -> bool:
     """True only for globally routable unicast addresses. Unparseable input is not public."""
     if isinstance(ip, str):
@@ -90,3 +84,9 @@ def is_public_ip(ip: IPAddress | str) -> bool:
     if any(ip in net for net in BLOCKED_V6):
         return False
     return ip.is_global and not ip.is_multicast
+
+
+def _is_public_v4(ip: IPv4Address) -> bool:
+    if any(ip in net for net in BLOCKED_V4):
+        return False
+    return ip.is_global and not ip.is_multicast and not ip.is_reserved

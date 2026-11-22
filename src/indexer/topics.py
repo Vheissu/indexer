@@ -237,6 +237,48 @@ def first_author_topic(item_tags: Sequence[Sequence[str]], index: TopicIndex) ->
     return []
 
 
+class TopicModel:
+    """MiniLM and the topic files, loaded once; `topics` is safe to call from several threads."""
+
+    def __init__(self, index: TopicIndex, embed: Embed) -> None:
+        self.index = index
+        self.embed = embed
+
+    @classmethod
+    def load(
+        cls,
+        directory: Path = TOPICS_DIR,
+        model: Path | None = None,
+        tokenizer: Path | None = None,
+        embeddings: Path = EMBEDDINGS_DIR,
+    ) -> "TopicModel":
+        """The topic files in `directory` and their embedding set in `embeddings`; MiniLM from
+        `model` and `tokenizer`, else $INDEXER_MINILM_MODEL and $INDEXER_MINILM_TOKENIZER, else
+        the image's defaults. EmbeddingsError if the set is stale (see `load_index`)."""
+        model, tokenizer = model_paths(model, tokenizer)
+        index = load_index(directory, model, tokenizer, embeddings)
+        return cls(index, load_embedder(model, tokenizer))
+
+    def topics(
+        self,
+        posts: Sequence[Post],
+        title: str | None = None,
+        subtitle: str | None = None,
+        *,
+        first_label: bool = True,
+    ) -> list[str]:
+        """The feed's topics, most similar first (at most TOP; empty if none stands out).
+        `first_label`: fall back on the author's first label (see `feed_topics`)."""
+        return feed_topics(
+            [p.text for p in posts],
+            self.embed,
+            self.index,
+            [tuple(p.tags) for p in posts],
+            about_text(title, subtitle),
+            first_label,
+        )
+
+
 def _scored_topics(
     texts: Sequence[str],
     embed: Embed,
@@ -282,45 +324,3 @@ def _model_topics(scores: Vectors, index: TopicIndex) -> list[str]:
         return []
     floor = max(MIN_SCORE, best - MARGIN)
     return [name for name, score in ranked[:TOP] if score >= floor]
-
-
-class TopicModel:
-    """MiniLM and the topic files, loaded once; `topics` is safe to call from several threads."""
-
-    def __init__(self, index: TopicIndex, embed: Embed) -> None:
-        self.index = index
-        self.embed = embed
-
-    @classmethod
-    def load(
-        cls,
-        directory: Path = TOPICS_DIR,
-        model: Path | None = None,
-        tokenizer: Path | None = None,
-        embeddings: Path = EMBEDDINGS_DIR,
-    ) -> "TopicModel":
-        """The topic files in `directory` and their embedding set in `embeddings`; MiniLM from
-        `model` and `tokenizer`, else $INDEXER_MINILM_MODEL and $INDEXER_MINILM_TOKENIZER, else
-        the image's defaults. EmbeddingsError if the set is stale (see `load_index`)."""
-        model, tokenizer = model_paths(model, tokenizer)
-        index = load_index(directory, model, tokenizer, embeddings)
-        return cls(index, load_embedder(model, tokenizer))
-
-    def topics(
-        self,
-        posts: Sequence[Post],
-        title: str | None = None,
-        subtitle: str | None = None,
-        *,
-        first_label: bool = True,
-    ) -> list[str]:
-        """The feed's topics, most similar first (at most TOP; empty if none stands out).
-        `first_label`: fall back on the author's first label (see `feed_topics`)."""
-        return feed_topics(
-            [p.text for p in posts],
-            self.embed,
-            self.index,
-            [tuple(p.tags) for p in posts],
-            about_text(title, subtitle),
-            first_label,
-        )

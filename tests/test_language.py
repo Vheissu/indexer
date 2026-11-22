@@ -12,9 +12,6 @@ def fake(text: str) -> str | None:
     return None if word == "?" else word
 
 
-MODEL = LanguageModel(fake)
-
-
 def texts(*codes: str) -> list[str]:
     return [f"{code} " + "x" * MIN_TEXT_LEN for code in codes]
 
@@ -56,3 +53,6 @@ def test_odd_codes_from_the_detector_are_ignored(code: str) -> None:
 def test_post_languages_one_per_post() -> None:
     posts = [*texts("en", "?"), "too short"]
     assert MODEL.post_languages(posts) == ["en", "", None]  # judged, nothing usable, not judged
+
+
+MODEL = LanguageModel(fake)

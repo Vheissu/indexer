@@ -31,55 +31,11 @@ OWN_TABLES = (
 )
 
 
-@functools.cache
-def _query(name: str) -> str:
-    """The statement in sql/<name>.sql."""
-    return files("indexer.db").joinpath("sql", f"{name}.sql").read_text()
-
-
-def _insert_sql(model: Model, replace_on: str | None) -> sql.Composed:
-    """INSERT INTO <table> (<writable columns>) VALUES (%(column)s, ...)
-    [ON CONFLICT (<replace_on>) DO UPDATE SET <column> = EXCLUDED.<column>, ...] RETURNING *"""
-    cols = columns(model, writable=True)
-    stmt = sql.SQL("INSERT INTO {} ({}) VALUES ({})").format(
-        sql.Identifier(model.TABLE),
-        sql.SQL(", ").join(map(sql.Identifier, cols)),
-        sql.SQL(", ").join(map(sql.Placeholder, cols)),
-    )
-    if replace_on is not None:
-        stmt += sql.SQL(" ON CONFLICT ({}) DO UPDATE SET {}").format(
-            sql.Identifier(replace_on),
-            sql.SQL(", ").join(
-                sql.SQL("{0} = EXCLUDED.{0}").format(sql.Identifier(c))
-                for c in cols
-                if c != replace_on
-            ),
-        )
-    return stmt + sql.SQL(" RETURNING *")
-
-
 # The columns a CheckRow fills under the same name.
 _CHECK_FIELDS = [
     c for c in columns(HealthCheck, writable=True) if c not in ("run_id", "ip_address")
 ]
 FEED_METADATA = [c for c in columns(Feed) if c not in ("url", "updated_at", "parsed_at")]
-
-
-def _inet(value: str | None) -> IPAddress | None:
-    try:
-        return ipaddress.ip_address(value.split("%")[0]) if value else None
-    except ValueError:
-        return None
-
-
-def _health_check(run_id: int, row: CheckRow) -> HealthCheck:
-    fields = {name: getattr(row, name) for name in _CHECK_FIELDS}
-    return HealthCheck(run_id=run_id, ip_address=_inet(row.ip_address), **fields)
-
-
-def _feed(row: CheckRow) -> Feed:
-    metadata = {name: getattr(row, name) for name in FEED_METADATA}
-    return Feed(url=row.url, updated_at=row.checked_at, parsed_at=row.checked_at, **metadata)
 
 
 # Tables `undo` deletes a URL from, in deletion order.
@@ -100,17 +56,6 @@ class Database:
 
     async def close(self) -> None:
         await self._conn.close()
-
-    async def _insert[R: (Run, HealthCheck, Input, Feed)](
-        self, row: R, *, replace_on: str | None = None
-    ) -> R:
-        """Store `row` and return it as stored, with the columns the database fills (ids,
-        defaults). With `replace_on`, a row that already has that column's value is replaced."""
-        cur = self._conn.cursor(row_factory=class_row(type(row)))
-        await cur.execute(_insert_sql(type(row), replace_on), values(row))
-        stored = await cur.fetchone()
-        assert stored is not None
-        return stored
 
     async def start_run(self) -> int:
         return (await self._insert(Run(started_at=datetime.now(UTC)))).id
@@ -210,3 +155,58 @@ class Database:
             checks = cur.rowcount
             cur = await self._conn.execute(_query("delete_empty_runs"), {"months": months})
             return checks, cur.rowcount
+
+    async def _insert[R: (Run, HealthCheck, Input, Feed)](
+        self, row: R, *, replace_on: str | None = None
+    ) -> R:
+        """Store `row` and return it as stored, with the columns the database fills (ids,
+        defaults). With `replace_on`, a row that already has that column's value is replaced."""
+        cur = self._conn.cursor(row_factory=class_row(type(row)))
+        await cur.execute(_insert_sql(type(row), replace_on), values(row))
+        stored = await cur.fetchone()
+        assert stored is not None
+        return stored
+
+
+@functools.cache
+def _query(name: str) -> str:
+    """The statement in sql/<name>.sql."""
+    return files("indexer.db").joinpath("sql", f"{name}.sql").read_text()
+
+
+def _insert_sql(model: Model, replace_on: str | None) -> sql.Composed:
+    """INSERT INTO <table> (<writable columns>) VALUES (%(column)s, ...)
+    [ON CONFLICT (<replace_on>) DO UPDATE SET <column> = EXCLUDED.<column>, ...] RETURNING *"""
+    cols = columns(model, writable=True)
+    stmt = sql.SQL("INSERT INTO {} ({}) VALUES ({})").format(
+        sql.Identifier(model.TABLE),
+        sql.SQL(", ").join(map(sql.Identifier, cols)),
+        sql.SQL(", ").join(map(sql.Placeholder, cols)),
+    )
+    if replace_on is not None:
+        stmt += sql.SQL(" ON CONFLICT ({}) DO UPDATE SET {}").format(
+            sql.Identifier(replace_on),
+            sql.SQL(", ").join(
+                sql.SQL("{0} = EXCLUDED.{0}").format(sql.Identifier(c))
+                for c in cols
+                if c != replace_on
+            ),
+        )
+    return stmt + sql.SQL(" RETURNING *")
+
+
+def _inet(value: str | None) -> IPAddress | None:
+    try:
+        return ipaddress.ip_address(value.split("%")[0]) if value else None
+    except ValueError:
+        return None
+
+
+def _health_check(run_id: int, row: CheckRow) -> HealthCheck:
+    fields = {name: getattr(row, name) for name in _CHECK_FIELDS}
+    return HealthCheck(run_id=run_id, ip_address=_inet(row.ip_address), **fields)
+
+
+def _feed(row: CheckRow) -> Feed:
+    metadata = {name: getattr(row, name) for name in FEED_METADATA}
+    return Feed(url=row.url, updated_at=row.checked_at, parsed_at=row.checked_at, **metadata)

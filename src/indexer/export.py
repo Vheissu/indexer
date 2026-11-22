@@ -104,11 +104,6 @@ def top_topics(feeds: Iterable[ListedFeed], limit: int | None = None) -> list[To
     return [Topic(name, tuple(sorted(fs, key=_newest_first))) for name, fs in ranked]
 
 
-def _newest_first(feed: ListedFeed) -> tuple[float, str]:
-    ts = feed.last_item_date.timestamp() if feed.last_item_date else float("-inf")
-    return (-ts, feed.url)
-
-
 # --- rendering --------------------------------------------------------------------------------
 
 
@@ -186,14 +181,6 @@ def render_preview(feed: ListedFeed) -> str:
         "source": _source(feed),
     }
     return json.dumps(doc, ensure_ascii=False, indent=2) + "\n"
-
-
-def _source(feed: ListedFeed) -> dict[str, str | None] | None:
-    if not feed.source:
-        return None
-    if (known := site.source_of(feed.source)) is not None:
-        return {"name": known.name, "license": known.license}
-    return {"name": None, "license": feed.source_license}
 
 
 # --- writing ----------------------------------------------------------------------------------
@@ -308,3 +295,16 @@ def write_output(
         site.render_sitemap(ranked, generated, site_url), encoding="utf-8"
     )
     return topics
+
+
+def _newest_first(feed: ListedFeed) -> tuple[float, str]:
+    ts = feed.last_item_date.timestamp() if feed.last_item_date else float("-inf")
+    return (-ts, feed.url)
+
+
+def _source(feed: ListedFeed) -> dict[str, str | None] | None:
+    if not feed.source:
+        return None
+    if (known := site.source_of(feed.source)) is not None:
+        return {"name": known.name, "license": known.license}
+    return {"name": None, "license": feed.source_license}

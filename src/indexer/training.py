@@ -55,13 +55,25 @@ REJECT_REASONS = (
 )
 
 
-class TrainingError(Exception):
-    pass
-
-
 _URL_LINE = re.compile(r"(# )?(https?://\S+)")
 _REASON_LINE = re.compile(r"# rejected: (\S+)")
 _SUMMARY_TAIL = re.compile(r" · [^·]* · last post \S+")  # " · en · last post 2026-11-12"
+
+
+CLASSES = ("accepted", "rejected")
+MIN_DF = 2  # a term must occur in this many examples to be used
+L2 = 1e-3  # weight penalty
+STEPS = 400  # Adam steps (full batch)
+FOLDS = 5  # cross-validation folds for the cut-off
+
+Matrix = npt.NDArray[np.float32]
+
+
+log = logging.getLogger(__name__)
+
+
+class TrainingError(Exception):
+    pass
 
 
 @dataclass(frozen=True, slots=True)
@@ -119,60 +131,10 @@ def read_examples(config: Path = TRAINING_CONFIG) -> list[Proposal]:
     return [p for path in training_files(config) for p in parse_proposals(path.read_text("utf-8"))]
 
 
-CLASSES = ("accepted", "rejected")
-MIN_DF = 2  # a term must occur in this many examples to be used
-L2 = 1e-3  # weight penalty
-STEPS = 400  # Adam steps (full batch)
-FOLDS = 5  # cross-validation folds for the cut-off
-
-Matrix = npt.NDArray[np.float32]
-
-
 def tokens(text: str) -> list[str]:
     """Lower-case ASCII words and pairs of neighbouring words ("press_release")."""
     words = re.findall(r"[a-z0-9]+", text.lower())
     return words + [f"{a}_{b}" for a, b in pairwise(words)]
-
-
-def _label(p: Proposal) -> int:
-    return 0 if p.accepted else 1
-
-
-def _features(docs: Sequence[list[str]], vocab: dict[str, int], idf: Matrix) -> Matrix:
-    """TF-IDF rows: (1 + log count) * idf per known term, scaled to unit length."""
-    x = np.zeros((len(docs), len(vocab)), dtype=np.float32)
-    for row, doc in enumerate(docs):
-        for term, count in Counter(doc).items():
-            if (col := vocab.get(term)) is not None:
-                x[row, col] = 1 + np.log(count)
-    x *= idf
-    norms = np.maximum(np.linalg.norm(x, axis=1, keepdims=True), 1e-12)
-    return np.asarray(x / norms, dtype=np.float32)
-
-
-def _with_bias(x: Matrix) -> Matrix:
-    return np.hstack([x, np.ones((len(x), 1), dtype=np.float32)])
-
-
-def _softmax(z: Matrix) -> Matrix:
-    z = z - z.max(axis=1, keepdims=True)
-    e = np.exp(z)
-    return np.asarray(e / e.sum(axis=1, keepdims=True), dtype=np.float32)
-
-
-def _fit(x: Matrix, y: npt.NDArray[np.int64], classes: int) -> Matrix:
-    """Multinomial logistic regression (weights + bias row): softmax cross-entropy with an L2
-    penalty, full-batch Adam from zeros, so the same examples always give the same weights."""
-    xb = _with_bias(x)
-    w = np.zeros((xb.shape[1], classes), dtype=np.float32)
-    target = np.eye(classes, dtype=np.float32)[y]
-    m, v = np.zeros_like(w), np.zeros_like(w)
-    for t in range(1, STEPS + 1):
-        g = xb.T @ (_softmax(xb @ w) - target) / len(xb) + L2 * w
-        m = np.asarray(0.9 * m + 0.1 * g, dtype=np.float32)
-        v = np.asarray(0.999 * v + 0.001 * g * g, dtype=np.float32)
-        w -= 0.05 * (m / (1 - 0.9**t)) / (np.sqrt(v / (1 - 0.999**t)) + 1e-8)
-    return w
 
 
 @dataclass(frozen=True, slots=True)
@@ -210,9 +172,6 @@ def train_model(config: Path = TRAINING_CONFIG) -> ProposalModel:
         w = _fit(x[seen], y[seen], len(CLASSES))
         held_out[~seen] = _softmax(_with_bias(x[~seen]) @ w)[:, 0]
     return ProposalModel(vocab, idf, _fit(x, y, len(CLASSES)), float(np.quantile(held_out, CUT)))
-
-
-log = logging.getLogger(__name__)
 
 
 def model_path(config: Path = TRAINING_CONFIG, directory: Path = MODEL_DIR) -> Path:
@@ -259,3 +218,44 @@ def cached_model(config: Path = TRAINING_CONFIG, directory: Path = MODEL_DIR) ->
     except OSError as exc:
         log.warning("proposal filter not stored in %s: %s", directory, exc)
     return model
+
+
+def _label(p: Proposal) -> int:
+    return 0 if p.accepted else 1
+
+
+def _features(docs: Sequence[list[str]], vocab: dict[str, int], idf: Matrix) -> Matrix:
+    """TF-IDF rows: (1 + log count) * idf per known term, scaled to unit length."""
+    x = np.zeros((len(docs), len(vocab)), dtype=np.float32)
+    for row, doc in enumerate(docs):
+        for term, count in Counter(doc).items():
+            if (col := vocab.get(term)) is not None:
+                x[row, col] = 1 + np.log(count)
+    x *= idf
+    norms = np.maximum(np.linalg.norm(x, axis=1, keepdims=True), 1e-12)
+    return np.asarray(x / norms, dtype=np.float32)
+
+
+def _with_bias(x: Matrix) -> Matrix:
+    return np.hstack([x, np.ones((len(x), 1), dtype=np.float32)])
+
+
+def _softmax(z: Matrix) -> Matrix:
+    z = z - z.max(axis=1, keepdims=True)
+    e = np.exp(z)
+    return np.asarray(e / e.sum(axis=1, keepdims=True), dtype=np.float32)
+
+
+def _fit(x: Matrix, y: npt.NDArray[np.int64], classes: int) -> Matrix:
+    """Multinomial logistic regression (weights + bias row): softmax cross-entropy with an L2
+    penalty, full-batch Adam from zeros, so the same examples always give the same weights."""
+    xb = _with_bias(x)
+    w = np.zeros((xb.shape[1], classes), dtype=np.float32)
+    target = np.eye(classes, dtype=np.float32)[y]
+    m, v = np.zeros_like(w), np.zeros_like(w)
+    for t in range(1, STEPS + 1):
+        g = xb.T @ (_softmax(xb @ w) - target) / len(xb) + L2 * w
+        m = np.asarray(0.9 * m + 0.1 * g, dtype=np.float32)
+        v = np.asarray(0.999 * v + 0.001 * g * g, dtype=np.float32)
+        w -= 0.05 * (m / (1 - 0.9**t)) / (np.sqrt(v / (1 - 0.999**t)) + 1e-8)
+    return w

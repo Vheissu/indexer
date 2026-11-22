@@ -20,6 +20,35 @@ REPO_CONFIG = Path(__file__).parent.parent / "data" / "sources.toml"
 TIERS = {"CC0-1.0": 0, "MIT": 1, "ISC": 1}
 
 
+GOOD = """
+[licenses]
+ranking = [["CC0-1.0"], ["MIT", "ISC"]]
+
+
+[[source]]
+name = "a"
+license = "MIT"
+format = "opml"
+urls = ["https://raw.githubusercontent.com/o/a/main/My%20List.opml"]
+"""
+
+
+URLS = 'urls = ["https://raw.githubusercontent.com/o/a/main/My%20List.opml"]'
+
+
+EXCLUDE = frozenset({"youtube.com", "reddit.com"})
+PLATFORM_URLS = [
+    "https://www.youtube.com/feeds/videos.xml?channel_id=UC1",
+    "https://old.reddit.com/r/rss/.rss",
+    "https://reddit.com/.rss",
+]
+LOOKALIKES = [
+    "https://notreddit.com/feed",
+    "https://reddit.com.evil.example/feed",
+    "https://blog.example/youtube.com/feed",
+]
+
+
 def raw(name: str, file: str = "list.txt") -> str:
     return f"https://raw.githubusercontent.com/o/{name}/main/{file}"
 
@@ -63,28 +92,12 @@ def write(tmp_path: Path, text: str) -> Path:
     return path
 
 
-GOOD = """
-[licenses]
-ranking = [["CC0-1.0"], ["MIT", "ISC"]]
-
-
-[[source]]
-name = "a"
-license = "MIT"
-format = "opml"
-urls = ["https://raw.githubusercontent.com/o/a/main/My%20List.opml"]
-"""
-
-
 def test_load_config(tmp_path: Path) -> None:
     config = load_config(write(tmp_path, GOOD))
     (source,) = config.sources
     assert source.urls == ("https://raw.githubusercontent.com/o/a/main/My%20List.opml",)
     assert (source.license, source.format) == ("MIT", "opml")
     assert config.license_tiers == {"CC0-1.0": 0, "MIT": 1, "ISC": 1}
-
-
-URLS = 'urls = ["https://raw.githubusercontent.com/o/a/main/My%20List.opml"]'
 
 
 @pytest.mark.parametrize(
@@ -307,19 +320,6 @@ async def test_a_files_glob_reads_every_match(tmp_path: Path) -> None:
     nested = Source("runs", "MIT", "lines", (), ("*.txt",))
     _, failures = await download(SourcesConfig((nested,), TIERS, tmp_path / "runs"), FakeFiles({}))
     assert "outside" in failures["runs"]  # a symlink out of the config folder
-
-
-EXCLUDE = frozenset({"youtube.com", "reddit.com"})
-PLATFORM_URLS = [
-    "https://www.youtube.com/feeds/videos.xml?channel_id=UC1",
-    "https://old.reddit.com/r/rss/.rss",
-    "https://reddit.com/.rss",
-]
-LOOKALIKES = [
-    "https://notreddit.com/feed",
-    "https://reddit.com.evil.example/feed",
-    "https://blog.example/youtube.com/feed",
-]
 
 
 def test_repo_config_excludes_youtube_and_reddit() -> None:

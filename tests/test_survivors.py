@@ -37,6 +37,13 @@ CRAWL = "CC-MAIN-2026-43"
 PATH = f"crawl-data/{CRAWL}/segments/1/wat/CC-MAIN-1-00001.warc.wat.gz"
 
 
+NOW = datetime(2026, 11, 16, tzinfo=UTC)
+OLD = "CC-MAIN-2021-49"
+
+
+KEYWORDS = frozenset({"porn", "sex", "rape", "fetish"})
+
+
 def record(body: bytes, warc_type: str = "metadata") -> bytes:
     head = f"WARC/1.0\r\nWARC-Type: {warc_type}\r\nContent-Length: {len(body)}\r\n\r\n"
     return head.encode() + body + b"\r\n\r\n"
@@ -172,10 +179,6 @@ def test_wat_paths_keeps_only_well_formed_paths_of_the_crawl() -> None:
         _wat_paths(gzip.compress(b"nothing useful"), CRAWL)
 
 
-NOW = datetime(2026, 11, 16, tzinfo=UTC)
-OLD = "CC-MAIN-2021-49"
-
-
 def test_crawl_near_picks_the_crawl_that_ended_closest() -> None:
     body = json.dumps(
         [
@@ -266,9 +269,6 @@ def test_is_active() -> None:
 )
 def test_is_english(language: str | None, english: bool) -> None:
     assert _is_english(checked("u", 1, language=language)) is english
-
-
-KEYWORDS = frozenset({"porn", "sex", "rape", "fetish"})
 
 
 @pytest.mark.parametrize(
@@ -468,24 +468,6 @@ async def test_survivors_fails_when_the_slice_fails() -> None:
 
     with pytest.raises(CommonCrawlError, match="http_5xx 503"):  # no retries, no other file
         await survivors(fetch, busy, check, years_ago=5, active_days=365, now=NOW)
-
-
-def _one_slice(feeds: int) -> tuple[Fetch, Fetch]:
-    """fetch and fetch_slice serving one WAT file with `feeds` sites, each advertising a feed."""
-    path = f"crawl-data/{OLD}/segments/1/wat/CC-MAIN-1-00000.warc.wat.gz"
-    served = {
-        _INDEX_URL: json.dumps([{"id": OLD, "to": "2021-12-09T00:00:00"}]).encode(),
-        f"{DATA_URL}crawl-data/{OLD}/wat.paths.gz": gzip.compress(path.encode()),
-    }
-    data = wat(*(page(f"https://s{i}.example/", [feed_link("/feed")]) for i in range(feeds)))
-
-    async def fetch(url: str) -> bytes:
-        return served[url]
-
-    async def fetch_slice(url: str) -> bytes:
-        return data
-
-    return fetch, fetch_slice
 
 
 async def test_survivors_stops_once_enough_feeds_pass() -> None:
@@ -748,3 +730,21 @@ def test_keywords_count_categories() -> None:
     assert _has_keyword(row, frozenset({"otk"}))  # a category on three posts
     row.item_tags = (("otk",),)
     assert not _has_keyword(row, frozenset({"otk"}))  # once is not enough
+
+
+def _one_slice(feeds: int) -> tuple[Fetch, Fetch]:
+    """fetch and fetch_slice serving one WAT file with `feeds` sites, each advertising a feed."""
+    path = f"crawl-data/{OLD}/segments/1/wat/CC-MAIN-1-00000.warc.wat.gz"
+    served = {
+        _INDEX_URL: json.dumps([{"id": OLD, "to": "2021-12-09T00:00:00"}]).encode(),
+        f"{DATA_URL}crawl-data/{OLD}/wat.paths.gz": gzip.compress(path.encode()),
+    }
+    data = wat(*(page(f"https://s{i}.example/", [feed_link("/feed")]) for i in range(feeds)))
+
+    async def fetch(url: str) -> bytes:
+        return served[url]
+
+    async def fetch_slice(url: str) -> bytes:
+        return data
+
+    return fetch, fetch_slice

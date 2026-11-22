@@ -44,6 +44,12 @@ SITE = "https://s.example/feeds/"
 DATA = "https://d.example/out/"
 
 
+NOW = datetime(2026, 11, 16, tzinfo=UTC)
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
 def page(topic: object) -> str:
     return render_topic_page(
         topic,  # type: ignore[arg-type]
@@ -66,9 +72,6 @@ def feed_links(html: str) -> list[str]:
 def chips(index: str) -> list[str]:
     """The topic names shown on the home page, in order."""
     return re.findall(r'<li><a href="topic/[^"]+/">([^<]+)<span', index)
-
-
-NOW = datetime(2026, 11, 16, tzinfo=UTC)
 
 
 def feed(n: int, topics: str | None = None, *, day: int = 1, title: str = "T") -> ListedFeed:
@@ -439,9 +442,6 @@ def test_preview_is_indented() -> None:
     text = render_preview(feed(1, "css, rust", title="T"))
     assert text.startswith('{\n  "url": "https://f1.example/feed",\n') and text.endswith("}\n")
     assert '\n    "css",\n' in text and '"languages": [\n    "en"\n  ]' in text
-
-
-ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_spec_is_copied(tmp_path: Path) -> None:

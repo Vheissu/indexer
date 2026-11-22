@@ -37,6 +37,11 @@ _XML_URL_ATTR = re.compile(rb"""\bxmlUrl\s*=\s*(?:"([^"<]*)"|'([^'<]*)')""")
 Format = Literal["opml", "lines"]
 
 
+# (source, where the list was found, feed URLs). "Where" is the file's URL, or for a file in
+# this repository the source's homepage (else its path).
+type Downloaded = list[tuple[Source, str, list[str]]]
+
+
 class SourceError(Exception):
     """The config is invalid, or a source file could not be fetched or parsed."""
 
@@ -79,13 +84,6 @@ class InputsResult:
     invalid: Counter[str] = field(default_factory=Counter)
     excluded: Counter[str] = field(default_factory=Counter)  # dropped by [exclude] domains
     attributed: Counter[str] = field(default_factory=Counter)  # rows credited to each source
-
-
-def _require(table: dict[str, Any], key: str, kind: type, where: str) -> Any:
-    value = table.get(key)
-    if not isinstance(value, kind) or isinstance(value, bool) is not (kind is bool):
-        raise SourceError(f"{where}: '{key}' must be a {kind.__name__}")
-    return value
 
 
 def load_config(path: Path) -> SourcesConfig:
@@ -153,22 +151,6 @@ def load_config(path: Path) -> SourcesConfig:
     )
 
 
-def _license_tiers(table: object, path: Path) -> dict[str, int]:
-    """[licenses] ranking = [["CC0-1.0", ...], ["MIT", ...], ...], most permissive first."""
-    ranking = table.get("ranking") if isinstance(table, dict) else None
-    if not isinstance(ranking, list) or not ranking:
-        raise SourceError(f"{path}: [licenses] needs a non-empty 'ranking' list of lists")
-    tiers: dict[str, int] = {}
-    for tier, group in enumerate(ranking):
-        if not isinstance(group, list) or not all(isinstance(x, str) for x in group):
-            raise SourceError(f"{path}: [licenses] ranking entries must be lists of strings")
-        for spdx in group:
-            if spdx in tiers:
-                raise SourceError(f"{path}: license {spdx} is ranked twice")
-            tiers[spdx] = tier
-    return tiers
-
-
 def extract_urls(body: bytes, fmt: Format) -> list[str]:
     """Feed URLs from one file: OPML xmlUrl attributes, or one URL per line."""
     if fmt == "opml":
@@ -183,22 +165,6 @@ def extract_urls(body: bytes, fmt: Format) -> list[str]:
         return [u.strip() for el in root.iter("outline") if (u := el.get("xmlUrl"))]
     text = body.decode("utf-8", errors="replace")
     return [s for line in text.splitlines() if (s := line.strip()) and not s.startswith("#")]
-
-
-def _scan_xml_urls(body: bytes) -> list[str]:
-    if b"<!DOCTYPE" in body or b"<!ENTITY" in body:
-        raise SourceError("malformed OPML with a DTD; refusing to scan it")
-    urls = []
-    for match in _XML_URL_ATTR.finditer(body):
-        raw = (match.group(1) or match.group(2) or b"").decode("utf-8", errors="replace")
-        if url := html.unescape(raw).strip():
-            urls.append(url)
-    return urls
-
-
-# (source, where the list was found, feed URLs). "Where" is the file's URL, or for a file in
-# this repository the source's homepage (else its path).
-type Downloaded = list[tuple[Source, str, list[str]]]
 
 
 async def download(config: SourcesConfig, fetch: Fetch) -> tuple[Downloaded, dict[str, str]]:
@@ -232,23 +198,6 @@ async def download(config: SourcesConfig, fetch: Fetch) -> tuple[Downloaded, dic
     return out, failures
 
 
-def _expand(base_dir: Path, files: tuple[str, ...]) -> list[str]:
-    """The files to read, relative to `base_dir`: a plain path as is (missing: an error when
-    read), a glob pattern as the files it matches today, sorted (none is fine). A match that
-    resolves outside `base_dir` (a symlink) is an error."""
-    names: list[str] = []
-    for name in files:
-        if not any(c in name for c in "*?["):
-            names.append(name)
-            continue
-        for match in sorted(base_dir.glob(name)):
-            if not match.resolve().is_relative_to(base_dir.resolve()):
-                raise SourceError(f"{name}: {match} is outside {base_dir}")
-            if match.is_file():
-                names.append(str(match.relative_to(base_dir)))
-    return names
-
-
 def collect_inputs(config: SourcesConfig, downloaded: Downloaded) -> InputsResult:
     """One row per valid unique URL, credited to its most permissive source."""
     best: dict[str, InputRow] = {}
@@ -275,3 +224,54 @@ def collect_inputs(config: SourcesConfig, downloaded: Downloaded) -> InputsResul
         result.attributed[name] += 1
     result.rows = list(best.values())
     return result
+
+
+def _require(table: dict[str, Any], key: str, kind: type, where: str) -> Any:
+    value = table.get(key)
+    if not isinstance(value, kind) or isinstance(value, bool) is not (kind is bool):
+        raise SourceError(f"{where}: '{key}' must be a {kind.__name__}")
+    return value
+
+
+def _license_tiers(table: object, path: Path) -> dict[str, int]:
+    """[licenses] ranking = [["CC0-1.0", ...], ["MIT", ...], ...], most permissive first."""
+    ranking = table.get("ranking") if isinstance(table, dict) else None
+    if not isinstance(ranking, list) or not ranking:
+        raise SourceError(f"{path}: [licenses] needs a non-empty 'ranking' list of lists")
+    tiers: dict[str, int] = {}
+    for tier, group in enumerate(ranking):
+        if not isinstance(group, list) or not all(isinstance(x, str) for x in group):
+            raise SourceError(f"{path}: [licenses] ranking entries must be lists of strings")
+        for spdx in group:
+            if spdx in tiers:
+                raise SourceError(f"{path}: license {spdx} is ranked twice")
+            tiers[spdx] = tier
+    return tiers
+
+
+def _scan_xml_urls(body: bytes) -> list[str]:
+    if b"<!DOCTYPE" in body or b"<!ENTITY" in body:
+        raise SourceError("malformed OPML with a DTD; refusing to scan it")
+    urls = []
+    for match in _XML_URL_ATTR.finditer(body):
+        raw = (match.group(1) or match.group(2) or b"").decode("utf-8", errors="replace")
+        if url := html.unescape(raw).strip():
+            urls.append(url)
+    return urls
+
+
+def _expand(base_dir: Path, files: tuple[str, ...]) -> list[str]:
+    """The files to read, relative to `base_dir`: a plain path as is (missing: an error when
+    read), a glob pattern as the files it matches today, sorted (none is fine). A match that
+    resolves outside `base_dir` (a symlink) is an error."""
+    names: list[str] = []
+    for name in files:
+        if not any(c in name for c in "*?["):
+            names.append(name)
+            continue
+        for match in sorted(base_dir.glob(name)):
+            if not match.resolve().is_relative_to(base_dir.resolve()):
+                raise SourceError(f"{name}: {match} is outside {base_dir}")
+            if match.is_file():
+                names.append(str(match.relative_to(base_dir)))
+    return names

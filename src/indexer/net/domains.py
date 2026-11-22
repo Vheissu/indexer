@@ -11,11 +11,6 @@ from publicsuffixlist import PublicSuffixList
 from yarl import URL
 
 
-@lru_cache(maxsize=1)
-def _psl() -> PublicSuffixList:
-    return PublicSuffixList()
-
-
 def registrable_domain(host: str | None) -> str | None:
     if not host:
         return None
@@ -35,3 +30,8 @@ def parent_domain_of(url: str) -> str | None:
         return registrable_domain(URL(url).host)
     except (ValueError, TypeError, UnicodeError):
         return None
+
+
+@lru_cache(maxsize=1)
+def _psl() -> PublicSuffixList:
+    return PublicSuffixList()
