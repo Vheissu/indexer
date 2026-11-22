@@ -243,7 +243,8 @@ uv run indexer run --from-inputs --batch 50 --check-cooldown-minutes 60 -v
 ```
 
 A URL file has one URL per line; blank lines and `#` comments are ignored, and duplicates are
-checked once. `data/urls.txt` is a 100-feed sample of
+checked once. Either way the URLs are checked in random order. `data/urls.txt` is a 100-feed
+sample of
 [simevidas/web-dev-feeds](https://github.com/simevidas/web-dev-feeds) (MIT) for quick runs.
 
 `--from-inputs` checks the `--batch` most outdated inputs: those never checked first, then the

@@ -2,6 +2,7 @@
 
 import argparse
 import logging
+import random
 import sys
 from collections import Counter
 from pathlib import Path
@@ -71,6 +72,9 @@ async def run(args: argparse.Namespace) -> int:
                 return 0
         else:
             urls = read_url_file(args.file)
+        # Checks start in this order: shuffled, so a file's or a batch's runs of URLs on one
+        # host (which wait on --per-host) are spread across the run.
+        random.shuffle(urls)
         run_id = await db.start_run()
         log.info("run %d: checking %d URLs", run_id, len(urls))
 
