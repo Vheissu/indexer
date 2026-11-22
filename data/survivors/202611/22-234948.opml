@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Proposed feeds from CC-MAIN-2021-49</title>
+    <dateCreated>Sun, 22 Nov 2026 23:51:04 +0000</dateCreated>
+  </head>
+  <body>
+    <outline type="rss" text="Julie Sondra Decker" title="Julie Sondra Decker" xmlUrl="https://juliesondradecker.com/?feed=rss2"/>
+    <outline type="rss" text="Notes on Arab Orthodoxy" title="Notes on Arab Orthodoxy" xmlUrl="https://araborthodoxy.blogspot.com/feeds/posts/default"/>
+    <outline type="rss" text="Two Sentence Stories" title="Two Sentence Stories" xmlUrl="https://twosentencestories.com/feed/"/>
+    <outline type="rss" text="lennymoonsports" title="lennymoonsports" xmlUrl="https://lennymoonsports.com/feed/"/>
+    <outline type="rss" text="The Natty Bits" title="The Natty Bits" xmlUrl="https://thenattybits.com/feed"/>
+    <outline type="rss" text="ONE Can Happen" title="ONE Can Happen" xmlUrl="https://onecanhappen.com/feed/"/>
+    <outline type="rss" text="The Guardsman" title="The Guardsman" xmlUrl="https://www.theguardsman.com/rss/"/>
+    <outline type="rss" text="TWFLD" title="TWFLD" xmlUrl="https://twfld.com/feed/"/>
+    <outline type="rss" text="The PeaceWorker" title="The PeaceWorker" xmlUrl="https://peaceworker.org/feed/"/>
+    <outline type="rss" text="DragRaceCanada.com" title="DragRaceCanada.com" xmlUrl="https://dragracecanada.com/feed/"/>
+    <outline type="rss" text="Nancy Zieman The Blog | November Block Tutorial in the 2026 NZP Block of the Month Patriotic Quilt Series" title="Nancy Zieman The Blog | November Block Tutorial in the 2026 NZP Block of the Month Patriotic Quilt Series" xmlUrl="https://nancyzieman.com/blog/feed/"/>
+    <outline type="rss" text="CA ANIL K JAIN" title="CA ANIL K JAIN" xmlUrl="https://anilkumarjainca.blogspot.com/feeds/posts/default"/>
+  </body>
+</opml>

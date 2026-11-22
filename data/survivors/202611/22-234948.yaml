@@ -1,0 +1,510 @@
+# Proposed 2026-11-22 from CC-MAIN-2021-49.
+# Set accept: true on each feed to keep. A rejected feed may say why, with
+# reason: one of commercial, seo, press, republished, machine, forum, notices, unsafe, other.
+---
+url: https://juliesondradecker.com/?feed=rss2
+accept: false
+score: 0.76
+title: Julie Sondra Decker
+language: en
+last_post: 2026-11-18
+about: I Write. And Sometimes Breathe. Any Questions?
+posts_read: 10
+categories:
+  blog: 10
+  news: 10
+  short stories: 10
+  publishing: 4
+  ace/aro: 1
+  comics: 1
+found_in: https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358953.29/wat/CC-MAIN-20211130050047-20211130080047-00634.warc.wat.gz
+recent_posts:
+  - link: https://juliesondradecker.com/?p=4365
+    title: 'New Completed Short Story: “CONGRATVLATIONS”'
+    description:
+      - This new short story popped up because I was just thinkin’
+      - about some video game stuff. It’s short and sweet at just
+      - under 1,500 words. I’m calling it “CONGRATVLATIONS” for
+      - reasons that are obvious if you read the story. I dropped
+      - its first draft in about an hour. It’s about a guy whose dad
+      - left […]
+  - link: https://juliesondradecker.com/?p=4361
+    title: 'New Completed Short Story: “Resonance and Resolution”'
+    description:
+      - I was about to say it’s been a bit since I wrote science
+      - fiction, but I actually wrote my last science fiction story
+      - in August, so it hasn’t been that long. Anyway, I have a new
+      - short story and it’s called “Resonance and Resolution,”
+      - initially drafted at about 5,600 words and destined to slide
+      - in […]
+  - link: https://juliesondradecker.com/?p=4339
+    title: 'Accepted Story: In Your Favor'
+    description:
+      - My novella In Your Favor poured out over the course of 8
+      - days in April earlier this year. Editing grew it from 23,000
+      - words to 27,000 words. A veritable no-man’s land of word
+      - count. Nobody really wants novellas. They’re too long for
+      - most short fiction markets, of course. And most small
+      - publishers don’t really do them. I […]
+---
+url: https://araborthodoxy.blogspot.com/feeds/posts/default
+accept: false
+score: 0.743
+title: Notes on Arab Orthodoxy
+language: en
+last_post: 2026-11-05
+posts_read: 25
+categories:
+  history: 21
+  books: 9
+  catholicism: 3
+  patriarchate of antioch: 3
+  sylvester: 3
+  liturgy: 2
+  patriarchate of alexandria: 2
+  +ephrem (kyriakos): 1
+found_in: https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358953.29/wat/CC-MAIN-20211130050047-20211130080047-00634.warc.wat.gz
+recent_posts:
+  - link: https://araborthodoxy.blogspot.com/2026/11/philip-wood-melkite-sub-elites-and.html
+    title: 'Philip Wood: Melkite Sub-Elites and Their Muslim Sponsors'
+    description:
+      - Philip Wood, "Government by Proxy and the Realities of
+      - 'Imperial Power: Melkite Sub-Elites and Their Muslim Sponsors'
+      - in the 9th-Century Levant," Der Islam 103.2 (2026), 427-447.
+      - 'Abstract: This article explores the role of Chalcedonian'
+      - bishops as sub-elites of the Abbasid caliphate in 8th- and
+      - 9th-century Syria-Palestine. Using hagiography, chronicles,
+      - and a legal dossier it argues that Muslim patro
+  - link: https://araborthodoxy.blogspot.com/2026/09/new-open-access-book-monastic.html
+    title: 'New Open-Access Book: Monastic Manuscripts from the Eastern Mediterranean (Sinai, Jerusalem, Antioch)'
+    description:
+      - Monastic Manuscripts from the Eastern Mediterranean (Sinai,
+      - 'Jerusalem, Antioch) ed. Giulia Rosetto Contents: Daniel'
+      - Galadza, The Liturgy and Liturgical Books of Priests and
+      - Scribes in the Holy Land Tinatin Chronz, Iovane Zosime and
+      - His Heritage in the Holy Land and Sinai Grigory Kessel,
+      - 'Palimpsests and Patches: A Practice of Parchment Recycling'
+      - at the Monastery of St. Catherine on Sinai Adrian C.
+  - link: https://araborthodoxy.blogspot.com/2026/09/met-ephrem-kyriakos-cross.html
+    title: 'Met Ephrem (Kyriakos): The Cross'
+    description:
+      - Arabic original here . The Cross "God so loved the world
+      - that He gave His only Son..." (John 3:16). Christ gives us
+      - forgiveness of sins first through baptism, just as He gives
+      - us His surpassing love through the cross. He first gives us
+      - a type from the Old Testament (the bronze serpent) and then
+      - speaks of the cross. We first have the image of the serpent,
+      - which is a type of the cross from the Old T
+---
+url: https://twosentencestories.com/feed/
+accept: false
+score: 0.723
+title: Two Sentence Stories
+language: en
+last_post: 2026-11-22
+about: Big Stories in Two Little Sentences
+posts_read: 20
+categories:
+  competition: 20
+  '#horror': 9
+  death: 3
+  scary: 2
+  adoption: 1
+  aliens: 1
+  bodies: 1
+  cannibalism: 1
+found_in: https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358953.29/wat/CC-MAIN-20211130050047-20211130080047-00634.warc.wat.gz
+recent_posts:
+  - link: https://twosentencestories.com/home/
+    title: Home
+    description:
+      - I’m so excited to go home that I didn’t realize the trail of
+      - liquid behind me as I walk to my front door. The door opened
+      - and I can hear my mom shouting to my dad that I was stabbed
+      - multiple times and left to rot in a ditch since yesterday.
+  - link: https://twosentencestories.com/understanding/
+    title: Understanding
+    description:
+      - “You don’t understand. You lie, you comfort, but you will
+      - never feel it.”
+  - link: https://twosentencestories.com/dont-judge-a-book/
+    title: Don’t Judge a Book
+    description:
+      - They said what was a nice girl like me doing alone in a
+      - graveyard at night. That was the last thing anyone heard
+      - them say.
+---
+url: https://lennymoonsports.com/feed/
+accept: false
+score: 0.698
+title: lennymoonsports
+language: en
+last_post: 2026-10-24
+about: Lenny Moon Sports
+posts_read: 10
+categories:
+  african american featured sports legend: 10
+  h-town sports talk with lenny moon: 3
+found_in: https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358953.29/wat/CC-MAIN-20211130050047-20211130080047-00634.warc.wat.gz
+recent_posts:
+  - link: https://lennymoonsports.com/blog/2026/10/24/houston-texans-duo-of-demeco-ryans-and-cj-stroud-excelling-where-few-have-gone/
+    title: Houston Texans duo of DeMeco Ryans and CJ Stroud Excelling where Few Have Gone
+    description:
+      - By Lenny Moon The year of 2023 was a banner one for the city
+      - of Houston, Tx when their hometown Texans brought in two
+      - game changers that would redirect their professional
+      - football team to respectability. Former star Houston
+      - linebacker DeMeco Ryans was brought in as the franchise’s
+      - sixth fulltime head coach following his six year … Continue
+      - reading "Houston Texans duo of DeMeco Ryans and CJ Stroud
+  - link: https://lennymoonsports.com/blog/2026/09/24/pro-football-hall-of-fame-candidate-john-wooten-discusses-his-concept-for-hbcu-gridders-to-attract-more-needed-attention-by-the-nfl/
+    title: Pro Football Hall of Fame Candidate John Wooten discusses his Concept for HBCU gridders to Attract more Needed Attention by the NFL
+    description:
+      - By Lenny Moon 60 yr plus National Football League veteran
+      - John Wooten sat down with Lenny Moon to discuss a possible
+      - solution for the lack of Historical Black College and
+      - University(HBCU) “draft eligible players” being consistently
+      - overlooked by NFL teams. Wooten is cofounder of the Fritz
+      - Pollard Alliance (a diversity advocacy organization that’s
+      - partnering with … Continue reading "Pro Football Ha
+  - link: https://lennymoonsports.com/blog/2026/08/25/why-john-wooten-is-a-bonafide-candidate-to-be-selected-in-the-next-pfhof-class-as-a-contributor/
+    title: Why John Wooten is a Bonafide Candidate to be Selected in the next PFHOF Class as a Contributor
+    description:
+      - By Lenny Moon This may not be the textbook definition of
+      - what constitutes the qualities of a candidate for Pro
+      - Football Hall of Fame consideration, but merely through the
+      - lens of a journalist that’s covered the game since the 80s
+      - and been a fan since pre-school. Here goes; if a player of
+      - pro football was … Continue reading "Why John Wooten is a
+      - Bonafide Candidate to be Selected in the next PFHOF C
+---
+url: https://thenattybits.com/feed
+accept: false
+score: 0.688
+title: The Natty Bits
+language: en
+last_post: 2026-07-13
+about: Just another novelist
+posts_read: 10
+categories:
+  uncategorized: 7
+  novelist: 3
+  on the writing front: 3
+  desert palm press: 2
+  nat burns: 2
+  on the home front: 2
+  writing: 2
+  '#nattyburns8': 1
+found_in: https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358953.29/wat/CC-MAIN-20211130050047-20211130080047-00634.warc.wat.gz
+recent_posts:
+  - link: https://thenattybits.com/life-in-natty-ville-new-beginnings-goodbyes-and-summer-updates
+    title: 'Life in Natty-ville: New Beginnings, Goodbyes, and Summer Updates'
+    description:
+      - Published July 13, 2026 Hello Flames. So much has been
+      - happening. Upheaval seems to be the word of the month! I’ve
+      - been busier than a three-legged dog at a flea circus lately.
+      - 'Here’s some bullet points: —We’ve moved! Again. Sigh. Yes,'
+      - but we are in a much bigger place, where I have a brand-new
+      - big […]
+  - link: https://thenattybits.com/when-mercy-goes-missing
+    title: When Mercy Goes Missing
+    description:
+      - Mercy Commish has been taking care of Miss Ellen Sanders for
+      - years. One day she goes to the store and doesn't come home.
+      - It's up to Miss Ellen's newest employee, Beanie Murphy and
+      - Miss Ellen's nephew, Logan Sanders, to get to the bottom of
+      - why Mercy disappeared.
+  - link: https://thenattybits.com/progressive-proof-and-such-love-from-its-beta-readers
+    title: Progressive Proof and such love from its beta readers
+    description:
+      - Okay, a little update here. For the past couple of years,
+      - even as I wrote Pony Dakota, released this past July by
+      - Bella Books, I’ve been working on a novel. Now, this is not
+      - my typical type of novel. It hearkens back to the days (80s
+      - and 90s) when I wrote more literary fiction as […]
+---
+url: https://onecanhappen.com/feed/
+accept: false
+score: 0.679
+title: ONE Can Happen
+language: en
+last_post: 2026-10-28
+about: Jesus prayed we'd be 'ONE' with each other in Him that the world will know! (John 17)
+posts_read: 10
+categories:
+  doctrines of demons?: 6
+  images: 6
+  who goes to heaven: 5
+  doctrines demystified: 4
+  '''christian'' zionism': 2
+  demons in christians?: 2
+  freedomquotes: 1
+  hell is real - forever!: 1
+found_in: https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358953.29/wat/CC-MAIN-20211130050047-20211130080047-00634.warc.wat.gz
+recent_posts:
+  - link: https://onecanhappen.com/2026/10/28/the-thief-on-the-cross-was-not-under-the-new-blood-covenant-he-died-under-the-old-covenant-the-new-covenant-did-not-take-effect-until-after-the-death-burial-and-resurrection-of-christ-that-we-are/
+    title: The thief on the cross was not under the new blood covenant. He died under the Old Covenant. The New Covenant did not take effect until after the death, burial, and resurrection of Christ that we are
+  - link: https://onecanhappen.com/2026/10/28/salvation-is-conditional/
+    title: Salvation is Conditional
+    description:
+      - Who-Goes-To-Heaven Scriptures — Narrow is the Way | Who are
+      - the Children of God? — “There is therefore now *no
+      - condemnation* to those who are IN CHRIST Jesus, who don’t
+      - WALK according to the flesh, but ACCORDING TO THE SPIRIT”
+  - link: https://onecanhappen.com/2026/10/28/when-we-invade-a-nation-we-are-not-defending-our-nation-we-are-killing-people-who-are-defending-their-nation-2/
+    title: When we invade a nation, we are not defending our nation. We are killing people who are defending their nation.
+---
+url: https://www.theguardsman.com/rss/
+accept: false
+score: 0.534
+title: The Guardsman
+language: en
+last_post: 2026-11-20
+about: City College of San Francisco’s Student-Run News Source
+posts_read: 15
+categories:
+  news: 5
+  sports: 3
+  opinion: 2
+  alan d’souza: 1
+  archives: 1
+  ballot beat 2026: 1
+  board of trustee: 1
+  board of trustees: 1
+found_in: https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358953.29/wat/CC-MAIN-20211130050047-20211130080047-00634.warc.wat.gz
+recent_posts:
+  - link: https://www.theguardsman.com/machines-invade-rosenberg-library-for-a-day/
+    title: Machines Invade Rosenberg Library For a Day
+    description:
+      - City College students flooded to Rosenberg’s Collaboratory
+      - to try their hand at the latest in tech.
+  - link: https://www.theguardsman.com/heavy-rainfall-causes-flooding-on-ocean-campus/
+    title: Heavy Rainfall Causes Flooding on Ocean Campus
+    description:
+      - Facilities responded quickly to minimize the effects of
+      - early-season flooding as drainage systems reached capacity.
+  - link: https://www.theguardsman.com/if-we-want-san-francisco-to-address-homelessness-and-drug-use-we-need-to-fund-social-services/
+    title: If We Want San Francisco to Address Homelessness and Drug Use, We Need to Fund Social Services
+    description:
+      - While Mayor Daniel Lurie increases SFPD funding, he puts
+      - social services on the chopping block.
+---
+url: https://twfld.com/feed/
+accept: false
+score: 0.529
+title: TWFLD
+language: en
+last_post: 2026-11-19
+about: The home of independent tech and motoring news and reviews in South Africa
+posts_read: 12
+categories:
+  featured: 10
+  technology: 8
+  editor's picks: 6
+  cars: 4
+  samsung: 4
+  galaxy s26: 2
+  samsung galaxy: 2
+  vodacom: 2
+found_in: https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358953.29/wat/CC-MAIN-20211130050047-20211130080047-00634.warc.wat.gz
+recent_posts:
+  - link: https://twfld.com/icaur-v27-reev-south-africa-pricing/
+    title: iCaur V27 REEV South Africa Pricing
+    description:
+      - A new Chinese entrant to the South African market, iCaur
+      - South Africa (which is part of the greater Chery Group)
+      - announced pricing earlier today for its AWD flagship SUV,
+      - the iCaur V27 REEV. Priced at R929,900, the newcomer
+      - combines a […]
+  - link: https://twfld.com/vodacom-integrates-nr-carrier-aggregation-across-its-5g-network/
+    title: Vodacom integrates NR Carrier Aggregation across its 5G network
+    description:
+      - Earlier this week Vodacom South Africa announced the
+      - commercial deployment of NR Carrier Aggregation across its
+      - 5G network, which marks an advancement in network
+      - performance and efficiency. Vodacom is the first provider in
+      - the market to commercially unlock this innovation […]
+  - link: https://twfld.com/sony-drops-3-new-punchy-bass-heavy-speakers-just-in-time-for-summer/
+    title: Sony Drops 3 New Punchy, Bass-Heavy Speakers Just in Time for Summer
+    description:
+      - Almost any South African will tell you that nothing goes
+      - better than the sun, braai and banging tunes on a bluetooth
+      - speaker in our scorching summer so it only makes perfect
+      - sense for Sony unveils their brand new additions to […]
+---
+url: https://peaceworker.org/feed/
+accept: false
+score: 0.495
+title: The PeaceWorker
+language: en
+last_post: 2026-11-21
+posts_read: 30
+categories:
+  analysis: 14
+  october 2026: 14
+  november 2026: 11
+  what's happening in the movement: 10
+  big picture: 6
+  september 2026: 5
+  trump: 4
+  china: 3
+found_in: https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358953.29/wat/CC-MAIN-20211130050047-20211130080047-00634.warc.wat.gz
+recent_posts:
+  - link: https://peaceworker.org/2026/11/200-billion-nuclear-renaissance-nightmare-threatens-democrats-gains/
+    title: 200 Billion “Nuclear Renaissance” Nightmare Threatens Democrats’ Gains
+    description:
+      - HARVEY WASSERMAN - As Democrats take power in the US
+      - Congress and some thirty statehouses, they face a $200
+      - billion decision on nuclear power versus renewable energy.
+      - What they do could decide their long-term viability, as well
+      - as that of the US economy. Read more →
+  - link: https://peaceworker.org/2026/11/democrats-should-wield-their-power-to-return-agency-to-ordinary-people/
+    title: Democrats should wield their power to return agency to ordinary people
+    description:
+      - MARK ENGLER - Overall, the yardstick by which we measure
+      - Democratic progress should not just be whether the policies
+      - they pass provide immediate benefits, but how these
+      - initiatives serve to reduce corporate power and return
+      - political agency to ordinary people. The damage that Trump
+      - has wrought will not be easily reversed. But if progressive
+      - movements are to revitalize democracy and reverse trends
+  - link: https://peaceworker.org/2026/11/how-to-bring-gas-prices-down/
+    title: How to Bring Gas Prices Down
+    description:
+      - DR. BRUCE ALTSCHULER - When clear historical solutions are
+      - available, we need elected officials who can make it happen
+      - and media that listens to them. Read more →
+---
+url: https://dragracecanada.com/feed/
+accept: false
+score: 0.447
+title: DragRaceCanada.com
+language: en
+last_post: 2026-11-19
+about: DragRaceCanada.com
+posts_read: 10
+categories:
+  nathan sitko: 3
+  cdrhf: 2
+  chu: 2
+  cji/khr hot cars/hot topics: 2
+  hotzone: 2
+  jordan lazic: 2
+  national news: 2
+  aaron steinkey: 1
+found_in: https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358953.29/wat/CC-MAIN-20211130050047-20211130080047-00634.warc.wat.gz
+recent_posts:
+  - link: https://dragracecanada.com/canadian-racer-pomona-photo-extra/
+    title: Canadian Racer – Pomona Photo Extra
+    description:
+      - Highlights of more “movers & shakers” from Canada – in
+      - attendance for last weekend’s NHRA season finale event….
+      - Posted by Read the Rest...
+  - link: https://dragracecanada.com/2026-nhra-event-schedule/
+    title: 2026 NHRA Event Schedule
+    description:
+      - Want the latest in NHRA Mission Foods National Event level
+      - results? DragRaceCanada’s National News subsection is “cut
+      - to the chase” Read the Rest...
+  - link: https://dragracecanada.com/a-titanic-title-taken/
+    title: A Titanic Title Taken!
+    description:
+      - J.R. Todd scores in a truly dramatic and historic season
+      - final pairing for NHRA’s 2026 racing …. In what was Read the
+      - Rest...
+---
+url: https://nancyzieman.com/blog/feed/
+accept: false
+score: 0.42
+title: Nancy Zieman The Blog | November Block Tutorial in the 2026 NZP Block of the Month Patriotic Quilt Series
+language: en
+last_post: 2026-11-21
+about: Nancy Zieman Blog
+posts_read: 15
+categories:
+  featured: 14
+  stitch it! sisters: 7
+  sewing: 6
+  fabric: 4
+  quilting: 3
+  serging: 3
+  bernina: 2
+  gift bags: 2
+found_in: https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358953.29/wat/CC-MAIN-20211130050047-20211130080047-00634.warc.wat.gz
+recent_posts:
+  - link: https://nancyzieman.com/blog/2026-block-of-the-month/november-block-tutorial-in-the-2026-nzp-block-of-the-month-patriotic-quilt-series/
+    title: November Block Tutorial in the 2026 NZP Block of the Month Patriotic Quilt Series
+    description:
+      - Announcing the NEW! 2026 Nancy Zieman Productions Free!
+      - Block of the Month Mystery Quilt Series! FREE to join, our
+      - NEW! 2026 Block of the Month Mystery Quilt Series features
+      - the NEW! Documentaries Patriotic Fabric Collection by Kanvas
+      - Studio for Benartex Designer Fabrics, along with our
+      - No-Hassle...
+  - link: https://nancyzieman.com/blog/sewing-2/felt-sew-smart-mary-mulari/
+    title: Make Felt Sew Smart Sewing Projects by Mary Mulari
+    description:
+      - Make Mary Mulari’s easy felt sewing projects for Christmas
+      - with her Felt Sew Smart Sewing Pattern and Wool Felt Fabric
+      - Rectangle Palettes. Sew Mitten Pockets for gift card
+      - holders, a Drawstring Circle Jewelry Bag, Gift Totes with
+      - Collars, and more! Plus shop our Friends and...
+  - link: https://nancyzieman.com/blog/sewing-2/holidays-sew-in-a-cinch-2/
+    title: Sweet Holidays Sew-In-A-Cinch Gift Bags Sewing Tutorial
+    description:
+      - Sew our Exclusive Sweet Holidays Sew-In-A-Cinch Christmas
+      - Gift Bags with our easy flat construction and ribbon casing
+      - sewing tips! Make several of our reusable fabric gift bags
+      - in an afternoon of sewing and present your next gift inside
+      - a beautiful fabric gift bag–made by you!...
+---
+url: https://anilkumarjainca.blogspot.com/feeds/posts/default
+accept: false
+score: 0.411
+title: CA ANIL K JAIN
+language: en
+last_post: 2026-11-19
+about: 'Author · Macro-Economist E-Mail : caindia@hotmail.com'
+posts_read: 25
+categories:
+  india: 8
+  groundwater: 7
+  economy: 6
+  indian economy: 6
+  sustainability: 6
+  aquifers: 5
+  books: 5
+  river water: 5
+found_in: https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1637964358953.29/wat/CC-MAIN-20211130050047-20211130080047-00634.warc.wat.gz
+recent_posts:
+  - link: https://anilkumarjainca.blogspot.com/2026/11/cyber-crimes-book-by-ca-anil-k-jain.html
+    title: 'Cyber Crimes Book by CA Anil K. Jain: Cyber Law, UPI Fraud, Digital Evidence and How to Stay Safe'
+    description:
+      - Cyber fraud is no longer a rare event. UPI scams, fake KYC
+      - calls, deepfake videos, sextortion and bank frauds now reach
+      - 'ordinary families every day. Cyber Crimes: Law,'
+      - Investigation, Digital Evidence, Financial Frauds,
+      - Artificial Intelligence, Compliance and Protection of
+      - Citizens by CA Anil K. Jain is written to help readers
+      - understand these crimes and respond to them. What is this
+      - cyber crime bo
+  - link: https://anilkumarjainca.blogspot.com/2026/11/bharat-the-development-dilemma-ca-anil-k-jain.html
+    title: 'Bharat: The Development Dilemma by CA Anil K. Jain – 21 Challenges Holding Back India''s Economic Growth'
+    description:
+      - India is the world's fifth-largest economy and one of its
+      - fastest growing, yet unemployment, corruption, water
+      - scarcity, weak infrastructure and rising debt still hold the
+      - 'country back. Bharat: The Development Dilemma by CA Anil K.'
+      - Jain examines 21 of these challenges and, for each one,
+      - suggests practical policy solutions. What is this India
+      - development book about? Many books describe India's prob
+  - link: https://anilkumarjainca.blogspot.com/2026/11/river-water-recharge-wells-ca-anil-k-jain.html
+    title: River Water Recharge Wells by CA Anil K. Jain – A Book on India's Water Crisis and Groundwater Recharge
+    description:
+      - Every monsoon, huge volumes of river water flow into the
+      - sea, while groundwater levels fall across much of India.
+      - 'River Water Recharge Wells: Turning India''s Rivers into'
+      - Underground Water Security by CA Anil K. Jain explains how
+      - recharge wells along riverbanks can capture this surplus
+      - water and store it underground, where it is protected from
+      - evaporation and available through the year. What is thi
