@@ -558,7 +558,7 @@ Source layout (`src/indexer/`):
 | `sources.py` | data/sources.toml and loading the lists into inputs |
 | `net/` | fetching untrusted URLs: `fetch.py` (the guarded fetcher), `validate.py` (URL rules, URL files), `resolver.py`, `ippolicy.py`, `urls.py`, `domains.py` |
 | `check/` | `runner.py` (one check per URL), `feed.py` (parsing RSS/Atom) |
-| `survivors/` | `run.py` (the pipeline, steps 1–5), `wat.py` (reading Common Crawl), `feed_links.py` (the URL rules before checking: `filter_page_links`), `filters.py` (the rules after checking), `proposals.py` (the data/survivors/ files, their OPML, the run summary and the PR report), `scoring.py` (dropping proposals the trained model scores low), `training.py` (training that model on reviewed proposals) |
+| `survivors/` | `run.py` (the pipeline, steps 1–5), `wat.py` (reading Common Crawl: the `<link>`s of each HTML page in a WAT slice; imports nothing from indexer), `feed_links.py` (the URL rules before checking: `scan_wat`, `filter_page_links`), `filters.py` (the rules after checking), `proposals.py` (the data/survivors/ files, their OPML, the run summary and the PR report), `scoring.py` (dropping proposals the trained model scores low), `training.py` (training that model on reviewed proposals) |
 | `text/` | models on plain text: `topics.py`, `language.py` (fastText), `embeddings.py` (MiniLM and the embedding sets in data/embeddings/) |
 
 ```sh

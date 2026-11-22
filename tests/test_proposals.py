@@ -8,6 +8,7 @@ from defusedxml import ElementTree as SafeET
 
 from indexer.check.feed import RecentPost
 from indexer.sources import extract_urls
+from indexer.survivors.feed_links import WatScan
 from indexer.survivors.proposals import (
     _one_line,
     acceptance,
@@ -23,7 +24,6 @@ from indexer.survivors.proposals import (
 )
 from indexer.survivors.run import Survivor, SurvivorsResult
 from indexer.survivors.scoring import keep_likely
-from indexer.survivors.wat import WatScan
 
 NOW = datetime(2026, 11, 19, tzinfo=UTC)
 WAT = "https://data.commoncrawl.org/crawl-data/CC-MAIN-2021-49/segments/1/wat/x.warc.wat.gz"

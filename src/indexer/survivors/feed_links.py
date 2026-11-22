@@ -1,10 +1,12 @@
 """Offline filtering of the feed links a crawled page advertises: URL rules, nothing fetched."""
 
 import re
+from dataclasses import dataclass, field
 from typing import Any
 from urllib.parse import urljoin, urlsplit
 
 from indexer.net.urls import drop_excluded, strip_session, valid_urls
+from indexer.survivors.wat import html_pages
 
 FEED_TYPES = frozenset({"application/rss+xml", "application/atom+xml", "application/rdf+xml"})
 
@@ -15,6 +17,31 @@ MAX_SEGMENT = 25  # characters in the longest path segment
 FREE_TLDS = frozenset({"tk", "ml", "ga", "cf", "gq"})
 # WordPress serves its feed in several formats; /feed/ is the one we keep.
 _WORDPRESS_FORMAT = re.compile(r"/feed/(atom|rss|rss2|rdf)/?$", re.IGNORECASE)
+
+
+@dataclass(slots=True)
+class WatScan:
+    """What one WAT slice held."""
+
+    path: str  # the WAT file, relative to wat.DATA_URL
+    pages: int = 0  # HTML pages
+    pages_with_feed: int = 0  # of those, pages advertising at least one feed
+    feed_links: int = 0  # feed links on those pages
+    # per page with at least one: its valid feed links outside the excluded domains
+    page_feeds: list[list[str]] = field(default_factory=list)
+
+
+def scan_wat(data: bytes, path: str, exclude: frozenset[str] = frozenset()) -> WatScan:
+    """The feed URLs worth checking on each page of a (complete) WAT slice."""
+    scan = WatScan(path)
+    for page, links in html_pages(data, path):
+        scan.pages += 1
+        feeds = filter_page_links(page, links, exclude)
+        scan.pages_with_feed += bool(feeds)
+        scan.feed_links += len(feeds)
+        if feeds:
+            scan.page_feeds.append(feeds)
+    return scan
 
 
 def filter_page_links(page: str, links: Any, exclude: frozenset[str] = frozenset()) -> list[str]:

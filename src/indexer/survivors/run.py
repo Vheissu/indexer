@@ -2,7 +2,7 @@
 active today, proposed for review.
 
     1. pick the crawl closest to `years_ago` and one random WAT file of it      wat.py
-    2. download the file's first slice and list the feeds its pages advertise   wat.py,
+    2. download the file's first slice and list the feeds its pages advertise,  wat.py,
        minus those the URL rules skip                                          feed_links.py
     3. drop the URLs we already know; at most 10 per site, the shortest first
     4. check them in random order, a batch at a time, keep those that pass      filters.py
@@ -23,13 +23,14 @@ from urllib.parse import urlsplit
 
 from indexer.check.feed import RecentPost
 from indexer.check.runner import CheckRow
+from indexer.survivors.feed_links import WatScan, scan_wat
 from indexer.survivors.filters import (
     Reason,
     Rules,
     rejection,
     served_url,
 )
-from indexer.survivors.wat import DATA_URL, Fetch, WatScan, complete_prefix, pick_wat_file, scan_wat
+from indexer.survivors.wat import DATA_URL, Fetch, complete_prefix, pick_wat_file
 
 # Progress of a run: `indexer survivors` shows it (INFO) on stderr.
 log = logging.getLogger("indexer.survivors")

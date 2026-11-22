@@ -1,4 +1,5 @@
-"""Reading Common Crawl: pick a crawl and one of its WAT files, list the feeds its pages advertise.
+"""Reading Common Crawl: pick a crawl and one of its WAT files, list the `<link>` elements of its
+HTML pages. Nothing here knows about feeds worth checking: callers apply their own rules.
 
 A WAT file holds metadata for every page of a crawl, including the `<link>` elements of its HTML
 head. A page that advertises a feed has
@@ -16,11 +17,8 @@ import random
 import re
 import zlib
 from collections.abc import Awaitable, Callable, Iterator
-from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from typing import Any, Protocol
-
-from indexer.survivors.feed_links import filter_page_links
 
 _INDEX_URL = "https://index.commoncrawl.org/collinfo.json"  # every crawl, with its dates
 DATA_URL = "https://data.commoncrawl.org/"
@@ -34,18 +32,6 @@ type Fetch = Callable[[str], Awaitable[bytes]]
 
 class CommonCrawlError(Exception):
     pass
-
-
-@dataclass(slots=True)
-class WatScan:
-    """What one WAT slice held."""
-
-    path: str  # the WAT file, relative to DATA_URL
-    pages: int = 0  # HTML pages
-    pages_with_feed: int = 0  # of those, pages advertising at least one feed
-    feed_links: int = 0  # feed links on those pages
-    # per page with at least one: its valid feed links outside the excluded domains
-    page_feeds: list[list[str]] = field(default_factory=list)
 
 
 async def pick_wat_file(fetch: Fetch, target: datetime, rng: random.Random) -> tuple[str, str]:
@@ -79,24 +65,17 @@ def complete_prefix(data: bytes) -> bytes:
     return data[:end]
 
 
-def scan_wat(data: bytes, path: str, exclude: frozenset[str] = frozenset()) -> WatScan:
-    """The feed URLs worth checking on each page of a (complete) WAT slice (feed_links.py)."""
-    scan = WatScan(path)
+def html_pages(data: bytes, path: str) -> Iterator[tuple[str, Any]]:
+    """(page URL, the `<link>` elements of its head, untrusted JSON) for each HTML page of a
+    (complete) WAT slice; `path` names the file in errors."""
     try:
         with gzip.open(io.BytesIO(data), "rb") as stream:
             for envelope in _metadata_envelopes(stream):
                 found = _head_links(envelope)
-                if found is None:
-                    continue  # not an HTML page
-                scan.pages += 1
-                feeds = filter_page_links(*found, exclude)
-                scan.pages_with_feed += bool(feeds)
-                scan.feed_links += len(feeds)
-                if feeds:
-                    scan.page_feeds.append(feeds)
+                if found is not None:  # None: not an HTML page
+                    yield found
     except (OSError, EOFError) as exc:
         raise CommonCrawlError(f"{path}: {exc}") from exc
-    return scan
 
 
 def _crawl_near(collinfo: bytes, target: datetime) -> str:

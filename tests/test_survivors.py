@@ -12,7 +12,7 @@ import pytest
 
 from indexer.check.feed import RecentPost
 from indexer.check.runner import CheckRow
-from indexer.survivors.feed_links import filter_page_links, is_unwanted
+from indexer.survivors.feed_links import filter_page_links, is_unwanted, scan_wat
 from indexer.survivors.filters import (
     Rules,
     _has_keyword,
@@ -30,7 +30,6 @@ from indexer.survivors.wat import (
     _crawl_near,
     _wat_paths,
     complete_prefix,
-    scan_wat,
 )
 
 CRAWL = "CC-MAIN-2026-43"
