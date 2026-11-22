@@ -46,8 +46,8 @@ MAX_ITEM_TEXT_LEN = 300  # title and the start of the description, per item
 MAX_ITEM_TAGS = 50  # categories kept per item (topics ignore an item with more than a few)
 MAX_TAG_LEN = 100
 MAX_RECENT_POSTS = 3  # the most recent items, for reviewing proposals (not stored)
-MAX_POST_LINK_LEN = 300
-MAX_POST_DESCRIPTION_LEN = 200
+MAX_POST_LINK_LEN = 600
+MAX_POST_DESCRIPTION_LEN = 400
 AUDIO_EXTENSIONS = (".mp3", ".m4a", ".aac", ".ogg", ".oga", ".opus", ".wav", ".flac")
 VIDEO_EXTENSIONS = (".mp4", ".m4v", ".webm", ".mov", ".mkv")
 _TAG = re.compile(r"<[^>]*>")
@@ -173,11 +173,12 @@ class Description(TypedDict):
     license: str | None
 
 
-def _clean_text(value: str | None) -> str | None:
+def _clean_text(value: str | None, limit: int = MAX_TEXT_LEN) -> str | None:
+    """Printable text on one line, at most `limit` characters."""
     if not value:
         return None
     text = " ".join("".join(c if c.isprintable() else " " for c in value).split())
-    return text[:MAX_TEXT_LEN] or None
+    return text[:limit] or None
 
 
 def _atom_links(parent: Element, ns: str, base: str | None) -> tuple[str | None, str | None]:
@@ -327,8 +328,7 @@ def _text_of(el: Element | None, *, markup: bool = False, limit: int = MAX_TEXT_
     text = "".join(el.itertext())
     if markup or el.get("type") == "html":
         text = html.unescape(_TAG.sub(" ", _CODE.sub(" ", text)))
-    cleaned = _clean_text(text)
-    return cleaned[:limit] if cleaned else None
+    return _clean_text(text, limit)
 
 
 def _first(*values: str | None) -> str | None:

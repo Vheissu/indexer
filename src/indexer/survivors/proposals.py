@@ -58,8 +58,10 @@ from indexer.survivors.filters import Reason
 from indexer.survivors.run import Survivor, SurvivorsResult
 from indexer.survivors.training import REJECT_REASONS
 
-_MAX_TITLE = 100
-_MAX_SUBTITLE = 200
+_MAX_TITLE = 200
+_MAX_SUBTITLE = 400
+_MAX_POST_LINK = 600
+_MAX_DESCRIPTION = 400
 _WIDTH = 60  # characters per line of a post's description, for phones
 
 
@@ -126,10 +128,10 @@ def _entry(s: Survivor) -> dict[str, Any]:
     entry["found_in"] = s.wat_url
     posts = []
     for post in s.recent_posts:
-        item: dict[str, Any] = {"link": _one_line(post.link, 300)}
+        item: dict[str, Any] = {"link": _one_line(post.link, _MAX_POST_LINK)}
         if title := _one_line(post.title, _MAX_TITLE):
             item["title"] = title
-        if description := _one_line(post.description, 200):
+        if description := _one_line(post.description, _MAX_DESCRIPTION):
             item["description"] = textwrap.wrap(
                 description, _WIDTH, break_long_words=False, break_on_hyphens=False
             )

@@ -4,7 +4,17 @@ from html import escape as html_escape
 import pytest
 from conftest import FIXTURES
 
-from indexer.check.feed import FeedInfo, RecentPost, clean_url, parse_date, parse_feed
+from indexer.check.feed import (
+    MAX_POST_DESCRIPTION_LEN,
+    MAX_POST_LINK_LEN,
+    MAX_SUBTITLE_LEN,
+    MAX_TEXT_LEN,
+    FeedInfo,
+    RecentPost,
+    clean_url,
+    parse_date,
+    parse_feed,
+)
 from indexer.errors import CheckError, ErrorCode
 
 
@@ -240,10 +250,13 @@ def test_recent_posts_are_the_three_most_recent_items() -> None:
 
 def test_recent_post_links_are_capped() -> None:
     items = "".join(
-        f"<item><link>https://a.example/{i}/{'x' * 400}</link></item>" for i in range(150)
+        f"<item><link>https://a.example/{i}/{'x' * 2 * MAX_POST_LINK_LEN}</link></item>"
+        for i in range(150)
     )
     info = parse_feed(f'<rss version="2.0"><channel>{items}</channel></rss>'.encode())
-    assert len(info.recent_posts) == 3 and all(len(p.link) == 300 for p in info.recent_posts)
+    assert len(info.recent_posts) == 3 and all(
+        len(p.link) == MAX_POST_LINK_LEN for p in info.recent_posts
+    )
 
 
 def test_recent_posts_have_a_title_and_the_start_of_the_description() -> None:
@@ -256,10 +269,11 @@ def test_recent_posts_have_a_title_and_the_start_of_the_description() -> None:
         RecentPost("https://a.example/1", "First & best", "Hello world"),  # markup stripped
         RecentPost("https://a.example/2", None, None),
     )
-    item = f"<item><link>https://a.example/</link><description>{'x' * 900}</description></item>"
+    text = "x" * 3 * MAX_POST_DESCRIPTION_LEN
+    item = f"<item><link>https://a.example/</link><description>{text}</description></item>"
     long = f'<rss version="2.0"><channel>{item}</channel></rss>'
     (post,) = parse_feed(long.encode()).recent_posts
-    assert post.description is not None and len(post.description) == 200
+    assert post.description is not None and len(post.description) == MAX_POST_DESCRIPTION_LEN
 
 
 def test_script_and_style_contents_are_not_text() -> None:
@@ -275,3 +289,11 @@ def test_script_and_style_contents_are_not_text() -> None:
     info = parse_feed(rss.encode())
     assert info.recent_posts[0].description == "Benchmarks mislead us"
     assert info.item_texts == ("A post. Benchmarks mislead us",)
+
+
+def test_a_longer_limit_than_the_default_keeps_more_text() -> None:
+    long = "y " * MAX_SUBTITLE_LEN
+    rss = f'<rss version="2.0"><channel><title>{long}</title><description>{long}</description>'
+    info = parse_feed(f"{rss}</channel></rss>".encode())
+    assert info.title is not None and len(info.title) == MAX_TEXT_LEN
+    assert info.subtitle is not None and len(info.subtitle) == MAX_SUBTITLE_LEN > MAX_TEXT_LEN
