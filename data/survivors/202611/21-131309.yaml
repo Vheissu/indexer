@@ -388,7 +388,7 @@ recent_posts:
       - Dec. 2, and the takeove
 ---
 url: https://harvesthomesanctuary.org/feed/
-accept: false
+accept: true
 title: Harvest Home Animal Sanctuary
 language: en
 last_post: 2026-09-01
