@@ -1,217 +1,239 @@
-# Machine learning in this project, for Python developers
+# Machine learning basics
 
-**Purpose.** This article is for developers who know Python well but have never worked with machine
-learning. It explains the ideas you need, and no more, to read, change and debug the three places
-where this project uses models:
-
-| what | where | kind of model |
-| --- | --- | --- |
-| a feed's languages | `src/indexer/text/language.py` | a pretrained classifier (fastText), used as is |
-| a feed's topics | `src/indexer/text/topics.py`, `text/embeddings.py` | a pretrained embedding model (MiniLM), used as is |
-| dropping likely-rejected survivors proposals | `src/indexer/survivors/training.py`, `scoring.py` | a small classifier **we train ourselves** |
-
-You don't need to know any calculus or statistics beyond averages. Some familiarity with numpy
-arrays (shapes, `@` for matrix products) helps. The rules and decisions behind these models
-(thresholds, what was measured, what was rejected) are in CLAUDE.md; this file only teaches the
-concepts.
+**Purpose.** This article gives Python developers with no machine learning background the
+prerequisite knowledge for working on this project: what a model is, how text becomes numbers,
+how a model is trained and how to tell whether it is any good. It teaches the general ideas, not
+this project's code; examples from the project appear only where they make an idea easier to
+grasp. No calculus or statistics beyond averages is assumed. Some familiarity with numpy arrays
+(shapes, `@` for matrix products) helps.
 
 ## 1. What a model is
 
-In ordinary code you write the rule: `if "casino" in title: reject()`. A **model** is a function
-whose rule is *learned from examples* instead of written by hand. It has two phases:
+In ordinary code you write the rule yourself: `if "casino" in title: reject()`. A **model** is a
+function whose rule is *learned from examples* instead. It has two parts:
 
-- **Training**: show the model many examples with known answers ("this feed was accepted", "this
-  one was rejected") and let an algorithm adjust the model's numbers (its **weights** or
-  **parameters**) until its answers match the known ones as well as possible.
-- **Inference** (or prediction): use the trained weights on new inputs. This is cheap: usually a
-  few multiplications.
+- **Parameters** (or **weights**): numbers, often thousands or millions of them.
+- A small fixed **function** that combines the parameters with an input to produce an output.
 
-A model is therefore just *data* (the weights) plus a small fixed *function* that combines them
-with the input. In `training.py` that data is a `ProposalModel`: a vocabulary, an `idf` vector and
-a `weights` matrix, saved to `data/models/proposals-<hash>.npz`.
+Working with a model has two phases:
 
-The kind of task here is **classification**: put each input into one of a few **classes**
-(`accepted` / `rejected`, or `en` / `de` / ...). The known answers are called **labels**, and
-learning from labelled examples is **supervised learning**.
+- **Training**: show it many examples with known answers and let an algorithm adjust the weights
+  until the model's answers match the known ones as well as possible. This is the slow part.
+- **Inference** (or prediction): apply the trained weights to new inputs. Usually fast: a few
+  multiplications and additions.
 
-## 2. Models need numbers: features and vectors
+So a trained model is mostly *data*. Saving a model means saving its weights to a file; loading
+it means reading them back.
 
-Models do arithmetic, so text must first become numbers. A list of numbers describing an input is
-a **feature vector**; many of them stacked are a **feature matrix** (one row per input, one column
-per feature). The project uses two ways to get there.
+## 2. Kinds of problems
 
-### Counting words (TF-IDF) — used by the proposal filter
+- **Classification**: put each input into one of a fixed set of **classes**. Is this feed one a
+  reviewer would accept or reject? Which language is this text in?
+- **Regression**: predict a number (a price, a duration). Not used here, but the word turns up.
+- **Supervised learning**: learning from examples whose correct answers, called **labels**, are
+  known. Most practical classification is supervised.
+- **Pretrained models**: models someone else trained, often on far more data than you have, that
+  you download and only run. You can use them as they are or build on their output.
 
-1. **Tokenize**: split the text into **terms**. `training.tokens` lower-cases the text, takes the
-   words, and adds pairs of neighbouring words (`press_release`), because a pair often means more
-   than its two words apart.
-2. **Vocabulary**: give each term seen in at least `MIN_DF` training examples a column number.
-   Rarer terms are dropped: a term seen once can only teach the model to memorise one feed.
-3. **TF** (term frequency): how often a term occurs in this text, damped with a log so that ten
-   repetitions don't count ten times as much.
-4. **IDF** (inverse document frequency): a weight per term, high for rare terms and low for terms
-   found everywhere ("the", "posts"), because common terms don't help tell feeds apart.
-5. Multiply TF by IDF, then scale each row to length 1, so a long text and a short one are compared
-   on *what* they say, not *how much*.
+## 3. Turning inputs into numbers
 
-The result is a wide, mostly-zero matrix: thousands of columns, a handful of non-zero cells per
-row. Note that word order is lost (apart from the pairs): this is called a **bag of words**.
+Models do arithmetic, so every input must first become a list of numbers, a **feature vector**.
+Many vectors stacked as rows form a **feature matrix**: one row per input, one column per
+**feature**. Choosing and computing features is often most of the work.
 
-### Embeddings — used for topics
+For text there are two broad approaches.
 
-An **embedding** is a vector (here 384 numbers) produced by a pretrained neural network, chosen so
-that *texts with similar meaning get nearby vectors*. "Async Rust without the pain" and "futures
-and tokio tips" share no words but end up close together. You don't need to know how the network
-works inside; treat it as a function `text -> vector`.
+### Counting words
 
-- The network is **all-MiniLM-L6-v2**, a small sentence-embedding model. We run it with
-  **ONNX Runtime** (a fast, portable format for running trained networks, no PyTorch needed),
-  pinned by checksum in the Dockerfile.
-- Before the network, a **tokenizer** cuts the text into sub-word pieces and maps them to integer
-  IDs. It must be the exact tokenizer the network was trained with, which is why it is pinned too.
-  Texts are cut at `MAX_TOKENS`.
-- **Cosine similarity** measures how close two vectors are: 1 means the same direction, 0 means
-  unrelated. For vectors of length 1 it is simply the dot product, so comparing one vector with
-  thousands at once is a single matrix product. That is why the stored embeddings are unit length.
+1. **Tokenize**: split the text into units, called **tokens** or **terms**: usually lower-cased
+   words, sometimes also pairs of neighbouring words (*bigrams*), because "press release" says more
+   than "press" and "release" apart.
+2. **Vocabulary**: give every term seen in the training data a column number. Very rare terms are
+   usually dropped; a word seen once can't teach anything general.
+3. **Count**: a text's vector holds, for each vocabulary term, how often the text uses it.
 
-## 3. Pretrained models: languages and topics
+Word order is lost, which is why this is called a **bag of words**. Raw counts have two problems:
+common words ("the", "and") dominate, and long texts get bigger numbers than short ones.
+**TF-IDF** fixes both:
 
-Neither of these is trained by us; we only run inference and add rules around the output.
+- **TF** (term frequency): the count, often damped with a logarithm, so ten repetitions don't
+  weigh ten times as much as one.
+- **IDF** (inverse document frequency): a weight per term, high for terms that appear in few
+  texts and low for terms that appear in almost all, because rare terms tell texts apart better.
+- Multiply the two, then scale each row to length 1 (**normalize**), so texts are compared on what
+  they say rather than how long they are.
 
-**Languages** (`text/language.py`). fastText's `lid.176` is a classifier trained by Facebook AI
-Research on 176 languages. For each post's text it returns its most likely language. A single
-short title is easy to misread, so the code adds plain rules on top: texts shorter than
-`MIN_TEXT_LEN` are skipped, and a language becomes a feed label only if it appears on at least
-`MIN_ITEMS` posts and `MIN_SHARE` of the judged posts. This "model output + simple rules" pattern
-is common and is where most tuning happens.
+The result is a wide, *sparse* matrix: thousands of columns, nearly all zero in any one row.
 
-**Topics** (`text/topics.py`). This is classification *without training*, sometimes called
-**zero-shot** classification:
+### Embeddings
 
-1. Embed every topic name in `data/topics/topics.txt` once, ahead of time. The result is the
-   **embedding set** `data/embeddings/topics.npy` (one row per name), rebuilt by
-   `indexer embeddings` whenever the names, the model or the tokenizer change; the matching
-   `.json` file records their checksums so a stale matrix is refused at load time.
-2. For a feed, embed the text of its English posts (plus its title and subtitle) and average the
-   vectors into one vector for the whole feed.
-3. Compute the cosine similarity between that vector and every topic name, and keep the best ones
-   that pass the thresholds (`MIN_SCORE`, `MARGIN`, `MIN_SPREAD`).
+An **embedding** is a vector, typically a few hundred numbers, produced by a pretrained neural
+network so that *texts with similar meaning get nearby vectors*, even when they share no words.
+"Async Rust without the pain" and "tips for futures and tokio" end up close together; a recipe
+blog ends up far away. You don't need to know how the network works inside; treat it as a
+function from text to vector.
 
-The thresholds decide the trade-off described in section 6: they were tuned by hand on a sample
-of feeds, deliberately favouring correct topics over many topics.
+Two related terms:
 
-## 4. Training our own model: the proposal filter
+- A **tokenizer** turns text into the integer IDs a network expects, usually by cutting it into
+  sub-word pieces ("unbelievable" might become "un", "believ", "able"). A network only works with
+  the exact tokenizer it was trained with, and it reads at most a fixed number of tokens.
+- **ONNX** is a file format for trained networks that a small runtime can execute from Python,
+  without installing a full deep-learning framework like PyTorch.
 
-`survivors/training.py` learns from past reviews which proposed feeds a reviewer is likely to
-reject. Read the file alongside this section; its comments follow the same steps.
+### Measuring similarity
 
-**The data.** Each reviewed proposal file listed in `data/training.toml` gives labelled examples:
-the text the reviewer saw (title, description, categories, recent posts) and the label (URL left
-uncommented = accepted, commented out = rejected). Changing these files is changing the training
-data, so it changes the model.
+To compare two vectors, use **cosine similarity**: 1 when they point the same way, about 0 when
+unrelated. For vectors already scaled to length 1 it is just the dot product, so comparing one
+vector with thousands at once is a single matrix product:
 
-**The model: logistic regression.** Despite the name, it is a classifier, and one of the simplest:
+```python
+import numpy as np
 
-1. A text's feature vector (TF-IDF row) is multiplied by a weight matrix with one column per class.
-   Each term has a weight per class; a text's **raw score** for a class is the sum of its terms'
-   weights (times their TF-IDF values), plus a **bias**, a constant per class.
-2. **Softmax** turns the raw scores into probabilities that add up to 1. The score `scores()`
-   returns is the probability of `accepted`.
+names = np.array([[0.6, 0.8], [1.0, 0.0]])  # one unit-length row per candidate
+query = np.array([0.8, 0.6])                  # unit length too
+similarity = names @ query                    # array([0.96, 0.8]): the first row is closer
+```
 
-Training means finding the weights. Learned weights are often readable: if reviewers kept rejecting
-press-release feeds, a term like `press_release` ends up with a large weight towards `rejected`.
+Similarity alone can classify without any training: embed the name of each class ("rust",
+"cooking", "photography"), embed the input, and pick the closest names. This is called
+**zero-shot** classification, and it is how a feed can be given topics that no model was trained
+on.
 
-**How the weights are found: gradient descent.** Start with every weight at 0. Repeat `STEPS`
-times:
+## 4. A simple trainable classifier: logistic regression
 
-1. Predict probabilities for all examples with the current weights.
-2. Measure how wrong they are with a **loss function** (here *cross-entropy*: large when the model
-   gives a low probability to the right answer).
-3. Compute the **gradient**: for each weight, which direction to move it to lower the loss. For
-   logistic regression this has a short formula, so no autodiff library is needed.
-4. Move every weight a small step in that direction. The step size is the **learning rate**.
+Despite its name, **logistic regression** is a classifier, and one of the simplest worth knowing.
+For each class it has one weight per feature plus a constant, the **bias**:
 
-`_fit` uses **Adam**, a widely used variant of gradient descent that adapts the step size for each
-weight. Because training starts from zeros and uses every example in each step (**full batch**),
-nothing is random: the same files always produce the same model.
+1. **Raw scores**: for each class, multiply each feature by its weight and add them up, plus the
+   bias. With a feature matrix `X` (one row per input) and a weight matrix `W` (one column per
+   class) that is `X @ W`.
+2. **Softmax** turns each row of raw scores into probabilities that are positive and sum to 1:
+   exponentiate each score, then divide by the row's total.
 
-**Regularization.** With thousands of terms and a few hundred examples, the model could put a huge
-weight on a term that happened to appear in three rejected feeds and fit the examples perfectly
-while learning nothing general. This is **overfitting**: excellent on the training data, poor on
-new data. The `L2` penalty adds the size of the weights to the loss, so large weights must earn
-their place.
+```python
+def softmax(z):
+    e = np.exp(z - z.max(axis=1, keepdims=True))  # subtracting the max avoids overflow
+    return e / e.sum(axis=1, keepdims=True)
+```
 
-## 5. Measuring honestly: held-out data and cross-validation
+Its weights are easy to read: a feature with a large positive weight for a class pushes inputs
+towards that class. If reviewers often rejected press-release feeds, the term "press release"
+would end up with a large weight towards *rejected*.
 
-A model always looks better on the examples it was trained on. To know how it will do on *new*
-proposals you must score examples it has **not** seen:
+## 5. How training works
 
-- **Held-out set**: train on part of the data, test on the rest.
-- **Cross-validation** (`FOLDS = 5`): split the examples into 5 groups; train on 4, score the 5th;
-  repeat so each group is scored once by a model that never saw it. Every example gets an honest
-  score while all data is still used.
+Training means finding weights that make the model's predictions match the labels. The standard
+method is **gradient descent**:
 
-`train_model` uses the cross-validated scores for one thing: the **threshold**. Survivors should
-drop about `CUT` (30%) of new proposals, so the threshold is the 30% **quantile** of the honest
-scores: the value below which 30% of them fall. Proposals scoring under it are dropped. The final
-model is then trained on all examples.
+1. Start with some weights, often all zeros.
+2. Predict for the training examples with the current weights.
+3. Compute the **loss**: one number for how wrong the predictions are. For classification it is
+   usually **cross-entropy**, which is large when the model gives a low probability to the right
+   answer.
+4. Compute the **gradient**: for every weight, which direction (and how strongly) to change it to
+   lower the loss. Libraries compute it automatically; for logistic regression it has a short
+   formula: `X.T @ (predicted - actual) / len(X)`.
+5. Move every weight a small step against the gradient. The step size is the **learning rate**:
+   too large and training jumps around, too small and it takes forever.
+6. Repeat for a fixed number of steps, or until the loss stops improving.
 
-## 6. Reading the numbers: precision, recall, AUC
+Common variations you will meet:
 
-A filter makes two kinds of mistakes: dropping a feed a reviewer would have accepted, and keeping
-one they would have rejected. Moving the threshold trades one for the other. The usual words:
+- **Full batch** versus **mini-batch**: use all examples in every step, or a random handful.
+  Full batch is simpler and deterministic, and fine when the data fits in memory.
+- **Adam**: a popular version of gradient descent that adapts the step size of every weight
+  separately, keeping running averages of each gradient and of its size. It usually needs less
+  tuning than a fixed learning rate.
+- **Determinism**: with no randomness (zero start, full batch, fixed number of steps), the same
+  data always gives the same model, which makes results reproducible and easy to cache.
 
-- **Precision**: of what the model picked, how much was right. (Topics: of the topics shown, how
-  many fit the feed.)
-- **Recall** (coverage): of everything it should have picked, how much it found. (Topics: how many
-  feeds get a topic at all.)
-- **AUC** (area under the ROC curve): one number for how well scores *rank* the classes,
-  independent of any threshold. 0.5 is a coin toss, 1.0 is perfect. It equals the chance that a
-  random accepted proposal scores higher than a random rejected one. The proposal filter measured
-  about 0.81.
+## 6. Overfitting and regularization
 
-Two habits keep these numbers trustworthy: measure on data the model never saw (section 5), and
-compare a change against the previous version on the same data.
+A model with many weights and few examples can **memorise** them instead of learning the
+pattern. Say a word appears in three rejected examples by coincidence: the model can give it a
+huge weight, fit the training data perfectly, and be wrong on new inputs. This is
+**overfitting**: excellent on the training data, poor on anything else.
 
-## 7. Practical notes for this project
+Two standard defences:
 
-- **Where models come from.** MiniLM, its tokenizer and `lid.176` are downloaded at image build
-  time, pinned by checksum in the Dockerfile, and found through environment variables
-  (`INDEXER_MINILM_MODEL`, `INDEXER_MINILM_TOKENIZER`, `INDEXER_LID_MODEL`). Outside Docker, set
-  those variables to local copies; the tests use fakes and need none of them.
-- **Caching.** The proposal model's file name is a hash of the training config, every listed file
-  and `training.py` itself. Any change to the data *or the code* (even a comment) gives a new name,
-  so the next survivors run retrains once (up to a minute). Model files are never committed.
-- **Stale embeddings.** Editing `topics.txt` makes `topics.npy` stale; loading refuses it until the
-  embeddings workflow (or `indexer embeddings topics`) rebuilds it.
-- **Text from feeds is untrusted.** Models only read it; nothing a model outputs is executed or
-  fetched, and published text is escaped like everything else.
-- **Changing a model or a threshold is a heuristic change.** As with every selection rule in this
-  project, agree it first (see CLAUDE.md), measure it on held-out data, and record what was
-  measured.
-- **Try it.** `indexer languages` and `indexer topics` run the pretrained models on any text you
-  type; `indexer train` trains the proposal filter and prints its size and threshold.
+- **Ignore rare features**, such as terms seen in only one or two examples.
+- **Regularization**: add a penalty for large weights to the loss. The most common is **L2**, the
+  sum of the squared weights times a small factor. A weight then has to earn its size by
+  explaining many examples.
+
+## 7. Measuring honestly
+
+A model always looks better on the examples it learned from, so **never judge a model on its
+training data**. Score it on examples it has not seen:
+
+- **Held-out (test) set**: set some labelled examples aside, train on the rest, and measure on the
+  ones set aside.
+- **Cross-validation**: split the examples into *k* groups (*folds*), commonly 5. Train on *k − 1*
+  of them and score the remaining one; repeat until every group has been scored once. Every
+  example gets an honest score from a model that never saw it, and no data is wasted. Then train
+  the final model on all the data.
+
+## 8. Thresholds and metrics
+
+A classifier usually outputs a probability, and you turn it into a decision with a **threshold**:
+drop an item if its probability of being acceptable is below *t*. The threshold is a choice, not
+something the model learns. One practical way to pick it is by **quantile**: if you want to drop
+the lowest-scoring 30% of items, set *t* to the score below which 30% of the honest
+(cross-validated) scores fall.
+
+Every threshold trades two kinds of mistakes: dropping good items and keeping bad ones. The
+metrics that describe the trade:
+
+- **Precision**: of the items the model picked, the share that was right. For topics: of the
+  topics shown for a feed, how many fit.
+- **Recall**: of the items it should have picked, the share it found. For topics: how many feeds
+  get a topic at all.
+- Raising a threshold usually raises precision and lowers recall, and the other way round.
+  Deciding which matters more is a product decision, not a technical one.
+- **AUC** (area under the ROC curve) measures how well the scores *rank* positives above
+  negatives, whatever the threshold: the probability that a random positive example scores higher
+  than a random negative one. 0.5 is a coin toss and 1.0 is perfect; around 0.8 is useful for a
+  filter that saves reviewers work.
+
+Two habits keep these numbers meaningful: always measure on unseen data, and compare a change
+against the old version on the *same* data.
+
+## 9. Habits that carry over from ordinary programming
+
+- **Pin models like dependencies.** A pretrained model file, its tokenizer, and anything computed
+  from them (like stored embeddings) belong together; a new model version silently changes every
+  output. Pin exact versions and checksums, and recompute derived data when they change.
+- **Treat a model's output as a guess.** Wrap it in plain rules where mistakes are costly. For
+  example, label a feed with a language only when several of its posts agree, not on the strength
+  of one short title.
+- **Retraining is a code change.** New training data or a new threshold changes behaviour as much
+  as editing a function; measure it before accepting it.
+- **Inputs can be hostile.** A model reading untrusted text is still reading untrusted text: never
+  execute or fetch anything because a model said so, and escape anything you publish.
 
 ## Glossary
 
-| term | meaning here |
+| term | meaning |
 | --- | --- |
-| model | weights + a fixed function that turns an input into a prediction |
-| training / inference | learning the weights / using them |
-| class, label | a possible answer / the known answer of an example |
-| feature vector | the numbers describing one input |
-| TF-IDF | word counts weighted by how rare each word is |
-| embedding | a vector from a pretrained network; similar meaning, nearby vectors |
-| cosine similarity | closeness of two vectors, 1 = same direction |
+| model, parameters, weights | a function whose numbers (weights) are learned from examples |
+| training, inference | learning the weights; using them on new inputs |
+| class, label | a possible answer; the known answer of an example |
+| supervised learning | learning from labelled examples |
+| pretrained model | a model trained by someone else, used as is |
+| feature, feature vector, matrix | a number describing an input; all of them for one input; one row per input |
+| token, vocabulary | a unit of text (word, word pair, sub-word); the terms that get a column |
+| bag of words, TF-IDF | word counts, ignoring order; counts weighted by each word's rarity |
+| embedding | a vector from a pretrained network: similar meaning, nearby vectors |
+| cosine similarity | how closely two vectors point the same way (1 = identical) |
+| zero-shot | classifying by similarity to class names, with no training for those classes |
 | logistic regression | weighted sum of features per class, then softmax |
-| softmax | turns raw scores into probabilities summing to 1 |
-| loss | how wrong the predictions are; training lowers it |
-| gradient descent, Adam | repeatedly nudging weights to lower the loss |
-| learning rate | the size of each nudge |
+| softmax | turns raw scores into probabilities that sum to 1 |
+| loss, cross-entropy | how wrong predictions are; the usual loss for classification |
+| gradient descent, learning rate, Adam | nudging weights to lower the loss; the nudge size; an adaptive variant |
 | overfitting | fitting the training examples instead of the pattern |
-| regularization (L2) | penalising large weights to prevent overfitting |
-| cross-validation | scoring each example with a model that didn't see it |
-| threshold, quantile | the score cut-off / the value below which a share of scores fall |
-| precision, recall, AUC | how right the picks are / how many are found / ranking quality |
-| zero-shot | classifying into classes the model was never trained on (topic names) |
-| ONNX, tokenizer | a portable format for running networks / text to integer pieces |
+| regularization, L2 | penalising large weights to reduce overfitting |
+| held-out set, cross-validation | unseen examples for testing; scoring every example with a model that didn't see it |
+| threshold, quantile | the score cut-off for a decision; the value below which a given share of scores fall |
+| precision, recall, AUC | how right the picks are; how many were found; how well scores rank |
+| tokenizer, ONNX | text to integer IDs for a network; a portable format for running networks |
