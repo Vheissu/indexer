@@ -90,10 +90,12 @@ vector with thousands at once is a single matrix product:
 
 ```python
 import numpy as np
+from numpy.typing import NDArray
 
-names = np.array([[0.6, 0.8], [1.0, 0.0]])  # one unit-length row per candidate
-query = np.array([0.8, 0.6])                  # unit length too
-similarity = names @ query                    # array([0.96, 0.8]): the first row is closer
+names: NDArray[np.float64] = np.array([[0.6, 0.8], [1.0, 0.0]])  # one unit-length row each
+query: NDArray[np.float64] = np.array([0.8, 0.6])  # unit length too
+similarity: NDArray[np.float64] = names @ query
+print(similarity)  # [0.96 0.8 ]: the first row is closer
 ```
 
 Similarity alone can classify without any training: embed the name of each class ("rust",
@@ -113,9 +115,19 @@ For each class it has one weight per feature plus a constant, the **bias**:
    exponentiate each score, then divide by the row's total.
 
 ```python
-def softmax(z):
+import numpy as np
+from numpy.typing import NDArray
+
+Matrix = NDArray[np.float64]
+
+
+def softmax(z: Matrix) -> Matrix:
     e = np.exp(z - z.max(axis=1, keepdims=True))  # subtracting the max avoids overflow
     return e / e.sum(axis=1, keepdims=True)
+
+
+# raw scores 2 and 0 as probabilities:
+print(softmax(np.array([[2.0, 0.0]])).round(2))  # [[0.88 0.12]]
 ```
 
 Its weights are easy to read: a feature with a large positive weight for a class pushes inputs
@@ -215,105 +227,183 @@ against the old version on the *same* data.
 
 ## 10. Examples: the models this project uses
 
-Short sketches of the three models, stripped down to the idea. The real code adds error handling
-and rules around them.
+Short sketches of the three kinds of model, stripped down to the idea; the real code adds error
+handling and rules around them. The comments under each `print` show its output. For the two
+pretrained models the numbers are illustrative (they depend on the model file); the trained
+classifier's are real, from running the snippet.
 
 ### Language identification: a pretrained classifier
 
-fastText's `lid.176` model was trained on text in 176 languages. You load it and ask for the most
-likely class; it returns a label and a probability.
+fastText's `lid.176` model was trained on text in 176 languages. Inside, it turns a text into a
+vector by averaging the vectors of its words and of their **character n-grams** (short letter
+sequences such as `sch`, `ung`, `ein`). In this context **the vector describes how the text is
+spelled**: which letter patterns it uses, and spelling is what gives a language away. A linear
+classifier like the one in section 4 then scores that vector against each of the 176 languages,
+and softmax turns the scores into probabilities. You never see the vector; you get the classes:
 
 ```python
 import fasttext
 
 model = fasttext.load_model("lid.176.ftz")
-labels, probs = model.predict("Wie man einen Sauerteig ansetzt", k=1)  # one line of text
-# labels == ("__label__de",), probs ≈ [0.98]
+
+labels: tuple[str, ...]
+labels, probs = model.predict("Wie man einen Sauerteig ansetzt und pflegt", k=3)  # top 3
+for label, prob in zip(labels, probs):
+    print(label.removeprefix("__label__"), round(float(prob), 2))
+# de 0.97
+# nl 0.01
+# en 0.01
 ```
 
-One short title can be misread, so plain rules sit on top: judge each post, then label the feed
-with a language only if enough posts agree.
+A single short title is easy to misread, so plain rules sit on top: skip texts too short to
+judge, take each post's most likely language, and label the feed only with languages that enough
+posts agree on.
 
 ```python
 from collections import Counter
 
-posts = ["Wie man einen Sauerteig ansetzt und pflegt", "Brot backen im Winter: Tipps für die Gare", "OK"]
-votes = Counter(model.predict(p)[0][0] for p in posts if len(p) >= 40)  # skip texts too short
-feed_languages = [lang for lang, n in votes.items() if n >= 2]  # ["__label__de"]
+posts: list[str] = [
+    "Wie man einen Sauerteig ansetzt und pflegt",
+    "Brot backen im Winter: Tipps für die Gare",
+    "OK",  # too short: not judged
+]
+votes: Counter[str] = Counter(
+    model.predict(p)[0][0].removeprefix("__label__") for p in posts if len(p) >= 40
+)
+feed_languages: list[str] = [lang for lang, n in votes.items() if n >= 2]
+print(votes, feed_languages)  # Counter({'de': 2}) ['de']
 ```
 
 ### Embeddings and zero-shot topics: a pretrained network
 
-MiniLM turns a text into 384 numbers. The tokenizer produces the network's input; the network
-returns one vector per token, which are averaged into one vector per text and scaled to length 1.
+MiniLM turns a text into 384 numbers. In this context **the vector is the text's position in a
+"meaning space"**: the network was trained so that texts about the same subject land near each
+other, whatever words they use. No single number means anything on its own ("dimension 17" is not
+"programming"); only distances between vectors do. Two consequences follow:
+
+- The average of a feed's post vectors is the **centre of what the feed writes about**.
+- A topic name like "rust" also has a position, so "how much is this feed about rust?" becomes
+  "how close is the feed's centre to the word *rust*?": cosine similarity.
+
+The tokenizer produces the network's input; the network returns one vector per token, which are
+averaged into one vector per text and scaled to length 1:
 
 ```python
 import numpy as np
 import onnxruntime as ort
+from numpy.typing import NDArray
 from tokenizers import Tokenizer
+
+Vectors = NDArray[np.float32]  # one row per text
 
 tokenizer = Tokenizer.from_file("tokenizer.json")
 tokenizer.enable_padding()  # pad a batch to one length; the attention mask marks real tokens
 session = ort.InferenceSession("minilm.onnx")
 
-def embed(texts):
-    enc = tokenizer.encode_batch(texts)
-    ids = np.array([e.ids for e in enc])
-    mask = np.array([e.attention_mask for e in enc])
-    tokens = session.run(None, {"input_ids": ids, "attention_mask": mask,
-                                "token_type_ids": np.zeros_like(ids)})[0]  # (texts, tokens, 384)
-    vectors = (tokens * mask[..., None]).sum(1) / mask.sum(1, keepdims=True)  # mean of real tokens
+
+def embed(texts: list[str]) -> Vectors:
+    encoded = tokenizer.encode_batch(texts)
+    ids: NDArray[np.int64] = np.array([e.ids for e in encoded])
+    mask: NDArray[np.int64] = np.array([e.attention_mask for e in encoded])
+    inputs = {"input_ids": ids, "attention_mask": mask, "token_type_ids": np.zeros_like(ids)}
+    tokens: Vectors = session.run(None, inputs)[0]  # shape (texts, tokens, 384)
+    vectors = (tokens * mask[..., None]).sum(axis=1) / mask.sum(axis=1, keepdims=True)
     return vectors / np.linalg.norm(vectors, axis=1, keepdims=True)  # unit length
+
+
+v = embed(["Async Rust without the pain"])
+print(v.shape, v[0, :4].round(2))  # (1, 384) [-0.07  0.02 -0.04  0.05]: meaningless one by one
 ```
 
 Topics without training: embed the topic names once, embed the feed's posts, average them, and
-keep the names that are most similar.
+keep the names closest to the feed's centre:
 
 ```python
-names = ["rust", "cooking", "photography"]
-name_vectors = embed(names)                        # computed once, stored
+names: list[str] = ["rust", "cooking", "photography"]
+name_vectors: Vectors = embed(names)  # computed once and stored
 
-feed = embed(["Async Rust without the pain", "Lifetimes explained"]).mean(axis=0)
-similarity = name_vectors @ feed                   # cosine similarity: unit vectors
-best = [names[i] for i in np.argsort(-similarity) if similarity[i] >= 0.35][:5]  # ["rust"]
+posts = embed(["Async Rust without the pain", "Lifetimes explained with examples"])
+feed: Vectors = posts.mean(axis=0)
+feed /= np.linalg.norm(feed)  # back to unit length, so the dot product is the cosine
+similarity: Vectors = name_vectors @ feed
+for name, score in zip(names, similarity):
+    print(f"{name:12} {score:.2f}")
+# rust         0.52
+# cooking      0.05
+# photography  0.03
+topics: list[str] = [n for n, score in zip(names, similarity) if score >= 0.35]
+print(topics)  # ['rust']
 ```
 
 ### A classifier we train: TF-IDF and logistic regression
 
-Labelled examples in, weights and a threshold out. Here with four toy reviews; the real filter
-learns from a few hundred.
+Labelled examples in, weights out. Four toy reviews here; a real filter learns from hundreds.
+
+In this context **each text's vector is a row of word weights**: one column per vocabulary word,
+holding how much that word stands out in this text (TF-IDF), zero for words the text doesn't use.
+Unlike an embedding, every number has a meaning you can read. Training then gives every word a
+weight per class, so the model is readable too: the words that push a text towards *rejected*.
 
 ```python
 import numpy as np
+from numpy.typing import NDArray
 
-texts = ["indie game dev diary", "press release new product launch",
-         "notes on rust compilers", "press release award winning service"]
-y = np.array([0, 1, 0, 1])                         # 0 accepted, 1 rejected
+Matrix = NDArray[np.float64]
+# softmax(z: Matrix) -> Matrix as defined in section 4
 
-# features: bag of words with TF-IDF, rows scaled to length 1
-vocab = sorted({w for t in texts for w in t.split()})
-counts = np.array([[t.split().count(w) for w in vocab] for t in texts], dtype=float)
-idf = np.log((1 + len(texts)) / (1 + (counts > 0).sum(0))) + 1
-X = counts * idf
+texts: list[str] = [
+    "indie game dev diary",
+    "press release new product launch",
+    "notes on rust compilers",
+    "press release award winning service",
+]
+y: NDArray[np.int64] = np.array([0, 1, 0, 1])  # what the reviewer decided: 0 accepted, 1 rejected
+
+# Features: one column per word of the vocabulary.
+vocab: list[str] = sorted({w for t in texts for w in t.split()})
+counts: Matrix = np.array([[t.split().count(w) for w in vocab] for t in texts], dtype=float)
+idf: Matrix = np.log((1 + len(texts)) / (1 + (counts > 0).sum(axis=0))) + 1
+X: Matrix = counts * idf
 X /= np.linalg.norm(X, axis=1, keepdims=True)
-X = np.hstack([X, np.ones((len(X), 1))])           # a column of ones: the bias
+print(len(vocab), "words:", vocab[:6], "...")
+# 16 words: ['award', 'compilers', 'dev', 'diary', 'game', 'indie'] ...
+print("vector of text 1:", {w: round(float(v), 2) for w, v in zip(vocab, X[1]) if v})
+# vector of text 1: {'launch': 0.49, 'new': 0.49, 'press': 0.38, 'product': 0.49, 'release': 0.38}
+X = np.hstack([X, np.ones((len(X), 1))])  # a column of ones: the bias
 
-# training: gradient descent on cross-entropy, with an L2 penalty
-W = np.zeros((X.shape[1], 2))                      # one column per class
-target = np.eye(2)[y]                              # one-hot labels: [1, 0] or [0, 1]
+# Training: gradient descent on cross-entropy, with an L2 penalty.
+W: Matrix = np.zeros((X.shape[1], 2))  # one weight per word (+ bias) per class
+target: Matrix = np.eye(2)[y]  # one-hot labels: [1, 0] or [0, 1]
 for _ in range(400):
-    probs = softmax(X @ W)                         # softmax from section 4
+    probs: Matrix = softmax(X @ W)
     W -= 0.5 * (X.T @ (probs - target) / len(X) + 1e-3 * W)
 
-# inference: probability of "accepted" for each text; drop those below the threshold
-p_accepted = softmax(X @ W)[:, 0]
-threshold = 0.5  # in practice: a quantile of cross-validated scores (sections 7 and 8)
-keep = p_accepted >= threshold                     # [True, False, True, False]
+for word in ("press", "rust", "diary"):
+    print(f"weight of {word!r} towards rejected: {W[vocab.index(word), 1]:+.2f}")
+# weight of 'press' towards rejected: +1.41
+# weight of 'rust' towards rejected: -0.97
+# weight of 'diary' towards rejected: -0.97
+
+# Inference: a new text goes through the same steps (unknown words are ignored).
+def p_accepted(text: str) -> float:
+    row: Matrix = np.array([[text.split().count(w) for w in vocab]], dtype=float) * idf
+    row /= np.linalg.norm(row, axis=1, keepdims=True)
+    return float(softmax(np.hstack([row, [[1.0]]]) @ W)[0, 0])
+
+
+for new in ("press release new product", "press release on our rust compiler"):
+    p = p_accepted(new)
+    print(f"P(accepted | {new!r}) = {p:.2f} -> {'keep' if p >= 0.5 else 'drop'}")
+# P(accepted | 'press release new product') = 0.02 -> drop
+# P(accepted | 'press release on our rust compiler') = 0.52 -> keep
 ```
 
-After training, `W[vocab.index("press"), 1]` (the weight of "press" for *rejected*) is clearly
-positive: the model has learned the pattern a person would have written as a rule, from examples
-alone.
+The new texts show both the strength and the limit of a bag of words. "press release new product" is
+dropped: every word is one the model learned to distrust. "press release on our rust compiler" is a
+coin toss: "press" and "release" pull towards *rejected*, "rust" and "on" (both from accepted texts)
+pull the other way, "our" is unknown, and so is "compiler" (the vocabulary only has "compilers"), so
+both count for nothing. More examples and word pairs fix much of this; that is why real filters train
+on hundreds of reviews.
 
 ## Glossary
 
