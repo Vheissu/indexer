@@ -27,7 +27,7 @@
 #     what I got for my birthday:bamboo! Delicious and
 #     nutritious. I’d much rather have bamboo than a dumb
 #     birthday cake. We capys aren’t into confections
-# https://gianthamster.com/feed/
+https://gianthamster.com/feed/
 
 # the mousepad · en · last post 2026-11-17
 # score: 0.674
@@ -50,7 +50,7 @@
 #     afterwards to go over results. He was pleased with the
 #     amount of bone growth (“fusion”) between the
 #     prosthetics.
-# https://mouse.mousetrap.net/feed.xml
+https://mouse.mousetrap.net/feed.xml
 
 # Nigeriacurrently.com · en · last post 2026-11-21
 # score: 0.662
@@ -80,6 +80,7 @@
 #     (PDP), Kabiru T. Turaki, SAN, has congratulated a
 #     former Deputy National Chairman of the party, Chief
 #     Olabode George, on his birthday, describing
+# rejected: seo
 # https://nigeriacurrently.com/feed/
 
 # Dawn's Creative Chalet · en · last post 2026-11-15
@@ -115,6 +116,7 @@
 #     about the Creative Celebration 6×6 Designer Series
 #     Paper Pack. Its cute and as always Stampin` Up! does
 #     not disappoint. Not only does it have a v
+# rejected: commercial
 # https://dawnscreativechalet.com/feed/
 
 # paula cizmar · en · last post 2026-11-05
@@ -144,7 +146,7 @@
 #     geared to the theme The Time Is Now being presented in
 #     Kenya. Esther Kamba, in collaboration with
 #     Goethe-Institut, Nairobi, Kenya, is producing a re
-# https://paulacizmar.net/feed/
+https://paulacizmar.net/feed/
 
 # GRANNE · en · last post 2026-11-04
 # score: 0.584
@@ -173,7 +175,7 @@
 #     Encore challenge blog with awesome sponsor Place where
 #     you can find lots and lots of super cute images.
 #     Challenge winner (randomly chosen) can cho
-# https://aavamaki.blogspot.com/feeds/posts/default
+https://aavamaki.blogspot.com/feeds/posts/default
 
 # Artwatch · en · last post 2026-09-23
 # score: 0.570
@@ -203,7 +205,7 @@
 #     connected with acquisitions I don’t think I’d better
 #     share.” – Martin Wyld, the National Gallery’s retiring
 #     Head of Restoration in the January 20
-# https://artwatch.org.uk/feed/
+https://artwatch.org.uk/feed/
 
 # Pre-Code.com · en · last post 2026-11-01
 # score: 0.565
@@ -229,7 +231,7 @@
 #     third month of living in Colorado, and now I can
 #     finally transition away from having to wear shorts. I
 #     have also, for the first time in five year
-# https://pre-code.com/feed/
+https://pre-code.com/feed/
 
 # Economics for Canadians · en · last post 2026-11-15
 # score: 0.514
@@ -257,7 +259,7 @@
 #     (over two years!) and thought I ought to let people
 #     know that there are still around 1000 copies of the
 #     revised 2021 edition of “Economics for Can
-# https://croecko.com/blog/feed/
+https://croecko.com/blog/feed/
 
 # IFFD Foundation · en · last post 2026-10-31
 # score: 0.514
@@ -286,6 +288,7 @@
 #     ‘The Joy of Us’ a Couples’ Weekend held in Macau on
 #     October 17–18. Leticia Rodríguez, Director of IFFD
 #     Family Enrichment, led workshops and modera
+# rejected: press
 # https://iffdfoundation.org/feed/
 
 # The Hemet & San Jacinto Chronicle · en · last post
@@ -319,6 +322,7 @@
 #     social media or watching campaign ads encountered a
 #     strange new reality: candidates battling giant robots,
 #     posing as costumed superheroes, or cast a
+# rejected: machine
 # https://hsjchronicle.com/feed/
 
 # Clearaid · en · last post 2026-07-26
@@ -344,4 +348,5 @@
 #     “Benedict’s Law”—comes into force across England to
 #     transform food allergy safety in schools. Schools are
 #     legally mandated to stock spare adrenal
+# rejected: commercial
 # https://clearaid.co.uk/feed/
