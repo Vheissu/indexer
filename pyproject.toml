@@ -45,8 +45,8 @@ target-version = "py313"
 select = ["E", "F", "W", "I", "B", "UP", "SIM", "ASYNC", "RUF", "BLE"]
 
 [tool.ruff.lint.flake8-bugbear]
-# models.generated() returns a dataclasses.field, which is what a dataclass default may call.
-extend-immutable-calls = ["indexer.models.generated"]
+# db.models.generated() returns a dataclasses.field, which is what a dataclass default may call.
+extend-immutable-calls = ["indexer.db.models.generated"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

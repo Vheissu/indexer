@@ -106,10 +106,10 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 
 ## Stack and conventions
 
-- Source in `src/indexer/`: `cli.py`, `db.py` (all SQL through psycopg; statements in `sql/`, one per file, except the INSERTs built from the models), `models.py` (the tables as dataclasses: db.py builds column lists from them; a DB test checks them against the schema, so update them with every changeset), `errors.py`, `export.py` (data files), `site.py` (HTML site), `sources.py` (sources.toml, list loading),
+- Source in `src/indexer/`: `cli.py`, `errors.py`, `export.py` (data files), `site.py` (HTML site), `sources.py` (sources.toml, list loading),
   `topics.py` (topics from plain text: no RSS, no languages, no database; `TopicModel.topics(posts, title, subtitle)`),
   `language.py` (languages from plain text, same style; `LanguageModel.post_languages(texts)` / `.languages(texts)`) at the top;
-  `net/` (guarded fetcher, URL validation, resolver, IP policy), `check/` (runner, feed parser), `survivors/` (Common Crawl, proposals).
+  `net/` (guarded fetcher, URL validation, resolver, IP policy), `db/` (everything about the database: `database.py`, all SQL through psycopg; `sql/`, its statements, one per file, except the INSERTs built from the models; `models.py`, the tables as dataclasses: database.py builds column lists from them; a DB test checks them against the schema, so update them with every changeset), `check/` (runner, feed parser), `survivors/` (Common Crawl, proposals).
 - Python 3.13 with **uv** (commit `uv.lock`), ruff (lint + format), type hints everywhere, `mypy --strict src`.
 - Tests use pytest with a local server, fake DNS and synthetic files. **Tests never touch the network.**
   Database tests run only when `INDEXER_TEST_DATABASE_URL` is set.

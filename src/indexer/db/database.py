@@ -15,8 +15,8 @@ from psycopg import sql
 from psycopg.rows import class_row
 
 from indexer.check.runner import CheckRow
+from indexer.db.models import Feed, HealthCheck, Input, IPAddress, Model, Run, columns, values
 from indexer.export import ListedFeed
-from indexer.models import Feed, HealthCheck, Input, IPAddress, Model, Run, columns, values
 from indexer.sources import InputRow
 
 DEFAULT_DATABASE_URL = "postgresql://indexer@127.0.0.1:5432/indexer"  # password: $PGPASSWORD
@@ -34,7 +34,7 @@ OWN_TABLES = (
 @functools.cache
 def _query(name: str) -> str:
     """The statement in sql/<name>.sql."""
-    return files("indexer").joinpath("sql", f"{name}.sql").read_text()
+    return files("indexer.db").joinpath("sql", f"{name}.sql").read_text()
 
 
 def _insert_sql(model: Model, replace_on: str | None) -> sql.Composed:

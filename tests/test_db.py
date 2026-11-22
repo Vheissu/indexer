@@ -9,7 +9,7 @@ import pytest
 
 from indexer.check.runner import CheckRow
 from indexer.db import Database
-from indexer.models import MODELS, IPAddress, columns
+from indexer.db.models import MODELS, IPAddress, columns
 from indexer.sources import InputRow
 
 DSN = os.environ.get("INDEXER_TEST_DATABASE_URL")
