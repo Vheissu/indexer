@@ -174,23 +174,19 @@ async def test_batch_selection_and_last_checked() -> None:
     try:
         await conn.execute("DELETE FROM inputs WHERE url LIKE 'https://indexer-batch.example/%'")
         await db.upsert_inputs([InputRow(u, "src", "MIT") for u in urls], {"MIT": 0})
-        # 0, 1: checked recently (fresh); 2: checked 20 days ago (stale); 3-5: never checked
-        await conn.execute(
-            "UPDATE inputs SET last_checked_at = now() - interval '1 day' WHERE url = ANY(%s)",
-            (urls[:2],),
-        )
-        await conn.execute(
-            "UPDATE inputs SET last_checked_at = now() - interval '20 days' WHERE url = %s",
-            (urls[2],),
-        )
+        # 0, 1: checked within the cooldown; 2: 20 days ago; 3: 2 days ago; 4, 5: never checked
+        for ago, chosen in (("1 hour", urls[:2]), ("20 days", urls[2:3]), ("2 days", urls[3:4])):
+            await conn.execute(
+                "UPDATE inputs SET last_checked_at = now() - %s::interval WHERE url = ANY(%s)",
+                (ago, chosen),
+            )
         mine = set(urls)
-        eligible = set(urls[2:])
-        picked = [u for u in await db.select_batch(100_000, 14) if u in mine]
-        assert set(picked) == eligible
-        # a batch is a sample of the eligible rows, without repeats
-        small = await db.select_batch(2, 14)
-        assert len(small) == 2 and len(set(small)) == 2
-        assert not set(small) & set(urls[:2])
+        picked = [u for u in await db.select_batch(100_000, 1440) if u in mine]
+        # never checked first (in any order), then the longest since the last check
+        assert set(picked[:2]) == {urls[4], urls[5]} and picked[2:] == [urls[2], urls[3]]
+        # a shorter cooldown lets the recent ones in, last
+        picked = [u for u in await db.select_batch(100_000, 30) if u in mine]
+        assert set(picked[-2:]) == set(urls[:2])
 
         # storing a check marks the input as checked, whatever the outcome
         run_id = await db.start_run()
@@ -198,7 +194,7 @@ async def test_batch_selection_and_last_checked() -> None:
         await db.insert_check(run_id, row)
         cur = await conn.execute("SELECT last_checked_at FROM inputs WHERE url = %s", (urls[3],))
         assert await cur.fetchone() == (row.checked_at,)
-        assert urls[3] not in await db.select_batch(100_000, 14)
+        assert urls[3] not in await db.select_batch(100_000, 1440)
         # a URL that is not an input is stored without error
         await db.insert_check(
             run_id, CheckRow(url="https://not-an-input.example/", checked_at=row.checked_at)

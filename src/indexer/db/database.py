@@ -68,11 +68,11 @@ class Database:
         params = {"finished_at": datetime.now(UTC), "run_id": run_id}
         await self._conn.execute(_query("finish_run"), params)
 
-    async def select_batch(self, size: int, stale_days: int) -> list[str]:
-        """A uniformly random sample of inputs never checked, or last checked more than
-        `stale_days` ago. Each run is a fresh random draw; a URL checked recently is excluded,
-        so repeated runs work through every URL before revisiting any."""
-        params = {"size": size, "stale_days": stale_days}
+    async def select_batch(self, size: int, cooldown_minutes: int) -> list[str]:
+        """The `size` most outdated inputs: never checked first, then the longest since their
+        last check (ties in random order). An input checked in the last `cooldown_minutes` is
+        never picked, so no URL is checked more often than that."""
+        params = {"size": size, "cooldown_minutes": cooldown_minutes}
         cur = await self._conn.execute(_query("select_batch"), params)
         return [row[0] for row in await cur.fetchall()]
 

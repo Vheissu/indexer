@@ -3,7 +3,7 @@
 Commands, in pipeline order:
   load-inputs  load the feed URLs from the lists in data/sources.toml into the inputs table
   survivors    propose feeds from a ~5-year-old Common Crawl crawl still active today
-  run          check a URL file, or a random batch of inputs, and record one row per URL
+  run          check a URL file, or the most outdated inputs, and record one row per URL
   export       write the published lists (output/topic/<topic>/...) and website (output/docs/)
   cleanup      delete health checks older than a few months
   drop-tables  delete every table of this project (all data); needs --yes

@@ -1,4 +1,4 @@
-"""indexer run: check a URL file, or a random batch of inputs, and record one row per URL."""
+"""indexer run: check a URL file, or the most outdated inputs, and record one row per URL."""
 
 import argparse
 import logging
@@ -12,7 +12,7 @@ from indexer.net.fetch import FetchConfig, open_fetcher
 from indexer.net.validate import read_url_file
 
 NAME = "run"
-HELP = "check every URL in FILE, or a random batch from the inputs table"
+HELP = "check every URL in FILE, or the most outdated inputs"
 
 log = logging.getLogger("indexer")
 
@@ -25,17 +25,17 @@ def add_arguments(parser: argparse.ArgumentParser) -> None:
     source.add_argument(
         "--from-inputs",
         action="store_true",
-        help="check a random batch of inputs not checked in the last --stale-days days",
+        help="check the --batch most outdated inputs (never checked first)",
     )
     parser.add_argument(
         "--batch", type=int, default=500, help="batch size with --from-inputs (default 500)"
     )
     parser.add_argument(
-        "--stale-days",
+        "--minimum-check-cooldown-minutes",
         type=int,
-        default=14,
-        help="with --from-inputs, recheck URLs last checked more than this many days ago"
-        " (default 14)",
+        default=1440,
+        help="with --from-inputs, never pick an input checked less than this many minutes ago"
+        " (default 1440: once a day)",
     )
     parser.add_argument("--concurrency", type=int, default=20, help="fetches at once (default 20)")
     parser.add_argument("--per-host", type=int, default=2, help="fetches per host (default 2)")
@@ -47,8 +47,12 @@ def add_arguments(parser: argparse.ArgumentParser) -> None:
 
 
 async def run(args: argparse.Namespace) -> int:
-    if args.from_inputs and (args.batch < 1 or args.stale_days < 0):
-        print("error: --batch must be positive and --stale-days not negative", file=sys.stderr)
+    cooldown = args.minimum_check_cooldown_minutes
+    if args.from_inputs and (args.batch < 1 or cooldown < 0):
+        print(
+            "error: --batch must be positive and --minimum-check-cooldown-minutes not negative",
+            file=sys.stderr,
+        )
         return 2
     if (languages := language_model()) is None or (model := topic_model()) is None:
         return 2
@@ -61,11 +65,9 @@ async def run(args: argparse.Namespace) -> int:
     checked = 0
     async with database(args) as db:
         if args.from_inputs:
-            urls = await db.select_batch(args.batch, args.stale_days)
+            urls = await db.select_batch(args.batch, cooldown)
             if not urls:
-                print(
-                    f"nothing to check: every input was checked in the last {args.stale_days} days"
-                )
+                print(f"nothing to check: every input was checked in the last {cooldown} minutes")
                 return 0
         else:
             urls = read_url_file(args.file)

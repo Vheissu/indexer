@@ -21,7 +21,7 @@ def test_run_from_file() -> None:
 def test_run_from_inputs_defaults() -> None:
     args = parser().parse_args(["run", "--from-inputs"])
     assert args.from_inputs and args.file is None
-    assert (args.batch, args.stale_days) == (500, 14)
+    assert (args.batch, args.minimum_check_cooldown_minutes) == (500, 1440)
 
 
 @pytest.mark.parametrize("argv", [["run"], ["run", "urls.txt", "--from-inputs"]])

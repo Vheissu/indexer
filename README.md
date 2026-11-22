@@ -95,7 +95,7 @@ before it is merged**.
 
 Open a pull request that adds the feed's URL to [`data/submissions.txt`](data/submissions.txt),
 one URL per line. Once it is merged, the feed is loaded right away, checked in one of the next
-check runs (usually within two weeks: each run takes a random batch), and listed under its topics if
+check runs (feeds never checked go first), and listed under its topics if
 it passes the rules above.
 
 ## License

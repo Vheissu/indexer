@@ -1,6 +1,6 @@
-# Checks a random batch of inputs not checked in the last 14 days, 8 times a day.
-# 8 runs x 500 URLs = 4,000 a day: about 12 days for the ~47,000 inputs, then each URL comes
-# round again 14 days after its last check. Results go to Supabase Postgres.
+# Checks the 500 most outdated inputs, 8 times a day: never checked first, then the longest since
+# their last check; none checked in the last day. 8 runs x 500 URLs = 4,000 a day: each of the
+# ~47,000 inputs comes round about every 12 days. Results go to Supabase Postgres.
 #
 # Uses the same repository secrets as input.yml (SUPABASE_DB_*); see that file.
 name: check
@@ -14,10 +14,10 @@ on:
         description: URLs to check
         type: number
         default: 500
-      stale-days:
-        description: Recheck URLs last checked more than this many days ago
+      minimum-check-cooldown-minutes:
+        description: Never pick a URL checked less than this many minutes ago
         type: number
-        default: 14
+        default: 1440
 
 permissions:
   contents: read # this job fetches untrusted content; it never needs to write to the repo
@@ -43,7 +43,7 @@ jobs:
       # Scheduled runs have no inputs: fall back to the defaults. Passed through the
       # environment, never interpolated into the script.
       BATCH: ${{ inputs.batch || 500 }}
-      STALE_DAYS: ${{ inputs.stale-days || 14 }}
+      COOLDOWN_MINUTES: ${{ inputs.minimum-check-cooldown-minutes || 1440 }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -58,4 +58,5 @@ jobs:
       - name: Check a batch
         run: >-
           docker compose run --rm --no-deps -T check
-          run --from-inputs --batch "$BATCH" --stale-days "$STALE_DAYS" --concurrency 50 -v
+          run --from-inputs --batch "$BATCH" --minimum-check-cooldown-minutes "$COOLDOWN_MINUTES"
+          --concurrency 50 -v

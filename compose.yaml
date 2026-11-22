@@ -80,7 +80,7 @@ services:
       - ./output:/work/output # the pull request report
     command: ["survivors", "--report", "output/survivors.md"]
 
-  # Checks a URL file in ./data, or a random batch of inputs, and exits.
+  # Checks a URL file in ./data, or the most outdated inputs, and exits.
   #   docker compose run --rm check                                   # data/urls.txt
   #   docker compose run --rm check run --from-inputs --batch 50 -v
   check:
