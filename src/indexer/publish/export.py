@@ -55,6 +55,9 @@ class ListedFeed:
     subtitle: str | None = None  # Atom <subtitle> or RSS <description>
     source: str | None = None  # inputs.source: the list file it came from (or its homepage)
     source_license: str | None = None  # that list's SPDX license id
+    # The latest successful check's most recent posts, [{link, title, description}], newest
+    # first; None once cleanup has cleared them (after a few days).
+    recent_posts: list[dict[str, str | None]] | None = None
 
     def languages(self) -> list[str]:
         """The languages detected on the feed's items ("en"), sorted."""
@@ -159,7 +162,8 @@ def render_preview(feed: ListedFeed) -> str:
 
         {"url": "https://...", "title": "...", "subtitle": "...", "bytes": 48213,
          "last": "2026-11-14", "languages": ["de", "en"], "topics": ["rust", "webassembly"],
-         "source": {"name": "kagisearch/smallweb", "license": "MIT"}}
+         "source": {"name": "kagisearch/smallweb", "license": "MIT"},
+         "posts": [{"link": "https://...", "title": "...", "description": "..."}]}
 
     url is the feed URL the file is named after, so a preview stands alone. title, subtitle,
     bytes (body size at the latest successful check) and last are null when unknown; languages
@@ -167,8 +171,10 @@ def render_preview(feed: ListedFeed) -> str:
     (names from data/topics/topics.txt, most similar first, empty if none; only those in
     topic/topics.txt have a folder); source is the list the feed came from, as the site's sources
     table shows it (`site.source_of`: name and license); for a source missing from that table,
-    name is null and license its SPDX id; null for a feed not in inputs. The title and subtitle
-    are untrusted plain text."""
+    name is null and license its SPDX id; null for a feed not in inputs. posts are the feed's
+    most recent posts at its latest successful check, newest first (at most 3; empty when that
+    check is more than a few days old, see `indexer cleanup`): link is http(s) or null, title and
+    description (the start of the post) may be null. All text is untrusted plain text."""
     doc = {
         "url": feed.url,
         "title": " ".join(feed.title.split()) or None if feed.title else None,
@@ -178,6 +184,7 @@ def render_preview(feed: ListedFeed) -> str:
         "languages": feed.languages(),
         "topics": feed.topic_names(),
         "source": _source(feed),
+        "posts": [_post(p) for p in feed.recent_posts or ()],
     }
     return json.dumps(doc, ensure_ascii=False, indent=2) + "\n"
 
@@ -185,6 +192,19 @@ def render_preview(feed: ListedFeed) -> str:
 def _newest_first(feed: ListedFeed) -> tuple[float, str]:
     ts = feed.last_item_date.timestamp() if feed.last_item_date else float("-inf")
     return (-ts, feed.url)
+
+
+def _post(post: Mapping[str, str | None]) -> dict[str, str | None]:
+    def text(key: str) -> str | None:
+        value = post.get(key)
+        return " ".join(value.split()) or None if isinstance(value, str) else None
+
+    link = post.get("link")
+    return {
+        "link": site.safe_href(link) if isinstance(link, str) else None,
+        "title": text("title"),
+        "description": text("description"),
+    }
 
 
 def _source(feed: ListedFeed) -> dict[str, str | None] | None:

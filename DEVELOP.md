@@ -299,10 +299,11 @@ Mondays as a fallback, and when started by hand (Actions → publish → Run wor
 
 ## Cleanup
 
-`indexer cleanup` deletes health checks older than 8 months, and runs older than that with no
-checks left. `feeds` (each feed's latest metadata) and `inputs` are kept. At about 4,000 checks a
-day this holds `health_checks` near a million rows (~320 MB with indexes). It refuses fewer than
-7 months, since the published lists look back 6.
+`indexer cleanup` keeps only each URL's most recent successful check (however old) and the failed
+checks of the last 8 months (`--months`); it deletes the rest, and runs older than that with no
+checks left. It then clears `recent_posts` on checks older than 3 days (`--posts-days`): they are
+most of a check's size. `feeds` (each feed's latest metadata) and `inputs` are kept. It refuses
+fewer than 7 months.
 
 ## Undo: deleting listed URLs
 
@@ -356,7 +357,7 @@ To run the same steps from your machine against Supabase, put those values in a 
 
 `runs` has one row per `indexer run` (`id` is the run number, `started_at`, `finished_at`).
 
-`health_checks` has one row per URL per run, with only per-check data (about 330 bytes per row):
+`health_checks` has one row per URL per run, with only per-check data (about 330 bytes per row, plus up to ~4 KB of recent posts for 3 days):
 
 | column | meaning |
 | --- | --- |
@@ -375,6 +376,7 @@ To run the same steps from your machine against Supabase, put those values in a 
 | `response_time_ms` | time to the response headers of the final request |
 | `error` | `null` on success, otherwise one fixed identifier (below) |
 | `etag`, `last_modified` | the validators of the final 200 response, as sent |
+| `recent_posts` | JSON list of the feed's most recent posts (up to 3, newest first: `link`, `title`, `description`, untrusted text); `null` on failure, and cleared by `cleanup` after 3 days |
 
 `feeds` has one row per feed URL with its **latest** metadata, updated in place: a check that
 parses the feed replaces every column (a field the feed no longer has becomes `null`), a failed

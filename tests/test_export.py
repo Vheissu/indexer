@@ -403,6 +403,14 @@ def test_previews(tmp_path: Path) -> None:
             "  Notes on\n <i>Rust</i> ",
             "https://raw.githubusercontent.com/simevidas/web-dev-feeds/master/feeds.opml",
             "MIT",
+            [
+                {
+                    "link": "https://f1.example/a",
+                    "title": " New\n <b>post</b>",
+                    "description": None,
+                },
+                {"link": "javascript:alert(1)", "title": None, "description": "  text "},
+            ],
         ),
         ListedFeed(long_url, "", None, None, None, None),
     ]
@@ -423,6 +431,10 @@ def test_previews(tmp_path: Path) -> None:
             "name": "simevidas/web-dev-feeds",
             "license": "MIT",
         },
+        "posts": [  # plain text, whitespace collapsed; only http(s) links
+            {"link": "https://f1.example/a", "title": "New <b>post</b>", "description": None},
+            {"link": None, "title": None, "description": "text"},
+        ],
     }
     other = json.loads((out / preview_path(long_url)).read_text(encoding="utf-8"))
     assert other == {
@@ -434,6 +446,7 @@ def test_previews(tmp_path: Path) -> None:
         "languages": [],
         "topics": [],
         "source": None,  # not in inputs
+        "posts": [],  # none stored, or cleared by cleanup
     }
     assert len(list((out / "previews").rglob("*.json"))) == 2
 

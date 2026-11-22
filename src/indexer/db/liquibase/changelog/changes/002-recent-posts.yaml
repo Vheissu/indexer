@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-recent-posts
+      author: feedrule-indexer
+      changes:
+        - addColumn:
+            tableName: health_checks
+            columns:
+              - column:
+                  name: recent_posts
+                  type: JSONB
+                  remarks: >-
+                    The feed's most recent posts, newest first: [{link, title, description}]
+                    (untrusted text, links never fetched); null on a failed check, and cleared
+                    by `indexer cleanup` after a few days

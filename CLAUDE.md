@@ -79,7 +79,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   per topic links.txt ≤ 50,000, feeds.opml ≤ 500, topic page ≤ 200 (most recently active; each file starts with the next one's feeds; 200 agreed 2026-11-17 for page size); index sorted by count.
   `all/{links.txt,feeds.opml}`: every listed feed, with a topic or not, uncapped.
   links.txt files are newest post first (a search page shows them in file order).
-  `previews/<2 hex>/<sha256 hex of the URL>.json` per listed feed (for a search page, e.g. feedrule.com): `{url, title, subtitle, bytes, last, languages, topics, source}`,
+  `previews/<2 hex>/<sha256 hex of the URL>.json` per listed feed (for a search page, e.g. feedrule.com): `{url, title, subtitle, bytes, last, languages, topics, source, posts}` (posts: the latest successful check's `recent_posts`, links http(s) only, empty once cleared),
   bytes = body size at the latest successful check, languages = the detected labels (list), topics = the feed's topics (list, most similar first),
   source = `{name, license}`: the `site.SOURCES` entry inputs.source belongs to (`site.source_of`), else
   `{null, source_license}`; null if not in inputs (no URL, by the user's choice). Hash, not hex of the URL (file name limit).
@@ -105,7 +105,8 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   `topic/topics.txt`: the published topic names, one per line, most feeds first (ties by name). Topic directories and
   URLs use `export.topic_slug` (+ → plus, # → sharp: `c++` → `cplusplus`); pages show the name.
   publish.yml force-pushes output/ as one orphan commit to the `output` branch (no history, by design).
-- Cleanup keeps 8 months of health_checks (refuses < 7: export looks back 6). feeds and inputs are kept.
+- Cleanup keeps each URL's most recent successful check (whatever its age) plus 8 months of failed checks (refuses < 7), and clears
+  `health_checks.recent_posts` (JSONB, the 3 most recent posts) on checks older than 3 days (agreed 2026-11-22). feeds and inputs are kept.
 - Git: commit each verified step to `develop`; push only when asked. There is no `main` branch yet.
 
 ## Stack and conventions
@@ -159,7 +160,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 - `inputs`: url PK, source, source_license, first_seen_at, last_checked_at.
 - `runs`: id, started_at, finished_at.
 - `health_checks`: per-check data only (status, timings, sizes, item count, last item date, redirects, error,
-  ip_address, etag/last_modified). Keep rows small (~330 bytes with indexes). Unique (url, run_id).
+  ip_address, etag/last_modified, recent_posts for 3 days). Keep rows small (~330 bytes with indexes). Unique (url, run_id).
 - `feeds`: latest metadata per URL, updated in place (replaced on a parsed check, kept on failure). Descriptive fields use Atom names.
   `language`: the feed's labels, detected per item (agreed 2026-11-18; what the feed declares is not read): the categories the feeds publish are **not
   extracted any more**; each of the first 30 items' text (title + start of the description, not stored) goes through

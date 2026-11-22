@@ -8,6 +8,8 @@ from datetime import datetime
 from typing import Any, ClassVar
 
 type IPAddress = ipaddress.IPv4Address | ipaddress.IPv6Address
+# A JSONB column's value: the code writes lists only (database.py wraps them as JSON).
+type JSON = list[dict[str, str | None]]
 
 
 def generated() -> Any:
@@ -59,6 +61,7 @@ class HealthCheck:
     last_modified: str | None = None
     first_redirect_status: int | None = None
     ip_address: IPAddress | None = None
+    recent_posts: JSON | None = None  # cleared after a few days (cleanup)
 
 
 @dataclass(frozen=True, kw_only=True)

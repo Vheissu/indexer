@@ -26,6 +26,10 @@ as ISO 639 codes, sorted; empty if none), `topics` (topic names, most relevant f
 empty if none stands out; only those in `topic/topics.txt` have a folder), `source` (the list the
 feed was found in, as the site's sources table shows it: `name`, e.g. `kagisearch/smallweb`,
 and `license`, e.g. `MIT`, `CC0-1.0`, `Common Crawl terms`; `name` may be `null`, then
-`license` is an SPDX id). `title`, `subtitle`, `bytes`, `last` and `source` may be `null`.
+`license` is an SPDX id), `posts` (up to 3 of the feed's most recent posts, newest first, each
+`link`, `title` and `description` (the start of the post); empty when the last successful check
+is more than a few days old). `title`, `subtitle`, `bytes`, `last` and `source` may be `null`,
+and so may a post's `link` (only `http(s)` links are given), `title` and `description`.
 
-Titles and subtitles come from the feeds: treat them as untrusted plain text, never as HTML.
+Titles, subtitles and posts come from the feeds: treat them as untrusted plain text, never as
+HTML.

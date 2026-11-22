@@ -13,6 +13,7 @@ from typing import Self
 import psycopg
 from psycopg import sql
 from psycopg.rows import class_row
+from psycopg.types.json import Jsonb
 
 from indexer.check.runner import CheckRow
 from indexer.db.models import Feed, HealthCheck, Input, IPAddress, Model, Run, columns, values
@@ -34,7 +35,9 @@ OWN_TABLES = (
 
 # The columns a CheckRow fills under the same name.
 _CHECK_FIELDS = [
-    c for c in columns(HealthCheck, writable=True) if c not in ("run_id", "ip_address")
+    c
+    for c in columns(HealthCheck, writable=True)
+    if c not in ("run_id", "ip_address", "recent_posts")
 ]
 FEED_METADATA = [c for c in columns(Feed) if c not in ("url", "updated_at", "parsed_at")]
 
@@ -148,14 +151,18 @@ class Database:
                     counts[table] += 1
         return found
 
-    async def delete_old_checks(self, months: int) -> tuple[int, int]:
-        """Delete health checks older than `months`, then runs that are older than that and
-        have no checks left. feeds and inputs are untouched. Returns (checks, runs) deleted."""
+    async def delete_old_checks(self, months: int, posts_days: int) -> tuple[int, int, int]:
+        """Keep only each URL's most recent successful check (however old) and the failed
+        checks of the last `months`; delete runs older than that with no checks left; clear
+        the recent posts of checks older than `posts_days`. feeds and inputs are untouched.
+        Returns (checks deleted, runs deleted, checks whose posts were cleared)."""
         async with self._lock, self._conn.transaction():
             cur = await self._conn.execute(_query("delete_old_checks"), {"months": months})
             checks = cur.rowcount
             cur = await self._conn.execute(_query("delete_empty_runs"), {"months": months})
-            return checks, cur.rowcount
+            runs = cur.rowcount
+            cur = await self._conn.execute(_query("clear_old_posts"), {"days": posts_days})
+            return checks, runs, cur.rowcount
 
     async def _insert[R: (Run, HealthCheck, Input, Feed)](
         self, row: R, *, replace_on: str | None = None
@@ -163,7 +170,9 @@ class Database:
         """Store `row` and return it as stored, with the columns the database fills (ids,
         defaults). With `replace_on`, a row that already has that column's value is replaced."""
         cur = self._conn.cursor(row_factory=class_row(type(row)))
-        await cur.execute(_insert_sql(type(row), replace_on), values(row))
+        # A list is a JSONB column's value (models.JSON); psycopg would send it as an array.
+        params = {k: Jsonb(v) if isinstance(v, list) else v for k, v in values(row).items()}
+        await cur.execute(_insert_sql(type(row), replace_on), params)
         stored = await cur.fetchone()
         assert stored is not None
         return stored
@@ -205,7 +214,10 @@ def _inet(value: str | None) -> IPAddress | None:
 
 def _health_check(run_id: int, row: CheckRow) -> HealthCheck:
     fields = {name: getattr(row, name) for name in _CHECK_FIELDS}
-    return HealthCheck(run_id=run_id, ip_address=_inet(row.ip_address), **fields)
+    posts = [p._asdict() for p in row.recent_posts] if row.error is None else []
+    return HealthCheck(
+        run_id=run_id, ip_address=_inet(row.ip_address), recent_posts=posts or None, **fields
+    )
 
 
 def _feed(row: CheckRow) -> Feed:

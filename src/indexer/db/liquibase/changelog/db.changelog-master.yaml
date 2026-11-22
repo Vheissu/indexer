@@ -4,3 +4,6 @@ databaseChangeLog:
   - include:
       file: changes/001-schema.yaml
       relativeToChangelogFile: true
+  - include:
+      file: changes/002-recent-posts.yaml
+      relativeToChangelogFile: true

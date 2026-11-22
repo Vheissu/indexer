@@ -2,14 +2,15 @@
 
 import asyncio
 import os
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from typing import get_args, get_type_hints
 
 import pytest
 
+from indexer.check.feed import RecentPost
 from indexer.check.runner import CheckRow
 from indexer.db import Database
-from indexer.db.models import MODELS, IPAddress, columns
+from indexer.db.models import JSON, MODELS, IPAddress, columns
 from indexer.sources import InputRow
 
 DSN = os.environ.get("INDEXER_TEST_DATABASE_URL")
@@ -46,6 +47,7 @@ async def test_run_and_row_round_trip() -> None:
             language="de, en",
             topics="rust, webassembly",
             media_type="text",
+            recent_posts=(RecentPost("https://example.com/a", "A", None),),
         )
         await db.insert_check(run_id, row)
         await db.finish_run(run_id)
@@ -57,6 +59,12 @@ async def test_run_and_row_round_trip() -> None:
             (run_id,),
         )
         assert await cur.fetchall() == [(row.url, 4, True, None, '"abc"', 301, "2606:4700::1")]
+        cur = await conn.execute(
+            "SELECT recent_posts FROM health_checks WHERE run_id = %s", (run_id,)
+        )
+        assert await cur.fetchone() == (
+            [{"link": "https://example.com/a", "title": "A", "description": None}],
+        )
         cur = await conn.execute(
             "SELECT parsed_at, feed_kind, generator, title,"
             " language, topics, media_type, site_url FROM feeds WHERE url = %s",
@@ -254,7 +262,13 @@ async def test_listed_feeds_rules() -> None:
         )
         run_id = await db.start_run()
         cases = {
-            "ok": CheckRow(url=base + "ok", checked_at=now, last_item_date=now, title="ok"),
+            "ok": CheckRow(
+                url=base + "ok",
+                checked_at=now,
+                last_item_date=now,
+                title="ok",
+                recent_posts=(RecentPost(base + "ok/1", "One", "First post"),),
+            ),
             "stale-item": CheckRow(
                 url=base + "stale-item", checked_at=now, last_item_date=old_item
             ),
@@ -275,6 +289,9 @@ async def test_listed_feeds_rules() -> None:
         assert set(listed) == {base + "ok"}
         ok = listed[base + "ok"]
         assert (ok.source, ok.source_license) == ("https://lists.example/a.opml", "MIT")
+        assert ok.recent_posts == [
+            {"link": base + "ok/1", "title": "One", "description": "First post"}
+        ]
         await conn.execute("DELETE FROM inputs WHERE url LIKE %s", (base + "%",))
         await conn.execute("DELETE FROM health_checks WHERE run_id = %s", (run_id,))
         await conn.execute("DELETE FROM runs WHERE id = %s", (run_id,))
@@ -284,37 +301,68 @@ async def test_listed_feeds_rules() -> None:
 
 
 async def test_delete_old_checks() -> None:
-    """Checks older than the cutoff go; newer checks, feeds and inputs stay; runs left empty
-    and older than the cutoff go too."""
+    """Each URL keeps its latest successful check, however old; its older successful checks go,
+    and failed checks older than the cutoff. Runs left empty and older than the cutoff go too;
+    feeds and inputs stay. Recent posts older than posts_days are cleared."""
     assert DSN is not None
     url = "https://indexer-cleanup.example/feed"
+    lone = "https://indexer-cleanup.example/lone"  # only an old success: kept
+    posts = (RecentPost("https://indexer-cleanup.example/p", "P", "d"),)
     db = await Database.connect(DSN)
     conn = db._conn
     now = datetime.now(UTC)
     old = now.replace(year=now.year - 1)
+    week = now - timedelta(days=7)
     try:
-        await conn.execute("DELETE FROM inputs WHERE url = %s", (url,))
+        for u in (url, lone):
+            await conn.execute("DELETE FROM health_checks WHERE url = %s", (u,))
+            await conn.execute("DELETE FROM inputs WHERE url = %s", (u,))
         await db.upsert_inputs([InputRow(url, "src", "MIT")], {"MIT": 0})
         old_run = await db.start_run()
         await conn.execute("UPDATE runs SET started_at = %s WHERE id = %s", (old, old_run))
         await db.insert_check(old_run, CheckRow(url=url, checked_at=old, title="old"))
+        await db.insert_check(old_run, CheckRow(url=lone, checked_at=old, recent_posts=posts))
+        failed_old = await db.start_run()
+        await conn.execute("UPDATE runs SET started_at = %s WHERE id = %s", (old, failed_old))
+        await db.insert_check(failed_old, CheckRow(url=url, checked_at=old, error="timeout"))
+        ok_run = await db.start_run()
+        await db.insert_check(
+            ok_run, CheckRow(url=url, checked_at=week, title="week", recent_posts=posts)
+        )
         new_run = await db.start_run()
-        await db.insert_check(new_run, CheckRow(url=url, checked_at=now, title="new"))
+        await db.insert_check(
+            new_run, CheckRow(url=url, checked_at=now, title="new", recent_posts=posts)
+        )
+        failed_new = await db.start_run()
+        await db.insert_check(failed_new, CheckRow(url=url, checked_at=now, error="timeout"))
 
-        checks, runs = await db.delete_old_checks(8)
-        assert checks >= 1 and runs >= 1
-        cur = await conn.execute("SELECT run_id FROM health_checks WHERE url = %s", (url,))
-        assert await cur.fetchall() == [(new_run,)]
-        cur = await conn.execute("SELECT id FROM runs WHERE id = ANY(%s)", ([old_run, new_run],))
-        assert await cur.fetchall() == [(new_run,)]
+        checks, runs, cleared = await db.delete_old_checks(8, 3)
+        assert checks >= 3 and runs >= 1 and cleared >= 1
+        cur = await conn.execute(
+            "SELECT url, run_id, recent_posts IS NOT NULL FROM health_checks"
+            " WHERE url = ANY(%s) ORDER BY url, run_id",
+            ([url, lone],),
+        )
+        assert await cur.fetchall() == [
+            (url, new_run, True),  # the latest success, posts kept (less than 3 days old)
+            (url, failed_new, False),  # a recent failure
+            (lone, old_run, False),  # the only success, posts cleared
+        ]
+        cur = await conn.execute(
+            "SELECT id FROM runs WHERE id = ANY(%s) ORDER BY id",
+            ([old_run, failed_old, ok_run, new_run, failed_new],),
+        )
+        # ok_run is empty but recent; old_run still holds lone's check
+        assert await cur.fetchall() == [(old_run,), (ok_run,), (new_run,), (failed_new,)]
         cur = await conn.execute("SELECT title FROM feeds WHERE url = %s", (url,))
         assert await cur.fetchone() == ("new",)
         cur = await conn.execute("SELECT last_checked_at FROM inputs WHERE url = %s", (url,))
         assert await cur.fetchone() == (now,)
 
-        await conn.execute("DELETE FROM health_checks WHERE run_id = %s", (new_run,))
-        await conn.execute("DELETE FROM runs WHERE id = %s", (new_run,))
-        await conn.execute("DELETE FROM feeds WHERE url = %s", (url,))
+        runs_made = [old_run, failed_old, ok_run, new_run, failed_new]
+        await conn.execute("DELETE FROM health_checks WHERE run_id = ANY(%s)", (runs_made,))
+        await conn.execute("DELETE FROM runs WHERE id = ANY(%s)", (runs_made,))
+        await conn.execute("DELETE FROM feeds WHERE url = ANY(%s)", ([url, lone],))
         await conn.execute("DELETE FROM inputs WHERE url = %s", (url,))
     finally:
         await db.close()
@@ -401,6 +449,7 @@ async def test_models_match_the_schema() -> None:
         bool: {"boolean"},
         datetime: {"timestamp with time zone"},
         IPAddress: {"inet"},
+        JSON: {"jsonb"},
     }
     db = await Database.connect(DSN)
     try:
