@@ -106,7 +106,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 
 ## Stack and conventions
 
-- Source in `src/indexer/`: `cli.py`, `db.py`, `errors.py`, `export.py` (data files), `site.py` (HTML site), `sources.py` (sources.toml, list loading),
+- Source in `src/indexer/`: `cli.py`, `db.py` (queries: SQLAlchemy statements, plain SQL via `text()` for the Postgres-specific ones), `models.py` (the tables as SQLAlchemy classes, mirroring Liquibase; never create the schema), `errors.py`, `export.py` (data files), `site.py` (HTML site), `sources.py` (sources.toml, list loading),
   `topics.py` (topics from plain text: no RSS, no languages, no database; `TopicModel.topics(posts, title, subtitle)`),
   `language.py` (languages from plain text, same style; `LanguageModel.post_languages(texts)` / `.languages(texts)`) at the top;
   `net/` (guarded fetcher, URL validation, resolver, IP policy), `check/` (runner, feed parser), `survivors/` (Common Crawl, proposals).

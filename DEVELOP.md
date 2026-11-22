@@ -551,7 +551,8 @@ Source layout (`src/indexer/`):
 | path | contents |
 | --- | --- |
 | `cli.py` | the `indexer` commands |
-| `db.py` | all database reads and writes |
+| `db.py` | all database reads and writes (SQLAlchemy; plain SQL for the Postgres-specific queries) |
+| `models.py` | the tables as SQLAlchemy classes, mirroring the Liquibase schema |
 | `errors.py` | the error identifiers |
 | `export.py` | the published lists (data files) |
 | `site.py` | the website in `output/docs/`: prepares the data for the Jinja templates in `templates/` |

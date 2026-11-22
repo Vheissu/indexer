@@ -2,9 +2,13 @@
 
 import asyncio
 import os
+from collections.abc import AsyncIterator
 from datetime import UTC, datetime
+from typing import Any
 
+import psycopg
 import pytest
+from psycopg.conninfo import make_conninfo
 
 from indexer.check.runner import CheckRow
 from indexer.db import Database
@@ -14,7 +18,16 @@ DSN = os.environ.get("INDEXER_TEST_DATABASE_URL")
 pytestmark = pytest.mark.skipif(not DSN, reason="INDEXER_TEST_DATABASE_URL not set")
 
 
-async def test_run_and_row_round_trip() -> None:
+@pytest.fixture
+async def conn() -> AsyncIterator[psycopg.AsyncConnection[Any]]:
+    """A connection of the test's own for arranging and inspecting rows (autocommit, so the
+    Database's connection sees them)."""
+    assert DSN is not None
+    async with await psycopg.AsyncConnection.connect(DSN, autocommit=True) as c:
+        yield c
+
+
+async def test_run_and_row_round_trip(conn: psycopg.AsyncConnection[Any]) -> None:
     assert DSN is not None
     db = await Database.connect(DSN)
     try:
@@ -47,7 +60,6 @@ async def test_run_and_row_round_trip() -> None:
         )
         await db.insert_check(run_id, row)
         await db.finish_run(run_id)
-        conn = db._conn
         cur = await conn.execute(
             "SELECT url, item_count, redirected, error, etag,"
             " first_redirect_status, host(ip_address)"
@@ -81,12 +93,11 @@ async def test_run_and_row_round_trip() -> None:
         await db.close()
 
 
-async def test_feed_metadata_update_rules() -> None:
+async def test_feed_metadata_update_rules(conn: psycopg.AsyncConnection[Any]) -> None:
     """Parsed: replace all metadata. Failed: keep it."""
     assert DSN is not None
     url = "https://indexer-meta.example/feed"
     db = await Database.connect(DSN)
-    conn = db._conn
 
     async def feed() -> tuple[object, ...] | None:
         cur = await conn.execute(
@@ -127,14 +138,14 @@ async def test_feed_metadata_update_rules() -> None:
         await db.close()
 
 
-async def test_upsert_inputs_keeps_most_permissive() -> None:
+async def test_upsert_inputs_keeps_most_permissive(conn: psycopg.AsyncConnection[Any]) -> None:
     assert DSN is not None
     tiers = {"CC0-1.0": 0, "MIT": 1, "ISC": 1}
     url = "https://indexer-test.example/feed"
     other = "https://indexer-test.example/other"
     db = await Database.connect(DSN)
     try:
-        await db._conn.execute("DELETE FROM inputs WHERE url IN (%s, %s)", (url, other))
+        await conn.execute("DELETE FROM inputs WHERE url IN (%s, %s)", (url, other))
         assert await db.upsert_inputs([InputRow(url, "src-mit", "MIT")], tiers) == (1, 0)
         # equal tier: no change; less permissive: no change
         assert await db.upsert_inputs([InputRow(url, "src-isc", "ISC")], tiers) == (0, 0)
@@ -142,7 +153,7 @@ async def test_upsert_inputs_keeps_most_permissive() -> None:
         rows = [InputRow(url, "src-cc0", "CC0-1.0"), InputRow(other, "src-mit", "MIT")]
         assert await db.upsert_inputs(rows, tiers) == (1, 1)
         assert await db.upsert_inputs([InputRow(url, "src-mit", "MIT")], tiers) == (0, 0)
-        cur = await db._conn.execute(
+        cur = await conn.execute(
             "SELECT url, source, source_license, first_seen_at IS NOT NULL, last_checked_at"
             " FROM inputs WHERE url IN (%s, %s) ORDER BY url",
             (url, other),
@@ -151,16 +162,15 @@ async def test_upsert_inputs_keeps_most_permissive() -> None:
             (url, "src-cc0", "CC0-1.0", True, None),
             (other, "src-mit", "MIT", True, None),
         ]
-        await db._conn.execute("DELETE FROM inputs WHERE url IN (%s, %s)", (url, other))
+        await conn.execute("DELETE FROM inputs WHERE url IN (%s, %s)", (url, other))
     finally:
         await db.close()
 
 
-async def test_batch_selection_and_last_checked() -> None:
+async def test_batch_selection_and_last_checked(conn: psycopg.AsyncConnection[Any]) -> None:
     assert DSN is not None
     urls = [f"https://indexer-batch.example/{i}" for i in range(6)]
     db = await Database.connect(DSN)
-    conn = db._conn
     try:
         await conn.execute("DELETE FROM inputs WHERE url LIKE 'https://indexer-batch.example/%'")
         await db.upsert_inputs([InputRow(u, "src", "MIT") for u in urls], {"MIT": 0})
@@ -201,13 +211,12 @@ async def test_batch_selection_and_last_checked() -> None:
         await db.close()
 
 
-async def test_concurrent_inserts_share_one_connection() -> None:
+async def test_concurrent_inserts_share_one_connection(conn: psycopg.AsyncConnection[Any]) -> None:
     """Checks finish concurrently and all write through one connection; every row must be
     stored (regression: interleaved transactions failed with OutOfOrderTransactionNesting)."""
     assert DSN is not None
     urls = [f"https://indexer-concurrent.example/{i}" for i in range(40)]
     db = await Database.connect(DSN)
-    conn = db._conn
     try:
         await conn.execute("DELETE FROM inputs WHERE url = ANY(%s)", (urls,))
         await db.upsert_inputs([InputRow(u, "src", "MIT") for u in urls], {"MIT": 0})
@@ -237,12 +246,11 @@ async def test_concurrent_inserts_share_one_connection() -> None:
         await db.close()
 
 
-async def test_listed_feeds_rules() -> None:
+async def test_listed_feeds_rules(conn: psycopg.AsyncConnection[Any]) -> None:
     """Listed: a successful check within success_days, newest item younger than item_years."""
     assert DSN is not None
     base = "https://indexer-listed.example/"
     db = await Database.connect(DSN)
-    conn = db._conn
     now = datetime.now(UTC)
     old_item = now.replace(year=now.year - 6)
     try:
@@ -281,13 +289,12 @@ async def test_listed_feeds_rules() -> None:
         await db.close()
 
 
-async def test_delete_old_checks() -> None:
+async def test_delete_old_checks(conn: psycopg.AsyncConnection[Any]) -> None:
     """Checks older than the cutoff go; newer checks, feeds and inputs stay; runs left empty
     and older than the cutoff go too."""
     assert DSN is not None
     url = "https://indexer-cleanup.example/feed"
     db = await Database.connect(DSN)
-    conn = db._conn
     now = datetime.now(UTC)
     old = now.replace(year=now.year - 1)
     try:
@@ -318,14 +325,13 @@ async def test_delete_old_checks() -> None:
         await db.close()
 
 
-async def test_delete_urls_from_every_table() -> None:
+async def test_delete_urls_from_every_table(conn: psycopg.AsyncConnection[Any]) -> None:
     """The listed URLs go from inputs, health_checks and feeds; others stay; unknown URLs are
     simply not in the result."""
     assert DSN is not None
     gone, kept = "https://indexer-undo.example/feed", "https://indexer-undo.example/keep"
     missing = "https://indexer-undo.example/never"
     db = await Database.connect(DSN)
-    conn = db._conn
     try:
         for url in (gone, kept):
             await conn.execute("DELETE FROM health_checks WHERE url = %s", (url,))
@@ -354,37 +360,38 @@ async def test_delete_urls_from_every_table() -> None:
         await db.close()
 
 
-async def test_known_inputs() -> None:
+async def test_known_inputs(conn: psycopg.AsyncConnection[Any]) -> None:
     assert DSN is not None
     url = "https://indexer-test.example/known"
     db = await Database.connect(DSN)
     try:
-        await db._conn.execute("DELETE FROM inputs WHERE url = %s", (url,))
+        await conn.execute("DELETE FROM inputs WHERE url = %s", (url,))
         assert await db.known_inputs([url, "https://indexer-test.example/x"]) == set()
         await db.upsert_inputs([InputRow(url, "src", "MIT")], {"MIT": 0})
         assert await db.known_inputs([url, "https://indexer-test.example/x"]) == {url}
         assert await db.known_inputs([]) == set()
-        await db._conn.execute("DELETE FROM inputs WHERE url = %s", (url,))
+        await conn.execute("DELETE FROM inputs WHERE url = %s", (url,))
     finally:
         await db.close()
 
 
-async def test_drop_all_tables_drops_only_our_tables() -> None:
+async def test_drop_all_tables_drops_only_our_tables(
+    conn: psycopg.AsyncConnection[Any],
+) -> None:
     # In a scratch schema, so the migrated tables the other tests use are left alone.
     assert DSN is not None
-    db = await Database.connect(DSN)
+    await conn.execute("DROP SCHEMA IF EXISTS indexer_drop_test CASCADE")
+    await conn.execute("CREATE SCHEMA indexer_drop_test")
+    db = await Database.connect(make_conninfo(DSN, options="-c search_path=indexer_drop_test"))
     try:
-        await db._conn.execute("DROP SCHEMA IF EXISTS indexer_drop_test CASCADE")
-        await db._conn.execute("CREATE SCHEMA indexer_drop_test")
-        await db._conn.execute("SET search_path TO indexer_drop_test")
         for table in ("inputs", "runs", "databasechangelog", "someone_elses"):
-            await db._conn.execute(f"CREATE TABLE {table} (id int)")
+            await conn.execute(f"CREATE TABLE indexer_drop_test.{table} (id int)")
         assert await db.drop_all_tables() == ["databasechangelog", "inputs", "runs"]
-        cur = await db._conn.execute(
+        cur = await conn.execute(
             "SELECT tablename FROM pg_tables WHERE schemaname = 'indexer_drop_test'"
         )
         assert [r[0] for r in await cur.fetchall()] == ["someone_elses"]
         assert await db.drop_all_tables() == []  # nothing left to drop: no error
     finally:
-        await db._conn.execute("DROP SCHEMA IF EXISTS indexer_drop_test CASCADE")
+        await conn.execute("DROP SCHEMA IF EXISTS indexer_drop_test CASCADE")
         await db.close()
