@@ -15,6 +15,7 @@ file doesn't repeat them.
 | delete old checks | `indexer cleanup` | `cleanup` | `cleanup.yml` |
 | delete the URLs in `data/undo.txt` | `indexer undo data/undo.txt` | `undo` | `undo.yml` |
 | rebuild the topic matrix | `indexer embeddings` | `embeddings` | `embeddings.yml` |
+| cluster the sentences of recent posts | `indexer clusters --previews DIR` | `clusters` | `clusters.yml` |
 | **delete every table and all data** | `indexer drop-tables --yes` | `drop-tables` | `drop-tables.yml` (manual) |
 
 All state is in Postgres: locally the compose `postgres` service, in deployment Supabase. The
@@ -314,6 +315,34 @@ that report to FILE: cleanup.yml then opens an issue titled "Database over 300 M
 the maintainer, unless an issue with that title is already open. The issue is opened by a step on
 the runner; the cleanup container never holds the GitHub token. Deleted space is reused by
 Postgres rather than returned at once, so the size may only drop after autovacuum.
+
+## Sentence clusters
+
+`indexer clusters` groups the sentences of recent posts into 500 clusters, unsupervised: the post
+titles and descriptions of the published previews (only those with posts, which fill in as feeds
+are checked) and of the rejected survivors in `data/survivors/` (not those rejected as `unsafe`
+or with an excluded keyword, so none of that reaches the examples). Each distinct sentence of at
+least 3 words is embedded once with MiniLM; seeded spherical k-means makes the same sentences give
+the same clusters. It writes `data/clusters/`:
+
+| file | contents |
+| --- | --- |
+| `posts.npy` | the 500 centres, one unit-length row each, float16 (like an embedding set) |
+| `posts.json` | how they were built (model hashes, counts, the output commit) and per cluster its sentences, feeds, rejected feeds and top words |
+| `posts.md` | per cluster: counts, top words and the sentences closest to its centre (untrusted text, in code spans) |
+
+These files are not committed to develop (`.gitignore`): `clusters.yml` (Mondays, or by hand)
+checks out the output branch's previews into `published/`, runs the `clusters` service (no
+network, no database, no token) and pushes the files to the `binaries` branch. That branch mirrors
+the repository's paths and has no history: each run keeps its other files, replaces
+`data/clusters/`, and force-pushes one new commit. To use them in a checkout of develop:
+
+```sh
+git fetch origin binaries && git checkout origin/binaries -- data/clusters
+```
+
+Clusters are counted in feeds as well as sentences: a cluster whose sentences come from one or two
+feeds says little about other feeds.
 
 ## Undo: deleting listed URLs
 

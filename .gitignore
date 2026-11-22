@@ -14,5 +14,9 @@ supabase.env
 output/
 # Written by `indexer cleanup --report` in cleanup.yml
 report/
+# Written by `indexer clusters`; kept on the binaries branch, not here (clusters.yml)
+data/clusters/posts.*
+# clusters.yml's checkout of the output branch
+published/
 # The proposal filter survivors trains and keeps (training.cached_model); never commit models
 data/models/

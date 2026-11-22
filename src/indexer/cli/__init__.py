@@ -10,6 +10,7 @@ Commands, in pipeline order:
   topics       the topics of some text (no feed, no database): to try the topic model
   languages    the languages of some text (no feed, no database): to try the language model
   train        train the proposal filter on the reviewed proposal files in data/training.toml
+  clusters     cluster the sentences of recent posts (previews, rejected survivors) with k-means
 """
 
 import argparse
@@ -20,6 +21,7 @@ from typing import Protocol
 
 from indexer.cli import (
     cleanup,
+    clusters,
     drop_tables,
     embeddings,
     export,
@@ -57,6 +59,7 @@ COMMANDS: tuple[Command, ...] = (
     embeddings,
     train,
     languages,
+    clusters,
 )
 
 

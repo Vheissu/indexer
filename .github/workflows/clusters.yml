@@ -1,0 +1,65 @@
+# Clusters the sentences of recent posts into 500 clusters and pushes them to the `binaries`
+# branch (data/clusters/posts.{npy,json,md}), weekly or by hand. The sentences are the post titles
+# and descriptions of the published previews (the output branch; only previews with posts count,
+# and they fill in as feeds are checked) and of the rejected survivors in data/survivors.
+#
+# The container reads checked-out files only: no database, no network, no token. The push to
+# binaries happens on the runner: it keeps the branch's other files, replaces data/clusters/, and
+# force-pushes the result as one new commit (the branch has no history).
+name: clusters
+
+on:
+  schedule:
+    - cron: "41 6 * * 1" # Mondays, after the weekly publish
+  workflow_dispatch:
+
+permissions:
+  contents: write # to push the binaries branch
+
+concurrency:
+  group: clusters
+  cancel-in-progress: false
+
+jobs:
+  clusters:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check out the published previews
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: output
+          path: published
+          sparse-checkout: previews
+          persist-credentials: false
+
+      - name: Build image
+        run: docker compose build clusters
+
+      - name: Cluster
+        run: |
+          mkdir -p data/clusters
+          HOST_UID="$(id -u)" HOST_GID="$(id -g)" docker compose run --rm --no-deps -T clusters \
+            clusters --previews previews --output-commit "$(git -C published rev-parse HEAD)"
+
+      - name: Push to the binaries branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git fetch -q --depth 1 origin binaries
+          git worktree add -q --detach binaries FETCH_HEAD
+          rm -rf binaries/data/clusters
+          mkdir -p binaries/data/clusters
+          cp data/clusters/posts.npy data/clusters/posts.json data/clusters/posts.md \
+            binaries/data/clusters/
+          cd binaries
+          git checkout -q --orphan next
+          git add -A
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "Cluster the sentences of recent posts, $(date -u +%F)"
+          git push --force -q "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" next:binaries

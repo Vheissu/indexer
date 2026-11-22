@@ -16,6 +16,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 | publish | `indexer export` | `export` | `publish.yml` (after each successful check run; on push to develop changing src/indexer/publish/; Mondays as fallback; manual too. Re-enabled 2026-11-19 at the user's request) |
 | retention | `indexer cleanup` | `cleanup` | `cleanup.yml` (Sundays) |
 | embedding sets (`data/embeddings/`) | `indexer embeddings [NAME ...]` | `embeddings` | `embeddings.yml` (on push to develop changing a set's source, e.g. `data/topics/topics.txt`, or `Dockerfile`; manual) |
+| sentence clusters (`data/clusters/posts.{npy,json,md}` on the `binaries` branch) | `indexer clusters --previews DIR` | `clusters` | `clusters.yml` (Mondays; manual) |
 | delete listed URLs | `indexer undo data/undo.txt` | `undo` | `undo.yml` (on push to develop changing `data/undo.txt`; manual) |
 | start over (all data) | `indexer drop-tables --yes` | `drop-tables` | `drop-tables.yml` (manual, typed confirmation) |
 
@@ -106,6 +107,12 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   `topic/topics.txt`: the published topic names, one per line, most feeds first (ties by name). Topic directories and
   URLs use `export.topic_slug` (+ → plus, # → sharp: `c++` → `cplusplus`); pages show the name.
   publish.yml force-pushes output/ as one orphan commit to the `output` branch (no history, by design).
+- **Sentence clusters** (agreed 2026-11-22): 500 k-means clusters of MiniLM vectors of the sentences (≥ 3 words) of recent post
+  titles and descriptions: the output branch's previews with posts plus the rejected survivors in data/survivors (not `reason: unsafe`,
+  not with an excluded keyword). Written to `data/clusters/` (git-ignored on develop) and pushed by clusters.yml to the `binaries`
+  branch: generated binaries off develop, paths mirroring the repo's, no history (each workflow replaces only its own folder, keeps
+  the rest, force-pushes one commit); the push runs on the runner, the container has no token. Planned: the user marks unwanted
+  clusters (in develop, e.g. `data/clusters/unwanted.txt`) to tell spam assessment what to ignore; count feeds, not just sentences.
 - Cleanup keeps each URL's most recent successful check (whatever its age) plus 8 months of failed checks (refuses < 7), and clears
   `health_checks.recent_posts` (JSONB, the 3 most recent posts) on checks older than 3 days (agreed 2026-11-22). feeds and inputs are kept.
   It then reports the DB size; over 300 MB cleanup.yml opens an issue "Database over 300 MB" (if none with that title is open)
@@ -117,7 +124,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
 - Source in `src/indexer/`: `errors.py`, `sources.py` (sources.toml, list loading) at the top;
   `publish/` (`export.py`, the data files; `site.py`, the HTML site, with its Jinja templates, style.css and feedrule.svg),
   `text/` (models on plain text: no RSS, no database; `topics.py`, `TopicModel.topics(posts, title, subtitle)`; `language.py`,
-  `LanguageModel.post_languages(texts)` / `.languages(texts)`; `embeddings.py`, MiniLM and the embedding sets),
+  `LanguageModel.post_languages(texts)` / `.languages(texts)`; `embeddings.py`, MiniLM and the embedding sets; `clusters.py`, the sentence clusters),
   `cli/` (one module per command: `NAME`, `HELP`, `add_arguments(parser)`, `run(args)`, listed in `cli/__init__.py`'s `COMMANDS`; `common.py` for what several share; commands stay thin: parse, call a module, print), `net/` (guarded fetcher, URL validation, resolver, IP policy), `db/` (everything about the database: `database.py`, all SQL through psycopg; `sql/`, its statements, one per file, except the INSERTs built from the models; `liquibase/`, the changelog and Liquibase's Dockerfile, not Python; `models.py`, the tables as dataclasses: database.py builds column lists from them; a DB test checks them against the schema, so update them with every changeset), `check/` (runner, feed parser), `survivors/` (Common Crawl: `wat.py` only reads WAT files and imports nothing from indexer; proposals; `training.py`: the proposal filter).
 - Python 3.13 with **uv** (commit `uv.lock`), ruff (lint + format), type hints everywhere, `mypy --strict src`.
 - Tests use pytest with a local server, fake DNS and synthetic files. **Tests never touch the network.**

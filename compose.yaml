@@ -119,6 +119,23 @@ services:
       - ./data/embeddings:/work/data/embeddings # the sets (indexer embeddings)
     command: ["embeddings"]
 
+  # Clusters the sentences of recent posts into data/clusters/ (clusters.yml pushes them to the
+  # binaries branch): the previews of a checkout of the output branch in ./published, and the
+  # rejected survivors in data/survivors. No database, no network; the text is untrusted.
+  #   HOST_UID=$(id -u) HOST_GID=$(id -g) docker compose run --rm clusters
+  clusters:
+    image: indexer:0.1.0
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    network_mode: none
+    user: "${HOST_UID:-10001}:${HOST_GID:-10001}" # owns what it writes
+    volumes:
+      - ./data:/work/data:ro # survivors and sources.toml
+      - ./published/previews:/work/previews:ro # the output branch's previews
+      - ./data/clusters:/work/data/clusters # what it writes
+    command: ["clusters", "--previews", "previews"]
+
   # Deletes every indexer table and all data (needs --yes); the next liquibase run recreates
   # them empty:  docker compose run --rm drop-tables drop-tables --yes
   drop-tables:
