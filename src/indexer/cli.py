@@ -274,6 +274,11 @@ async def _survivors(args: argparse.Namespace) -> int:
     if new and args.training.exists():
         new, dropped = _filtered(new, result.crawl, started, args.training)
         steps.append(f"{dropped} dropped by the model trained on past reviews")
+    # Checked in random order, so this is also the expected share of all the advertised feed URLs.
+    steps.append(
+        f"{len(new)} proposed: {proposals.acceptance(len(new), result.checked)} of the checked,"
+        " a random sample of the advertised feed URLs"
+    )
     summary = (
         "; ".join(steps)
         + " (rules: "
