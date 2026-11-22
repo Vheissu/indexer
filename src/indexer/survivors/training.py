@@ -133,6 +133,9 @@ def read_examples(config: Path = TRAINING_CONFIG) -> list[Proposal]:
 
 def tokens(text: str) -> list[str]:
     """Lower-case ASCII words and pairs of neighbouring words ("press_release")."""
+    # The model can't read sentences; it only sees which "terms" a text contains. Single words
+    # lose their context ("press" alone is ambiguous), so we also add each pair of neighbouring
+    # words: "press_release" is a much stronger hint of a PR feed than "press" or "release".
     words = re.findall(r"[a-z0-9]+", text.lower())
     return words + [f"{a}_{b}" for a, b in pairwise(words)]
 
@@ -148,6 +151,10 @@ class ProposalModel:
         """Each text's probability of "accepted"."""
         if not texts:
             return []
+        # Using a trained model ("inference") is cheap: turn each text into the same kind of
+        # number row as during training, multiply by the learned weights to get one raw score
+        # per class, and let softmax turn those raw scores into probabilities that add up to 1.
+        # Column 0 is "accepted" (see CLASSES).
         x = _features([tokens(t) for t in texts], self.vocab, self.idf)
         return [float(p) for p in _softmax(_with_bias(x) @ self.weights)[:, 0]]
 
@@ -156,21 +163,34 @@ def train_model(config: Path = TRAINING_CONFIG) -> ProposalModel:
     """The model trained on every example of the files `config` lists, in memory; TrainingError
     unless both accepted and rejected examples occur."""
     examples = read_examples(config)
+    # Step 1, the answers: y holds what reviewers decided, one number per example (0 accepted,
+    # 1 rejected). The whole job of training is to find weights that reproduce these answers.
     y = np.array([_label(p) for p in examples], dtype=np.int64)
     if not (y == 0).any() or (y == 0).all():
         raise TrainingError("training needs both accepted and rejected examples")
+    # Step 2, the vocabulary: every term seen in at least MIN_DF examples gets a column number.
+    # A term seen only once can't teach anything general (it would just memorise that one feed).
+    # idf ("inverse document frequency") is a weight per term: rare terms get a high weight and
+    # terms in nearly every example ("the", "posts") a low one, because they tell feeds apart
+    # less well.
     docs = [tokens(p.text) for p in examples]
     df = Counter(term for doc in docs for term in set(doc))
     vocab = {t: i for i, t in enumerate(sorted(t for t, n in df.items() if n >= MIN_DF))}
     idf = np.array([np.log((1 + len(docs)) / (1 + df[t])) + 1 for t in vocab], dtype=np.float32)
     x = _features(docs, vocab, idf)
-    # the cut-off: scores of examples the model did not see (every FOLDS-th example per fold)
+    # Step 3, the cut-off. We want to drop about CUT of new proposals, so we need to know what
+    # scores new proposals get. Scoring the training examples would lie: the model has seen
+    # them and scores them too confidently. So we use cross-validation: split the examples into
+    # FOLDS groups, train on all groups but one, score the left-out group, and repeat for each
+    # group. Every example then has an honest score from a model that never saw it, and the
+    # CUT quantile of those scores is the threshold.
     held_out = np.zeros(len(examples), dtype=np.float32)
     folds = np.arange(len(examples)) % FOLDS
     for k in range(FOLDS):
         seen = folds != k
         w = _fit(x[seen], y[seen], len(CLASSES))
         held_out[~seen] = _softmax(_with_bias(x[~seen]) @ w)[:, 0]
+    # Step 4, the real model: trained on every example, since more examples make better weights.
     return ProposalModel(vocab, idf, _fit(x, y, len(CLASSES)), float(np.quantile(held_out, CUT)))
 
 
@@ -226,6 +246,11 @@ def _label(p: Proposal) -> int:
 
 def _features(docs: Sequence[list[str]], vocab: dict[str, int], idf: Matrix) -> Matrix:
     """TF-IDF rows: (1 + log count) * idf per known term, scaled to unit length."""
+    # Models work on numbers, not text, so each text becomes one row of a matrix with a column
+    # per vocabulary term. A cell says how much that term matters in that text: how often it
+    # occurs (log-damped, so a word repeated 10 times doesn't count 10 times as much) times the
+    # term's idf weight. Each row is then scaled to length 1, so long texts and short texts are
+    # compared on what they say, not on how much they say. Unknown terms are simply ignored.
     x = np.zeros((len(docs), len(vocab)), dtype=np.float32)
     for row, doc in enumerate(docs):
         for term, count in Counter(doc).items():
@@ -237,10 +262,15 @@ def _features(docs: Sequence[list[str]], vocab: dict[str, int], idf: Matrix) -> 
 
 
 def _with_bias(x: Matrix) -> Matrix:
+    # A constant column of ones. Its weight is the "bias": the score a text gets before any of
+    # its terms count, which lets the model learn that, say, most proposals are rejected.
     return np.hstack([x, np.ones((len(x), 1), dtype=np.float32)])
 
 
 def _softmax(z: Matrix) -> Matrix:
+    # Turns each row of raw scores into probabilities: exponentiate (all positive) and divide
+    # by the row's sum (they add up to 1). Subtracting the row's maximum first changes nothing
+    # in the result but keeps exp() from overflowing.
     z = z - z.max(axis=1, keepdims=True)
     e = np.exp(z)
     return np.asarray(e / e.sum(axis=1, keepdims=True), dtype=np.float32)
@@ -249,6 +279,19 @@ def _softmax(z: Matrix) -> Matrix:
 def _fit(x: Matrix, y: npt.NDArray[np.int64], classes: int) -> Matrix:
     """Multinomial logistic regression (weights + bias row): softmax cross-entropy with an L2
     penalty, full-batch Adam from zeros, so the same examples always give the same weights."""
+    # The model is just a weight matrix w: one row per term, one column per class. A text's
+    # raw score for a class is the sum of the weights of the terms it contains (a matrix
+    # product). Training starts with every weight at 0 and nudges them, STEPS times, in the
+    # direction that makes the reviewers' answers more likely:
+    #   - g, the gradient, says for each weight which way (and how strongly) to move it. For
+    #     this model it has a simple form: the features (transposed) times the error, where
+    #     the error is predicted probabilities minus answers, averaged over the examples.
+    #   - L2 * w is the penalty: it pulls every weight back towards 0, so the model can't put a
+    #     huge weight on one term that happened to appear in a few rejected feeds (overfitting).
+    #   - Adam is a popular way to choose the step size per weight: m is a running average of
+    #     the gradient (momentum), v of its square (how noisy it is), and 0.05 is the learning
+    #     rate. Dividing by (1 - 0.9**t) etc. corrects both averages for starting at zero.
+    # Nothing here is random, so the same examples always produce the same weights.
     xb = _with_bias(x)
     w = np.zeros((xb.shape[1], classes), dtype=np.float32)
     target = np.eye(classes, dtype=np.float32)[y]
