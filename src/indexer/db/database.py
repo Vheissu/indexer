@@ -6,6 +6,7 @@ import asyncio
 import functools
 import ipaddress
 from collections.abc import Mapping, Sequence
+from dataclasses import dataclass
 from datetime import UTC, datetime
 from importlib.resources import files
 from typing import Self
@@ -44,6 +45,14 @@ FEED_METADATA = [c for c in columns(Feed) if c not in ("url", "updated_at", "par
 
 # Tables `undo` deletes a URL from, in deletion order.
 UNDO_TABLES = ("health_checks", "feeds", "inputs")
+
+
+@dataclass(frozen=True, slots=True)
+class DatabaseSize:
+    total: int  # bytes, the whole database (what Supabase's limit counts)
+    tables: list[tuple[str, int]]  # this project's tables (not Liquibase's), largest first
+    posts_checks: int  # checks holding recent_posts
+    posts_bytes: int  # what those posts take, as stored
 
 
 class Database:
@@ -163,6 +172,17 @@ class Database:
             runs = cur.rowcount
             cur = await self._conn.execute(_query("clear_old_posts"), {"days": posts_days})
             return checks, runs, cur.rowcount
+
+    async def size(self) -> DatabaseSize:
+        """How big the database is, and what takes the space."""
+        cur = await self._conn.execute(_query("database_size"))
+        (total,) = await cur.fetchone() or (0,)
+        tables = [t for t in OWN_TABLES if not t.startswith("databasechangelog")]  # ~0 bytes
+        cur = await self._conn.execute(_query("table_sizes"), {"tables": tables})
+        sizes = [(name, size) for name, size in await cur.fetchall()]
+        cur = await self._conn.execute(_query("posts_size"))
+        posts_checks, posts_bytes = await cur.fetchone() or (0, 0)
+        return DatabaseSize(total, sizes, posts_checks, posts_bytes)
 
     async def _insert[R: (Run, HealthCheck, Input, Feed)](
         self, row: R, *, replace_on: str | None = None

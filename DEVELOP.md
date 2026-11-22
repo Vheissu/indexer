@@ -308,6 +308,13 @@ checks left. It then clears `recent_posts` on checks older than 3 days (`--posts
 most of a check's size. `feeds` (each feed's latest metadata) and `inputs` are kept. It refuses
 fewer than 7 months.
 
+It then prints the database's size and what takes it (each table, indexes included, and the recent
+posts). Over `--report-over-mb` (300) it prints a `::warning::`, and with `--report FILE` writes
+that report to FILE: cleanup.yml then opens an issue titled "Database over 300 MB" with it, tagging
+the maintainer, unless an issue with that title is already open. The issue is opened by a step on
+the runner; the cleanup container never holds the GitHub token. Deleted space is reused by
+Postgres rather than returned at once, so the size may only drop after autovacuum.
+
 ## Undo: deleting listed URLs
 
 `indexer undo data/undo.txt` deletes each URL in the file (one per line, `#` comments) from

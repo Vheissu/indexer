@@ -9,8 +9,10 @@ import pytest
 
 from indexer.check.runner import CheckRow
 from indexer.cli import parser
+from indexer.cli.cleanup import render_report
 from indexer.cli.load_inputs import print_failures, sources_exit_code
 from indexer.cli.run import log_failure
+from indexer.db.database import DatabaseSize
 
 
 def test_run_from_file() -> None:
@@ -146,3 +148,28 @@ def test_undo_missing_file(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -
 
     assert main(["undo", str(tmp_path / "nope.txt"), "--database-url", "postgresql://u"]) == 2
     assert "cannot read" in capsys.readouterr().err
+
+
+def test_cleanup_size_report() -> None:
+    size = DatabaseSize(
+        total=312_400_000,
+        tables=[("health_checks", 250_000_000), ("feeds", 40_000_000), ("inputs", 15_000_000)],
+        posts_checks=3812,
+        posts_bytes=6_100_000,
+    )
+    assert render_report(size, 300, 3) == (
+        "The database takes 312.4 MB, over the 300 MB threshold."
+        " Supabase's free tier allows 500 MB.\n"
+        "\n"
+        "| table | size (indexes included) |\n"
+        "| --- | ---: |\n"
+        "| health_checks | 250.0 MB |\n"
+        "| feeds | 40.0 MB |\n"
+        "| inputs | 15.0 MB |\n"
+        "| everything else (Postgres' and Liquibase's own tables) | 7.4 MB |\n"
+        "\n"
+        "Recent posts: 3,812 checks hold them, 6.1 MB of health_checks (cleared after 3 days).\n"
+    )
+    assert render_report(size, 400, 3).startswith(
+        "The database takes 312.4 MB (threshold: 400 MB)."
+    )

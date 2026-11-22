@@ -470,3 +470,17 @@ async def test_models_match_the_schema() -> None:
                 assert nullable == pg_nullable, (model.TABLE, name)
     finally:
         await db.close()
+
+
+async def test_size_reports_the_tables_and_posts() -> None:
+    assert DSN is not None
+    db = await Database.connect(DSN)
+    try:
+        size = await db.size()
+        names = [name for name, _ in size.tables]
+        assert {"health_checks", "feeds", "inputs", "runs"} <= set(names)
+        assert all(n > 0 for _, n in size.tables) and size.total > sum(n for _, n in size.tables)
+        assert [n for _, n in size.tables] == sorted((n for _, n in size.tables), reverse=True)
+        assert size.posts_checks >= 0 and size.posts_bytes >= 0
+    finally:
+        await db.close()

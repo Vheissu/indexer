@@ -1,6 +1,8 @@
-# Deletes health checks older than 8 months from Supabase, weekly, so the database stays within
-# its size limit (~4,000 checks a day). feeds (latest metadata per URL) and inputs are kept, and
-# the published lists only look back 6 months. Uses the same SUPABASE_DB_* secrets as input.yml.
+# Weekly, on Supabase: keeps each feed's latest successful check and 8 months of failed checks,
+# clears recent posts older than 3 days, then reports the database's size. Over LIMIT_MB, it opens
+# an issue with the report (unless one with the same title is open). The token stays on the
+# runner: the cleanup container only writes the report file. Uses the same SUPABASE_DB_* secrets
+# as input.yml.
 name: cleanup
 
 on:
@@ -10,6 +12,7 @@ on:
 
 permissions:
   contents: read
+  issues: write # to open the size issue
 
 concurrency:
   group: indexer-db
@@ -28,6 +31,7 @@ jobs:
         dbname=${{ secrets.SUPABASE_DB_NAME }} user=${{ secrets.SUPABASE_DB_USER }}
         sslmode=require
       PGPASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+      LIMIT_MB: 300
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -39,5 +43,24 @@ jobs:
       - name: Migrate schema
         run: docker compose run --rm --no-deps -T liquibase
 
-      - name: Delete old checks
-        run: docker compose run --rm --no-deps -T cleanup
+      - name: Delete old checks, report the size
+        run: |
+          mkdir -p report
+          HOST_UID="$(id -u)" HOST_GID="$(id -g)" docker compose run --rm --no-deps -T cleanup \
+            cleanup --months 8 --report-over-mb "$LIMIT_MB" --report report/database-size.md
+
+      - name: Open an issue if the database is too big
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: Database over ${{ env.LIMIT_MB }} MB
+        run: |
+          [ -s report/database-size.md ] || exit 0
+          open=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open \
+            --search "in:title \"$TITLE\"" --json title \
+            --jq 'map(select(.title == env.TITLE)) | length')
+          if [ "$open" -gt 0 ]; then
+            echo "an issue titled \"$TITLE\" is already open"
+            exit 0
+          fi
+          { cat report/database-size.md; echo; echo "cc @mh5"; } > report/issue.md
+          gh issue create --repo "$GITHUB_REPOSITORY" --title "$TITLE" --body-file report/issue.md

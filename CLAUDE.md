@@ -108,6 +108,8 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   publish.yml force-pushes output/ as one orphan commit to the `output` branch (no history, by design).
 - Cleanup keeps each URL's most recent successful check (whatever its age) plus 8 months of failed checks (refuses < 7), and clears
   `health_checks.recent_posts` (JSONB, the 3 most recent posts) on checks older than 3 days (agreed 2026-11-22). feeds and inputs are kept.
+  It then reports the DB size; over 300 MB cleanup.yml opens an issue "Database over 300 MB" (if none with that title is open)
+  with a simple report (table sizes, recent posts), tagging the user; the issue is created on the runner, never in the container.
 - Git: commit each verified step to `develop`; push only when asked. There is no `main` branch yet.
 
 ## Stack and conventions
@@ -132,7 +134,7 @@ Runs locally against the compose Postgres; deployed as GitHub Actions workflows 
   (`.env.example`; no password in the repo; `uv run` uses `PGPASSWORD`), and are overridden by env
   (`LIQUIBASE_COMMAND_URL/USERNAME/PASSWORD`, `DATABASE_URL`, `PGPASSWORD`). Workflows run
   `docker compose build` then `docker compose run --rm --no-deps -T liquibase|<service>`, with
-  `contents: read` (publish: write; survivors: write + `pull-requests: write`), `persist-credentials: false` and one shared concurrency group (except publish: read-only on the database, no concurrency limit).
+  `contents: read` (publish: write; survivors: write + `pull-requests: write`; cleanup: `issues: write`), `persist-credentials: false` and one shared concurrency group (except publish: read-only on the database, no concurrency limit).
   Supabase secrets `SUPABASE_DB_*`; use the IPv4 session pooler (runners have no IPv6).
 - All DB writes share one connection across concurrent checks; `Database` serializes them with a lock
   (concurrent transactions on one connection fail with OutOfOrderTransactionNesting).

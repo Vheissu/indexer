@@ -136,6 +136,9 @@ services:
   # Deletes health checks older than 8 months and exits. feeds and inputs are kept.
   cleanup:
     <<: *indexer
+    user: "${HOST_UID:-10001}:${HOST_GID:-10001}"
+    volumes:
+      - ./report:/work/report # cleanup.yml: the size report, when over the threshold
     command: ["cleanup", "--months", "8"]
 
 volumes:
