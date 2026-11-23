@@ -1,0 +1,8518 @@
+{
+ "rows": 500,
+ "dim": 384,
+ "dtype": "float16",
+ "model": "Xenova/all-MiniLM-L6-v2 (quantized)",
+ "model_sha256": "afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1",
+ "tokenizer_sha256": "da0e79933b9ed51798a3ae27893d3c5fa4a201126cef75586296df9b4d2c62a0",
+ "seed": 0,
+ "built_at": "2026-11-23T18:50:07+00:00",
+ "output_commit": "7686661a307d5494920a43e37ef4395c7a2fdc91",
+ "sentences": 68362,
+ "previews": 35089,
+ "previews_with_posts": 5847,
+ "listed_feeds": 5847,
+ "rejected_feeds": 502,
+ "clusters": [
+  {
+   "sentences": 70,
+   "feeds": 54,
+   "rejected_feeds": 1,
+   "top_words": [
+    "types",
+    "type",
+    "std",
+    "oxcaml",
+    "constructors",
+    "generics",
+    "polymorphic",
+    "dependent",
+    "qualifiers",
+    "impl"
+   ]
+  },
+  {
+   "sentences": 158,
+   "feeds": 107,
+   "rejected_feeds": 1,
+   "top_words": [
+    "vulnerability",
+    "vulnerabilities",
+    "security",
+    "cve-",
+    "unauthenticated",
+    "exploiting",
+    "cve",
+    "rce",
+    "php",
+    "remote"
+   ]
+  },
+  {
+   "sentences": 84,
+   "feeds": 61,
+   "rejected_feeds": 5,
+   "top_words": [
+    "stone",
+    "stones",
+    "jewellery",
+    "obsidian",
+    "geneva",
+    "emeralds",
+    "tiara",
+    "egyptian",
+    "gem",
+    "queen"
+   ]
+  },
+  {
+   "sentences": 193,
+   "feeds": 138,
+   "rejected_feeds": 0,
+   "top_words": [
+    "claude",
+    "code",
+    "codex",
+    "opus",
+    "skills",
+    "hooks",
+    "cherny",
+    "opencode",
+    "mode",
+    "boris"
+   ]
+  },
+  {
+   "sentences": 185,
+   "feeds": 151,
+   "rejected_feeds": 29,
+   "top_words": [
+    "birthday",
+    "celebrate",
+    "celebrating",
+    "anniversary",
+    "veterans",
+    "celebration",
+    "celebrated",
+    "tradition",
+    "parade",
+    "honoring"
+   ]
+  },
+  {
+   "sentences": 92,
+   "feeds": 72,
+   "rejected_feeds": 4,
+   "top_words": [
+    "fire",
+    "burning",
+    "burn",
+    "fireworks",
+    "burns",
+    "burned",
+    "camden",
+    "fireplace",
+    "smoke",
+    "fires"
+   ]
+  },
+  {
+   "sentences": 150,
+   "feeds": 129,
+   "rejected_feeds": 6,
+   "top_words": [
+    "hill",
+    "silent",
+    "utopia",
+    "clover",
+    "frankenfoot",
+    "guardians",
+    "reunion",
+    "mortal",
+    "sahara",
+    "fanfic"
+   ]
+  },
+  {
+   "sentences": 298,
+   "feeds": 215,
+   "rejected_feeds": 12,
+   "top_words": [
+    "game",
+    "games",
+    "gaming",
+    "play",
+    "arcade",
+    "playing",
+    "videogames",
+    "players",
+    "indie",
+    "zombies"
+   ]
+  },
+  {
+   "sentences": 122,
+   "feeds": 73,
+   "rejected_feeds": 4,
+   "top_words": [
+    "homelab",
+    "home",
+    "assistant",
+    "homekit",
+    "homebot",
+    "automation",
+    "smart",
+    "lab",
+    "ecowitt",
+    "homebridge"
+   ]
+  },
+  {
+   "sentences": 108,
+   "feeds": 72,
+   "rejected_feeds": 3,
+   "top_words": [
+    "film",
+    "movies",
+    "films",
+    "movie",
+    "cinema",
+    "sci-fi",
+    "filmmakers",
+    "hollywood",
+    "silent",
+    "festival"
+   ]
+  },
+  {
+   "sentences": 394,
+   "feeds": 302,
+   "rejected_feeds": 13,
+   "top_words": [
+    "companies",
+    "engineers",
+    "software",
+    "adoption",
+    "productivity",
+    "intelligence",
+    "industry",
+    "jobs",
+    "replace",
+    "enterprise"
+   ]
+  },
+  {
+   "sentences": 181,
+   "feeds": 107,
+   "rejected_feeds": 0,
+   "top_words": [
+    "git",
+    "commit",
+    "commits",
+    "gitlab",
+    "branch",
+    "repository",
+    "worktrees",
+    "repo",
+    "repositories",
+    "hashes"
+   ]
+  },
+  {
+   "sentences": 106,
+   "feeds": 91,
+   "rejected_feeds": 7,
+   "top_words": [
+    "decisions",
+    "decision",
+    "choice",
+    "choose",
+    "untaken",
+    "choices",
+    "fatigue",
+    "undone",
+    "consequences",
+    "regret"
+   ]
+  },
+  {
+   "sentences": 188,
+   "feeds": 173,
+   "rejected_feeds": 1,
+   "top_words": [
+    "year",
+    "excited",
+    "month",
+    "finished",
+    "exciting",
+    "done",
+    "project",
+    "breakdown",
+    "progress",
+    "finish"
+   ]
+  },
+  {
+   "sentences": 119,
+   "feeds": 76,
+   "rejected_feeds": 10,
+   "top_words": [
+    "court",
+    "jury",
+    "supreme",
+    "defendant",
+    "charges",
+    "justice",
+    "judge",
+    "ala",
+    "federal",
+    "litigation"
+   ]
+  },
+  {
+   "sentences": 192,
+   "feeds": 124,
+   "rejected_feeds": 5,
+   "top_words": [
+    "images",
+    "image",
+    "jpeg",
+    "photos",
+    "imagemagick",
+    "photo",
+    "compression",
+    "png",
+    "img",
+    "immich"
+   ]
+  },
+  {
+   "sentences": 89,
+   "feeds": 76,
+   "rejected_feeds": 8,
+   "top_words": [
+    "size",
+    "measurements",
+    "sizes",
+    "onedrive",
+    "dimensions",
+    "smaller",
+    "height",
+    "box-sizing",
+    "scd",
+    "thickness"
+   ]
+  },
+  {
+   "sentences": 154,
+   "feeds": 105,
+   "rejected_feeds": 15,
+   "top_words": [
+    "elizabeth",
+    "author",
+    "romance",
+    "woman",
+    "soyer",
+    "women",
+    "alessandra",
+    "feminist",
+    "ferreri",
+    "gentlewoman"
+   ]
+  },
+  {
+   "sentences": 136,
+   "feeds": 98,
+   "rejected_feeds": 9,
+   "top_words": [
+    "trees",
+    "plants",
+    "garden",
+    "tree",
+    "plant",
+    "soil",
+    "harvest",
+    "adirondack",
+    "gardening",
+    "spruce"
+   ]
+  },
+  {
+   "sentences": 76,
+   "feeds": 72,
+   "rejected_feeds": 3,
+   "top_words": [
+    "sometimes",
+    "always",
+    "usually",
+    "embarrassingly",
+    "irons",
+    "juxtaposition",
+    "me-",
+    "undertones",
+    "everybody's",
+    "snarky"
+   ]
+  },
+  {
+   "sentences": 132,
+   "feeds": 105,
+   "rejected_feeds": 6,
+   "top_words": [
+    "server",
+    "hosting",
+    "self-hosting",
+    "host",
+    "self-hosted",
+    "services",
+    "hosted",
+    "self",
+    "vps",
+    "wordpress"
+   ]
+  },
+  {
+   "sentences": 159,
+   "feeds": 114,
+   "rejected_feeds": 3,
+   "top_words": [
+    "email",
+    "mail",
+    "gmail",
+    "emails",
+    "smtp",
+    "inbox",
+    "account",
+    "reply",
+    "spam",
+    "e-mail"
+   ]
+  },
+  {
+   "sentences": 100,
+   "feeds": 81,
+   "rejected_feeds": 7,
+   "top_words": [
+    "shipping",
+    "ship",
+    "shipped",
+    "packaging",
+    "delivery",
+    "customs",
+    "fulfillment",
+    "inventory",
+    "package",
+    "goods"
+   ]
+  },
+  {
+   "sentences": 82,
+   "feeds": 55,
+   "rejected_feeds": 1,
+   "top_words": [
+    "simulation",
+    "mechanics",
+    "equations",
+    "simulations",
+    "lief",
+    "stable-diffusion",
+    "simulate",
+    "navier-stokes",
+    "hamiltonian",
+    "quadcopter"
+   ]
+  },
+  {
+   "sentences": 138,
+   "feeds": 63,
+   "rejected_feeds": 4,
+   "top_words": [
+    "les",
+    "une",
+    "des",
+    "que",
+    "pour",
+    "est",
+    "sur",
+    "qui",
+    "avec",
+    "und"
+   ]
+  },
+  {
+   "sentences": 166,
+   "feeds": 126,
+   "rejected_feeds": 6,
+   "top_words": [
+    "chatgpt",
+    "chat",
+    "chatbot",
+    "discord",
+    "telegram",
+    "chatbots",
+    "whatsapp",
+    "openai",
+    "bot",
+    "chats"
+   ]
+  },
+  {
+   "sentences": 104,
+   "feeds": 54,
+   "rejected_feeds": 5,
+   "top_words": [
+    "arthh",
+    "atiihkuw",
+    "padh",
+    "word-by-word",
+    "heo",
+    "short-form",
+    "arch",
+    "hire",
+    "adfection",
+    "aosc"
+   ]
+  },
+  {
+   "sentences": 129,
+   "feeds": 76,
+   "rejected_feeds": 10,
+   "top_words": [
+    "cats",
+    "cat",
+    "dog",
+    "dogs",
+    "pets",
+    "pet",
+    "kitty",
+    "animal",
+    "breeds",
+    "canine"
+   ]
+  },
+  {
+   "sentences": 193,
+   "feeds": 182,
+   "rejected_feeds": 2,
+   "top_words": [
+    "went",
+    "anyway",
+    "pulled",
+    "decided",
+    "wanted",
+    "cleaned",
+    "didn't",
+    "took",
+    "alwa",
+    "anyhoo"
+   ]
+  },
+  {
+   "sentences": 70,
+   "feeds": 46,
+   "rejected_feeds": 0,
+   "top_words": [
+    "ssh",
+    "remote",
+    "vagrant",
+    "keys",
+    "openssh",
+    "ansible",
+    "key",
+    "bitwarden's",
+    "hardware-bound",
+    "heeler"
+   ]
+  },
+  {
+   "sentences": 76,
+   "feeds": 51,
+   "rejected_feeds": 0,
+   "top_words": [
+    "shader",
+    "illumination",
+    "laser",
+    "gradient",
+    "shaders",
+    "rendering",
+    "stylized",
+    "gaussian",
+    "surfel-based",
+    "degine"
+   ]
+  },
+  {
+   "sentences": 95,
+   "feeds": 79,
+   "rejected_feeds": 11,
+   "top_words": [
+    "theatre",
+    "audience",
+    "scene",
+    "theater",
+    "immersive",
+    "festival",
+    "film",
+    "performed",
+    "auditorium",
+    "theatrical"
+   ]
+  },
+  {
+   "sentences": 168,
+   "feeds": 162,
+   "rejected_feeds": 2,
+   "top_words": [
+    "wasn't",
+    "happened",
+    "situation",
+    "agein",
+    "belay",
+    "bridg",
+    "enervated",
+    "furious",
+    "grups",
+    "mesocarp"
+   ]
+  },
+  {
+   "sentences": 91,
+   "feeds": 51,
+   "rejected_feeds": 2,
+   "top_words": [
+    "poem",
+    "poems",
+    "poetry",
+    "poet",
+    "dunsany",
+    "milligan",
+    "pinpin",
+    "sidebar",
+    "graduate",
+    "peters"
+   ]
+  },
+  {
+   "sentences": 89,
+   "feeds": 41,
+   "rejected_feeds": 0,
+   "top_words": [
+    "nixos",
+    "nix",
+    "nixpkgs",
+    "flake",
+    "nix-darwin",
+    "derivation",
+    "flakes",
+    "guix",
+    "packages",
+    "dependency"
+   ]
+  },
+  {
+   "sentences": 132,
+   "feeds": 127,
+   "rejected_feeds": 2,
+   "top_words": [
+    "happy",
+    "enjoyed",
+    "liked",
+    "pretty",
+    "good",
+    "genuinely",
+    "perfect",
+    "anyw",
+    "flavorful",
+    "hotly"
+   ]
+  },
+  {
+   "sentences": 93,
+   "feeds": 62,
+   "rejected_feeds": 2,
+   "top_words": [
+    "rust",
+    "rust's",
+    "rewrite",
+    "async",
+    "borrowchecker",
+    "kloc",
+    "steel",
+    "curl",
+    "flight",
+    "beta"
+   ]
+  },
+  {
+   "sentences": 174,
+   "feeds": 135,
+   "rejected_feeds": 5,
+   "top_words": [
+    "video",
+    "youtube",
+    "videos",
+    "channel",
+    "youtuber",
+    "watched",
+    "audio",
+    "viewers",
+    "freshrss",
+    "realesed"
+   ]
+  },
+  {
+   "sentences": 283,
+   "feeds": 235,
+   "rejected_feeds": 2,
+   "top_words": [
+    "code",
+    "coding",
+    "advent",
+    "codebase",
+    "anymore",
+    "bottleneck",
+    "writing",
+    "cheap",
+    "non-code",
+    "low-code"
+   ]
+  },
+  {
+   "sentences": 175,
+   "feeds": 151,
+   "rejected_feeds": 4,
+   "top_words": [
+    "learning",
+    "learn",
+    "learned",
+    "beginner",
+    "taught",
+    "learnt",
+    "learns",
+    "ccs",
+    "justinguitar's",
+    "learningi"
+   ]
+  },
+  {
+   "sentences": 102,
+   "feeds": 75,
+   "rejected_feeds": 3,
+   "top_words": [
+    "storage",
+    "nas",
+    "disk",
+    "smb",
+    "hdd",
+    "synology",
+    "volume",
+    "raidz",
+    "subvolume",
+    "turris"
+   ]
+  },
+  {
+   "sentences": 158,
+   "feeds": 105,
+   "rejected_feeds": 10,
+   "top_words": [
+    "boat",
+    "sea",
+    "cruise",
+    "coast",
+    "sail",
+    "marine",
+    "boats",
+    "islands",
+    "ship",
+    "harbourguides"
+   ]
+  },
+  {
+   "sentences": 96,
+   "feeds": 66,
+   "rejected_feeds": 12,
+   "top_words": [
+    "coli",
+    "biology",
+    "chemotaxis",
+    "organ",
+    "fungi",
+    "mitochondrial",
+    "disease",
+    "baffling",
+    "facial",
+    "skin"
+   ]
+  },
+  {
+   "sentences": 34,
+   "feeds": 25,
+   "rejected_feeds": 1,
+   "top_words": [
+    "highlighting",
+    "highlight",
+    "tree-sitter",
+    "syntax",
+    "emacs",
+    "maccy",
+    "highlights",
+    "indicators",
+    "keywords",
+    "custom"
+   ]
+  },
+  {
+   "sentences": 98,
+   "feeds": 86,
+   "rejected_feeds": 11,
+   "top_words": [
+    "percentage",
+    "rate",
+    "percent",
+    "injury",
+    "settlement",
+    "half-staff",
+    "average",
+    "odds",
+    "amounts",
+    "conversion"
+   ]
+  },
+  {
+   "sentences": 183,
+   "feeds": 152,
+   "rejected_feeds": 7,
+   "top_words": [
+    "data",
+    "dataset",
+    "centers",
+    "database",
+    "rows",
+    "log-compacted",
+    "ritavan",
+    "survey",
+    "excel",
+    "raw"
+   ]
+  },
+  {
+   "sentences": 160,
+   "feeds": 107,
+   "rejected_feeds": 5,
+   "top_words": [
+    "search",
+    "seo",
+    "google",
+    "searches",
+    "autoresearch",
+    "geo",
+    "semantic",
+    "keyword",
+    "engines",
+    "index"
+   ]
+  },
+  {
+   "sentences": 90,
+   "feeds": 61,
+   "rejected_feeds": 5,
+   "top_words": [
+    "board",
+    "boards",
+    "pcb",
+    "pcie",
+    "pcbs",
+    "thunderbolt",
+    "enclosure",
+    "helios",
+    "proteus",
+    "rack"
+   ]
+  },
+  {
+   "sentences": 125,
+   "feeds": 120,
+   "rejected_feeds": 1,
+   "top_words": [
+    "hard",
+    "easy",
+    "harder",
+    "simple",
+    "challenging",
+    "spoiler",
+    "hardest",
+    "struggle",
+    "straightforward",
+    "difficult"
+   ]
+  },
+  {
+   "sentences": 91,
+   "feeds": 61,
+   "rejected_feeds": 12,
+   "top_words": [
+    "flight",
+    "airport",
+    "flights",
+    "airlines",
+    "faa",
+    "ambulance",
+    "airline",
+    "airports",
+    "icelandair",
+    "air"
+   ]
+  },
+  {
+   "sentences": 149,
+   "feeds": 130,
+   "rejected_feeds": 4,
+   "top_words": [
+    "talk",
+    "conversation",
+    "talks",
+    "speaker",
+    "conversations",
+    "speech",
+    "speaking",
+    "chat",
+    "talked",
+    "slides"
+   ]
+  },
+  {
+   "sentences": 70,
+   "feeds": 51,
+   "rejected_feeds": 9,
+   "top_words": [
+    "license",
+    "trademark",
+    "licensing",
+    "rights",
+    "licence",
+    "licensed",
+    "licenses",
+    "driver's",
+    "exempt",
+    "patents"
+   ]
+  },
+  {
+   "sentences": 135,
+   "feeds": 106,
+   "rejected_feeds": 10,
+   "top_words": [
+    "road",
+    "roads",
+    "traffic",
+    "lane",
+    "parking",
+    "highway",
+    "lanes",
+    "sidewalks",
+    "streets",
+    "roundabouts"
+   ]
+  },
+  {
+   "sentences": 198,
+   "feeds": 188,
+   "rejected_feeds": 0,
+   "top_words": [
+    "yeah",
+    "that's",
+    "hyperbole",
+    "exaggeration",
+    "least",
+    "ridiculous",
+    "rant",
+    "ohhh",
+    "straightened",
+    "fuck"
+   ]
+  },
+  {
+   "sentences": 68,
+   "feeds": 57,
+   "rejected_feeds": 0,
+   "top_words": [
+    "prompt",
+    "prompts",
+    "promptfoo",
+    "lazy",
+    "proof",
+    "prompting",
+    "breakdown",
+    "artisanally",
+    "dusting",
+    "happin"
+   ]
+  },
+  {
+   "sentences": 64,
+   "feeds": 46,
+   "rejected_feeds": 5,
+   "top_words": [
+    "capacitor",
+    "charging",
+    "back-ups",
+    "power",
+    "usb-c",
+    "apc",
+    "capacitors",
+    "charger",
+    "pspi",
+    "modules"
+   ]
+  },
+  {
+   "sentences": 204,
+   "feeds": 155,
+   "rejected_feeds": 16,
+   "top_words": [
+    "travel",
+    "trip",
+    "traveling",
+    "vacation",
+    "tour",
+    "visit",
+    "itinerary",
+    "traveller",
+    "destination",
+    "trips"
+   ]
+  },
+  {
+   "sentences": 52,
+   "feeds": 47,
+   "rejected_feeds": 5,
+   "top_words": [
+    "free",
+    "unlimited",
+    "estate",
+    "hardly",
+    "cgc",
+    "equate",
+    "free-of-charge",
+    "free-rider",
+    "freeourfeeds",
+    "graeber"
+   ]
+  },
+  {
+   "sentences": 114,
+   "feeds": 91,
+   "rejected_feeds": 29,
+   "top_words": [
+    "recruitment",
+    "certificate",
+    "cmg",
+    "commission",
+    "renewal",
+    "porta",
+    "grant",
+    "ministry",
+    "certificates",
+    "ccsip"
+   ]
+  },
+  {
+   "sentences": 244,
+   "feeds": 224,
+   "rejected_feeds": 7,
+   "top_words": [
+    "years",
+    "months",
+    "year",
+    "later",
+    "thirteen",
+    "since",
+    "omarchy",
+    "squirro",
+    "passed",
+    "long"
+   ]
+  },
+  {
+   "sentences": 162,
+   "feeds": 94,
+   "rejected_feeds": 2,
+   "top_words": [
+    "japan",
+    "japanese",
+    "kyoto",
+    "tokyo",
+    "slang",
+    "samurai",
+    "anime",
+    "geiko",
+    "matcha",
+    "hideyoshi"
+   ]
+  },
+  {
+   "sentences": 81,
+   "feeds": 54,
+   "rejected_feeds": 1,
+   "top_words": [
+    "dungeon",
+    "goblins",
+    "post-it",
+    "sandbox",
+    "cave",
+    "caves",
+    "monsters",
+    "staircase",
+    "played",
+    "wilderness"
+   ]
+  },
+  {
+   "sentences": 125,
+   "feeds": 103,
+   "rejected_feeds": 10,
+   "top_words": [
+    "italian",
+    "paris",
+    "matisse",
+    "france",
+    "proviene",
+    "wine",
+    "monet",
+    "diaries",
+    "french",
+    "amersfoort"
+   ]
+  },
+  {
+   "sentences": 86,
+   "feeds": 67,
+   "rejected_feeds": 4,
+   "top_words": [
+    "radio",
+    "listening",
+    "listen",
+    "music",
+    "headphones",
+    "podcasts",
+    "station",
+    "songs",
+    "worm",
+    "car"
+   ]
+  },
+  {
+   "sentences": 71,
+   "feeds": 46,
+   "rejected_feeds": 4,
+   "top_words": [
+    "electrical",
+    "wiring",
+    "trrs",
+    "amplifiers",
+    "amp",
+    "circuits",
+    "voltage",
+    "fiber",
+    "sockets",
+    "cr-v"
+   ]
+  },
+  {
+   "sentences": 180,
+   "feeds": 163,
+   "rejected_feeds": 3,
+   "top_words": [
+    "creative",
+    "creativity",
+    "ideas",
+    "weaving",
+    "doodles",
+    "scribbles",
+    "idea",
+    "reinventing",
+    "faster-than-light",
+    "ftlm"
+   ]
+  },
+  {
+   "sentences": 189,
+   "feeds": 161,
+   "rejected_feeds": 21,
+   "top_words": [
+    "conference",
+    "meetings",
+    "conferences",
+    "event",
+    "meeting",
+    "attend",
+    "attendees",
+    "gathering",
+    "invited",
+    "join"
+   ]
+  },
+  {
+   "sentences": 118,
+   "feeds": 96,
+   "rejected_feeds": 5,
+   "top_words": [
+    "page",
+    "pages",
+    "linkable",
+    "pagers",
+    "anchors",
+    "updating",
+    "ids",
+    "pagecord",
+    "scroll",
+    "landing"
+   ]
+  },
+  {
+   "sentences": 124,
+   "feeds": 87,
+   "rejected_feeds": 4,
+   "top_words": [
+    "geometry",
+    "triangle",
+    "tessellation",
+    "shapes",
+    "hyperbolic",
+    "shape",
+    "curve",
+    "extrude",
+    "angle",
+    "corners"
+   ]
+  },
+  {
+   "sentences": 128,
+   "feeds": 105,
+   "rejected_feeds": 8,
+   "top_words": [
+    "eyes",
+    "eye",
+    "stare",
+    "face",
+    "glasses",
+    "mask",
+    "fbt",
+    "oelklaus",
+    "mouth",
+    "blindness"
+   ]
+  },
+  {
+   "sentences": 211,
+   "feeds": 186,
+   "rejected_feeds": 10,
+   "top_words": [
+    "day",
+    "today",
+    "saturday",
+    "dailyprog",
+    "friday",
+    "morning",
+    "days",
+    "yesterday",
+    "tuesday",
+    "sunday"
+   ]
+  },
+  {
+   "sentences": 159,
+   "feeds": 144,
+   "rejected_feeds": 3,
+   "top_words": [
+    "soon",
+    "coming",
+    "hope",
+    "re-rail",
+    "happening",
+    "happen",
+    "going",
+    "next",
+    "disappoint",
+    "we'll"
+   ]
+  },
+  {
+   "sentences": 84,
+   "feeds": 63,
+   "rejected_feeds": 1,
+   "top_words": [
+    "funeral",
+    "boy",
+    "son",
+    "father",
+    "his",
+    "brother",
+    "dad",
+    "didn't",
+    "overnight",
+    "guy"
+   ]
+  },
+  {
+   "sentences": 245,
+   "feeds": 199,
+   "rejected_feeds": 16,
+   "top_words": [
+    "content",
+    "search",
+    "ai-generated",
+    "google",
+    "visibility",
+    "ai-powered",
+    "similarweb",
+    "perplexity",
+    "research",
+    "slop"
+   ]
+  },
+  {
+   "sentences": 141,
+   "feeds": 92,
+   "rejected_feeds": 5,
+   "top_words": [
+    "authentication",
+    "oauth",
+    "auth",
+    "credentials",
+    "account",
+    "sso",
+    "oidc",
+    "authorization",
+    "hotwire",
+    "openid"
+   ]
+  },
+  {
+   "sentences": 180,
+   "feeds": 152,
+   "rejected_feeds": 0,
+   "top_words": [
+    "job",
+    "career",
+    "retirement",
+    "quit",
+    "quitting",
+    "freelancing",
+    "finishing",
+    "promoted",
+    "left",
+    "transition"
+   ]
+  },
+  {
+   "sentences": 59,
+   "feeds": 41,
+   "rejected_feeds": 0,
+   "top_words": [
+    "react",
+    "components",
+    "react's",
+    "vite",
+    "tanstack",
+    "router",
+    "component",
+    "typescript",
+    "server-side",
+    "useformstatus"
+   ]
+  },
+  {
+   "sentences": 77,
+   "feeds": 61,
+   "rejected_feeds": 3,
+   "top_words": [
+    "weight",
+    "lift",
+    "lifting",
+    "bone",
+    "heavy",
+    "neck",
+    "fat",
+    "bmi",
+    "facelift",
+    "pounds"
+   ]
+  },
+  {
+   "sentences": 108,
+   "feeds": 85,
+   "rejected_feeds": 7,
+   "top_words": [
+    "relationship",
+    "dating",
+    "sex",
+    "marriage",
+    "woman",
+    "relationships",
+    "married",
+    "partner",
+    "men",
+    "couples"
+   ]
+  },
+  {
+   "sentences": 207,
+   "feeds": 180,
+   "rejected_feeds": 5,
+   "top_words": [
+    "tech",
+    "engineers",
+    "engineering",
+    "technology",
+    "engineer",
+    "technical",
+    "silicon",
+    "infrastructure",
+    "valley",
+    "principal"
+   ]
+  },
+  {
+   "sentences": 99,
+   "feeds": 54,
+   "rejected_feeds": 0,
+   "top_words": [
+    "kubernetes",
+    "cluster",
+    "pod",
+    "forgejo",
+    "kubelet",
+    "replik",
+    "deploying",
+    "ipv",
+    "containerd",
+    "workloads"
+   ]
+  },
+  {
+   "sentences": 201,
+   "feeds": 115,
+   "rejected_feeds": 7,
+   "top_words": [
+    "audio",
+    "sound",
+    "dac",
+    "pipewire",
+    "speaker",
+    "stereo",
+    "fuzz",
+    "analog",
+    "ogg",
+    "pulseaudio"
+   ]
+  },
+  {
+   "sentences": 158,
+   "feeds": 106,
+   "rejected_feeds": 17,
+   "top_words": [
+    "food",
+    "meal",
+    "restaurants",
+    "restaurant",
+    "turkey",
+    "lunch",
+    "waiter",
+    "burger",
+    "cuisine",
+    "dining"
+   ]
+  },
+  {
+   "sentences": 118,
+   "feeds": 82,
+   "rejected_feeds": 3,
+   "top_words": [
+    "mushroom",
+    "mushrooms",
+    "garden",
+    "yellow",
+    "fungi",
+    "weed",
+    "bestiary",
+    "clovers",
+    "four-leaf",
+    "malitiae"
+   ]
+  },
+  {
+   "sentences": 158,
+   "feeds": 99,
+   "rejected_feeds": 1,
+   "top_words": [
+    "docker",
+    "container",
+    "containers",
+    "synology",
+    "compose",
+    "jellyfin",
+    "registry",
+    "docker's",
+    "fedora",
+    "images"
+   ]
+  },
+  {
+   "sentences": 63,
+   "feeds": 41,
+   "rejected_feeds": 1,
+   "top_words": [
+    "calculator",
+    "julia",
+    "piecewise-defined",
+    "expressions",
+    "calculus",
+    "jigsawing",
+    "system-f",
+    "function",
+    "arithmetic",
+    "functions"
+   ]
+  },
+  {
+   "sentences": 133,
+   "feeds": 80,
+   "rejected_feeds": 16,
+   "top_words": [
+    "finals",
+    "league",
+    "championship",
+    "novak",
+    "tournament",
+    "cup",
+    "saturday",
+    "football",
+    "wins",
+    "bearded"
+   ]
+  },
+  {
+   "sentences": 91,
+   "feeds": 49,
+   "rejected_feeds": 9,
+   "top_words": [
+    "transit",
+    "transport",
+    "metro",
+    "aiken",
+    "brt",
+    "roofing",
+    "transportation",
+    "buses",
+    "utilities",
+    "ahmedabad"
+   ]
+  },
+  {
+   "sentences": 140,
+   "feeds": 106,
+   "rejected_feeds": 0,
+   "top_words": [
+    "terminal",
+    "bash",
+    "command",
+    "commands",
+    "shell",
+    "emulator",
+    "script",
+    "powershell",
+    "unix",
+    "scripts"
+   ]
+  },
+  {
+   "sentences": 58,
+   "feeds": 34,
+   "rejected_feeds": 4,
+   "top_words": [
+    "gta",
+    "theft",
+    "auto",
+    "grand",
+    "rockstar",
+    "day-one",
+    "sim",
+    "sales",
+    "silentpatch",
+    "take-two"
+   ]
+  },
+  {
+   "sentences": 124,
+   "feeds": 87,
+   "rejected_feeds": 4,
+   "top_words": [
+    "windows",
+    "mde",
+    "desktop",
+    "windowshade",
+    "linux",
+    "install",
+    "comparison",
+    "microsoft",
+    "redux",
+    "samba"
+   ]
+  },
+  {
+   "sentences": 208,
+   "feeds": 186,
+   "rejected_feeds": 5,
+   "top_words": [
+    "doing",
+    "procrastination",
+    "goals",
+    "hobby",
+    "habits",
+    "overwhelmed",
+    "myself",
+    "life",
+    "routine",
+    "rut"
+   ]
+  },
+  {
+   "sentences": 73,
+   "feeds": 56,
+   "rejected_feeds": 14,
+   "top_words": [
+    "midterm",
+    "elections",
+    "voter",
+    "delegates",
+    "election",
+    "senate",
+    "district",
+    "conservation",
+    "hearing",
+    "virginia"
+   ]
+  },
+  {
+   "sentences": 59,
+   "feeds": 37,
+   "rejected_feeds": 0,
+   "top_words": [
+    "node",
+    "npm",
+    "mongodb",
+    "nodes",
+    "grapheneos",
+    "nodejs",
+    "pipe",
+    "colanode",
+    "gato",
+    "mermaidjs"
+   ]
+  },
+  {
+   "sentences": 168,
+   "feeds": 117,
+   "rejected_feeds": 11,
+   "top_words": [
+    "music",
+    "musical",
+    "band",
+    "musicians",
+    "artists",
+    "genre",
+    "pop",
+    "rock",
+    "genres",
+    "songs"
+   ]
+  },
+  {
+   "sentences": 143,
+   "feeds": 111,
+   "rejected_feeds": 2,
+   "top_words": [
+    "files",
+    "file",
+    "directory",
+    "folder",
+    "folders",
+    "dotfiles",
+    "permissions",
+    "aime",
+    "makefiles",
+    "unix"
+   ]
+  },
+  {
+   "sentences": 117,
+   "feeds": 74,
+   "rejected_feeds": 1,
+   "top_words": [
+    "map",
+    "maps",
+    "mapping",
+    "mapsnap",
+    "bainbridge",
+    "gitrmap",
+    "sitemap",
+    "interactive",
+    "gcj-",
+    "mcnally"
+   ]
+  },
+  {
+   "sentences": 73,
+   "feeds": 64,
+   "rejected_feeds": 5,
+   "top_words": [
+    "jj-fzf",
+    "fzf",
+    "integrable",
+    "fuzzy",
+    "fomo",
+    "fsync",
+    "mathbb",
+    "durability",
+    "square",
+    "ordering"
+   ]
+  },
+  {
+   "sentences": 115,
+   "feeds": 85,
+   "rejected_feeds": 22,
+   "top_words": [
+    "prize",
+    "awards",
+    "award",
+    "winners",
+    "winner",
+    "finalists",
+    "nominated",
+    "awarding",
+    "aonsa",
+    "won"
+   ]
+  },
+  {
+   "sentences": 140,
+   "feeds": 98,
+   "rejected_feeds": 4,
+   "top_words": [
+    "api",
+    "apis",
+    "json",
+    "costly",
+    "openapi",
+    "owasp",
+    "requests",
+    "http",
+    "keys",
+    "appsec"
+   ]
+  },
+  {
+   "sentences": 108,
+   "feeds": 72,
+   "rejected_feeds": 9,
+   "top_words": [
+    "football",
+    "cup",
+    "arsenal",
+    "soccer",
+    "everton",
+    "moyes",
+    "williamson",
+    "league",
+    "liverpool",
+    "manchester"
+   ]
+  },
+  {
+   "sentences": 135,
+   "feeds": 130,
+   "rejected_feeds": 0,
+   "top_words": [
+    "move",
+    "escalator",
+    "fast",
+    "spinning",
+    "yo-yo",
+    "backward",
+    "moving",
+    "trajectory",
+    "drag",
+    "gesture"
+   ]
+  },
+  {
+   "sentences": 78,
+   "feeds": 57,
+   "rejected_feeds": 3,
+   "top_words": [
+    "quadratic",
+    "square",
+    "sudoku",
+    "factor",
+    "solve",
+    "squares",
+    "binomial",
+    "packings",
+    "trinomial",
+    "coefficients"
+   ]
+  },
+  {
+   "sentences": 93,
+   "feeds": 75,
+   "rejected_feeds": 13,
+   "top_words": [
+    "federal",
+    "funding",
+    "congress",
+    "inflation",
+    "trillion",
+    "billion",
+    "lawmakers",
+    "economic",
+    "stocks",
+    "million"
+   ]
+  },
+  {
+   "sentences": 151,
+   "feeds": 129,
+   "rejected_feeds": 15,
+   "top_words": [
+    "professor",
+    "scientist",
+    "memoriam",
+    "william",
+    "his",
+    "banneker",
+    "elder",
+    "philip",
+    "benjamin",
+    "robert"
+   ]
+  },
+  {
+   "sentences": 129,
+   "feeds": 99,
+   "rejected_feeds": 12,
+   "top_words": [
+    "child",
+    "kids",
+    "children",
+    "kid",
+    "youngest",
+    "daughter",
+    "five-year-old",
+    "son",
+    "camp",
+    "baby"
+   ]
+  },
+  {
+   "sentences": 110,
+   "feeds": 100,
+   "rejected_feeds": 6,
+   "top_words": [
+    "friends",
+    "friend",
+    "friendships",
+    "friendslop",
+    "ilead",
+    "acquaintance",
+    "friendship",
+    "strangers",
+    "married",
+    "meet"
+   ]
+  },
+  {
+   "sentences": 154,
+   "feeds": 128,
+   "rejected_feeds": 5,
+   "top_words": [
+    "dark",
+    "fantasy",
+    "zelda",
+    "manga",
+    "grimdark",
+    "twilight",
+    "dragon",
+    "witch",
+    "sinister",
+    "doom"
+   ]
+  },
+  {
+   "sentences": 72,
+   "feeds": 41,
+   "rejected_feeds": 2,
+   "top_words": [
+    "comic",
+    "comics",
+    "marvel",
+    "peanuts",
+    "cartoon",
+    "garfield",
+    "con",
+    "hourly",
+    "cartoons",
+    "newspaper"
+   ]
+  },
+  {
+   "sentences": 83,
+   "feeds": 40,
+   "rejected_feeds": 3,
+   "top_words": [
+    "russian",
+    "ukraine",
+    "russia",
+    "putin",
+    "benghazi",
+    "corvette",
+    "invasion",
+    "ukrainian",
+    "soviet",
+    "apollo-soyuz"
+   ]
+  },
+  {
+   "sentences": 144,
+   "feeds": 120,
+   "rejected_feeds": 11,
+   "top_words": [
+    "grief",
+    "suffering",
+    "resilience",
+    "despair",
+    "sadness",
+    "stillness",
+    "healing",
+    "compassion",
+    "memories",
+    "anger"
+   ]
+  },
+  {
+   "sentences": 107,
+   "feeds": 68,
+   "rejected_feeds": 8,
+   "top_words": [
+    "electricity",
+    "energy",
+    "solar",
+    "power",
+    "lynas",
+    "electric",
+    "renewable",
+    "datacenter",
+    "faq",
+    "grid"
+   ]
+  },
+  {
+   "sentences": 110,
+   "feeds": 97,
+   "rejected_feeds": 2,
+   "top_words": [
+    "atomic",
+    "scientists",
+    "nosedive",
+    "shuttle",
+    "expeditions",
+    "learjet",
+    "ufo",
+    "trivia",
+    "comet",
+    "aerial"
+   ]
+  },
+  {
+   "sentences": 194,
+   "feeds": 144,
+   "rejected_feeds": 5,
+   "top_words": [
+    "social",
+    "media",
+    "twitter",
+    "facebook",
+    "instagram",
+    "tweets",
+    "microblogging",
+    "internet",
+    "tweet",
+    "accounts"
+   ]
+  },
+  {
+   "sentences": 120,
+   "feeds": 94,
+   "rejected_feeds": 6,
+   "top_words": [
+    "huts",
+    "map",
+    "bivouacs",
+    "located",
+    "peaks",
+    "north",
+    "area",
+    "islands",
+    "land",
+    "morocco"
+   ]
+  },
+  {
+   "sentences": 59,
+   "feeds": 54,
+   "rejected_feeds": 2,
+   "top_words": [
+    "math",
+    "markpdf",
+    "calculation",
+    "calculators",
+    "integer",
+    "algebra",
+    "arithmetic",
+    "mathematical",
+    "maths",
+    "alternates"
+   ]
+  },
+  {
+   "sentences": 494,
+   "feeds": 387,
+   "rejected_feeds": 23,
+   "top_words": [
+    "books",
+    "reflections",
+    "year",
+    "recap",
+    "favorite",
+    "review",
+    "higgins",
+    "travel",
+    "music",
+    "future"
+   ]
+  },
+  {
+   "sentences": 180,
+   "feeds": 157,
+   "rejected_feeds": 8,
+   "top_words": [
+    "book",
+    "chapter",
+    "notes",
+    "summaries",
+    "lecture",
+    "paper",
+    "pages",
+    "distaff",
+    "chapters",
+    "slides"
+   ]
+  },
+  {
+   "sentences": 214,
+   "feeds": 117,
+   "rejected_feeds": 1,
+   "top_words": [
+    "python",
+    "django",
+    "morsels",
+    "pycon",
+    "restricted-python-to-c++",
+    "asyncio",
+    "ipython",
+    "shed",
+    "dict",
+    "nameerror"
+   ]
+  },
+  {
+   "sentences": 415,
+   "feeds": 295,
+   "rejected_feeds": 9,
+   "top_words": [
+    "intelligence",
+    "artificial",
+    "human",
+    "humans",
+    "superintelligent",
+    "generative",
+    "superintelligence",
+    "education",
+    "age",
+    "era"
+   ]
+  },
+  {
+   "sentences": 200,
+   "feeds": 155,
+   "rejected_feeds": 6,
+   "top_words": [
+    "site",
+    "website",
+    "static",
+    "generator",
+    "wordpress",
+    "websites",
+    "sites",
+    "redesign",
+    "rebuilt",
+    "zola"
+   ]
+  },
+  {
+   "sentences": 258,
+   "feeds": 211,
+   "rejected_feeds": 4,
+   "top_words": [
+    "writing",
+    "write",
+    "writer",
+    "fiction",
+    "written",
+    "wrote",
+    "pen",
+    "style",
+    "appendalltext",
+    "seshan"
+   ]
+  },
+  {
+   "sentences": 97,
+   "feeds": 68,
+   "rejected_feeds": 3,
+   "top_words": [
+    "lens",
+    "aperture",
+    "photography",
+    "exposures",
+    "camera",
+    "digitizing",
+    "thypoch",
+    "shutter",
+    "effect",
+    "vision"
+   ]
+  },
+  {
+   "sentences": 118,
+   "feeds": 111,
+   "rejected_feeds": 6,
+   "top_words": [
+    "click",
+    "icon",
+    "button",
+    "locate",
+    "banner",
+    "redeem",
+    "unsubscribe",
+    "tour",
+    "icons",
+    "page"
+   ]
+  },
+  {
+   "sentences": 102,
+   "feeds": 66,
+   "rejected_feeds": 8,
+   "top_words": [
+    "currencies",
+    "blockchain",
+    "bitcoin",
+    "currency",
+    "bank",
+    "transferrable",
+    "cryptocurrency",
+    "payments",
+    "dollar",
+    "wallet"
+   ]
+  },
+  {
+   "sentences": 170,
+   "feeds": 133,
+   "rejected_feeds": 4,
+   "top_words": [
+    "richard",
+    "john",
+    "henry",
+    "hankins",
+    "man",
+    "his",
+    "newman",
+    "charles",
+    "writings",
+    "writer"
+   ]
+  },
+  {
+   "sentences": 129,
+   "feeds": 89,
+   "rejected_feeds": 5,
+   "top_words": [
+    "marathon",
+    "running",
+    "runners",
+    "run",
+    "race",
+    "runner",
+    "triathlon",
+    "races",
+    "racing",
+    "marathons"
+   ]
+  },
+  {
+   "sentences": 207,
+   "feeds": 181,
+   "rejected_feeds": 2,
+   "top_words": [
+    "continue",
+    "reading",
+    "min",
+    "goodreads",
+    "reader",
+    "read",
+    "christian",
+    "e-reader",
+    "passages",
+    "frankly"
+   ]
+  },
+  {
+   "sentences": 100,
+   "feeds": 76,
+   "rejected_feeds": 6,
+   "top_words": [
+    "analytics",
+    "statistics",
+    "stats",
+    "statcounter",
+    "llc",
+    "bluesky",
+    "data",
+    "cookieless",
+    "jacquemin",
+    "estimation"
+   ]
+  },
+  {
+   "sentences": 171,
+   "feeds": 126,
+   "rejected_feeds": 2,
+   "top_words": [
+    "hardware",
+    "amiga",
+    "commodore",
+    "cpu",
+    "intel",
+    "chip",
+    "computing",
+    "processor",
+    "architecture",
+    "computer"
+   ]
+  },
+  {
+   "sentences": 196,
+   "feeds": 142,
+   "rejected_feeds": 15,
+   "top_words": [
+    "founder",
+    "venture",
+    "startup",
+    "founders",
+    "startups",
+    "entrepreneurs",
+    "investors",
+    "company",
+    "entrepreneurship",
+    "companies"
+   ]
+  },
+  {
+   "sentences": 137,
+   "feeds": 87,
+   "rejected_feeds": 10,
+   "top_words": [
+    "fitness",
+    "training",
+    "gym",
+    "workout",
+    "workouts",
+    "exercise",
+    "weight",
+    "routine",
+    "exercises",
+    "fit"
+   ]
+  },
+  {
+   "sentences": 134,
+   "feeds": 107,
+   "rejected_feeds": 4,
+   "top_words": [
+    "tests",
+    "test",
+    "testing",
+    "exam",
+    "statistical",
+    "tested",
+    "unit",
+    "exams",
+    "flaky",
+    "t-test"
+   ]
+  },
+  {
+   "sentences": 260,
+   "feeds": 204,
+   "rejected_feeds": 23,
+   "top_words": [
+    "october",
+    "update",
+    "november",
+    "august",
+    "july",
+    "september",
+    "newsletter",
+    "updated",
+    "links",
+    "january"
+   ]
+  },
+  {
+   "sentences": 215,
+   "feeds": 196,
+   "rejected_feeds": 3,
+   "top_words": [
+    "writing",
+    "write",
+    "journal",
+    "journaling",
+    "essays",
+    "wrote",
+    "articles",
+    "diary",
+    "written",
+    "autobiography"
+   ]
+  },
+  {
+   "sentences": 134,
+   "feeds": 91,
+   "rejected_feeds": 2,
+   "top_words": [
+    "keyboard",
+    "keyboards",
+    "keys",
+    "mechanical",
+    "zsa",
+    "key",
+    "pando",
+    "keychron",
+    "split",
+    "keybindings"
+   ]
+  },
+  {
+   "sentences": 123,
+   "feeds": 100,
+   "rejected_feeds": 9,
+   "top_words": [
+    "display",
+    "screen",
+    "window",
+    "monitor",
+    "monitors",
+    "split-flap",
+    "windows",
+    "dpi",
+    "tailwind",
+    "screens"
+   ]
+  },
+  {
+   "sentences": 121,
+   "feeds": 92,
+   "rejected_feeds": 3,
+   "top_words": [
+    "video",
+    "slides",
+    "videos",
+    "ffmpeg",
+    "editing",
+    "presentation",
+    "todd's",
+    "demo",
+    "captions",
+    "presentations"
+   ]
+  },
+  {
+   "sentences": 158,
+   "feeds": 129,
+   "rejected_feeds": 6,
+   "top_words": [
+    "scientist",
+    "aristotle",
+    "science",
+    "scientific",
+    "biology",
+    "research",
+    "blumenberg",
+    "knowledge",
+    "hans",
+    "inventions"
+   ]
+  },
+  {
+   "sentences": 63,
+   "feeds": 44,
+   "rejected_feeds": 6,
+   "top_words": [
+    "flowers",
+    "flower",
+    "bloom",
+    "blossoms",
+    "wedding",
+    "cherry",
+    "austin",
+    "blooms",
+    "dahlias",
+    "perfumes"
+   ]
+  },
+  {
+   "sentences": 88,
+   "feeds": 60,
+   "rejected_feeds": 10,
+   "top_words": [
+    "police",
+    "violence",
+    "sheriff",
+    "crime",
+    "domestic",
+    "cops",
+    "murder",
+    "policing",
+    "gunshot",
+    "murders"
+   ]
+  },
+  {
+   "sentences": 124,
+   "feeds": 86,
+   "rejected_feeds": 2,
+   "top_words": [
+    "chart",
+    "charts",
+    "graph",
+    "graphs",
+    "visualization",
+    "genealogy",
+    "visualizations",
+    "interactive",
+    "interactivity",
+    "plots"
+   ]
+  },
+  {
+   "sentences": 140,
+   "feeds": 81,
+   "rejected_feeds": 2,
+   "top_words": [
+    "css",
+    "theme",
+    "styling",
+    "html",
+    "selectors",
+    "stylex",
+    "style",
+    "color",
+    "tailwind",
+    "themes"
+   ]
+  },
+  {
+   "sentences": 107,
+   "feeds": 84,
+   "rejected_feeds": 12,
+   "top_words": [
+    "subscription",
+    "subscriptions",
+    "ads",
+    "streaming",
+    "membership",
+    "paid",
+    "premium",
+    "hulu",
+    "subscribers",
+    "onlyfans"
+   ]
+  },
+  {
+   "sentences": 112,
+   "feeds": 95,
+   "rejected_feeds": 6,
+   "top_words": [
+    "forest",
+    "waltham",
+    "fence",
+    "grass",
+    "stumps",
+    "backyard",
+    "garage",
+    "yard",
+    "rock",
+    "flail"
+   ]
+  },
+  {
+   "sentences": 77,
+   "feeds": 61,
+   "rejected_feeds": 2,
+   "top_words": [
+    "metrics",
+    "measure",
+    "metric",
+    "scale",
+    "scaling",
+    "lap",
+    "measuring",
+    "intervals",
+    "stat",
+    "duration"
+   ]
+  },
+  {
+   "sentences": 109,
+   "feeds": 59,
+   "rejected_feeds": 14,
+   "top_words": [
+    "church",
+    "monastery",
+    "mary",
+    "sermon",
+    "ministry",
+    "parish",
+    "bishop",
+    "communion",
+    "anglicans",
+    "diocese"
+   ]
+  },
+  {
+   "sentences": 146,
+   "feeds": 135,
+   "rejected_feeds": 4,
+   "top_words": [
+    "coincidence",
+    "surprise",
+    "believe",
+    "maybe",
+    "guess",
+    "yes",
+    "surprising",
+    "surprised",
+    "seem",
+    "sure"
+   ]
+  },
+  {
+   "sentences": 468,
+   "feeds": 294,
+   "rejected_feeds": 3,
+   "top_words": [
+    "agents",
+    "agent",
+    "agentic",
+    "multi-agent",
+    "agent's",
+    "workflow",
+    "agency",
+    "agent-to-agent",
+    "mcp",
+    "agent-shell"
+   ]
+  },
+  {
+   "sentences": 59,
+   "feeds": 31,
+   "rejected_feeds": 4,
+   "top_words": [
+    "tax",
+    "taxes",
+    "deduction",
+    "adjustments",
+    "income",
+    "bunching",
+    "turkey",
+    "inflation",
+    "odissey",
+    "provisions"
+   ]
+  },
+  {
+   "sentences": 146,
+   "feeds": 78,
+   "rejected_feeds": 7,
+   "top_words": [
+    "jesus",
+    "bible",
+    "god",
+    "testament",
+    "verses",
+    "holy",
+    "christ",
+    "matthew",
+    "verse",
+    "parable"
+   ]
+  },
+  {
+   "sentences": 98,
+   "feeds": 85,
+   "rejected_feeds": 8,
+   "top_words": [
+    "incident",
+    "akamai",
+    "leaked",
+    "reporting",
+    "report",
+    "redacted",
+    "gnrd",
+    "abivax",
+    "penalties",
+    "revision"
+   ]
+  },
+  {
+   "sentences": 94,
+   "feeds": 58,
+   "rejected_feeds": 0,
+   "top_words": [
+    "golang",
+    "goja",
+    "go's",
+    "golang-migrate",
+    "jackc",
+    "truthiness",
+    "func",
+    "bundled",
+    "fullstack",
+    "gource"
+   ]
+  },
+  {
+   "sentences": 215,
+   "feeds": 135,
+   "rejected_feeds": 3,
+   "top_words": [
+    "she's",
+    "herself",
+    "ignominy",
+    "scrubbing",
+    "jennifer",
+    "returned",
+    "opponent",
+    "piggy",
+    "tern",
+    "lydia"
+   ]
+  },
+  {
+   "sentences": 114,
+   "feeds": 82,
+   "rejected_feeds": 2,
+   "top_words": [
+    "malware",
+    "bots",
+    "bot",
+    "ads",
+    "scrapers",
+    "pi-hole",
+    "websites",
+    "scraper",
+    "hacked",
+    "bgp"
+   ]
+  },
+  {
+   "sentences": 113,
+   "feeds": 83,
+   "rejected_feeds": 15,
+   "top_words": [
+    "equity",
+    "valuation",
+    "valuations",
+    "money",
+    "market",
+    "value",
+    "pays",
+    "gambling",
+    "cfds",
+    "ertech"
+   ]
+  },
+  {
+   "sentences": 142,
+   "feeds": 97,
+   "rejected_feeds": 12,
+   "top_words": [
+    "parent",
+    "parents",
+    "children",
+    "child",
+    "baby",
+    "parental",
+    "mom",
+    "family",
+    "mother",
+    "parenting"
+   ]
+  },
+  {
+   "sentences": 157,
+   "feeds": 143,
+   "rejected_feeds": 2,
+   "top_words": [
+    "links",
+    "documentation",
+    "articles",
+    "manuals",
+    "references",
+    "readme",
+    "notes",
+    "curated",
+    "information",
+    "gotchas"
+   ]
+  },
+  {
+   "sentences": 88,
+   "feeds": 83,
+   "rejected_feeds": 5,
+   "top_words": [
+    "dam",
+    "personalization",
+    "lack",
+    "organisation",
+    "institutions",
+    "aren't",
+    "hasn't",
+    "absence",
+    "charismatic",
+    "darragh"
+   ]
+  },
+  {
+   "sentences": 122,
+   "feeds": 116,
+   "rejected_feeds": 4,
+   "top_words": [
+    "functionality",
+    "default",
+    "features",
+    "plugins",
+    "feature",
+    "users",
+    "themes",
+    "user",
+    "annoyance",
+    "allows"
+   ]
+  },
+  {
+   "sentences": 134,
+   "feeds": 107,
+   "rejected_feeds": 4,
+   "top_words": [
+    "depression",
+    "mental",
+    "adhd",
+    "anxiety",
+    "health",
+    "disorder",
+    "depressive",
+    "stress",
+    "dopamine",
+    "psychopathology"
+   ]
+  },
+  {
+   "sentences": 72,
+   "feeds": 61,
+   "rejected_feeds": 0,
+   "top_words": [
+    "attention",
+    "distractions",
+    "focus",
+    "distract",
+    "distraction",
+    "hve",
+    "residuals",
+    "economy",
+    "hindered",
+    "linear"
+   ]
+  },
+  {
+   "sentences": 184,
+   "feeds": 154,
+   "rejected_feeds": 5,
+   "top_words": [
+    "security",
+    "agents",
+    "safety",
+    "dangerous",
+    "vulnerability",
+    "cyber",
+    "cyberattacks",
+    "cybersecurity",
+    "risks",
+    "bengio"
+   ]
+  },
+  {
+   "sentences": 54,
+   "feeds": 34,
+   "rejected_feeds": 1,
+   "top_words": [
+    "neovim",
+    "vim",
+    "nvim",
+    "treesitter",
+    "editor",
+    "vscode",
+    "virtuoso",
+    "vsphere",
+    "parsers",
+    "rhel"
+   ]
+  },
+  {
+   "sentences": 81,
+   "feeds": 80,
+   "rejected_feeds": 1,
+   "top_words": [
+    "happens",
+    "happen",
+    "scenes",
+    "reset",
+    "acpi",
+    "atroph",
+    "banked",
+    "betrays",
+    "counterproductive",
+    "decently"
+   ]
+  },
+  {
+   "sentences": 87,
+   "feeds": 80,
+   "rejected_feeds": 2,
+   "top_words": [
+    "questions",
+    "ask",
+    "quiz",
+    "answers",
+    "asked",
+    "questioning",
+    "question",
+    "interviewer",
+    "answer",
+    "a-sync"
+   ]
+  },
+  {
+   "sentences": 215,
+   "feeds": 188,
+   "rejected_feeds": 16,
+   "top_words": [
+    "thank",
+    "welcome",
+    "hello",
+    "happy",
+    "thanks",
+    "hope",
+    "glad",
+    "mornight",
+    "rosecurify",
+    "hwc"
+   ]
+  },
+  {
+   "sentences": 182,
+   "feeds": 155,
+   "rejected_feeds": 8,
+   "top_words": [
+    "automation",
+    "engineering",
+    "system",
+    "workflow",
+    "systems",
+    "sap",
+    "roles",
+    "entity",
+    "requirements",
+    "methodology"
+   ]
+  },
+  {
+   "sentences": 77,
+   "feeds": 44,
+   "rejected_feeds": 0,
+   "top_words": [
+    "password",
+    "passwords",
+    "zkpass",
+    "credentials",
+    "bcrypt",
+    "makepass",
+    "sudo",
+    "manager",
+    "ithibati",
+    "keepass"
+   ]
+  },
+  {
+   "sentences": 188,
+   "feeds": 136,
+   "rejected_feeds": 1,
+   "top_words": [
+    "editor",
+    "notes",
+    "text",
+    "note-taking",
+    "permacomputer",
+    "documents",
+    "document",
+    "latex",
+    "obsidian",
+    "documentation"
+   ]
+  },
+  {
+   "sentences": 234,
+   "feeds": 158,
+   "rejected_feeds": 5,
+   "top_words": [
+    "played",
+    "games",
+    "game",
+    "rpg",
+    "playing",
+    "play",
+    "warcraft",
+    "gamer",
+    "shooter",
+    "rpgs"
+   ]
+  },
+  {
+   "sentences": 217,
+   "feeds": 127,
+   "rejected_feeds": 9,
+   "top_words": [
+    "album",
+    "songs",
+    "albums",
+    "music",
+    "band",
+    "beatles",
+    "favourite",
+    "artist",
+    "ear",
+    "song"
+   ]
+  },
+  {
+   "sentences": 124,
+   "feeds": 65,
+   "rejected_feeds": 4,
+   "top_words": [
+    "china",
+    "chinese",
+    "shenzhen",
+    "lao",
+    "cai",
+    "hanoi",
+    "vietnam",
+    "taiwan",
+    "jinping",
+    "wulai"
+   ]
+  },
+  {
+   "sentences": 171,
+   "feeds": 129,
+   "rejected_feeds": 2,
+   "top_words": [
+    "benchmark",
+    "performance",
+    "benchmarking",
+    "cpu",
+    "cores",
+    "benchmarks",
+    "cache",
+    "caches",
+    "cpus",
+    "throughput"
+   ]
+  },
+  {
+   "sentences": 112,
+   "feeds": 102,
+   "rejected_feeds": 11,
+   "top_words": [
+    "kane",
+    "besiktas",
+    "daime",
+    "italiano",
+    "konyaspor",
+    "naka-bashira",
+    "ndidi",
+    "superimposed",
+    "variart",
+    "herdr"
+   ]
+  },
+  {
+   "sentences": 146,
+   "feeds": 124,
+   "rejected_feeds": 1,
+   "top_words": [
+    "libraries",
+    "library",
+    "frameworks",
+    "dependency",
+    "dependencies",
+    "cli",
+    "codex",
+    "lisp",
+    "dloom",
+    "gunboat"
+   ]
+  },
+  {
+   "sentences": 204,
+   "feeds": 182,
+   "rejected_feeds": 4,
+   "top_words": [
+    "projects",
+    "project",
+    "customelon",
+    "attempted",
+    "bars'",
+    "finished",
+    "taskfile",
+    "side",
+    "finish",
+    "ideas"
+   ]
+  },
+  {
+   "sentences": 131,
+   "feeds": 107,
+   "rejected_feeds": 1,
+   "top_words": [
+    "packages",
+    "package",
+    "repository",
+    "repo",
+    "installs",
+    "dependency",
+    "dependencies",
+    "installed",
+    "updates",
+    "conda"
+   ]
+  },
+  {
+   "sentences": 83,
+   "feeds": 69,
+   "rejected_feeds": 2,
+   "top_words": [
+    "interruption",
+    "pause",
+    "alert",
+    "button",
+    "closes",
+    "shortcut",
+    "tabs",
+    "dialogs",
+    "emptying",
+    "pyqt"
+   ]
+  },
+  {
+   "sentences": 109,
+   "feeds": 99,
+   "rejected_feeds": 2,
+   "top_words": [
+    "archive",
+    "pypi",
+    "pdf",
+    "archives",
+    "www-talk",
+    "publisher",
+    "atlas",
+    "inc",
+    "available",
+    "link"
+   ]
+  },
+  {
+   "sentences": 106,
+   "feeds": 74,
+   "rejected_feeds": 1,
+   "top_words": [
+    "http",
+    "proxy",
+    "url",
+    "request",
+    "requests",
+    "header",
+    "curl",
+    "reverse",
+    "nginx",
+    "fmproxy"
+   ]
+  },
+  {
+   "sentences": 60,
+   "feeds": 47,
+   "rejected_feeds": 0,
+   "top_words": [
+    "sed",
+    "function",
+    "functions",
+    "file",
+    "stream",
+    "gnu",
+    "shebang",
+    "arguments",
+    "ifs",
+    "stdout"
+   ]
+  },
+  {
+   "sentences": 150,
+   "feeds": 135,
+   "rejected_feeds": 3,
+   "top_words": [
+    "work",
+    "busy",
+    "working",
+    "productivity",
+    "hours",
+    "tasks",
+    "task",
+    "job",
+    "gigs",
+    "colleagues"
+   ]
+  },
+  {
+   "sentences": 274,
+   "feeds": 204,
+   "rejected_feeds": 2,
+   "top_words": [
+    "software",
+    "engineering",
+    "development",
+    "engineers",
+    "developers",
+    "programs",
+    "acm",
+    "agile",
+    "engineer",
+    "well-attended"
+   ]
+  },
+  {
+   "sentences": 72,
+   "feeds": 70,
+   "rejected_feeds": 8,
+   "top_words": [
+    "wait",
+    "delayed",
+    "waiting",
+    "timeout",
+    "deadlines",
+    "deadline",
+    "arrive",
+    "alerts",
+    "late",
+    "waited"
+   ]
+  },
+  {
+   "sentences": 131,
+   "feeds": 70,
+   "rejected_feeds": 13,
+   "top_words": [
+    "aihole",
+    "gudi",
+    "temple",
+    "shah",
+    "niboshi",
+    "bhrigu",
+    "gauri",
+    "arabic",
+    "situated",
+    "religion"
+   ]
+  },
+  {
+   "sentences": 62,
+   "feeds": 46,
+   "rejected_feeds": 12,
+   "top_words": [
+    "air",
+    "schools",
+    "dioxide",
+    "water",
+    "acetic",
+    "attribution-sharealike",
+    "desalination",
+    "nitrate",
+    "nitrogen",
+    "ventilation"
+   ]
+  },
+  {
+   "sentences": 170,
+   "feeds": 146,
+   "rejected_feeds": 0,
+   "top_words": [
+    "developers",
+    "developer",
+    "development",
+    "dev",
+    "deployment",
+    "environment",
+    "devops",
+    "production",
+    "exe",
+    "solo"
+   ]
+  },
+  {
+   "sentences": 513,
+   "feeds": 395,
+   "rejected_feeds": 7,
+   "top_words": [
+    "generative",
+    "slop",
+    "coding",
+    "code",
+    "writing",
+    "ai-assisted",
+    "ai's",
+    "models",
+    "ai-generated",
+    "self-improvement"
+   ]
+  },
+  {
+   "sentences": 143,
+   "feeds": 84,
+   "rejected_feeds": 4,
+   "top_words": [
+    "election",
+    "elections",
+    "vote",
+    "voting",
+    "democrats",
+    "midterm",
+    "ballot",
+    "governor",
+    "voters",
+    "republicans"
+   ]
+  },
+  {
+   "sentences": 154,
+   "feeds": 133,
+   "rejected_feeds": 9,
+   "top_words": [
+    "desire",
+    "happiness",
+    "belonging",
+    "reward",
+    "social",
+    "commitment",
+    "success",
+    "desires",
+    "selfish",
+    "gratification"
+   ]
+  },
+  {
+   "sentences": 191,
+   "feeds": 146,
+   "rejected_feeds": 10,
+   "top_words": [
+    "job",
+    "hire",
+    "jobs",
+    "hiring",
+    "employer",
+    "workers",
+    "companies",
+    "hired",
+    "postings",
+    "employee"
+   ]
+  },
+  {
+   "sentences": 131,
+   "feeds": 130,
+   "rejected_feeds": 2,
+   "top_words": [
+    "below",
+    "check",
+    "download",
+    "read",
+    "slides",
+    "summary",
+    "details",
+    "excerpt",
+    "pdf",
+    "link"
+   ]
+  },
+  {
+   "sentences": 102,
+   "feeds": 40,
+   "rejected_feeds": 0,
+   "top_words": [
+    "rails",
+    "ruby",
+    "gem",
+    "ractor",
+    "doppler",
+    "kamal",
+    "versioning",
+    "parser",
+    "capistrano",
+    "mdrecord"
+   ]
+  },
+  {
+   "sentences": 86,
+   "feeds": 57,
+   "rejected_feeds": 4,
+   "top_words": [
+    "clozapine",
+    "dizziness",
+    "migraines",
+    "vitamins",
+    "effects",
+    "antibiotics",
+    "pills",
+    "rapamycin",
+    "cold",
+    "analgesia"
+   ]
+  },
+  {
+   "sentences": 162,
+   "feeds": 127,
+   "rejected_feeds": 13,
+   "top_words": [
+    "song",
+    "lyrics",
+    "songs",
+    "singer",
+    "battersby",
+    "hatta",
+    "noel",
+    "regresa",
+    "album",
+    "taylor"
+   ]
+  },
+  {
+   "sentences": 72,
+   "feeds": 69,
+   "rejected_feeds": 5,
+   "top_words": [
+    "apology",
+    "apologize",
+    "warning",
+    "sorry",
+    "proceed",
+    "discretion",
+    "spoilers",
+    "worry",
+    "blessing",
+    "advice"
+   ]
+  },
+  {
+   "sentences": 149,
+   "feeds": 123,
+   "rejected_feeds": 2,
+   "top_words": [
+    "autistic",
+    "others",
+    "people",
+    "droppin",
+    "angry",
+    "non-autistic",
+    "complain",
+    "fad",
+    "lashing",
+    "performers"
+   ]
+  },
+  {
+   "sentences": 137,
+   "feeds": 91,
+   "rejected_feeds": 3,
+   "top_words": [
+    "quantum",
+    "universe",
+    "gravity",
+    "cosmology",
+    "qcd",
+    "physics",
+    "cosmic",
+    "galaxy",
+    "civilizations",
+    "classical"
+   ]
+  },
+  {
+   "sentences": 106,
+   "feeds": 91,
+   "rejected_feeds": 5,
+   "top_words": [
+    "cross-legged",
+    "wash",
+    "popped",
+    "bottle",
+    "mouth",
+    "snapped",
+    "spilled",
+    "sweaty",
+    "chewing",
+    "walking"
+   ]
+  },
+  {
+   "sentences": 143,
+   "feeds": 123,
+   "rejected_feeds": 1,
+   "top_words": [
+    "bug",
+    "bugs",
+    "fixes",
+    "fix",
+    "debugging",
+    "debug",
+    "lint",
+    "issues",
+    "sqli",
+    "code"
+   ]
+  },
+  {
+   "sentences": 107,
+   "feeds": 89,
+   "rejected_feeds": 1,
+   "top_words": [
+    "synchronized",
+    "runtime",
+    "implementations",
+    "execution",
+    "race",
+    "pymutex",
+    "samstung",
+    "single-core",
+    "program",
+    "speculative"
+   ]
+  },
+  {
+   "sentences": 193,
+   "feeds": 149,
+   "rejected_feeds": 23,
+   "top_words": [
+    "college",
+    "university",
+    "students",
+    "semester",
+    "courses",
+    "education",
+    "faculty",
+    "school",
+    "degree",
+    "freshman"
+   ]
+  },
+  {
+   "sentences": 87,
+   "feeds": 79,
+   "rejected_feeds": 8,
+   "top_words": [
+    "woman",
+    "clancy",
+    "affair",
+    "episode",
+    "lindsay",
+    "sarah",
+    "victim",
+    "celebrity",
+    "rape",
+    "shark"
+   ]
+  },
+  {
+   "sentences": 119,
+   "feeds": 110,
+   "rejected_feeds": 7,
+   "top_words": [
+    "highlights",
+    "interrail",
+    "hyper-achievement",
+    "shoutouts",
+    "shorts",
+    "favorite",
+    "favorites",
+    "diaries",
+    "favourite",
+    "sketchbook"
+   ]
+  },
+  {
+   "sentences": 38,
+   "feeds": 18,
+   "rejected_feeds": 0,
+   "top_words": [
+    "honey",
+    "bee",
+    "bees",
+    "sting",
+    "beebuzz",
+    "remedies",
+    "beekeeper",
+    "beekeepers",
+    "hives",
+    "wasps"
+   ]
+  },
+  {
+   "sentences": 49,
+   "feeds": 41,
+   "rejected_feeds": 0,
+   "top_words": [
+    "tokio",
+    "anki",
+    "addons",
+    "kirigami",
+    "wiki",
+    "rice",
+    "aeschylus",
+    "anshin",
+    "blinkenshell",
+    "buildinpublic"
+   ]
+  },
+  {
+   "sentences": 95,
+   "feeds": 84,
+   "rejected_feeds": 7,
+   "top_words": [
+    "linkedin",
+    "community",
+    "epstein",
+    "authors",
+    "contributors",
+    "bibliographies",
+    "doj",
+    "taboo",
+    "censorship",
+    "misinformation"
+   ]
+  },
+  {
+   "sentences": 100,
+   "feeds": 57,
+   "rejected_feeds": 3,
+   "top_words": [
+    "microsoft",
+    "entra",
+    "windows",
+    "memberof",
+    "leak",
+    "versions",
+    "preview",
+    "registry",
+    "net",
+    "registration"
+   ]
+  },
+  {
+   "sentences": 226,
+   "feeds": 140,
+   "rejected_feeds": 1,
+   "top_words": [
+    "linux",
+    "desktop",
+    "operating",
+    "distributions",
+    "distro",
+    "arch",
+    "distribution",
+    "ubuntu",
+    "kernel",
+    "windows"
+   ]
+  },
+  {
+   "sentences": 68,
+   "feeds": 42,
+   "rejected_feeds": 5,
+   "top_words": [
+    "battery",
+    "charging",
+    "batteries",
+    "recharge",
+    "li-po",
+    "charger",
+    "alternator",
+    "outin",
+    "capacity",
+    "li-ion"
+   ]
+  },
+  {
+   "sentences": 87,
+   "feeds": 80,
+   "rejected_feeds": 2,
+   "top_words": [
+    "nothing",
+    "null",
+    "empty",
+    "zero",
+    "adv",
+    "aggrandizement",
+    "memos",
+    "nothing'",
+    "nullable",
+    "per-say"
+   ]
+  },
+  {
+   "sentences": 224,
+   "feeds": 181,
+   "rejected_feeds": 0,
+   "top_words": [
+    "coding",
+    "agents",
+    "agent",
+    "agentic",
+    "code",
+    "parallel",
+    "harness",
+    "claude",
+    "software",
+    "tools"
+   ]
+  },
+  {
+   "sentences": 129,
+   "feeds": 104,
+   "rejected_feeds": 1,
+   "top_words": [
+    "predicate",
+    "algorithm",
+    "coinduction",
+    "coinductive",
+    "disjunctions",
+    "enumerating",
+    "idris",
+    "non-solution",
+    "constraint",
+    "programming"
+   ]
+  },
+  {
+   "sentences": 409,
+   "feeds": 268,
+   "rejected_feeds": 5,
+   "top_words": [
+    "book",
+    "books",
+    "novel",
+    "review",
+    "fiction",
+    "read",
+    "reviews",
+    "novels",
+    "albion",
+    "finished"
+   ]
+  },
+  {
+   "sentences": 185,
+   "feeds": 139,
+   "rejected_feeds": 10,
+   "top_words": [
+    "leaders",
+    "political",
+    "politics",
+    "power",
+    "governance",
+    "regime",
+    "party",
+    "leader",
+    "corporate",
+    "democracy"
+   ]
+  },
+  {
+   "sentences": 175,
+   "feeds": 115,
+   "rejected_feeds": 12,
+   "top_words": [
+    "london",
+    "scotland",
+    "ireland",
+    "glasgow",
+    "bermondsey",
+    "thames",
+    "yorkshire",
+    "manchester",
+    "skye",
+    "avion"
+   ]
+  },
+  {
+   "sentences": 219,
+   "feeds": 181,
+   "rejected_feeds": 3,
+   "top_words": [
+    "engineer",
+    "developer",
+    "software",
+    "career",
+    "job",
+    "engineering",
+    "architect",
+    "estimator",
+    "companies",
+    "analyst"
+   ]
+  },
+  {
+   "sentences": 160,
+   "feeds": 131,
+   "rejected_feeds": 3,
+   "top_words": [
+    "tools",
+    "tool",
+    "openclaw",
+    "tooling",
+    "toolchain",
+    "toolbench",
+    "wezterm",
+    "woodworking",
+    "metals",
+    "skill"
+   ]
+  },
+  {
+   "sentences": 125,
+   "feeds": 65,
+   "rejected_feeds": 5,
+   "top_words": [
+    "chocolate",
+    "cake",
+    "recipe",
+    "pumpkin",
+    "bread",
+    "rbeteig",
+    "baked",
+    "bakery",
+    "baking",
+    "flour"
+   ]
+  },
+  {
+   "sentences": 143,
+   "feeds": 105,
+   "rejected_feeds": 1,
+   "top_words": [
+    "programming",
+    "language",
+    "languages",
+    "erlang",
+    "functional",
+    "fortran",
+    "lisp",
+    "compiler",
+    "compilers",
+    "syntax"
+   ]
+  },
+  {
+   "sentences": 155,
+   "feeds": 53,
+   "rejected_feeds": 9,
+   "top_words": [
+    "que",
+    "para",
+    "una",
+    "los",
+    "por",
+    "como",
+    "las",
+    "domingo",
+    "nos",
+    "del"
+   ]
+  },
+  {
+   "sentences": 158,
+   "feeds": 139,
+   "rejected_feeds": 3,
+   "top_words": [
+    "philosophy",
+    "plato",
+    "psychophysics",
+    "dialogue",
+    "maras",
+    "patr",
+    "rinpoche",
+    "marcus",
+    "aphorisms",
+    "aristotle's"
+   ]
+  },
+  {
+   "sentences": 102,
+   "feeds": 91,
+   "rejected_feeds": 4,
+   "top_words": [
+    "myths",
+    "myth",
+    "flesh",
+    "sci-fi",
+    "mystery",
+    "makiling",
+    "fantasy",
+    "imagination",
+    "magic",
+    "realistic"
+   ]
+  },
+  {
+   "sentences": 222,
+   "feeds": 158,
+   "rejected_feeds": 7,
+   "top_words": [
+    "release",
+    "released",
+    "kraft",
+    "version",
+    "releases",
+    "announce",
+    "osric",
+    "fedora",
+    "available",
+    "versions"
+   ]
+  },
+  {
+   "sentences": 150,
+   "feeds": 127,
+   "rejected_feeds": 3,
+   "top_words": [
+    "noise",
+    "silence",
+    "quiet",
+    "sound",
+    "loud",
+    "louder",
+    "sounds",
+    "silent",
+    "ear",
+    "noisy"
+   ]
+  },
+  {
+   "sentences": 155,
+   "feeds": 97,
+   "rejected_feeds": 0,
+   "top_words": [
+    "rust",
+    "rustc",
+    "codegen",
+    "c++",
+    "gcc",
+    "rustdoc",
+    "daw",
+    "code",
+    "python",
+    "crate"
+   ]
+  },
+  {
+   "sentences": 129,
+   "feeds": 78,
+   "rejected_feeds": 1,
+   "top_words": [
+    "firmware",
+    "boot",
+    "rom",
+    "booting",
+    "bootloader",
+    "bios",
+    "mz-rh",
+    "bananapi",
+    "efi",
+    "u-boot"
+   ]
+  },
+  {
+   "sentences": 102,
+   "feeds": 93,
+   "rejected_feeds": 3,
+   "top_words": [
+    "problem",
+    "problems",
+    "solve",
+    "solutions",
+    "solved",
+    "problem-solving",
+    "systemic",
+    "fixing",
+    "fix",
+    "solving"
+   ]
+  },
+  {
+   "sentences": 172,
+   "feeds": 109,
+   "rejected_feeds": 8,
+   "top_words": [
+    "light",
+    "dark",
+    "lighting",
+    "brightness",
+    "lights",
+    "lamps",
+    "mode",
+    "led",
+    "lamp",
+    "neon"
+   ]
+  },
+  {
+   "sentences": 152,
+   "feeds": 143,
+   "rejected_feeds": 6,
+   "top_words": [
+    "they're",
+    "ones",
+    "hate",
+    "analog-craving",
+    "diehard",
+    "earbuds",
+    "endorse",
+    "floppies",
+    "foreskines",
+    "ighty"
+   ]
+  },
+  {
+   "sentences": 100,
+   "feeds": 66,
+   "rejected_feeds": 5,
+   "top_words": [
+    "train",
+    "railway",
+    "trains",
+    "station",
+    "railways",
+    "rail",
+    "night",
+    "basel-malm",
+    "bruxelles",
+    "chiltern"
+   ]
+  },
+  {
+   "sentences": 54,
+   "feeds": 41,
+   "rejected_feeds": 1,
+   "top_words": [
+    "pandas",
+    "r-universe",
+    "clunky",
+    "prrd",
+    "cran",
+    "markdown",
+    "graphical",
+    "comparison",
+    "powerful",
+    "shiny"
+   ]
+  },
+  {
+   "sentences": 124,
+   "feeds": 118,
+   "rejected_feeds": 1,
+   "top_words": [
+    "reasons",
+    "reason",
+    "because",
+    "calckey",
+    "end-goal",
+    "ensloppification",
+    "kernighan",
+    "lowercases",
+    "milked",
+    "rodentophobic"
+   ]
+  },
+  {
+   "sentences": 73,
+   "feeds": 55,
+   "rejected_feeds": 3,
+   "top_words": [
+    "raycast",
+    "radar",
+    "drones",
+    "microwave",
+    "tunis",
+    "uhf",
+    "vhf",
+    "flotilla",
+    "sentinel-",
+    "sumud"
+   ]
+  },
+  {
+   "sentences": 120,
+   "feeds": 77,
+   "rejected_feeds": 7,
+   "top_words": [
+    "papyrus",
+    "ancient",
+    "greek",
+    "medieval",
+    "archaeological",
+    "charioteers",
+    "codices",
+    "martyr",
+    "priestess",
+    "pythia"
+   ]
+  },
+  {
+   "sentences": 161,
+   "feeds": 119,
+   "rejected_feeds": 8,
+   "top_words": [
+    "episodes",
+    "episode",
+    "show",
+    "season",
+    "shows",
+    "watching",
+    "television",
+    "seasons",
+    "disney",
+    "series"
+   ]
+  },
+  {
+   "sentences": 161,
+   "feeds": 131,
+   "rejected_feeds": 13,
+   "top_words": [
+    "culture",
+    "history",
+    "nation",
+    "altruism",
+    "post-normal",
+    "utopia",
+    "belonging",
+    "century",
+    "reflective",
+    "cities"
+   ]
+  },
+  {
+   "sentences": 58,
+   "feeds": 34,
+   "rejected_feeds": 3,
+   "top_words": [
+    "backup",
+    "backups",
+    "cross-account",
+    "cross-region",
+    "restic",
+    "restore",
+    "archival",
+    "backblaze",
+    "borg",
+    "snapshot"
+   ]
+  },
+  {
+   "sentences": 69,
+   "feeds": 68,
+   "rejected_feeds": 2,
+   "top_words": [
+    "read",
+    "mastodon's",
+    "maximizers",
+    "mores",
+    "remnant",
+    "should've",
+    "understandi",
+    "visi",
+    "alphabet",
+    "hoover"
+   ]
+  },
+  {
+   "sentences": 129,
+   "feeds": 110,
+   "rejected_feeds": 2,
+   "top_words": [
+    "responsibility",
+    "authority",
+    "autonomy",
+    "freedom",
+    "responsible",
+    "consent",
+    "obligations",
+    "obedience",
+    "act",
+    "conformity"
+   ]
+  },
+  {
+   "sentences": 113,
+   "feeds": 100,
+   "rejected_feeds": 5,
+   "top_words": [
+    "website",
+    "links",
+    "url",
+    "browser",
+    "site",
+    "logged",
+    "redirects",
+    "redirect",
+    "wordpress",
+    "cloudflare"
+   ]
+  },
+  {
+   "sentences": 112,
+   "feeds": 84,
+   "rejected_feeds": 7,
+   "top_words": [
+    "tube",
+    "manufactured",
+    "electronics",
+    "g-e",
+    "oscilloscope",
+    "lever",
+    "curiousmarc",
+    "lockheed",
+    "maxitronix",
+    "detector"
+   ]
+  },
+  {
+   "sentences": 121,
+   "feeds": 78,
+   "rejected_feeds": 3,
+   "top_words": [
+    "ipv",
+    "network",
+    "ethernet",
+    "iptv",
+    "networking",
+    "fortigate",
+    "kpn",
+    "vsock",
+    "address",
+    "addresses"
+   ]
+  },
+  {
+   "sentences": 139,
+   "feeds": 113,
+   "rejected_feeds": 5,
+   "top_words": [
+    "internet",
+    "outage",
+    "connection",
+    "network",
+    "traffic",
+    "gbps",
+    "outages",
+    "provider",
+    "broadband",
+    "isp"
+   ]
+  },
+  {
+   "sentences": 153,
+   "feeds": 98,
+   "rejected_feeds": 1,
+   "top_words": [
+    "gpu",
+    "nvidia",
+    "gpus",
+    "vulkan",
+    "cuda",
+    "sysinfo",
+    "kernels",
+    "vram",
+    "huang",
+    "intel"
+   ]
+  },
+  {
+   "sentences": 81,
+   "feeds": 58,
+   "rejected_feeds": 0,
+   "top_words": [
+    "random",
+    "probability",
+    "randomness",
+    "entropy",
+    "simulate",
+    "fisher-yates",
+    "prng",
+    "sample",
+    "builtin",
+    "urandom"
+   ]
+  },
+  {
+   "sentences": 129,
+   "feeds": 119,
+   "rejected_feeds": 4,
+   "top_words": [
+    "improvements",
+    "improvement",
+    "features",
+    "changes",
+    "faster",
+    "incremental",
+    "improve",
+    "stacks",
+    "changed",
+    "restructure"
+   ]
+  },
+  {
+   "sentences": 159,
+   "feeds": 101,
+   "rejected_feeds": 3,
+   "top_words": [
+    "apple",
+    "iphone",
+    "apple's",
+    "ipad",
+    "ios",
+    "ipod",
+    "duo",
+    "appleos",
+    "announced",
+    "pro"
+   ]
+  },
+  {
+   "sentences": 192,
+   "feeds": 134,
+   "rejected_feeds": 1,
+   "top_words": [
+    "source",
+    "open",
+    "open-source",
+    "software",
+    "opensats",
+    "projects",
+    "contributors",
+    "open-sourcing",
+    "project",
+    "funding"
+   ]
+  },
+  {
+   "sentences": 106,
+   "feeds": 74,
+   "rejected_feeds": 4,
+   "top_words": [
+    "kde",
+    "kubecon",
+    "kotlin",
+    "ktor",
+    "plasma",
+    "akademy",
+    "kimi",
+    "article-",
+    "kobolt",
+    "multiplatform"
+   ]
+  },
+  {
+   "sentences": 181,
+   "feeds": 142,
+   "rejected_feeds": 5,
+   "top_words": [
+    "crash",
+    "fix",
+    "reboot",
+    "troubleshooting",
+    "failed",
+    "fixed",
+    "failure",
+    "tramp",
+    "error",
+    "fault"
+   ]
+  },
+  {
+   "sentences": 137,
+   "feeds": 100,
+   "rejected_feeds": 6,
+   "top_words": [
+    "said",
+    "quotes",
+    "saying",
+    "bless",
+    "crowd",
+    "exotic",
+    "says",
+    "quote",
+    "cry",
+    "yeah"
+   ]
+  },
+  {
+   "sentences": 190,
+   "feeds": 148,
+   "rejected_feeds": 12,
+   "top_words": [
+    "clock",
+    "timezone",
+    "clocks",
+    "timers",
+    "daylight",
+    "temporal",
+    "ntp",
+    "utc+",
+    "uptime",
+    "hour"
+   ]
+  },
+  {
+   "sentences": 164,
+   "feeds": 124,
+   "rejected_feeds": 9,
+   "top_words": [
+    "design",
+    "designers",
+    "architecture",
+    "designing",
+    "designer",
+    "interior",
+    "genentech",
+    "moodboards",
+    "product",
+    "software"
+   ]
+  },
+  {
+   "sentences": 55,
+   "feeds": 39,
+   "rejected_feeds": 6,
+   "top_words": [
+    "bag",
+    "backpack",
+    "pack",
+    "stink",
+    "backpacking",
+    "lug",
+    "sweating",
+    "suitcase",
+    "crossbody",
+    "luggage"
+   ]
+  },
+  {
+   "sentences": 200,
+   "feeds": 181,
+   "rejected_feeds": 5,
+   "top_words": [
+    "ourselves",
+    "we're",
+    "let's",
+    "let",
+    "blankenber",
+    "bleedin'",
+    "buuuuuut",
+    "chumps",
+    "consoled",
+    "ctos"
+   ]
+  },
+  {
+   "sentences": 147,
+   "feeds": 98,
+   "rejected_feeds": 9,
+   "top_words": [
+    "god",
+    "faith",
+    "spirit",
+    "prayer",
+    "christian",
+    "divine",
+    "commandments",
+    "religious",
+    "buddhism",
+    "religion"
+   ]
+  },
+  {
+   "sentences": 141,
+   "feeds": 141,
+   "rejected_feeds": 4,
+   "top_words": [
+    "steps",
+    "process",
+    "tips",
+    "here's",
+    "step",
+    "procedure",
+    "carefully",
+    "figured",
+    "done",
+    "adr"
+   ]
+  },
+  {
+   "sentences": 118,
+   "feeds": 82,
+   "rejected_feeds": 3,
+   "top_words": [
+    "expression",
+    "operator",
+    "anti",
+    "foo",
+    "regex",
+    "expressions",
+    "syntax",
+    "operators",
+    "baz",
+    "regular"
+   ]
+  },
+  {
+   "sentences": 160,
+   "feeds": 146,
+   "rejected_feeds": 3,
+   "top_words": [
+    "cognitive",
+    "knowledge",
+    "mental",
+    "reasoning",
+    "understanding",
+    "decisions",
+    "task",
+    "patience",
+    "model",
+    "experts"
+   ]
+  },
+  {
+   "sentences": 112,
+   "feeds": 81,
+   "rejected_feeds": 2,
+   "top_words": [
+    "hack",
+    "hacker",
+    "hackthebox",
+    "hacked",
+    "hacking",
+    "hackers",
+    "hackfest",
+    "hackathon",
+    "hackaday",
+    "qilin"
+   ]
+  },
+  {
+   "sentences": 134,
+   "feeds": 96,
+   "rejected_feeds": 4,
+   "top_words": [
+    "security",
+    "cybersecurity",
+    "cyber",
+    "threat",
+    "attack",
+    "defenders",
+    "offensive",
+    "cybernetics",
+    "all-source",
+    "espionage"
+   ]
+  },
+  {
+   "sentences": 176,
+   "feeds": 116,
+   "rejected_feeds": 25,
+   "top_words": [
+    "festival",
+    "event",
+    "venue",
+    "tickets",
+    "fest",
+    "indieweb",
+    "carnival",
+    "tour",
+    "concert",
+    "juniper"
+   ]
+  },
+  {
+   "sentences": 181,
+   "feeds": 151,
+   "rejected_feeds": 9,
+   "top_words": [
+    "building",
+    "build",
+    "construction",
+    "builders",
+    "built",
+    "levington",
+    "zipp",
+    "builder",
+    "garage",
+    "nomads"
+   ]
+  },
+  {
+   "sentences": 52,
+   "feeds": 25,
+   "rejected_feeds": 0,
+   "top_words": [
+    "haskell",
+    "monads",
+    "ghc",
+    "monad",
+    "tilia",
+    "lambda",
+    "dsl",
+    "formatter",
+    "fpga",
+    "specialised"
+   ]
+  },
+  {
+   "sentences": 102,
+   "feeds": 73,
+   "rejected_feeds": 2,
+   "top_words": [
+    "signal",
+    "signals",
+    "doorbell",
+    "sensor",
+    "sigenergy",
+    "vibration",
+    "device",
+    "assistant",
+    "iot",
+    "sigenstor"
+   ]
+  },
+  {
+   "sentences": 225,
+   "feeds": 178,
+   "rejected_feeds": 5,
+   "top_words": [
+    "update",
+    "updates",
+    "upgrade",
+    "updating",
+    "patch",
+    "release",
+    "updated",
+    "homeview",
+    "amitube",
+    "changes"
+   ]
+  },
+  {
+   "sentences": 106,
+   "feeds": 97,
+   "rejected_feeds": 8,
+   "top_words": [
+    "numbers",
+    "number",
+    "digits",
+    "decimal",
+    "gila",
+    "separator",
+    "yuma",
+    "calc",
+    "libreoffice",
+    "magnitude"
+   ]
+  },
+  {
+   "sentences": 80,
+   "feeds": 48,
+   "rejected_feeds": 0,
+   "top_words": [
+    "vpn",
+    "tailscale",
+    "wireguard",
+    "dns",
+    "tunneling",
+    "proxmox",
+    "debian",
+    "vps",
+    "firewall",
+    "openvpn"
+   ]
+  },
+  {
+   "sentences": 138,
+   "feeds": 129,
+   "rejected_feeds": 6,
+   "top_words": [
+    "change",
+    "changed",
+    "changes",
+    "changing",
+    "something's",
+    "substantial",
+    "what's",
+    "scoped",
+    "revised",
+    "jujutsu"
+   ]
+  },
+  {
+   "sentences": 178,
+   "feeds": 159,
+   "rejected_feeds": 7,
+   "top_words": [
+    "don't",
+    "stop",
+    "angry",
+    "yourself",
+    "tired",
+    "proceed",
+    "turkey",
+    "hustle",
+    "can't",
+    "should"
+   ]
+  },
+  {
+   "sentences": 124,
+   "feeds": 87,
+   "rejected_feeds": 5,
+   "top_words": [
+    "podcast",
+    "podcasts",
+    "episode",
+    "podcasting",
+    "episodes",
+    "rss",
+    "subscribe",
+    "casts",
+    "entchen",
+    "foojay"
+   ]
+  },
+  {
+   "sentences": 110,
+   "feeds": 103,
+   "rejected_feeds": 1,
+   "top_words": [
+    "differences",
+    "compare",
+    "confusion",
+    "both",
+    "histories",
+    "comparable",
+    "comparison",
+    "compares",
+    "compared",
+    "distinction"
+   ]
+  },
+  {
+   "sentences": 124,
+   "feeds": 118,
+   "rejected_feeds": 3,
+   "top_words": [
+    "mean",
+    "means",
+    "meaning",
+    "terms",
+    "meant",
+    "definition",
+    "phrase",
+    "understand",
+    "autistic",
+    "ephemeral"
+   ]
+  },
+  {
+   "sentences": 180,
+   "feeds": 128,
+   "rejected_feeds": 9,
+   "top_words": [
+    "phone",
+    "smartphone",
+    "iphone",
+    "phones",
+    "mobile",
+    "galaxy",
+    "samsung",
+    "cell",
+    "pocket",
+    "whatsapp"
+   ]
+  },
+  {
+   "sentences": 97,
+   "feeds": 86,
+   "rejected_feeds": 6,
+   "top_words": [
+    "sink",
+    "design",
+    "filament",
+    "diy",
+    "stand",
+    "parts",
+    "assembled",
+    "fit",
+    "weight",
+    "built"
+   ]
+  },
+  {
+   "sentences": 122,
+   "feeds": 103,
+   "rejected_feeds": 5,
+   "top_words": [
+    "email",
+    "message",
+    "received",
+    "sent",
+    "emails",
+    "send",
+    "messages",
+    "inbox",
+    "receive",
+    "reply"
+   ]
+  },
+  {
+   "sentences": 88,
+   "feeds": 77,
+   "rejected_feeds": 1,
+   "top_words": [
+    "pencils",
+    "eraser",
+    "pen",
+    "typewriter",
+    "expunge",
+    "incomputability",
+    "kleene's",
+    "scribbled",
+    "paper",
+    "pencil"
+   ]
+  },
+  {
+   "sentences": 109,
+   "feeds": 67,
+   "rejected_feeds": 2,
+   "top_words": [
+    "font",
+    "fonts",
+    "emoji",
+    "typography",
+    "typeface",
+    "characters",
+    "text",
+    "lowercase",
+    "neural",
+    "coin-operated"
+   ]
+  },
+  {
+   "sentences": 101,
+   "feeds": 100,
+   "rejected_feeds": 2,
+   "top_words": [
+    "start",
+    "beginning",
+    "begin",
+    "starting",
+    "started",
+    "starts",
+    "applie",
+    "bombastic",
+    "commitmen",
+    "ende"
+   ]
+  },
+  {
+   "sentences": 216,
+   "feeds": 162,
+   "rejected_feeds": 16,
+   "top_words": [
+    "october",
+    "calendar",
+    "november",
+    "dates",
+    "month",
+    "august",
+    "date",
+    "september",
+    "february",
+    "holiday"
+   ]
+  },
+  {
+   "sentences": 135,
+   "feeds": 120,
+   "rejected_feeds": 6,
+   "top_words": [
+    "his",
+    "bruce",
+    "he's",
+    "hanrahan",
+    "kip",
+    "guy",
+    "brian",
+    "music",
+    "talent",
+    "wayne"
+   ]
+  },
+  {
+   "sentences": 158,
+   "feeds": 100,
+   "rejected_feeds": 17,
+   "top_words": [
+    "car",
+    "vehicle",
+    "motor",
+    "suvs",
+    "tesla",
+    "bmw",
+    "chevrolet",
+    "cybercab",
+    "demagnetization",
+    "lut"
+   ]
+  },
+  {
+   "sentences": 80,
+   "feeds": 57,
+   "rejected_feeds": 1,
+   "top_words": [
+    "chess",
+    "reinforcement",
+    "tic-tac-toe",
+    "game",
+    "chessgpt",
+    "sharpie",
+    "learning",
+    "board",
+    "estimation",
+    "strategy"
+   ]
+  },
+  {
+   "sentences": 84,
+   "feeds": 72,
+   "rejected_feeds": 4,
+   "top_words": [
+    "tmux",
+    "typst",
+    "tftpd-gui",
+    "ttrpg",
+    "playdate",
+    "reachability",
+    "tftpd",
+    "typhoo",
+    "helix",
+    "tla"
+   ]
+  },
+  {
+   "sentences": 68,
+   "feeds": 42,
+   "rejected_feeds": 2,
+   "top_words": [
+    "ssd",
+    "disk",
+    "drives",
+    "drive",
+    "nvme",
+    "raid",
+    "hdr",
+    "hdds",
+    "disc",
+    "ssdi"
+   ]
+  },
+  {
+   "sentences": 64,
+   "feeds": 42,
+   "rejected_feeds": 5,
+   "top_words": [
+    "puebla",
+    "mexico",
+    "cholula",
+    "bangkok",
+    "oaxaca",
+    "tripper",
+    "beitou",
+    "resort",
+    "trip",
+    "visiting"
+   ]
+  },
+  {
+   "sentences": 100,
+   "feeds": 78,
+   "rejected_feeds": 6,
+   "top_words": [
+    "fraud",
+    "gossip",
+    "fake",
+    "plagiarism",
+    "accused",
+    "deception",
+    "suspicious",
+    "lying",
+    "adversary",
+    "anonymised"
+   ]
+  },
+  {
+   "sentences": 174,
+   "feeds": 143,
+   "rejected_feeds": 3,
+   "top_words": [
+    "trip",
+    "route",
+    "lake",
+    "home",
+    "walk",
+    "camping",
+    "road",
+    "miles",
+    "went",
+    "day"
+   ]
+  },
+  {
+   "sentences": 72,
+   "feeds": 57,
+   "rejected_feeds": 1,
+   "top_words": [
+    "protocol",
+    "mutex",
+    "signals",
+    "isequal",
+    "messagedigest",
+    "communication",
+    "modulation",
+    "receivers",
+    "wake-on-lan",
+    "protocols"
+   ]
+  },
+  {
+   "sentences": 137,
+   "feeds": 70,
+   "rejected_feeds": 5,
+   "top_words": [
+    "bike",
+    "cycling",
+    "bikes",
+    "ride",
+    "bikepacking",
+    "e-bikes",
+    "bicycle",
+    "rides",
+    "bicycles",
+    "cyclists"
+   ]
+  },
+  {
+   "sentences": 149,
+   "feeds": 102,
+   "rejected_feeds": 11,
+   "top_words": [
+    "trail",
+    "mountain",
+    "hiking",
+    "trails",
+    "peak",
+    "canyon",
+    "breon",
+    "hike",
+    "park",
+    "peaks"
+   ]
+  },
+  {
+   "sentences": 65,
+   "feeds": 53,
+   "rejected_feeds": 2,
+   "top_words": [
+    "almadel",
+    "armon",
+    "weapon",
+    "arm",
+    "weapons",
+    "operation",
+    "damage",
+    "iapheian",
+    "equipment",
+    "armour"
+   ]
+  },
+  {
+   "sentences": 155,
+   "feeds": 112,
+   "rejected_feeds": 6,
+   "top_words": [
+    "review",
+    "reviews",
+    "code",
+    "reviewing",
+    "reviewer",
+    "feedback",
+    "nitpicking",
+    "prs",
+    "peer",
+    "instant-reject"
+   ]
+  },
+  {
+   "sentences": 86,
+   "feeds": 64,
+   "rejected_feeds": 1,
+   "top_words": [
+    "fly",
+    "flying",
+    "plane",
+    "flight",
+    "air",
+    "planes",
+    "airplanes",
+    "cockpit",
+    "flew",
+    "pilot"
+   ]
+  },
+  {
+   "sentences": 91,
+   "feeds": 72,
+   "rejected_feeds": 2,
+   "top_words": [
+    "translation",
+    "english",
+    "languages",
+    "translations",
+    "german",
+    "internationalization",
+    "language",
+    "translated",
+    "bilingual",
+    "french"
+   ]
+  },
+  {
+   "sentences": 142,
+   "feeds": 107,
+   "rejected_feeds": 0,
+   "top_words": [
+    "programming",
+    "programmer",
+    "computer",
+    "science",
+    "programmers",
+    "software",
+    "python",
+    "systems",
+    "languages",
+    "minecraft"
+   ]
+  },
+  {
+   "sentences": 123,
+   "feeds": 100,
+   "rejected_feeds": 2,
+   "top_words": [
+    "appeared",
+    "jimmeruk",
+    "paley",
+    "askthepilot",
+    "belleacy",
+    "blankenhorn",
+    "macmanus",
+    "nina",
+    "nunn",
+    "sammartino"
+   ]
+  },
+  {
+   "sentences": 203,
+   "feeds": 150,
+   "rejected_feeds": 3,
+   "top_words": [
+    "consciousness",
+    "brain",
+    "cognitive",
+    "conscious",
+    "mind",
+    "minds",
+    "cognition",
+    "brains",
+    "dmt",
+    "thoughts"
+   ]
+  },
+  {
+   "sentences": 124,
+   "feeds": 79,
+   "rejected_feeds": 20,
+   "top_words": [
+    "health",
+    "medical",
+    "hospital",
+    "healthcare",
+    "doctors",
+    "patients",
+    "patient",
+    "doctor",
+    "radiology",
+    "insurance"
+   ]
+  },
+  {
+   "sentences": 111,
+   "feeds": 69,
+   "rejected_feeds": 0,
+   "top_words": [
+    "neural",
+    "gradient",
+    "networks",
+    "learning",
+    "training",
+    "network",
+    "weights",
+    "sparse",
+    "autodifferentiation",
+    "optimizers"
+   ]
+  },
+  {
+   "sentences": 53,
+   "feeds": 39,
+   "rejected_feeds": 1,
+   "top_words": [
+    "typescript",
+    "types",
+    "assertion",
+    "satisfies",
+    "javascript",
+    "jetpack",
+    "pyrefly",
+    "harmony",
+    "primitives",
+    "monorepo"
+   ]
+  },
+  {
+   "sentences": 186,
+   "feeds": 118,
+   "rejected_feeds": 3,
+   "top_words": [
+    "cloudflare",
+    "cloud",
+    "aws",
+    "terraform",
+    "workers",
+    "cloudflare's",
+    "cloudfront",
+    "azure",
+    "lambda",
+    "google"
+   ]
+  },
+  {
+   "sentences": 133,
+   "feeds": 89,
+   "rejected_feeds": 0,
+   "top_words": [
+    "firefox",
+    "browser",
+    "browsers",
+    "safari",
+    "chrome",
+    "mozilla",
+    "disable",
+    "web",
+    "tabs",
+    "tab"
+   ]
+  },
+  {
+   "sentences": 116,
+   "feeds": 107,
+   "rejected_feeds": 6,
+   "top_words": [
+    "repair",
+    "rebuild",
+    "maintenance",
+    "milliways",
+    "reboot",
+    "msfn",
+    "shutdown",
+    "canarat",
+    "two-week",
+    "bmw"
+   ]
+  },
+  {
+   "sentences": 122,
+   "feeds": 66,
+   "rejected_feeds": 3,
+   "top_words": [
+    "printer",
+    "printing",
+    "print",
+    "printers",
+    "ink",
+    "printable",
+    "printed",
+    "prints",
+    "e-ink",
+    "printables"
+   ]
+  },
+  {
+   "sentences": 178,
+   "feeds": 134,
+   "rejected_feeds": 6,
+   "top_words": [
+    "sleep",
+    "wake",
+    "morning",
+    "waking",
+    "slept",
+    "awake",
+    "woke",
+    "night",
+    "mornings",
+    "alarm"
+   ]
+  },
+  {
+   "sentences": 108,
+   "feeds": 79,
+   "rejected_feeds": 2,
+   "top_words": [
+    "language",
+    "languages",
+    "english",
+    "aramaic",
+    "dictionaries",
+    "english-prime",
+    "hebrew",
+    "episodes",
+    "linguistic",
+    "danish"
+   ]
+  },
+  {
+   "sentences": 134,
+   "feeds": 124,
+   "rejected_feeds": 4,
+   "top_words": [
+    "truth",
+    "true",
+    "wrong",
+    "disagree",
+    "facts",
+    "false",
+    "grain",
+    "right",
+    "obvious",
+    "assumption"
+   ]
+  },
+  {
+   "sentences": 134,
+   "feeds": 82,
+   "rejected_feeds": 1,
+   "top_words": [
+    "c++",
+    "std",
+    "compiler",
+    "struct",
+    "inplace",
+    "compilers",
+    "clang",
+    "strings",
+    "container",
+    "vector"
+   ]
+  },
+  {
+   "sentences": 117,
+   "feeds": 86,
+   "rejected_feeds": 2,
+   "top_words": [
+    "queue",
+    "async",
+    "concurrency",
+    "queues",
+    "jobs",
+    "concurrent",
+    "tasks",
+    "parallel",
+    "scheduler",
+    "processes"
+   ]
+  },
+  {
+   "sentences": 196,
+   "feeds": 130,
+   "rejected_feeds": 22,
+   "top_words": [
+    "weather",
+    "winter",
+    "cold",
+    "temperatures",
+    "snow",
+    "temperature",
+    "rainfall",
+    "climate",
+    "rain",
+    "rainy"
+   ]
+  },
+  {
+   "sentences": 184,
+   "feeds": 135,
+   "rejected_feeds": 5,
+   "top_words": [
+    "birds",
+    "pigeons",
+    "animals",
+    "squirrels",
+    "bears",
+    "bird",
+    "animal",
+    "owl",
+    "squirrel",
+    "species"
+   ]
+  },
+  {
+   "sentences": 101,
+   "feeds": 84,
+   "rejected_feeds": 8,
+   "top_words": [
+    "ranking",
+    "score",
+    "scores",
+    "rank",
+    "leaderboard",
+    "rating",
+    "median",
+    "highest",
+    "inputs",
+    "knyazev"
+   ]
+  },
+  {
+   "sentences": 161,
+   "feeds": 105,
+   "rejected_feeds": 1,
+   "top_words": [
+    "macos",
+    "mac",
+    "macs",
+    "xcode",
+    "apple",
+    "macbook",
+    "silicon",
+    "beta",
+    "installing",
+    "qcluster"
+   ]
+  },
+  {
+   "sentences": 139,
+   "feeds": 104,
+   "rejected_feeds": 0,
+   "top_words": [
+    "claude",
+    "opus",
+    "anthropic",
+    "claude's",
+    "fable",
+    "claude-plugins",
+    "hermes",
+    "marketplace",
+    "billed",
+    "skill"
+   ]
+  },
+  {
+   "sentences": 121,
+   "feeds": 101,
+   "rejected_feeds": 5,
+   "top_words": [
+    "web",
+    "wordpress",
+    "php",
+    "website",
+    "websites",
+    "designer",
+    "freelance",
+    "css",
+    "html",
+    "developers"
+   ]
+  },
+  {
+   "sentences": 90,
+   "feeds": 70,
+   "rejected_feeds": 0,
+   "top_words": [
+    "codes",
+    "encode",
+    "fsk",
+    "binary",
+    "bch",
+    "concatenate",
+    "declension",
+    "konzerttisch",
+    "nfc-tags",
+    "reed-solomon"
+   ]
+  },
+  {
+   "sentences": 63,
+   "feeds": 41,
+   "rejected_feeds": 0,
+   "top_words": [
+    "harness",
+    "harnesses",
+    "agent",
+    "coding",
+    "opencode",
+    "agents",
+    "agnostic",
+    "claude",
+    "engineering",
+    "bench"
+   ]
+  },
+  {
+   "sentences": 160,
+   "feeds": 157,
+   "rejected_feeds": 5,
+   "top_words": [
+    "i'm",
+    "deepl",
+    "devoure",
+    "entang",
+    "fantasize",
+    "opini",
+    "picare",
+    "powe",
+    "prezis",
+    "primaril"
+   ]
+  },
+  {
+   "sentences": 119,
+   "feeds": 94,
+   "rejected_feeds": 1,
+   "top_words": [
+    "language",
+    "models",
+    "large",
+    "nlp",
+    "corpus",
+    "semantic",
+    "tokenization",
+    "frontiers",
+    "classification",
+    "model"
+   ]
+  },
+  {
+   "sentences": 153,
+   "feeds": 106,
+   "rejected_feeds": 4,
+   "top_words": [
+    "javascript",
+    "chrome",
+    "browser",
+    "html",
+    "web",
+    "chromium",
+    "extension",
+    "webassembly",
+    "browsers",
+    "css"
+   ]
+  },
+  {
+   "sentences": 148,
+   "feeds": 127,
+   "rejected_feeds": 9,
+   "top_words": [
+    "room",
+    "door",
+    "doors",
+    "hallway",
+    "rooms",
+    "bedroom",
+    "basement",
+    "bathroom",
+    "apartment",
+    "stays"
+   ]
+  },
+  {
+   "sentences": 55,
+   "feeds": 45,
+   "rejected_feeds": 3,
+   "top_words": [
+    "gcra",
+    "glp-",
+    "glm-",
+    "gstack",
+    "ghk-cu",
+    "gpg",
+    "gtm",
+    "peptide",
+    "gsc",
+    "synthetic"
+   ]
+  },
+  {
+   "sentences": 168,
+   "feeds": 104,
+   "rejected_feeds": 3,
+   "top_words": [
+    "database",
+    "sql",
+    "databases",
+    "query",
+    "queries",
+    "sqlite",
+    "duckdb",
+    "joins",
+    "tables",
+    "mysql"
+   ]
+  },
+  {
+   "sentences": 67,
+   "feeds": 41,
+   "rejected_feeds": 1,
+   "top_words": [
+    "usb",
+    "usb-c",
+    "comhub",
+    "device",
+    "dongle",
+    "erase",
+    "connect",
+    "cable",
+    "transfer",
+    "freecad"
+   ]
+  },
+  {
+   "sentences": 116,
+   "feeds": 112,
+   "rejected_feeds": 3,
+   "top_words": [
+    "useful",
+    "use",
+    "shampoo",
+    "purpose",
+    "cently",
+    "definite",
+    "dids",
+    "disastrously",
+    "expiration",
+    "infringe"
+   ]
+  },
+  {
+   "sentences": 45,
+   "feeds": 20,
+   "rejected_feeds": 0,
+   "top_words": [
+    "freebsd",
+    "jails",
+    "ports",
+    "kanidm",
+    "freepbx",
+    "authenticated",
+    "openbsd",
+    "freebsd-current",
+    "git-proxy",
+    "httpd"
+   ]
+  },
+  {
+   "sentences": 117,
+   "feeds": 57,
+   "rejected_feeds": 1,
+   "top_words": [
+    "postgres",
+    "postgresql",
+    "pgledger",
+    "database",
+    "replication",
+    "logical",
+    "supabase",
+    "devrim",
+    "packagers",
+    "postgresconf"
+   ]
+  },
+  {
+   "sentences": 76,
+   "feeds": 56,
+   "rejected_feeds": 0,
+   "top_words": [
+    "predictions",
+    "prediction",
+    "bayes",
+    "predictive",
+    "predict",
+    "bayesian",
+    "multi-step",
+    "predicting",
+    "suicide",
+    "conformal"
+   ]
+  },
+  {
+   "sentences": 117,
+   "feeds": 86,
+   "rejected_feeds": 4,
+   "top_words": [
+    "voice",
+    "voiceover",
+    "voices",
+    "speech",
+    "whisper",
+    "speechsynthesis",
+    "mic",
+    "speak",
+    "recording",
+    "audio"
+   ]
+  },
+  {
+   "sentences": 115,
+   "feeds": 63,
+   "rejected_feeds": 0,
+   "top_words": [
+    "mcp",
+    "server",
+    "mcps",
+    "protocol",
+    "servers",
+    "optimizely",
+    "clis",
+    "context",
+    "seekstorm",
+    "ucp"
+   ]
+  },
+  {
+   "sentences": 350,
+   "feeds": 245,
+   "rejected_feeds": 7,
+   "top_words": [
+    "agents",
+    "agent",
+    "agentic",
+    "autonomous",
+    "fleet",
+    "adk",
+    "sandbox",
+    "lethal",
+    "tools",
+    "build"
+   ]
+  },
+  {
+   "sentences": 53,
+   "feeds": 35,
+   "rejected_feeds": 0,
+   "top_words": [
+    "hash",
+    "hashing",
+    "hashes",
+    "sha",
+    "alg",
+    "hashids",
+    "uuidv",
+    "sharding",
+    "hashnode",
+    "uuids"
+   ]
+  },
+  {
+   "sentences": 219,
+   "feeds": 165,
+   "rejected_feeds": 24,
+   "top_words": [
+    "price",
+    "prices",
+    "cost",
+    "pricing",
+    "expensive",
+    "costs",
+    "usd",
+    "insulin",
+    "brass",
+    "cheap"
+   ]
+  },
+  {
+   "sentences": 145,
+   "feeds": 106,
+   "rejected_feeds": 4,
+   "top_words": [
+    "canvas",
+    "animation",
+    "cad",
+    "animations",
+    "svg",
+    "openscad",
+    "kicad",
+    "graphics",
+    "interactive",
+    "animated"
+   ]
+  },
+  {
+   "sentences": 86,
+   "feeds": 78,
+   "rejected_feeds": 1,
+   "top_words": [
+    "joke",
+    "funny",
+    "jokes",
+    "laugh",
+    "humor",
+    "comedy",
+    "seriously",
+    "amusing",
+    "chuckle",
+    "hilarious"
+   ]
+  },
+  {
+   "sentences": 146,
+   "feeds": 139,
+   "rejected_feeds": 2,
+   "top_words": [
+    "advice",
+    "topics",
+    "thoughts",
+    "topic",
+    "posts",
+    "essay",
+    "views",
+    "share",
+    "hopefully",
+    "refine"
+   ]
+  },
+  {
+   "sentences": 145,
+   "feeds": 132,
+   "rejected_feeds": 1,
+   "top_words": [
+    "posted",
+    "posting",
+    "posts",
+    "haven",
+    "month",
+    "since",
+    "entries",
+    "urge",
+    "publish",
+    "writing"
+   ]
+  },
+  {
+   "sentences": 163,
+   "feeds": 137,
+   "rejected_feeds": 6,
+   "top_words": [
+    "age",
+    "older",
+    "aging",
+    "old",
+    "young",
+    "younger",
+    "born",
+    "millennial",
+    "millennials",
+    "conservative"
+   ]
+  },
+  {
+   "sentences": 84,
+   "feeds": 65,
+   "rejected_feeds": 6,
+   "top_words": [
+    "sports",
+    "nba",
+    "player",
+    "lakers",
+    "draft",
+    "celtics",
+    "iger",
+    "tatum",
+    "basketball",
+    "kushner"
+   ]
+  },
+  {
+   "sentences": 119,
+   "feeds": 103,
+   "rejected_feeds": 7,
+   "top_words": [
+    "wealth",
+    "money",
+    "capitalism",
+    "economics",
+    "economic",
+    "economy",
+    "markets",
+    "capitalist",
+    "rich",
+    "afford"
+   ]
+  },
+  {
+   "sentences": 110,
+   "feeds": 67,
+   "rejected_feeds": 6,
+   "top_words": [
+    "nfl",
+    "vikings",
+    "cowboys",
+    "bills",
+    "bears",
+    "team",
+    "buccaneers",
+    "chiefs",
+    "brewers",
+    "win"
+   ]
+  },
+  {
+   "sentences": 133,
+   "feeds": 75,
+   "rejected_feeds": 2,
+   "top_words": [
+    "zig",
+    "zine",
+    "zoro",
+    "zfs",
+    "zola",
+    "ziglings",
+    "zotero",
+    "zpool",
+    "zram",
+    "zswap"
+   ]
+  },
+  {
+   "sentences": 128,
+   "feeds": 122,
+   "rejected_feeds": 2,
+   "top_words": [
+    "hours",
+    "seconds",
+    "minutes",
+    "hour",
+    "took",
+    "takes",
+    "days",
+    "min",
+    "modded-nanogpt",
+    "sixty"
+   ]
+  },
+  {
+   "sentences": 124,
+   "feeds": 82,
+   "rejected_feeds": 0,
+   "top_words": [
+    "clang",
+    "arm",
+    "msvc",
+    "wasm",
+    "gcc",
+    "elf",
+    "kernel",
+    "stm",
+    "executable",
+    "compile"
+   ]
+  },
+  {
+   "sentences": 120,
+   "feeds": 108,
+   "rejected_feeds": 6,
+   "top_words": [
+    "fear",
+    "scared",
+    "fears",
+    "afraid",
+    "dangerous",
+    "warning",
+    "threat",
+    "danger",
+    "safest",
+    "concern"
+   ]
+  },
+  {
+   "sentences": 62,
+   "feeds": 42,
+   "rejected_feeds": 1,
+   "top_words": [
+    "gpt-",
+    "gpui",
+    "gpt-oss",
+    "grpc",
+    "gpt",
+    "astra",
+    "sol",
+    "c++",
+    "np-hard",
+    "pico"
+   ]
+  },
+  {
+   "sentences": 133,
+   "feeds": 102,
+   "rejected_feeds": 13,
+   "top_words": [
+    "cassandra",
+    "mary",
+    "actress",
+    "maria",
+    "died",
+    "dora",
+    "marjorie",
+    "playhouse",
+    "jane",
+    "artistic"
+   ]
+  },
+  {
+   "sentences": 167,
+   "feeds": 128,
+   "rejected_feeds": 9,
+   "top_words": [
+    "servers",
+    "distributed",
+    "server",
+    "virtualization",
+    "redis",
+    "clients",
+    "protocol",
+    "failover",
+    "real-time",
+    "systems"
+   ]
+  },
+  {
+   "sentences": 118,
+   "feeds": 105,
+   "rejected_feeds": 8,
+   "top_words": [
+    "skills",
+    "skill",
+    "expertise",
+    "talent",
+    "knowledge",
+    "angular",
+    "specialization",
+    "training",
+    "curriculum",
+    "excellence"
+   ]
+  },
+  {
+   "sentences": 132,
+   "feeds": 74,
+   "rejected_feeds": 0,
+   "top_words": [
+    "rss",
+    "feed",
+    "feeds",
+    "reader",
+    "atom",
+    "xml",
+    "xslt",
+    "scour",
+    "subscribe",
+    "syndication"
+   ]
+  },
+  {
+   "sentences": 133,
+   "feeds": 127,
+   "rejected_feeds": 2,
+   "top_words": [
+    "back",
+    "again",
+    "goodbye",
+    "welcome",
+    "wayback",
+    "miss",
+    "back'",
+    "bahaha",
+    "batangas",
+    "dinn"
+   ]
+  },
+  {
+   "sentences": 117,
+   "feeds": 46,
+   "rejected_feeds": 0,
+   "top_words": [
+    "accessibility",
+    "wcag",
+    "assistive",
+    "accessible",
+    "digital",
+    "disability",
+    "disabled",
+    "barrierbreak",
+    "lawton",
+    "wai"
+   ]
+  },
+  {
+   "sentences": 177,
+   "feeds": 160,
+   "rejected_feeds": 5,
+   "top_words": [
+    "fix",
+    "fixed",
+    "bug",
+    "issue",
+    "error",
+    "dropdown",
+    "problem",
+    "dashboard",
+    "workaround",
+    "rollouts"
+   ]
+  },
+  {
+   "sentences": 311,
+   "feeds": 225,
+   "rejected_feeds": 4,
+   "top_words": [
+    "llms",
+    "llm",
+    "software",
+    "lms",
+    "hard-won",
+    "meat-based",
+    "txt",
+    "reject",
+    "playtest",
+    "local"
+   ]
+  },
+  {
+   "sentences": 157,
+   "feeds": 118,
+   "rejected_feeds": 10,
+   "top_words": [
+    "students",
+    "teaching",
+    "teacher",
+    "classroom",
+    "student",
+    "education",
+    "teach",
+    "class",
+    "learners",
+    "homework"
+   ]
+  },
+  {
+   "sentences": 113,
+   "feeds": 89,
+   "rejected_feeds": 1,
+   "top_words": [
+    "name",
+    "names",
+    "nickname",
+    "named",
+    "nicknames",
+    "naming",
+    "chua",
+    "rajath",
+    "fitzrovia",
+    "initials"
+   ]
+  },
+  {
+   "sentences": 51,
+   "feeds": 37,
+   "rejected_feeds": 2,
+   "top_words": [
+    "pronunciation",
+    "spanish",
+    "aloud",
+    "dyslexia",
+    "learning",
+    "english",
+    "intonation",
+    "quiz",
+    "language",
+    "vocabulary"
+   ]
+  },
+  {
+   "sentences": 216,
+   "feeds": 191,
+   "rejected_feeds": 7,
+   "top_words": [
+    "newsletter",
+    "published",
+    "article",
+    "articles",
+    "originally",
+    "publishing",
+    "johanna",
+    "rothman",
+    "publish",
+    "magazine"
+   ]
+  },
+  {
+   "sentences": 203,
+   "feeds": 166,
+   "rejected_feeds": 25,
+   "top_words": [
+    "product",
+    "marketing",
+    "products",
+    "consumer",
+    "market",
+    "companies",
+    "brand",
+    "customers",
+    "neuromarketing",
+    "product-market"
+   ]
+  },
+  {
+   "sentences": 141,
+   "feeds": 119,
+   "rejected_feeds": 19,
+   "top_words": [
+    "irc",
+    "summit",
+    "epscor",
+    "climate",
+    "cop",
+    "aonsa",
+    "nasa",
+    "fellowship",
+    "icsc",
+    "conference"
+   ]
+  },
+  {
+   "sentences": 105,
+   "feeds": 90,
+   "rejected_feeds": 9,
+   "top_words": [
+    "million",
+    "money",
+    "dollars",
+    "donors",
+    "save",
+    "donated",
+    "hochul",
+    "saving",
+    "expense",
+    "donation"
+   ]
+  },
+  {
+   "sentences": 149,
+   "feeds": 104,
+   "rejected_feeds": 2,
+   "top_words": [
+    "testing",
+    "tests",
+    "test",
+    "unit",
+    "vitest",
+    "coverage",
+    "testers",
+    "visual",
+    "tsqlt",
+    "integration"
+   ]
+  },
+  {
+   "sentences": 42,
+   "feeds": 28,
+   "rejected_feeds": 3,
+   "top_words": [
+    "wood",
+    "stoves",
+    "fuel",
+    "filtration",
+    "aluminum",
+    "adamantane",
+    "kettle",
+    "new-build",
+    "thruster",
+    "stove"
+   ]
+  },
+  {
+   "sentences": 181,
+   "feeds": 156,
+   "rejected_feeds": 6,
+   "top_words": [
+    "digital",
+    "computers",
+    "technology",
+    "computer",
+    "computing",
+    "electronic",
+    "geeks",
+    "internet",
+    "technologies",
+    "devices"
+   ]
+  },
+  {
+   "sentences": 144,
+   "feeds": 92,
+   "rejected_feeds": 13,
+   "top_words": [
+    "water",
+    "pond",
+    "river",
+    "manchaug",
+    "sea",
+    "ocean",
+    "lake",
+    "shark",
+    "pool",
+    "swim"
+   ]
+  },
+  {
+   "sentences": 116,
+   "feeds": 83,
+   "rejected_feeds": 10,
+   "top_words": [
+    "movies",
+    "movie",
+    "film",
+    "films",
+    "ranked",
+    "theaters",
+    "cinema",
+    "fincher",
+    "riot",
+    "animated"
+   ]
+  },
+  {
+   "sentences": 109,
+   "feeds": 82,
+   "rejected_feeds": 5,
+   "top_words": [
+    "christians",
+    "genocide",
+    "racist",
+    "christian",
+    "gaza",
+    "religious",
+    "nazis",
+    "warfare",
+    "religions",
+    "ethiopia"
+   ]
+  },
+  {
+   "sentences": 166,
+   "feeds": 153,
+   "rejected_feeds": 1,
+   "top_words": [
+    "github",
+    "code",
+    "available",
+    "plugins",
+    "codeberg",
+    "tool",
+    "source",
+    "software",
+    "program",
+    "cli"
+   ]
+  },
+  {
+   "sentences": 86,
+   "feeds": 64,
+   "rejected_feeds": 4,
+   "top_words": [
+    "recording",
+    "cassette",
+    "tapes",
+    "recordings",
+    "cassettes",
+    "record",
+    "recorded",
+    "tape",
+    "recorder",
+    "audio"
+   ]
+  },
+  {
+   "sentences": 93,
+   "feeds": 85,
+   "rejected_feeds": 1,
+   "top_words": [
+    "proof",
+    "prove",
+    "evidence",
+    "verification",
+    "provenance",
+    "lean",
+    "verified",
+    "conjecture",
+    "counterexample",
+    "fact-checking"
+   ]
+  },
+  {
+   "sentences": 134,
+   "feeds": 91,
+   "rejected_feeds": 2,
+   "top_words": [
+    "memory",
+    "ram",
+    "allocator",
+    "buffer",
+    "memorygram",
+    "garbage",
+    "accesses",
+    "kernel",
+    "thread-safe",
+    "unaligned"
+   ]
+  },
+  {
+   "sentences": 121,
+   "feeds": 83,
+   "rejected_feeds": 5,
+   "top_words": [
+    "taste",
+    "beer",
+    "wine",
+    "tea",
+    "cocktails",
+    "wines",
+    "flavor",
+    "drink",
+    "lemonade",
+    "flavour"
+   ]
+  },
+  {
+   "sentences": 52,
+   "feeds": 42,
+   "rejected_feeds": 6,
+   "top_words": [
+    "horn",
+    "accordion",
+    "reeds",
+    "guitars",
+    "instruments",
+    "oboe",
+    "smalls",
+    "harp",
+    "french",
+    "astounding"
+   ]
+  },
+  {
+   "sentences": 177,
+   "feeds": 141,
+   "rejected_feeds": 11,
+   "top_words": [
+    "city",
+    "cities",
+    "san",
+    "town",
+    "francisco",
+    "york",
+    "visited",
+    "downtown",
+    "towns",
+    "midtown"
+   ]
+  },
+  {
+   "sentences": 198,
+   "feeds": 159,
+   "rejected_feeds": 11,
+   "top_words": [
+    "story",
+    "stories",
+    "plot",
+    "storytelling",
+    "novel",
+    "short",
+    "backstory",
+    "balamory",
+    "caduceus",
+    "naoero"
+   ]
+  },
+  {
+   "sentences": 92,
+   "feeds": 60,
+   "rejected_feeds": 4,
+   "top_words": [
+    "router",
+    "wi-fi",
+    "wifi",
+    "routers",
+    "tp-link",
+    "firmware",
+    "asus",
+    "broadcom",
+    "modem",
+    "mesh"
+   ]
+  },
+  {
+   "sentences": 102,
+   "feeds": 88,
+   "rejected_feeds": 7,
+   "top_words": [
+    "love",
+    "loving",
+    "romantic",
+    "grandest",
+    "intimacy",
+    "pyrenees",
+    "unrequited",
+    "affectionate",
+    "obsessive",
+    "affection"
+   ]
+  },
+  {
+   "sentences": 151,
+   "feeds": 100,
+   "rejected_feeds": 23,
+   "top_words": [
+    "christmas",
+    "holiday",
+    "holidays",
+    "merry",
+    "festive",
+    "thanksgiving",
+    "season",
+    "carol",
+    "december",
+    "annotated"
+   ]
+  },
+  {
+   "sentences": 116,
+   "feeds": 73,
+   "rejected_feeds": 3,
+   "top_words": [
+    "mathematics",
+    "math",
+    "mathematician",
+    "mathematical",
+    "riemann",
+    "mathematicians",
+    "hypothesis",
+    "hausdorff",
+    "theory",
+    "physics"
+   ]
+  },
+  {
+   "sentences": 120,
+   "feeds": 102,
+   "rejected_feeds": 3,
+   "top_words": [
+    "error",
+    "errors",
+    "fail",
+    "failures",
+    "exceptions",
+    "exception",
+    "faults",
+    "mistakes",
+    "handling",
+    "dbcontext"
+   ]
+  },
+  {
+   "sentences": 72,
+   "feeds": 60,
+   "rejected_feeds": 0,
+   "top_words": [
+    "loop",
+    "loops",
+    "looptober",
+    "feedback",
+    "iterator",
+    "full-loop",
+    "systemverilog",
+    "strudel",
+    "iteration",
+    "yields"
+   ]
+  },
+  {
+   "sentences": 114,
+   "feeds": 70,
+   "rejected_feeds": 0,
+   "top_words": [
+    "markdown",
+    "html",
+    "editor",
+    "markup",
+    "text",
+    "formatting",
+    "files",
+    "sublime",
+    "deno",
+    "lede"
+   ]
+  },
+  {
+   "sentences": 140,
+   "feeds": 135,
+   "rejected_feeds": 10,
+   "top_words": [
+    "mrrp",
+    "meow",
+    "primer",
+    "correct",
+    "meza",
+    "paean",
+    "popula",
+    "presume",
+    "rollin'",
+    "threetake"
+   ]
+  },
+  {
+   "sentences": 86,
+   "feeds": 71,
+   "rejected_feeds": 2,
+   "top_words": [
+    "dream",
+    "dreams",
+    "dreaming",
+    "reoccurring",
+    "nightmares",
+    "dreamed",
+    "night",
+    "waking",
+    "nightmare",
+    "consciousness"
+   ]
+  },
+  {
+   "sentences": 124,
+   "feeds": 111,
+   "rejected_feeds": 6,
+   "top_words": [
+    "trend",
+    "recession",
+    "economy",
+    "market",
+    "global",
+    "deregulation",
+    "imbalances",
+    "vicious",
+    "annual",
+    "prices"
+   ]
+  },
+  {
+   "sentences": 151,
+   "feeds": 104,
+   "rejected_feeds": 8,
+   "top_words": [
+    "movie",
+    "film",
+    "directed",
+    "starring",
+    "director",
+    "scenes",
+    "scene",
+    "protagonist",
+    "novel",
+    "character"
+   ]
+  },
+  {
+   "sentences": 143,
+   "feeds": 137,
+   "rejected_feeds": 0,
+   "top_words": [
+    "argument",
+    "nuance",
+    "overthinking",
+    "claim",
+    "counterarguments",
+    "incompatible",
+    "argue",
+    "decluttering",
+    "tremendous",
+    "contentious"
+   ]
+  },
+  {
+   "sentences": 93,
+   "feeds": 76,
+   "rejected_feeds": 3,
+   "top_words": [
+    "service",
+    "services",
+    "microservices",
+    "msc",
+    "tri-state",
+    "attendants",
+    "hvac",
+    "customer",
+    "microservice",
+    "auto"
+   ]
+  },
+  {
+   "sentences": 153,
+   "feeds": 130,
+   "rejected_feeds": 4,
+   "top_words": [
+    "myself",
+    "yourself",
+    "perfectionist",
+    "consider",
+    "person",
+    "insignificant",
+    "i'm",
+    "judging",
+    "ourselves",
+    "uncomfortable"
+   ]
+  },
+  {
+   "sentences": 140,
+   "feeds": 108,
+   "rejected_feeds": 6,
+   "top_words": [
+    "color",
+    "colour",
+    "blue",
+    "green",
+    "colors",
+    "palette",
+    "colours",
+    "white",
+    "red",
+    "swatcher"
+   ]
+  },
+  {
+   "sentences": 184,
+   "feeds": 118,
+   "rejected_feeds": 31,
+   "top_words": [
+    "housing",
+    "homes",
+    "house",
+    "tenant",
+    "residential",
+    "property",
+    "estate",
+    "florida",
+    "landlord",
+    "landlords"
+   ]
+  },
+  {
+   "sentences": 367,
+   "feeds": 277,
+   "rejected_feeds": 9,
+   "top_words": [
+    "repeating",
+    "hardest",
+    "harvest",
+    "figured",
+    "counting",
+    "arrives",
+    "bold",
+    "abducting",
+    "accumu",
+    "afflicted"
+   ]
+  },
+  {
+   "sentences": 140,
+   "feeds": 90,
+   "rejected_feeds": 3,
+   "top_words": [
+    "camera",
+    "nikon",
+    "iphone",
+    "webcam",
+    "cameras",
+    "fuji",
+    "app",
+    "camcorder",
+    "video",
+    "footage"
+   ]
+  },
+  {
+   "sentences": 103,
+   "feeds": 94,
+   "rejected_feeds": 3,
+   "top_words": [
+    "nobody",
+    "never",
+    "xanadu",
+    "loyalty",
+    "none",
+    "kings",
+    "king",
+    "touched",
+    "cancels",
+    "cunts"
+   ]
+  },
+  {
+   "sentences": 101,
+   "feeds": 91,
+   "rejected_feeds": 2,
+   "top_words": [
+    "experiment",
+    "atoms",
+    "experiments",
+    "elevating",
+    "stimulatory",
+    "tdg",
+    "physics",
+    "science",
+    "mirrors",
+    "concentration"
+   ]
+  },
+  {
+   "sentences": 35,
+   "feeds": 31,
+   "rejected_feeds": 3,
+   "top_words": [
+    "conductors",
+    "nec",
+    "weights",
+    "feet",
+    "fill",
+    "inches",
+    "maximum",
+    "aluminum",
+    "swing",
+    "beam"
+   ]
+  },
+  {
+   "sentences": 75,
+   "feeds": 44,
+   "rejected_feeds": 0,
+   "top_words": [
+    "matrix",
+    "vector",
+    "bvartools",
+    "eigenvalues",
+    "mean-field",
+    "orthogonal",
+    "tensor",
+    "low-rank",
+    "coefficients",
+    "mathbb"
+   ]
+  },
+  {
+   "sentences": 55,
+   "feeds": 49,
+   "rejected_feeds": 3,
+   "top_words": [
+    "antimemetics",
+    "ebb",
+    "geb",
+    "non-lethal",
+    "division",
+    "ring",
+    "damage",
+    "antipatterns",
+    "bree",
+    "bubb"
+   ]
+  },
+  {
+   "sentences": 93,
+   "feeds": 60,
+   "rejected_feeds": 21,
+   "top_words": [
+    "shop",
+    "stores",
+    "shopify",
+    "retail",
+    "shopping",
+    "multibrand",
+    "brands",
+    "fashion",
+    "retailer",
+    "store"
+   ]
+  },
+  {
+   "sentences": 262,
+   "feeds": 176,
+   "rejected_feeds": 7,
+   "top_words": [
+    "art",
+    "painting",
+    "exhibition",
+    "artwork",
+    "artist",
+    "paintings",
+    "gallery",
+    "mural",
+    "artworks",
+    "artists"
+   ]
+  },
+  {
+   "sentences": 202,
+   "feeds": 173,
+   "rejected_feeds": 7,
+   "top_words": [
+    "week",
+    "weekly",
+    "weeks",
+    "sunday",
+    "weekend",
+    "weeknotes",
+    "weeknote",
+    "friday",
+    "monday",
+    "fantastical"
+   ]
+  },
+  {
+   "sentences": 492,
+   "feeds": 367,
+   "rejected_feeds": 2,
+   "top_words": [
+    "blog",
+    "blogging",
+    "blogs",
+    "posts",
+    "blogger",
+    "site",
+    "static",
+    "wordpress",
+    "hugo",
+    "blogpost"
+   ]
+  },
+  {
+   "sentences": 124,
+   "feeds": 91,
+   "rejected_feeds": 3,
+   "top_words": [
+    "laptop",
+    "lenovo",
+    "minibook",
+    "macbook",
+    "dell",
+    "ram",
+    "chuwi",
+    "epaper",
+    "hardware",
+    "pro"
+   ]
+  },
+  {
+   "sentences": 108,
+   "feeds": 102,
+   "rejected_feeds": 2,
+   "top_words": [
+    "done",
+    "confession",
+    "caveats",
+    "try",
+    "haven",
+    "tried",
+    "earned",
+    "cheated",
+    "diminishes",
+    "gumption"
+   ]
+  },
+  {
+   "sentences": 109,
+   "feeds": 92,
+   "rejected_feeds": 9,
+   "top_words": [
+    "bestiary",
+    "wizardry",
+    "tarot",
+    "deck",
+    "cards",
+    "decks",
+    "swords",
+    "mythmere",
+    "dragon",
+    "items"
+   ]
+  },
+  {
+   "sentences": 240,
+   "feeds": 186,
+   "rejected_feeds": 51,
+   "top_words": [
+    "november",
+    "june",
+    "october",
+    "expo",
+    "august",
+    "london",
+    "participated",
+    "summit",
+    "july",
+    "travelindex"
+   ]
+  },
+  {
+   "sentences": 136,
+   "feeds": 122,
+   "rejected_feeds": 7,
+   "top_words": [
+    "slow",
+    "faster",
+    "fast",
+    "speed",
+    "latency",
+    "speedups",
+    "slower",
+    "bandwidth",
+    "slowness",
+    "seconds"
+   ]
+  },
+  {
+   "sentences": 143,
+   "feeds": 109,
+   "rejected_feeds": 13,
+   "top_words": [
+    "death",
+    "died",
+    "dead",
+    "passed",
+    "stewart",
+    "patrick",
+    "murdering",
+    "murder",
+    "die",
+    "postmortem"
+   ]
+  },
+  {
+   "sentences": 94,
+   "feeds": 70,
+   "rejected_feeds": 0,
+   "top_words": [
+    "debian",
+    "install",
+    "fedora",
+    "packages",
+    "arch",
+    "ubuntu",
+    "pkix",
+    "package",
+    "linux",
+    "trixie"
+   ]
+  },
+  {
+   "sentences": 230,
+   "feeds": 174,
+   "rejected_feeds": 10,
+   "top_words": [
+    "photos",
+    "photo",
+    "photograph",
+    "photography",
+    "pictures",
+    "image",
+    "photographer",
+    "picture",
+    "photographs",
+    "images"
+   ]
+  },
+  {
+   "sentences": 69,
+   "feeds": 38,
+   "rejected_feeds": 0,
+   "top_words": [
+    "swiftui",
+    "swift",
+    "swifts",
+    "ios",
+    "swiftdata",
+    "breeding",
+    "pegasus",
+    "verwer",
+    "xcode",
+    "navigationstack"
+   ]
+  },
+  {
+   "sentences": 121,
+   "feeds": 95,
+   "rejected_feeds": 4,
+   "top_words": [
+    "security",
+    "access",
+    "securing",
+    "permission",
+    "secure",
+    "privileged",
+    "compliance",
+    "permissions",
+    "entra",
+    "uuids"
+   ]
+  },
+  {
+   "sentences": 117,
+   "feeds": 107,
+   "rejected_feeds": 5,
+   "top_words": [
+    "counted",
+    "seven",
+    "four",
+    "three",
+    "six",
+    "split",
+    "pens",
+    "divided",
+    "mat",
+    "five"
+   ]
+  },
+  {
+   "sentences": 171,
+   "feeds": 135,
+   "rejected_feeds": 6,
+   "top_words": [
+    "sun",
+    "clouds",
+    "sky",
+    "moon",
+    "sunrise",
+    "blue",
+    "rain",
+    "sunset",
+    "sunlight",
+    "cloud"
+   ]
+  },
+  {
+   "sentences": 105,
+   "feeds": 64,
+   "rejected_feeds": 1,
+   "top_words": [
+    "dns",
+    "domains",
+    "domain",
+    "dns-",
+    "dnf",
+    "name",
+    "tls",
+    "ddns",
+    "dkdc",
+    "internationalized"
+   ]
+  },
+  {
+   "sentences": 41,
+   "feeds": 36,
+   "rejected_feeds": 0,
+   "top_words": [
+    "rendering",
+    "render",
+    "renderer",
+    "rendered",
+    "buffer",
+    "illusion",
+    "engine",
+    "conditional",
+    "components",
+    "django"
+   ]
+  },
+  {
+   "sentences": 165,
+   "feeds": 93,
+   "rejected_feeds": 16,
+   "top_words": [
+    "dress",
+    "wear",
+    "jacket",
+    "yarn",
+    "garment",
+    "outfit",
+    "wearing",
+    "clothing",
+    "bridal",
+    "hats"
+   ]
+  },
+  {
+   "sentences": 128,
+   "feeds": 120,
+   "rejected_feeds": 1,
+   "top_words": [
+    "frustrating",
+    "struggled",
+    "subconsciously",
+    "frustration",
+    "concentrating",
+    "inability",
+    "annoying",
+    "noticed",
+    "annoyed",
+    "patience"
+   ]
+  },
+  {
+   "sentences": 151,
+   "feeds": 77,
+   "rejected_feeds": 8,
+   "top_words": [
+    "recipe",
+    "sushi",
+    "ingredients",
+    "rice",
+    "sauce",
+    "soup",
+    "sausage",
+    "spinach",
+    "beef",
+    "mango"
+   ]
+  },
+  {
+   "sentences": 147,
+   "feeds": 117,
+   "rejected_feeds": 15,
+   "top_words": [
+    "news",
+    "media",
+    "headlines",
+    "reporter",
+    "briefing",
+    "newspaper",
+    "press",
+    "fountain",
+    "political",
+    "policed"
+   ]
+  },
+  {
+   "sentences": 159,
+   "feeds": 123,
+   "rejected_feeds": 0,
+   "top_words": [
+    "models",
+    "model",
+    "frontier",
+    "open-weight",
+    "nous",
+    "nichebench",
+    "simulation",
+    "training",
+    "modeling",
+    "openai"
+   ]
+  },
+  {
+   "sentences": 144,
+   "feeds": 140,
+   "rejected_feeds": 10,
+   "top_words": [
+    "nah",
+    "slop",
+    "apprentice",
+    "assembla",
+    "ayo",
+    "bett",
+    "blueberry",
+    "conside",
+    "determ",
+    "feverish"
+   ]
+  },
+  {
+   "sentences": 164,
+   "feeds": 110,
+   "rejected_feeds": 22,
+   "top_words": [
+    "deals",
+    "friday",
+    "sale",
+    "black",
+    "auction",
+    "ebay",
+    "buy",
+    "lowe",
+    "amazon",
+    "airpods"
+   ]
+  },
+  {
+   "sentences": 115,
+   "feeds": 106,
+   "rejected_feeds": 2,
+   "top_words": [
+    "setup",
+    "configuration",
+    "config",
+    "configure",
+    "setting",
+    "setups",
+    "proxmox",
+    "hyprland",
+    "configs",
+    "install"
+   ]
+  },
+  {
+   "sentences": 133,
+   "feeds": 113,
+   "rejected_feeds": 6,
+   "top_words": [
+    "moral",
+    "humility",
+    "empathy",
+    "deeds",
+    "forgiving",
+    "judgment",
+    "virtues",
+    "wisdom",
+    "gratitude",
+    "virtue"
+   ]
+  },
+  {
+   "sentences": 135,
+   "feeds": 103,
+   "rejected_feeds": 13,
+   "top_words": [
+    "summer",
+    "autumn",
+    "season",
+    "spring",
+    "seasons",
+    "winter",
+    "copenhagen",
+    "weather",
+    "seasonal",
+    "fall"
+   ]
+  },
+  {
+   "sentences": 115,
+   "feeds": 92,
+   "rejected_feeds": 8,
+   "top_words": [
+    "box",
+    "boxes",
+    "earring",
+    "jewelry",
+    "plastic",
+    "wooden",
+    "cardboard",
+    "toy",
+    "laser",
+    "holder"
+   ]
+  },
+  {
+   "sentences": 331,
+   "feeds": 229,
+   "rejected_feeds": 9,
+   "top_words": [
+    "app",
+    "apps",
+    "android",
+    "ios",
+    "store",
+    "f-droid",
+    "iphone",
+    "mobile",
+    "apple",
+    "google"
+   ]
+  },
+  {
+   "sentences": 88,
+   "feeds": 55,
+   "rejected_feeds": 2,
+   "top_words": [
+    "robot",
+    "robots",
+    "robotic",
+    "quadcopter",
+    "robotics",
+    "vision-enhanced",
+    "vacuum",
+    "combos",
+    "dreame",
+    "forester"
+   ]
+  },
+  {
+   "sentences": 111,
+   "feeds": 65,
+   "rejected_feeds": 0,
+   "top_words": [
+    "java",
+    "openjdk",
+    "jwt",
+    "jvm",
+    "jdk",
+    "clion",
+    "jaspera",
+    "jenesis",
+    "jev",
+    "jax"
+   ]
+  },
+  {
+   "sentences": 151,
+   "feeds": 119,
+   "rejected_feeds": 3,
+   "top_words": [
+    "his",
+    "tongue",
+    "panic",
+    "teeth",
+    "himself",
+    "godric",
+    "seat",
+    "brain",
+    "afternoon",
+    "coat"
+   ]
+  },
+  {
+   "sentences": 103,
+   "feeds": 85,
+   "rejected_feeds": 8,
+   "top_words": [
+    "privacy",
+    "protections",
+    "consent",
+    "identification",
+    "theft",
+    "data",
+    "filings",
+    "frustrate",
+    "identifiable",
+    "shopify's"
+   ]
+  },
+  {
+   "sentences": 86,
+   "feeds": 67,
+   "rejected_feeds": 1,
+   "top_words": [
+    "migrating",
+    "migration",
+    "migrations",
+    "migrated",
+    "migrate",
+    "mysql",
+    "wordpress",
+    "hetzner",
+    "migrationfailed",
+    "moving"
+   ]
+  },
+  {
+   "sentences": 156,
+   "feeds": 145,
+   "rejected_feeds": 9,
+   "top_words": [
+    "email",
+    "join",
+    "please",
+    "alcoholic",
+    "reach",
+    "member",
+    "detroit",
+    "hav",
+    "newcomer",
+    "moped"
+   ]
+  },
+  {
+   "sentences": 97,
+   "feeds": 80,
+   "rejected_feeds": 4,
+   "top_words": [
+    "chatbot",
+    "chatbots",
+    "chat",
+    "conversation",
+    "dialogue",
+    "conversational",
+    "chatgpt",
+    "dessa",
+    "assistant",
+    "human-like"
+   ]
+  },
+  {
+   "sentences": 46,
+   "feeds": 33,
+   "rejected_feeds": 1,
+   "top_words": [
+    "flash",
+    "deepseek-v",
+    "glm",
+    "deepseek",
+    "mimo-v",
+    "flex",
+    "carts",
+    "toradex",
+    "cartridges",
+    "tpu"
+   ]
+  },
+  {
+   "sentences": 133,
+   "feeds": 123,
+   "rejected_feeds": 1,
+   "top_words": [
+    "complexity",
+    "maxxing",
+    "throughput",
+    "efficiency",
+    "problems",
+    "optimizes",
+    "costs",
+    "programming",
+    "structs",
+    "abstraction"
+   ]
+  },
+  {
+   "sentences": 157,
+   "feeds": 50,
+   "rejected_feeds": 10,
+   "top_words": [
+    "untuk",
+    "tak",
+    "ale",
+    "rozwi",
+    "jak",
+    "ini",
+    "jakarta",
+    "masz",
+    "ngh",
+    "nie"
+   ]
+  },
+  {
+   "sentences": 126,
+   "feeds": 110,
+   "rejected_feeds": 11,
+   "top_words": [
+    "fabula",
+    "ultima",
+    "androcles",
+    "hossana",
+    "judit",
+    "nasdara",
+    "nti",
+    "polgar",
+    "wobo",
+    "agada"
+   ]
+  },
+  {
+   "sentences": 79,
+   "feeds": 74,
+   "rejected_feeds": 4,
+   "top_words": [
+    "say",
+    "unconference",
+    "tell",
+    "said",
+    "speak",
+    "rant",
+    "talk",
+    "capello",
+    "generalities",
+    "hahahah"
+   ]
+  },
+  {
+   "sentences": 435,
+   "feeds": 334,
+   "rejected_feeds": 10,
+   "top_words": [
+    "coding",
+    "software",
+    "tools",
+    "ai-assisted",
+    "models",
+    "code",
+    "development",
+    "engineering",
+    "assistants",
+    "generative"
+   ]
+  },
+  {
+   "sentences": 122,
+   "feeds": 83,
+   "rejected_feeds": 4,
+   "top_words": [
+    "music",
+    "spotify",
+    "playlist",
+    "player",
+    "streaming",
+    "limiter",
+    "lossless",
+    "itunes",
+    "midi",
+    "audio"
+   ]
+  },
+  {
+   "sentences": 222,
+   "feeds": 185,
+   "rejected_feeds": 6,
+   "top_words": [
+    "feeling",
+    "feel",
+    "feels",
+    "felt",
+    "relieved",
+    "feelings",
+    "fuzzy",
+    "tension",
+    "body",
+    "heart"
+   ]
+  },
+  {
+   "sentences": 79,
+   "feeds": 51,
+   "rejected_feeds": 2,
+   "top_words": [
+    "gemini",
+    "astro",
+    "neon",
+    "anti-marketing",
+    "arima",
+    "lower-memory",
+    "opus",
+    "google",
+    "gpt-",
+    "decision"
+   ]
+  },
+  {
+   "sentences": 128,
+   "feeds": 106,
+   "rejected_feeds": 5,
+   "top_words": [
+    "bookmarks",
+    "library",
+    "bookmark",
+    "drawer",
+    "books",
+    "archive",
+    "libraries",
+    "contents",
+    "mabel",
+    "pinboard"
+   ]
+  },
+  {
+   "sentences": 110,
+   "feeds": 72,
+   "rejected_feeds": 5,
+   "top_words": [
+    "halloween",
+    "horror",
+    "haunted",
+    "spooky",
+    "ghost",
+    "ghosts",
+    "witches",
+    "arboretum",
+    "scary",
+    "hauntings"
+   ]
+  },
+  {
+   "sentences": 140,
+   "feeds": 130,
+   "rejected_feeds": 2,
+   "top_words": [
+    "examples",
+    "nominalism",
+    "definition",
+    "meandering",
+    "concept",
+    "concrete",
+    "ordinary",
+    "concise",
+    "complex",
+    "simplicity"
+   ]
+  },
+  {
+   "sentences": 86,
+   "feeds": 67,
+   "rejected_feeds": 14,
+   "top_words": [
+    "ufc",
+    "fighter",
+    "vallejos",
+    "qatar",
+    "fight",
+    "fighting",
+    "boxing",
+    "afi",
+    "mma",
+    "villains"
+   ]
+  },
+  {
+   "sentences": 87,
+   "feeds": 47,
+   "rejected_feeds": 4,
+   "top_words": [
+    "covid",
+    "vaccines",
+    "vaccine",
+    "pandemic",
+    "covid-",
+    "whooping",
+    "cough",
+    "measles",
+    "flu",
+    "outbreak"
+   ]
+  },
+  {
+   "sentences": 165,
+   "feeds": 137,
+   "rejected_feeds": 3,
+   "top_words": [
+    "world",
+    "universe",
+    "infinite",
+    "worlds",
+    "finiteness",
+    "inevitable",
+    "apocalypse",
+    "heaven",
+    "exist",
+    "pbta"
+   ]
+  },
+  {
+   "sentences": 144,
+   "feeds": 88,
+   "rejected_feeds": 7,
+   "top_words": [
+    "iran",
+    "war",
+    "iranian",
+    "nuclear",
+    "hormuz",
+    "nato",
+    "gaza",
+    "strait",
+    "israel",
+    "east"
+   ]
+  },
+  {
+   "sentences": 83,
+   "feeds": 74,
+   "rejected_feeds": 5,
+   "top_words": [
+    "ads-b",
+    "scout",
+    "reversing",
+    "receiver",
+    "fixed",
+    "blf",
+    "fmp",
+    "fmupgradetool",
+    "chisel",
+    "cran"
+   ]
+  },
+  {
+   "sentences": 197,
+   "feeds": 141,
+   "rejected_feeds": 7,
+   "top_words": [
+    "books",
+    "book",
+    "kindle",
+    "ebook",
+    "amazon",
+    "e-book",
+    "ebooks",
+    "paperback",
+    "bookstore",
+    "scholarly"
+   ]
+  },
+  {
+   "sentences": 174,
+   "feeds": 137,
+   "rejected_feeds": 10,
+   "top_words": [
+    "teams",
+    "team",
+    "leadership",
+    "organisation",
+    "leader",
+    "senior",
+    "engineering",
+    "communication",
+    "clarity",
+    "managers"
+   ]
+  },
+  {
+   "sentences": 146,
+   "feeds": 112,
+   "rejected_feeds": 8,
+   "top_words": [
+    "music",
+    "song",
+    "guitar",
+    "orchestra",
+    "drum",
+    "musical",
+    "chords",
+    "band",
+    "rhythmic",
+    "ethereal"
+   ]
+  },
+  {
+   "sentences": 92,
+   "feeds": 67,
+   "rejected_feeds": 2,
+   "top_words": [
+    "coffee",
+    "caf",
+    "coffeeneuring",
+    "caffeine",
+    "espresso",
+    "coffees",
+    "shop",
+    "cup",
+    "roasters",
+    "shufflepuck"
+   ]
+  },
+  {
+   "sentences": 98,
+   "feeds": 76,
+   "rejected_feeds": 0,
+   "top_words": [
+    "malware",
+    "reverse",
+    "denuvo",
+    "obfuscation",
+    "reverse-engineering",
+    "forensics",
+    "exploitation",
+    "execution",
+    "threat",
+    "kernel"
+   ]
+  },
+  {
+   "sentences": 125,
+   "feeds": 108,
+   "rejected_feeds": 1,
+   "top_words": [
+    "life",
+    "living",
+    "lemons",
+    "jenga",
+    "greenfield",
+    "live",
+    "assess",
+    "uncertain",
+    "persistence",
+    "lived"
+   ]
+  },
+  {
+   "sentences": 170,
+   "feeds": 125,
+   "rejected_feeds": 2,
+   "top_words": [
+    "web",
+    "internet",
+    "webcomics",
+    "webring",
+    "websites",
+    "browsers",
+    "trends",
+    "gget",
+    "inl",
+    "mark-of-the-web"
+   ]
+  },
+  {
+   "sentences": 128,
+   "feeds": 96,
+   "rejected_feeds": 0,
+   "top_words": [
+    "algorithm",
+    "algorithms",
+    "sorting",
+    "indexing",
+    "recursive",
+    "retrieval",
+    "index",
+    "vector",
+    "permutation",
+    "algebraic"
+   ]
+  },
+  {
+   "sentences": 129,
+   "feeds": 111,
+   "rejected_feeds": 3,
+   "top_words": [
+    "war",
+    "battalion",
+    "strike",
+    "conspiracy",
+    "dillinger",
+    "tat",
+    "treason",
+    "president",
+    "colt",
+    "coup"
+   ]
+  },
+  {
+   "sentences": 98,
+   "feeds": 77,
+   "rejected_feeds": 6,
+   "top_words": [
+    "pain",
+    "painful",
+    "finger",
+    "muscles",
+    "sore",
+    "wrist",
+    "needles",
+    "neck",
+    "aches",
+    "rsi"
+   ]
+  },
+  {
+   "sentences": 162,
+   "feeds": 130,
+   "rejected_feeds": 20,
+   "top_words": [
+    "business",
+    "customers",
+    "businesses",
+    "customer",
+    "clients",
+    "freelancer",
+    "appraisal",
+    "services",
+    "selling",
+    "agency"
+   ]
+  },
+  {
+   "sentences": 117,
+   "feeds": 82,
+   "rejected_feeds": 0,
+   "top_words": [
+    "vibe",
+    "coding",
+    "vibe-coded",
+    "coded",
+    "vibe-coding",
+    "vibes",
+    "vibecoding",
+    "vibe-code",
+    "coder",
+    "tycoon"
+   ]
+  },
+  {
+   "sentences": 108,
+   "feeds": 79,
+   "rejected_feeds": 2,
+   "top_words": [
+    "log",
+    "logs",
+    "logging",
+    "liam's",
+    "logdrive",
+    "logger",
+    "radiant",
+    "jooq",
+    "changelogs",
+    "knitlog"
+   ]
+  },
+  {
+   "sentences": 46,
+   "feeds": 35,
+   "rejected_feeds": 1,
+   "top_words": [
+    "cursor",
+    "mouse",
+    "mice",
+    "smoothing",
+    "acorn",
+    "pointer",
+    "bus",
+    "hex",
+    "ai-focused",
+    "bo's"
+   ]
+  },
+  {
+   "sentences": 205,
+   "feeds": 192,
+   "rejected_feeds": 15,
+   "top_words": [
+    "post",
+    "posts",
+    "posting",
+    "kalk",
+    "postscript",
+    "i'd",
+    "appeared",
+    "overdue",
+    "reward",
+    "fucking"
+   ]
+  },
+  {
+   "sentences": 81,
+   "feeds": 61,
+   "rejected_feeds": 0,
+   "top_words": [
+    "ergodicity",
+    "probability",
+    "uncertainty",
+    "economics",
+    "zero-sum",
+    "bias",
+    "expected",
+    "expectations",
+    "utility",
+    "principle"
+   ]
+  },
+  {
+   "sentences": 145,
+   "feeds": 130,
+   "rejected_feeds": 21,
+   "top_words": [
+    "roster",
+    "brazile",
+    "egbert",
+    "llombaerth",
+    "necromancer",
+    "rhonodel",
+    "cleric",
+    "halfling",
+    "hound",
+    "wayne"
+   ]
+  },
+  {
+   "sentences": 103,
+   "feeds": 84,
+   "rejected_feeds": 10,
+   "top_words": [
+    "darch",
+    "sorenpeter",
+    "helvede",
+    "maiathecyberwitch",
+    "mincepieaday",
+    "mincepiefest",
+    "mtwtfssdaily",
+    "stopsreturn",
+    "triage",
+    "jackson"
+   ]
+  },
+  {
+   "sentences": 46,
+   "feeds": 35,
+   "rejected_feeds": 1,
+   "top_words": [
+    "dithering",
+    "connected",
+    "linker",
+    "border-shape",
+    "memoized",
+    "rings",
+    "mesh",
+    "paths",
+    "meshes",
+    "circles"
+   ]
+  },
+  {
+   "sentences": 131,
+   "feeds": 112,
+   "rejected_feeds": 12,
+   "top_words": [
+    "growth",
+    "economy",
+    "sustainability",
+    "productivity",
+    "business-to-industry",
+    "sustainable",
+    "efficiency",
+    "economics",
+    "consumption",
+    "revenue"
+   ]
+  },
+  {
+   "sentences": 87,
+   "feeds": 80,
+   "rejected_feeds": 3,
+   "top_words": [
+    "answer",
+    "question",
+    "answered",
+    "answers",
+    "answering",
+    "reply",
+    "element",
+    "adversa",
+    "answer's",
+    "bahrick"
+   ]
+  },
+  {
+   "sentences": 109,
+   "feeds": 86,
+   "rejected_feeds": 14,
+   "top_words": [
+    "payment",
+    "credit",
+    "paid",
+    "fee",
+    "pay",
+    "payments",
+    "monthly",
+    "consolidation",
+    "pays",
+    "loans"
+   ]
+  },
+  {
+   "sentences": 145,
+   "feeds": 139,
+   "rejected_feeds": 4,
+   "top_words": [
+    "works",
+    "hood",
+    "autofill",
+    "process",
+    "fetches",
+    "allows",
+    "explainer",
+    "curious",
+    "descriptions",
+    "cube"
+   ]
+  },
+  {
+   "sentences": 84,
+   "feeds": 61,
+   "rejected_feeds": 10,
+   "top_words": [
+    "heat",
+    "heating",
+    "temperature",
+    "pump",
+    "heatmap",
+    "warm",
+    "thermostat",
+    "hot",
+    "heated",
+    "chilipad"
+   ]
+  },
+  {
+   "sentences": 138,
+   "feeds": 89,
+   "rejected_feeds": 1,
+   "top_words": [
+    "encryption",
+    "tls",
+    "certificate",
+    "cryptography",
+    "encrypted",
+    "certificates",
+    "encrypt",
+    "homomorphic",
+    "cryptographic",
+    "ssl"
+   ]
+  },
+  {
+   "sentences": 120,
+   "feeds": 101,
+   "rejected_feeds": 2,
+   "top_words": [
+    "words",
+    "word",
+    "phrases",
+    "dictionary",
+    "letters",
+    "nouns",
+    "vocabulary",
+    "abstracted",
+    "adjectives",
+    "verbs"
+   ]
+  },
+  {
+   "sentences": 132,
+   "feeds": 125,
+   "rejected_feeds": 6,
+   "top_words": [
+    "million",
+    "billion",
+    "tokens",
+    "millions",
+    "submissions",
+    "trillion",
+    "number",
+    "limit",
+    "hoard",
+    "totaling"
+   ]
+  },
+  {
+   "sentences": 100,
+   "feeds": 84,
+   "rejected_feeds": 4,
+   "top_words": [
+    "todo",
+    "tasks",
+    "task",
+    "calendar",
+    "tracking",
+    "track",
+    "app",
+    "workspaces",
+    "dotoist",
+    "worktrees"
+   ]
+  },
+  {
+   "sentences": 112,
+   "feeds": 97,
+   "rejected_feeds": 5,
+   "top_words": [
+    "xteink",
+    "djx",
+    "psr",
+    "pro",
+    "genos",
+    "qwen",
+    "yamaha",
+    "crossink",
+    "laguna",
+    "onyx"
+   ]
+  },
+  {
+   "sentences": 125,
+   "feeds": 79,
+   "rejected_feeds": 12,
+   "top_words": [
+    "food",
+    "vegan",
+    "eat",
+    "meat",
+    "eating",
+    "vegans",
+    "diet",
+    "foods",
+    "nutrition",
+    "cook"
+   ]
+  },
+  {
+   "sentences": 196,
+   "feeds": 147,
+   "rejected_feeds": 1,
+   "top_words": [
+    "llms",
+    "llm",
+    "inference",
+    "llvm",
+    "code",
+    "coding",
+    "kernels",
+    "llm-driven",
+    "software",
+    "llm-based"
+   ]
+  },
+  {
+   "sentences": 112,
+   "feeds": 87,
+   "rejected_feeds": 16,
+   "top_words": [
+    "logo",
+    "aesthetic",
+    "tattoos",
+    "makeover",
+    "newport",
+    "portraits",
+    "invisalign",
+    "monogram",
+    "qiffrey",
+    "aesthetics"
+   ]
+  },
+  {
+   "sentences": 114,
+   "feeds": 63,
+   "rejected_feeds": 9,
+   "top_words": [
+    "investing",
+    "investment",
+    "portfolio",
+    "funds",
+    "investors",
+    "stock",
+    "fund",
+    "mutual",
+    "invest",
+    "financial"
+   ]
+  },
+  {
+   "sentences": 339,
+   "feeds": 232,
+   "rejected_feeds": 35,
+   "top_words": [
+    "november",
+    "october",
+    "september",
+    "nov",
+    "june",
+    "oct",
+    "week",
+    "ware",
+    "december",
+    "transits"
+   ]
+  },
+  {
+   "sentences": 77,
+   "feeds": 53,
+   "rejected_feeds": 1,
+   "top_words": [
+    "opentelemetry",
+    "prometheus",
+    "telemetry",
+    "metrics",
+    "tracing",
+    "monitor",
+    "grafana",
+    "exporter",
+    "data",
+    "per-device"
+   ]
+  },
+  {
+   "sentences": 169,
+   "feeds": 153,
+   "rejected_feeds": 6,
+   "top_words": [
+    "weekend",
+    "went",
+    "friends",
+    "met",
+    "wife",
+    "party",
+    "concert",
+    "fun",
+    "attended",
+    "collingword"
+   ]
+  },
+  {
+   "sentences": 214,
+   "feeds": 140,
+   "rejected_feeds": 0,
+   "top_words": [
+    "github",
+    "actions",
+    "repo",
+    "git",
+    "repository",
+    "repositories",
+    "gitlab",
+    "copilot",
+    "pages",
+    "bitbucket"
+   ]
+  },
+  {
+   "sentences": 139,
+   "feeds": 100,
+   "rejected_feeds": 6,
+   "top_words": [
+    "europe",
+    "cop",
+    "countries",
+    "america",
+    "burnham",
+    "united",
+    "usa",
+    "germany",
+    "borders",
+    "european"
+   ]
+  },
+  {
+   "sentences": 137,
+   "feeds": 114,
+   "rejected_feeds": 25,
+   "top_words": [
+    "hotel",
+    "airbnb",
+    "street",
+    "accommodation",
+    "accommodations",
+    "park",
+    "restaurants",
+    "awho",
+    "bayne",
+    "bhk"
+   ]
+  },
+  {
+   "sentences": 100,
+   "feeds": 95,
+   "rejected_feeds": 3,
+   "top_words": [
+    "fun",
+    "entertaining",
+    "boring",
+    "joy",
+    "bored",
+    "laughs",
+    "play",
+    "boredom",
+    "premise",
+    "excitement"
+   ]
+  },
+  {
+   "sentences": 107,
+   "feeds": 76,
+   "rejected_feeds": 6,
+   "top_words": [
+    "crochet",
+    "hexagon",
+    "cut",
+    "chunking",
+    "xtool",
+    "yarn",
+    "stencils",
+    "stitches",
+    "plywood",
+    "fold"
+   ]
+  },
+  {
+   "sentences": 112,
+   "feeds": 87,
+   "rejected_feeds": 17,
+   "top_words": [
+    "company",
+    "swant",
+    "companies",
+    "motor",
+    "axel",
+    "ltd",
+    "chamber",
+    "manufacturer",
+    "additives",
+    "amuchie"
+   ]
+  },
+  {
+   "sentences": 200,
+   "feeds": 162,
+   "rejected_feeds": 7,
+   "top_words": [
+    "website",
+    "site",
+    "instagram",
+    "sites",
+    "linkedin",
+    "websites",
+    "tumblr",
+    "com",
+    "meetup",
+    "homebrew"
+   ]
+  },
+  {
+   "sentences": 217,
+   "feeds": 185,
+   "rejected_feeds": 5,
+   "top_words": [
+    "life",
+    "felt",
+    "memories",
+    "childhood",
+    "mistakes",
+    "worrying",
+    "fascinated",
+    "truly",
+    "belongings",
+    "became"
+   ]
+  },
+  {
+   "sentences": 128,
+   "feeds": 88,
+   "rejected_feeds": 19,
+   "top_words": [
+    "cancer",
+    "diagnosed",
+    "clinical",
+    "treatment",
+    "studies",
+    "patients",
+    "diabetes",
+    "diagnosis",
+    "medical",
+    "pancreatic"
+   ]
+  }
+ ]
+}
