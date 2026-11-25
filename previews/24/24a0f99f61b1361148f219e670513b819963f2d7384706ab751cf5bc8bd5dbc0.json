@@ -1,0 +1,20 @@
+{
+  "url": "https://blog.spencersalazar.com/feed.xml",
+  "title": "import spencer.blog",
+  "subtitle": "Musings on art and technology",
+  "bytes": 136149,
+  "last": "2026-02-18",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://spencersalazar.com/archive/mel-frequency-cepstral-coefficients/",
+      "title": "undefined",
+      "description": "Mel frequency cepstral coefficients have always fascinated me. The mathematical intuitions for why they work are relatively abstruse. Yet they’re effective! MFCCs were originally developed in the 1970s, where their use was primarily geared toward digital speech recognition. They have persisted through several generations of machine intelligence development, from early work in genre classification"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "url": "https://badpenny.bearblog.dev/feed/",
+  "title": "See a Penny, Pick it up",
+  "subtitle": "I write about my mundane everyday life stuff, local Alaskan stuff, making & selling art, projects, observations, drama vulturing, politics (unavoidable), etc...",
+  "bytes": 165743,
+  "last": "2026-11-03",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "writing"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://badpenny.bearblog.dev/hc-the-cold-november-rain/",
+      "title": "HC: the cold november rain",
+      "description": "Post halloween wrapup and starting NoNo."
+    },
+    {
+      "link": "https://badpenny.bearblog.dev/hc-catching-up/",
+      "title": "HC: catching up",
+      "description": "General update and writing chatter."
+    },
+    {
+      "link": "https://badpenny.bearblog.dev/hc-nono-time/",
+      "title": "HC: NoNo time",
+      "description": "Starting the novella and election fuss."
+    }
+  ]
+}

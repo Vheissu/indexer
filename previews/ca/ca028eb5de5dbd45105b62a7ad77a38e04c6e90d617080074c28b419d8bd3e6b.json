@@ -1,0 +1,30 @@
+{
+  "url": "https://hypnotize.works/blog/rss",
+  "title": "Mike's World",
+  "subtitle": "Things to share",
+  "bytes": 1631,
+  "last": "2026-11-21",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://hypnotize.works/blog/eye/",
+      "title": "inside",
+      "description": null
+    },
+    {
+      "link": "https://hypnotize.works/blog/halloween-stream-2026/",
+      "title": "halloween stream 2026",
+      "description": null
+    },
+    {
+      "link": "https://hypnotize.works/blog/out-east/",
+      "title": "out east",
+      "description": null
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "url": "https://wilsonmunoz.net/feed.xml",
+  "title": "Wilson Munoz, Software Engineer focused on iOS && macOS based in Cancun, Mexico.",
+  "subtitle": "Software Engineering, Swift, Python, MongoDB, Linux, Shell Scripting, SQL, Coffee, Jiu Jitsu, Boxing, Dogs, Cancun and more.",
+  "bytes": 109446,
+  "last": "2026-11-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "programming",
+    "software-engineering",
+    "swift",
+    "ai"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://wilsonmunoz.net/blog/pr-love-bombing/",
+      "title": "PR Love Bombing",
+      "description": "A semi-rant about AI, pull requests, and the eternal demand for 'more'."
+    },
+    {
+      "link": "https://wilsonmunoz.net/blog/blast-radius-the-impact-your-code-intended-to-do/",
+      "title": "Blast Radius: The impact your code intended to do, can do, and it ends up doing",
+      "description": "Thinking of making models and logic for my codebase better."
+    },
+    {
+      "link": "https://wilsonmunoz.net/blog/consider-richer-data-that-achieves-the-same-result/",
+      "title": "Consider Richer Data That Achieves The Same Result.",
+      "description": "Thinking of making models and logic for my codebase better."
+    }
+  ]
+}

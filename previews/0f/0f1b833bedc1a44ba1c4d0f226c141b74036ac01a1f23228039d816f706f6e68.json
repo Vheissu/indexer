@@ -1,0 +1,16 @@
+{
+  "url": "https://www.kiwipolitico.com/feed/",
+  "title": "Kiwipolitico",
+  "subtitle": null,
+  "bytes": 37274,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

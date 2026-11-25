@@ -1,0 +1,34 @@
+{
+  "url": "https://www.technolaaji.com/rss",
+  "title": "My Portfolio",
+  "subtitle": "This is my portfolio RSS feed",
+  "bytes": 2005,
+  "last": "2026-06-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "portfolio"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://kalaaji.com/blog/starting-over-is-a-privilege",
+      "title": "Starting over is a privilege",
+      "description": "I am back bitches"
+    },
+    {
+      "link": "https://kalaaji.com/blog/blindness",
+      "title": "Blindness",
+      "description": "A reflection on the concept of blindness, both literal and metaphorical."
+    },
+    {
+      "link": "https://kalaaji.com/blog/digital-detoxing",
+      "title": "Digital Detoxing",
+      "description": "I turned my smartphone into a dumb phone with a device that bricks it"
+    }
+  ]
+}

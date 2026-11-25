@@ -1,0 +1,18 @@
+{
+  "url": "https://laughingsquid.com/feed/",
+  "title": "Laughing Squid",
+  "subtitle": "a daily dose of unique and curious things",
+  "bytes": 186942,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "squid"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

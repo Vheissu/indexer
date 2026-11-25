@@ -1,0 +1,19 @@
+{
+  "url": "https://thebostonsun.com/feed/",
+  "title": "The Boston Sun",
+  "subtitle": "Boston Massachusetts Newspaper",
+  "bytes": 66659,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "boston",
+    "massachusetts"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

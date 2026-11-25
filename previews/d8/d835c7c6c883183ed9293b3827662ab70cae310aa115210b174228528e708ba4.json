@@ -1,0 +1,27 @@
+{
+  "url": "https://blog.day50.dev/index.xml",
+  "title": "DA`/50",
+  "subtitle": "Recent content on DA`/50",
+  "bytes": 2389,
+  "last": "2026-02-03",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://blog.day50.dev/intro/vibedrift/",
+      "title": "Controlling the Vibe Drift",
+      "description": "When to AI We don’t use AI tools all the time for everything. Whether we turn to them is a subliminal internal negotiational we make like with any machine. Sometimes we take the stairs instead of an escalator or walk to our destination instead of drive. Often we pick something up without rolling out the vacuum."
+    },
+    {
+      "link": "https://blog.day50.dev/intro/day50/",
+      "title": "How AI Coding Breaks Down",
+      "description": "Taking vibe coding from one night stands to long term relationships"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "url": "https://qouteall.fun/qouteall-blog/atom.xml",
+  "title": "qouteall notes Blog",
+  "subtitle": "qouteall notes Blog",
+  "bytes": 4342765,
+  "last": "2026-05-01",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "abstraction",
+    "programming"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://qouteall.fun/qouteall-blog/2026/Rust async traps",
+      "title": "Rust Async Traps",
+      "description": "Blocking scheduler thread"
+    },
+    {
+      "link": "https://qouteall.fun/qouteall-blog/2026/The Nonlinear World",
+      "title": "The Nonlinear World",
+      "description": "Second-order effect"
+    },
+    {
+      "link": "https://qouteall.fun/qouteall-blog/2025/My Views about AI",
+      "title": "Some Notes about AI",
+      "description": "Intelligence is high-dimensional"
+    }
+  ]
+}

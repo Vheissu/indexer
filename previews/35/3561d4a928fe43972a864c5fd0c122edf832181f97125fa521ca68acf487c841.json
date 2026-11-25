@@ -1,0 +1,18 @@
+{
+  "url": "https://www.mycolourisblue.fourie.net.za/feed/",
+  "title": "My Colour is Blue",
+  "subtitle": "Our Journey with our Autistic Son",
+  "bytes": 10061,
+  "last": "2026-09-03",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "autism"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

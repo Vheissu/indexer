@@ -1,0 +1,32 @@
+{
+  "url": "https://byla.lt/feed.rss",
+  "title": "Byla.lt",
+  "subtitle": "My lovely corner on the internet™",
+  "bytes": 456775,
+  "last": "2026-05-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://byla.lt/posts/mudu",
+      "title": "Mudu: The Beginning",
+      "description": "Mudu is an end-to-end encrypted private space for couples, families and close friends, built around shared plans, lists, places, moments, emotional signals and small relationship tools."
+    },
+    {
+      "link": "https://byla.lt/posts/ten-years-older-voice-takes-over",
+      "title": "Ten Years Older, Voice Takes Over",
+      "description": "Paying off a decade of accessibility debt using SwiftUI accessibility APIs, which aren’t as intimidating as they might seem."
+    },
+    {
+      "link": "https://byla.lt/posts/ten-years-older-ten-times-bolder",
+      "title": "Ten Years Older, Ten Times Bolder",
+      "description": "A behind-the-scenes look at developing Decrypto, the game that changed me and my life."
+    }
+  ]
+}

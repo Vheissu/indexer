@@ -1,0 +1,4 @@
+https://arielorozco.com/rss.xml
+https://crumbles.blog/atom.xml
+https://jonaskemper.com/atom/
+https://chaosinmotion.com/feed/

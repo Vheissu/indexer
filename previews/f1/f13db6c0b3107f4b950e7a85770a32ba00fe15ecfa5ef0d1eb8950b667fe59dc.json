@@ -1,0 +1,36 @@
+{
+  "url": "https://ashbuk.hashnode.dev/rss.xml",
+  "title": "AshBuk's Dev Journal - Linux, OSS, Go, Engineering Notes",
+  "subtitle": "Practical guides, problem-solving, and real-world development insights.",
+  "bytes": 73893,
+  "last": "2026-03-25",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "linux",
+    "open-source",
+    "golang"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://ashbuk.hashnode.dev/which-stack-for-linux-desktop",
+      "title": "Which Stack for Linux Desktop?",
+      "description": "Go works for Linux desktop, but Rust's type system replaces the architecture you'd build by hand. Less code, more guarantees."
+    },
+    {
+      "link": "https://ashbuk.hashnode.dev/software-craftsmanship-the-three-hidden-pillars",
+      "title": "Software Craftsmanship: The Three Hidden Pillars",
+      "description": "Explore the 3 pillars of Software Craftsmanship: Linux, split keyboards, and mastering shortcuts. Learn how to remove friction and enter a flow state while"
+    },
+    {
+      "link": "https://ashbuk.hashnode.dev/hyprland-fedora",
+      "title": "Packaging Hyprland 0.52+ for Fedora 43: A Clean COPR Repository",
+      "description": "How I built a clean, spec-compliant Hyprland RPM for Fedora 43 using vendored libraries, proper RUNPATH, and COPR—without LD_LIBRARY_PATH hacks"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "url": "https://matt.blog/feed/",
+  "title": "Matt on Not-WordPress, mostly photos",
+  "subtitle": "Stuff and things.",
+  "bytes": 134887,
+  "last": "2026-10-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://matt.blog/2026/10/17/florence-arno-river/",
+      "title": "Florence Arno River",
+      "description": null
+    },
+    {
+      "link": "https://matt.blog/2026/07/24/alpine-tarn-near-mount-tom-taylor/",
+      "title": "Alpine Tarn near Mount Tom Taylor",
+      "description": null
+    },
+    {
+      "link": "https://matt.blog/2026/07/23/texas-sunrise/",
+      "title": "Texas Sunrise",
+      "description": null
+    }
+  ]
+}

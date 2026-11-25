@@ -1,0 +1,32 @@
+{
+  "url": "https://manas.tungare.name/feed",
+  "title": "Manas Tungare",
+  "subtitle": "Software Engineer @ Google • UberTL for Gmail Productivity • Ph.D. Computer Science • Love to code @chimbori.com.",
+  "bytes": 78783,
+  "last": "2026-05-23",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://manas.tungare.name/blog/continue-to-write-well-never-mind-the-ai-detectors",
+      "title": "Continue to Write Well — Never Mind the AI Detectors",
+      "description": "Don’t break your own natural writing style just because of the fear of an AI Detector bot alleging plagiarism."
+    },
+    {
+      "link": "https://manas.tungare.name/blog/vibe-coding-the-good-parts-continued",
+      "title": "Vibe Coding for Engineers: The Good Parts (continued)",
+      "description": "From an AI skeptic turned cautiously-optimistic vibe-coding engineer, here’s how you can get started with LLM-assisted engineering."
+    },
+    {
+      "link": "https://manas.tungare.name/blog/vibe-coding-the-good-parts",
+      "title": "Vibe Coding for Engineers: The Good Parts",
+      "description": "From an AI skeptic turned cautiously-optimistic vibe-coding engineer, here’s how you can get started with LLM-assisted engineering."
+    }
+  ]
+}

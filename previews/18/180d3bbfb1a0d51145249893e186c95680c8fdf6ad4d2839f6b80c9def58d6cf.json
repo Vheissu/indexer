@@ -1,0 +1,16 @@
+{
+  "url": "https://tucollegian.org/feed/",
+  "title": "The Collegian",
+  "subtitle": "Proud newspaper of the University of Tulsa",
+  "bytes": 61191,
+  "last": "2026-11-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

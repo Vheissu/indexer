@@ -1,0 +1,34 @@
+{
+  "url": "https://hatnes.no/index.xml",
+  "title": "Hatnes.no on Hatnes.no - Blog about AI, Cloud, and Security",
+  "subtitle": "Recent content in Hatnes.no on Hatnes.no - Blog about AI, Cloud, and Security",
+  "bytes": 3831,
+  "last": "2026-07-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "azure"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://hatnes.no/posts/ai-gateway/",
+      "title": "AI Gateway",
+      "description": "Let us dig into the AI gateway from microsoft"
+    },
+    {
+      "link": "https://hatnes.no/posts/ai-moving-into-the-enterprise/",
+      "title": "AI Is Finally Moving Into the Enterprise",
+      "description": "Why enterprise AI is moving from impressive demos to governable production infrastructure."
+    },
+    {
+      "link": "https://hatnes.no/posts/ngfws-azure/",
+      "title": "Smart Use of NGFWs in Azure",
+      "description": "How to use NGFWs in Azure the right way"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "url": "https://code-designs.co.uk/rss.xml",
+  "title": "Code Design",
+  "subtitle": "Ramblings, thoughts and ideas from a developer turned consultant passionate about design, dev and the planet.",
+  "bytes": 2785,
+  "last": "2026-07-05",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://code-designs.co.uk/posts/ai-alignment/",
+      "title": "Can AI align with your sustainability and ethically driven goals?",
+      "description": "Can AI truly align with your sustainability targets."
+    },
+    {
+      "link": "https://code-designs.co.uk/posts/why-code-designs/",
+      "title": "Why Code Designs",
+      "description": "A brief history into the name of this website and my personal brand"
+    },
+    {
+      "link": "https://code-designs.co.uk/posts/thoughts-on-acquisition/",
+      "title": "Thoughts on acquisition",
+      "description": "How Aline became a part of Yard Group and my thoughts on it"
+    }
+  ]
+}

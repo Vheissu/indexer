@@ -1,0 +1,3 @@
+https://nhpatt.com/feed.xml
+https://joshnesbitt.dev/rss.xml
+https://ainali.com/feed/

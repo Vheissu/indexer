@@ -1,0 +1,32 @@
+{
+  "url": "https://www.imkylelambert.com/articles/rss.xml",
+  "title": "Kyle Lambert’s Writing",
+  "subtitle": "I am a product designer who writes about design, tech, work, and life.",
+  "bytes": 39735,
+  "last": "2026-10-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.imkylelambert.com/articles/building-a-backyard-office-the-build-and-cost-breakdown",
+      "title": "Building a backyard office, the build and cost breakdown",
+      "description": "I wrote up my experience building a backyard office because I wish I had come across more articles like this when planning my build. I hope this post helps you"
+    },
+    {
+      "link": "https://www.imkylelambert.com/articles/everyone-is-designing-with-ai-not-for-it",
+      "title": "Everyone is designing with AI, not for it",
+      "description": "We focus on how people are designing and building with AI. I rarely read about how AI is changing “what” people are designing and building."
+    },
+    {
+      "link": "https://www.imkylelambert.com/articles/my-pack",
+      "title": "My pack",
+      "description": null
+    }
+  ]
+}

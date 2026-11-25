@@ -1,0 +1,32 @@
+{
+  "url": "https://lifeofpablo.com/feed/page:feed.xml",
+  "title": "Pablo Morales",
+  "subtitle": "Feed with recent changes.",
+  "bytes": 53202,
+  "last": "2026-11-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://lifeofpablo.com/guestbook/",
+      "title": "Guestbook",
+      "description": "Sign Pablo's guestbook by sending a webmention."
+    },
+    {
+      "link": "https://lifeofpablo.com/blog/friends-getting-married-today",
+      "title": "Friends getting married today",
+      "description": "Friends are getting married"
+    },
+    {
+      "link": "https://lifeofpablo.com/blog/sharing-only-a-window-when-connecting-a-display",
+      "title": "Sharing only a window when connecting a display",
+      "description": "I learned that you can display only specific windows with HDMI"
+    }
+  ]
+}

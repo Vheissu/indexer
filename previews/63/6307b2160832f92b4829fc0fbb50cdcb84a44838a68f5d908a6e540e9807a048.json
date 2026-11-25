@@ -1,0 +1,34 @@
+{
+  "url": "https://theresmiling.eu/rss.xml",
+  "title": "theresmiling has a website",
+  "subtitle": "Where I put thoughts to text - The blog of https://theresmiling.eu",
+  "bytes": 381928,
+  "last": "2026-11-23",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "weeknotes"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://theresmiling.eu/blog/2026/11/weeknotes-2026-47.html",
+      "title": "Weeknotes - W47/2026 (No.13)",
+      "description": "The one with the notes for week 47 of 20026"
+    },
+    {
+      "link": "https://theresmiling.eu/blog/2026/11/mathematically-perfect-redemption.html",
+      "title": "A mathematically perfect redemption?",
+      "description": "The one where I tell a little story about me trying to redeem myself"
+    },
+    {
+      "link": "https://theresmiling.eu/blog/2026/11/weeknotes-2026-46.html",
+      "title": "Weeknotes - W46/2026 (No.12)",
+      "description": "The one with the notes for week 46 of 2026"
+    }
+  ]
+}

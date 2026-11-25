@@ -1,0 +1,34 @@
+{
+  "url": "https://headclone.com/atom/",
+  "title": "Abhishek Desai, MD",
+  "subtitle": "Abhishek Desai, MD: general surgeon and incoming UC Davis fellow in minimally invasive and robotic surgery, autonomous surgical robotics and AI governance re...",
+  "bytes": 29742,
+  "last": "2026-07-29",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "essay"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://headclone.com/show-me-the-money-part-1/",
+      "title": "Show Me the Money, Part 1",
+      "description": "Assumptions and the Error Space"
+    },
+    {
+      "link": "https://headclone.com/calm-practiced-hands/",
+      "title": "Calm, Practiced Hands",
+      "description": "The personal statement from my application to general surgery residency."
+    },
+    {
+      "link": "https://headclone.com/what-are-doctors-for/",
+      "title": "What Are Doctors For?",
+      "description": "A surgeon's perspective on the patient and physician as fellow travelers."
+    }
+  ]
+}

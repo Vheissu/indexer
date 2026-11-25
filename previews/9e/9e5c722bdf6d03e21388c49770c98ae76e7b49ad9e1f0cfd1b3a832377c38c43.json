@@ -1,0 +1,33 @@
+{
+  "url": "https://ext.fyi/feed/",
+  "title": "Extraneous Thoughts",
+  "subtitle": "Dissection of the self.",
+  "bytes": 4739,
+  "last": "2026-09-08",
+  "languages": [],
+  "topics": [
+    "introspection",
+    "self-awareness"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://ext.fyi/on-becoming-performative/",
+      "title": "On Becoming Performative",
+      "description": "To whom it may concern... I apologize."
+    },
+    {
+      "link": "https://ext.fyi/web-impermanence/",
+      "title": "Web Impermanence",
+      "description": "The actual \"Dead Internet\"."
+    },
+    {
+      "link": "https://ext.fyi/time/",
+      "title": "Time",
+      "description": "What is time well spent?"
+    }
+  ]
+}

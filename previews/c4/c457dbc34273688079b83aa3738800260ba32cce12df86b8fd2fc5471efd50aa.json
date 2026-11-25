@@ -1,0 +1,32 @@
+{
+  "url": "https://posh.wiki/blog/feed",
+  "title": "posh.wiki Blog",
+  "subtitle": "posh.wiki: Blog",
+  "bytes": 3737,
+  "last": "2026-11-05",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://posh-crouton.github.io/posh-wiki-term/blog/2026-11-05-async-bash/",
+      "title": "Juggling Multiple Jobs: Handling Concurrent Tasks In Interactive Bash",
+      "description": "..."
+    },
+    {
+      "link": "https://posh-crouton.github.io/posh-wiki-term/blog/2026-10-27-discord-searchable-messages/",
+      "title": "Opt out now: Messages you send in Discord servers may soon appear on Google",
+      "description": "..."
+    },
+    {
+      "link": "https://posh-crouton.github.io/posh-wiki-term/blog/2026-10-25-vegetarianism/",
+      "title": "Vegetarianism: A Memoir",
+      "description": "..."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "url": "https://sjer.red/rss.xml",
+  "title": "Jerred's Blog",
+  "subtitle": "My personal blog",
+  "bytes": 201242,
+  "last": "2026-11-11",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://sjer.red/blog/2026/i-cant-scale-my-ci/",
+      "title": "I can't scale my CI",
+      "description": "Writing code got cheap. Building, testing, and keeping it green did not."
+    },
+    {
+      "link": "https://sjer.red/blog/2026/built-with-ai/",
+      "title": "Things I've done with AI",
+      "description": "My thoughts on AI, and what it has helped me achieve"
+    },
+    {
+      "link": "https://sjer.red/blog/2025/learning-typescript/",
+      "title": "Learning TypeScript",
+      "description": "How to become a better TypeScript programmer"
+    }
+  ]
+}

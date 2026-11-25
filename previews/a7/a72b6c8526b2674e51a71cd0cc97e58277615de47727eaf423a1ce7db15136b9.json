@@ -1,0 +1,35 @@
+{
+  "url": "https://cscheng.info/feed.xml",
+  "title": "Chi Shang Cheng",
+  "subtitle": "Hi, I'm Chi Shang. I'm a web developer based in Utrecht, The Netherlands.",
+  "bytes": 9861,
+  "last": "2026-03-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "django",
+    "djangocon"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://cscheng.info/2026/03/22/book-notes-perfect-software-and-other-illusions-about-testing.html",
+      "title": "Book notes: Perfect Software and Other Illusions About Testing",
+      "description": null
+    },
+    {
+      "link": "https://cscheng.info/2025/11/05/building-a-chat-application-with-a-local-llm-from-scratch.html",
+      "title": "Building a chat application with a local LLM from scratch",
+      "description": null
+    },
+    {
+      "link": "https://cscheng.info/2025/07/10/applying-natural-sort-to-a-django-charfield-with-postgresql.html",
+      "title": "Applying natural sort to a Django CharField with PostgreSQL",
+      "description": null
+    }
+  ]
+}

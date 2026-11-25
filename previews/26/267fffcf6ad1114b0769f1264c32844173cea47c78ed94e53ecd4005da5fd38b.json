@@ -1,0 +1,16 @@
+{
+  "url": "https://religiondispatches.org/feed",
+  "title": "Religion Dispatches",
+  "subtitle": "The latest research published by Religion Dispatches",
+  "bytes": 18073,
+  "last": "2026-11-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

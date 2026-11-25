@@ -1,0 +1,38 @@
+{
+  "url": "https://fitznaturalist.com/feed/",
+  "title": "Wandering at Large",
+  "subtitle": "explorations and thoughts about the natural world",
+  "bytes": 292281,
+  "last": "2026-05-02",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "wilderness",
+    "national-parks",
+    "nature",
+    "wildlife",
+    "forest"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://fitznaturalist.com/2026/05/01/stumps-and-rock-dumps-in-a-changing-forest/",
+      "title": "Stumps and Rock Dumps in a Changing Forest",
+      "description": "Trees as well as the topography where their roots gather sustenance record an evolving forest’s history of change."
+    },
+    {
+      "link": "https://fitznaturalist.com/2025/12/20/marathon-creatures/",
+      "title": "Marathon Creatures",
+      "description": "Comparing yourself to a real athlete is humbling."
+    },
+    {
+      "link": "https://fitznaturalist.com/2025/06/10/a-sisterly-brown-bear-bond/",
+      "title": "A Sisterly Brown Bear Bond",
+      "description": "One thing I find fascinating about bears is the complexity of their behaviors. Bears are intelligent and mentally flexible. They understand who can be friendly and who is not. They recognize each other as individuals and, despite their asocial reputation, bears can also be quite social when the right mood and circumstances strike. In 2022, … Continue reading A Sisterly Brown Bear Bond"
+    }
+  ]
+}

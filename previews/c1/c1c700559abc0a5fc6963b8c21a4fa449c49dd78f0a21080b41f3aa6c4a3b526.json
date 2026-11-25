@@ -1,0 +1,23 @@
+{
+  "url": "https://anderskristiansen.com/post/index.xml",
+  "title": "Posts on Cloud Securityblog",
+  "subtitle": "Recent content in Posts on Cloud Securityblog",
+  "bytes": 1005,
+  "last": "2026-11-21",
+  "languages": [],
+  "topics": [
+    "azure",
+    "azure-devops"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://anderskristiansen.com/post/2026/apim-legacy-access/",
+      "title": "Azure API Management advisory: what to check and how to hunt after recent attacks",
+      "description": "NSM warns that Azure API Management secrets and named values may be exposed. Here’s what to fix, which logs you need and how to hunt."
+    }
+  ]
+}

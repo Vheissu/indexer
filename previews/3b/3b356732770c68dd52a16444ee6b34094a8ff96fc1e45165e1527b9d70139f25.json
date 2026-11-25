@@ -1,0 +1,32 @@
+{
+  "url": "https://matthewhall.com/rss.xml",
+  "title": "Matthew Hall",
+  "subtitle": "Software, side projects, and everything in between.",
+  "bytes": 23954,
+  "last": "2026-03-04",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://matthewhall.com/posts/mcp-isnt-dead-were-just-early/",
+      "title": "MCP Isn't Dead. We're Just Early.",
+      "description": null
+    },
+    {
+      "link": "https://matthewhall.com/posts/media-diet-january-2026/",
+      "title": "Media Diet: January 2026",
+      "description": null
+    },
+    {
+      "link": "https://matthewhall.com/posts/countdown-to-kickoff-2026-vancouver-whitecaps-fc/",
+      "title": "Countdown to Kickoff 2026: Vancouver Whitecaps FC",
+      "description": null
+    }
+  ]
+}

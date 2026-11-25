@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>pim feeds</title>
+    <dateCreated>Wed, 25 Nov 2026 00:04:35 +0000</dateCreated>
+  </head>
+  <body>
+    <outline type="rss" text="Josep Rubió Piqué" title="Josep Rubió Piqué" xmlUrl="https://joseprupi.github.io/feed.xml" htmlUrl="https://joseprupi.github.io/"/>
+  </body>
+</opml>

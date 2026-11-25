@@ -1,0 +1,16 @@
+{
+  "url": "https://abc7ny.com/feed/",
+  "title": "abc7NY RSS Feed",
+  "subtitle": "Keep up with news from your local ABC station.",
+  "bytes": 27473,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

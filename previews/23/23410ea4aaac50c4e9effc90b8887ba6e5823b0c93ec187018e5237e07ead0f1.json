@@ -1,0 +1,16 @@
+{
+  "url": "https://goombastomp.com/feed/",
+  "title": "Goomba Stomp Magazine",
+  "subtitle": "A stomping ground for video game enthusiasts.",
+  "bytes": 18379,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

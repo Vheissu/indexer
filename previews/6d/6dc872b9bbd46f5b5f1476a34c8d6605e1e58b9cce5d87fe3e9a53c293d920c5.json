@@ -1,0 +1,16 @@
+{
+  "url": "https://firstchoiceforlastplace.com/feed/",
+  "title": "First Choice For Last Place",
+  "subtitle": "a media blog.",
+  "bytes": 140506,
+  "last": "2026-11-10",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": []
+}

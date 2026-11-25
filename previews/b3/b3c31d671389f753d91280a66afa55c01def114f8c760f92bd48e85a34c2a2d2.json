@@ -1,0 +1,18 @@
+{
+  "url": "https://transdiffusion.org/feed/",
+  "title": "Transdiffusion Broadcasting System",
+  "subtitle": "The independent broadcasting authority since 1964",
+  "bytes": 214997,
+  "last": "2026-11-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "bbc"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

@@ -1,0 +1,34 @@
+{
+  "url": "https://adactio.com/notes/rss",
+  "title": "Adactio: Notes",
+  "subtitle": "Brief observations by Jeremy Keith, an author and web developer living and working in Brighton, England.",
+  "bytes": 16843,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "amsterdam"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://adactio.com/notes/22842",
+      "title": "See you later, Amsterdam!",
+      "description": "See you later, Amsterdam!"
+    },
+    {
+      "link": "https://adactio.com/notes/22841",
+      "title": "Wednesday night session in Amsterdam",
+      "description": "Wednesday night session in Amsterdam"
+    },
+    {
+      "link": "https://adactio.com/notes/22839",
+      "title": "Going to Amsterdam. brb",
+      "description": "Going to Amsterdam. brb"
+    }
+  ]
+}

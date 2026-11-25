@@ -1,0 +1,29 @@
+{
+  "url": "https://blog.tobychampion.com/index.xml",
+  "title": "Toby Champion's Blog",
+  "subtitle": "Some things you should know.",
+  "bytes": 25076,
+  "last": "2025-11-27",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "travel"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://blog.tobychampion.com/posts/lmb-tech-fonts/",
+      "title": "Getting fonts onto the map",
+      "description": "Note Update, October 2026: this prototype has since grown into CityGraph, a geospatial knowledge-graph platform I designed and built for Let’s Map Bainbridge . There’s more on my site . Building a Community Mapping Platform: Part 2 An unusual font on the map For the prototype map for my Let’s Map Bainbridge project, I wanted to have at least one unusual font on the map. Perhaps a font that looks l"
+    },
+    {
+      "link": "https://blog.tobychampion.com/posts/lmb-tech-websites/",
+      "title": "The tech that runs Let’s Map Bainbridge",
+      "description": "Note Update, October 2026: this prototype has since grown into CityGraph, a geospatial knowledge-graph platform I designed and built for Let’s Map Bainbridge . There’s more on my site . Building a Community Mapping Platform: Part 1 I’ve spent much of the last month building a prototype map as part of my Let’s Map Bainbridge project. While collaborating with others on how Let’s Map Bainbridge might"
+    }
+  ]
+}

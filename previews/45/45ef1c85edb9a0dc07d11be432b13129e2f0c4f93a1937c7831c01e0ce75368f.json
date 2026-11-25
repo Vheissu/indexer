@@ -1,0 +1,32 @@
+{
+  "url": "https://sinn.io/atom.xml",
+  "title": "Sinntactic",
+  "subtitle": "I'm a Security Engineer working in London for Wise. I'm currently helping build Sigma – The shareable SIEM detection format, and north.sh – A new platform for SecOps teams. I'm also a huge geek for pr",
+  "bytes": 12139,
+  "last": "2026-02-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://sinn.io/a-pen-license/",
+      "title": "A Pen License",
+      "description": "A simpler time – where learning how to write had a beautiful artificial reward."
+    },
+    {
+      "link": "https://sinn.io/proxying-elasticsearch-through-kibana-using-python/",
+      "title": "Proxying Elasticsearch through Kibana, using Python",
+      "description": "I've seen some need to permit access to Kibana, but not open up access to Elasticsearch's API (tcp/9200) directly. For this, and when you're using the elasticsearch-py Python Library, you can use the following transport in order to connect through your availab…"
+    },
+    {
+      "link": "https://sinn.io/detection-studio/",
+      "title": "detection.studio",
+      "description": "A new tool to help detection engineers get the most out of Sigma."
+    }
+  ]
+}

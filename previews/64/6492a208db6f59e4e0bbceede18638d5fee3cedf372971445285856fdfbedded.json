@@ -1,0 +1,37 @@
+{
+  "url": "https://dwanethomas.com/feed/",
+  "title": null,
+  "subtitle": null,
+  "bytes": 6699,
+  "last": "2026-11-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "programming",
+    "weeknotes",
+    "tips",
+    "lego"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://dwanethomas.com/tip-of-the-week-385-want-to-learn-spanish-faster-try-this/",
+      "title": "Tip of the Week #385: Want to Learn Spanish Faster? Try this!",
+      "description": null
+    },
+    {
+      "link": "https://dwanethomas.com/tip-of-the-week-384-calculate-the-cost-of-owning-a-car/",
+      "title": "Tip of the Week #384: Calculate the Cost of Owning a Car",
+      "description": null
+    },
+    {
+      "link": "https://dwanethomas.com/tip-of-the-week-384-%f0%9f%87%ab%f0%9f%87%b7-we-just-finished-filming-visual-french-2/",
+      "title": "Tip of the Week #384: 🇫🇷 We Just Finished Filming Visual French 2!",
+      "description": null
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "url": "https://erminpour.com/feed.xml",
+  "title": "Victor Erminpour's Blog",
+  "subtitle": "Systems, networking, security, and engineering craft.",
+  "bytes": 2389,
+  "last": "2026-04-28",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "tooling"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://erminpour.com/blog/posts/004-making-sense-of-the-risc-v-toolchain.html",
+      "title": "Making Sense of the RISC-V Toolchain",
+      "description": "Configure and Build the RISC-V Toolchain."
+    },
+    {
+      "link": "https://erminpour.com/blog/posts/003-manage-bootloader-entries-with-grubby.html",
+      "title": "Manage Bootloader Entries with grubby",
+      "description": "managing grub2 entries in a pain in the neck! Grubby can help."
+    },
+    {
+      "link": "https://erminpour.com/blog/posts/002-new-blog-pandoc-make.html",
+      "title": "A New Blog Using Pandoc and Make",
+      "description": "After years of over-engineered stacks, stripped down to two Unix tools and Markdown."
+    }
+  ]
+}

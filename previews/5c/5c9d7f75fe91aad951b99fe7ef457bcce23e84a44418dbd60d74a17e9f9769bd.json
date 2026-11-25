@@ -1,0 +1,22 @@
+{
+  "url": "https://doubledorjestudio.com/feed/",
+  "title": "Double Dorje Studio",
+  "subtitle": "Hi. This is the journal of the building of Double Dorje Studio in Concho, Arizona. The studio is completely off-grid and its main focus is on the making and ...",
+  "bytes": 1899,
+  "last": "2026-07-01",
+  "languages": [],
+  "topics": [
+    "building"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://doubledorjestudio.com/property-closing/",
+      "title": "We've closed on our off grid studio property!",
+      "description": "Yesterday we signed the final papers on our 12 acres in Concho, Arizona. The property has a small building and a trailer we will live in while we are building everything out. Everything is fully off-grid and operational."
+    }
+  ]
+}

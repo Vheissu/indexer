@@ -1,0 +1,34 @@
+{
+  "url": "https://www.conorherbert.com/music?format=rss",
+  "title": "Musical Mile - Conor Herbert",
+  "subtitle": null,
+  "bytes": 489922,
+  "last": "2026-05-03",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "new-music"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.conorherbert.com/music/kip-hanrahan",
+      "title": "Who The Fuck Is Kip Hanrahan?",
+      "description": "Impresario, lothario, maverick: Kip Hanrahan is a lot of things, but in the beginning, he didn’t even call himself a musician. Over the last 45 years, he’s assembled an enviable catalogue of smoky, shadow-splashed Afro-Cuban avant-garde jazz, and it’s well worth knowing about."
+    },
+    {
+      "link": "https://www.conorherbert.com/music/elysian-spring",
+      "title": "Sup The Elysian Spring",
+      "description": "In the late ‘60s, a sleepy college town in Western Massachusetts was home to a smalltime jazz quintet. All these years later, they’re connecting with audiences far beyond their once-limited horizons."
+    },
+    {
+      "link": "https://www.conorherbert.com/music/notes-on-2025",
+      "title": "Notes on 2025",
+      "description": "A few words about the active musicians I enjoyed in 2025."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "url": "https://vgkids.github.io/obtf-2/feed.xml",
+  "title": "OBTF-2",
+  "subtitle": "OBTF-2 helps you keep notes and screenshots as you work.",
+  "bytes": 3130,
+  "last": "2026-01-03",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "obs"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": null,
+      "title": "Using Find in OBTF-2",
+      "description": "A simple Find utility (Command-F) let’s you jump to sections of your file."
+    },
+    {
+      "link": null,
+      "title": "Using Screenshots in OBTF-2",
+      "description": "I often want to add images as context for something I’m writing."
+    }
+  ]
+}

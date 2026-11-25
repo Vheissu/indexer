@@ -1,0 +1,20 @@
+{
+  "url": "https://countrysquire.co.uk/feed/",
+  "title": "COUNTRY SQUIRE MAGAZINE",
+  "subtitle": "A Leading Platform for Voices from the Overlooked Great British Countryside",
+  "bytes": 143247,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "countryside",
+    "uk",
+    "scotland"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

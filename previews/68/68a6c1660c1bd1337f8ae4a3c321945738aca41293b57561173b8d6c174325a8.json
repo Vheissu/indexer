@@ -1,0 +1,32 @@
+{
+  "url": "https://lisyarus.github.io/blog/feed.xml",
+  "title": "lisyarus blog",
+  "subtitle": "I write stuff about math, simulation, graphics, gamedev, and programming",
+  "bytes": 15423,
+  "last": "2026-11-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://lisyarus.github.io/blog/posts/ratio-tracking-intuitively.html",
+      "title": "Ratio tracking, intuitively",
+      "description": null
+    },
+    {
+      "link": "https://lisyarus.github.io/blog/posts/revisiting-importance-sampling.html",
+      "title": "Revisiting importance sampling",
+      "description": null
+    },
+    {
+      "link": "https://lisyarus.github.io/blog/posts/can-you-find-a-vector-not-orthogonal-to-n-others.html",
+      "title": "Can you find a vector not orthogonal to N others?",
+      "description": null
+    }
+  ]
+}

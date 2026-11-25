@@ -1,0 +1,32 @@
+{
+  "url": "https://anishathalye.com/feed.xml",
+  "title": "Anish Athalye",
+  "subtitle": "Anish Athalye's blog. I write about math, computer science, programming, and software and hardware hacks.",
+  "bytes": 13247,
+  "last": "2026-09-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://anishathalye.com/optimal-trace/",
+      "title": "Running an Optimal Trace",
+      "description": "I wrote software to help me run the optimal running route for Angel Island, covering the island's 19.4 miles of unique road/trail in the shortest possible distance of 23.8 miles."
+    },
+    {
+      "link": "https://anishathalye.com/semlib/",
+      "title": "Semlib: Semantic Data Processing",
+      "description": "Semlib is a Python library for building data processing and data analysis pipelines that leverage the power of large language models (LLMs)."
+    },
+    {
+      "link": "https://anishathalye.com/inverting-photodna/",
+      "title": "Inverting PhotoDNA",
+      "description": "Ribosome inverts Microsoft PhotoDNA hashes using machine learning."
+    }
+  ]
+}

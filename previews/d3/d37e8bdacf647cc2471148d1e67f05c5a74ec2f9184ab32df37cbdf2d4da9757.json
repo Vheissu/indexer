@@ -1,0 +1,32 @@
+{
+  "url": "https://breder.org/feed.xml",
+  "title": "Breder.org",
+  "subtitle": "Personal blog of Victor Breder.",
+  "bytes": 52292,
+  "last": "2026-10-08",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://breder.org/is-should-be",
+      "title": "Matters of what it \"is\" and what it \"should be\"",
+      "description": null
+    },
+    {
+      "link": "https://breder.org/thinking-backwards",
+      "title": "Some problems are solved by thinking backwards",
+      "description": null
+    },
+    {
+      "link": "https://breder.org/feeling-good",
+      "title": "Well-being Beyond Feeling Good",
+      "description": null
+    }
+  ]
+}

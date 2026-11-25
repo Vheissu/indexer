@@ -1,0 +1,21 @@
+{
+  "url": "https://bewarethespaceman.com/feed/",
+  "title": "Beware the Spaceman",
+  "subtitle": null,
+  "bytes": 16768,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "nintendo",
+    "nintendo-64",
+    "mario",
+    "retro-gaming"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

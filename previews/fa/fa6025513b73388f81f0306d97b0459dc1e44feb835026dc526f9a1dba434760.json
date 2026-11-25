@@ -1,0 +1,18 @@
+{
+  "url": "https://kanai.net/weblog/feed/",
+  "title": "gen kanai weblog",
+  "subtitle": "Established October 2000",
+  "bytes": 21063,
+  "last": "2026-09-30",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "japan"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

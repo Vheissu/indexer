@@ -1,0 +1,16 @@
+{
+  "url": "https://syndication.howstuffworks.com/rss/HSW",
+  "title": "HowStuffWorks - Learn How Everything Works!",
+  "subtitle": "HowStuffWorks has been explaining how things work to curious minds since 1998. Providing factual, unbiased content that's fun to read and makes difficult topics easy to understand.",
+  "bytes": 20010,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

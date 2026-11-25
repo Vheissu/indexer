@@ -1,0 +1,34 @@
+{
+  "url": "https://lunalux.io/atom.xml",
+  "title": "lux's blog",
+  "subtitle": "musings by the queer vegan physicist.",
+  "bytes": 91500,
+  "last": "2026-08-29",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "physics"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://lunalux.io/blog/park-bike",
+      "title": "how to park a bike",
+      "description": "creative ways to park your bike in the bike-capital of the world."
+    },
+    {
+      "link": "https://lunalux.io/blog/now",
+      "title": "😝 now now now",
+      "description": "What I'm currently up to. A snapshot of my current state of mind and activity."
+    },
+    {
+      "link": "https://lunalux.io/blog/apple-ipad",
+      "title": "not even apple understands the ipad",
+      "description": "a note about windowing systems and their relation to interaction paradigms. the role of tablets, and how apple seem to have misunderstood a device category they pioneered."
+    }
+  ]
+}

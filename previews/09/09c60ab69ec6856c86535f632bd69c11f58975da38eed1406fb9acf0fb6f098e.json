@@ -1,0 +1,32 @@
+{
+  "url": "https://www.benkuhn.net/index.xml",
+  "title": "benkuhn.net",
+  "subtitle": null,
+  "bytes": 179399,
+  "last": "2026-11-08",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.benkuhn.net/meditation/",
+      "title": "I did a meditation and it sort of changed my personality?!",
+      "description": "a trip report"
+    },
+    {
+      "link": "https://www.benkuhn.net/contra/",
+      "title": "You should try contra dancing",
+      "description": "a story of middle school Ben • a not-very-illuminating description of the mechanics • flow, joy, and community • the antidote to the rest of life • how to try contra"
+    },
+    {
+      "link": "https://www.benkuhn.net/impact/",
+      "title": "Impact, agency, and taste",
+      "description": "understand + work backwards from the root goal • don’t rely too much on permission or encouragement • make success inevitable • find your angle • think real hard • reflect on your thinking"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "url": "https://thomasrigby.com/feed.xml",
+  "title": "Thomas Rigby",
+  "subtitle": "When I'm not building things for the internet, I take photos of stuff.",
+  "bytes": 3791970,
+  "last": "2026-11-16",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://thomasrigby.com/posts/schrodingers-holes/",
+      "title": "Schrödinger's Holes",
+      "description": "I was sent a seemingly simple puzzle with a complicated answer"
+    },
+    {
+      "link": "https://thomasrigby.com/posts/2026-w46/",
+      "title": "Weeknotes: 2026-W46",
+      "description": "In which I do well at work, take a short break from time travel, and rip up carpet"
+    },
+    {
+      "link": "https://thomasrigby.com/posts/review-wicked-john-m-chu-2024/",
+      "title": "Review — Wicked (Jon M. Chu, 2024)",
+      "description": "One of my sporadic film reviews"
+    }
+  ]
+}

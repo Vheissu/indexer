@@ -1,0 +1,35 @@
+{
+  "url": "https://addyosmani.com/rss.xml",
+  "title": "AddyOsmani.com",
+  "subtitle": "Addy Osmani is an engineering and evangelism leader and a Member of Technical Staff at Anthropic, where he works on Claude Code. He spent over 14 years at Google leading developer experience across Chrome and, in recent years, AI (Gemini, coding agents, and agentic engineering), most recently as a Director at Google Cloud AI.",
+  "bytes": 6030,
+  "last": "2026-09-14",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ai-agents",
+    "ai-coding-agents"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://addyosmani.com/blog/brownfield-agentic-engineering/",
+      "title": "Brownfield Agentic Engineering",
+      "description": "What it takes to run agents in a codebase older than the team"
+    },
+    {
+      "link": "https://addyosmani.com/blog/agentic-skill-decay/",
+      "title": "Agentic Skill Decay",
+      "description": "Agents can finish the task without teaching you anything. Building expertise now has to be deliberate."
+    },
+    {
+      "link": "https://addyosmani.com/blog/audit-your-agent-files/",
+      "title": "Audit your Agent files",
+      "description": "A practical guide to auditing what your coding agent still needs."
+    }
+  ]
+}

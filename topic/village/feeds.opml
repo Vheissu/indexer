@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>village feeds</title>
+    <dateCreated>Wed, 25 Nov 2026 00:04:35 +0000</dateCreated>
+  </head>
+  <body>
+    <outline type="rss" text="Life and Times of Piyu" title="Life and Times of Piyu" xmlUrl="https://lifeandtimesofpiyu.com/feed/" htmlUrl="https://lifeandtimesofpiyu.com"/>
+    <outline type="rss" text="Neependra Khare" title="Neependra Khare" xmlUrl="https://neependra.net/index.php/feed/" htmlUrl="https://neependra.net"/>
+  </body>
+</opml>

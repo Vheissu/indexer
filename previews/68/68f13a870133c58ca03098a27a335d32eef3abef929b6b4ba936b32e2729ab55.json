@@ -1,0 +1,32 @@
+{
+  "url": "https://monsterjavaguns.com/index.xml",
+  "title": "Jason van Gumster on monsterjavaguns.com",
+  "subtitle": "Recent content in Jason van Gumster on monsterjavaguns.com",
+  "bytes": 56267,
+  "last": "2026-06-23",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://monsterjavaguns.com/blog/opensourcecreative/",
+      "title": "The Open Source Creative Podcast",
+      "description": "I’m bringing back my podcast. It’s important."
+    },
+    {
+      "link": "https://monsterjavaguns.com/blog/burnout/",
+      "title": "On Burnout",
+      "description": "This one may qualify for the “oversharing” descriptor that I put to describe my blog…"
+    },
+    {
+      "link": "https://monsterjavaguns.com/blog/putting-ideas-to-bed/",
+      "title": "Putting Ideas to Bed",
+      "description": "Sometimes you have a great idea… that only works for you. A post mortem on Tablescraps."
+    }
+  ]
+}

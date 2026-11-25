@@ -1,0 +1,20 @@
+{
+  "url": "https://ecoideaz.com/feed/",
+  "title": "EcoIdeaz",
+  "subtitle": "Innovative green ideas to save the environment",
+  "bytes": 99280,
+  "last": "2026-11-09",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "sustainability",
+    "innovation",
+    "energy-efficiency"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

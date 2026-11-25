@@ -1,0 +1,18 @@
+{
+  "url": "https://blog.ambrosebs.com/atom.xml",
+  "title": "dissoc",
+  "subtitle": null,
+  "bytes": 722266,
+  "last": "2026-07-07",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "clojure"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": []
+}

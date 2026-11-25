@@ -1,0 +1,34 @@
+{
+  "url": "https://pureframes.eu/rss.xml",
+  "title": "pureframes.eu",
+  "subtitle": "Welcome to my blog! I write about modern web development.",
+  "bytes": 2911,
+  "last": "2026-01-04",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "scala"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://yourwebsiteurl.com/blog/gossip-gloomers",
+      "title": "Gossip Glomers challenges in sync Rust",
+      "description": "Hmm"
+    },
+    {
+      "link": "https://yourwebsiteurl.com/blog/ostep-review",
+      "title": "Operating Systems; Three Easy Pieces - review",
+      "description": "Finally, something we can C"
+    },
+    {
+      "link": "https://yourwebsiteurl.com/blog/pureconfig-scala3",
+      "title": "PureConfig with Scala 3 - Tutorial",
+      "description": "It took some time"
+    }
+  ]
+}

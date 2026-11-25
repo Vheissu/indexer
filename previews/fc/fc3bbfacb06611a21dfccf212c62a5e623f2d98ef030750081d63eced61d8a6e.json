@@ -1,0 +1,16 @@
+{
+  "url": "https://jongraylang.com/feed/",
+  "title": "Jon Gray Lang.com",
+  "subtitle": "Adventures in the Written Form",
+  "bytes": 33591,
+  "last": "2026-10-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

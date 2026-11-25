@@ -1,0 +1,20 @@
+{
+  "url": "https://elianaive.com/rss.xml",
+  "title": "Eliana's Naiveté",
+  "subtitle": "I'm Eliana! This site is for long, infrequent essays on my own naive questions.",
+  "bytes": 906,
+  "last": "2026-07-31",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://elianaive.com/posts/another-typical-autoresearch-post/",
+      "title": "Another Typical Autoresearch Post",
+      "description": "I built a (mostly) autonomous system that took 3rd in GPUMode's eigh kernel competition. Two weeks, 1,293 experiments, 779 million output tokens, and ultimately an 8.56x speedup over torch. And three small fixes later, a real Shampoo training run 2.2x faster to quality."
+    }
+  ]
+}

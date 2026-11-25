@@ -1,0 +1,18 @@
+{
+  "url": "https://fuchsiamagazine.com/feed/",
+  "title": "FUCHSIA",
+  "subtitle": "FUCHSIA MAGAZINE",
+  "bytes": 1020773,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "bollywood"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

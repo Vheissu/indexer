@@ -1,0 +1,34 @@
+{
+  "url": "https://devins.page/rss.xml",
+  "title": "devin's blog",
+  "subtitle": "hi, i'm devin! :)",
+  "bytes": 46038,
+  "last": "2026-07-09",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "command-line"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://devins.page/blog/restray/",
+      "title": "restray, a system tray GUI for restic",
+      "description": "my simple, cross-platform backup solution"
+    },
+    {
+      "link": "https://devins.page/blog/web-native-laf/",
+      "title": "tricks to make web apps feel native",
+      "description": "various tricks to help make web apps look native to the system and also improve usability"
+    },
+    {
+      "link": "https://devins.page/blog/moving-from-github/",
+      "title": "goodbye GitHub, hello Tangled (pt 1)",
+      "description": "new horizons"
+    }
+  ]
+}

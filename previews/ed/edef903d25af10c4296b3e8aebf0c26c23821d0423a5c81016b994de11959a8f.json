@@ -1,0 +1,18 @@
+{
+  "url": "https://en.portnews.ru/rss2/",
+  "title": "PortNews IAA",
+  "subtitle": null,
+  "bytes": 9624,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "cargo"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

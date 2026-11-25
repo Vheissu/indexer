@@ -1,0 +1,18 @@
+{
+  "url": "https://marigoround.com/feed/",
+  "title": "Mari Alexander",
+  "subtitle": "Los Angeles Blogger Traveling in Style",
+  "bytes": 16663,
+  "last": "2026-11-10",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "fashion"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

@@ -1,0 +1,34 @@
+{
+  "url": "https://nanomicon.com/feed.xml",
+  "title": "NaN's Blog",
+  "subtitle": "NaN's website - A blog about web development, programming, and technology insights",
+  "bytes": 14183,
+  "last": "2026-11-12",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ai"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://nanomicon.com/blog/261112-herdr-is-amazing",
+      "title": "Herdr is amazing",
+      "description": "Herdr gave me one visible place to run agent teams across my desktop and phone."
+    },
+    {
+      "link": "https://nanomicon.com/blog/260812-ai-actually-raises-the-skill-floor-if-youre-serious",
+      "title": "AI Actually Raises the Skill Floor - If You're Serious",
+      "description": "AI lowered the barrier to starting. It raised the floor for shipping. Three paths - full teams, guard systems, or enforcement by construction - all demand more cross-domain awareness, not less."
+    },
+    {
+      "link": "https://nanomicon.com/blog/260804-ai-did-the-work",
+      "title": "AI Did the Work. That's Not the Point.",
+      "description": "I used AI to fix a phone system I barely understood. A chatbot arrived at the same diagnosis with the same data. The interesting part is what happened before the prompt."
+    }
+  ]
+}

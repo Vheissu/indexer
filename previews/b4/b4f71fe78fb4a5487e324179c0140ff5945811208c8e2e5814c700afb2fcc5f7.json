@@ -1,0 +1,37 @@
+{
+  "url": "https://sololearner.hashnode.dev/rss.xml",
+  "title": "Faizan's blog",
+  "subtitle": "Software Developer and a CS Grad. Tech Geek. Follow for tech tips and exciting blogs. https://whoisfaizan.vercel.app",
+  "bytes": 273393,
+  "last": "2026-08-25",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "web-development",
+    "nodejs",
+    "javascript",
+    "software-engineering"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://sololearner.hashnode.dev/your-ai-agent-doesn-t-need-more-prompts-it-needs-skills",
+      "title": "Your AI Agent Doesn’t Need More Prompts. It Needs Skills!",
+      "description": "Tired of explaining the same things again and again to your AI Agent? Frustrated because the AI keeps forgetting minute things custom to your codebase…"
+    },
+    {
+      "link": "https://sololearner.hashnode.dev/mcp-the-simple-protocol-to-make-ai-actually-useful",
+      "title": "MCP: The Simple Protocol to Make AI Actually Useful",
+      "description": "MCP is like creating a universal plug for AI tools. Here’s why that matters."
+    },
+    {
+      "link": "https://sololearner.hashnode.dev/how-to-add-nextauth-credentials-provider-into-your-nextjs-app",
+      "title": "How To Add NextAuth Credentials Provider Into Your NextJS App",
+      "description": "Hey folks, so today’s article is about an integration I needed for my personal application. Last week I needed to integrate nextauth with my Next.js…"
+    }
+  ]
+}

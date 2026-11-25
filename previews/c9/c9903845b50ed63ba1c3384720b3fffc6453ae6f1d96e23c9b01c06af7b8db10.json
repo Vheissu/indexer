@@ -1,0 +1,16 @@
+{
+  "url": "https://televisionau.com/feed",
+  "title": "Television.AU",
+  "subtitle": "The History of Australian Television",
+  "bytes": 13641,
+  "last": "2026-11-14",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

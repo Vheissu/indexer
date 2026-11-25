@@ -1,0 +1,22 @@
+{
+  "url": "https://mortaki.neocities.org/feeds/changelog.xml",
+  "title": "mordecai's update scroll (site changelog)",
+  "subtitle": "the whimsical world of bardic wizardry",
+  "bytes": 13476,
+  "last": "2026-02-27",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://mortaki.neocities.org/",
+      "title": "jan 2026 roundup",
+      "description": "added Agnes to the writer's webring updated the writer's webring widget so it's pretty now (hopefully) added a button that links to the changelog rss feed to the index page added Linky to writers webring revamped library front desk (finally) revamped harry potter fanfic shelf; others should follow soon joined writing castle guild on melonland joined rimring revamped all works page redid the lair,"
+    }
+  ]
+}

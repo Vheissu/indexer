@@ -1,0 +1,34 @@
+{
+  "url": "https://www.norberthires.blog/index.xml",
+  "title": "Norbert Hires",
+  "subtitle": "Recent content on Norbert Hires",
+  "bytes": 56446,
+  "last": "2026-02-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "content-strategy"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.norberthires.blog/workouts/",
+      "title": "Workouts",
+      "description": "Monthly training log pulled from Garmin."
+    },
+    {
+      "link": "https://www.norberthires.blog/blogging-in-2025/",
+      "title": "Blogging in 2025",
+      "description": "How LLMs took away the shiny toys and forced me to actually say something."
+    },
+    {
+      "link": "https://www.norberthires.blog/why-im-not-ready-to-optimize-for-ai-yet/",
+      "title": "Why I'm Not Ready to Optimize for AI (Yet)",
+      "description": "Here's why \"it depends\" is the only honest answer about SEO's future and why going all in on GEO is not a smart move yet."
+    }
+  ]
+}

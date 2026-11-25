@@ -1,0 +1,32 @@
+{
+  "url": "https://timeaton.dev/rss.xml",
+  "title": "Timothy Eaton | Full-stack Developer",
+  "subtitle": "Full-stack developer writing about code, design, typography, and miscellanious stories.",
+  "bytes": 6466,
+  "last": "2026-07-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.yakbrother.dev/posts/keyshelf-release/",
+      "title": "KeyShelf: Storing Those Pesky Keys for 5 Minutes",
+      "description": "A tiny macOS menu bar app that holds your API keys while you work, then makes sure they don't end up in your clipboard history."
+    },
+    {
+      "link": "https://www.yakbrother.dev/posts/droning-ukulele-chord-atlas/",
+      "title": "Droning Ukulele and the Math Behind My Chord Atlas",
+      "description": "Reentrant tuning, ringing open strings, and the calculations behind my new ukulele chord atlas."
+    },
+    {
+      "link": "https://www.yakbrother.dev/posts/fluid-design-ruleset/",
+      "title": "AI Ruleset: Use This in Your Designs",
+      "description": "My starting point for creating accessible, fluid designs with AI."
+    }
+  ]
+}

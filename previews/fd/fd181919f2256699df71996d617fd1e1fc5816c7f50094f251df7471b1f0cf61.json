@@ -1,0 +1,34 @@
+{
+  "url": "https://paulsondhi.com/atom/",
+  "title": "Paul Sondhi",
+  "subtitle": "my current internet home",
+  "bytes": 28403,
+  "last": "2026-06-14",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "attention"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://paulsondhi.com/gmail-threads/",
+      "title": "Gmail Threads",
+      "description": "I've always found it annoying that email does not have basic threading functionality. Here's a small Chrome extension that adds this in a very basic form: Gmail Threads"
+    },
+    {
+      "link": "https://paulsondhi.com/what-is-the-present/",
+      "title": "What is the present?",
+      "description": "What is the present"
+    },
+    {
+      "link": "https://paulsondhi.com/thoughts-on-io/",
+      "title": "Thoughts on io",
+      "description": "Thoughts on io"
+    }
+  ]
+}

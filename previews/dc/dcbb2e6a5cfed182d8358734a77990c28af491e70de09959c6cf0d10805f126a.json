@@ -1,0 +1,32 @@
+{
+  "url": "https://lude.rs/rss.xml",
+  "title": "Index of lude.rs",
+  "subtitle": "by @caioluders",
+  "bytes": 28273,
+  "last": "2026-11-11",
+  "languages": [
+    "pt"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://lude.rs/4rt3/aiaiaiaia.txt",
+      "title": "aiaiaiaia",
+      "description": "A blog post"
+    },
+    {
+      "link": "https://lude.rs/4rt3/gabriel.txt",
+      "title": "gabriel",
+      "description": "A blog post"
+    },
+    {
+      "link": "https://lude.rs/4rt3/null56.txt",
+      "title": "Null 56",
+      "description": "A blog post"
+    }
+  ]
+}

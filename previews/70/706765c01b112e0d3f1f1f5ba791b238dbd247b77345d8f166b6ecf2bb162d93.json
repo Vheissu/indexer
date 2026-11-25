@@ -1,0 +1,32 @@
+{
+  "url": "https://parth.ninja/feed.xml",
+  "title": "Parth Shiralkar Blog RSS Feed",
+  "subtitle": "A soft domain expansion of various tastes and senses. An ongoing experiment. A garden of sorts.",
+  "bytes": 21420,
+  "last": "2026-09-05",
+  "languages": [],
+  "topics": [
+    "senses"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://parth.ninja/article/2026/hi-fall/",
+      "title": "Hi Fall",
+      "description": null
+    },
+    {
+      "link": "https://parth.ninja/article/2026/week-25/",
+      "title": "Week 25 (the return)",
+      "description": null
+    },
+    {
+      "link": "https://parth.ninja/article/2025/crichton-reference/",
+      "title": "Michael Crichton Reference in Jurassic World Rebirth",
+      "description": null
+    }
+  ]
+}

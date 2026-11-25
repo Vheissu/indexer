@@ -1,0 +1,32 @@
+{
+  "url": "https://blog.monsy.monster/feed/",
+  "title": "Monsy's blog on the interwebs",
+  "subtitle": "(1) New Message from The Monster Under YOUR Bed",
+  "bytes": 34807,
+  "last": "2026-09-03",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://blog.monsy.monster/eurofurence-30/",
+      "title": "Eurofurence 30",
+      "description": "I love furry cons. The first time I went to a con was two years ago, in 2024. My friend Kodu was visiting Europe for the first time, and having a very American sense of scale, he suggested I fly over. In his eyes, I was pretty much right next to the con, despite literally living in a different country - but the plane tickets were cheaper than we thought, so he kindly bought them for me (thanks Kod"
+    },
+    {
+      "link": "https://blog.monsy.monster/gaussian-splatting-for-vrchat-workflow/",
+      "title": "Gaussian Splatting workflow for VRChat",
+      "description": "I wanted my VRChat friends to be able to visit me in my room, okay"
+    },
+    {
+      "link": "https://blog.monsy.monster/the-current-state-of-the-internet/",
+      "title": "The current state of the internet",
+      "description": "Yeah, it sucks, doesn't it?"
+    }
+  ]
+}

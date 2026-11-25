@@ -1,0 +1,19 @@
+{
+  "url": "https://www.kxan.com/feed/",
+  "title": "KXAN Austin",
+  "subtitle": null,
+  "bytes": 30453,
+  "last": "2026-11-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "austin",
+    "texas"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

@@ -1,0 +1,32 @@
+{
+  "url": "https://lyra.horse/blog/index.xml",
+  "title": "home on lyra's epic blog",
+  "subtitle": "Recent content in home on lyra's epic blog",
+  "bytes": 3244,
+  "last": "2026-11-11",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://lyra.horse/blog/2026/11/disinformation-machine/",
+      "title": "How I accidentally became a millionaire",
+      "description": "A story about a tweet thrown into the disinformation machine."
+    },
+    {
+      "link": "https://lyra.horse/blog/2026/06/reddit-spam-internals/",
+      "title": "A peek into Reddit's anti-spam internals",
+      "description": "How Reddit accidentally leaked its spamurai system."
+    },
+    {
+      "link": "https://lyra.horse/blog/2025/12/svg-clickjacking/",
+      "title": "SVG clickjacking",
+      "description": "A novel and powerful twist on an old classic."
+    }
+  ]
+}

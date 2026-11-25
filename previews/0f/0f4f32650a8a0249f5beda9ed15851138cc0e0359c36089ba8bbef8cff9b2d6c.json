@@ -1,0 +1,32 @@
+{
+  "url": "https://accidentalrandonneur.wordpress.com/feed/",
+  "title": "the accidental randonneur",
+  "subtitle": "stories from the saddle (c) 2015-2026 jm de leon",
+  "bytes": 8621,
+  "last": "2026-11-14",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://accidentalrandonneur.wordpress.com/2026/11/14/gravelton-2026-a-post-mortem/",
+      "title": "Gravelton 2026, a post-mortem",
+      "description": "So, what worked and what didn't work for Gravelton 2026?"
+    },
+    {
+      "link": "https://accidentalrandonneur.wordpress.com/2026/10/29/gravelton-ph-2026-rough-and-tough/",
+      "title": "Gravelton PH 2026: Rough and tough",
+      "description": "This edition of the race had me questioning my life decisions."
+    },
+    {
+      "link": "https://accidentalrandonneur.wordpress.com/2026/10/14/preparing-for-gravelton-ph-2026/",
+      "title": "Preparing for Gravelton PH 2026",
+      "description": "Ambivalence has turned into excitement as I prepare for my second shot at the Gravelton gravel cycling race."
+    }
+  ]
+}

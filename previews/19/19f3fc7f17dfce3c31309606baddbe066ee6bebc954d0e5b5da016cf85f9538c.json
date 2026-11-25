@@ -1,0 +1,20 @@
+{
+  "url": "https://trnvll.com/rss.xml",
+  "title": "trnvll",
+  "subtitle": "Writing and projects by Alex.",
+  "bytes": 441,
+  "last": "2026-10-20",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://trnvll.com/writing/8300-kilometres-of-glass/",
+      "title": "8,300 kilometres of glass",
+      "description": null
+    }
+  ]
+}

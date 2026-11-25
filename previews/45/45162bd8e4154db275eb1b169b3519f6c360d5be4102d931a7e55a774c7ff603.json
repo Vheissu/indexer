@@ -1,0 +1,16 @@
+{
+  "url": "https://lafpi.com/feed/",
+  "title": "LAFPI",
+  "subtitle": "Let's Get to Work!",
+  "bytes": 124336,
+  "last": "2026-11-16",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

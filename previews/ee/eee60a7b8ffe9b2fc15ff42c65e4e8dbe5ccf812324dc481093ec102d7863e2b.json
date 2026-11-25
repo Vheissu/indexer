@@ -1,0 +1,34 @@
+{
+  "url": "https://renaissance-design.net/feed/atom/",
+  "title": "Renaissance Design",
+  "subtitle": "Web Design & Development in Bridgend, South Wales",
+  "bytes": 19055,
+  "last": "2026-01-13",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "social-media"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://renaissance-design.net/2026/vendor-lock-in-is-hostile-to-the-fediverse/",
+      "title": "Vendor lock-in is hostile to the Fediverse",
+      "description": "… Continue reading..."
+    },
+    {
+      "link": "https://renaissance-design.net/2025/youtube-is-crap-so-i-fixed-it/",
+      "title": "YouTube is crap, so I fixed it.",
+      "description": "… Continue reading..."
+    },
+    {
+      "link": "https://renaissance-design.net/2025/fixing-smtp-timeout-issues/",
+      "title": "Fixing SMTP timeout issues",
+      "description": "… Continue reading..."
+    }
+  ]
+}

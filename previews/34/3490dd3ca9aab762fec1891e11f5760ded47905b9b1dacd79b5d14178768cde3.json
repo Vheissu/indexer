@@ -1,0 +1,18 @@
+{
+  "url": "https://beeculture.com/feed/",
+  "title": "Bee Culture Magazine",
+  "subtitle": "The Magazine of American Beekeeping",
+  "bytes": 12913,
+  "last": "2026-11-16",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "beekeeping"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

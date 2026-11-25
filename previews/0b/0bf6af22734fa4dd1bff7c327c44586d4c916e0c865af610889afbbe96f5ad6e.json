@@ -1,0 +1,20 @@
+{
+  "url": "https://hudlow.org/feeds/atom",
+  "title": "hudlow.org",
+  "subtitle": null,
+  "bytes": 618,
+  "last": "2026-04-09",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://hudlow.org/2026/practical-antiforgery",
+      "title": "Practical Antiforgery in Software Design",
+      "description": "A taxonomy of techniques to make software users safer from fraud."
+    }
+  ]
+}

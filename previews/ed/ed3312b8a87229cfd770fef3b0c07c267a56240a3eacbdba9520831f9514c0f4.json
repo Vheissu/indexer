@@ -1,0 +1,22 @@
+{
+  "url": "https://learningfromloss.org/rss.xml",
+  "title": "Learning from Loss",
+  "subtitle": "Essays from Learning from Loss.",
+  "bytes": 495,
+  "last": "2026-11-06",
+  "languages": [],
+  "topics": [
+    "essay"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://learningfromloss.org/the-uber-song/",
+      "title": "The Uber Song",
+      "description": "How quiet cars found their voices"
+    }
+  ]
+}

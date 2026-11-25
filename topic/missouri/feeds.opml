@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>missouri feeds</title>
+    <dateCreated>Wed, 25 Nov 2026 00:04:35 +0000</dateCreated>
+  </head>
+  <body>
+    <outline type="rss" text="How to Love Where You Are and Eat Where the Locals Eat!!" title="How to Love Where You Are and Eat Where the Locals Eat!!" xmlUrl="https://bobandjotravelblog.blogspot.com/feeds/posts/default" htmlUrl="https://bobandjotravelblog.blogspot.com/"/>
+    <outline type="rss" text="KOLR - OzarksFirst.com" title="KOLR - OzarksFirst.com" xmlUrl="https://www.ozarksfirst.com/feed/" htmlUrl="https://www.ozarksfirst.com"/>
+  </body>
+</opml>

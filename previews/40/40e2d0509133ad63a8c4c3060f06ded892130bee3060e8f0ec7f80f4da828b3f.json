@@ -1,0 +1,34 @@
+{
+  "url": "https://www.secwale.com/feed",
+  "title": "Security Wale",
+  "subtitle": "Cloud, cybersecurity, and that AI thing in between.",
+  "bytes": 175871,
+  "last": "2026-01-06",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "security"
+  ],
+  "source": {
+    "name": "outcoldman/hackernews-personal-blogs",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.secwale.com/p/truth",
+      "title": "The Uncomfortable Truth About Breaking Into Cybersecurity",
+      "description": "Why the industry avoids newcomers even when demand is high"
+    },
+    {
+      "link": "https://www.secwale.com/p/school",
+      "title": "What They Can't Teach You At Cybersecurity School",
+      "description": "Your degree gave you the science. The industry demands the art."
+    },
+    {
+      "link": "https://www.secwale.com/p/goodhartslaw",
+      "title": "Goodhart’s Law: Why Your Green Security Dashboard Might Be a Red Flag",
+      "description": "The most dangerous number in cybersecurity is a perfect score. Why 'Green' often means you aren't looking hard enough, and how to design incentives for reality."
+    }
+  ]
+}

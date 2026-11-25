@@ -1,0 +1,19 @@
+{
+  "url": "https://www.dpreview.com/feed/",
+  "title": "DPReview",
+  "subtitle": "Photography News, Gear Reviews & Community",
+  "bytes": 971762,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "photography",
+    "camera"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

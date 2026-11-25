@@ -1,0 +1,34 @@
+{
+  "url": "https://markjames.dev/rss.xml",
+  "title": "Mark-James McDougall’s Blog",
+  "subtitle": "Full-Stack Developer",
+  "bytes": 4978,
+  "last": "2026-02-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "api-design"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://markjames.dev/blog/bit-masking-enum-flags-dotnet",
+      "title": "Bit Masking Made Easy with .NET Enum Flags",
+      "description": null
+    },
+    {
+      "link": "https://markjames.dev/blog/6502-jump-indirect-bug",
+      "title": "6502 Emulation - The Jump Indirect Bug",
+      "description": null
+    },
+    {
+      "link": "https://markjames.dev/blog/jwt-authorization-asp-net-core",
+      "title": "Securing an ASP .NET Core Web API using JWT and Role-based Authorization",
+      "description": null
+    }
+  ]
+}

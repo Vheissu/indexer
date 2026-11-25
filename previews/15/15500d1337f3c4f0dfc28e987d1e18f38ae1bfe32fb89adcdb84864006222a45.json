@@ -1,0 +1,19 @@
+{
+  "url": "https://fyi50plus.com/feed/",
+  "title": "fyi50+",
+  "subtitle": "A Lifestyle Publishing Co. Committed to Educating, Entertaining, and Empowering the Mighty 50+.",
+  "bytes": 144169,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "holidays",
+    "thanksgiving"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

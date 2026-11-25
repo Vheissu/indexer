@@ -1,0 +1,34 @@
+{
+  "url": "https://michaelpollan.com/feed/atom/",
+  "title": "Michael Pollan",
+  "subtitle": "Michael Pollan writes about the places where nature and culture intersect: on our plates, in our farms and gardens, and in the built environment.",
+  "bytes": 249595,
+  "last": "2026-04-24",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "psychedelics"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://michaelpollan.com/articles-archive/defending-our-consciousness-against-the-algorithms/",
+      "title": "Defending Our Consciousness Against the Algorithms",
+      "description": "Why it's good to be bored. The post Defending Our Consciousness Against the Algorithms appeared first on Michael Pollan ."
+    },
+    {
+      "link": "https://michaelpollan.com/articles-archive/this-is-your-priest-on-drugs/",
+      "title": "This is Your Priest on Drugs",
+      "description": "Dozens of religious leaders experienced magic mushrooms in a university study. Many are now evangelists for psychedelics. The post This is Your Priest on Drugs appeared first on Michael Pollan ."
+    },
+    {
+      "link": "https://michaelpollan.com/articles-archive/the-new-science-of-psychedelics/",
+      "title": "The New Science of Psychedelics",
+      "description": "Recent studies are finding that drugs such as LSD and psilocybin can help to alleviate depression, anxiety and addiction—and may have profound things to teach us about how the mind works The post The New Science of Psychedelics appeared first on Michael Pollan ."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "url": "https://matthewphillips.info/programming/atom.xml",
+  "title": "Matthew Phillips — Programming",
+  "subtitle": "Notes on software, programming languages, web standards, and the tools we use to build things on the web.",
+  "bytes": 17947,
+  "last": "2026-09-13",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "simevidas/web-dev-feeds",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://matthewphillips.info/programming/posts/ai-writing-is-fine/",
+      "title": "AI Writing Is Fine",
+      "description": null
+    },
+    {
+      "link": "https://matthewphillips.info/programming/posts/send-articles-to-crosspoint/",
+      "title": "Send Articles to CrossPoint with Lyceum",
+      "description": null
+    },
+    {
+      "link": "https://matthewphillips.info/programming/posts/new-blog-design-2026/",
+      "title": "New Blog Design (with Claude Design)",
+      "description": null
+    }
+  ]
+}

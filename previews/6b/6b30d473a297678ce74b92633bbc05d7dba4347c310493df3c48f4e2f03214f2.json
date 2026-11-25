@@ -1,0 +1,32 @@
+{
+  "url": "https://sophie.huiberts.me/feed.xml",
+  "title": "Sophie Huiberts",
+  "subtitle": "Theoretical computer scientist at CNRS",
+  "bytes": 78880,
+  "last": "2026-11-23",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://sophie.huiberts.me/blog/2026/methodology/index.html",
+      "title": "AI-assisted Proofs Come with Additional Responsibilities",
+      "description": "Disclosure is not methodology."
+    },
+    {
+      "link": "https://sophie.huiberts.me/blog/2026/stocvid/index.html",
+      "title": "The STOC Video",
+      "description": "new videooo"
+    },
+    {
+      "link": "https://sophie.huiberts.me/blog/2026/meta/index.html",
+      "title": "The New Hiring/Job Search Meta",
+      "description": "What's old is new."
+    }
+  ]
+}

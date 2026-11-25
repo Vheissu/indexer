@@ -1,0 +1,32 @@
+{
+  "url": "https://idcrisisangel.ca/feed/",
+  "title": "idcrisisangel",
+  "subtitle": "gigi's blog for its likes and dislikes and such and things.",
+  "bytes": 40646,
+  "last": "2026-11-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://idcrisisangel.ca/atlas/",
+      "title": "atlas",
+      "description": "The weight of the world is on my shoulders, and I think, in the end, I asked for it."
+    },
+    {
+      "link": "https://idcrisisangel.ca/opacity/",
+      "title": "opacity",
+      "description": "guy at my showing of you can see everything kept changing his opacity from 100% to 13% to 93% mid movie. really distracting."
+    },
+    {
+      "link": "https://idcrisisangel.ca/myasthenia-gravis/",
+      "title": "myasthenia gravis",
+      "description": "communication between the nerves and muscles have broken down, or maybe it was never established."
+    }
+  ]
+}

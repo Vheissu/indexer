@@ -1,0 +1,34 @@
+{
+  "url": "https://prod-qt-images.s3.amazonaws.com/production/swarajya/feed.xml",
+  "title": "Swarajya",
+  "subtitle": null,
+  "bytes": 11784,
+  "last": "2026-11-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "delhi"
+  ],
+  "source": {
+    "name": "plenaryapp/awesome-rss-feeds",
+    "license": "CC0-1.0"
+  },
+  "posts": [
+    {
+      "link": "https://swarajyamag.com/news-brief/india-and-eu-set-to-sign-mother-of-all-deals-free-trade-pact-in-brussels-on-16-december",
+      "title": "India And EU Set To Sign 'Mother Of All Deals' Free Trade Pact In Brussels On 16 December",
+      "description": null
+    },
+    {
+      "link": "https://swarajyamag.com/news-brief/nepal-pm-balendra-shah-in-delhi-on-first-bilateral-trip-abroad-energy-and-connectivity-top-agenda-for-modi-talks",
+      "title": "Nepal PM Balendra Shah In Delhi On First Bilateral Trip Abroad, Energy And Connectivity Top Agenda For Modi Talks",
+      "description": null
+    },
+    {
+      "link": "https://swarajyamag.com/news-brief/india-china-hold-corps-commander-talks-to-defuse-arunachal-border-tensions-ahead-of-winter",
+      "title": "India, China Hold Corps Commander Talks To Defuse Arunachal Border Tensions Ahead Of Winter",
+      "description": null
+    }
+  ]
+}

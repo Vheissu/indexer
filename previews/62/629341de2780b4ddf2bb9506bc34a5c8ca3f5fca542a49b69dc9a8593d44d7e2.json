@@ -1,0 +1,34 @@
+{
+  "url": "https://pinkpetalparty.bearblog.dev/feed/",
+  "title": "Pink Petal Party",
+  "subtitle": "Welcome to the Pink Petal Party! Featuring art, thoughts, and more! 🌷🎀🍓 This is my corner of the internet where I can discuss anything I want to. My blog is ...",
+  "bytes": 9904,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "art"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://pinkpetalparty.bearblog.dev/art-cactus-bunnies/",
+      "title": "(art) Cactus bunnies",
+      "description": "The process of making my cactus bunny illustration."
+    },
+    {
+      "link": "https://pinkpetalparty.bearblog.dev/learning-to-put-my-wall-down/",
+      "title": "Learning to put my wall down",
+      "description": "My entry about vulnerability."
+    },
+    {
+      "link": "https://pinkpetalparty.bearblog.dev/knowember/",
+      "title": "Knowember",
+      "description": "My write up for Knowember."
+    }
+  ]
+}

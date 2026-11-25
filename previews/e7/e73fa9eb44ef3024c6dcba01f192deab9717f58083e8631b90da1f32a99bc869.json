@@ -1,0 +1,34 @@
+{
+  "url": "https://shantesh.com/feed.atom",
+  "title": "Shantesh Patil",
+  "subtitle": "An Excursion Through My Mind",
+  "bytes": 390821,
+  "last": "2026-11-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "life"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://shantesh.com/micheal-jackson-forever",
+      "title": "Micheal Jackson Forever",
+      "description": "Music Across Time"
+    },
+    {
+      "link": "https://shantesh.com/lego-mania",
+      "title": "Lego Mania",
+      "description": "The enduring legacy"
+    },
+    {
+      "link": "https://shantesh.com/time-shift",
+      "title": "Don't mess with my time",
+      "description": "Shifty"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "url": "https://blog.stromflix.com/rss.xml",
+  "title": "Felix's Blog's Blog",
+  "subtitle": "Felix's Blog about anything data science, software engineering or any other interesting piece of tech.",
+  "bytes": 2672,
+  "last": "2026-05-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://blog.stromflix.com/personal-software-is-next",
+      "title": "Code is cheap. Personal software is next.",
+      "description": "Coding agents made code cheap. The biggest winners are personal apps and open source projects, where one person can now cover the whole stack end to end. A field report from four small agent-built apps."
+    },
+    {
+      "link": "https://blog.stromflix.com/price-of-power",
+      "title": "The price of power: why batteries are starting to look obvious",
+      "description": "German wholesale power averages €87/MWh — but at noon it's €36 and by 6 pm it's €143. A look at where the price actually comes from, hour by hour."
+    },
+    {
+      "link": "https://blog.stromflix.com/durable-functions-indexing-rag",
+      "title": "Durable Functions for Indexing in RAG: A Practical Python Approach",
+      "description": "Azure Durable Functions streamline RAG indexing by combining push flexibility with pull reliability for scalable, efficient document processing."
+    }
+  ]
+}

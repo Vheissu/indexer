@@ -1,0 +1,20 @@
+{
+  "url": "https://taisho.design/en/blog/rss.xml",
+  "title": "Blog · TaishoDS Core",
+  "subtitle": "How TaishoDS Core is built: the decisions, the measurements, and what we learn along the way.",
+  "bytes": 1169,
+  "last": "2026-11-20",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://taisho.design/en/blog/accessible-color-palette-from-one-color",
+      "title": "How to generate an accessible color palette from a single color",
+      "description": "The method TaishoDS Core uses: set the contrast for every step of the scale, then compute the color that meets it. Plus the mistake that got me there and the cases it doesn't cover."
+    }
+  ]
+}

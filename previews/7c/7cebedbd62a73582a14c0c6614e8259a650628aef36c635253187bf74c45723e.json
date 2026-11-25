@@ -1,0 +1,34 @@
+{
+  "url": "https://oreoro.github.io/rss.xml",
+  "title": "oreoro",
+  "subtitle": "This is my personal website, where I keep the code notes, implementation details, and technical ideas I work through outside normal project work.",
+  "bytes": 6906,
+  "last": "2026-06-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "documentation"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://oreoro.github.io/posts/data-compression-explained-visual-guide/",
+      "title": "Data Compression Explained: A Visual Guide to the Whole Book",
+      "description": "An illustrated whole-book study guide to Matt Mahoney's Data Compression Explained, covering information theory, benchmarks, coding, modeling, transforms, and lossy media compression."
+    },
+    {
+      "link": "https://oreoro.github.io/posts/iran-usa-war-timeline-2026-personal-notes/",
+      "title": "Iran-USA War, Told Through Tweets (2026)",
+      "description": "A polished, personal blog-style archive of the 2026 Iran-USA war as it appeared through X posts: the first strikes, Hormuz, the ceasefires, the memorandum, and the June 20 argument over what peace now means."
+    },
+    {
+      "link": "https://oreoro.github.io/posts/how-llms-actually-work-friendly-guide/",
+      "title": "How LLMs Actually Work: A Friendly Map for Humans",
+      "description": "A plain-English, visual guide to tokenization, embeddings, attention, transformer layers, and next-token prediction, with optional technical notes and tiny code examples."
+    }
+  ]
+}

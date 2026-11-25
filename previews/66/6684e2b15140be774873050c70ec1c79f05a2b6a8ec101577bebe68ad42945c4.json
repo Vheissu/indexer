@@ -1,0 +1,21 @@
+{
+  "url": "https://jessicagimeno.com/feed/",
+  "title": "Fashionably ill ®",
+  "subtitle": "surviving pain with style and humor",
+  "bytes": 82011,
+  "last": "2026-11-01",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "illness",
+    "chronic-illness",
+    "mental-health",
+    "disability"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

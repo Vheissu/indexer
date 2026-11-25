@@ -1,0 +1,35 @@
+{
+  "url": "https://gojimmypi.github.io/feed",
+  "title": "Blogs by gojimmypi",
+  "subtitle": "Embedded, FPGA, wolfSSL, ESP32, Arduino, and hardware projects.",
+  "bytes": 68809,
+  "last": "2026-10-03",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "esp32",
+    "wsl"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://gojimmypi.github.io/Hackaday-Supercon-2026/",
+      "title": "Hackaday Supercon 2026",
+      "description": "Hackaday Supercon 2026 in Pasadena, CA."
+    },
+    {
+      "link": "https://gojimmypi.github.io/ulx3s-elecrow-7inch-hdmi-enclosure/",
+      "title": "ULX3S ELECROW 7inch HDMI Enclosure",
+      "description": "Open Source 3D printing files for ULX3S ELECROW 7inch HDMI Enclosure"
+    },
+    {
+      "link": "https://gojimmypi.github.io/CNC-Toolchain/",
+      "title": "CNC Toolchain notes",
+      "description": "Some notes on CNC toolchains"
+    }
+  ]
+}

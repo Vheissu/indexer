@@ -1,0 +1,30 @@
+{
+  "url": "https://www.hannobraun.com/feed.atom.xml",
+  "title": "Hanno Braun",
+  "subtitle": "Posts by Hanno Braun",
+  "bytes": 1131,
+  "last": "2026-06-07",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.hannobraun.com/stack-assembly-1.0/",
+      "title": "StackAssembly 1.0",
+      "description": null
+    },
+    {
+      "link": "https://www.hannobraun.com/stack-assembly-0.1/",
+      "title": "StackAssembly 0.1: Initial Implementation",
+      "description": null
+    },
+    {
+      "link": "https://www.hannobraun.com/designing-stack-assembly/",
+      "title": "Designing StackAssembly",
+      "description": null
+    }
+  ]
+}

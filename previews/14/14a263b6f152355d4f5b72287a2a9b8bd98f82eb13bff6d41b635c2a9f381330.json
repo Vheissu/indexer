@@ -1,0 +1,19 @@
+{
+  "url": "https://www.iraq-businessnews.com/feed/",
+  "title": "Iraq Business News",
+  "subtitle": "All the latest business news from Iraq",
+  "bytes": 188355,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "iraq",
+    "syria"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

@@ -1,0 +1,16 @@
+{
+  "url": "https://v-for-verbatim.com/feed/",
+  "title": "V for Verbatim",
+  "subtitle": "V's Official Blog",
+  "bytes": 184374,
+  "last": "2026-07-29",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

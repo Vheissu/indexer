@@ -1,0 +1,19 @@
+{
+  "url": "https://tanglycottage.wordpress.com/feed/",
+  "title": "Tangly Cottage Gardening",
+  "subtitle": "a photo journal from the corner of Columbia and Pacific (Southwest Washington coast)",
+  "bytes": 238395,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "november",
+    "autumn"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

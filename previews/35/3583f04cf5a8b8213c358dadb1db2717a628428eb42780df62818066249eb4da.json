@@ -1,0 +1,34 @@
+{
+  "url": "https://briars.bearblog.dev/feed/",
+  "title": "briar's secret base",
+  "subtitle": "❄️ welcome to my secret base. this blog is dedicated to whatever's on my mind at the current moment. this could be deep, personal endeavors, single sentences...",
+  "bytes": 7669,
+  "last": "2026-08-27",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "everyday-life"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://briars.bearblog.dev/oughh-im-back/",
+      "title": "OUGHH IM BACK",
+      "description": "went to denver! did a lot! kinda totally blanked on posting but hopefully i can start posting again with relative consistency. :]"
+    },
+    {
+      "link": "https://briars.bearblog.dev/brief-vent/",
+      "title": "brief vent",
+      "description": "i am 22 years old and not allowed to choose how i dress. i am 22 years old and cant go to the mall by myself. i am 22 years old and cant do anything for myself. #ok"
+    },
+    {
+      "link": "https://briars.bearblog.dev/art-trying-to-feel-something/",
+      "title": "[ART] trying to feel something",
+      "description": "oh my poor oc"
+    }
+  ]
+}

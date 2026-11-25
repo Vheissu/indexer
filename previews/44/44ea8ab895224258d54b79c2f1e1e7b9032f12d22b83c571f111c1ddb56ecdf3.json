@@ -1,0 +1,34 @@
+{
+  "url": "https://nullwing.com/atom.xml",
+  "title": "Nullwing",
+  "subtitle": "A comic about a grumpy penguin software engineer navigating corporate absurdity, AI hype, and the eternal quest for a quiet afternoon.",
+  "bytes": 15451,
+  "last": "2026-06-13",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "bugs"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://nullwing.com/comics/18/compile-time-crush/",
+      "title": "Compile-Time Crush",
+      "description": "Nullwing loves chatting with Brazilian girls — they always reply with \"rs\". Pawla thinks it's romance. It's the Rust file extension."
+    },
+    {
+      "link": "https://nullwing.com/comics/17/extra-mile/",
+      "title": "Extra Mile",
+      "description": "Going the extra mile. Then the extra mile after that. Then wondering where the road went."
+    },
+    {
+      "link": "https://nullwing.com/comics/16/who-needs-a-designer/",
+      "title": "Who Needs a Designer",
+      "description": "Pawla asks a backend engineer to mock up button variants for an A/B test. Fresh eyes. No design bias. What could go wrong?"
+    }
+  ]
+}

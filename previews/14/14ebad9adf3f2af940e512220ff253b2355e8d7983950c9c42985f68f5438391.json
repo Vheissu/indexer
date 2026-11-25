@@ -1,0 +1,29 @@
+{
+  "url": "https://anomitra.me/rss.xml",
+  "title": "Anomitra Saha | Principal Engineer",
+  "subtitle": "Principal Engineer in India writing about distributed systems, engineering leadership, and building platforms that operate at scale.",
+  "bytes": 1583,
+  "last": "2026-05-26",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "microservices"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://anomitra.me/blog/designing-a-unified-audit-trail-system-across-multiple-microservices/",
+      "title": "Designing a Unified Audit Trail System Across Multiple Microservices",
+      "description": "How we turned audit trails into platform infrastructure with Spring Boot and Javers."
+    },
+    {
+      "link": "https://anomitra.me/blog/multi-tenancy-in-spring-boot-a-practical-guide/",
+      "title": "Multi-Tenancy in Spring Boot: A Practical Guide",
+      "description": "The clean way to support true data isolation."
+    }
+  ]
+}

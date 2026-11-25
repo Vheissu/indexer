@@ -1,0 +1,18 @@
+{
+  "url": "https://everettindependent.com/feed/",
+  "title": "Everett Independent",
+  "subtitle": "Everett Massachusetts Newspaper",
+  "bytes": 64960,
+  "last": "2026-11-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "massachusetts"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

@@ -1,0 +1,34 @@
+{
+  "url": "http://www.jazzscan.com/feeds/posts/default",
+  "title": "Jazz Scan",
+  "subtitle": "Jazz ain't dead; it's just evolving!",
+  "bytes": 1145084,
+  "last": "2025-12-14",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "jazz"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "http://www.jazzscan.com/2025/12/holiday-jazz-2025-vince-guaraldi.html",
+      "title": "Holiday Jazz 2025: A Vince Guaraldi celebration!",
+      "description": "[Web master's note: Northern California film critic Derrick Bang — the eldest, youngest and only son of this site's primary jazz guru, the late Ric Bang — has surveyed the holiday jazz scene for more than a quarter century (!). Check out previous columns by clicking on the CHRISTMAS label below.] 2025 marks the 75th anniversary of Charles M. Schulz’s Peanuts, which debuted in a mere seven newspape"
+    },
+    {
+      "link": "http://www.jazzscan.com/2024/12/holiday-jazz-2024-international-affair.html",
+      "title": "Holiday Jazz 2024: An international affair",
+      "description": "[Web master's note: Northern California film critic Derrick Bang — the eldest, youngest and only son of this site's primary jazz guru, Ric Bang — has surveyed the holiday jazz scene for more than a quarter century (!). Check out previous columns by clicking on the CHRISTMAS label below.] Holiday albums appear earlier every year, so I was able to begin this annual survey in October ... and, for the"
+    },
+    {
+      "link": "http://www.jazzscan.com/2023/12/holiday-jazz-2023-back-to-basics.html",
+      "title": "Holiday jazz 2023: Back to basics",
+      "description": "[Web master's note: Northern California film critic Derrick Bang — the eldest, youngest and only son of this site's primary jazz guru, Ric Bang — has surveyed the holiday jazz scene for more than a quarter century (!). Check out previous columns by clicking on the CHRISTMAS label below.] In early November, this looked like another disappointing year for holiday jazz. With fewer than half a dozen a"
+    }
+  ]
+}

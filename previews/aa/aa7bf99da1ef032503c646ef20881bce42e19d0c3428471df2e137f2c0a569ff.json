@@ -1,0 +1,34 @@
+{
+  "url": "http://fragkakis.org/feed.xml",
+  "title": "Markos Fragkakis",
+  "subtitle": "Personal website and blog",
+  "bytes": 61068,
+  "last": "2026-11-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "meetup"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://fragkakis.org/Prty-time/",
+      "title": "PRty time",
+      "description": "Being a professional developer, I’ve been working with Pull Requests a lot. We have a microservices architecture, so at any given day I am reviewer on several PRs, and also I have several PRs open myself, waiting for others to review. It’s easy to lose track of notifications, or even of PRs themselves altogether."
+    },
+    {
+      "link": "https://fragkakis.org/Anoixta-dedomena/",
+      "title": "Ανοιχτά δεδομένα στην Ελλάδα",
+      "description": "Τις τελευταίες μέρες βρίσκω ανοιχτά δεδομένα (είτε ως API είτε ως στατικά dataset), και με πολύ vibe coding και λίγο πείραγμα με το χέρι φτιάχνω visualization, τα οποία μπορείτε να βρίσκετε στη σελίδα των projects. Προγράμματα με ανοιχτά δεδομένα έγραφα από παλιά, αλλά πλέον με το AI είναι πολύ εύκολο να χαλαρώσω ένα βράδυ φτιάχνοντας στα γρήγορα μια σελίδα που οπτικοποιεί κάποιο dataset που βρίσκ"
+    },
+    {
+      "link": "https://fragkakis.org/De-USAification/",
+      "title": "De-USAification",
+      "description": "How things have changed, looks like the USA is no longer a friend of Europe."
+    }
+  ]
+}

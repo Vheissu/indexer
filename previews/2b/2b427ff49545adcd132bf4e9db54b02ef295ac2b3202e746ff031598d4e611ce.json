@@ -1,0 +1,32 @@
+{
+  "url": "https://waitbutwhy.com/feed",
+  "title": "Wait But Why",
+  "subtitle": null,
+  "bytes": 370663,
+  "last": "2025-11-25",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://waitbutwhy.com/2025/11/bhutan.html",
+      "title": "The sights and sounds of Bhutan",
+      "description": "Stories from my visit to the mysterious Himalayan kingdom The post The sights and sounds of Bhutan appeared first on Wait But Why ."
+    },
+    {
+      "link": "https://waitbutwhy.com/2025/10/toddler.html",
+      "title": "Tales from Toddlerhood",
+      "description": "Eight thoughts from a strange and harrowing world The post Tales from Toddlerhood appeared first on Wait But Why ."
+    },
+    {
+      "link": "https://waitbutwhy.com/2024/02/vision-pro.html",
+      "title": "All My Thoughts After 40 Hours in the Vision Pro",
+      "description": "Welcome to the 2030s. The post All My Thoughts After 40 Hours in the Vision Pro appeared first on Wait But Why ."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "url": "https://mouse.mousetrap.net/feed.xml",
+  "title": "the mousepad",
+  "subtitle": "unending dorkiness",
+  "bytes": 40636,
+  "last": "2026-11-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "surgery"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

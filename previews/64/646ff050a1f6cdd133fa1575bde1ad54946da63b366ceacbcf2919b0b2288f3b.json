@@ -1,0 +1,32 @@
+{
+  "url": "https://parthkabra.me/rss.xml",
+  "title": "Parth Kabra",
+  "subtitle": "Posts on Parth Kabra's website",
+  "bytes": 18517,
+  "last": "2026-07-26",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://parthkabra.me/blog/creating-a-driving-app-with-appshelf",
+      "title": "Creating a driving game with appshelf.org",
+      "description": "A fully functional game in 15 minutes"
+    },
+    {
+      "link": "https://parthkabra.me/blog/introducing-appshelf",
+      "title": "HTML apps with superpowers",
+      "description": "Turn a single HTML file into a shareable app with sign-in and user-owned, synced data"
+    },
+    {
+      "link": "https://parthkabra.me/blog/creating-friedrice-fun-my-non-professional-fun-blog",
+      "title": "Creating friedrice.fun, my non-professional fun blog",
+      "description": "How I used Obsidian and tons of AI to make friedrice.fun in under 2 hours"
+    }
+  ]
+}

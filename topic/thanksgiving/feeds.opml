@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>thanksgiving feeds</title>
+    <dateCreated>Wed, 25 Nov 2026 00:04:35 +0000</dateCreated>
+  </head>
+  <body>
+    <outline type="rss" text="Love and Lemons" title="Love and Lemons" xmlUrl="http://www.loveandlemons.com/feed/" htmlUrl="https://www.loveandlemons.com/"/>
+    <outline type="rss" text="Blind Pig and The Acorn" title="Blind Pig and The Acorn" xmlUrl="https://blindpigandtheacorn.com/feed/" htmlUrl="https://blindpigandtheacorn.com/"/>
+    <outline type="rss" text="fyi50+" title="fyi50+" xmlUrl="https://fyi50plus.com/feed/" htmlUrl="https://fyi50plus.com"/>
+    <outline type="rss" text="Store-Bought Is Fine" title="Store-Bought Is Fine" xmlUrl="https://storeboughtisfineblog.wpcomstaging.com/feed/atom/" htmlUrl="https://storeboughtisfineblog.wpcomstaging.com/"/>
+    <outline type="rss" text="How Sweet Eats" title="How Sweet Eats" xmlUrl="https://www.howsweeteats.com/feed/" htmlUrl="https://www.howsweeteats.com/"/>
+    <outline type="rss" text="Jo Cooks" title="Jo Cooks" xmlUrl="https://www.jocooks.com/feed/" htmlUrl="https://www.jocooks.com/"/>
+  </body>
+</opml>

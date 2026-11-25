@@ -1,0 +1,16 @@
+{
+  "url": "https://rivertonhistory.com/feed/",
+  "title": "Historical Society of Riverton",
+  "subtitle": "New Jersey",
+  "bytes": 103070,
+  "last": "2026-10-12",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

@@ -1,0 +1,34 @@
+{
+  "url": "https://jaketrent.com/post/feed.xml",
+  "title": "jaketrent.com",
+  "subtitle": null,
+  "bytes": 3673504,
+  "last": "2026-11-12",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "npm"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://jaketrent.com/post/makefile-help-target",
+      "title": "Makefile Help Target",
+      "description": "Makefile Help Target"
+    },
+    {
+      "link": "https://jaketrent.com/post/abort-fetch-react-unmount",
+      "title": "Abort a Fetch Request in React on Unmount",
+      "description": "Abort a Fetch Request in React on Unmount"
+    },
+    {
+      "link": "https://jaketrent.com/post/losing-our-grip-ai",
+      "title": "Losing Our Grip with AI",
+      "description": "Losing Our Grip with AI"
+    }
+  ]
+}

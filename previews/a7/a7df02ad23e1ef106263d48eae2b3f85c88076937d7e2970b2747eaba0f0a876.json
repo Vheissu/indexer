@@ -1,0 +1,32 @@
+{
+  "url": "https://shawnmc.cool/rss",
+  "title": "ShawnMc.Cool",
+  "subtitle": "The blog of software engineer Shawn McCool.",
+  "bytes": 8527,
+  "last": "2026-01-16",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://shawnmc.cool/compiled-conversations-about-event-sourcing",
+      "title": "Compiled Conversations Podcast Interview about Event Sourcing",
+      "description": null
+    },
+    {
+      "link": "https://shawnmc.cool/compiled-conversations-about-elixir-erlang",
+      "title": "Compiled Conversations Podcast Interview about Elixir / Erlang",
+      "description": null
+    },
+    {
+      "link": "https://shawnmc.cool/elixir-erlang-learning-resources",
+      "title": "Elixir / Erlang Learning Resources",
+      "description": null
+    }
+  ]
+}

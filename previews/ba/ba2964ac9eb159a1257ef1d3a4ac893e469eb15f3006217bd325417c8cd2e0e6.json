@@ -1,0 +1,34 @@
+{
+  "url": "https://jsrn.net/feed.xml",
+  "title": "jsrn.net",
+  "subtitle": "The personal website of a real human being.",
+  "bytes": 26610,
+  "last": "2026-11-04",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "weeknotes"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://jsrn.net/personal/2026/11/04/notebook-questing.html",
+      "title": "Notebook questing",
+      "description": "Notebook opinions, and exercising agency."
+    },
+    {
+      "link": "https://jsrn.net/personal/2026/08/21/no-thank-you.html",
+      "title": "NO THANK YOU.",
+      "description": "A terrible email to receive, and likely the first of many."
+    },
+    {
+      "link": "https://jsrn.net/2026/05/09/eels.html",
+      "title": "Eels",
+      "description": "Getting in on the ground floor of the next great unusual tradition."
+    }
+  ]
+}

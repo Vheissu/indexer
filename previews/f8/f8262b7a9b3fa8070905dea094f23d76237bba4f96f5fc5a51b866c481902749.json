@@ -1,0 +1,18 @@
+{
+  "url": "https://www.sciencenews.org/feed",
+  "title": "Science News",
+  "subtitle": "INDEPENDENT JOURNALISM SINCE 1921",
+  "bytes": 20962,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "science-communication"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

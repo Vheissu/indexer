@@ -1,0 +1,34 @@
+{
+  "url": "https://terminal-archive.com/rss.xml",
+  "title": "Terminal Archive",
+  "subtitle": "Creative Computation",
+  "bytes": 1882,
+  "last": "2026-06-12",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "urban-design"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "http://terminal-archive.com/extracts/good-form/",
+      "title": "Good Form",
+      "description": "As little design as possible."
+    },
+    {
+      "link": "http://terminal-archive.com/extracts/saving-beauty/",
+      "title": "Out of Distribution: Beauty Beyond the Algorithm’s Comfort Zone",
+      "description": "On Constant's Utopia and Contemporary Urban Form"
+    },
+    {
+      "link": "http://terminal-archive.com/extracts/kl-derive/",
+      "title": "The Mall as Anti-Babylon: On Constant's Utopia and Contemporary Urban Form",
+      "description": "On Constant's Utopia and Contemporary Urban Form"
+    }
+  ]
+}

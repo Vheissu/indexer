@@ -1,0 +1,32 @@
+{
+  "url": "https://www.virinchi.me/index.xml",
+  "title": "Virinchi on Virinchi's Blog",
+  "subtitle": "Recent content in Virinchi on Virinchi's Blog",
+  "bytes": 17492,
+  "last": "2026-07-08",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.virinchi.me/portfolios/smriti-photos-without-a-server/",
+      "title": "Smriti: Photos Without a Server",
+      "description": "Everyone with a phone in their pocket is a photographer now."
+    },
+    {
+      "link": "https://www.virinchi.me/posts/sanskrit-and-tokenizers/",
+      "title": "Sanskritam: The world's first tokenizer",
+      "description": "Tokenizers are the translators of natural language for LLMs."
+    },
+    {
+      "link": "https://www.virinchi.me/posts/hands-on-introduction-to-engineering-simulations/",
+      "title": "A hands on introduction to Engineering Simulations",
+      "description": "A beginner-friendly guide to engineering simulations, discretization, and numerical methods."
+    }
+  ]
+}

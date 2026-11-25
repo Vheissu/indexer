@@ -1,0 +1,32 @@
+{
+  "url": "https://cyberb.space/feed.xml",
+  "title": "cyber(b)space notes",
+  "subtitle": "or, the personal blog of one Joshua James Erb",
+  "bytes": 787755,
+  "last": "2026-08-24",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://cyberb.space/notes/2026/terra-cognita/",
+      "title": "Terra Cognita",
+      "description": "A few thoughts at the end of our India post"
+    },
+    {
+      "link": "https://cyberb.space/notes/2026/photopad-encrypting-text-with-jpeg-files/",
+      "title": "Photopad: Encrypting Text with JPEG Files",
+      "description": "A picture is worth a thousand pads™"
+    },
+    {
+      "link": "https://cyberb.space/notes/2026/the-day-the-rains-arrive/",
+      "title": "The Day the Rains Arrive",
+      "description": "An attempt to articulate the feeling of when the monsoon comes to Mumbai."
+    }
+  ]
+}

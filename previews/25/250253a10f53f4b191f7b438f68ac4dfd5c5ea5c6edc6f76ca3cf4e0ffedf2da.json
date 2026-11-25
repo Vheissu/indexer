@@ -1,0 +1,23 @@
+{
+  "url": "https://atoniolo76.github.io/rss.xml",
+  "title": "Alessio Toniolo — Writing",
+  "subtitle": "Technical writing by Alessio Toniolo",
+  "bytes": 717,
+  "last": "2026-07-19",
+  "languages": [],
+  "topics": [
+    "technical-writing",
+    "writing"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://atoniolo76.github.io/writing/post/rdma-in-gvisor",
+      "title": "RDMA in gVisor: A Deep Dive into GPU Networking",
+      "description": "How I enabled multi-node networking in gVisor sandboxes: a deep dive into RDMA internals and NVIDIA networking."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "url": "https://unsupervised.ca/feed/",
+  "title": "Unsupervised Design",
+  "subtitle": "Recovering math teacher. Staff Developer at 1Password.",
+  "bytes": 54136,
+  "last": "2026-04-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "hockey"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

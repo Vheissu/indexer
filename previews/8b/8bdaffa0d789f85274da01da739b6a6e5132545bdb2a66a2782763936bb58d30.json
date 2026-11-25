@@ -1,0 +1,18 @@
+{
+  "url": "https://explorersweb.com/feed/",
+  "title": "Explorersweb",
+  "subtitle": null,
+  "bytes": 1225430,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "mountaineering"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

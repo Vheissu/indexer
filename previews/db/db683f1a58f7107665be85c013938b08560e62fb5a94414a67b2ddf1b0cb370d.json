@@ -1,0 +1,21 @@
+{
+  "url": "https://oaklandsocialist.com/feed/",
+  "title": "Oakland Socialist",
+  "subtitle": "workers' struggles and scientific socialism",
+  "bytes": 249899,
+  "last": "2026-11-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "socialism",
+    "politics",
+    "trump",
+    "history"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

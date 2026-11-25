@@ -1,0 +1,16 @@
+{
+  "url": "https://mossyskull.com/feed/",
+  "title": "The Mossy Skull",
+  "subtitle": "Ramblings of Michael J. DeLuca",
+  "bytes": 14474,
+  "last": "2026-11-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

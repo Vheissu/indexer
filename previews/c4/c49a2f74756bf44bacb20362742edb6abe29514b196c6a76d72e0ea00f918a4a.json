@@ -1,0 +1,30 @@
+{
+  "url": "https://ryansepassi.com/atom.xml",
+  "title": "Ryan Sepassi",
+  "subtitle": null,
+  "bytes": 2066,
+  "last": "2026-05-01",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://ryansepassi.com/notes/boot2-c.html",
+      "title": "boot2 C",
+      "description": null
+    },
+    {
+      "link": "https://ryansepassi.com/notes/boot2-scheme.html",
+      "title": "boot2 Scheme",
+      "description": null
+    },
+    {
+      "link": "https://ryansepassi.com/notes/boot2.html",
+      "title": "boot2: Playing with the bootstrap",
+      "description": null
+    }
+  ]
+}

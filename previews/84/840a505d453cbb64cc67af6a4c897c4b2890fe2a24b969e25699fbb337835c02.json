@@ -1,0 +1,18 @@
+{
+  "url": "https://atoav.com/feed/atom/",
+  "title": "ATOAV",
+  "subtitle": "building things that don't break. fixing the ones that do.",
+  "bytes": 5529,
+  "last": "2026-08-30",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "diy"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": []
+}

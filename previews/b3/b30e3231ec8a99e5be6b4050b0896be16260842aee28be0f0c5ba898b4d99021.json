@@ -1,0 +1,32 @@
+{
+  "url": "https://timesofindia.indiatimes.com/rssfeedstopstories.cms",
+  "title": "Times of India",
+  "subtitle": "The Times of India: Breaking news, views, reviews, cricket from across India",
+  "bytes": 50867,
+  "last": "2026-11-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "plenaryapp/awesome-rss-feeds",
+    "license": "CC0-1.0"
+  },
+  "posts": [
+    {
+      "link": "https://timesofindia.indiatimes.com/india/regulator-sanctions-prosecution-of-bisleri-4-other-firms/articleshow/136083476.cms",
+      "title": "FSSAI sanctions prosecution of Bisleri, 4 other firms",
+      "description": "Licences Of Two Others Suspended"
+    },
+    {
+      "link": "https://timesofindia.indiatimes.com/india/rahul-clarifies-after-allies-criticise-remark-on-hamas-and-israel/articleshow/136083458.cms",
+      "title": "Rahul 'clarifies' after allies criticise remark on Hamas and Israel",
+      "description": null
+    },
+    {
+      "link": "https://timesofindia.indiatimes.com/india/india-nepal-set-to-ink-pacts-on-energy-infra-tech-on-balen-shahs-1st-visit/articleshow/136083404.cms",
+      "title": "India, Nepal set to ink pacts on energy, infra, tech on Balen Shah's 1st visit",
+      "description": null
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "url": "https://philipcao.com/feed/",
+  "title": "Dr. Philip Cao",
+  "subtitle": "Be Yourself. By Yourself.",
+  "bytes": 6382,
+  "last": "2026-08-27",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "security"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://philipcao.com/2026/08/27/sans-2026-security-awareness-culture-report/",
+      "title": "SANS 2026 Security Awareness & Culture Report",
+      "description": "The SANS Security Awareness & Culture Report® has tracked the human side of cybersecurity for..."
+    },
+    {
+      "link": "https://philipcao.com/2026/06/21/gartner-magic-quadrant-for-endpoint-protection-2026/",
+      "title": "Gartner Magic Quadrant for Endpoint Protection 2026",
+      "description": "Rapid AI adoption and emerging supplier sovereignty requirements are shaping buyer priorities for endpoint protection..."
+    },
+    {
+      "link": "https://philipcao.com/2026/04/30/top-10-cybersecurity-voices-in-asean-2026-edition-by-new-in-asia/",
+      "title": "Top 10 Cybersecurity Voices in ASEAN (2026 Edition) by New In Asia",
+      "description": "I’m honored and grateful to be featured as one of the Top 10 Cybersecurity Voices..."
+    }
+  ]
+}

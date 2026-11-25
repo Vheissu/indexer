@@ -1,0 +1,20 @@
+{
+  "url": "https://www.curbsideclassic.com/feed/",
+  "title": "Curbside Classic",
+  "subtitle": null,
+  "bytes": 176632,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ford",
+    "cars",
+    "porsche"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

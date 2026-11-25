@@ -1,0 +1,16 @@
+{
+  "url": "https://pure-essence.net/feed/",
+  "title": "Pure-Essence.Net",
+  "subtitle": "Lead engineer for People Inc.",
+  "bytes": 83400,
+  "last": "2026-04-27",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

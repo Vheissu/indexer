@@ -1,0 +1,32 @@
+{
+  "url": "https://www.julianlbauer.com/feed.xml",
+  "title": "Julian Bauer",
+  "subtitle": "Julian Bauer's home on the internet.",
+  "bytes": 676891,
+  "last": "2026-10-07",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://julianlbauer.com/writing/markdown-to-typst",
+      "title": "Converting all my Markdown notes to Typst",
+      "description": "Using Pandoc to upgrade more than 400 notes."
+    },
+    {
+      "link": "https://julianlbauer.com/writing/typst-helix-config",
+      "title": "Configuring Helix for convenient Typst previewing",
+      "description": "Guide to configure Helix to open Typst preview in a dedicated window on-demand."
+    },
+    {
+      "link": "https://julianlbauer.com/writing/idris-sorting",
+      "title": "Formally verifying insertion sort in Idris",
+      "description": "Using the dependently-typed programming language Idris to verify insertion sort."
+    }
+  ]
+}

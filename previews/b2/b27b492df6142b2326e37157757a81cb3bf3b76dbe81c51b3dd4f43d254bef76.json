@@ -1,0 +1,30 @@
+{
+  "url": "https://yesteryearforever.xyz/rss.xml",
+  "title": "Yesteryear Forever",
+  "subtitle": "Personal writings, projects, and reflections",
+  "bytes": 3077,
+  "last": "2026-10-20",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://yesteryearforever.xyz/sensing.html",
+      "title": "MOUND Sensor Array",
+      "description": null
+    },
+    {
+      "link": "https://yesteryearforever.xyz/identity.html",
+      "title": "On Being a Naturalist",
+      "description": null
+    },
+    {
+      "link": "https://yesteryearforever.xyz/cosmic_scale.html",
+      "title": "Cosmic Scale",
+      "description": null
+    }
+  ]
+}

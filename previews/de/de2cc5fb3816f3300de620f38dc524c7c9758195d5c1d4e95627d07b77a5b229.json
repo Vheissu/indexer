@@ -1,0 +1,35 @@
+{
+  "url": "https://verdagon.dev/rss.xml",
+  "title": "Languages and Architecture",
+  "subtitle": "A blog on programming languages, software architecture, and Evan Ovadia's other shenanigans!",
+  "bytes": 22451,
+  "last": "2026-10-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "memory-safety",
+    "programming-languages"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://verdagon.dev/blog/reverse-borrow-checking",
+      "title": "A New Way to Think About Borrow Checking (In Reverse)",
+      "description": null
+    },
+    {
+      "link": "https://verdagon.dev/blog/valen-group-borrowing",
+      "title": "Valen's Memory Safety: A New Kind of Borrow Checking",
+      "description": null
+    },
+    {
+      "link": "https://verdagon.dev/blog/boundary-memory-safety",
+      "title": "The Second Golden Spike: Memory Safety Across the Valen/Rust Boundary",
+      "description": null
+    }
+  ]
+}

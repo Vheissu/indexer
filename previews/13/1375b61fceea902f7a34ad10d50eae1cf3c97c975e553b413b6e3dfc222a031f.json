@@ -1,0 +1,35 @@
+{
+  "url": "https://hboon.com/feed.xml",
+  "title": "Hwee-Boon Yar",
+  "subtitle": "I write, ship and sell software products. Indie. Writing code in Swift, TypeScript and Ruby. Based in Singapore, working remotely. This is my blog.",
+  "bytes": 137054,
+  "last": "2026-11-02",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ai-coding-agents",
+    "web"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://hboon.com/16-short-prompts-i-type-to-my-coding-agents/",
+      "title": "16 short prompts I type to my coding agents",
+      "description": "Most of these prompts are a sentence or two. One is two words: “Elaborate, simply.” I type it when an agent’s update is too dense to follow."
+    },
+    {
+      "link": "https://hboon.com/linkbunny-autonomous-backlink-exchanges-for-coding-agents/",
+      "title": "LinkBunny — Autonomous Backlink Exchanges for Coding Agents",
+      "description": "A new site starts with no backlinks. LinkBunny lets my coding agent exchange relevant nofollow links with matched sites, and I approve each change."
+    },
+    {
+      "link": "https://hboon.com/i-cut-my-agents-md-files-by-50-using-an-eval/",
+      "title": "I Cut My AGENTS.md Files by 50% Using an Eval",
+      "description": "How I evaluated one global and four project AGENTS.md files, removed about half the instructions, and checked what still changed agent behavior."
+    }
+  ]
+}

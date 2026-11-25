@@ -1,0 +1,18 @@
+{
+  "url": "https://nuangel.net/feed/",
+  "title": "NuAngel.net",
+  "subtitle": "...since 1999",
+  "bytes": 52660,
+  "last": "2026-10-24",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "windows-11"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

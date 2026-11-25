@@ -1,0 +1,18 @@
+{
+  "url": "https://steppingtoes.wordpress.com/feed/",
+  "title": "Stepping Toes",
+  "subtitle": "Things said on this site possibly can upset someone",
+  "bytes": 29915,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "history"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

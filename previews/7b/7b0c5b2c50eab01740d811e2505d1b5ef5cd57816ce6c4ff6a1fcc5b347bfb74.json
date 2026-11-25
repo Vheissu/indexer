@@ -1,0 +1,18 @@
+{
+  "url": "https://www.lankabusinessonline.com/feed/",
+  "title": "Lanka Business Online",
+  "subtitle": null,
+  "bytes": 85150,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "sri-lanka"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

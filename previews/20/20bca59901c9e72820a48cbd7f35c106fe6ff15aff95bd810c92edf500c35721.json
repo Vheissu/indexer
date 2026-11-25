@@ -1,0 +1,35 @@
+{
+  "url": "https://blog.erikwastaken.dev/atom.xml",
+  "title": "erikwastaken",
+  "subtitle": null,
+  "bytes": 4879,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "vim",
+    "neovim"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://blog.erikwastaken.dev/./posts/2026-11-21-on-git-identities.html",
+      "title": "On Having Multiple Git Identities",
+      "description": null
+    },
+    {
+      "link": "https://blog.erikwastaken.dev/./posts/2026-01-16-how-to-make-a-blog.html",
+      "title": "How to `make` a Blog",
+      "description": null
+    },
+    {
+      "link": "https://blog.erikwastaken.dev/./posts/2025-06-07-how-great-is-nix.html",
+      "title": "How great is Nix, actually?",
+      "description": null
+    }
+  ]
+}

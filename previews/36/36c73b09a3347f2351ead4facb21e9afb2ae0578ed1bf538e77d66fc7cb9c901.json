@@ -1,0 +1,32 @@
+{
+  "url": "https://www.lindmarker.se/feed.xml",
+  "title": "Axel Lindmarker",
+  "subtitle": "Designer and builder working on products and experiences.",
+  "bytes": 9959,
+  "last": "2026-10-14",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.lindmarker.se/projects/paintdeck/",
+      "title": "Paintdeck",
+      "description": "MS Paint, but it's a slide tool"
+    },
+    {
+      "link": "https://www.lindmarker.se/writing/the-gacha-of-photography/",
+      "title": "The Gacha of Photography",
+      "description": "Why shooting film feels like pulling from a capsule machine."
+    },
+    {
+      "link": "https://www.lindmarker.se/writing/hunting-vs-fishing/",
+      "title": "Hunting vs. fishing",
+      "description": "On falling into a photography rut, and trading the hunt for a project."
+    }
+  ]
+}

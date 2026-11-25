@@ -1,0 +1,19 @@
+{
+  "url": "https://modernfarmer.com/feed/",
+  "title": "Modern Farmer",
+  "subtitle": "Farm. Food. Life.",
+  "bytes": 201813,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "agriculture",
+    "farm"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

@@ -1,0 +1,36 @@
+{
+  "url": "https://conchcat.bearblog.dev/atom.xml",
+  "title": "Cat's Musings",
+  "subtitle": "Nature, creativity, and words from the Lone Star State.",
+  "bytes": 75214,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "halloween",
+    "adventure",
+    "storytime"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://cats-musings.blog/0115-departure-from-religion/",
+      "title": "My departure from religion",
+      "description": "It started and ended with a whimper."
+    },
+    {
+      "link": "https://cats-musings.blog/0114-looking-for-loneliness/",
+      "title": "Looking for loneliness",
+      "description": "looking for loneliness"
+    },
+    {
+      "link": "https://cats-musings.blog/0111-first-road-trip/",
+      "title": "Getting lost down dusty trails",
+      "description": "A very mundane drive becomes slightly less mundane"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "url": "https://lonely-star.bearblog.dev/rss.xml",
+  "title": "Lonely Star",
+  "subtitle": "A blog by Havoc (They / Them). Remember: respect the legacy, keep things straight, I fought we won. You can reach me at hellhound_havoc on Discord, or shoot ...",
+  "bytes": 133740,
+  "last": "2026-11-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "movie-review"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://lonely-star.bearblog.dev/low-conquers-high-players-guide/",
+      "title": "Low Conquers High: Player's Guide",
+      "description": "The player's side for the Low Conquers High game."
+    },
+    {
+      "link": "https://lonely-star.bearblog.dev/low-conquers-high-a-megagame/",
+      "title": "Low Conquers High: a Megagame",
+      "description": "A megagame / Cataphracts-adjacent game."
+    },
+    {
+      "link": "https://lonely-star.bearblog.dev/shining-sword-wip/",
+      "title": "Shining Sword (WIP)",
+      "description": "A skill-based freeform system, currently in progress."
+    }
+  ]
+}

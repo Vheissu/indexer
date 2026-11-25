@@ -1,0 +1,34 @@
+{
+  "url": "https://avivbenyosef.com/feed/",
+  "title": "Aviv Ben-Yosef",
+  "subtitle": "Writing on tech leadership, by Aviv Ben-Yosef",
+  "bytes": 101482,
+  "last": "2026-11-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "tech-leadership"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://avivbenyosef.com/build-vs-buy-with-ai/",
+      "title": "Build vs. Buy with AI",
+      "description": null
+    },
+    {
+      "link": "https://avivbenyosef.com/bootstrapping-cto-personal-growth/",
+      "title": "Bootstrapping CTO Personal Growth",
+      "description": null
+    },
+    {
+      "link": "https://avivbenyosef.com/how-to-refactor-a-legacy-team/",
+      "title": "How to Refactor a Legacy Team",
+      "description": null
+    }
+  ]
+}

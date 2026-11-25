@@ -1,0 +1,32 @@
+{
+  "url": "https://www.sacredheartsc.com/feed.xml",
+  "title": "Cullum Smith's Blog",
+  "subtitle": "Wrangling scripts in the shell and quilismas in the choir loft.",
+  "bytes": 5321,
+  "last": "2026-08-31",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.sacredheartsc.com/blog/hns-roadmap/",
+      "title": "The Holy Name Society Roadmap",
+      "description": "Practical steps to grow in personal holiness."
+    },
+    {
+      "link": "https://www.sacredheartsc.com/blog/grapheneos-apps/",
+      "title": "GrapheneOS Apps",
+      "description": "Free, open-source apps that I use on GrapheneOS"
+    },
+    {
+      "link": "https://www.sacredheartsc.com/blog/browser-de-slop/",
+      "title": "Browser De-Slop",
+      "description": "Disable AI slop and bloatware in Chrome and Firefox."
+    }
+  ]
+}

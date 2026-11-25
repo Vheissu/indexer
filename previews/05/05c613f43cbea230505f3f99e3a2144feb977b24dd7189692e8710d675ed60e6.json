@@ -1,0 +1,35 @@
+{
+  "url": "https://beantin.net/rss/",
+  "title": "Beantin",
+  "subtitle": "James Royal-Lawson: Senior digital advisor, designer, digital analyst, economist & podcaster",
+  "bytes": 199522,
+  "last": "2026-03-30",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "accessibility",
+    "economics"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://beantin.net/search-is-changing-seo-aio/",
+      "title": "Search is changing - is your website keeping up?",
+      "description": "AIO. AEO. GEO. LLMO. AAIO. Thankfully, good, accessible content is still key."
+    },
+    {
+      "link": "https://beantin.net/talk-to-users/",
+      "title": "Talk to users!",
+      "description": "When did your organisation last do any user research? How great is the distance between your organisation and your users? Here's a tool to help."
+    },
+    {
+      "link": "https://beantin.net/accessibility-is-90-percent-design/",
+      "title": "Accessibility is 90% design",
+      "description": "It's a myth that developers are responsible for accessibility. In truth, the biggest impact comes from design."
+    }
+  ]
+}

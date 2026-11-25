@@ -1,0 +1,34 @@
+{
+  "url": "https://yuexunj.com/rss.xml",
+  "title": "Yuexun J",
+  "subtitle": "Building tools. Writing about web tech, Vim, Rust, and whatever else I learn along the way.",
+  "bytes": 52599,
+  "last": "2026-01-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "tooling"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://yuexunj.com/native-macos-updates-in-tauri/",
+      "title": "Native macOS Updates in Tauri",
+      "description": "Tauri's updater gives you pipes. You build the bathroom."
+    },
+    {
+      "link": "https://yuexunj.com/why-mcp-matters/",
+      "title": "Why MCP Matters",
+      "description": "MCP is not just another API standard. It's the first protocol genuinely designed for AI agents, and its evolution from STDIO to OAuth proves its value."
+    },
+    {
+      "link": "https://yuexunj.com/how-to-make-your-tauri-dev-faster/",
+      "title": "How to Make Your Tauri Dev Faster",
+      "description": "A one-minute compile became fifteen seconds. Here's what was wrong and how to fix it."
+    }
+  ]
+}

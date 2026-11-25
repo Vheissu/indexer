@@ -1,0 +1,34 @@
+{
+  "url": "https://www.publishingishard.com/rss/",
+  "title": "Publishing is Hard",
+  "subtitle": "it really is. occasional thoughts on how to make it survivable and keep from losing your mind in the process.",
+  "bytes": 136109,
+  "last": "2025-11-25",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "publishing"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.publishingishard.com/a-publ/",
+      "title": "An Industry of Gifts",
+      "description": "I had reason to take a long drive recently, down the length of California from the Bay back to my home in Los Angeles. I made the mistake of taking the 5, saving me some time but the route took me through the flat monotony of the central valley. An"
+    },
+    {
+      "link": "https://www.publishingishard.com/grace-will-find-you/",
+      "title": "Grace Will Find You",
+      "description": "I saw an old friend for brunch recently. It was a beautiful day and we sat outside feeling the cool crisp air and shared a Japanese-style pancake with the approximate diameter of a basketball, custard-like in the middle, golden brown on the outside. We had warm soft tofu"
+    },
+    {
+      "link": "https://www.publishingishard.com/go-find-a-lake/",
+      "title": "Go Find a Lake",
+      "description": "Recently, I climbed into an alpine lake. The rocks were slippery and unstable, the water near freezing. In the time it took to gasp, the cold was in my bones. I waded deeper until I found sandy bottom and crouched down, the water up to my shoulders. I breathed through"
+    }
+  ]
+}

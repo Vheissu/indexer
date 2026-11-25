@@ -1,0 +1,18 @@
+{
+  "url": "https://stanfordflipside.com/feed/",
+  "title": "The Stanford Flipside",
+  "subtitle": "Free Everywhere * $2.30 Canada",
+  "bytes": 28648,
+  "last": "2026-11-05",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "berkeley"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

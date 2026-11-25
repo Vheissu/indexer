@@ -1,0 +1,32 @@
+{
+  "url": "https://shawnhoover.dev/notes/index.xml",
+  "title": "shawnhoover.dev - Dev Notes",
+  "subtitle": "Learnings, thoughts, and references collected in my software work.",
+  "bytes": 16329,
+  "last": "2026-05-10",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://shawnhoover.dev/notes/margaret-storey-how-will-high-performing-teams-adapt.html",
+      "title": "Margaret Storey: How Will High-Performing Teams Adapt?",
+      "description": "-- 10 May 2026"
+    },
+    {
+      "link": "https://shawnhoover.dev/notes/marc-brooker-testing-is-the-thing.html",
+      "title": "Marc Brooker: Testing Is Going to Be the Most Important Thing",
+      "description": "-- 25 Oct 2025"
+    },
+    {
+      "link": "https://shawnhoover.dev/notes/amazon-indiana-ai-energy-footprint.html",
+      "title": "Amazon/Anthropic/et al.'s Indiana AI Energy Footprint",
+      "description": "-- 28 Jun 2025"
+    }
+  ]
+}

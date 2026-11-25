@@ -1,0 +1,34 @@
+{
+  "url": "https://notes.labordata.bunkum.us/feed.xml",
+  "title": null,
+  "subtitle": null,
+  "bytes": 72387,
+  "last": "2026-07-16",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "unions"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://notes.labordata.bunkum.us/2026/07/16/duckdb-backend",
+      "title": "DuckDB backend for labordata",
+      "description": "Clearer queries on labordata, and 10-50 times faster"
+    },
+    {
+      "link": "https://notes.labordata.bunkum.us/2026/06/15/lm30",
+      "title": "LM 30 (and recovered LM 10, 20, & 21)",
+      "description": "New data set on union officer and employee conflict of interests"
+    },
+    {
+      "link": "https://notes.labordata.bunkum.us/2026/04/29/labor-parser",
+      "title": "Local union predictor",
+      "description": "What local is this?"
+    }
+  ]
+}

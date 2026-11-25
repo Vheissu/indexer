@@ -1,0 +1,16 @@
+{
+  "url": "https://ignorethecode.net/blog/rss/",
+  "title": "ignorethecode.net",
+  "subtitle": "Essays on usability, programming, and other nerd topics.",
+  "bytes": 39939,
+  "last": "2026-08-09",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

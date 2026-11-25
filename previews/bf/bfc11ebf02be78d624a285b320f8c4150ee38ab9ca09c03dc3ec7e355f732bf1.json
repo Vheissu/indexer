@@ -1,0 +1,34 @@
+{
+  "url": "https://tpaschalis.me/feed.xml",
+  "title": "tpaschalis",
+  "subtitle": "software, systems",
+  "bytes": 85561,
+  "last": "2026-03-31",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "golang"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://tpaschalis.me/agentic-protoreflect-apis/",
+      "title": "Agent-first APIs using protobuf reflection",
+      "description": "A house of mirrors"
+    },
+    {
+      "link": "https://tpaschalis.me/guesstimate-trick/",
+      "title": "The three-orders-of-magnitude trick",
+      "description": "None, please"
+    },
+    {
+      "link": "https://tpaschalis.me/shallow-vs-deep-interfaces/",
+      "title": "Deep vs Shallow Go interfaces",
+      "description": "Not to be confused with Shallow vs Deep copy :P"
+    }
+  ]
+}

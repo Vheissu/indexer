@@ -1,0 +1,32 @@
+{
+  "url": "https://blog.danielh.cc/feed.atom",
+  "title": "Blog - Daniel Huang",
+  "subtitle": "where my words occasionally escape /dev/null",
+  "bytes": 5243,
+  "last": "2026-01-27",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://blog.danielh.cc/blog/coin",
+      "title": "The same coin twice",
+      "description": null
+    },
+    {
+      "link": "https://blog.danielh.cc/blog/ln",
+      "title": "The antiderivative of 1/x is ln(x), not ln |x|",
+      "description": null
+    },
+    {
+      "link": "https://blog.danielh.cc/blog/curved",
+      "title": "I don't like curved displays",
+      "description": null
+    }
+  ]
+}

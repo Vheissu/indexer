@@ -1,0 +1,35 @@
+{
+  "url": "https://www.alistaircroll.com/updates/rss/",
+  "title": "Alistair Croll",
+  "subtitle": "Author, speaker, entrepreneur, and mercenary polymath. Home of Interesting Bits, a semi-regular newsletter about tech, government, innovation, and society.",
+  "bytes": 172005,
+  "last": "2026-07-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ai",
+    "innovation"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.alistaircroll.com/updates/the-future-gets-awkward-first/",
+      "title": "The future gets awkward first",
+      "description": "A video my AI created for Startupfest as part of participating in Envoi, an agentic conference platform."
+    },
+    {
+      "link": "https://www.alistaircroll.com/updates/byoai-envoi/",
+      "title": "Launching Envoi: A platform to bring your AI agent to a conference",
+      "description": "Envoi is a new platform that lets you bring your own AI to a conference. You can try it out first at Startupfest in Montreal this July."
+    },
+    {
+      "link": "https://www.alistaircroll.com/updates/when-the-target-keeps-moving/",
+      "title": "When the target keeps moving",
+      "description": "When it's easy to code, scope creeps. But not all creep is bad. I analyzed a month of AI coding, and learned that we need to measure agentic software development differently."
+    }
+  ]
+}

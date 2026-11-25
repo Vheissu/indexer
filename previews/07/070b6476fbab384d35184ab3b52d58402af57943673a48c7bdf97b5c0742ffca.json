@@ -1,0 +1,32 @@
+{
+  "url": "https://www.nicita.cc/rss.xml",
+  "title": "Alexander Nicita",
+  "subtitle": "Essays and notes by Alexander Nicita.",
+  "bytes": 1338,
+  "last": "2026-05-04",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://nicita.cc/blog/n-dimensional-machines",
+      "title": "N-Dimensional Machines",
+      "description": "Does contemporary technology lack dimension?"
+    },
+    {
+      "link": "https://nicita.cc/blog/knowledge-work-after-superintelligent-ai",
+      "title": "Knowledge Work After Superintelligent AI",
+      "description": "Every major technological wave creates new labor categories."
+    },
+    {
+      "link": "https://nicita.cc/blog/antonym-of-the-market",
+      "title": "Antonym of the Market",
+      "description": "Nobody has a one word answer."
+    }
+  ]
+}

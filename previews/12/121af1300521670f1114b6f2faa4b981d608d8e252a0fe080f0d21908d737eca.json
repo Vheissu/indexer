@@ -1,0 +1,36 @@
+{
+  "url": "https://kste.dk/index.xml",
+  "title": "Stefan Kölbl",
+  "subtitle": "Stefan Kölbl",
+  "bytes": 52065,
+  "last": "2025-12-01",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "cryptid",
+    "cryptography",
+    "cryptocurrency"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "http://localhost:1313/blog/google-commitment-pqc/",
+      "title": "Google's commitment to a quantum-safe future: Why PQC is Google's path forward and not QKD",
+      "description": null
+    },
+    {
+      "link": "http://localhost:1313/blog/ciso-guide-key-management/",
+      "title": "From Inventory to Agility: A CISO's Guide to Robust Key Management",
+      "description": null
+    },
+    {
+      "link": "http://localhost:1313/blog/crypto-agility-key-rotation/",
+      "title": "Cryptographic Agility and Key Rotation",
+      "description": null
+    }
+  ]
+}

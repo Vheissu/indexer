@@ -1,0 +1,22 @@
+{
+  "url": "https://joshkingsley.me/feed/",
+  "title": "Josh Kingsley",
+  "subtitle": "I'm a software engineer from the UK based in Cluj-Napoca, Romania 🇷🇴 Learning and writing about: Distributed systems and data Rust, TypeScript, and Clojure L...",
+  "bytes": 13847,
+  "last": "2026-05-19",
+  "languages": [],
+  "topics": [
+    "clojurescript"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://joshkingsley.me/8-years-of-clojure/",
+      "title": "8 years of Clojure",
+      "description": "It was ClojureScript that first got me into Clojure, when a friend showed me his project using Figwheel and Reagent over coffee in Borough Market. This was back in the day when hot reloading didn't really exist for JavaScript, and React was still using class components. Being able to modify simple functions returning HTML as data (no JSX!), and have the UI update without resetting its state, blew"
+    }
+  ]
+}

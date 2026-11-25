@@ -1,0 +1,34 @@
+{
+  "url": "https://bennet.org/rss.xml",
+  "title": "Bennet.org",
+  "subtitle": "Detailed guides, interactive tutorials, open source experiments, and more for the discerning Bitcoiner.",
+  "bytes": 505638,
+  "last": "2026-08-12",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "bitcoin"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://bennet.org/blog/how-to-burn-bitcoin/",
+      "title": "How to destroy bitcoin (and what happened to 107 burned coins)",
+      "description": "In May 2026 someone deliberately destroyed 107 BTC. Here's how burning bitcoin actually works, and what the chain says about where they came from."
+    },
+    {
+      "link": "https://bennet.org/blog/thoughts-on-the-coldcard-incident/",
+      "title": "Coldcard and the limits of “don't trust, verify”",
+      "description": "A technical blunder left five years of Coldcard seeds guessable. On who's to blame, why I don't buy blaming AI, and what it means for self-custody."
+    },
+    {
+      "link": "https://bennet.org/learn/how-to-buy-your-first-bitcoin/",
+      "title": "How to buy your first bitcoin",
+      "description": "A step-by-step beginner's guide to buying your first bitcoin - from someone you know, in person with Vexl, or on Strike - and withdrawing it to a wallet you control."
+    }
+  ]
+}

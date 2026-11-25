@@ -1,0 +1,34 @@
+{
+  "url": "https://neuviemeporte.github.io/feed.xml",
+  "title": "neuviemeporte’s journal",
+  "subtitle": "Misadventures in 16bit reverse engineering, programming WTFs and general rants about the IT industry.",
+  "bytes": 225305,
+  "last": "2026-10-09",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "reverse-engineering"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": null,
+      "title": "The dust settles",
+      "description": "(This post is part of a series on the subject of my hobby project, which is recreating the C source code for the 1989 game F-15 Strike Eagle II by reverse engineering the original binaries.)"
+    },
+    {
+      "link": null,
+      "title": "Eagle EX airborne",
+      "description": "(This post is part of a series on the subject of my hobby project, which is recreating the C source code for the 1989 game F-15 Strike Eagle II by reverse engineering the original binaries.)"
+    },
+    {
+      "link": null,
+      "title": "Meatbag is useless, meatbag sad",
+      "description": "(This post is part of a series on the subject of my hobby project, which is recreating the C source code for the 1989 game F-15 Strike Eagle II by reverse engineering the original binaries.)"
+    }
+  ]
+}

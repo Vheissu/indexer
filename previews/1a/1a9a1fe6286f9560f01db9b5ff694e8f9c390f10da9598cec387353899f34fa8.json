@@ -1,0 +1,32 @@
+{
+  "url": "https://mihai.fm/rss.xml",
+  "title": "mihai.fm",
+  "subtitle": "Mihai's small corner of the Internet",
+  "bytes": 4173,
+  "last": "2026-04-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "outcoldman/hackernews-personal-blogs",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "http://mihai.fm/building-a-fully-silent-nas",
+      "title": "Building a fully silent NAS",
+      "description": null
+    },
+    {
+      "link": "http://mihai.fm/wake-on-lan-using-cloud-functions",
+      "title": "Wake-on-LAN using Cloud Functions",
+      "description": null
+    },
+    {
+      "link": "http://mihai.fm/mirkotik-dual-isp-setup",
+      "title": "Mikrotik dual ISP setup",
+      "description": null
+    }
+  ]
+}

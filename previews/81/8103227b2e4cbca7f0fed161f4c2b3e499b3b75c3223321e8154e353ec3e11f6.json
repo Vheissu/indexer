@@ -1,0 +1,27 @@
+{
+  "url": "https://www.ramonov.com/rss.xml",
+  "title": "Ramonov",
+  "subtitle": "notes on math, machine learning, and the occasional robot",
+  "bytes": 898,
+  "last": "2026-09-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://ramonov.com/blog/64-tiny-benchmarks-for-jev/",
+      "title": "Playing around with Jev",
+      "description": "a not so serious eval"
+    },
+    {
+      "link": "https://ramonov.com/blog/one-joint-unitree-r1/",
+      "title": "The shape of one joint",
+      "description": "low level control on a Unitree R1 EDU: making the elbow joint go up and down, and all the math that shows up on the way"
+    }
+  ]
+}

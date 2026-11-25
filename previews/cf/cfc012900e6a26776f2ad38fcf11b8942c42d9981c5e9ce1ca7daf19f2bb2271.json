@@ -1,0 +1,34 @@
+{
+  "url": "https://emilien.ca/rss.xml",
+  "title": "Emilien Breton",
+  "subtitle": "With these pages I aim to document and discuss the interests and endeavors I take on over time.",
+  "bytes": 219878,
+  "last": "2026-11-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "writeup"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://emilien.ca/Scribbles/regwin.vim",
+      "title": "Scribble: regwin.vim",
+      "description": null
+    },
+    {
+      "link": "https://emilien.ca/Notes/Notes/notes/learn.md",
+      "title": "Note: Learn",
+      "description": null
+    },
+    {
+      "link": "https://emilien.ca/Notes/Notes/notes/apl.md",
+      "title": "Note: APL",
+      "description": null
+    }
+  ]
+}

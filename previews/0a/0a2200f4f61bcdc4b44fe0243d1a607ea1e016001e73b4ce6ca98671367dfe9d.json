@@ -1,0 +1,35 @@
+{
+  "url": "https://yogis.blog/feed",
+  "title": "Yogi's Blog",
+  "subtitle": "Software developer by profession. Geek at heart. Learning to live a holistic life.",
+  "bytes": 3577,
+  "last": "2026-10-25",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "software-engineering",
+    "technology"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://yogis.blog/posts/trapped/",
+      "title": "Trapped",
+      "description": "Notes from the jungle"
+    },
+    {
+      "link": "https://yogis.blog/posts/what_not_to_ship/",
+      "title": "AI Can Build Anything. Learn What Not to Ship",
+      "description": "Organisations with successful products need to rethink their SDLC"
+    },
+    {
+      "link": "https://yogis.blog/posts/journaling/",
+      "title": "My Journaling Technique",
+      "description": "Writing helps me think, in this post I describe how"
+    }
+  ]
+}

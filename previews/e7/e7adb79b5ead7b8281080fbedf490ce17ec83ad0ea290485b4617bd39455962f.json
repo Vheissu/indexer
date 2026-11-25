@@ -1,0 +1,30 @@
+{
+  "url": "https://fraserxu.me/rss.xml",
+  "title": "0xufra",
+  "subtitle": "Frontend engineering notes. Practical takes on JavaScript, React, web performance, and developer tools.",
+  "bytes": 1502,
+  "last": "2026-05-14",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "web-components",
+    "frontend"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://fraserxu.me/blog/esbuild-won-quietly",
+      "title": "esbuild Won and Nobody Threw a Party",
+      "description": "Webpack conferences had thousands of attendees. esbuild just shipped 0.25 and almost nobody noticed. That is what winning looks like."
+    },
+    {
+      "link": "https://fraserxu.me/blog/react-server-components-one-year-later",
+      "title": "React Server Components, One Year Later",
+      "description": "RSC shipped in Next.js 14. I have been using it for a year. Here is what works, what does not, and what I wish I knew earlier."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "url": "https://pzumk.com/atom/",
+  "title": "プズムク",
+  "subtitle": "the personal weblog of pzumk. status updates, notes, pictures, slash pages, homescreens, stickers, japan, shoebox, changelog, emojis, indieweb",
+  "bytes": 12487,
+  "last": "2026-11-22",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://pzumk.com/notes/2026/11/22b/",
+      "title": "💦 relief",
+      "description": "note"
+    },
+    {
+      "link": "https://pzumk.com/notes/2026/11/22a/",
+      "title": "🩳 shorts",
+      "description": "note"
+    },
+    {
+      "link": "https://pzumk.com/notes/2026/11/21c/",
+      "title": "🍂 leaves",
+      "description": "note"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "url": "https://mark.orbum.net/feed/feed.xml",
+  "title": "Mark's Minutiae",
+  "subtitle": null,
+  "bytes": 2050,
+  "last": "2026-08-07",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://mark.orbum.net/s/found-a-rock-in-amy-s-meals",
+      "title": "Found a Rock in Amy's Meals",
+      "description": null
+    },
+    {
+      "link": "https://mark.orbum.net/s/going-to-the-dmv",
+      "title": "Going to the DMV",
+      "description": null
+    },
+    {
+      "link": "https://mark.orbum.net/s/cancelling-paid-music-streaming",
+      "title": "Cancelling Paid Music Streaming",
+      "description": null
+    }
+  ]
+}

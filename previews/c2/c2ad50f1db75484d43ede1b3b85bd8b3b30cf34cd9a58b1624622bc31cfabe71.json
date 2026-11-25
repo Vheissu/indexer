@@ -1,0 +1,18 @@
+{
+  "url": "http://philippschmidt.org/feed.xml",
+  "title": "Philipp Schmidt",
+  "subtitle": null,
+  "bytes": 44882,
+  "last": "2026-04-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "learning"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": []
+}

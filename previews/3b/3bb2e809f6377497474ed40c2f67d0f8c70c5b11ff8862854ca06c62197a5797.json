@@ -1,0 +1,34 @@
+{
+  "url": "https://mrfb.bearblog.dev/feed/",
+  "title": "matthew is posting",
+  "subtitle": "hi, i'm matthew r.f. baloušek (buh-LOW-shek). i make and teach about games. i live more or less in new york city. i look like this: IMG_0680 n.b.: ravioli (t...",
+  "bytes": 60543,
+  "last": "2026-08-06",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "music"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://mrfb.bearblog.dev/videos-of-things-getting-made/",
+      "title": "videos of things getting made",
+      "description": "i've never been so amazed by an old man holding fake lettuce"
+    },
+    {
+      "link": "https://mrfb.bearblog.dev/takusan-mana/",
+      "title": "an incredible combo in magic the gathering",
+      "description": "T2 infinite mana, legal in every format"
+    },
+    {
+      "link": "https://mrfb.bearblog.dev/words-on-stuff/",
+      "title": "words on stuff",
+      "description": "sometimes it feels like everything leads into everything else."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "url": "https://orthodoxtimes.com/feed/",
+  "title": "Orthodox Times (en)",
+  "subtitle": "The real news of Christian Orthodox Life",
+  "bytes": 37874,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "catholicism",
+    "judaism",
+    "theology"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

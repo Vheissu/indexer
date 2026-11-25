@@ -1,0 +1,34 @@
+{
+  "url": "https://danielpost.com/rss.xml",
+  "title": "Daniel Post",
+  "subtitle": "Writing about WordPress, web development, and working independently.",
+  "bytes": 5303,
+  "last": "2026-03-10",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "wordpress"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://danielpost.com/writing/automate-local-wordpress-setup-herd/",
+      "title": "Automate your local WordPress setup on Laravel Herd with a single command",
+      "description": "A bash script that sets up a local WordPress site using Laravel Herd and WP-CLI, from downloading core to configuring debug settings."
+    },
+    {
+      "link": "https://danielpost.com/writing/enable-wordpress-pdf-thumbnails/",
+      "title": "Enable WordPress PDF thumbnails for local installations",
+      "description": "How to fix missing PDF thumbnail generation in local WordPress development by installing Ghostscript via Homebrew and configuring the PHP FPM path."
+    },
+    {
+      "link": "https://danielpost.com/writing/just-post-or-talk/",
+      "title": "Just post (or talk)",
+      "description": "A short encouragement to use speech-to-text tools like Aqua Voice to lower the barrier to writing blog posts and build momentum."
+    }
+  ]
+}

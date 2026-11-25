@@ -1,0 +1,32 @@
+{
+  "url": "https://stevekrouse.val.run/rss.xml",
+  "title": "Steve Krouse",
+  "subtitle": "Essays by Steve Krouse",
+  "bytes": 32907,
+  "last": "2026-10-23",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://stevekrouse.com/10x",
+      "title": "AI gets about 10x cheaper every year",
+      "description": null
+    },
+    {
+      "link": "https://stevekrouse.com/ends",
+      "title": "What Shall I Teach My Son?",
+      "description": null
+    },
+    {
+      "link": "https://stevekrouse.com/syndicated/val-town-connectors",
+      "title": "Connecting every app to every other app",
+      "description": null
+    }
+  ]
+}

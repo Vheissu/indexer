@@ -1,0 +1,34 @@
+{
+  "url": "https://mechanicalgirl.com/rss",
+  "title": "Mechanical Girl",
+  "subtitle": "The RSS feed from mechanicalgirl.com",
+  "bytes": 7980,
+  "last": "2026-09-13",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "mechanical"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.mechanicalgirl.com/post/my-dog-is-dying/",
+      "title": "My Dog Is Dying",
+      "description": "My Dog Is Dying"
+    },
+    {
+      "link": "https://www.mechanicalgirl.com/post/socal-python-pasadena-july-meetup-jones-coffee-roasters/",
+      "title": "SoCal Python Pasadena July Meetup @ Jones Coffee Roasters",
+      "description": "SoCal Python Pasadena July Meetup @ Jones Coffee Roasters"
+    },
+    {
+      "link": "https://www.mechanicalgirl.com/post/a-tour-of-castle-green/",
+      "title": "A Tour of Castle Green",
+      "description": "A Tour of Castle Green"
+    }
+  ]
+}

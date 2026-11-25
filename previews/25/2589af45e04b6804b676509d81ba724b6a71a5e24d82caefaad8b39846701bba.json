@@ -1,0 +1,34 @@
+{
+  "url": "https://cto4.ai/rss.xml",
+  "title": "cto4.ai’s Blog",
+  "subtitle": "Transcend local maxima. Summit.",
+  "bytes": 27369,
+  "last": "2026-07-29",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "claude-code"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://cto4.ai/p/machine-speed-offense",
+      "title": "Machine-Speed Offense",
+      "description": null
+    },
+    {
+      "link": "https://cto4.ai/p/insatiable-appetite",
+      "title": "My Insatiable Appetite for Meaty Projects",
+      "description": null
+    },
+    {
+      "link": "https://cto4.ai/p/posse-flavored-analytics",
+      "title": "POSSE-Flavored Analytics for the Blog",
+      "description": null
+    }
+  ]
+}

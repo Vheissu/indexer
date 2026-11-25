@@ -1,0 +1,34 @@
+{
+  "url": "https://chiefio.wordpress.com/feed/",
+  "title": "Musings from the Chiefio",
+  "subtitle": "Techno bits and mind pleasers",
+  "bytes": 7223,
+  "last": "2026-11-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "techno"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://chiefio.wordpress.com/2026/11/19/air-gap-is-your-friend-zero-days/",
+      "title": "Air Gap Is Your Friend – Zero Days…",
+      "description": "How A.I. has changed the risk profile of everything... we now have \"Zero Day\" exploits every day... Continue reading →"
+    },
+    {
+      "link": "https://chiefio.wordpress.com/2026/11/14/free-palestine-ukraine-1-98/",
+      "title": "Free Palestine! (Ukraine $1.98)…",
+      "description": "Free Palestine! (Ukraine $1.98) ... Continue reading →"
+    },
+    {
+      "link": "https://chiefio.wordpress.com/2026/11/08/how-empires-end-and-we-are-not-differnt/",
+      "title": "How Empires End – and we are not different",
+      "description": "How Empires End, and we're in it now. Continue reading →"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "url": "https://www.karanpratapsingh.com/feed.xml",
+  "title": "Karan Pratap Singh",
+  "subtitle": "A software engineer who aims to evolve, innovate, and inspire through technology.",
+  "bytes": 30243,
+  "last": "2026-10-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "nat",
+    "distributed-systems",
+    "golang",
+    "docker"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://karanpratapsingh.com/blog/docker-sandboxes-introduction",
+      "title": "Introduction to Docker Sandboxes with Go",
+      "description": "Running AI agents in isolated microVMs, from the sbx CLI and Go"
+    },
+    {
+      "link": "https://karanpratapsingh.com/blog/webrtc-at-scale",
+      "title": "WebRTC at Scale",
+      "description": "How WebRTC scales: signaling, NAT traversal, and the Mesh/SFU/MCU tradeoff"
+    },
+    {
+      "link": "https://karanpratapsingh.com/blog/kubernetes-operators",
+      "title": "Building Kubernetes Operators",
+      "description": "A hands-on guide to how Kubernetes operators work, and how to build one from scratch"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "url": "https://blog.sterlingfreeman.net/rss.xml",
+  "title": "Sterling's Blog",
+  "subtitle": "Notes on thinking, knowledge, and building things.",
+  "bytes": 21333,
+  "last": "2026-10-13",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "knowledge-management"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://blog.sterlingfreeman.net/posts/knowledge-bus-an-unlikely-idea-to-fix-knowledge-work/",
+      "title": "Knowledge Bus: An Unlikely Idea To Fix Knowledge Work",
+      "description": "On knowledge work at scale, cognitive accessibility, and the approach I’m exploring with Knowledge Bus."
+    },
+    {
+      "link": "https://blog.sterlingfreeman.net/posts/folder-structure-two-jobs/",
+      "title": "Your folder structure has two jobs, but only does one",
+      "description": "Finding files and deciding where to put them are different jobs. Your folder structure needs to account for both."
+    }
+  ]
+}

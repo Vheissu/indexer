@@ -1,0 +1,34 @@
+{
+  "url": "http://www.dfirnotes.net/feed.xml",
+  "title": "DFIR notes",
+  "subtitle": "notes on DFIR practice and practice",
+  "bytes": 40554,
+  "last": "2026-07-06",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "professional-development"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "http://www.dfirnotes.net/edu_rsrcs/",
+      "title": "Educational Resources (femme first)",
+      "description": "women focused/only groups and people worth following"
+    },
+    {
+      "link": "http://www.dfirnotes.net/4WH/",
+      "title": "4WH",
+      "description": "4Ws and An H"
+    },
+    {
+      "link": "http://www.dfirnotes.net/1Q_devel/",
+      "title": "1Q Professional Development Rollup",
+      "description": "Rolling up what could have been February and March updates on courses I’m taking and how my organisations are going."
+    }
+  ]
+}

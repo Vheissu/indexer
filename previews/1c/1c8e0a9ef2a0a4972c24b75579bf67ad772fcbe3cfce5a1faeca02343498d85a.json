@@ -1,0 +1,35 @@
+{
+  "url": "https://ajdexter.com/feed.xml",
+  "title": "AJ Dexter",
+  "subtitle": "Essays, dispatches, and field notes on documentary photography",
+  "bytes": 53293,
+  "last": "2026-11-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "photography",
+    "photo-essay"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://ajdexter.com/notes/five-frame-friday",
+      "title": "Five Frame Friday",
+      "description": "As an exercise and practice in constraint. These are my five frames for this Friday."
+    },
+    {
+      "link": "https://ajdexter.com/notes/quinns-hot-springs-resort",
+      "title": "Quinn's Hot Springs Resort",
+      "description": "I’m working on a project that aims to answer the question: Why do people visit hot springs resorts? Taking the Waters is centered on resorts in the American Mountain West."
+    },
+    {
+      "link": "https://ajdexter.com/notes/edges-of-early-spring",
+      "title": "Edges Of Early Spring",
+      "description": "I've been working on this thing where I only take five frames per outing, then edit them as a sequence. It's supposed to help me think more about narrative and stay present instead of just burning thr…"
+    }
+  ]
+}

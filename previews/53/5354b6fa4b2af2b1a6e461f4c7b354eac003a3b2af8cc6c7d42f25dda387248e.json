@@ -1,0 +1,21 @@
+{
+  "url": "https://johnnyjet.com/feed/",
+  "title": "Johnny Jet",
+  "subtitle": "TRAVEL, DEALS, TIPS, DESTINATIONS AND MORE!",
+  "bytes": 16138,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "travel",
+    "travel-tips",
+    "air-travel",
+    "airline"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

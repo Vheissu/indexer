@@ -1,0 +1,34 @@
+{
+  "url": "https://blog.scubbo.org/index.xml",
+  "title": "Jack Jackson's Blog",
+  "subtitle": "Recent content on Jack Jackson's Blog",
+  "bytes": 88076,
+  "last": "2026-11-14",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "weeknotes"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://blog.scubbo.org/posts/32-deck-challenge/",
+      "title": "32 Deck Challenge",
+      "description": "In the card game Magic: The Gathering, all cards have one or more colours 1 , which is rougly equivalent to a faction in other games. This concept unifies the narrative and the mechanical aspects of the game: narratively, colour acts as signpost for “flavour” of the card - Red cards represent Dragons, Goblins, and Damage spells; White cards represent Angels, Knights, and protective spells, and so"
+    },
+    {
+      "link": "https://blog.scubbo.org/posts/animal-verbs/",
+      "title": "Animal Verbs",
+      "description": "A strange observation the other day - a disproportionate number of animal names are themselves verbs."
+    },
+    {
+      "link": "https://blog.scubbo.org/posts/weeknotes-2026-05-10/",
+      "title": "Weeknotes 2026-05-10",
+      "description": "Whoof, it’s really been a month since my last post ? That…tracks, honestly."
+    }
+  ]
+}

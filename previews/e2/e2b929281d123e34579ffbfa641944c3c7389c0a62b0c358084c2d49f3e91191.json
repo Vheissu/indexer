@@ -1,0 +1,34 @@
+{
+  "url": "https://waylonwalker.com/archive/rss.xml",
+  "title": "Archive",
+  "subtitle": "All published posts",
+  "bytes": 1342774,
+  "last": "2026-11-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "3d-printing"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://waylonwalker.com/setting-up-solidcraft-to-feel-like-solidworks-onshape/",
+      "title": "Setting Up Solidcraft To Feel Like Solidworks Onshape",
+      "description": "WIP POST"
+    },
+    {
+      "link": "https://waylonwalker.com/how-to-install-tailscale-on-omarchy/",
+      "title": "How To Install Tailscale On Omarchy",
+      "description": "++super+space++ tail ++enter++"
+    },
+    {
+      "link": "https://waylonwalker.com/link/major-cve-released-for-any-system-with-a-login-shell/",
+      "title": "major cve released for any system with a login shell",
+      "description": "Researchers disclose a 55-year-old vulnerability affecting macOS, Windows and Linux. Exploitation is trivial and requires no special tools. No patch exists."
+    }
+  ]
+}

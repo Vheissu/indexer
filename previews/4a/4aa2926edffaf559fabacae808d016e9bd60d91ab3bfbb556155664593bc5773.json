@@ -1,0 +1,34 @@
+{
+  "url": "https://vincentgonzalez.com/feed/",
+  "title": "Vincent Gonzalez",
+  "subtitle": "Artist & Generalist",
+  "bytes": 7278,
+  "last": "2026-11-12",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "drawing"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://vincentgonzalez.com/i-heart-the-future/",
+      "title": "I ♥ the future.",
+      "description": null
+    },
+    {
+      "link": "https://vincentgonzalez.com/you-are-wrong/",
+      "title": "you are wrong",
+      "description": "don't take it personal, but buddy, i've got something to tell you."
+    },
+    {
+      "link": "https://vincentgonzalez.com/a-divine-critter/",
+      "title": "A Divine Critter",
+      "description": "All it takes is a little bit of magic and soon…magic."
+    }
+  ]
+}

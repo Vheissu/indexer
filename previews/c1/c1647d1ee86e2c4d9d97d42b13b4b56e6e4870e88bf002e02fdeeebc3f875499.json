@@ -1,0 +1,34 @@
+{
+  "url": "https://halit.alptekin.im/feed.atom",
+  "title": "Halit Alptekin",
+  "subtitle": "Cyber security researcher breaking and defending critical infrastructure. Malware analysis, penetration testing, threat intelligence, and APT research.",
+  "bytes": 112241,
+  "last": "2026-06-29",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "python"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://halit.alptekin.im/posts/privacy-in-the-post-quantum-era",
+      "title": "Privacy in the Post-Quantum Era",
+      "description": "Privacy is the half of the post-quantum shift no one is fixing, and fully homomorphic encryption is the answer."
+    },
+    {
+      "link": "https://halit.alptekin.im/projects/opaquedb",
+      "title": "Opaquedb",
+      "description": "A post-quantum private database that runs SQL over encrypted data without learning what you asked for."
+    },
+    {
+      "link": "https://halit.alptekin.im/posts/still-human-here",
+      "title": "Still Human Here",
+      "description": "Twenty years, many abandoned blogs, and why an AI-saturated internet finally gave me a reason to write."
+    }
+  ]
+}

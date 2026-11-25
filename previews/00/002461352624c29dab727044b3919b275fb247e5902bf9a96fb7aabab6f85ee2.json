@@ -1,0 +1,19 @@
+{
+  "url": "https://wptavern.com/feed/",
+  "title": "WP Tavern",
+  "subtitle": "WordPress News — Free as in Beer.",
+  "bytes": 1684924,
+  "last": "2026-11-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "wordpress",
+    "podcast"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

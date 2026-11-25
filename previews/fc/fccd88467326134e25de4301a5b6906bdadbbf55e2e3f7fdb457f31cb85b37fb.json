@@ -1,0 +1,34 @@
+{
+  "url": "https://samyaksahu.com/feed/",
+  "title": "Samyak's Nook",
+  "subtitle": "Perspectives of a 26-year old infant.",
+  "bytes": 69392,
+  "last": "2026-06-28",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ai"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://samyaksahu.com/lets-play/",
+      "title": "Let's Play",
+      "description": "c'mon"
+    },
+    {
+      "link": "https://samyaksahu.com/what-is-slop/",
+      "title": "What is slop?",
+      "description": "Can it only be AI-generated?"
+    },
+    {
+      "link": "https://samyaksahu.com/noise/",
+      "title": "fejkeobooujwNOISE;fu9uejo;fhfeb",
+      "description": "Was that a typo? Well, quite the opposite to that."
+    }
+  ]
+}

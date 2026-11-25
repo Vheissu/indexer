@@ -1,0 +1,22 @@
+{
+  "url": "https://elitistcyber.com/atom/",
+  "title": "Elitist Cyber",
+  "subtitle": "The Apex of Digital Brilliance Welcome to Elitist Cyber, the world’s foremost authority in cybersecurity excellence — according to us. Here, greatness isn’t ...",
+  "bytes": 3909,
+  "last": "2025-11-26",
+  "languages": [],
+  "topics": [
+    "security"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://elitistcyber.com/zero-trust-zero/",
+      "title": "Zero Trust Zero",
+      "description": "🚀 Announcing Zero Trust Zero™: Because Trust Was Still Too High In a world where “Zero Trust” somehow kept allowing just enough trust for everything to fall apart, we asked ourselves a bold question: What if Zero Trust… had even less trust? Introducing Zero Trust Zero™ — the first security framework scientifically engineered to ensure that absolutely nothing and no one is trusted. Not users. Not d"
+    }
+  ]
+}

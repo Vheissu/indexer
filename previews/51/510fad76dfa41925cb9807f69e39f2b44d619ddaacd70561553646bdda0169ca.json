@@ -1,0 +1,34 @@
+{
+  "url": "https://www.marianpekar.com/rss",
+  "title": "Marian Pekár | Blog RSS Feed",
+  "subtitle": "Stay updated with the latest posts from my blog.",
+  "bytes": 22959,
+  "last": "2026-11-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "unreal-engine"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://marianpekar.com/blog/physics-engine-in-odin-from-scratch-part-vii",
+      "title": "Physics Engine in Odin from Scratch, Part VII",
+      "description": "In the seventh part, as we'll add torque and rotations to our simulation, things start to look much more natural."
+    },
+    {
+      "link": "https://marianpekar.com/blog/physics-engine-in-odin-from-scratch-part-vi",
+      "title": "Physics Engine in Odin from Scratch, Part VI",
+      "description": "In the sixth part, we'll add mass, friction and bounciness to our physics simulation and make rigidbody optional."
+    },
+    {
+      "link": "https://marianpekar.com/blog/physics-engine-in-odin-from-scratch-part-v",
+      "title": "Physics Engine in Odin from Scratch, Part V",
+      "description": "In the fifth part, we're going to implement raycasting to select, freeze and unfreeze, and pull and push objects using mouse."
+    }
+  ]
+}

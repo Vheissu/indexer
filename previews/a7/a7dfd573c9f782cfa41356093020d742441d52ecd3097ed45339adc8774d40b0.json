@@ -1,0 +1,30 @@
+{
+  "url": "https://estfyr.net/feed/rss",
+  "title": "estfyr.net",
+  "subtitle": "personal website, gallery and blog",
+  "bytes": 7666,
+  "last": "2026-08-03",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://estfyr.net/2026-03-28-1205",
+      "title": "2026-03-28",
+      "description": null
+    },
+    {
+      "link": "https://estfyr.net/2026-04-10-1207",
+      "title": "2026-04-10",
+      "description": null
+    },
+    {
+      "link": "https://estfyr.net/2026-01-03-1180",
+      "title": "2026-01-03",
+      "description": null
+    }
+  ]
+}

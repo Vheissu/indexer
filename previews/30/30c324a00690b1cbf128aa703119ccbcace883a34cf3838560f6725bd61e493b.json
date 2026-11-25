@@ -1,0 +1,20 @@
+{
+  "url": "https://hamidsadeghpour.net/feed/",
+  "title": "Hamid Sadeghpour Saleh | Blog",
+  "subtitle": "Your Trusted Expert in Microsoft AI & Azure",
+  "bytes": 13457,
+  "last": "2026-07-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "azure",
+    "azure-devops",
+    "microsoft"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

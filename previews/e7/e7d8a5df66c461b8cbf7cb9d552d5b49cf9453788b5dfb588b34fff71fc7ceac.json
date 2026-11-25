@@ -1,0 +1,34 @@
+{
+  "url": "https://www.kaidez.com/feed.xml",
+  "title": "kaidez - Web Development Tutorials & JavaScript Coding Tips",
+  "subtitle": "Expert web development tutorials, JavaScript tips, and coding best practices. Learn modern web development with React, Node.js, TypeScript, and more from an experienced developer.",
+  "bytes": 53799,
+  "last": "2026-07-03",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "html"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://kaidez.com/principal-financial-front-end-job/",
+      "title": "I Just Did My First Code Commit at Principal Financial!",
+      "description": "I started a front end engineer job at Principal Financial Group...and I really like it!!!"
+    },
+    {
+      "link": "https://kaidez.com/claude-github-triage-tracker/",
+      "title": "Building A GitHub Triage Tracker with the Claude API",
+      "description": "I built a GitHub triage tracker with the Claude API — here's what I learned."
+    },
+    {
+      "link": "https://kaidez.com/claude-insights-hooks-package-management/",
+      "title": "What /insights Taught Me About My Claude Workflow",
+      "description": "Running Claude Code's /insights command led me down a rabbit hole, but I came out the other side with better package management and automated build reporting."
+    }
+  ]
+}

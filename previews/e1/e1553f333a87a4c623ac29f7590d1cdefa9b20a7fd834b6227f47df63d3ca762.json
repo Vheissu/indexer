@@ -1,0 +1,35 @@
+{
+  "url": "https://vtol.cc/rss/",
+  "title": "::vtol::",
+  "subtitle": "::vtol::",
+  "bytes": 48168,
+  "last": "2026-11-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "audio",
+    "electronic-music"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://vtol.cc/burya",
+      "title": "burya",
+      "description": null
+    },
+    {
+      "link": "https://vtol.cc/rk-1",
+      "title": "rk-1",
+      "description": "Special for Voyager bar, Ljubljana photos by Ilya Ivanov"
+    },
+    {
+      "link": "https://vtol.cc/flute",
+      "title": "flute",
+      "description": null
+    }
+  ]
+}

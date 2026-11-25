@@ -1,0 +1,24 @@
+{
+  "url": "https://blog.carlid.dev/rss.xml",
+  "title": "Diego Carlino",
+  "subtitle": "Writing about software engineering, AI agents, protocols, and experimental projects.",
+  "bytes": 710,
+  "last": "2026-07-17",
+  "languages": [],
+  "topics": [
+    "ai-coding-agents",
+    "ai-engineering",
+    "ai-agents"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://blog.carlid.dev/game-vibe-coding-to-protocol-design/",
+      "title": "How vibe coding a game made me design an AI agent protocol",
+      "description": "This is the story of how trying to vibe code a slop LLM-based MMO in Rust gave me an idea to develop a protocol for AI agents."
+    }
+  ]
+}

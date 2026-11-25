@@ -1,0 +1,34 @@
+{
+  "url": "https://chrisnager.com/feed.xml",
+  "title": "Chris Nager",
+  "subtitle": "Developer and designer in Brooklyn, NY, passionate about performance, accessibility, and design systems",
+  "bytes": 24869,
+  "last": "2026-04-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ux"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://chrisnager.com/blog/doom-runs-in-chatgpt-and-claude",
+      "title": "DOOM runs in ChatGPT and Claude",
+      "description": null
+    },
+    {
+      "link": "https://www.linkedin.com/posts/activity-7344402049108766720-PH8G",
+      "title": "Custom design system MCP",
+      "description": null
+    },
+    {
+      "link": "https://chrisnager.com/blog/vibe-coding-with-your-design-system",
+      "title": "Vibe coding with your design system",
+      "description": null
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "url": "https://bknyaz.github.io/feed",
+  "title": "blank",
+  "subtitle": "Boris Knyazev's homepage.",
+  "bytes": 221982,
+  "last": "2026-02-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://bknyaz.github.io//blog/2026/meta-merge/",
+      "title": "MetaMerge: Model Merging with Meta Networks",
+      "description": "Merging ViTs and LLMs using a pretrained (graph) neural net."
+    },
+    {
+      "link": "https://bknyaz.github.io//blog/2026/moe/",
+      "title": "REAM: Compressing Mixture-of-Experts LLMs",
+      "description": "Merging experts in Mixture-of-Experts (MoE) LLMs to compress a 235B LLM."
+    },
+    {
+      "link": "https://bknyaz.github.io//blog/2025/nino/",
+      "title": "NiNo: Learning to Accelerate Training of Neural Networks",
+      "description": "Explaining our ICLR 2025 paper and visualizing neuron permutation symmetry."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "url": "https://ktla.com/feed/",
+  "title": "KTLA",
+  "subtitle": "Los Angeles news and live streaming video",
+  "bytes": 24588,
+  "last": "2026-11-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "los-angeles",
+    "news"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

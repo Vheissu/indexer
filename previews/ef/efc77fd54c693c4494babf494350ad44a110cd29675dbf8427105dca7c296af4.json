@@ -1,0 +1,16 @@
+{
+  "url": "https://oodaloop.com/feed/",
+  "title": "OODAloop",
+  "subtitle": "Understand tomorrow, today.",
+  "bytes": 13457,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

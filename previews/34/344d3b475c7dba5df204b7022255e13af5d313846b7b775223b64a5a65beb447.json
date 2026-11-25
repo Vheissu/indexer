@@ -1,0 +1,32 @@
+{
+  "url": "https://rayriffy.com/feed.rss",
+  "title": "rayriffy.com",
+  "subtitle": "The front frontier of rayriffy.com!",
+  "bytes": 25167,
+  "last": "2026-04-26",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://rayriffy.com/garden/nwjs-crossover-macos/",
+      "title": "Executing NW.js games under CrossOver",
+      "description": null
+    },
+    {
+      "link": "https://rayriffy.com/garden/paileaw-discontinuation/",
+      "title": "Service Discontinuation of PaiLeaw",
+      "description": null
+    },
+    {
+      "link": "https://rayriffy.com/garden/sega-account-inject-2022/",
+      "title": "LL: SEGA account injection incident on 2022",
+      "description": null
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "url": "https://thednaexchange.com/feed/",
+  "title": "The DNA Exchange",
+  "subtitle": null,
+  "bytes": 157642,
+  "last": "2026-11-10",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "eugenics"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

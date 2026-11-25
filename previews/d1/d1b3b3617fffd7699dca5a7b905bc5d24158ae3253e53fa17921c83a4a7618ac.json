@@ -1,0 +1,34 @@
+{
+  "url": "https://poesu.neocities.org/feed.xml",
+  "title": "El's digital garden",
+  "subtitle": "Portfolio and musings of El Poesu",
+  "bytes": 101689,
+  "last": "2026-09-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "art"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://poesu.neocities.org/#kpdh_2026-09-18",
+      "title": "Long awaited KPop Demon Hunters fanart!",
+      "description": "Took me a year of procrastination and internal turmoil to complete this"
+    },
+    {
+      "link": "https://poesu.neocities.org/log.xml",
+      "title": "New feed for site updates!",
+      "description": "First entry"
+    },
+    {
+      "link": "https://poesu.neocities.org/blog.html#100-webmaster-questions",
+      "title": "100 Webmaster Questions",
+      "description": "Nobody cared, but I answered these anyway"
+    }
+  ]
+}

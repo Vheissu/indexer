@@ -1,0 +1,32 @@
+{
+  "url": "https://neosynth.net/rss.xml",
+  "title": "Neosynth",
+  "subtitle": "Cyberpunk, technology, storytelling",
+  "bytes": 15253,
+  "last": "2026-11-13",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://neosynth.net/posts/you-can-have-tentacles/",
+      "title": "You can have tentacles",
+      "description": "I'm beginning to think that transhumanity looks a lot like growing a few tentacles."
+    },
+    {
+      "link": "https://neosynth.net/fiction/pomegranate/",
+      "title": "Pomegranate",
+      "description": "I just had my first pomegranate of the season, and I forgot how much I love them."
+    },
+    {
+      "link": "https://neosynth.net/posts/starchart/",
+      "title": "Starchart — Pulsar Map Generator",
+      "description": "A web-based tool for rendering Voyager-inspired pulsar maps."
+    }
+  ]
+}

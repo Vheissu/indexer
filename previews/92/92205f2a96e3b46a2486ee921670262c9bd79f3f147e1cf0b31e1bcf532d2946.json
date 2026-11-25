@@ -1,0 +1,34 @@
+{
+  "url": "https://madole.xyz/rss.xml",
+  "title": "Madole.xyz Blog",
+  "subtitle": "Blog posts from madole.xyz",
+  "bytes": 52521,
+  "last": "2025-12-04",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "reading"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://madole.xyz/blog/claude-code-fixed-my-wifi",
+      "title": "Claude Code fixed my WIFI",
+      "description": "Reading time: 4 min read"
+    },
+    {
+      "link": "https://madole.xyz/blog/things-i-learned-about-wildfires",
+      "title": "Interesting facts I've learned about wildfires over the years",
+      "description": "Reading time: 25 min read"
+    },
+    {
+      "link": "https://madole.xyz/blog/six-things-about-how-ai-is-changing-software-engineering",
+      "title": "Six things about how AI is changing software engineering",
+      "description": "Reading time: 4 min read"
+    }
+  ]
+}

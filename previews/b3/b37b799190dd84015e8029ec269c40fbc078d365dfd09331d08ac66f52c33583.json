@@ -1,0 +1,18 @@
+{
+  "url": "https://frankiehelpscraft.blogspot.com/feeds/posts/default",
+  "title": "Frankie Helps Craft",
+  "subtitle": null,
+  "bytes": 152592,
+  "last": "2026-11-16",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "christmas-cards"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

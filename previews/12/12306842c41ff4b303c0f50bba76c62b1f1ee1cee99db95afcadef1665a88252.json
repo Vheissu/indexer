@@ -1,0 +1,19 @@
+{
+  "url": "https://bigseance.com/feed/",
+  "title": "The Big Séance Podcast",
+  "subtitle": "My Paranormal World...",
+  "bytes": 1706290,
+  "last": "2026-06-05",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "supernatural",
+    "paranormal"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

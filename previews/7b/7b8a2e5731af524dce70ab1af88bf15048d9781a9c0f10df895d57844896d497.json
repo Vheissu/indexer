@@ -1,0 +1,18 @@
+{
+  "url": "https://www.jamescockroft.com/feed/",
+  "title": "James Cockroft",
+  "subtitle": null,
+  "bytes": 15499,
+  "last": "2026-08-11",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "photobook"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

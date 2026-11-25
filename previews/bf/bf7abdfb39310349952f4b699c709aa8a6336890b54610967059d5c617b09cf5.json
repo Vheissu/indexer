@@ -1,0 +1,18 @@
+{
+  "url": "https://amandacurtin.com/feed/",
+  "title": "looking up/looking down",
+  "subtitle": "an occasional blog about writing, reading and watching the world",
+  "bytes": 130844,
+  "last": "2026-10-16",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "new-book"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

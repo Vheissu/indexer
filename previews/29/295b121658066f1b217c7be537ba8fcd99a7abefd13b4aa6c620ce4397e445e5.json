@@ -1,0 +1,18 @@
+{
+  "url": "https://riverheadnewsreview.timesreview.com/feed/",
+  "title": "Riverhead News Review",
+  "subtitle": null,
+  "bytes": 87179,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "editorial"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

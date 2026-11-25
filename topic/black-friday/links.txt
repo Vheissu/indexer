@@ -1,0 +1,6 @@
+https://lifehacker.com/rss
+https://www.pcworld.com/feed
+http://feeds.ign.com/ign/all
+https://www.androidauthority.com/feed
+http://feeds.mashable.com/Mashable
+https://derickrethans.nl/feed.xml

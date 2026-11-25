@@ -1,0 +1,34 @@
+{
+  "url": "https://www.koch.dev/rss.xml",
+  "title": "stephen koch's blog",
+  "subtitle": "a (rare) glimpse into the life of a software engineer",
+  "bytes": 13035,
+  "last": "2026-09-30",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "new-music"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.koch.dev/blog/2026-09-music",
+      "title": "September '26 music",
+      "description": "Songs that caught my ear in September 2026"
+    },
+    {
+      "link": "https://www.koch.dev/blog/2026-08-music",
+      "title": "August '26 music",
+      "description": "Songs that caught my ear in August 2026"
+    },
+    {
+      "link": "https://www.koch.dev/blog/2026-07-music",
+      "title": "July '26 music",
+      "description": "Songs that caught my ear in July 2026"
+    }
+  ]
+}

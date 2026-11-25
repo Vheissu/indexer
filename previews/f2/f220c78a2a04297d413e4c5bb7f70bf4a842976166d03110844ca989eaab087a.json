@@ -1,0 +1,22 @@
+{
+  "url": "https://erlanginspace.org/rss/",
+  "title": "Erlang in Space!",
+  "subtitle": "A long journey towards flight heritage for the BEAM...",
+  "bytes": 22484,
+  "last": "2026-06-01",
+  "languages": [],
+  "topics": [
+    "erlang"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://erlanginspace.org/why-would-anyone-run-erlang-in-space/",
+      "title": "Why would anyone run Erlang in space?",
+      "description": "Why Erlang—the language behind WhatsApp and Discord—might belong in space, from Apollo's guidance computer to a future CubeSat running the BEAM."
+    }
+  ]
+}

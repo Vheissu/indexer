@@ -1,0 +1,19 @@
+{
+  "url": "https://runningandthecity.com/feed/",
+  "title": "runningandthecity",
+  "subtitle": "and by \"the city\", I mean NYC.",
+  "bytes": 56407,
+  "last": "2026-09-06",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "marathon",
+    "running"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

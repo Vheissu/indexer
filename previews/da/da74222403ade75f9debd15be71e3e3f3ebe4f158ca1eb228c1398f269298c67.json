@@ -1,0 +1,34 @@
+{
+  "url": "https://dominiksobe.com/feed.xml",
+  "title": "Dominik Sobe's Thoughts ツ",
+  "subtitle": "Sharing my thoughts along the way of my journey to a bootstrapped life.",
+  "bytes": 29961,
+  "last": "2026-02-23",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "entrepreneurship"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://dominiksobe.com/thoughts/monthly-spending-costs-of-founders-around-the-world",
+      "title": "What founders around the world actually spend per month",
+      "description": "I built an interactive tool to explore founder cost of living across more than 34 countries"
+    },
+    {
+      "link": "https://dominiksobe.com/thoughts/lessons-learned-launching-mac-app-on-Reddit",
+      "title": "How I used Reddit to launch my Mac App",
+      "description": "Reddit roasted my app. Then it got featured by Apple."
+    },
+    {
+      "link": "https://dominiksobe.com/thoughts/the-world-is-uglier-than-it-needs-to-be",
+      "title": "The world is uglier than it needs to be",
+      "description": "The world is uglier than it needs to be. And honestly? That bothers me more than it should."
+    }
+  ]
+}

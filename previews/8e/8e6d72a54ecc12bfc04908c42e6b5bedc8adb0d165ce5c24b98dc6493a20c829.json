@@ -1,0 +1,32 @@
+{
+  "url": "https://www.anotherpanacea.com/feed/",
+  "title": "anotherpanacea",
+  "subtitle": "Cure-alls and Remedies",
+  "bytes": 394092,
+  "last": "2026-11-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.anotherpanacea.com/2026/11/21/slopcore/",
+      "title": "Slopcore",
+      "description": "AI music videos are called slop. Some of them are good, and the slop complaint is a commons argument: Hardin and Ostrom have been arguing about it for decades."
+    },
+    {
+      "link": "https://www.anotherpanacea.com/2026/11/08/the-caveat-is-dead/",
+      "title": "The Caveat Is Dead and We Have Killed It",
+      "description": "We are, I think, entering a post-caveat age. The machines now hedge for us, and the hostile audience we used to write against can help us go viral."
+    },
+    {
+      "link": "https://www.anotherpanacea.com/2026/06/07/brehiers-scalpel/",
+      "title": "Bréhier's Scalpel",
+      "description": "Deleuze, AI, and The Logic of Sense — Part 4"
+    }
+  ]
+}

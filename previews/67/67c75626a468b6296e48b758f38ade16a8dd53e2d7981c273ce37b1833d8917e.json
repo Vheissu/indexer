@@ -1,0 +1,19 @@
+{
+  "url": "https://thereadersroom.org/feed/",
+  "title": "The Reader's Room",
+  "subtitle": null,
+  "bytes": 124007,
+  "last": "2026-11-09",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "book-review",
+    "books"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

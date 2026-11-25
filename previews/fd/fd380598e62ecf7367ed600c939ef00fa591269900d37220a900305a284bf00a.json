@@ -1,0 +1,34 @@
+{
+  "url": "https://www.cyberdelianyc.com/feed.xml",
+  "title": "Cyberdelia NYC",
+  "subtitle": "The Crime is Curiosity. Ultimate cyberpunk lounge/club destination for random moments of Hackers movie nostalgia and lols.",
+  "bytes": 36981,
+  "last": "2026-09-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "hacking"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.cyberdelianyc.com/posts/baby-youre-elite",
+      "title": "Baby… you’re Elite",
+      "description": "a 2600 movie review of Hackers (1995)."
+    },
+    {
+      "link": "https://www.cyberdelianyc.com/posts/in_famous",
+      "title": "(in)famous",
+      "description": "Some artifacts from Zero Cool's (in)famous day, the biggest crash in history. August 10, 1988. New York Times Front page. Webpage archives. OTV lead story."
+    },
+    {
+      "link": "https://www.cyberdelianyc.com/posts/righteous-animation",
+      "title": "righteous animation",
+      "description": "An interactive trip into the Gibson mainframe."
+    }
+  ]
+}

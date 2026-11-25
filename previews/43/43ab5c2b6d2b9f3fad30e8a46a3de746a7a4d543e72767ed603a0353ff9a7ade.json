@@ -1,0 +1,35 @@
+{
+  "url": "https://yadin.com/notes/feed/",
+  "title": "Y/NOTES",
+  "subtitle": "Tech Commentary by Dr. Gilad Yadin",
+  "bytes": 55697,
+  "last": "2026-05-23",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "commentary",
+    "policy"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://yadin.com/notes/nostalgia/",
+      "title": "Beyond Nostalgia",
+      "description": "The growing popularity of 8-bit computers is a living critique of the world we have created."
+    },
+    {
+      "link": "https://yadin.com/notes/regulatory-shaming/",
+      "title": "Regulatory Shaming and Climate Obstruction",
+      "description": "Policymakers need to seriously consider shaming for dealing with climate change. (Guest note by Dr. Sharon Yadin)"
+    },
+    {
+      "link": "https://yadin.com/notes/toasted/",
+      "title": "It’s Toasted",
+      "description": "Meta is taking a page out of Big Tobacco's PR playbook, and legislators are responding."
+    }
+  ]
+}

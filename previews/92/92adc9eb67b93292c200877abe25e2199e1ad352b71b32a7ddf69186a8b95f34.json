@@ -1,0 +1,37 @@
+{
+  "url": "https://lightlogged.blog/posts_feed",
+  "title": "Light, Logged!",
+  "subtitle": null,
+  "bytes": 102314,
+  "last": "2026-11-16",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "autumn",
+    "sunset",
+    "summer",
+    "photography"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://lightlogged.blog/posts/2026-09-07-summer-hit-us-again",
+      "title": "Summer hit us again today...",
+      "description": "Summer hit us again today. ☀️"
+    },
+    {
+      "link": "https://lightlogged.blog/posts/2026-09-04-waiting-for-my-lunch",
+      "title": "Waiting for my lunch order...",
+      "description": "Waiting for my lunch order. 🍔"
+    },
+    {
+      "link": "https://lightlogged.blog/posts/2026-09-08-what-a-morning-sky",
+      "title": "What a morning sky today 🤯 I rarely...",
+      "description": "What a morning sky today 🤯 I rarely shoot RAW on my iPhone, but this was one of those times it was definitely worth it. Edited in Lightroom."
+    }
+  ]
+}

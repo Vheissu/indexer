@@ -1,0 +1,34 @@
+{
+  "url": "https://martinklasch.blogspot.com/feeds/posts/default",
+  "title": "martin klasch",
+  "subtitle": null,
+  "bytes": 187829,
+  "last": "2026-07-03",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "book-covers"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://martinklasch.blogspot.com/2026/07/nothing-here.html",
+      "title": "Nothing Here",
+      "description": null
+    },
+    {
+      "link": "https://martinklasch.blogspot.com/2025/05/holding-gigantic-bubble.html",
+      "title": "Holding The Gigantic Bubble",
+      "description": "and everything else too"
+    },
+    {
+      "link": "https://martinklasch.blogspot.com/2024/06/francoise-hardy.html",
+      "title": "Françoise Hardy",
+      "description": "Françoise Hardy (17 January 1944 – 11 June 2024)"
+    }
+  ]
+}

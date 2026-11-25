@@ -1,0 +1,32 @@
+{
+  "url": "https://darylcecile.net/rss.xml",
+  "title": "Daryl Cecile",
+  "subtitle": "My notes",
+  "bytes": 16566,
+  "last": "2026-05-31",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://darylcecile.net/notes/speed-of-prototyping-age-of-ai",
+      "title": "The Speed of Prototyping in the Age of AI",
+      "description": "Note: These are personal ref Read more at darylcecile.net"
+    },
+    {
+      "link": "https://darylcecile.net/notes/rediscovering-the-internet",
+      "title": "Rediscovering the Internet",
+      "description": "Read more at darylcecile.net"
+    },
+    {
+      "link": "https://darylcecile.net/notes/github-copilot-agent-actually-useful-ai",
+      "title": "GitHub Copilot Agent: Actually Useful AI?",
+      "description": "Note: These are just my pers Read more at darylcecile.net"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "url": "https://sylvania.bearblog.dev/feed/",
+  "title": "That's life...🌱",
+  "subtitle": "Hello World! Image Welcome to my blog, . Last updated ago. This is a personal project where i will try to post semi-regularly about things i like, my hobbies...",
+  "bytes": 27836,
+  "last": "2026-03-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "creativity",
+    "personal-projects",
+    "indieweb",
+    "art"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://sylvania.bearblog.dev/my-personal-web-pet-peeves/",
+      "title": "my personal-web pet peeves 🖥️",
+      "description": "I started writing this because I wanted to talk about things that bother me while surfing the personal web... but first let's clear some things up From: Indie Web is not same as the Small Web Small web is an alternate version of the mainstream web, that includes less-known social media alternatives, alternative protocols like Gemini or Gopher, and minimalistic (not like the corporate) personal web"
+    },
+    {
+      "link": "https://sylvania.bearblog.dev/no-one-understands-closed-species/",
+      "title": "NO ONE UNDERSTANDS CLOSED SPECIES",
+      "description": "Closed species are stupid. Or are they?"
+    },
+    {
+      "link": "https://sylvania.bearblog.dev/bearblog-customization-is-cool/",
+      "title": "Bearblog customization is cool",
+      "description": "Bears are pretty cool, according to science."
+    }
+  ]
+}

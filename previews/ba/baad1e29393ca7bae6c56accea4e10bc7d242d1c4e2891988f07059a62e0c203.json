@@ -1,0 +1,32 @@
+{
+  "url": "https://stal.blogspot.com/feeds/posts/default",
+  "title": "Hitchhiker's Guide to AI, Software Architecture, and Everything Else",
+  "subtitle": "If you are a software engineer: DON'T PANIC! This blog is my place to beam thoughts on the universe of Artificial Intelligence and Software Architecture right to your screen. On my infinite mission to boldly go where (almost) no one has gone before I will provide in-depth coverage of architectural and AI topics, personal opinions, humor, philosophical discussions, interesting news and technology evaluations. (c) Prof. Dr. Michael Stal",
+  "bytes": 3083047,
+  "last": "2026-11-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://stal.blogspot.com/2026/11/mastering-pid-control-for-heated.html",
+      "title": "MASTERING PID CONTROL FOR A HEATED CHAMBER: A GUIDE TO PRECISION TEMPERATURE REGULATION",
+      "description": "INTRODUCTION: THE CHALLENGE OF TEMPERATURE CONTROL Temperature control is one of the most fundamental challenges in embedded systems engineering. Whether you are drying 3D printer filament, maintaining a stable hotend temperature, incubating biological samples, or creating a controlled environment for chemical processes, achieving and maintaining a precise temperature is critical. The naive approa"
+    },
+    {
+      "link": "https://stal.blogspot.com/2026/11/building-intelligent-whiteboard-to.html",
+      "title": "BUILDING AN INTELLIGENT WHITEBOARD-TO-DIGITAL DIAGRAM CONVERTER",
+      "description": "INTRODUCTION AND PROBLEM STATEMENT Software developers, architects, and designers frequently sketch diagrams on whiteboards, paper, or digital notebooks during brainstorming sessions and design meetings. These hand-drawn artifacts capture valuable insights about system architecture, class relationships, and component interactions. However, converting these sketches into professional, shareable dig"
+    },
+    {
+      "link": "https://stal.blogspot.com/2026/11/from-zero-to-hero-building-circuits.html",
+      "title": "From Zero to Hero - Building Circuits with Microcontrollers",
+      "description": "WELCOME TO THE WORLD OF ELECTRONICS If you have ever looked at an Arduino board or an ESP32 and wondered how to connect real-world components to it, you are in the right place. This tutorial will take you from knowing almost nothing about practical circuit building to creating your own electronic projects with confidence. We will explore every component you need to know, understand why circuits wo"
+    }
+  ]
+}

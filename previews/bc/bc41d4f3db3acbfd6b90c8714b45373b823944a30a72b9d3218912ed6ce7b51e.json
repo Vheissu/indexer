@@ -1,0 +1,32 @@
+{
+  "url": "https://dwf.bigpencil.net/feed.xml",
+  "title": "DWF’s Journal",
+  "subtitle": "A computer is just a BIG. PENCIL.",
+  "bytes": 314567,
+  "last": "2026-06-28",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://dwf.bigpencil.net/the-pairs-the-thing/",
+      "title": "The Pair's The Thing - Introducing PXP",
+      "description": "How I learned to stop worrying and love the agent."
+    },
+    {
+      "link": "https://dwf.bigpencil.net/on-hiring/",
+      "title": "On Interviewing and Hiring Software Engineers",
+      "description": "How to avoid the common traps when hiring engineers"
+    },
+    {
+      "link": "https://dwf.bigpencil.net/synology-improved-registry/",
+      "title": "Synology on Rails Part VI: An Improved Docker Registry",
+      "description": "Adding UI to the Docker Registry now running on the Synology."
+    }
+  ]
+}

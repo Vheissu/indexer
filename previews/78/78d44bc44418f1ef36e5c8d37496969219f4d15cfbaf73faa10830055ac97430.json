@@ -1,0 +1,34 @@
+{
+  "url": "https://seongminpark.com/rss/",
+  "title": "Seongmin Park",
+  "subtitle": "Seongmin Park",
+  "bytes": 102875,
+  "last": "2026-05-14",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "papers"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://seongminpark.com/coding-by-hand/",
+      "title": "Don't Be Discouraged to Code by Hand",
+      "description": "Ima learn Lua now"
+    },
+    {
+      "link": "https://seongminpark.com/t-shirt-driven-development/",
+      "title": "T-shirt Driven Development",
+      "description": "Dress less ship more."
+    },
+    {
+      "link": "https://seongminpark.com/eonpeul-driven-development/",
+      "title": "언플 Driven Development",
+      "description": "소버린 두 명 타셔요"
+    }
+  ]
+}

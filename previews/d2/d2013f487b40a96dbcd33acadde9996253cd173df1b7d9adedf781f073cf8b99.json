@@ -1,0 +1,29 @@
+{
+  "url": "https://www.loneprairie.net/blog/feed",
+  "title": "Lone Prairie Creative",
+  "subtitle": null,
+  "bytes": 10010,
+  "last": "2026-11-10",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "bakery"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.loneprairie.net/blog/new-website",
+      "title": "A new website, for good reason.",
+      "description": "It's time to simplify."
+    },
+    {
+      "link": "https://www.loneprairie.net/blog/lone-prairie-bakery",
+      "title": "Lone Prairie Bakery",
+      "description": "Good goodies from home."
+    }
+  ]
+}

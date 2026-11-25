@@ -1,0 +1,34 @@
+{
+  "url": "https://bitfieldconsulting.com/posts?format=rss",
+  "title": "Blog - Programming is Fun",
+  "subtitle": "Tutorials, exercises, and articles on programming.",
+  "bytes": 479594,
+  "last": "2026-11-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "programming"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://bitfieldconsulting.com/posts/useless-computer",
+      "title": "The useless computer",
+      "description": "A computer that does nothing is more fun. Let’s build one together."
+    },
+    {
+      "link": "https://bitfieldconsulting.com/posts/go-subcommands",
+      "title": "Code Safari: Go subcommands",
+      "description": "Gwyn James and I explore some Go code."
+    },
+    {
+      "link": "https://bitfieldconsulting.com/posts/heat-is-on",
+      "title": "The heat is on: handling units in Rust",
+      "description": "If it’s forty degrees out, should you wrap up, or strip off? Let’s see how Rust’s type system can help us manage quantities, units, and conversions in our programs."
+    }
+  ]
+}

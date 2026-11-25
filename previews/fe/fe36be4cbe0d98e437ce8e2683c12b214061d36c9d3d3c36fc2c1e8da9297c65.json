@@ -1,0 +1,34 @@
+{
+  "url": "https://brandautopsy.com/feed",
+  "title": "Brand Autopsy",
+  "subtitle": "JOHN MOORE -- marketing strategist | keynote speaker | stutters often",
+  "bytes": 66814,
+  "last": "2025-12-09",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "marketing"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://brandautopsy.com/2025/12/101-best-missing-chapter.html",
+      "title": "101 BEST: Missing Chapter",
+      "description": "Read the \"missing chapter\" from a must-read book."
+    },
+    {
+      "link": "https://brandautopsy.com/2025/03/delivering-beautifully-inefficient-customer-experiences.html",
+      "title": "Delivering Beautifully Inefficient Customer Experiences",
+      "description": "."
+    },
+    {
+      "link": "https://brandautopsy.com/2025/02/starbucks-lost-its-soul-to-efficiency-and-plans-to-get-it-back-with-empathy.html",
+      "title": "Starbucks Lost Its Soul to Efficiency and Plans to Get It Back with Empathy",
+      "description": "."
+    }
+  ]
+}

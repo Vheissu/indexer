@@ -1,0 +1,18 @@
+{
+  "url": "https://ubuntuhandbook.org/index.php/feed/",
+  "title": "UbuntuHandbook",
+  "subtitle": "News, Tutorials, Howtos for Ubuntu Linux",
+  "bytes": 74644,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "news"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

@@ -1,0 +1,32 @@
+{
+  "url": "https://santhoshaditya.netlify.app/rss.xml",
+  "title": "Santhosh Aditya",
+  "subtitle": "Portfolio cum Personal Space of Aditya.",
+  "bytes": 5149,
+  "last": "2026-01-16",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://blog-template-gray.vercel.app/post/scaling-factors---distributed-systems-101/",
+      "title": "Scaling Factors - Distributed Systems 101",
+      "description": "The term scaling is too broad. What should you scale and how?"
+    },
+    {
+      "link": "https://blog-template-gray.vercel.app/post/how-i-built-an-ad-blocker-that-uses-ai-to-identify-ads/",
+      "title": "How I built an ad-blocker that uses AI to identify ads",
+      "description": "Quite challenging than I expected"
+    },
+    {
+      "link": "https://blog-template-gray.vercel.app/post/inter-thread-communication-and-javascript/",
+      "title": "Inter-thread communication and parallelism in javascript",
+      "description": "."
+    }
+  ]
+}

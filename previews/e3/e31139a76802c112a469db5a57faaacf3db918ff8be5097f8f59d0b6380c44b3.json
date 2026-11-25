@@ -1,0 +1,34 @@
+{
+  "url": "https://1q43.blog/en/feed/",
+  "title": "虹线",
+  "subtitle": "Pls's raving. This blog is mainly written in Chinese. If you want to see more content, please remove /en/ from URL.",
+  "bytes": 234473,
+  "last": "2026-07-01",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ai"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://1q43.blog/en/post/12513/",
+      "title": "Why is Anthropic racist?",
+      "description": "There is a distinction between prejudice and discrimination; Anthropic represents the latter."
+    },
+    {
+      "link": "https://1q43.blog/en/post/12472/",
+      "title": "How to Connect Third-Party APIs to Notion AI",
+      "description": "Use a Cloudflare Worker as a signed GET-to-POST gateway so Notion AI can read third-party API results as a webpage, without paying for Custom Agents."
+    },
+    {
+      "link": "https://1q43.blog/en/post/12358/",
+      "title": "A New Concept for AI Memory Layers: the Hubble Radius",
+      "description": "AI needs to know what the world looks like from where I stand."
+    }
+  ]
+}

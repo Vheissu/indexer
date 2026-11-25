@@ -1,0 +1,34 @@
+{
+  "url": "https://kerp.blog/rss.xml",
+  "title": "Kerp.blog",
+  "subtitle": "Yet another blog that I will probably write a dozens posts for and then forget about.",
+  "bytes": 5541,
+  "last": "2026-04-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "tutorial"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://kerp.blog/posts/tutorial-videos-11-finalize-export-slides/",
+      "title": "Todd's Guide to Creating Video Tutorials, Part 11!",
+      "description": "Finalizing your slides and exporting them as a movie for editing."
+    },
+    {
+      "link": "https://kerp.blog/posts/tutorial-videos-10-edit-screencast/",
+      "title": "Todd's Guide to Creating Video Tutorials, Part 10!",
+      "description": "The largest chunk of my time -- editing the screencast!"
+    },
+    {
+      "link": "https://kerp.blog/posts/tutorial-videos-9-edit-audio/",
+      "title": "Todd's Guide to Creating Video Tutorials, Part 9!",
+      "description": "Making your audio sound professional"
+    }
+  ]
+}

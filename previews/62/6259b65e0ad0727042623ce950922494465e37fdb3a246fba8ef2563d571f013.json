@@ -1,0 +1,32 @@
+{
+  "url": "https://one37.net/feed.xml",
+  "title": "OneThirtySeven",
+  "subtitle": "Commentary on technology, design, politics, and culture by Matt Alexander.",
+  "bytes": 109752,
+  "last": "2026-11-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://one37.net/2026/11/the-story-behind-breakfast-and-daybreak.html",
+      "title": "Some background on Breakfast & Daybreak ●",
+      "description": "How running, better habits, and years of following the indie Apple community led me to build two apps."
+    },
+    {
+      "link": "https://one37.net/2026/11/introducing-daybreak.html",
+      "title": "Introducing Daybreak ●",
+      "description": "A simple utility to export your Apple Health data to JSON and CSV files."
+    },
+    {
+      "link": "https://one37.net/2026/11/introducing-breakfast.html",
+      "title": "Introducing Breakfast ●",
+      "description": "A running analysis app for iPhone and iPad."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "url": "https://www.nerdly.co.uk/feed/",
+  "title": "Nerdly",
+  "subtitle": "We're Nerdly. Are You?",
+  "bytes": 103654,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "steam",
+    "gaming",
+    "rpg"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

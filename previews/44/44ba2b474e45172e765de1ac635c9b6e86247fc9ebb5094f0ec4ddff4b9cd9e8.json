@@ -1,0 +1,35 @@
+{
+  "url": "https://lioncoding.com/rss.xml",
+  "title": "Lioncoding Blog",
+  "subtitle": "Tech blog featuring articles about Software Development, Artificial Intelligence, Open Source, and Cloud by Laurent Egbakou, Microsoft MVP",
+  "bytes": 8868,
+  "last": "2026-02-27",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "dotnet",
+    "c#"
+  ],
+  "source": {
+    "name": "matthiasjost/dotnet-creators-opml",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://lioncoding.com/how-to-set-up-analyzers-and-editorconfig-for-an-existing-large-project/",
+      "title": "How to set up analyzers and editorconfig for an existing large project",
+      "description": "Introduction Analyzers and EditorConfig are a set of rules that allow a team to have a common base on how to write readable and better code and importantly avoid losing time in code review on feedback..."
+    },
+    {
+      "link": "https://lioncoding.com/how-to-write-integration-tests-for-a-custom-kubernetes-controller-in-.net",
+      "title": "How to write integration tests for a custom kubernetes controller in .NET",
+      "description": "Introduction A Kubernetes controller is a program that continuously monitors object states in a cluster and makes changes based on predefined logic. Kubernetes has several built-in controllers, but de..."
+    },
+    {
+      "link": "https://lioncoding.com/resumable-file-uploads-in-.net",
+      "title": "Resumable file uploads in .NET",
+      "description": "Introduction Uploading files is a common task in today's digital world. However, when dealing with large files or unstable network connections, uploads can often fail, leading to a poor user experienc..."
+    }
+  ]
+}

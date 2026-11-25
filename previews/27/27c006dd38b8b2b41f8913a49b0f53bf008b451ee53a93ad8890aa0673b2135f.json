@@ -1,0 +1,35 @@
+{
+  "url": "https://www.kcleworth.co.uk/feed/",
+  "title": "Kristian Cleworth - A Bradfordian Blog",
+  "subtitle": "A Bradfordian Blog. Ramblings of an Amateur film photographer, working in Arts Admin, reading the Stoics and Practicing Chinmoku (沈黙). Escaping social media ...",
+  "bytes": 54855,
+  "last": "2026-02-26",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "writing",
+    "short-fiction"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.kcleworth.co.uk/perfect-fruition/",
+      "title": "Perfect Fruition",
+      "description": "A sharp, funny twist on the scam genre: one grifter’s perfect cons keep doing good - until his final plan pays out in the most unexpected way."
+    },
+    {
+      "link": "https://www.kcleworth.co.uk/pompeii/",
+      "title": "Pompeii",
+      "description": "When an aspiring opera singer vanishes into the fog, he awakens in a strange past where Admiral Nelson lives—and the price of ambition is everything."
+    },
+    {
+      "link": "https://www.kcleworth.co.uk/a-day-in-london/",
+      "title": "A Day in London",
+      "description": null
+    }
+  ]
+}

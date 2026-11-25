@@ -1,0 +1,34 @@
+{
+  "url": "https://www.stuartellis.name/index.xml",
+  "title": "Field Notes",
+  "subtitle": "Recent content on Field Notes",
+  "bytes": 9913,
+  "last": "2026-11-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "build-tools"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.stuartellis.name/articles/prek-containers/",
+      "title": "Using Container Images with prek and pre-commit",
+      "description": null
+    },
+    {
+      "link": "https://www.stuartellis.name/articles/copier-project-maintenance/",
+      "title": "Evolving Collections of Projects By Using Shared Copier Templates",
+      "description": null
+    },
+    {
+      "link": "https://www.stuartellis.name/articles/python-modern-practices/",
+      "title": "Modern Good Practices for Python Development",
+      "description": null
+    }
+  ]
+}

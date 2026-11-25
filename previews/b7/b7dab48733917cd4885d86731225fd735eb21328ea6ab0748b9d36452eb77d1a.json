@@ -1,0 +1,32 @@
+{
+  "url": "https://e-infinity.space/rss.xml",
+  "title": "Kyle Ormsby",
+  "subtitle": "Homotopy theory, combinatorics, and mathematical visualization.",
+  "bytes": 7524,
+  "last": "2026-08-06",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://e-infinity.space/writing/e-mail-but-for-infinity/",
+      "title": "E-mail, but for infinity",
+      "description": null
+    },
+    {
+      "link": "https://e-infinity.space/writing/aha/",
+      "title": "Aha! A percolating pandemic and a perfect proof",
+      "description": null
+    },
+    {
+      "link": "https://e-infinity.space/writing/homotopical-combinatorics/",
+      "title": "Homotopical combinatorics – an introduction for combinatorialists",
+      "description": null
+    }
+  ]
+}

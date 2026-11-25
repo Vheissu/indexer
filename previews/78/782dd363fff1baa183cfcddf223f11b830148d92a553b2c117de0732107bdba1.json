@@ -1,0 +1,32 @@
+{
+  "url": "https://dork.dev/atom.xml",
+  "title": "dork.dev",
+  "subtitle": null,
+  "bytes": 7912,
+  "last": "2026-11-07",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://dork.dev/posts/2026-11-07-sougen/",
+      "title": "Sougen; trampling grass",
+      "description": "草地 and decency are dead. Long live 草原; most importantly, go touch grass."
+    },
+    {
+      "link": "https://dork.dev/posts/2026-08-07-untouching-grass/",
+      "title": "Kusachi; untouching grass",
+      "description": "Ascending from madness! A follow up to \"Zola is dead to me. Long live Kusachi!\"."
+    },
+    {
+      "link": "https://dork.dev/posts/2026-07-30-vr-setup/",
+      "title": "VR projects: FBT, mouth and eye tracking",
+      "description": "Made FBT, mouth and eye tracking!"
+    }
+  ]
+}

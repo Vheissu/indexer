@@ -1,0 +1,18 @@
+{
+  "url": "https://worthdoingbadly.com/feed.xml",
+  "title": "Worth Doing Badly",
+  "subtitle": "Programming experiments by @zhuowei.",
+  "bytes": 228484,
+  "last": "2025-12-01",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ios"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": []
+}

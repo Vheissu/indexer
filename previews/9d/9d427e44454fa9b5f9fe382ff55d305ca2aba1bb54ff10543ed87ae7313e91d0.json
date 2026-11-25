@@ -1,0 +1,29 @@
+{
+  "url": "https://asadk.com/feed.xml",
+  "title": "Asad Khaliq",
+  "subtitle": "Asad Khaliq",
+  "bytes": 102080,
+  "last": "2026-02-03",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "books"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://asadk.com/p/edge",
+      "title": "Life At The Edge",
+      "description": "Local access vs. edge intelligence, and the fractals of compute"
+    },
+    {
+      "link": "https://asadk.com/p/canon",
+      "title": "The Flying Canon",
+      "description": "Books about airplanes, flying airplanes, and people who fly airplanes"
+    }
+  ]
+}

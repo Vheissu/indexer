@@ -1,0 +1,34 @@
+{
+  "url": "https://trpevski.com/rss.xml",
+  "title": "Darko Trpevski",
+  "subtitle": "AI engineer and founder of KeepPost and Moonraker. Writing about AI engineering, LLMs, AI agents, RAG, architecture, and shipping AI systems to production.",
+  "bytes": 276565,
+  "last": "2026-11-09",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "llm"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://trpevski.com/blog/before-your-data-reaches-an-llm-data-classification-and-security",
+      "title": "Before Your Data Reaches an LLM: Data Classification and Security",
+      "description": "How to classify, authorize, and protect sensitive data before it reaches an LLM, using PostgreSQL, pgvector, and Microsoft Presidio."
+    },
+    {
+      "link": "https://trpevski.com/blog/enterprise-ai-security-authorization-data-isolation-pii",
+      "title": "Securing Enterprise AI: Authorization, Data Isolation, and PII Protection in Production",
+      "description": "A practical guide to enterprise AI security: LLM authorization, permission-aware RAG, data isolation, PII minimization, and tool controls."
+    },
+    {
+      "link": "https://trpevski.com/blog/microsoft-agent-framework-custom-orchestration",
+      "title": "Microsoft Agent Framework: What I Stopped Building Myself",
+      "description": "The LLM call was the easy part. The execution loop around tools, context, retries, approvals, and state was not."
+    }
+  ]
+}

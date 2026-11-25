@@ -1,0 +1,34 @@
+{
+  "url": "https://www.willpatrick.co.uk/articles/index.xml",
+  "title": "Articles · Will Patrick",
+  "subtitle": "B2B product marketing specialist and writer. Articles on marketing, strategy, and internet culture, plus notes and reviews from 80+ books.",
+  "bytes": 15602,
+  "last": "2026-09-06",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "learning"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.willpatrick.co.uk/articles/web-1.0-is-still-out-there-if-you-know-where-to-look/",
+      "title": "Web 1.0 is still out there (if you know where to look)",
+      "description": "How a small but growing group of people keep the old internet alive in the era of slop."
+    },
+    {
+      "link": "https://www.willpatrick.co.uk/articles/does-this-machine-make-life-easier/",
+      "title": "Does this machine make life easier?",
+      "description": "Will it happen soon, do you think? A short piece about using, or not using, AI."
+    },
+    {
+      "link": "https://www.willpatrick.co.uk/articles/24-000-for-1020-shitty-blogposts/",
+      "title": "$24,000 for 1020 shitty blogposts",
+      "description": "There are two ways to see a bubble: either you study the numbers, or you find something that just doesn't feel right."
+    }
+  ]
+}

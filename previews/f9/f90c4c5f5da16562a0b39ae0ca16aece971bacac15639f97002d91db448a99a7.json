@@ -1,0 +1,18 @@
+{
+  "url": "https://justinvollmer.com/index.xml",
+  "title": "Justin Vollmer",
+  "subtitle": "Recent content on Justin Vollmer",
+  "bytes": 420081,
+  "last": "2026-05-31",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "weeknotes"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": []
+}

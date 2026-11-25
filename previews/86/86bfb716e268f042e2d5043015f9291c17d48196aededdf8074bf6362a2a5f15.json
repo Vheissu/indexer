@@ -1,0 +1,36 @@
+{
+  "url": "https://mappinglondon.co.uk/feed/",
+  "title": "Mapping London",
+  "subtitle": "Highlighting the best London maps",
+  "bytes": 13007,
+  "last": "2026-06-08",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "google-maps",
+    "london",
+    "maps"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://mappinglondon.co.uk/2026/the-tube-map-before-beck-1920s/",
+      "title": "The Tube Map Before Beck: 1920s",
+      "description": "The Tube Map is a design classic – the straight lines, even spacing and lack of unnecessary above-ground detail has become a hall-mark of metro"
+    },
+    {
+      "link": "https://mappinglondon.co.uk/2026/a-data-graphics-map-of-london/",
+      "title": "A Data Graphics Map of London",
+      "description": "The sun is out, the days are getting longer. It’s time to get into central London and walk the streets. And how about a Mapping"
+    },
+    {
+      "link": "https://mappinglondon.co.uk/2025/london-winter-run/",
+      "title": "London Winter Run",
+      "description": "We love a good custom map for an event, and the London Winter Run has just one – and despite it pretending to be an"
+    }
+  ]
+}

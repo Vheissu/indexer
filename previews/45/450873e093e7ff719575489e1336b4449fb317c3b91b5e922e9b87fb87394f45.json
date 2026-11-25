@@ -1,0 +1,34 @@
+{
+  "url": "https://timesofindia.indiatimes.com/rssfeeds/2647163.cms",
+  "title": "Environment News, Earth News, Global Warming, Wild Life, Carbon Trading, Climate Business, Climate Change & Pollution News",
+  "subtitle": "World news on global warming, climate change, wildlife, pollution, carbon business and climate politics. News from Indian environment including wildlife like tiger, lion, elephants. Also, news from United Nations.",
+  "bytes": 21961,
+  "last": "2026-11-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "climate-change"
+  ],
+  "source": {
+    "name": "plenaryapp/awesome-rss-feeds",
+    "license": "CC0-1.0"
+  },
+  "posts": [
+    {
+      "link": "https://timesofindia.indiatimes.com/world/rest-of-world/cop31-ends-in-deadlock-why-countries-couldnt-agree-on-fossil-fuels/articleshow/136079278.cms",
+      "title": "COP31 ends in deadlock: Why countries couldn't agree on fossil fuels",
+      "description": null
+    },
+    {
+      "link": "https://timesofindia.indiatimes.com/home/environment/cop31-trkiyes-draft-agreement-omits-fossil-fuels-draws-backlash/articleshow/136070785.cms",
+      "title": "COP31: Backlash after Türkiye's draft agreement omits fossil fuels",
+      "description": null
+    },
+    {
+      "link": "https://timesofindia.indiatimes.com/world/middle-east/water-was-on-fire-british-swimmer-flags-environmental-cost-of-war-after-15-km-strait-of-hormuz-swim/articleshow/136066707.cms",
+      "title": "‘Water on fire’: British swimmer flags cost of war after 15km Hormuz swim",
+      "description": null
+    }
+  ]
+}

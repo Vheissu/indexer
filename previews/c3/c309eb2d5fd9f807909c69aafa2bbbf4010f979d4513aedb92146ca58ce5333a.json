@@ -1,0 +1,34 @@
+{
+  "url": "https://peterbabic.com/atom.xml",
+  "title": "Peter Babič",
+  "subtitle": "Personal blog of Peter Babič",
+  "bytes": 72913,
+  "last": "2026-05-25",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "travel"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://peterbabic.com/blog/disabling-80211r-fast-transition-on-mikrotik/",
+      "title": "Disabling 802.11r Fast Transition on MikroTik",
+      "description": null
+    },
+    {
+      "link": "https://peterbabic.com/blog/capsman-provisioning-4-networks-on-wap-ax/",
+      "title": "CAPsMAN provisioning 4 networks on wAP ax",
+      "description": null
+    },
+    {
+      "link": "https://peterbabic.com/blog/enhanced-external-link-checking-with-lychee/",
+      "title": "Enhanced external link checking with lychee",
+      "description": null
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "url": "https://martybugs.net/blog/blog.cgi/index.rss",
+  "title": "Martin Pot - Photography Blog",
+  "subtitle": "discussion, gear, and photography journal",
+  "bytes": 16829,
+  "last": "2026-07-25",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "photography"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://martybugs.net/blog/blog.cgi/photos/architecture/eiffel-tower-from-the-pont-diena.html",
+      "title": "Eiffel Tower from the Pont d'Iena",
+      "description": "Eiffel Tower from the Pont d'Iena"
+    },
+    {
+      "link": "https://martybugs.net/blog/blog.cgi/photos/people/the-apprentice.html",
+      "title": "The Apprentice",
+      "description": "The Apprentice"
+    },
+    {
+      "link": "https://martybugs.net/blog/blog.cgi/photos/flora/back-lit-leaves.html",
+      "title": "Back-Lit Leaves",
+      "description": "Back-Lit Leaves"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "url": "https://doubleaspect.blog/feed/",
+  "title": "Double Aspect",
+  "subtitle": "Canadian public law and other exciting things",
+  "bytes": 128565,
+  "last": "2026-11-12",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "supreme-court"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://doubleaspect.blog/2026/11/12/in-memoriam-richard-posner/",
+      "title": "In Memoriam, Richard Posner",
+      "description": "What the late Richard Posner meant to me"
+    },
+    {
+      "link": "https://doubleaspect.blog/2026/09/30/baguette-magique-ou-nez-de-clown/",
+      "title": "Baguette magique ou nez de clown",
+      "description": "Le Québec ne peut pas « abolir la monarchie » ou « couper les vivres » à son représentant"
+    },
+    {
+      "link": "https://doubleaspect.blog/2026/08/20/how-power-corrupts-vi/",
+      "title": "How Power Corrupts VI",
+      "description": "Benjamin Constant on the intellectual dimension of power's corrupting effects"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "url": "https://p-v.pages.dev/blog/rss.xml",
+  "title": "Priyavrat Misra's Blog",
+  "subtitle": "Recent content in Priyavrat Misra's Blog",
+  "bytes": 2871,
+  "last": "2026-06-08",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://priyavr.at/blog/life-at-adp/",
+      "title": "Something Began, Something Ended",
+      "description": "A look back at my time at ADP."
+    },
+    {
+      "link": "https://priyavr.at/blog/500th-pedal-to-work/",
+      "title": "500 Days of Pedaling to Work",
+      "description": "A story of saving a ton of carbon and a look at the cumulative impact of small choices."
+    },
+    {
+      "link": "https://priyavr.at/blog/reversing-most-replayed/",
+      "title": "Reversing YouTube's \"Most Replayed\" Graph",
+      "description": "An interactive exploration of the engineering behind YouTube's 'Most Replayed' graph."
+    }
+  ]
+}

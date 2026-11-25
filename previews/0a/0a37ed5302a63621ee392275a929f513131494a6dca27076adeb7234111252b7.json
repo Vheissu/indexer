@@ -1,0 +1,19 @@
+{
+  "url": "https://www.nickmarino.net/feed/",
+  "title": "Nick Marino",
+  "subtitle": "= Writes Comics",
+  "bytes": 657733,
+  "last": "2026-10-03",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "godzilla",
+    "comics"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

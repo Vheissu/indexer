@@ -1,0 +1,22 @@
+{
+  "url": "https://www.uyar.design/feed.xml",
+  "title": "uyar.design",
+  "subtitle": "Field notes by Boram Uyar.",
+  "bytes": 739,
+  "last": "2026-06-19",
+  "languages": [],
+  "topics": [
+    "field-notes"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://uyar.design/writing/the-comment-paradox",
+      "title": "The comment paradox: clean code in age of AI agents",
+      "description": "Comments no longer speak only to developers. In AI-assisted coding, every stale TODO, misleading note, and commented-out block becomes part of the prompt. Clean comments help humans understand the code, but they now also protect AI assistants from repeating old mistakes."
+    }
+  ]
+}

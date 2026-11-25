@@ -1,0 +1,18 @@
+{
+  "url": "https://thehoxtontrend.com/feed/",
+  "title": "The Hoxton Trend",
+  "subtitle": "THE STORIES, PEOPLE AND IDEAS SHAPING MENSWEAR CULTURE",
+  "bytes": 737348,
+  "last": "2026-11-16",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "fashion"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

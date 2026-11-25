@@ -1,0 +1,22 @@
+{
+  "url": "https://tmodrzyk.github.io/feed.xml",
+  "title": "blank",
+  "subtitle": "Thibaut Modrzyk — research in deep learning, medical imaging, and inverse problems.",
+  "bytes": 25122,
+  "last": "2026-09-22",
+  "languages": [],
+  "topics": [
+    "deep-learning"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://tmodrzyk.github.io/blog/2026/artificial-intelligence-in-research/",
+      "title": "Artificial Intelligence in Research",
+      "description": "The preface to my PhD thesis — on AI, how research is changing, and the kind of researcher I want to become."
+    }
+  ]
+}

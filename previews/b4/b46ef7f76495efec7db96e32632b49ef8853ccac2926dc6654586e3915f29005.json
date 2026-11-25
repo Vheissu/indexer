@@ -1,0 +1,34 @@
+{
+  "url": "https://posts.arborelia.net/atom/",
+  "title": "arborelia",
+  "subtitle": "Everything got better when I became a green-haired 2D girl. I do fun and unusual things with video games and pinball",
+  "bytes": 64847,
+  "last": "2026-11-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "pinball"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://posts.arborelia.net/silver-ball-century-ep-75-fall-1995-amy-good-gorilla/",
+      "title": "Silver Ball Century ep. 75 - Fall 1995 - Amy Good Gorilla",
+      "description": "But what is goodness, anyway? Well, it probably isn't Mario Andretti."
+    },
+    {
+      "link": "https://posts.arborelia.net/silver-ball-century-ep-74-summer-1995-gigapoints/",
+      "title": "Silver Ball Century ep. 74 - Summer 1995 - Gigapoints",
+      "description": "Nearing the peak of pinball score inflation."
+    },
+    {
+      "link": "https://posts.arborelia.net/silver-ball-century-ep-73-spring-1995-500-fears/",
+      "title": "Silver Ball Century ep. 73 - Spring 1995 - 500 Fears",
+      "description": "The theatre awaits!"
+    }
+  ]
+}

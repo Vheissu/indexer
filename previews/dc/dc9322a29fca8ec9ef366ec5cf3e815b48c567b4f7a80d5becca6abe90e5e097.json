@@ -1,0 +1,34 @@
+{
+  "url": "https://simonwo.net/feed.xml",
+  "title": "simonwo.net",
+  "subtitle": "The personal website of Simon Worthington, sometimes called Wo! Net.",
+  "bytes": 79115,
+  "last": "2025-12-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "fiber"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://simonwo.net/fiber/redditch-scarf/",
+      "title": "Redditch scarf",
+      "description": "A looong scarf woven in the colours of the Redditch Colour Pallette."
+    },
+    {
+      "link": "https://simonwo.net/fiber/redditch-cowl/",
+      "title": "Redditch cowl",
+      "description": "A hero cowl woven in the six colours of the Redditch colour pallette."
+    },
+    {
+      "link": "https://simonwo.net/fiber/lucky-necktie/",
+      "title": "Lucky necktie",
+      "description": "I wove this over 2 days for a Chinese tea ceremony, where the lucky colours are red and gold. Turns out I don’t have ANY red clothes so guess I had to make something."
+    }
+  ]
+}

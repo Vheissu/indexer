@@ -1,0 +1,18 @@
+{
+  "url": "https://gt.ms/atom.xml",
+  "title": "Vishnu's Blog",
+  "subtitle": null,
+  "bytes": 108924,
+  "last": "2026-08-02",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "rust"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": []
+}

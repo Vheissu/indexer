@@ -1,0 +1,32 @@
+{
+  "url": "https://dima.zhlobo.net/feed.xml",
+  "title": "Dmitry Zhlobo's Feed",
+  "subtitle": "Notes, posts and my discoveries about tech, and people.",
+  "bytes": 71197,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://dima.zhlobo.net/entropy/6/",
+      "title": "Increasing Entropy #6",
+      "description": "Discoveries of the week, death of SEO, world models, slop, some links, and a few thoughts on random topics."
+    },
+    {
+      "link": "https://dima.zhlobo.net/entropy/5/",
+      "title": "Increasing Entropy #5",
+      "description": "Discoveries of the week, writing advice, generative UI, random links, and a few thoughts on random topics."
+    },
+    {
+      "link": "https://dima.zhlobo.net/entropy/4/",
+      "title": "Increasing Entropy #4",
+      "description": "Discoveries of the week, random links, and a few thoughts on random topics."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "url": "https://danperezphotography.com/feed/",
+  "title": "Dan Perez Photography",
+  "subtitle": "Documentary, Event and Travel Photography",
+  "bytes": 15322,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ecuador",
+    "travel"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

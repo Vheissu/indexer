@@ -1,0 +1,19 @@
+{
+  "url": "https://paulacizmar.net/feed/",
+  "title": "paula cizmar",
+  "subtitle": "writer",
+  "bytes": 67326,
+  "last": "2026-11-05",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "theatre",
+    "news"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

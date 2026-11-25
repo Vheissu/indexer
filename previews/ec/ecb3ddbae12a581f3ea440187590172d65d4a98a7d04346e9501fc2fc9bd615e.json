@@ -1,0 +1,34 @@
+{
+  "url": "https://lozravee.bearblog.dev/feed/",
+  "title": "Lozravee",
+  "subtitle": "Some guy's personal gaming blog",
+  "bytes": 80492,
+  "last": "2026-11-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "pc-games"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://lozravee.bearblog.dev/crash-bandicoot-3-warped-ps1/",
+      "title": "Crash Bandicoot 3: Warped (PS1)",
+      "description": "I actually have a bit more to talk about with Crash Bandicoot 3: WAAAAAAAAARRRRPPPED!"
+    },
+    {
+      "link": "https://lozravee.bearblog.dev/dragons-dogma-2-pc/",
+      "title": "Dragon's Dogma 2 (PC)",
+      "description": "Dragon’s Dogma 2 is the sequel to Capcom’s 2012 action role-playing game Dragon’s Dogma (cue staff roll with upbeat guitar.)"
+    },
+    {
+      "link": "https://lozravee.bearblog.dev/crash-bandicoot-2-cortex-strikes-back-ps1/",
+      "title": "Crash Bandicoot 2: Cortex Strikes Back (PS1)",
+      "description": "There are two common ways to spin a sequel for anything, including video games..."
+    }
+  ]
+}

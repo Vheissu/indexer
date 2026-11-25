@@ -1,0 +1,34 @@
+{
+  "url": "https://rgbcu.be/blog.rss",
+  "title": "RGBCube",
+  "subtitle": "The home directory and journal of RGBCube and his work.",
+  "bytes": 89247,
+  "last": "2026-06-13",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "nix"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://rgbcu.be/blog/nix-koans/",
+      "title": "Nix Koans",
+      "description": "Nix Koans Inspired by the legendary Qc Na and Git Koans , which was in turn inspired by Vim Koans . Immutable A site reliability engineer rushed into the Nix Store. \"The whole front aisle is rotten!\" he cried to the clerk. They seized the tainted goods, but the goods were fastened to the shelves, and the shelves to the floor. A passerby said: \"Build a new shelf, and move the door.\" \"There is no ti"
+    },
+    {
+      "link": "https://rgbcu.be/blog/3-json/",
+      "title": "3-json",
+      "description": "tree, not three"
+    },
+    {
+      "link": "https://rgbcu.be/blog/no-gnulib/",
+      "title": "Say NO to Gnulib",
+      "description": "...and Debian."
+    }
+  ]
+}

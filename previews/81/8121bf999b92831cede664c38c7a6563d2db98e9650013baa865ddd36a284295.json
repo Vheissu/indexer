@@ -1,0 +1,34 @@
+{
+  "url": "https://frank-mitchell.com/index.xml",
+  "title": "Home on Frank Mitchell's Blog",
+  "subtitle": "Recent content in Home on Frank Mitchell's Blog",
+  "bytes": 2356762,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "nomad"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://frank-mitchell.com/posts/ctgd-chargen/",
+      "title": "Character Generation in _Coriolis: The Great Dark_",
+      "description": "Creating a character in C:TGD"
+    },
+    {
+      "link": "https://frank-mitchell.com/posts/shadow-vale-metals/",
+      "title": "Shadow Vale: Metals",
+      "description": "Metals and other materials in the Shadow Vale setting and potential systems."
+    },
+    {
+      "link": "https://frank-mitchell.com/posts/brp-chargen/",
+      "title": "'Basic Roleplaying' Character Generation",
+      "description": "An example of character generation in Basic Roleplaying"
+    }
+  ]
+}

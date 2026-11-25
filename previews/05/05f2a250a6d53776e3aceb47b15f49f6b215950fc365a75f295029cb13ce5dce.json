@@ -1,0 +1,34 @@
+{
+  "url": "http://grantbrown.github.io/posts.rss",
+  "title": "grantbrown.github.io",
+  "subtitle": "A collection of my statistical musings.",
+  "bytes": 3838,
+  "last": "2026-06-09",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "statistics"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "http://grantbrown.github.io/#blog/?p=bc5321e55b076cb076e89fbe314f0ce0",
+      "title": "Europe Retrospective",
+      "description": "No description"
+    },
+    {
+      "link": "http://grantbrown.github.io/#blog/?p=fb9d70d6841f8160136e233395b58898",
+      "title": "RAGBROTA 2026",
+      "description": "No description"
+    },
+    {
+      "link": "http://grantbrown.github.io/#blog/?p=8f013d96d50ada696b11ebb23ee8d0e1",
+      "title": "RAGBRAI On The Air",
+      "description": "No description"
+    }
+  ]
+}

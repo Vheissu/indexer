@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>nhl feeds</title>
+    <dateCreated>Wed, 25 Nov 2026 00:04:35 +0000</dateCreated>
+  </head>
+  <body>
+    <outline type="rss" text="Fagstein" title="Fagstein" xmlUrl="https://blog.fagstein.com/feed/" htmlUrl="https://blog.fagstein.com"/>
+    <outline type="rss" text="Ralph Hass Has The VOice...On and Off the Ice" title="Ralph Hass Has The VOice...On and Off the Ice" xmlUrl="https://hasthevoice.blogspot.com/feeds/posts/default" htmlUrl="https://hasthevoice.blogspot.com/"/>
+    <outline type="rss" text="Midwest is Best" title="Midwest is Best" xmlUrl="https://midwest.best/feed/" htmlUrl="https://midwest.best/"/>
+    <outline type="rss" text="The Province" title="The Province" xmlUrl="https://theprovince.com/feed/" htmlUrl="https://theprovince.com"/>
+    <outline type="rss" text="All About The Jersey" title="All About The Jersey" xmlUrl="https://www.allaboutthejersey.com/rss/index.xml" htmlUrl="https://www.allaboutthejersey.com"/>
+    <outline type="rss" text="Lighthouse Hockey" title="Lighthouse Hockey" xmlUrl="https://www.lighthousehockey.com/rss/index.xml" htmlUrl="https://www.lighthousehockey.com"/>
+  </body>
+</opml>

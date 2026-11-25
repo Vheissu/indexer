@@ -1,0 +1,5 @@
+https://blog.joeware.net/feed/atom/
+https://trustwebtimes.com/feed/
+https://danmaxfox.com/feed/
+https://keithpetri.com/feed/
+https://adsm.dev/feed.xml

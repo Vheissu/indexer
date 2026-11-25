@@ -1,0 +1,32 @@
+{
+  "url": "https://www.rntz.net/blog/atom.xml",
+  "title": "rntz's blog",
+  "subtitle": null,
+  "bytes": 8003,
+  "last": "2026-06-16",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "http://www.rntz.net/post/2026-06-11-datalog-nontermination.html",
+      "title": "Evaluation order and nontermination in query languages",
+      "description": null
+    },
+    {
+      "link": "http://www.rntz.net/post/my-thesis.html",
+      "title": "Deconstructing Datalog",
+      "description": null
+    },
+    {
+      "link": "http://www.rntz.net/post/2024-08-07-cafes-of-cambridge.html",
+      "title": "Cafés of Cambridge",
+      "description": null
+    }
+  ]
+}

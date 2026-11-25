@@ -1,0 +1,32 @@
+{
+  "url": "https://nkanaev.com/feed",
+  "title": "nkanaev",
+  "subtitle": null,
+  "bytes": 3082,
+  "last": "2026-05-26",
+  "languages": [],
+  "topics": [
+    "syntax-highlighting"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://nkanaev.com/posts/natural-numbers/",
+      "title": "Natural numbers all the way down",
+      "description": null
+    },
+    {
+      "link": "https://nkanaev.com/posts/dream-level/",
+      "title": "Scott Kim's Inversions: DREAM & LEVEL",
+      "description": null
+    },
+    {
+      "link": "https://nkanaev.com/posts/collatz/",
+      "title": "True to 1's values",
+      "description": null
+    }
+  ]
+}

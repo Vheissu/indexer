@@ -1,0 +1,37 @@
+{
+  "url": "https://blog.brianseitel.com/rss.xml",
+  "title": "Brian Seitel's Blog",
+  "subtitle": "Thoughts on engineering leadership, software architecture, AI-native development, and building high-performing teams.",
+  "bytes": 74682,
+  "last": "2026-09-16",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "tech-leadership",
+    "leadership",
+    "engineering",
+    "ai"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://blog.brianseitel.com/on-cancellations",
+      "title": "On Cancellations",
+      "description": "If I ask to cancel, let me cancel."
+    },
+    {
+      "link": "https://blog.brianseitel.com/on-being-a-servant-leader",
+      "title": "On Being a Servant Leader",
+      "description": "I win if you win."
+    },
+    {
+      "link": "https://blog.brianseitel.com/too-loud-to-think-with",
+      "title": "Too Loud to Think With",
+      "description": "We lost a word. But I have a new one."
+    }
+  ]
+}

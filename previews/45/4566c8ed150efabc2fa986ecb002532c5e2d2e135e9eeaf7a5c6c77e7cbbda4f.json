@@ -1,0 +1,35 @@
+{
+  "url": "https://www.norio.be/feed.xml",
+  "title": "Norio",
+  "subtitle": "Norio = Litrik De Roy. I help you build better Android apps for smartphones, tablets, wearables and many other devices.",
+  "bytes": 26982,
+  "last": "2026-10-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "android-app",
+    "android"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.norio.be/blog/introducing-dreamer.html",
+      "title": "Introducing Dreamer, a Screen Saver for Android",
+      "description": "Dreamer turns your idle phone, tablet or TV into a slideshow of hand-picked, high-resolution photos."
+    },
+    {
+      "link": "https://www.norio.be/blog/studentencodex-8.html",
+      "title": "Studentencodex 8",
+      "description": "Version 8 of the Studentencodex app focuses on performance, cutting cold-start time with a baseline profile and a startup profile."
+    },
+    {
+      "link": "https://www.norio.be/blog/introducing-sogg.html",
+      "title": "Introducing SOGG, a Simple Online Graphic Generator",
+      "description": "Easily create simple yet attractive graphics for different purposes."
+    }
+  ]
+}

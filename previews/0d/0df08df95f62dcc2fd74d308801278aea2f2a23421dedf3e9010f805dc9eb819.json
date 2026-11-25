@@ -1,0 +1,36 @@
+{
+  "url": "https://dev-tester.com/rss/",
+  "title": "Dev Tester | Improve Your Development, QA, and DevOps Skills",
+  "subtitle": "Helping teams ship their code confidently, from development to testing to deployment.",
+  "bytes": 230468,
+  "last": "2026-11-13",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "test-driven-development",
+    "automated-testing",
+    "software-engineering"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://dev-tester.com/end-to-end-testing-with-testcafe-updated-for-testcafe-v3/",
+      "title": "End-to-End Testing with TestCafe: Updated for TestCafe v3",
+      "description": "The End-to-End Testing with TestCafe book is now fully updated for TestCafe 3. Learn more about what's new in this revision."
+    },
+    {
+      "link": "https://dev-tester.com/test-driven-review-reading-the-tests-first/",
+      "title": "Test-Driven Review: Reading the Tests First",
+      "description": "Tests are the place you can trust to see if your AI coding agents thought what you meant."
+    },
+    {
+      "link": "https://dev-tester.com/the-instant-reject-list-5-rules-for-better-code-reviews/",
+      "title": "The Instant-Reject List: 5 Rules for Better Code Reviews",
+      "description": "Drowning in pull requests? An Instant-Reject List sets 5 agreed-upon rules so teams can reject low-quality PRs quickly and keep code review sane."
+    }
+  ]
+}

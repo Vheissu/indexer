@@ -1,0 +1,34 @@
+{
+  "url": "https://www.myitaliandiaries.com/feed/",
+  "title": "My Italian Diaries",
+  "subtitle": "a local’s guide to Italy",
+  "bytes": 219395,
+  "last": "2026-10-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "venice"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.myitaliandiaries.com/le-marche-frasassi-caves/",
+      "title": "Never Ignore a Draft of Air: The Magic of Le Marche’s Frasassi Caves",
+      "description": "What began as a little crack in the rock became the gateway to one of Italy’s greatest subterranean marvels. L'articolo Never Ignore a Draft of Air: The Magic of Le Marche’s Frasassi Caves proviene da My Italian Diaries ."
+    },
+    {
+      "link": "https://www.myitaliandiaries.com/no-cappuccino-after-11-am/",
+      "title": "No cappuccino after 11 AM? Go ahead, break the rules!",
+      "description": "Cappuccino is one of the most beloved drinks in the world, and yet, in Italy, we ban it after 11 AM. Let’s talk about it! L'articolo No cappuccino after 11 AM? Go ahead, break the rules! proviene da My Italian Diaries ."
+    },
+    {
+      "link": "https://www.myitaliandiaries.com/my-favourite-things-to-do-in-livorno/",
+      "title": "My favourite things to do in Livorno",
+      "description": "Not your postcard-perfect Tuscan city, Livorno surprises with canals that wink at Venice, seafood to make you drool, and some really cool history. L'articolo My favourite things to do in Livorno proviene da My Italian Diaries ."
+    }
+  ]
+}

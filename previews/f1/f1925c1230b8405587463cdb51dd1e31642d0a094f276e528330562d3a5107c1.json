@@ -1,0 +1,34 @@
+{
+  "url": "https://rajkumaar.co.in/index.xml",
+  "title": "Online Home of Rajkumar",
+  "subtitle": "Recent content on Online Home of Rajkumar",
+  "bytes": 3552,
+  "last": "2026-08-07",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "app-development"
+  ],
+  "source": {
+    "name": "outcoldman/hackernews-personal-blogs",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://rajkumaar.co.in/posts/nas/",
+      "title": "Network Attached Storage",
+      "description": null
+    },
+    {
+      "link": "https://rajkumaar.co.in/posts/puck-key/",
+      "title": "Puck Key - a button to unlock my apartment door",
+      "description": null
+    },
+    {
+      "link": "https://rajkumaar.co.in/posts/services-on-pi/",
+      "title": "Hosting web services on my Raspberry Pi",
+      "description": null
+    }
+  ]
+}

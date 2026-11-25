@@ -1,0 +1,18 @@
+{
+  "url": "https://06880danwoog.com/feed/",
+  "title": "06880",
+  "subtitle": "Where Westport meets the world",
+  "bytes": 409726,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "downtown"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

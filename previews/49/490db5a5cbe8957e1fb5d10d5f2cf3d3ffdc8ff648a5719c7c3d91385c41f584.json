@@ -1,0 +1,20 @@
+{
+  "url": "https://deepslatemc.com/rss.xml",
+  "title": "Deepslate",
+  "subtitle": "Deepslate is a high-performance Minecraft server proxy written in Rust. Deepslate sits between your players and your backend servers, handling authentication...",
+  "bytes": 17521,
+  "last": "2026-03-27",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://deepslatemc.com/intro/",
+      "title": "Introducing Deepslate",
+      "description": "Deepslate is a new Minecraft server proxy solution, written in Rust, with a focus on performance and a compile-time plugin system."
+    }
+  ]
+}

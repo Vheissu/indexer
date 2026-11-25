@@ -1,0 +1,34 @@
+{
+  "url": "https://oscarhong.net/atom/",
+  "title": "Oscar Hong",
+  "subtitle": "The fault, dear reader, is not that we have nothing to write, it’s that we haven’t written",
+  "bytes": 78698,
+  "last": "2026-07-16",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ai-writing"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://oscarhong.net/how-can-you-compete-with-that/",
+      "title": "How can you compete with that?",
+      "description": "On the gap separating Djokovic from Agassi"
+    },
+    {
+      "link": "https://oscarhong.net/building-ai-product/",
+      "title": "Everything I Knew About Building Products Was Wrong",
+      "description": "Product building used to feel like boxing. Building AI-native products with AI tools feels more like schoolboy rugby."
+    },
+    {
+      "link": "https://oscarhong.net/the-insane-talent-vortex-at-early-google/",
+      "title": "The insane talent vortex at early Google",
+      "description": "Plutarch’s Lives, but for 100x engineers."
+    }
+  ]
+}

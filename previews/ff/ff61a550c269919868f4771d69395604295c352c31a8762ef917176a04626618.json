@@ -1,0 +1,34 @@
+{
+  "url": "https://jezra.net/atom.xml",
+  "title": "Jezra Net",
+  "subtitle": null,
+  "bytes": 35671,
+  "last": "2026-05-07",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "wood"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": null,
+      "title": "pentabutton: a smart cabin input device",
+      "description": "There was a need to have physical input device to send some commands to my smart cabin, and this is the result"
+    },
+    {
+      "link": null,
+      "title": "Pertaining Peculiar Pebble Programming Possibilities",
+      "description": "Some musing on my experience with the Pebble 2 Duo"
+    },
+    {
+      "link": null,
+      "title": "On This Imbolc 2026",
+      "description": "Once again, it was Imbolc and stuff was done and seen."
+    }
+  ]
+}

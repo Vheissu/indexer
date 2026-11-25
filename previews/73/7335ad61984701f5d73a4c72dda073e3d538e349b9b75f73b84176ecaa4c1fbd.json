@@ -1,0 +1,22 @@
+{
+  "url": "https://christophspiegel.berlin/appendix/feed.xml",
+  "title": "Christoph Spiegel",
+  "subtitle": "Mathematician at Zuse Institute Berlin working on combinatorics, computational mathematics, and AI for scientific discovery. Research, publications, and teaching.",
+  "bytes": 14195,
+  "last": "2026-10-07",
+  "languages": [],
+  "topics": [
+    "scientific-computing"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://christophspiegel.berlin/appendix/when-to-trust-lean",
+      "title": "Verification was never just about certification",
+      "description": "What to check before trusting “verified in Lean”, why it adds little to AI-generated proofs, and what formal code is actually good for."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "url": "https://www.marklawrence.buzz/feeds/posts/default",
+  "title": "Mark Lawrence",
+  "subtitle": "Click my name to navigate this blog.",
+  "bytes": 634432,
+  "last": "2026-11-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "book-covers"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

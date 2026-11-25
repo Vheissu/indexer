@@ -1,0 +1,18 @@
+{
+  "url": "https://www.dsogaming.com/feed/",
+  "title": "DSOGaming",
+  "subtitle": "PC Games News, Screenshots, Trailers & More",
+  "bytes": 20043,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "pc-games"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

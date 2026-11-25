@@ -1,0 +1,19 @@
+{
+  "url": "https://www.astro-photo.nl/feed",
+  "title": "Astro-photo | by André van der Hoeven",
+  "subtitle": "by André van der Hoeven",
+  "bytes": 82967,
+  "last": "2026-04-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "aurora",
+    "sun"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

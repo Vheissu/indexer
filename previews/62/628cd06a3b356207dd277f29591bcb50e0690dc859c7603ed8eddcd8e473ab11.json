@@ -1,0 +1,36 @@
+{
+  "url": "https://www.paulsprogrammingnotes.com/atom.xml",
+  "title": "Paul’s Programming Notes",
+  "subtitle": null,
+  "bytes": 78776,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "home-assistant",
+    "ai-coding-agents",
+    "homelab"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.paulsprogrammingnotes.com/2026/11/github-actions-workflow-dispatch.html",
+      "title": "Run a GitHub Actions workflow manually with workflow_dispatch",
+      "description": "workflow_dispatch adds a Run workflow button and a gh command for running a GitHub Actions workflow by hand, which let me stop running CI on every push to main."
+    },
+    {
+      "link": "https://www.paulsprogrammingnotes.com/2026/11/ssh-key-in-mac-secure-enclave.html",
+      "title": "SSH keys in the Mac’s Secure Enclave without third-party tools",
+      "description": "macOS Tahoe can make an SSH key that lives in the Secure Enclave and asks for Touch ID on every login, using only sc_auth and ssh-keychain.dylib."
+    },
+    {
+      "link": "https://www.paulsprogrammingnotes.com/2026/08/running-qwen-3-8-27b-16gb.html",
+      "title": "Running Qwen 3.8 27B on a 16 GB GPU",
+      "description": "A 4-bit quant fits a dense 27B on a 16 GB card, and hybrid attention leaves room for 64K of context. The compose file, and how to turn thinking off."
+    }
+  ]
+}

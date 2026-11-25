@@ -1,0 +1,19 @@
+{
+  "url": "https://dailynews.co.zw/feed/",
+  "title": "DailyNews",
+  "subtitle": "Telling it like it is",
+  "bytes": 22453,
+  "last": "2026-11-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "world-news",
+    "news"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

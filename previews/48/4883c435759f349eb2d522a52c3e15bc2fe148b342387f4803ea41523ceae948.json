@@ -1,0 +1,34 @@
+{
+  "url": "https://www.rockoder.com/rss.xml",
+  "title": "rockoder",
+  "subtitle": "In respect and admiration, to the spirit that lives in the computer.",
+  "bytes": 15345,
+  "last": "2026-02-07",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "java"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.rockoder.com/blog/humans-md/",
+      "title": "HUMANS.md",
+      "description": "An AGENTS.md file, but for humans."
+    },
+    {
+      "link": "https://www.rockoder.com/blog/the-context-observability-gap/",
+      "title": "The Context Observability Gap: Why \"Magic\" Agents Fail in Production",
+      "description": "Why the superior performance of AI coding agents comes from explicit, observable context engineering rather than hidden model 'magic'."
+    },
+    {
+      "link": "https://www.rockoder.com/blog/website-migration/",
+      "title": "From $11/Month to $0: How I Used AI to Reclaim My Evening",
+      "description": "From $11/Month to $0: How I Used AI to Reclaim My Evening"
+    }
+  ]
+}

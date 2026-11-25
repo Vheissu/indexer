@@ -1,0 +1,34 @@
+{
+  "url": "https://wellshapedwords.com/posts/index.xml",
+  "title": "Posts on Well-Shaped Words",
+  "subtitle": "Recent content in Posts on Well-Shaped Words",
+  "bytes": 228997,
+  "last": "2025-11-27",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "writing-systems"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://wellshapedwords.com/posts/tutorial-ducklake/",
+      "title": "Learn how to build a DuckLake, snapshot by snapshot",
+      "description": "DuckDB is a democratizing influence on data analysis and engineering. Because its creators obviously care about both design and performance, the tool gives more people a chance to do complex data-processing tasks without the mental, financial, and computational overhead that would come with doing such jobs on a cloud platform. As I get better at using DuckDB, I also become more attentive to the nu"
+    },
+    {
+      "link": "https://wellshapedwords.com/posts/make-tutorial-stick/",
+      "title": "Make software tutorials that stick",
+      "description": "Learning is deeper and more durable when it’s effortful. —Make It Stick This year I developed a course on an abstruse standard about manufacturing systems. To prepare for the work, I read Make It Stick: The Science of Successful Learning , an accessible and practical book by cognitive scientists that synthesizes various studies in memory and learning. While designing a course isn’t the same as wri"
+    },
+    {
+      "link": "https://wellshapedwords.com/posts/shell-tools-for-writers/",
+      "title": "Shell tools for writers",
+      "description": "The command line is a text-based interface, and writing is a text-based activity. Shell tools, therefore, are writing tools. Here are some examples that have served me. All scripts assume GNU versions and the Bash shell. Find and replace Replace all instances of an old phrase within a set of MD files. This works best on a Git repo so that you can review the diffs before committing any changes. old"
+    }
+  ]
+}

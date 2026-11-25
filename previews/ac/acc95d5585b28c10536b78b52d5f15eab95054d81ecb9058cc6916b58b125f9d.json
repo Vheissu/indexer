@@ -1,0 +1,18 @@
+{
+  "url": "https://billypenn.com/feed/",
+  "title": "Billy Penn at WHYY",
+  "subtitle": "Philadelphia local news: Neighborhoods, politics, food, and fun",
+  "bytes": 190276,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "philadelphia"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

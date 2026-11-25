@@ -1,0 +1,34 @@
+{
+  "url": "https://fornoaurelio.bearblog.dev/feed/",
+  "title": "Forno Aurelio",
+  "subtitle": "Socialist Italian hands make bread in Ireland while talking to a sourdough starter named Robespierre",
+  "bytes": 19683,
+  "last": "2026-07-05",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "sourdough"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://fornoaurelio.eu/smf/136-robespierre-tiredly-listens-to-recycled-mccarthyism/",
+      "title": "Seize the means of fermentation! ⓵⓷⓺ Robespierre tiredly listens to recycled mccarthyism",
+      "description": "Documenting the birth and (up)rising of my sourdough starter, Robespierre."
+    },
+    {
+      "link": "https://fornoaurelio.eu/smf/135-robespierre-and-waiting/",
+      "title": "Seize the means of fermentation! ⓵⓷⓹ Robespierre and waiting",
+      "description": "Documenting the birth and (up)rising of my sourdough starter, Robespierre."
+    },
+    {
+      "link": "https://fornoaurelio.eu/smf/134-robespierre-gets-warmer/",
+      "title": "Seize the means of fermentation! ⓵⓷⓸ Robespierre gets warmer",
+      "description": "Documenting the birth and (up)rising of my sourdough starter, Robespierre."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "url": "https://breaolindawildcat.com/feed/",
+  "title": "The Wildcat",
+  "subtitle": "est. 1927",
+  "bytes": 111142,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

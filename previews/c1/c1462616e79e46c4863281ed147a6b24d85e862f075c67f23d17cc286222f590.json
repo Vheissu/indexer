@@ -1,0 +1,32 @@
+{
+  "url": "https://dimden.dev/rss.xml",
+  "title": "dimden",
+  "subtitle": "I'm a cat",
+  "bytes": 3829,
+  "last": "2026-05-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://diary.dimden.dev/?series=1",
+      "title": "Japan trip in Spring 2026",
+      "description": "Japan trip in Spring 2026"
+    },
+    {
+      "link": "https://dimden.dev/blog/15-webtiles-its-fine-to-accept-user-supplied-code-actually",
+      "title": "WebTiles: It's fine to accept user-supplied code, actually",
+      "description": "WebTiles: It's fine to accept user-supplied code, actually"
+    },
+    {
+      "link": "https://diary.dimden.dev/?series=5",
+      "title": "Eastern Europe trip in October 2025",
+      "description": "Eastern Europe trip in October 2025"
+    }
+  ]
+}

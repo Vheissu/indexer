@@ -1,0 +1,36 @@
+{
+  "url": "https://happyhipster.wordpress.com/feed/",
+  "title": "The Happy Hipster Blog",
+  "subtitle": "You must be exactly *this* pretentious to enter",
+  "bytes": 96282,
+  "last": "2026-01-01",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "new-music",
+    "music",
+    "the-beatles"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://happyhipster.wordpress.com/2026/01/01/the-2025-survivors-playlist/",
+      "title": "The 2025 Survivors’ Playlist",
+      "description": "If you’re reading this, you’ve survived 2025, and I congratulate you. In terms of global events, it was probably the most brutal year since… well, 2020 I guess. I suppose that year did mess up the curve a bit. It wasn’t a much better year for music either, if I’m being honest. I’m not sure […]"
+    },
+    {
+      "link": "https://happyhipster.wordpress.com/2025/08/31/july-was-the-first-exciting-month-of-music-in-2025/",
+      "title": "July was the first exciting month of music in 2025",
+      "description": "I’m pretty sure 90% of my posts begin with “it’s been a while” (which would also be perfect for a “Lamest Songs of the 2000s” post) so let’s not dwell on it too much. Frankly, 2025 has been a distressingly underwhelming year for music so far. I’ve been wondering what to chalk it up to. […]"
+    },
+    {
+      "link": "https://happyhipster.wordpress.com/2025/03/24/mashup-command-gaga-abracadabra-on-instinct/",
+      "title": "Mashup: Command & Gaga – Abracadabra On Instinct",
+      "description": "I made another thing that’ll probably get copyright-stricken off YouTube within hours. Enjoy!"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "url": "https://www.archbalt.org/feed/",
+  "title": "Archdiocese of Baltimore",
+  "subtitle": null,
+  "bytes": 96811,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "church"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

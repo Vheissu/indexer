@@ -1,0 +1,32 @@
+{
+  "url": "https://blog.hakanserce.com/index.xml",
+  "title": "Learn Forever",
+  "subtitle": "Recent content on Learn Forever",
+  "bytes": 7218,
+  "last": "2025-11-25",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://blog.hakanserce.com/post/reddit-ai-integration/",
+      "title": "Extracting Reddit Data with AI",
+      "description": "A few days ago, I stumbled upon a Reddit thread packed with API recommendations. The thread was long, detailed, and exactly what I needed—except I didn’t want to manually comb through dozens of comments. I figured this was the perfect job for AI. Spoiler alert: it wasn’t as straightforward as I expected."
+    },
+    {
+      "link": "https://blog.hakanserce.com/post/version_managers/",
+      "title": "Installing Java in 2025, and Version Managers",
+      "description": "Remember when installing Java meant one download, one version, once choice? Back in the old days, you would head over to java.sun.com or later to Oracle website to download the installer, click through a few prompts, and you were done. Life was simple. Back then, there was typically one widely-adopted version of Java that would remain stable for years. You didn’t need to think much about version m"
+    },
+    {
+      "link": "https://blog.hakanserce.com/post/chromedex_dex_on_chromebook/",
+      "title": "ChromeDeX: Chromebook as a DeX Lapdock",
+      "description": "Samsung DeX is a desktop-like environment available in Samsung’s flagship phones and tablets. I don’t want to make this sound like ads for DeX, but it was one of the main reasons while I was deciding to switch from iPhone to a Note 10+ about a year and a half ago. With an external monitor, you can turn your phone into a desktop computer of some sort, or you can have more like a laptop experience o"
+    }
+  ]
+}

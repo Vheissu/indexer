@@ -1,0 +1,18 @@
+{
+  "url": "https://www.libyanexpress.com/feed/",
+  "title": "Libyan Express",
+  "subtitle": "Libya News, Opinion, Analysis and Latest Updates from Libya",
+  "bytes": 30432,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "libya"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

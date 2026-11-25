@@ -1,0 +1,32 @@
+{
+  "url": "https://swagatmitrab.vercel.app/rss.xml",
+  "title": "swagatmitra",
+  "subtitle": "personal blog",
+  "bytes": 5803,
+  "last": "2025-12-29",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://swagatmitrab.vercel.app/blog/le-mois-de-noel/",
+      "title": "Le Mois de Noël",
+      "description": null
+    },
+    {
+      "link": "https://swagatmitrab.vercel.app/blog/zubeen-garg/",
+      "title": "Zubeen Garg",
+      "description": null
+    },
+    {
+      "link": "https://swagatmitrab.vercel.app/blog/understanding-automatic-differentiation/",
+      "title": "Understanding automatic differentiation",
+      "description": "When life goes downhill, we're optimizing"
+    }
+  ]
+}

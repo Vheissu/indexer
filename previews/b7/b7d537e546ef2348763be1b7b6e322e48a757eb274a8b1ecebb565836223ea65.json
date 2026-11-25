@@ -1,0 +1,18 @@
+{
+  "url": "https://thedwshow.net/feed/",
+  "title": "The Doctor Who Show",
+  "subtitle": "An Australian-made Doctor Who podcast by fans, for fans. Est. 2016",
+  "bytes": 27948,
+  "last": "2026-11-14",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "doctor-who"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

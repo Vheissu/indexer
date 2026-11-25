@@ -1,0 +1,18 @@
+{
+  "url": "https://www.egyptindependent.com/feed/",
+  "title": "Egypt Independent",
+  "subtitle": null,
+  "bytes": 74462,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "egypt"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

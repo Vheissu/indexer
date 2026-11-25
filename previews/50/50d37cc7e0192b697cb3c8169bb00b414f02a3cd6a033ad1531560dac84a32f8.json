@@ -1,0 +1,18 @@
+{
+  "url": "https://theowp.org/feed/",
+  "title": "The Organization for World Peace",
+  "subtitle": "Peace is Possible",
+  "bytes": 56521,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "news"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

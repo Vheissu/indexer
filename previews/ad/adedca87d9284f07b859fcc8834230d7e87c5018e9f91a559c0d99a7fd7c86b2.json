@@ -1,0 +1,34 @@
+{
+  "url": "https://www.clipsoflogic.com/rss/",
+  "title": "Clips of Logic",
+  "subtitle": "Insights & Thoughts on Business, Tech & Everyday Life by Lim Tzyy Shyong / T.S. Lim - Entrepreneur / Tech Executive based in Kota Kinabalu, Sabah, Malaysia",
+  "bytes": 147416,
+  "last": "2026-11-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "technology"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.clipsoflogic.com/building-ai-with-ai/",
+      "title": "Building AI with AI",
+      "description": "Lessons from building software with AI coding agents and AI-powered systems: RAG, guardrails, agentic primitives and evaluations."
+    },
+    {
+      "link": "https://www.clipsoflogic.com/learning-anything-with-ai/",
+      "title": "Learning Anything with AI",
+      "description": "Beyond automating work: how I've been using AI to create tailored learning experiences for almost any topic."
+    },
+    {
+      "link": "https://www.clipsoflogic.com/when-playing-becomes-winning/",
+      "title": "When Playing Becomes Winning",
+      "description": "Learning pickleball after decades of badminton: why practicing new shots can matter more than winning the game."
+    }
+  ]
+}

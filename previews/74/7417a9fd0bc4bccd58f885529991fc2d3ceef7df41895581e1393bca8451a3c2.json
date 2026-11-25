@@ -1,0 +1,20 @@
+{
+  "url": "https://wbryce.bearblog.dev/feed/",
+  "title": "wBryce.dev",
+  "subtitle": "Using computers to solve problems",
+  "bytes": 24520,
+  "last": "2026-09-20",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://wbryce.bearblog.dev/thoughts-on-hotness/",
+      "title": "Thoughts on Hotness",
+      "description": "As some of you know my hobby is making toy social networks. I've been thinking of a ranking algorithm for a link sharing site. I've made a personal RSS reader out of a hacker news clone. Almost all submission are from RSS feeds. As with many things the quality of the content is often inversely proportional to the quantity. So Wonkette reliably swamps any submissions from Crooked Timber . I'm worki"
+    }
+  ]
+}

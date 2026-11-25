@@ -1,0 +1,32 @@
+{
+  "url": "https://www.drorpoleg.com/newsletter/rss/",
+  "title": "Dror Poleg's Newsletter",
+  "subtitle": "Exploring the new rules of work, wealth, and power・Join 30,000+ readers in finance, tech, and government.",
+  "bytes": 659497,
+  "last": "2026-11-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://newsletter.drorpoleg.com/p/here-come-the-ants-anthropic-goes",
+      "title": "Here Come the Ants: Anthropic's Cash, Cult, and Code",
+      "description": "Once the AI giant goes public, its mission becomes more complicated."
+    },
+    {
+      "link": "https://newsletter.drorpoleg.com/p/the-interface-is-the-org-chart",
+      "title": "The Interface Is the Org Chart",
+      "description": "How will AI reshape your company? Start by looking at your interactions with customers."
+    },
+    {
+      "link": "https://newsletter.drorpoleg.com/p/under-the-eye-of-ai",
+      "title": "Under the Eye of AI",
+      "description": "On God, hacking, and the morality of private sins."
+    }
+  ]
+}

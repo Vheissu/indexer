@@ -1,0 +1,19 @@
+{
+  "url": "https://seoulbeats.com/feed/",
+  "title": "Seoulbeats",
+  "subtitle": "K-pop Analysis for Fans, by Fans | Hallyu, Korean entertainment, K-pop, K-dramas, Korean Variety",
+  "bytes": 99222,
+  "last": "2026-11-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "new-music",
+    "music"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

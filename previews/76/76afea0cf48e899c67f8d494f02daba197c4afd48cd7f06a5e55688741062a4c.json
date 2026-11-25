@@ -1,0 +1,18 @@
+{
+  "url": "https://bigbendsentinel.com/feed/",
+  "title": "Big Bend Sentinel",
+  "subtitle": "News from Marfa since 1926.",
+  "bytes": 95523,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "news"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

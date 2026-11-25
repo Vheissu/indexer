@@ -1,0 +1,18 @@
+{
+  "url": "https://topdocumentaryfilms.com/feed/",
+  "title": "Top Documentary Films",
+  "subtitle": "The world's greatest free documentary library - a place where documentaries are regarded as the supreme form of expression.",
+  "bytes": 20199,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "documentary"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

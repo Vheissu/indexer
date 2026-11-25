@@ -1,0 +1,18 @@
+{
+  "url": "https://croecko.com/blog/feed/",
+  "title": "Economics for Canadians",
+  "subtitle": "Helping Canadian economics students since 2012",
+  "bytes": 35445,
+  "last": "2026-11-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "economics"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

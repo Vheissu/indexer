@@ -1,0 +1,32 @@
+{
+  "url": "https://www.doom-or-bloom.com/blog/rss.xml",
+  "title": "Doom or Bloom blog",
+  "subtitle": "Plain-language writing from Doom or Bloom on P(doom), AI risk, and how people think about the future of AI.",
+  "bytes": 3280,
+  "last": "2026-10-06",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.doom-or-bloom.com/blog/ai-doomer-vs-bloomer",
+      "title": "AI doomer or bloomer? Most people land in between",
+      "description": "Plain definitions of the AI debate’s words, from doomer and bloomer to e/acc, decel, foom, x-risk, AGI and superintelligence, and where most people actually land."
+    },
+    {
+      "link": "https://www.doom-or-bloom.com/blog/where-ai-leaders-disagree",
+      "title": "AI’s leaders split on how it ends, not how big it is",
+      "description": "Hinton vs LeCun, Altman vs Amodei and four more AI rivalries people search, placed on one map from simulated worldviews, with each side’s own words."
+    },
+    {
+      "link": "https://www.doom-or-bloom.com/blog/why-polls-on-ai-disagree",
+      "title": "Why polls on AI disagree",
+      "description": "Polls, researcher surveys, AI-led interviews and quizzes ask about AI differently and get different answers. How they compare and what a better measure needs."
+    }
+  ]
+}

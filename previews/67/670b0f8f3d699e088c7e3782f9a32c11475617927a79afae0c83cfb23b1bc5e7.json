@@ -1,0 +1,34 @@
+{
+  "url": "https://zackoverflow.dev/rss.xml",
+  "title": "zackoverflow",
+  "subtitle": "Hi, I'm Zack and I like building things. I spend a lot of time architecting abstractions, or deconstructing them to reveal the underlying truth about how systems and computers work. It gives me this hit of dopamine that I can't quite get anywhere else.",
+  "bytes": 11046,
+  "last": "2026-05-27",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "compilers"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://zackoverflow.dev/writing/why-does-tsgo-use-so-much-memory/",
+      "title": "Why does tsgo use so much memory?",
+      "description": null
+    },
+    {
+      "link": "https://zackoverflow.dev/writing/coding-on-eink/",
+      "title": "Coding on an e-ink monitor",
+      "description": null
+    },
+    {
+      "link": "https://zackoverflow.dev/writing/zig-vs-rust-in-2026/",
+      "title": "Zig vs Rust in 2026",
+      "description": null
+    }
+  ]
+}

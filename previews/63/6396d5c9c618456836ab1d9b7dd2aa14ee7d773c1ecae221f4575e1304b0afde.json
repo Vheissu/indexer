@@ -1,0 +1,20 @@
+{
+  "url": "https://hexis.ink/feed/",
+  "title": "Core Dump",
+  "subtitle": "Hey! Glad you stopped by. You can drop me a line on blog at hexis.ink.\\ \\ Or not. Your choice.",
+  "bytes": 2509,
+  "last": "2026-10-21",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://hexis.ink/running-again/",
+      "title": "Running, Again",
+      "description": "I’m running again after my meniscus tear. For the last five months I’ve been running consistently. My fitness is still nowhere near where it was, but I’ve ramped the volume up quite steadily and even if I might not be as fast as I would like, at least there are no pains/injuries. Even got a couple of races in - one trail and one road half marathon. Another trail coming in the following weeks to wr"
+    }
+  ]
+}

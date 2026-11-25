@@ -1,0 +1,34 @@
+{
+  "url": "https://fetzi.dev/feed.xml",
+  "title": "Johannes Pichler's blog about Web Development",
+  "subtitle": "Recent content on Johannes Pichler's blog about Web Development",
+  "bytes": 33494,
+  "last": "2026-03-13",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "laravel"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://fetzi.dev/talk/crafting-elegant-apis-with-laravel-dpc/",
+      "title": "Crafting Elegant APIs with Laravel",
+      "description": null
+    },
+    {
+      "link": "https://fetzi.dev/getting-cody-ready-for-php-8-5/",
+      "title": "Getting your code ready for PHP 8.5",
+      "description": "PHP 8.5 was released about two months ago, so it should be stable enough to upgrade. I generally avoid big-bang releases, especially since I run multiple applications on a single server. To prevent a risky all-at-once upgrade and to verify that everything works correctly before switching PHP versions, I was looking for a way to upgrade the codebase beforehand. Getting ready To prepare an applicati"
+    },
+    {
+      "link": "https://fetzi.dev/talk/crafting-elegant-apis-with-laravel-phpday/",
+      "title": "Crafting Elegant APIs with Laravel",
+      "description": null
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "url": "https://isciencemag.co.uk/feed/",
+  "title": "I, Science",
+  "subtitle": "The science magazine of Imperial College",
+  "bytes": 25863,
+  "last": "2026-11-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "science",
+    "science-communication",
+    "neuroscience",
+    "news"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

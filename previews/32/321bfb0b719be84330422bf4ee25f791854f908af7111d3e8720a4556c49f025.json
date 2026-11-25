@@ -1,0 +1,30 @@
+{
+  "url": "https://chrisdempewolf.com/feed.rss",
+  "title": "Chris Dempewolf's Blog",
+  "subtitle": "A personal blog by Chris Dempewolf about science, technology, and computation.",
+  "bytes": 3428,
+  "last": "2025-12-01",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "http://localhost/posts/common-ground-part-one",
+      "title": "Common Ground: Part One",
+      "description": null
+    },
+    {
+      "link": "http://localhost/posts/phantom-in-the-light",
+      "title": "Phantom in the Light",
+      "description": null
+    },
+    {
+      "link": "http://localhost/posts/salsa-verde",
+      "title": "Salsa Verde",
+      "description": null
+    }
+  ]
+}

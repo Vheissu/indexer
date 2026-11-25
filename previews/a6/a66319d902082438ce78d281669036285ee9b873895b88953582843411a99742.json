@@ -1,0 +1,19 @@
+{
+  "url": "https://www.realgonerocks.com/feed/",
+  "title": "Real Gone",
+  "subtitle": "pop. rock. metal. punk. opinionations. other junk.",
+  "bytes": 15607,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "new-music",
+    "pop-music"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

@@ -1,0 +1,16 @@
+{
+  "url": "https://barczablog.com/feed/",
+  "title": "barczablog",
+  "subtitle": "A place to read about arts & culture, from my own quirky perspective.",
+  "bytes": 258887,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

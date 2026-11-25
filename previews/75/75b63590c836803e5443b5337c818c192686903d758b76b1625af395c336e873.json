@@ -1,0 +1,32 @@
+{
+  "url": "https://www.gaurav.io/rss.xml",
+  "title": "GVRV",
+  "subtitle": "Gaurav Dadhania",
+  "bytes": 27147,
+  "last": "2026-02-27",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://example.com/blog/original-thinkers/",
+      "title": "Original Thinkers",
+      "description": "Benjamin Franklin was an original thinker"
+    },
+    {
+      "link": "https://example.com/blog/the-spotlight-effect/",
+      "title": "The Spotlight Effect",
+      "description": "Mental exercise to help you overcome the spotlight effect"
+    },
+    {
+      "link": "https://example.com/blog/india-ai-impact-summit/",
+      "title": "Eyes on the prize",
+      "description": "In the age of social slop, keep your eyes on the prize"
+    }
+  ]
+}

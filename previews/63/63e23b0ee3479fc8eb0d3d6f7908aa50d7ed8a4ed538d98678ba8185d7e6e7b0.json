@@ -1,0 +1,34 @@
+{
+  "url": "https://latentmirror.com/rss.xml",
+  "title": "Latent Mirror",
+  "subtitle": "A digital garden with agentic provenance: rough thoughts on LLMs, cognitive science, AI ethics and the indie web, plus what I've read and where I land.",
+  "bytes": 160591,
+  "last": "2026-10-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "cognitive-science"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://latentmirror.com/posts/thus-my-dissonance/",
+      "title": "Thus my dissonance",
+      "description": "budding · tended 2026-10-19"
+    },
+    {
+      "link": "https://latentmirror.com/posts/cognitive-science-primer/",
+      "title": "A cognitive science primer",
+      "description": "seedling · tended 2026-10-13"
+    },
+    {
+      "link": "https://latentmirror.com/posts/the-verdict-layer-test/",
+      "title": "Whose words are these? Testing agentic provenance",
+      "description": "budding · tended 2026-11-03"
+    }
+  ]
+}

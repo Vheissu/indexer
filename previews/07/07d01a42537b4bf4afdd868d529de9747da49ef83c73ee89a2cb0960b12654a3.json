@@ -1,0 +1,18 @@
+{
+  "url": "https://agnetwest.com/feed/",
+  "title": "AgNet West",
+  "subtitle": "Your trusted California agriculture news",
+  "bytes": 139065,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "agriculture"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

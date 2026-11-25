@@ -1,0 +1,16 @@
+{
+  "url": "https://oregonconfluence.com/feed/",
+  "title": "The Confluence",
+  "subtitle": "The Oregon film community's official blog.",
+  "bytes": 40785,
+  "last": "2026-11-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

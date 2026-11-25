@@ -1,0 +1,18 @@
+{
+  "url": "https://eldraeverse.com/rss/",
+  "title": "The Associated Worlds",
+  "subtitle": "...building civilizations with my space elves in space.",
+  "bytes": 82564,
+  "last": "2026-11-01",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "governance"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": []
+}

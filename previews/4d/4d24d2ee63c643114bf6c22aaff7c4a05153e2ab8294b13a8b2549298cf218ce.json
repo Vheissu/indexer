@@ -1,0 +1,32 @@
+{
+  "url": "https://snare.dev/rss.xml",
+  "title": "Varun's Musings",
+  "subtitle": "A random man, on a journey of seeking knowledge",
+  "bytes": 245035,
+  "last": "2026-04-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://snare.dev/musings/22-retrospective",
+      "title": "Year of Varun #22 - A Retrospective",
+      "description": "A retrospective on turning 23"
+    },
+    {
+      "link": "https://snare.dev/musings/sourcehut-reflections",
+      "title": "SourceHut: Git Done Right?",
+      "description": "My personal review of SourceHut after using it for a few months"
+    },
+    {
+      "link": "https://snare.dev/musings/freecoding",
+      "title": "Freecoding - An Alternative To Vibe Coding",
+      "description": "A manifesto against vibe coding, and for an alternative"
+    }
+  ]
+}

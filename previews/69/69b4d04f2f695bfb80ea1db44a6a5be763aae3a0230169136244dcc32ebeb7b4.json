@@ -1,0 +1,34 @@
+{
+  "url": "https://unfoundedlabs.com/feed.xml",
+  "title": "Unfounded Labs",
+  "subtitle": "Web Experiments",
+  "bytes": 152257,
+  "last": "2026-01-05",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ruby-on-rails"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://unfoundedlabs.com/blog/nyc-moto-parking",
+      "title": "Free Parking - New York City",
+      "description": "Alternate Side Parking"
+    },
+    {
+      "link": "https://unfoundedlabs.com/blog/all_but",
+      "title": "A New Enumerable Method",
+      "description": "Open Classes"
+    },
+    {
+      "link": "https://unfoundedlabs.com/blog/operator-methods",
+      "title": "Treating Operators as Methods",
+      "description": "OOP"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "url": "https://mike.tech/rss.xml",
+  "title": "Mike's Tech",
+  "subtitle": "AI, Business, and Programming",
+  "bytes": 703,
+  "last": "2026-01-11",
+  "languages": [],
+  "topics": [
+    "programming"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://mike.tech/blog/death-of-software-development/",
+      "title": "The Death of Software Development",
+      "description": "The job of software developer is dead. You might still be coding, but the profession as you knew it is gone."
+    }
+  ]
+}

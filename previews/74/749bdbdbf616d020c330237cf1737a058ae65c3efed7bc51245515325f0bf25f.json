@@ -1,0 +1,32 @@
+{
+  "url": "https://pinetreelabs.io/index.xml",
+  "title": "Pine Tree Labs",
+  "subtitle": "Recent content on Pine Tree Labs",
+  "bytes": 3995,
+  "last": "2026-09-24",
+  "languages": [],
+  "topics": [
+    "calculus"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://pinetreelabs.io/posts/archimedes-approx-release/",
+      "title": "Quadrature and Function Approximation",
+      "description": null
+    },
+    {
+      "link": "https://pinetreelabs.io/posts/archimedes-battery-sysid/",
+      "title": "Battery Parameter Estimation",
+      "description": null
+    },
+    {
+      "link": "https://pinetreelabs.io/posts/archimedes-imu-filter/",
+      "title": "Complementary IMU Filter",
+      "description": null
+    }
+  ]
+}

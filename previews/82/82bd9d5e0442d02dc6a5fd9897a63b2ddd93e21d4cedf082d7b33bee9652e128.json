@@ -1,0 +1,16 @@
+{
+  "url": "https://bookwyrmshoard.com/feed/",
+  "title": "The Bookwyrm's Hoard",
+  "subtitle": "Book reviews, bookish news, and more",
+  "bytes": 199074,
+  "last": "2026-11-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

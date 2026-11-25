@@ -1,0 +1,36 @@
+{
+  "url": "https://blog.fogus.me/feed",
+  "title": "Send More Paramedics",
+  "subtitle": "λ λ λ",
+  "bytes": 8314,
+  "last": "2026-10-30",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ai",
+    "computing",
+    "games"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://blog.fogus.me/thoughts/old-ideas.html",
+      "title": "Old Ideas",
+      "description": "Whereby I discuss the value of old ideas..."
+    },
+    {
+      "link": "https://blog.fogus.me/llm/born-against.html",
+      "title": "Born Against, or why hobby programming communities are aggressively against LLM usage",
+      "description": "Whereby I discuss why we're seeing an increasingly aggressive rejection of LLMS by niche hobby communities..."
+    },
+    {
+      "link": "https://blog.fogus.me/llm/van-emden.html",
+      "title": "Mind the van Emden Gap",
+      "description": "Whereby I read a paper about Intelligence Augmentation written in 1982 and talk about how it relates to today..."
+    }
+  ]
+}

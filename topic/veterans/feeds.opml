@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>veterans feeds</title>
+    <dateCreated>Wed, 25 Nov 2026 00:04:35 +0000</dateCreated>
+  </head>
+  <body>
+    <outline type="rss" text="Heroes Media Group" title="Heroes Media Group" xmlUrl="https://heroesmediagroup.com/feed/" htmlUrl="https://heroesmediagroup.com/"/>
+    <outline type="rss" text="Veterans for Common Sense" title="Veterans for Common Sense" xmlUrl="https://veteransforcommonsense.org/feed/" htmlUrl="https://veteransforcommonsense.org"/>
+  </body>
+</opml>

@@ -1,0 +1,19 @@
+{
+  "url": "https://www.tabletopbattles.com/feed/",
+  "title": "Tabletop Battles",
+  "subtitle": null,
+  "bytes": 8518,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "battle-report",
+    "battle"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

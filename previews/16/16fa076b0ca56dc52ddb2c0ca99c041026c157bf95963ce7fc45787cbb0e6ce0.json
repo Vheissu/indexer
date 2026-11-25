@@ -1,0 +1,34 @@
+{
+  "url": "https://unimplementedtrap.com/feed.xml",
+  "title": "Unimplemented Trap",
+  "subtitle": "A blog of hardware and software stuff and things by Simon Boak",
+  "bytes": 9232,
+  "last": "2026-06-28",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "hardware"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://unimplementedtrap.com/sb-mini-ii-apple-ii-clone/",
+      "title": "SB mini II: a homebrew Apple II clone",
+      "description": "]]>"
+    },
+    {
+      "link": "https://unimplementedtrap.com/paper-tape-punch/",
+      "title": "Building my own paper tape punch",
+      "description": "]]>"
+    },
+    {
+      "link": "https://unimplementedtrap.com/raspberry-pi-clock/",
+      "title": "Modernising a vintage digital clock",
+      "description": "]]>"
+    }
+  ]
+}

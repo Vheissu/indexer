@@ -1,0 +1,20 @@
+{
+  "url": "https://martinezbeavers.org/feed/",
+  "title": "Worth A Dam",
+  "subtitle": "The Martinez Beavers",
+  "bytes": 1671,
+  "last": "2026-11-22",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://martinezbeavers.org/ready-for-beaver-moon-tomorrow/",
+      "title": "READY FOR BEAVER MOON TOMORROW?",
+      "description": null
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "url": "https://daslang.io/blog/feed.xml",
+  "title": "Daslang blog",
+  "subtitle": null,
+  "bytes": 15375,
+  "last": "2026-10-30",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://daslang.io/blog/towards-0-7.html",
+      "title": "Best-laid plans",
+      "description": "Not so fast. I mean it's just not that fast anymore."
+    },
+    {
+      "link": "https://daslang.io/blog/no-comment.html",
+      "title": "NO COMMENT",
+      "description": "Been a minute. But. Absolutely no comments."
+    },
+    {
+      "link": "https://daslang.io/blog/stories.html",
+      "title": "Tell me a story.",
+      "description": "All those scars upon my back tell me a story."
+    }
+  ]
+}

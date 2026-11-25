@@ -1,0 +1,19 @@
+{
+  "url": "https://www.kabircares.org/feed/",
+  "title": "Kabir Cares",
+  "subtitle": "College Park's trusted source for daily news and updates since 2009",
+  "bytes": 71791,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "central-park",
+    "state-park"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

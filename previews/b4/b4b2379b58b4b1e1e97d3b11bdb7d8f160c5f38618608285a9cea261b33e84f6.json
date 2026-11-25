@@ -1,0 +1,34 @@
+{
+  "url": "https://philipbloom.net/blog/feed/",
+  "title": "Philip Bloom- Blog",
+  "subtitle": "DP, Director, Filmmaker",
+  "bytes": 17037,
+  "last": "2026-10-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "sony"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://philipbloom.net/blog/review-of-the-sony-fx5/",
+      "title": "Review of the Sony FX5",
+      "description": null
+    },
+    {
+      "link": "https://philipbloom.net/blog/dji-vs-insta360-the-battle-of-the-pocket-cameras/",
+      "title": "DJI vs Insta360: The Battle of the “Pocket” Cameras!",
+      "description": null
+    },
+    {
+      "link": "https://philipbloom.net/blog/can-360-drones-replace-the-dji-mini-5-pro/",
+      "title": "Can 360 drones replace the DJI Mini 5 Pro?",
+      "description": null
+    }
+  ]
+}

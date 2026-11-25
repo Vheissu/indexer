@@ -1,0 +1,34 @@
+{
+  "url": "https://www.rubick.com/rss.xml",
+  "title": "Jade Rubick - Engineering Leadership",
+  "subtitle": "Engineering leadership blog by Jade Rubick",
+  "bytes": 1383209,
+  "last": "2026-09-28",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "tech-leadership"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.rubick.com/the-ratchet/",
+      "title": "The ratchet",
+      "description": "A ratchet is a tool that only goes in one direction. We explore using this technique for leadership problems."
+    },
+    {
+      "link": "https://www.rubick.com/trend-test/",
+      "title": "The trendy leadership trend that is trending",
+      "description": "A simple way to survey where you are heading and what to do about it"
+    },
+    {
+      "link": "https://www.rubick.com/the-executive-loop/",
+      "title": "The executive loop",
+      "description": "The simple loop executives use"
+    }
+  ]
+}

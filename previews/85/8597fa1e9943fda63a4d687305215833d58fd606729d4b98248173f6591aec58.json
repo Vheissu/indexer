@@ -1,0 +1,32 @@
+{
+  "url": "https://pickleglitch.com/feed/rss",
+  "title": null,
+  "subtitle": "RSS feed.",
+  "bytes": 38256,
+  "last": "2026-11-12",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://pickleglitch.com/content/79",
+      "title": "Still Mad as Hell, Still Taking it. Network, 50 Years Later",
+      "description": "We're all Howard Beale now."
+    },
+    {
+      "link": "https://pickleglitch.com/content/207",
+      "title": "Memo: Thu Nov 12 2026",
+      "description": "I will never stop being bitter that I've had to sacrifice the best years of my life to the capitalist machine just to survive."
+    },
+    {
+      "link": "https://pickleglitch.com/content/204",
+      "title": "Jim Casy",
+      "description": "Ink drawing of John Carradine as Jim Casy in Grapes of Wrath"
+    }
+  ]
+}

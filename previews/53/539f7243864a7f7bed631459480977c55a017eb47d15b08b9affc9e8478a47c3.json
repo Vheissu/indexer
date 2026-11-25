@@ -1,0 +1,22 @@
+{
+  "url": "https://attackofthefanboy.com/feed/",
+  "title": "Attack of the Fanboy",
+  "subtitle": "Attack of the Fanboy covers U.S. politics, true crime, entertainment and the stories taking over social media.",
+  "bytes": 295249,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "short-fiction",
+    "urban-legends",
+    "life-story",
+    "true-crime",
+    "news"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

@@ -1,0 +1,36 @@
+{
+  "url": "https://therenegadecoder.com/feed/",
+  "title": "Academics Are Turning on AI Companies | The Renegade Coder",
+  "subtitle": "Code First. Ask Questions Later.",
+  "bytes": 160405,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "software-engineering",
+    "academia",
+    "education"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://therenegadecoder.com/blog/academics-are-turning-on-ai-companies/",
+      "title": "Academics Are Turning on AI Companies",
+      "description": "Today, you’re in for a mess. This is the first time I’ve felt really bad about the state of tech and academia. While I’ve been hating on generative AI for"
+    },
+    {
+      "link": "https://therenegadecoder.com/blog/im-dabbling-in-dungeons-dragons/",
+      "title": "I’m Dabbling in Dungeons & Dragons",
+      "description": "It's 2026, and I'm picking up DnD for the first time. Needless to say, I haven't had this much fun in ages."
+    },
+    {
+      "link": "https://therenegadecoder.com/blog/staying-relevant-is-holding-you-back/",
+      "title": "Staying Relevant Is Holding You Back",
+      "description": "Lately, I've noticed a lot of people obsessing over their own relevancy. I'm not sure that's healthy, nor should it matter."
+    }
+  ]
+}

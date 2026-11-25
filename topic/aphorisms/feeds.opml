@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>aphorisms feeds</title>
+    <dateCreated>Wed, 25 Nov 2026 00:04:35 +0000</dateCreated>
+  </head>
+  <body>
+    <outline type="rss" text="A Sunday of Liberty" title="A Sunday of Liberty" xmlUrl="https://asundayofliberty.com/feed" htmlUrl="https://asundayofliberty.com"/>
+    <outline type="rss" text="The Postmodern Peripatetic" title="The Postmodern Peripatetic" xmlUrl="https://brinkley.blog/feed/" htmlUrl="https://brinkley.blog"/>
+    <outline type="rss" text="Quote Investigator®" title="Quote Investigator®" xmlUrl="https://quoteinvestigator.com/feed/" htmlUrl="https://quoteinvestigator.com"/>
+  </body>
+</opml>

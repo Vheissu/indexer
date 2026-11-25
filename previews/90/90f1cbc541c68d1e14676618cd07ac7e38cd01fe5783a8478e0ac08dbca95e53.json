@@ -1,0 +1,32 @@
+{
+  "url": "https://gmnz.xyz/rss.xml",
+  "title": "Lawrence Gimenez",
+  "subtitle": "The personal website of Lawrence Gimenez: projects, writing, and reading.",
+  "bytes": 73300,
+  "last": "2026-06-13",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://gmnz.xyz/posts/apple-small-business-program/",
+      "title": "Apple's Small Business Program",
+      "description": "Got accepted to Apple's Small Business Program"
+    },
+    {
+      "link": "https://gmnz.xyz/posts/ember-feed-review-vvmac/",
+      "title": "Ember Feed Review",
+      "description": "Ember Feed reviewed in VVMac Blog"
+    },
+    {
+      "link": "https://gmnz.xyz/posts/ember-feed-v15/",
+      "title": "Ember Feed v1.5 Release",
+      "description": "Ember Feed v1.5 Release"
+    }
+  ]
+}

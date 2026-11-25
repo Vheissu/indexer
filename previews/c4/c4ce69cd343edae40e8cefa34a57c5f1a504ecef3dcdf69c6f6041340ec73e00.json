@@ -1,0 +1,34 @@
+{
+  "url": "https://windagainstcurrent.com/feed/",
+  "title": "Wind Against Current",
+  "subtitle": "Thoughts on kayaking, science, and life",
+  "bytes": 152724,
+  "last": "2025-11-26",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "sailing"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://windagainstcurrent.com/2025/11/26/a-meditation-on-gratitude/",
+      "title": "A Meditation on Gratitude",
+      "description": "By Johna Till Johnson “Vlad, what language are they speaking?” I asked. The young couple in the sick bay next to us were murmuring softly to each other in a language I couldn’t quite grasp. Germanic, I guessed, from the … Continue reading →"
+    },
+    {
+      "link": "https://windagainstcurrent.com/2023/06/06/the-first-leg/",
+      "title": "The First Leg!",
+      "description": "It was an uneventful sail. That is, if you don’t count bright sunshine, dying winds, a fierce opposing current towards the end… and the usual odds and ends of mechanical issues and trim. One of the pedal drives needed adjustment. … Continue reading →"
+    },
+    {
+      "link": "https://windagainstcurrent.com/2023/06/05/looks-like-they-made-it/",
+      "title": "Looks Like They Made It!",
+      "description": "After four separate boat inspections (including the boat-sniffing dog) Team Trimorons crossed the mountains and arrived at Port Townsend. The next few days were busy doing last-minute packing and organizing, and a few other things… There was the question of … Continue reading →"
+    }
+  ]
+}

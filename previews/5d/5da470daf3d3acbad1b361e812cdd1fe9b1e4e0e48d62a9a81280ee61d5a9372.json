@@ -1,0 +1,19 @@
+{
+  "url": "https://themuslimtimes.info/feed/",
+  "title": "The Muslim Times",
+  "subtitle": "Fostering Universal Brotherhood in Our Global Village",
+  "bytes": 15483,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "islam",
+    "muslim"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

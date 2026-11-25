@@ -1,0 +1,16 @@
+{
+  "url": "https://www.torchonline.com/feed/",
+  "title": "The Torch",
+  "subtitle": "The Independent Student Newspaper of St. John's University",
+  "bytes": 84158,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

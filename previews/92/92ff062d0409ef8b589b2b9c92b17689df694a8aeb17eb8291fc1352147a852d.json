@@ -1,0 +1,34 @@
+{
+  "url": "https://joebordes.com/rss.xml",
+  "title": "devpassion Tech Insights, Open Source & Personal Growth",
+  "subtitle": "Explore technical deep-dives into PHP, MySQL, and Git, alongside honest personal reflections on productivity, mental health, and the daily life of a developer.",
+  "bytes": 167994,
+  "last": "2026-02-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "life"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://joebordes.com/the-relentless-push",
+      "title": "The Relentless Push",
+      "description": "Feeling pushed out by rapid change? Explore the metaphor of the coin pusher, AI advancement, and the philosophy of Absurdism in our modern age."
+    },
+    {
+      "link": "https://joebordes.com/the-60-effort-rule-in-the-age-of-ai",
+      "title": "The 60% Effort Rule in the Age of AI",
+      "description": "How to Write Tasks for Humans and Machines"
+    },
+    {
+      "link": "https://joebordes.com/the-average-problem-why-agi-is-a-moving-goalpost",
+      "title": "The \"Average\" Problem: Why AGI is a Moving Goalpost",
+      "description": "The pursuit of Artificial General Intelligence (AGI) — a concept I learned about this week — is often framed as a climb toward a distant mountain peak. We…"
+    }
+  ]
+}

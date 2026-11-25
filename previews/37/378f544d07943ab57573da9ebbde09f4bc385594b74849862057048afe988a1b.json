@@ -1,0 +1,32 @@
+{
+  "url": "https://blog.sundergrove.com/rss.xml",
+  "title": "Sundergrove",
+  "subtitle": "Philosophy, psychology, and self-knowledge as practical tools, not decoration. For men who've built a decent life and want to know what's underneath.",
+  "bytes": 4174,
+  "last": "2026-09-10",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://blog.sundergrove.com/blog/understood-not-lived/",
+      "title": "Understood, not lived",
+      "description": "You can understand something completely and still not be changed by it. Why insight stalls in one centre, and what actually moved me instead."
+    },
+    {
+      "link": "https://blog.sundergrove.com/blog/somatic-work/",
+      "title": "The body knows",
+      "description": "How somatic work taught me to be more in tune and more honest, and to actually feel my emotions, instead of letting my brain spin up stories about them."
+    },
+    {
+      "link": "https://blog.sundergrove.com/blog/uncovering-pages/",
+      "title": "Uncovering pages",
+      "description": "Books that help sunder the covered layers, helping you find parts of yourself you don't see, page by page, word for word."
+    }
+  ]
+}

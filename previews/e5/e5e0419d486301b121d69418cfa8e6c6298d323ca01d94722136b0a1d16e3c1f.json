@@ -1,0 +1,34 @@
+{
+  "url": "https://bluesmonk.301621.xyz/feeds/all.atom.xml",
+  "title": "Moving rocks around",
+  "subtitle": null,
+  "bytes": 4464199,
+  "last": "2026-01-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "python"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://diegoquintanav.github.io/dlt-tutorial-EN.html",
+      "title": "A short DLT tutorial",
+      "description": "Loading data with DLT"
+    },
+    {
+      "link": "https://diegoquintanav.github.io/pinochet-rettig-v2.html",
+      "title": "The Pinochet-Rettig dataset, Revisited",
+      "description": "Revisiting the Pinochet-Rettig dataset with dbt and docker"
+    },
+    {
+      "link": "https://diegoquintanav.github.io/python-docker.html",
+      "title": "Python and Docker",
+      "description": "Getting python containers right"
+    }
+  ]
+}

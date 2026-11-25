@@ -1,0 +1,34 @@
+{
+  "url": "https://denvaar.dev/rss.xml",
+  "title": "denvaar's website",
+  "subtitle": "denvaar's personal site. Most of the content is on software development and computer programming. However, other one-off topics are in the mix.",
+  "bytes": 15223,
+  "last": "2026-04-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "programming"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://denvaar.dev/trash/songs_with_bongos_and_or_cowbell.html",
+      "title": "Good Songs with Bongos and/or Cowbell",
+      "description": "--"
+    },
+    {
+      "link": "https://denvaar.dev/posts/burrows_wheeler_transform.html",
+      "title": "Burrows Wheeler Transform for Compression",
+      "description": "How does the BWT work, and why is it useful for compression?"
+    },
+    {
+      "link": "https://denvaar.dev/posts/a_philosophy_of_software_design_review.html",
+      "title": "A Philosophy of Software Design Book Review",
+      "description": "My review of A Philosophy of Software Design by John Ousterhout"
+    }
+  ]
+}

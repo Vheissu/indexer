@@ -1,0 +1,18 @@
+{
+  "url": "https://www.africanexaminer.com/feed/",
+  "title": "African Examiner",
+  "subtitle": "Get latest Africa’s breaking news, politics",
+  "bytes": 33727,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "africa"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

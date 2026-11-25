@@ -1,0 +1,34 @@
+{
+  "url": "https://roystory.bearblog.dev/feed/",
+  "title": "Roy Story",
+  "subtitle": "A blog about living in your 30's and the hunt to find the little joys in life.",
+  "bytes": 50442,
+  "last": "2026-10-12",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "autumn"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://roystory.bearblog.dev/pumpkin-fog-latte/",
+      "title": "Pumpkin Fog Latte",
+      "description": "A Fall twist one one of my favorite drinks, the London Fog Latte."
+    },
+    {
+      "link": "https://roystory.bearblog.dev/fall-bucket-list-2026/",
+      "title": "2026 Fall Bucket List",
+      "description": "My Fall Bucket List for 2026 for all of this season's \"must do's\". Plus- a free printable Bucket List for anyone who wants to follow along!"
+    },
+    {
+      "link": "https://roystory.bearblog.dev/murder-at-pirates-cove/",
+      "title": "Review: Murder at Pirate's Cove by Josh Lanyon",
+      "description": "A sleepy little seaside town. A hot police chief. And… murder? What else could you ask for in a M/M cozy murder mystery?"
+    }
+  ]
+}

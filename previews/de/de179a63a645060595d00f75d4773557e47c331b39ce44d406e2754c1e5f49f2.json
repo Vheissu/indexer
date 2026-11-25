@@ -1,0 +1,36 @@
+{
+  "url": "https://codingkata.tardate.com/catalog/atom.xml",
+  "title": "LittleCodingKata",
+  "subtitle": "my collection of programming exercises, research and code toys broadly spanning things that relate to programming and software development (languages, frameworks and tools)",
+  "bytes": 280800,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "python",
+    "ruby",
+    "books"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://codingkata.tardate.com/perl/find-joeys/",
+      "title": "#496 findJoeys",
+      "description": "Using perl to find synonyms hiding within their alter ego: cassidoo's interview question of the week (2026-11-16)."
+    },
+    {
+      "link": "https://codingkata.tardate.com/tools/yt-dlp/",
+      "title": "#495 yt-dlp",
+      "description": "About yt-dlp, a full featured command-line audio/video downloader"
+    },
+    {
+      "link": "https://codingkata.tardate.com/ruby/comeback-round/",
+      "title": "#494 comebackRound",
+      "description": "Using ruby to find when the winner broke from the pack: cassidoo's interview question of the week (2026-11-08)."
+    }
+  ]
+}

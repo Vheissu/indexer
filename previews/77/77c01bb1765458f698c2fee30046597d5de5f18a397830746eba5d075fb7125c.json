@@ -1,0 +1,34 @@
+{
+  "url": "https://kilb.tech/rss.xml",
+  "title": "Christian Kilb — Blog",
+  "subtitle": "Software engineering thoughts by Christian Kilb",
+  "bytes": 2419,
+  "last": "2026-06-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "software-design"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://kilb.tech/fighting-complexity",
+      "title": "Fighting Complexity",
+      "description": "My actual job, every single day."
+    },
+    {
+      "link": "https://kilb.tech/ship-first",
+      "title": "Ship First, Design Later",
+      "description": "Why I stopped waiting for Figma files."
+    },
+    {
+      "link": "https://kilb.tech/orm-hate",
+      "title": "Don't hate ORMs",
+      "description": "... if you mean Active Records instead."
+    }
+  ]
+}

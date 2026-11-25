@@ -1,0 +1,36 @@
+{
+  "url": "https://anirudharamesh.github.io/feed.xml",
+  "title": "Anirudha Ramesh",
+  "subtitle": "Research Engineer at InstaDeep specializing in AI, Machine Learning, Genomics, Drug Discovery, and Robotics. Sharing insights on AI research and applications.",
+  "bytes": 30248,
+  "last": "2026-03-25",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ai",
+    "robotics",
+    "machine-learning"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://anirudharamesh.github.io/blog/collective-distributed-autoresearch/",
+      "title": "The Birth of a New Era of Distributed Collective Intelligence",
+      "description": "Flexible compute, redefined."
+    },
+    {
+      "link": "https://anirudharamesh.github.io/blog/background-everything/",
+      "title": "Background Everything: The Missing Predictive Coding and Caching Layer in AI",
+      "description": null
+    },
+    {
+      "link": "https://anirudharamesh.github.io/blog/we-solved-execution-now-what/",
+      "title": "We Solved Execution. Now What?",
+      "description": "AI solved execution. The bottleneck now is purpose."
+    }
+  ]
+}

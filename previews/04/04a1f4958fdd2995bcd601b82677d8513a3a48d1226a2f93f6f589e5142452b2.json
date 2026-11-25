@@ -1,0 +1,34 @@
+{
+  "url": "https://marqspusta.com/feed/",
+  "title": "Marq Spusta",
+  "subtitle": null,
+  "bytes": 23154,
+  "last": "2026-10-07",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "posters"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": [
+    {
+      "link": "https://marqspusta.com/studio-projects/studio-posters/yahn-dawn-pretty-lights-poster/",
+      "title": "Yahn Dawn / Pretty Lights Poster",
+      "description": "[ See image gallery at marqspusta.com ] Share/Bookmark"
+    },
+    {
+      "link": "https://marqspusta.com/studio-projects/studio-illustration/league-champions-dogfish-head-x-eaux-claires/",
+      "title": "League Champions (Dogfish Head x Eaux Claires)",
+      "description": "[ See image gallery at marqspusta.com ] Share/Bookmark"
+    },
+    {
+      "link": "https://marqspusta.com/studio-projects/studio-posters/widespread-panic-a-western-jaunt/",
+      "title": "Widespread Panic – A Western Jaunt",
+      "description": "[ See image gallery at marqspusta.com ] Share/Bookmark"
+    }
+  ]
+}

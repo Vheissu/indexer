@@ -1,0 +1,20 @@
+{
+  "url": "https://www.salafisounds.com/feed/",
+  "title": "Salafi Sounds",
+  "subtitle": "المكتبة السلفية Salafi Publications",
+  "bytes": 26118,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "worship",
+    "theology",
+    "islam"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

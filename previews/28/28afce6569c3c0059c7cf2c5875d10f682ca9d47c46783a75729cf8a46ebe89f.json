@@ -1,0 +1,34 @@
+{
+  "url": "https://zoriya.dev/index.xml",
+  "title": "Zoe's blog",
+  "subtitle": "Recent content on my blog",
+  "bytes": 1663,
+  "last": "2026-05-07",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "jwt"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://zoriya.dev//blogs/phantom-token/",
+      "title": "Phantom tokens: JWTs & sessions combined",
+      "description": "Jwt should not be persisted"
+    },
+    {
+      "link": "https://zoriya.dev//posts/shape-of-knowledge/",
+      "title": "The shape of knowledge",
+      "description": null
+    },
+    {
+      "link": "https://zoriya.dev//posts/fun-driven-dev/",
+      "title": "Fun driven development",
+      "description": null
+    }
+  ]
+}

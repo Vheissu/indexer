@@ -1,0 +1,23 @@
+{
+  "url": "https://reedreviews.bearblog.dev/feed/",
+  "title": "ReedReviews",
+  "subtitle": "Welcome to ReedReviews! This is a book blog all about romance, fantasy, and romantasy books. I do book reviews, and I hope to one day do interviews as well.",
+  "bytes": 2535,
+  "last": "2026-10-12",
+  "languages": [],
+  "topics": [
+    "book-review",
+    "book-covers"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://reedreviews.bearblog.dev/bookreview-icebreaker/",
+      "title": "Book Review - Icebreaker",
+      "description": "A review of the hockey romance book Icebreaker."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "url": "https://gianthamster.com/feed/",
+  "title": "Capybara Madness",
+  "subtitle": null,
+  "bytes": 67340,
+  "last": "2026-10-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

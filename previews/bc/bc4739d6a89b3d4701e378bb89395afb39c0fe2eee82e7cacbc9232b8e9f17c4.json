@@ -1,0 +1,16 @@
+{
+  "url": "https://cimss.ssec.wisc.edu/satellite-blog/feed",
+  "title": "CIMSS Satellite Blog",
+  "subtitle": null,
+  "bytes": 106472,
+  "last": "2026-11-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

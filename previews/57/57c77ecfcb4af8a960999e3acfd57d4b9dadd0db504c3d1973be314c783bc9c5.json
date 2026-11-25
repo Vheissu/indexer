@@ -1,0 +1,18 @@
+{
+  "url": "https://luxemagazineottawa.com/feed/",
+  "title": "Luxe Magazine Ottawa",
+  "subtitle": "Ottawa's Lifestyle Magazine",
+  "bytes": 124915,
+  "last": "2026-10-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "travel"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

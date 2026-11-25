@@ -1,0 +1,33 @@
+{
+  "url": "https://ido50.net/feed.rss",
+  "title": "Ido Perlmuter: RSS Feed",
+  "subtitle": "Latest Pages from Ido Perlmuter: RSS Feed",
+  "bytes": 4772,
+  "last": "2026-09-01",
+  "languages": [],
+  "topics": [
+    "idm",
+    "ide"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://ido50.net/content/growing-corn.html",
+      "title": "Growing My Own Corn",
+      "description": null
+    },
+    {
+      "link": "https://ido50.net/content/my-favorite-bread-recipes.html",
+      "title": "My Favorite Bread Recipes",
+      "description": null
+    },
+    {
+      "link": "https://ido50.net/content/how-i-learned-to-stop-worrying.html",
+      "title": "How I Learned to Stop Worrying and Love the Bomb",
+      "description": null
+    }
+  ]
+}

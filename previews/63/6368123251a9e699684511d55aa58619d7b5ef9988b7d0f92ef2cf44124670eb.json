@@ -1,0 +1,32 @@
+{
+  "url": "https://jakesimonds.leaflet.pub/atom",
+  "title": "Jake Simonds's Blog",
+  "subtitle": "prevously latenthomer.leaflet.pub (old blog jakesimonds.github.io)",
+  "bytes": 239508,
+  "last": "2026-11-10",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://jakesimonds.leaflet.pub/3mzy5vnplpk26",
+      "title": "The Reverse Tolstoy Principle (RTP)",
+      "description": "elpicnirP anineraK annA eht :ro"
+    },
+    {
+      "link": "https://jakesimonds.leaflet.pub/3mznytcgug22v",
+      "title": "Wonder Dash-Bench: 2024-2026 in AI and toy robots",
+      "description": "Llama3 -> MCP -> foothills of the singularity"
+    },
+    {
+      "link": "https://jakesimonds.leaflet.pub/3mznsmntvzk24",
+      "title": "(micro-fiction) September 19th-21st, 2028: The Call",
+      "description": "Do you remember how the stars stole the night away?"
+    }
+  ]
+}

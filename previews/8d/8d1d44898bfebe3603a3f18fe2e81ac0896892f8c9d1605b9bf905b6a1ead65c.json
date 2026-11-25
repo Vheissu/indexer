@@ -1,0 +1,35 @@
+{
+  "url": "https://somedaysamdy.bearblog.dev/feed/",
+  "title": "🐇 Someday Samdy",
+  "subtitle": "Hi there, we're Samdy (●'◡'●)/ 4521131365045321254229134342073107474737657_n 45247654786808402519309339011642876610899099_n 452196651504532152089577525302321...",
+  "bytes": 32519,
+  "last": "2026-03-05",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "pregnancy",
+    "baby"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://somedaysamdy.bearblog.dev/33-my-period-arrived-on-the-day-of-the-blood-moon-finally-synced/",
+      "title": "3.3 My period arrived on the day of the blood moon - Finally synced!",
+      "description": "life update of sammy and sandy | blood moon thoughts?"
+    },
+    {
+      "link": "https://somedaysamdy.bearblog.dev/having-a-baby-means-ill-only-have-them-as-a-baby-for-2-of-my-lifetime-if-i-live-up-to-100-years-old/",
+      "title": "Having a baby means I'll only have them as a baby for 2% of my lifetime if I live up to 100 years old",
+      "description": "life update of sammy and sandy | parenthood"
+    },
+    {
+      "link": "https://somedaysamdy.bearblog.dev/entering-2026-with-holiday-flu/",
+      "title": "Entering 2026 with Holiday Flu 😷",
+      "description": "life update of sammy and sandy | entering 2026 with holiday flu 😷"
+    }
+  ]
+}

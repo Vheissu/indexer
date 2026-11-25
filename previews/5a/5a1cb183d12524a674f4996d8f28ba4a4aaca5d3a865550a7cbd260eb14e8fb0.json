@@ -1,0 +1,32 @@
+{
+  "url": "https://pquirrel.neocities.org/rss.xml",
+  "title": "pquirrel's blog",
+  "subtitle": "pquirrel's little personal blog :3",
+  "bytes": 2382,
+  "last": "2026-09-04",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://pquirrel.neocities.org/blog/ffmpeg-reference",
+      "title": "FFMPEG Reference",
+      "description": null
+    },
+    {
+      "link": "https://pquirrel.neocities.org/blog/sploder-in-2026",
+      "title": "The Horror of Sploder's Official 2026 Revival",
+      "description": null
+    },
+    {
+      "link": "https://pquirrel.neocities.org/blog/the-great-silkpost",
+      "title": "The Silksong Compendium",
+      "description": null
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "url": "https://agentultra.com/feed.xml",
+  "title": "Agentultra",
+  "subtitle": "Musings and ramblings on programming and things",
+  "bytes": 4683,
+  "last": "2026-04-27",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "programming"
+  ],
+  "source": {
+    "name": "outcoldman/hackernews-personal-blogs",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://agentultra.com/blog/large-language-models-are-not-table-saws/index.html",
+      "title": "Large Language Models are Not Table Saws",
+      "description": "Musings and ramblings on programming and things"
+    },
+    {
+      "link": "https://agentultra.com/blog/why-array-arguments-decay-to-pointers-in-c/index.html",
+      "title": "Why Array Arguments Decay To Pointers In C",
+      "description": "Musings and ramblings on programming and things"
+    },
+    {
+      "link": "https://agentultra.com/blog/scripting-haskell-applications-with-lua/index.html",
+      "title": "Scripting Haskell Applications with Lua",
+      "description": "Musings and ramblings on programming and things"
+    }
+  ]
+}

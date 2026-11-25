@@ -1,0 +1,32 @@
+{
+  "url": "https://www.dan-davies.co.uk/feed",
+  "title": "Website and blog of Front-end developer and web designer, Dan Davies",
+  "subtitle": "My name is Dan Davies, an experienced and highly skilled web designer and front-end developer from Flintshire, North Wales and currently working in his dining room. Specialising in Web Design, WordPress, HTML, CSS3 and Sass, I build responsive websites that incorporate modern, clean code and am a big advocate of the content first approach. I have worked for some large digital agencies and with some very well known brands.",
+  "bytes": 105714,
+  "last": "2026-11-11",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "simevidas/web-dev-feeds",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.dan-davies.co.uk/media-officer-role-breakdown",
+      "title": "Media Officer Role Breakdown",
+      "description": "The work behind the posts in Welsh football I do the vast majority of the things listed below as part of my role at Holywell Town. Social media, graphics, photography, video, interviews, website updates and the requests that come in around them. Individually, some might seem like small jobs. Put them together over a week […]"
+    },
+    {
+      "link": "https://www.dan-davies.co.uk/a-view-from-inside-the-cymru-premier",
+      "title": "A view from inside the Novira Cymru Premier",
+      "description": "This article reflects my personal views and experiences as a director and media officer at Holywell Town. It is intended as a constructive contribution to the conversation around the new Cymru Premier. The expanded Novira Cymru Premier has brought 16 teams together in Wales’s top tier, creating a league with more visibility, more big occasions […]"
+    },
+    {
+      "link": "https://www.dan-davies.co.uk/volunteering-in-football",
+      "title": "Volunteering in football",
+      "description": "Been thinking about this for a while but the last few days have got me really questioning if I have the skills or the know how to continue doing what I do or at least the level I am doing. As a media officer, club photographer and director, my role is quite involved and it […]"
+    }
+  ]
+}

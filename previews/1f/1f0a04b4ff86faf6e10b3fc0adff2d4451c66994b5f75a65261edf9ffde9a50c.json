@@ -1,0 +1,32 @@
+{
+  "url": "https://binaryigor.com/feed.xml",
+  "title": "Binary Igor",
+  "subtitle": "Some things are either 0 or I. Deeper and broader thinking on commanding binary machines; for programmers and developers driven not just to implement, but to understand deeply, design and build.",
+  "bytes": 25310,
+  "last": "2026-07-13",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://binaryigor.com/the-order-of-data.html",
+      "title": "The Order of Data: defaults, performance, determinism & paging",
+      "description": "How does the database decide on the order, when it is not specified? What about performance? Can returned pages overlap? Meaning: might item from page 1 suddenly appear on page 2, even if the underlying data stays the same?"
+    },
+    {
+      "link": "https://binaryigor.com/the-joy-and-power-of-understanding.html",
+      "title": "The Joy and Power of Understanding",
+      "description": "Deeper understanding of the code and software systems we work on, is not only pragmatic and practical but highly enjoyable as well ... But, if it is both joyful and powerful, why are we so often prone to skip the struggle to understand and take shortcuts, accepting copy-pasted/generated solutions and generic answers, not analyzed?"
+    },
+    {
+      "link": "https://binaryigor.com/modern-frontend-complexity.html",
+      "title": "Modern Frontend Complexity: essential or accidental?",
+      "description": "Once upon a time, at the dawn of the web, browsers and websites were simple ... Then slowly, step by step, more and more interactivity was added."
+    }
+  ]
+}

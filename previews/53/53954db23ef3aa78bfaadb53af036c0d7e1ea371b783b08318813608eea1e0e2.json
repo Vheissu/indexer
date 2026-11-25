@@ -1,0 +1,30 @@
+{
+  "url": "https://greenik03.cc/feed/",
+  "title": "greenik03",
+  "subtitle": "website of internet famous microcelebrity greenik \"03\" underscore",
+  "bytes": 10834,
+  "last": "2026-11-10",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://greenik03.cc/v101/",
+      "title": "v1.0.1",
+      "description": "Website version 1.0.1"
+    },
+    {
+      "link": "https://greenik03.cc/the-first-post/",
+      "title": "The first post",
+      "description": "The first post ever on this website! Hooray!!!"
+    },
+    {
+      "link": "https://greenik03.cc/v10/",
+      "title": "v1.0",
+      "description": "Website version 1.0"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "url": "https://am.jimray.net/atom",
+  "title": "Applied Meteorology",
+  "subtitle": "Perspectives on AT Protocol and The Atmosphere from Jim Ray at Bluesky DevRel",
+  "bytes": 40682,
+  "last": "2026-03-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "atmosphere"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://am.jimray.net/3mhiqbcymx223",
+      "title": "Bring Atmospheric conversations to any website",
+      "description": "Comments on a site don't have to be cumbersome, you can build with the audience and the tools that already exist on Bluesky."
+    },
+    {
+      "link": "https://am.jimray.net/3me75lkz4wk2a",
+      "title": "Atmospheric doesn’t have to be an app",
+      "description": "You can just build features into the websites you've already got!"
+    },
+    {
+      "link": "https://am.jimray.net/3mdecavhkns2t",
+      "title": "What you can do with AT Protocol",
+      "description": "Years of centralized platforms have limited our thinking about what's possible on the web."
+    }
+  ]
+}

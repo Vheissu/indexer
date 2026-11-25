@@ -1,0 +1,32 @@
+{
+  "url": "https://recursewithless.net/atom.xml",
+  "title": "recursewithless.net",
+  "subtitle": null,
+  "bytes": 7358,
+  "last": "2026-10-24",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://recursewithless.net/projects/reviving-ivar-part2.html",
+      "title": "Reviving Ivar, parts 2 and 3",
+      "description": "in which I finally Get Things Done"
+    },
+    {
+      "link": "https://recursewithless.net/emacs/icalendar-diary-import-export.html",
+      "title": "Improving Emacs’ iCalendar support, Part 4: preparing a patch!",
+      "description": "I’m ready to submit my iCalendar implementation to Emacs"
+    },
+    {
+      "link": "https://recursewithless.net/projects/reviving-ivar.html",
+      "title": "Reviving Ivar",
+      "description": "Salvaging a shelf and cabinet"
+    }
+  ]
+}

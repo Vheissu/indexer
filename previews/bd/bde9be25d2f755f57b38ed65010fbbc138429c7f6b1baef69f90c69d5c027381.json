@@ -1,0 +1,34 @@
+{
+  "url": "https://bradleygannon.com/feed.xml",
+  "title": "Bradley Gannon",
+  "subtitle": null,
+  "bytes": 13265,
+  "last": "2026-11-08",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "sorting"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://bradleygannon.com/blog/2026/perilus-part-nine/",
+      "title": "`perilus` Part Nine",
+      "description": null
+    },
+    {
+      "link": "https://bradleygannon.com/blog/2026/perilus-part-eight/",
+      "title": "`perilus`, Part Eight",
+      "description": null
+    },
+    {
+      "link": "https://bradleygannon.com/blog/2026/self-playing-piano-part-eleven/",
+      "title": "Self-Playing Piano, Part Eleven",
+      "description": null
+    }
+  ]
+}

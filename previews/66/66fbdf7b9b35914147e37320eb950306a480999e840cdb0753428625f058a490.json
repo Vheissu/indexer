@@ -1,0 +1,34 @@
+{
+  "url": "https://posts.boy.sh/feed.xml",
+  "title": "posts.boy",
+  "subtitle": "Articles about computers, apps, games, modding and programming.",
+  "bytes": 70767,
+  "last": "2026-03-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "xcode"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://posts.boy.sh/on-dumbphones",
+      "title": "On Dumbphones",
+      "description": "I'm trying to move away from using my iPhone towards a Punkt MP02 or Mudita Kompakt."
+    },
+    {
+      "link": "https://posts.boy.sh/install-ruby-on-apple-silicon",
+      "title": "Install native arm64 Ruby through rbenv on Apple Silicon",
+      "description": "A step-by-step guide on how to properly install Ruby on Apple Silicon powered computers."
+    },
+    {
+      "link": "https://posts.boy.sh/corsair-one-windows-10-2004-update",
+      "title": "Fix Windows 10 2004 update Blue Screen on Corsair ONE",
+      "description": "Update Corsair Link to resolve the blue screen you get while updating."
+    }
+  ]
+}

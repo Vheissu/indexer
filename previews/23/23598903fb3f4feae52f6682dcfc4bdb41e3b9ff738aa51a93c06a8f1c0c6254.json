@@ -1,0 +1,34 @@
+{
+  "url": "https://jfmengels.net/rss.xml",
+  "title": "jfmengels' blog",
+  "subtitle": "Jeroen Engels' blog",
+  "bytes": 13005,
+  "last": "2026-08-26",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "elm"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://jfmengels.net/concurrent-linter-fixes",
+      "title": "Problem with concurrent linter fixes",
+      "description": null
+    },
+    {
+      "link": "https://jfmengels.net/removing-unused-parameters",
+      "title": "Removing unused parameters, and then some",
+      "description": null
+    },
+    {
+      "link": "https://jfmengels.net/essential-and-accidental-configuration",
+      "title": "Essential and accidental configuration",
+      "description": null
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "url": "https://tmtabor.io/feeds/all.atom.xml",
+  "title": "Thorin Tabor",
+  "subtitle": "Staff Software Engineer building agentic AI systems — RAG, MCP and multi-agent pipelines. Notes on making agents reliable.",
+  "bytes": 100204,
+  "last": "2026-09-13",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ai-agents",
+    "agent-orchestration",
+    "agentic-engineering"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://tmtabor.io/blog/genepattern-copilot/",
+      "title": "A hallucinated module, a backfiring RAG pipeline and the MCP server that fixed it",
+      "description": "How an eval suite exposed a RAG pipeline that hurt GenePattern Copilot more than it helped, and what finally fixed it."
+    },
+    {
+      "link": "https://tmtabor.io/blog/genepattern-module-toolkit/",
+      "title": "Orchestrator, planner, six specialists: a multi-agent pipeline that survived production",
+      "description": "How a hierarchical multi-agent pipeline increased GenePattern module production fivefold."
+    }
+  ]
+}

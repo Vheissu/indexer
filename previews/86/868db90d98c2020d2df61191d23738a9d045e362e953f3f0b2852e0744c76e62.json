@@ -1,0 +1,18 @@
+{
+  "url": "https://www.hauspanther.com/feed/",
+  "title": "hauspanther",
+  "subtitle": "CATS + DESIGN",
+  "bytes": 169688,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "kitty"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

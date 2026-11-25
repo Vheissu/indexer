@@ -1,0 +1,34 @@
+{
+  "url": "https://www.lisarobbinyoung.com/feed/",
+  "title": "Lisa Robbin Young",
+  "subtitle": "Decision-Making Strategist | Keynote Speaker | Author",
+  "bytes": 204514,
+  "last": "2026-11-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "decision-making"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.lisarobbinyoung.com/2026/magic-paintbrush-big-decisions/",
+      "title": "Before You Make a Big Decision, Use The Magic Paintbrush",
+      "description": "Or What Budget Cuts, CEO Scandals, And Techno-glitches Teach Us About Lasting Success"
+    },
+    {
+      "link": "https://www.lisarobbinyoung.com/2026/organizational-trust-signals/",
+      "title": "What Is Your Organization Asking People to Trust?",
+      "description": "Or what The Crucible, Portland Public Schools, and AI Mascots are teaching us about trust"
+    },
+    {
+      "link": "https://www.lisarobbinyoung.com/2026/curiosity-ai-organizational-decision-making/",
+      "title": "Curiosity Is a Survival Skill. Are We Training Ourselves to Lose It?",
+      "description": "What a curious toddler, AI, and unchecked ambition can teach us about the questions we stop asking."
+    }
+  ]
+}

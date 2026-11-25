@@ -1,0 +1,32 @@
+{
+  "url": "https://jbarrow.ai/feed",
+  "title": "Joe Barrow",
+  "subtitle": null,
+  "bytes": 6957,
+  "last": "2026-10-30",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://jbarrow.ai/2026-10-23-deep-dive-into-decision-models/",
+      "title": "A Deep Dive into Decision Models",
+      "description": "Understanding what makes decision models tick by investigating Perplexity Decider."
+    },
+    {
+      "link": "https://jbarrow.ai/2026-10-08-why-is-speculative-decoding-fast/",
+      "title": "Why is Speculative Decoding Fast?",
+      "description": "It's not because you do less work. It's because you change the kind of work the GPU is doing."
+    },
+    {
+      "link": "https://jbarrow.ai/2026-09-22-on-policy-distillation-from-scratch/",
+      "title": "On Policy Distillation from Scratch",
+      "description": "Build your own distributed On Policy Distillation (OPD) training setup from scratch."
+    }
+  ]
+}

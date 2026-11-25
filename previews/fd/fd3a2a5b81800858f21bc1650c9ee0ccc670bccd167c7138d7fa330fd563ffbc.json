@@ -1,0 +1,34 @@
+{
+  "url": "https://muchweb.me/feed.xml",
+  "title": "muchweb's home page",
+  "subtitle": "muchweb's home page",
+  "bytes": 21624,
+  "last": "2026-11-01",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "editor"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://muchweb.me/terminal-setup-on-macos-27",
+      "title": "Terminal setup on macOS 27.0",
+      "description": null
+    },
+    {
+      "link": "https://muchweb.me/",
+      "title": "muchweb's home page",
+      "description": null
+    },
+    {
+      "link": "https://muchweb.me/remove-samsung-magician-macos",
+      "title": "Remove Samsung Magician on macOS",
+      "description": null
+    }
+  ]
+}

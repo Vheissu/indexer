@@ -1,0 +1,19 @@
+{
+  "url": "https://www.medicalbrief.co.za/feed/",
+  "title": "Juta MedicalBrief",
+  "subtitle": "MedicalBrief is Africa’s authoritative weekly digest of medical matters, both on the continent and around the world.",
+  "bytes": 68476,
+  "last": "2026-11-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "medicine",
+    "healthcare"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

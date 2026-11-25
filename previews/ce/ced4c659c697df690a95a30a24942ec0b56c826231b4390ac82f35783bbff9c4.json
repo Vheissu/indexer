@@ -1,0 +1,19 @@
+{
+  "url": "https://tsl.news/feed/",
+  "title": "The Student Life",
+  "subtitle": "Claremont Colleges News",
+  "bytes": 143941,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "students",
+    "college"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

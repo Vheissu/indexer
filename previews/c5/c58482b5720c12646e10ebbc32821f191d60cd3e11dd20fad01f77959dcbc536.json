@@ -1,0 +1,35 @@
+{
+  "url": "https://www.calliope.prof/atom/",
+  "title": "Calliope's Magic Library",
+  "subtitle": "I'm Greg, or Calliope, a writer, diviner, and teacher. More About Me.My essays range from 18th century gothic fiction to contemporary animist magical practic...",
+  "bytes": 131577,
+  "last": "2026-10-02",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "literature",
+    "elden-ring"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.calliope.prof/dark_souls_vision/",
+      "title": "The Blind Leading the Blinded: On Dark Souls and Elden Ring",
+      "description": "I am finally trying to get my words around my experiences in a variety of Fromsoft titles, as well as titles from other developers in the same space"
+    },
+    {
+      "link": "https://www.calliope.prof/ttide-thingol-eldamar/",
+      "title": "Tolkien Tide: Thingol & Melian and On the Eldamar",
+      "description": "two short chapters of the Silmarillion"
+    },
+    {
+      "link": "https://www.calliope.prof/june26review/",
+      "title": "June in review",
+      "description": "Books, movies, games, from June 2026"
+    }
+  ]
+}

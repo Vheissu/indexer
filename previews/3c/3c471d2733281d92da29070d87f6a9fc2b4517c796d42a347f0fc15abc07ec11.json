@@ -1,0 +1,32 @@
+{
+  "url": "https://elmin.bearblog.dev/feed.xml",
+  "title": "Elmin",
+  "subtitle": "Hello, I'm Elmin Software Engineer I mostly write about tech and whatever comes to my mind. Building @ Claimable AI Healthcare startup. Subscribe to my blog ...",
+  "bytes": 18303,
+  "last": "2026-05-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://elmin.bearblog.dev/whatever-compiles-003-superteam-season/",
+      "title": "Whatever Compiles #003 — Superteam Season",
+      "description": "Karpathy join Anthropic"
+    },
+    {
+      "link": "https://elmin.bearblog.dev/whatever-compiles-002-spamming-the-infrastructure/",
+      "title": "Whatever Compiles #002 — Spamming the Infrastructure",
+      "description": "OpenClaw battle with Anthropic and Fun things I saw and read"
+    },
+    {
+      "link": "https://elmin.bearblog.dev/whatever-compiles-001-title/",
+      "title": "Whatever Compiles #001 — Do I still enjoy writing code?",
+      "description": "[One honest sentence about what's in this issue]"
+    }
+  ]
+}

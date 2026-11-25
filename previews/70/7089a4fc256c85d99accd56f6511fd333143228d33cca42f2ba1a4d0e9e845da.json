@@ -1,0 +1,32 @@
+{
+  "url": "https://dylanhuang.com/blog/atom.xml",
+  "title": "Dylan Huang Blog",
+  "subtitle": "Dylan Huang Blog",
+  "bytes": 7089,
+  "last": "2026-02-11",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://dylanhuang.com/blog/agents-over-ui",
+      "title": "APIs Over UIs: Agents Are the Future Interface to Everything",
+      "description": "Every database, application, and codebase will be accessed through agents. APIs and MCPs over UIs."
+    },
+    {
+      "link": "https://dylanhuang.com/blog/untold-system-design",
+      "title": "The Untold System Design Problem in LLM Inference",
+      "description": "The untold system design problem in LLM inference."
+    },
+    {
+      "link": "https://dylanhuang.com/blog/evals",
+      "title": "The Impossible Testing Problem for AI Applications",
+      "description": "LLMs make traditional testing untenable; enter benchmarks."
+    }
+  ]
+}

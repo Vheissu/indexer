@@ -1,0 +1,20 @@
+{
+  "url": "https://pointmetotheplane.boardingarea.com/feed/",
+  "title": "Point Me to the Plane",
+  "subtitle": "Your Guide To Points, Planes, Hotels, and Deals",
+  "bytes": 13131,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "travel",
+    "travel-tips",
+    "trip-report"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

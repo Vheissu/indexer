@@ -1,0 +1,22 @@
+{
+  "url": "https://changli.bearblog.dev/feed/",
+  "title": "A software engineer's writing therapy of AI fear",
+  "subtitle": "Hi I'm Li. Here is a place for me to write down my idea rough or polished. Hope to contribute the network with some soulful writing. As a software engineer I...",
+  "bytes": 3058,
+  "last": "2026-04-06",
+  "languages": [],
+  "topics": [
+    "software-engineering"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://changli.bearblog.dev/trying-out-running-llm-on-my-macbook/",
+      "title": "Trying out running LLM on my Macbook",
+      "description": "It's a little bit late to the party to start testing Local LLM deployment using homebrew install ollama but hey it's better late than never. I browse around to decide which model to test out using canirun.ai . it's a useful tool to have a glimpse on what LLMs your machine could handle. Mine is a Apple M2 Pro Chip with 16GB vram. Not powerful but it could handle some decent LLM in the early 2026. I"
+    }
+  ]
+}

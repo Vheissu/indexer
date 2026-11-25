@@ -1,0 +1,32 @@
+{
+  "url": "https://text.marvinborner.de/feed.rss",
+  "title": "Text - Marvin Borner",
+  "subtitle": "Articles about my projects.",
+  "bytes": 7474,
+  "last": "2026-08-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://text.marvinborner.de/2026-08-11-17.html",
+      "title": "A Dual View on Syntax",
+      "description": "Let's imagine walking through $\\lambda$-terms and observing the views, writing down what we see as we go. What will we receive?"
+    },
+    {
+      "link": "https://text.marvinborner.de/2026-04-09-17.html",
+      "title": "Extraordinary Ordinals",
+      "description": "lambda encodings of numbers as graphs. do i have to say more?"
+    },
+    {
+      "link": "https://effekt-lang.org/blog/recursion-schemes/",
+      "title": "Effectful Recursion Schemes",
+      "description": "Recursion schemes, but in the Effekt programming language? Let's find out!"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "url": "https://bookshelffantasies.com/feed/",
+  "title": "Bookshelf Fantasies",
+  "subtitle": "A Life Amidst Books",
+  "bytes": 31272,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "book-covers",
+    "book-review"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

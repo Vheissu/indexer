@@ -1,0 +1,35 @@
+{
+  "url": "https://decovar.dev/index.xml",
+  "title": "Declaration of VAR",
+  "subtitle": "Recent content of Declaration of VAR",
+  "bytes": 23058,
+  "last": "2026-10-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "compilers",
+    "compilation"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://decovar.dev/blog/2026/10/21/hugo-meilisearch/",
+      "title": "Meilisearch on a Hugo-based website",
+      "description": "New post: Meilisearch on a Hugo-based website"
+    },
+    {
+      "link": "https://decovar.dev/blog/2026/06/27/home-assistant-ecowitt-ws90-posting-data-weather-services/",
+      "title": "Ecowitt WS90 in Home Assistant and posting data to weather services",
+      "description": "New post: Ecowitt WS90 in Home Assistant and posting data to weather services"
+    },
+    {
+      "link": "https://decovar.dev/blog/2026/06/04/alexhost-downtime-mirhosting-incident-june-2026/",
+      "title": "AlexHost downtime, MIRhosting incident in June 2026",
+      "description": "New post: AlexHost downtime, MIRhosting incident in June 2026"
+    }
+  ]
+}

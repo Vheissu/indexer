@@ -1,0 +1,34 @@
+{
+  "url": "https://useyourexperience.com/rss.xml",
+  "title": "Use your experience",
+  "subtitle": "Life is an ever-evolving journey of differentiating ourselves from one another. Each individual will respond differently to the same stimuli, which in turn shapes and molds us into unique individuals.",
+  "bytes": 243694,
+  "last": "2026-06-24",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ai"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://useyourexperience.com/software-values",
+      "title": "Software Values",
+      "description": "Translating design values into practical software engineering that define software values"
+    },
+    {
+      "link": "https://useyourexperience.com/whats-the-frequency",
+      "title": "What’s the Frequency?",
+      "description": "A poetic meditation on freedom, law, and the elusive pursuit of truth. This prose delves into the dangers of corruption and the balance of systems"
+    },
+    {
+      "link": "https://useyourexperience.com/pkm-a-means-of-storage-archiving-learning-and-actionable-knowledge-application",
+      "title": "PKM: A means of storage, archiving, learning and actionable knowledge application",
+      "description": "Explore PKM; Obsidian aids efficient learning, autonomy, and organization in the digital age"
+    }
+  ]
+}

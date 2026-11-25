@@ -1,0 +1,22 @@
+{
+  "url": "https://banana4444.bearblog.dev/feed/?type=rss",
+  "title": "4444 Journalism",
+  "subtitle": "This is where I post some of my journalism, incl. exposés Super Blog Directory",
+  "bytes": 3539,
+  "last": "2026-07-30",
+  "languages": [],
+  "topics": [
+    "journalism"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://banana4444.bearblog.dev/zenovay-the-analytics-company-that-doesnt-exist/",
+      "title": "Zenovay: The Analytics Company That Doesn't Exist",
+      "description": "Zenovay presents itself as a Swiss, privacy-first analytics platform that has been operating since 2023. Every part of that is fabricated. Start with the timeline. Zenovay's own About page says the platform launched in 2023. A domain lookup shows zenovay.com wasn't registered until 2025-07-28. The company could not have launched a platform two years before its domain existed. The team is next. The"
+    }
+  ]
+}

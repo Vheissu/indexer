@@ -1,0 +1,37 @@
+{
+  "url": "https://www.huijo.xyz/feed.xml",
+  "title": "pile of thoughts",
+  "subtitle": "Huijo Kim — AI engineer and ex-startup CTO. Writing on agents, machine learning, data engineering, and building companies.",
+  "bytes": 109968,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ai-agents",
+    "engineering",
+    "decision-making",
+    "machine-learning"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.huijo.xyz/how-i-make-hard-decisions/",
+      "title": "How I Make Hard Decisions",
+      "description": "What dropping a feature at hexafarms, rethinking an agent product at VOIDS, and reading Decisive taught me about making hard decisions."
+    },
+    {
+      "link": "https://www.huijo.xyz/HappenToWork/",
+      "title": "AI Coding: Programming by Coincidence at Scale",
+      "description": "AI lets us pile up code we don't understand faster than ever. Working code is not correct code."
+    },
+    {
+      "link": "https://www.huijo.xyz/PairedTestForLLMRelease/",
+      "title": "Is V2 actually better? Paired testing for LLM releases",
+      "description": "How I'd check whether a new prompt really beats production, using 200 pass/fail questions, a paired standard error, and McNemar's test."
+    }
+  ]
+}

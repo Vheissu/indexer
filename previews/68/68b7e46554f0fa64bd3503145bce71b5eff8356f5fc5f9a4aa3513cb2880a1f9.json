@@ -1,0 +1,19 @@
+{
+  "url": "https://heroesmediagroup.com/feed/",
+  "title": "Heroes Media Group",
+  "subtitle": "Where Heroes Tell Their Stories",
+  "bytes": 19978,
+  "last": "2026-09-29",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "veterans-day",
+    "veterans"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

@@ -1,0 +1,16 @@
+{
+  "url": "https://nsmb.com/articles/rss/",
+  "title": "NSMB Articles",
+  "subtitle": "The latest NSMB.com articles as they're publised",
+  "bytes": 16626,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

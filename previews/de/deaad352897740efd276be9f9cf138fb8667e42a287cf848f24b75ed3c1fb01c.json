@@ -1,0 +1,34 @@
+{
+  "url": "https://killjoy.bearblog.dev/rss.xml",
+  "title": "killjoy. with will butler",
+  "subtitle": "Writing on videogames and the ways they break our hearts. I'm Will, a PhD researcher working around the preservation, production, and cultures of videogames....",
+  "bytes": 72199,
+  "last": "2026-07-16",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "gaming"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://killjoy.bearblog.dev/its-time-to-grow-up/",
+      "title": "IT'S TIME TO GROW UP",
+      "description": "Your relationship to games does not have to be governed by platform power."
+    },
+    {
+      "link": "https://killjoy.bearblog.dev/rehabiliating-gamers-image-a-conversation-with-gamers-voice/",
+      "title": "REHABILITATING GAMERS’ IMAGE: A CONVERSATION WITH GAMER’S VOICE",
+      "description": "Gaming is a low trust community."
+    },
+    {
+      "link": "https://killjoy.bearblog.dev/making-music-with-bukowski/",
+      "title": "MAKING MUSIC WITH CHARLES BUKOWSKI",
+      "description": "What's the point in performing if no one is there to see it?"
+    }
+  ]
+}

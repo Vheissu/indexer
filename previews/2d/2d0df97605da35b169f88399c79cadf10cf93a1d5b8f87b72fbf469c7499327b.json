@@ -1,0 +1,34 @@
+{
+  "url": "https://www.vintagerpg.com/feed/",
+  "title": "Vintage RPG",
+  "subtitle": "The Art & History of Tabletop RPGs",
+  "bytes": 62305,
+  "last": "2026-11-24",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "rpg"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.vintagerpg.com/2026/11/drunk-cowboy-2024/",
+      "title": "Drunk Cowboy (2024)",
+      "description": "Aiming is for cowards. The post Drunk Cowboy (2024) appeared first on Vintage RPG ."
+    },
+    {
+      "link": "https://www.vintagerpg.com/2026/11/test-post/",
+      "title": "Test Post",
+      "description": "When this post appears on the site, something is broken! The post Test Post appeared first on Vintage RPG ."
+    },
+    {
+      "link": "https://www.vintagerpg.com/2026/11/weird-heroes-of-public-access-the-role-playing-game-2024/",
+      "title": "Weird Heroes of Public Access: The Role Playing Game (2024)",
+      "description": "Get weird, get public. The post Weird Heroes of Public Access: The Role Playing Game (2024) appeared first on Vintage RPG ."
+    }
+  ]
+}

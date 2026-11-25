@@ -1,0 +1,34 @@
+{
+  "url": "https://alienlebarge.ch/feed.rss",
+  "title": "alienlebarge",
+  "subtitle": "Flux RSS agrégé de tous les contenus : articles, notes, photos, bookmarks et jams",
+  "bytes": 14345,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "photography"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://alienlebarge.ch/notes/2026-11-20-09-10",
+      "title": "2026-11-20-09-10",
+      "description": "Ah, how good it was back when I used to go to my record shop and the owner would put together a little selection of music I absolutely had to listen to. Those were the good old days, before these algorithms started throwing any old rubbish at you. Well, I’ve found that again with https://www.cantilever-music.com/ . Every month, a selection of albums chosen by real people. If you’re a music lover,"
+    },
+    {
+      "link": "https://alienlebarge.ch/jams/daniel-rossen-shadow-in-the-frame",
+      "title": "Shadow in the Frame",
+      "description": null
+    },
+    {
+      "link": "https://alienlebarge.ch/jams/bonobo-joy-crookes-always-on-your-side",
+      "title": "Always on Your Side",
+      "description": null
+    }
+  ]
+}

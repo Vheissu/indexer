@@ -1,0 +1,34 @@
+{
+  "url": "https://radiant.computer/log/rss.xml",
+  "title": "Radiant Computer Log",
+  "subtitle": "A new kind of personal computer",
+  "bytes": 4360,
+  "last": "2026-02-26",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "logging"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://radiant.computer/log/012-radiance-fixed-point/",
+      "title": "Radiant Log #012",
+      "description": "A fixed point has been reached"
+    },
+    {
+      "link": "https://radiant.computer/log/011-radiance-intermediate-language/",
+      "title": "Radiant Log #011",
+      "description": "Radiance Intermediate Language"
+    },
+    {
+      "link": "https://radiant.computer/log/010-a-semantic-analyzer-in-r/",
+      "title": "Radiant Log #010",
+      "description": "A Semantic Analyzer in R'"
+    }
+  ]
+}

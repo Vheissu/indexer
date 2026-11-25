@@ -1,0 +1,19 @@
+{
+  "url": "https://www.lkldnow.com/feed/",
+  "title": "LkldNow",
+  "subtitle": "Independent, local news about Lakeland, Fl.",
+  "bytes": 41583,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "lakes",
+    "downtown"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

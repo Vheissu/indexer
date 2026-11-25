@@ -1,0 +1,23 @@
+{
+  "url": "https://intricate.software/index.xml",
+  "title": "Intricate Software",
+  "subtitle": "Recent content on Intricate Software",
+  "bytes": 959,
+  "last": "2025-11-26",
+  "languages": [],
+  "topics": [
+    "types",
+    "static-typing"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://intricate.software/languages/typeclasses/",
+      "title": "Typeclasses are Interfaces 2.0: From Java to Rust",
+      "description": "A powerful feature for static typing, made simple."
+    }
+  ]
+}

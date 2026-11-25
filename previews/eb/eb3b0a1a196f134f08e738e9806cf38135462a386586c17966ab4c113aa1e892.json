@@ -1,0 +1,34 @@
+{
+  "url": "https://topicpartition.io/index.xml",
+  "title": "TopicPartition",
+  "subtitle": "Last 10 notes on TopicPartition",
+  "bytes": 5257,
+  "last": "2026-11-09",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "kafka"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://topicpartition.io/kafka/kafka",
+      "title": "Kafka",
+      "description": "Kafka is a good thing."
+    },
+    {
+      "link": "https://topicpartition.io/kafka/community/",
+      "title": "Kafka Community Spotlight 🔦",
+      "description": "Kafka Community Spotlight is an initiative to bring more life, depth, and visibility to the Kafka community by regularly highlighting the people involved in Kafka ..."
+    },
+    {
+      "link": "https://topicpartition.io/definitions/the-log",
+      "title": "The Log Data Structure",
+      "description": "The Log is the data structure that Kafka is based on. It’s very simple. It’s an ordered structure of bytes that only supports appends — you can’t edit or delete records in place."
+    }
+  ]
+}

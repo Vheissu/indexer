@@ -1,0 +1,34 @@
+{
+  "url": "https://ceres1.space/posts/index.xml",
+  "title": "Posts on Coding in Space",
+  "subtitle": "Recent content in Posts on Coding in Space",
+  "bytes": 3455,
+  "last": "2026-08-06",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "llm-evaluation"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://ceres1.space/posts/llms-from-the-beginning/the-next-token/",
+      "title": "LLMs, from the Beginning — Part 1: The Next Token",
+      "description": "See how next-token completion becomes few-shot prompting, chat, tool use, and reasoning through interactive, token-level exhibits."
+    },
+    {
+      "link": "https://ceres1.space/posts/llms-from-the-beginning/remembering-the-prompt/",
+      "title": "LLMs, from the Beginning — Part 2: Remembering the Prompt",
+      "description": "Open the KV cache, count what every remembered token costs, and explore how modern attention designs handle long context."
+    },
+    {
+      "link": "https://ceres1.space/posts/llms-from-the-beginning/breaking-the-one-token-barrier/",
+      "title": "LLMs, from the Beginning — Part 3: Breaking the One-Token Barrier",
+      "description": "Connect arithmetic intensity, continuous batching, sparse experts, and speculative decoding to the latency each user feels."
+    }
+  ]
+}

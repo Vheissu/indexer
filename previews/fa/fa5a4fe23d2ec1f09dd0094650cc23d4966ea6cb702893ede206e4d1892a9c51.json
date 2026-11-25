@@ -1,0 +1,35 @@
+{
+  "url": "https://tallywinkle.bearblog.dev/atom/",
+  "title": "coffee spills",
+  "subtitle": "posting thoughts that i think in my head",
+  "bytes": 33291,
+  "last": "2026-10-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "coffee",
+    "blaugust"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://tallywinkle.bearblog.dev/life-lately-oct-2026/",
+      "title": "life lately, oct 2026",
+      "description": "a bit about my life, lately"
+    },
+    {
+      "link": "https://tallywinkle.bearblog.dev/farewell-blaugust/",
+      "title": "farewell, blaugust",
+      "description": "reflecting on blaugust 2026"
+    },
+    {
+      "link": "https://tallywinkle.bearblog.dev/my-tarot-decks/",
+      "title": "my tarot decks",
+      "description": "A show-and-tell of my various tarot decks"
+    }
+  ]
+}

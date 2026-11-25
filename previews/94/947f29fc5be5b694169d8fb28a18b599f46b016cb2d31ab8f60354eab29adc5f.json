@@ -1,0 +1,18 @@
+{
+  "url": "https://bibliosanctum.com/feed/",
+  "title": "The BiblioSanctum",
+  "subtitle": "A Book Blog for Speculative Fiction, Graphic Novels... and more!",
+  "bytes": 107954,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "book-review"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

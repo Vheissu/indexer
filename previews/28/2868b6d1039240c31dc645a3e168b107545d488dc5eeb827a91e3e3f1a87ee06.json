@@ -1,0 +1,34 @@
+{
+  "url": "https://elkraneo.com/rss/",
+  "title": "elkraneo Blog",
+  "subtitle": "Accessibility, XR, Swift, Dada,, Comics, ...",
+  "bytes": 161740,
+  "last": "2026-11-11",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "virtual-reality"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://elkraneo.com/realitybox3d/",
+      "title": "RealityBox3D",
+      "description": "Erin Catto's Box3D inside RealityKit."
+    },
+    {
+      "link": "https://elkraneo.com/realitysdfphysics/",
+      "title": "RealitySDFPhysics",
+      "description": "Rigid bodies made of signed distance fields for RealityKit, so concave shapes collide as they are."
+    },
+    {
+      "link": "https://elkraneo.com/selection-effects-realitykit/",
+      "title": "Selection Effects for RealityKit",
+      "description": "A HoverEffectComponent-shaped API for selections in RealityKit."
+    }
+  ]
+}

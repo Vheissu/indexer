@@ -1,0 +1,34 @@
+{
+  "url": "https://petetasker.com/rss.xml",
+  "title": "🔥 Database Critical 🔥",
+  "subtitle": "Peter Tasker is a software developer located in Ottawa Ontario, Canada.",
+  "bytes": 4035,
+  "last": "2025-12-12",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "phpstorm"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://petetasker.com/now-we-re-running-with-astro/",
+      "title": "Now we're running with Astro 💪",
+      "description": null
+    },
+    {
+      "link": "https://petetasker.com/wordpress-to-gatsby/",
+      "title": "An introduction to Gatsby for WordPress Developers",
+      "description": null
+    },
+    {
+      "link": "https://petetasker.com/using-async-await-jquerys-ajax/",
+      "title": "Using async await with jQuery's $.ajax",
+      "description": null
+    }
+  ]
+}

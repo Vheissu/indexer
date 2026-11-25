@@ -1,0 +1,32 @@
+{
+  "url": "https://martymarkenson.com/rss",
+  "title": "Marty Markenson's Blog",
+  "subtitle": "Marty Markenson's blog RSS feed https://martymarkenson.com/rss",
+  "bytes": 11060,
+  "last": "2026-09-13",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://martymarkenson.com/blog/20-years-of-tinkering-online",
+      "title": "20 Years of Tinkering Online",
+      "description": "From Banana Hands on YouTube to RSStoKindle, working on digital projects has melted into my daily routine. Now I build for myself and share with others."
+    },
+    {
+      "link": "https://martymarkenson.com/blog/rsstokindle-is-on-product-hunt",
+      "title": "RSStoKindle Is on Product Hunt",
+      "description": "I launched for the backlinks, but making the launch content reminded me why I built this thing in the first place."
+    },
+    {
+      "link": "https://martymarkenson.com/blog/replacing-my-screentime-with-reading",
+      "title": "Replacing My Screentime with Reading",
+      "description": "My goal this week is for my Kindle to be at the top of my phone screen time report, so I started vibe coding tools to make it happen."
+    }
+  ]
+}

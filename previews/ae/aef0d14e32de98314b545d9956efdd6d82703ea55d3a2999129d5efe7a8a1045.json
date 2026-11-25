@@ -1,0 +1,18 @@
+{
+  "url": "https://www.ilounge.com/feed",
+  "title": "iLounge",
+  "subtitle": "All things iPod, iPhone, iPad and Beyond",
+  "bytes": 13521,
+  "last": "2026-11-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ipod"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

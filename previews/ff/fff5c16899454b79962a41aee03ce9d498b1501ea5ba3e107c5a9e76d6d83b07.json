@@ -1,0 +1,18 @@
+{
+  "url": "https://feeds.thelocal.com/rss/fr",
+  "title": "The Local France",
+  "subtitle": "Read the latest news and views from France in English",
+  "bytes": 18602,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "france"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

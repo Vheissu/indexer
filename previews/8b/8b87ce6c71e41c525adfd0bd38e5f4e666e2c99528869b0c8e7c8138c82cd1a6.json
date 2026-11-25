@@ -1,0 +1,32 @@
+{
+  "url": "https://scannedinavian.com/atom.xml",
+  "title": "shapr's RSS feed",
+  "subtitle": "writings by shae",
+  "bytes": 26728,
+  "last": "2026-07-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.scannedinavian.com/no-central-server-only-bittorrent.html",
+      "title": "No central server, only BitTorrent",
+      "description": "BEP 44 - store 1000 bytes on the BitTorrent distributed hash table"
+    },
+    {
+      "link": "https://www.scannedinavian.com/monoidal-hashing.html",
+      "title": "Monoidal Hashing",
+      "description": "Data deduplication with monoidal hashing"
+    },
+    {
+      "link": "https://www.scannedinavian.com/can-you-discover-unknown-elements-by-calculating-their-spectra.html",
+      "title": "Can you discover unknown elements by calculating their spectra?",
+      "description": "physics, astronomy"
+    }
+  ]
+}

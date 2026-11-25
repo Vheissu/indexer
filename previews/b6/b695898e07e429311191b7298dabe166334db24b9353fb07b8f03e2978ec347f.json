@@ -1,0 +1,32 @@
+{
+  "url": "https://home.expurple.me/index.xml",
+  "title": "Home on Dmitrii Aleksandrov",
+  "subtitle": "Recent content in Home on Dmitrii Aleksandrov",
+  "bytes": 7898,
+  "last": "2026-10-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://home.expurple.me/inspiration/music/",
+      "title": "Music 🎸",
+      "description": "My favorite bands and albums."
+    },
+    {
+      "link": "https://home.expurple.me/posts/agents-make-rebase-a-no-brainer/",
+      "title": "Agents Make Rebase a No-Brainer",
+      "description": "You need to revise your Git strategy."
+    },
+    {
+      "link": "https://home.expurple.me/posts/a-big-standard-library-is-overkill/",
+      "title": "A Big Standard Library Is Overkill",
+      "description": "Securing the supply chain without cementing the APIs."
+    }
+  ]
+}

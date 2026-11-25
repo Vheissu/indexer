@@ -1,0 +1,29 @@
+{
+  "url": "https://huschi.bearblog.dev/feed/",
+  "title": "Huschi's Blog",
+  "subtitle": "My Blog about various ideas of mine. Mostly math and technical, sometimes philosophical. You can subscribe to this blog via RSS Feed If you want to talk, you...",
+  "bytes": 28289,
+  "last": "2026-02-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "math"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://huschi.bearblog.dev/the-final-benchmark/",
+      "title": "The Final Benchmark",
+      "description": "AI benchmarks keep getting saturated. Formal Conjectures, built on open math problems in Lean, offers a verifiable alternative that can scale with intelligence."
+    },
+    {
+      "link": "https://huschi.bearblog.dev/autoproving-the-future-of-math/",
+      "title": "Autoproving: The future of Math",
+      "description": "AI autoproving is changing mathematics forever. Explore the spectrum from current systems to the Math Singularity and what it means."
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "url": "http://feeds.feedburner.com/philipwalton",
+  "title": "Philip Walton",
+  "subtitle": null,
+  "bytes": 13913,
+  "last": "2026-09-14",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "web-performance"
+  ],
+  "source": {
+    "name": "simevidas/web-dev-feeds",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://philipwalton.com/articles/modern-web-types/",
+      "title": "Modern Web Types",
+      "description": null
+    },
+    {
+      "link": "https://philipwalton.com/articles/the-state-of-es5-on-the-web/",
+      "title": "The State of ES5 on the Web",
+      "description": null
+    },
+    {
+      "link": "https://philipwalton.com/articles/dynamic-lcp-priority/",
+      "title": "Dynamic LCP Priority: Learning from Past Visits",
+      "description": null
+    }
+  ]
+}

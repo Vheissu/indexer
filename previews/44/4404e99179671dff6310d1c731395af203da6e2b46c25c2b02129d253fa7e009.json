@@ -1,0 +1,18 @@
+{
+  "url": "https://dnbstories.com/feed",
+  "title": "DNB Stories Africa",
+  "subtitle": "Black and African Experiences. Research. Culture. Stories.",
+  "bytes": 18492,
+  "last": "2026-11-11",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "race"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

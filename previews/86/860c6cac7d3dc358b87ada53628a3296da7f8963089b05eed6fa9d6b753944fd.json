@@ -1,0 +1,35 @@
+{
+  "url": "https://www.manveerbhullar.com/rss.xml",
+  "title": "Manveer Bhullar: Notes",
+  "subtitle": "Notes from Manveer Bhullar, a platform engineer shipping writing and small projects on platform engineering, developer infrastructure, AI tooling, and the occasional thing built along the way. New entries land here as they are published.",
+  "bytes": 5335,
+  "last": "2026-09-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "writing",
+    "ai"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://manveerbhullar.com/writing/roleready-live/",
+      "title": "RoleReady is live",
+      "description": "RoleReady is out in production and shipping weekly. I built it for my own job search and I use it every day."
+    },
+    {
+      "link": "https://manveerbhullar.com/writing/turing-window/",
+      "title": "When does your AI writing turn into slop?",
+      "description": "AI in your writing is fine. The question is where it crosses into slop."
+    },
+    {
+      "link": "https://manveerbhullar.com/writing/turing-window-ai/",
+      "title": "The Turing Window: The Shelf Life of an AI-ism",
+      "description": "Every AI-ism has a shelf life. It is the brief window where generated writing still passes as human before people learn to spot it."
+    }
+  ]
+}

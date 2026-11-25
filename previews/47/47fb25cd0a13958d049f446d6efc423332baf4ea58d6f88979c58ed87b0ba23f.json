@@ -1,0 +1,18 @@
+{
+  "url": "https://thehogring.com/feed/",
+  "title": "The Hog Ring",
+  "subtitle": "Auto Upholstery Community",
+  "bytes": 10270,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "cars"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

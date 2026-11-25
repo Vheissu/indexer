@@ -1,0 +1,20 @@
+{
+  "url": "https://writersrumpus.com/feed/",
+  "title": "WRITERS' RUMPUS",
+  "subtitle": "Authors & Illustrators Wild About Kidlit!",
+  "bytes": 35383,
+  "last": "2026-11-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "childrens-books",
+    "picture-books",
+    "book-review"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

@@ -1,0 +1,18 @@
+{
+  "url": "https://www.alabamas42.com/feed/",
+  "title": "Alabama's 42",
+  "subtitle": null,
+  "bytes": 37212,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "alabama"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

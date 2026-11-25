@@ -1,0 +1,32 @@
+{
+  "url": "https://hackyexperiments.vercel.app/feed.xml",
+  "title": "Hacky Experiments",
+  "subtitle": "Bilal Tahir's playground for AI experiments, technical deep dives, and product engineering — built with Next.js, Tailwind CSS, and a love for shipping fast.",
+  "bytes": 6831,
+  "last": "2026-09-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.hackyexperiments.com/blog/why-im-not-worried-about-ai-killing-us-all",
+      "title": "Why I'm Not Worried About AI Killing Us All",
+      "description": "TLDR: We'll probably be ok. And if not, that's ok too. Either way, it was bound to happen."
+    },
+    {
+      "link": "https://www.hackyexperiments.com/blog/everything-is-downstream-of-technology",
+      "title": "Everything Is Downstream of Technology",
+      "description": "In which I tell you why the only thing that matters is technology."
+    },
+    {
+      "link": "https://www.hackyexperiments.com/blog/why-i-write",
+      "title": "Why I Write",
+      "description": "I used to write for myself, but am doing it increasingly more for the machines."
+    }
+  ]
+}

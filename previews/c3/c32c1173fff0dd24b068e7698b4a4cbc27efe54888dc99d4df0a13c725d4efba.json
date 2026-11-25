@@ -1,0 +1,32 @@
+{
+  "url": "https://www.abstracted.in/rss.xml",
+  "title": "Abstracted.in",
+  "subtitle": "Passionate JS Developer",
+  "bytes": 2727,
+  "last": "2026-01-04",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.abstracted.in/blog/building-ui-components-correctly",
+      "title": "Building UI Components Correctly in the Age of AI",
+      "description": "What I learned as a frontend engineer by doing things wrong."
+    },
+    {
+      "link": "https://www.abstracted.in/blog/promise-polyfill",
+      "title": "Understanding Promise Chaining",
+      "description": "I thought I knew Promise, until I started writing a polyfill for it. And I am not alone. :D"
+    },
+    {
+      "link": "https://www.abstracted.in/blog/encrypted-photo-app",
+      "title": "Creating an End-to-End Encrypted alternative to Google Photos",
+      "description": "When working 40 hours a week isn't painful enough."
+    }
+  ]
+}

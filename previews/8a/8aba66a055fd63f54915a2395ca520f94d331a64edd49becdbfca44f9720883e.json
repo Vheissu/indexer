@@ -1,0 +1,35 @@
+{
+  "url": "https://lucastononro.github.io/feed.xml",
+  "title": "Tonon Journey",
+  "subtitle": "Lucas Tonon builds tools for coding agents and writes down what happened. Skills, experiments, and the occasional evening lost to a shell script.",
+  "bytes": 1741122,
+  "last": "2026-10-25",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ai-coding-agents",
+    "ai-agents"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://lucastononro.github.io/how-you-could-have-invented-muon-from-memory/",
+      "title": "how you could have invented muon from memory",
+      "description": "The matrix trick hiding in plain sight that made AdamW look less inevitable."
+    },
+    {
+      "link": "https://lucastononro.github.io/after-the-white-rabbit/",
+      "title": "after the white rabbit: an Unlock! adventure from tabletop to 3D",
+      "description": "A browser adventure inspired by Unlock!, built with Codex, Blender and Three.js. How we adapted the puzzles and fixed the models that got in their way."
+    },
+    {
+      "link": "https://lucastononro.github.io/pr-review-evidence/",
+      "title": "pr-review-evidence: a desktop nobody can see",
+      "description": "Agents can describe a change but never show it working. So give one its own screen and record it."
+    }
+  ]
+}

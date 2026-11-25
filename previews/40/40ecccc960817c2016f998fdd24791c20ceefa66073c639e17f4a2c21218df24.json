@@ -1,0 +1,16 @@
+{
+  "url": "https://thestorysanctuary.com/feed/",
+  "title": "The Story Sanctuary",
+  "subtitle": "Find your perfect book.",
+  "bytes": 24312,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

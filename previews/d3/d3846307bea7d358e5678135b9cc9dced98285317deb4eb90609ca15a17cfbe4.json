@@ -1,0 +1,19 @@
+{
+  "url": "https://wickerpark.org/feed/",
+  "title": "Wicker Park Advisory Council",
+  "subtitle": "A non-pofit supporting Wicker Park's namesake park.",
+  "bytes": 80823,
+  "last": "2026-10-28",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "park",
+    "state-park"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

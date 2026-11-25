@@ -1,0 +1,19 @@
+{
+  "url": "https://allanimemags.com/feed/",
+  "title": "All About Anime and Manga",
+  "subtitle": "By Otaku for Otaku",
+  "bytes": 16847,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "manga",
+    "anime"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

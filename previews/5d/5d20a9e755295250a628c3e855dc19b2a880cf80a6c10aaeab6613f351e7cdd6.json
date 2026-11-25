@@ -1,0 +1,34 @@
+{
+  "url": "https://nickdichev.com/rss.xml",
+  "title": "Relax, it's software",
+  "subtitle": "Relax, it's software | A blog by Nick Dichev",
+  "bytes": 2269,
+  "last": "2026-03-02",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "software"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://nickdichev.com/blog/you-can-just-deploy-things/",
+      "title": "You Can Just Deploy Things",
+      "description": "How Nix makes it trivially easy to deploy software on your home server."
+    },
+    {
+      "link": "https://nickdichev.com/blog/state-of-the-homelab-early-2026/",
+      "title": "State Of The Homelab - Early 2026",
+      "description": "A snapshot of the current state of my homelab."
+    },
+    {
+      "link": "https://nickdichev.com/blog/elixir-huffman-pt3/",
+      "title": "Compressing Text Files With Elixir (part 3)",
+      "description": "Recover the original input from the compressed data."
+    }
+  ]
+}

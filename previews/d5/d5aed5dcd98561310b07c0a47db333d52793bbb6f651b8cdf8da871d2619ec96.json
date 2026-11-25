@@ -1,0 +1,32 @@
+{
+  "url": "https://www.jamestitcumb.com/feed",
+  "title": "James Titcumb's blog",
+  "subtitle": "This is James Titcumb's personal PHP-related blog posts.",
+  "bytes": 36936,
+  "last": "2026-07-28",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.jamestitcumb.com/posts/git-log-graph-history-visualisation",
+      "title": "Visualise your Git tree on the CLI",
+      "description": "Visualise your Git tree on the CLI"
+    },
+    {
+      "link": "https://www.jamestitcumb.com/posts/generics-template-class-string",
+      "title": "Generics tip for class-string",
+      "description": "Generics tip for class-string"
+    },
+    {
+      "link": "https://www.jamestitcumb.com/posts/webmentions",
+      "title": "Replacing My Comments section with Webmentions",
+      "description": "Replacing My Comments section with Webmentions"
+    }
+  ]
+}

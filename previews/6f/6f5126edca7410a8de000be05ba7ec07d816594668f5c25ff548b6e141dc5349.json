@@ -1,0 +1,21 @@
+{
+  "url": "https://crooksandliars.com/feeds/latest",
+  "title": "Latest articles from Crooks and Liars",
+  "subtitle": "The latest articles from Crooks and Liars",
+  "bytes": 65703,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "fox-news",
+    "us-politics",
+    "trump-administration",
+    "trump"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

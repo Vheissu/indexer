@@ -1,0 +1,34 @@
+{
+  "url": "https://theosoti.com/rss.xml",
+  "title": "CSS Tips by Theo Soti for Web and Frontend Developers",
+  "subtitle": "Theosoti is a frontend blog sharing CSS tutorials, practical guides, and bite-sized tips on modern web development and UI design.",
+  "bytes": 47493,
+  "last": "2026-11-01",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "css"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://theosoti.com/blog/css-layer-scope-bugs-tailwind-prevents/",
+      "title": "Leaving Tailwind? 4 CSS Bugs It Was Protecting You From",
+      "description": "Tailwind prevents specificity fights, class collisions, and leaking styles. Reproduce each bug in a live demo, then fix it with native @layer and @scope."
+    },
+    {
+      "link": "https://theosoti.com/blog/css-reading-flow-reading-order-without-javascript/",
+      "title": "CSS reading-flow: Fix Grid and Flexbox Tab Order Without JavaScript",
+      "description": "Use CSS reading-flow and reading-order to align keyboard navigation with responsive Grid and Flexbox layouts, without tabindex or JavaScript."
+    },
+    {
+      "link": "https://theosoti.com/short/accessible-css-generated-images/",
+      "title": "Add alternative text to CSS generated images",
+      "description": "Use the slash syntax of the CSS content property to provide replacement text for generated images while keeping meaningful content in HTML."
+    }
+  ]
+}

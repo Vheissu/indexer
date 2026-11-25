@@ -1,0 +1,32 @@
+{
+  "url": "https://sophiebits.com/atom.xml",
+  "title": "Sophie Alpert",
+  "subtitle": null,
+  "bytes": 8793,
+  "last": "2026-06-25",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "tuan3w/awesome-tech-rss",
+    "license": "CC0-1.0"
+  },
+  "posts": [
+    {
+      "link": "http://sophiebits.com/2026/06/25/there-are-no-lossless-transformations-of-natural-language-text",
+      "title": "There are no lossless transformations of natural-language text",
+      "description": null
+    },
+    {
+      "link": "http://sophiebits.com/2025/12/16/deconstructing-services",
+      "title": "Deconstructing “services”",
+      "description": null
+    },
+    {
+      "link": "http://sophiebits.com/2025/09/09/ai-agents-security",
+      "title": "I don’t want AI agents controlling my laptop",
+      "description": null
+    }
+  ]
+}

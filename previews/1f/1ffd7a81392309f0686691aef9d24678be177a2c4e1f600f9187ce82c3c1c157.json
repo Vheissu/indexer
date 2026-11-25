@@ -1,0 +1,34 @@
+{
+  "url": "https://craighamill.com/writing/rss.xml",
+  "title": "Craig Hamill — Writing",
+  "subtitle": "Notes on technology leadership, innovation, and enterprise transformation.",
+  "bytes": 37736,
+  "last": "2026-06-03",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "tech-leadership"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://craighamilldotcom.lovable.app/blog/chose-bikes",
+      "title": "Chose Bikes - Substack",
+      "description": "Chose Bikes"
+    },
+    {
+      "link": "https://craighamilldotcom.lovable.app/blog/no-one-navigates-a-career-transition-alone",
+      "title": "No One Navigates a Career Transition Alone",
+      "description": "Being in transition during a difficult time of year, while also navigating a job market that can only be described as ‘absolutely bananas’, is hard to fully explain unless you have gone through it."
+    },
+    {
+      "link": "https://craighamilldotcom.lovable.app/blog/HowToReduceCyberRisksAcrossConnectedDevicesAndServices",
+      "title": "How To Reduce Cyber Risks Across Connected Devices And Services - Forbes Tech Council",
+      "description": "Recognize That Everyone Is A Cyber Target"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "url": "http://russmatney.com/rss.xml",
+  "title": "Russell Matney",
+  "subtitle": "Devlogs, blog posts, and notes from Russell Matney",
+  "bytes": 73746,
+  "last": "2026-10-04",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "devlog"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://russmatney.com/posts/fivers/2026-10-04-five-game-recs-random-indie-faves/",
+      "title": "Five Game Recs: Random Indie Faves",
+      "description": null
+    },
+    {
+      "link": "https://russmatney.com/posts/fivers/2026-09-08-five-game-recs-new-faves/",
+      "title": "Five Game Recs: New Faves",
+      "description": null
+    },
+    {
+      "link": "https://russmatney.com/posts/fivers/2026-10-17-five-things-i-love-in-games-gimmicks/",
+      "title": "Five Things I Love In Games: Gimmicks",
+      "description": null
+    }
+  ]
+}

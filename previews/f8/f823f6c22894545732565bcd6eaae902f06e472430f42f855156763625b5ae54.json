@@ -1,0 +1,32 @@
+{
+  "url": "https://dicioccio.fr/atom.xml",
+  "title": "Lucas DiCioccio's Blog",
+  "subtitle": null,
+  "bytes": 878298,
+  "last": "2026-03-06",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "outcoldman/hackernews-personal-blogs",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://dicioccio.fr/my-ai-workflow.html",
+      "title": "My AI workflow with agents-exe",
+      "description": "Reporting on my recently-upgraded AI-supported development workflow."
+    },
+    {
+      "link": "https://dicioccio.fr/postgrest-over-cloudrun.html",
+      "title": "Running PostgREST in Google Cloud-Run",
+      "description": "Running PostgREST over CloudRun: it works well and it's affordable."
+    },
+    {
+      "link": "https://dicioccio.fr/on-self-hosting.html",
+      "title": "On self-hosting",
+      "description": "An article discussing the tradeoffs of self-hosting."
+    }
+  ]
+}

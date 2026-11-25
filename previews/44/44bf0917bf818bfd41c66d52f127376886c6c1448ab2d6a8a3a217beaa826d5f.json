@@ -1,0 +1,18 @@
+{
+  "url": "https://east-fruit.com/en/feed/",
+  "title": "EastFruit",
+  "subtitle": "Информация о рынке овощей, фруктов, ягод и орехов Восточной Европы и Центральной Азии",
+  "bytes": 58883,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "agriculture"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

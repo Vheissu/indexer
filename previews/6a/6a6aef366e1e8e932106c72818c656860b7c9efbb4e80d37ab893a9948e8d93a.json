@@ -1,0 +1,21 @@
+{
+  "url": "https://janalinesworldjourney.com/feed/",
+  "title": "Janaline's world journey",
+  "subtitle": "My sometimes Strange, but usually Wonderful Experiences and Adventures as I Travel through this amazing World we live in.",
+  "bytes": 226543,
+  "last": "2026-11-06",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "travel",
+    "shanghai",
+    "asia",
+    "china"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

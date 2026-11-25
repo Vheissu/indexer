@@ -1,0 +1,30 @@
+{
+  "url": "https://www.naths.in/rss.xml",
+  "title": "naths.in",
+  "subtitle": "Naren Gogi >> Posts",
+  "bytes": 3317,
+  "last": "2026-09-08",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.naths.in/blog/lesswrong",
+      "title": "Lesswrong",
+      "description": null
+    },
+    {
+      "link": "https://www.naths.in/blog/a-camera-in-my-face",
+      "title": "A Camera In My Face",
+      "description": null
+    },
+    {
+      "link": "https://www.naths.in/blog/27",
+      "title": "Twenty Seven",
+      "description": null
+    }
+  ]
+}

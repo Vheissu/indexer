@@ -1,0 +1,22 @@
+{
+  "url": "https://manuelzubieta.com/rss.xml",
+  "title": "Manuel Zubieta",
+  "subtitle": "In this blog you will find insights on different software engineering topics: testing, distributed sistems, architecture, cloud and more",
+  "bytes": 738,
+  "last": "2026-08-08",
+  "languages": [],
+  "topics": [
+    "testing"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://manuelzubieta.com/blog/wiremock-http-providers/",
+      "title": "Contract testing with WireMock",
+      "description": "Stub third-party APIs with WireMock in Docker, drive them from pytest, and use realistic response datasets instead of hand-wavy fixtures."
+    }
+  ]
+}

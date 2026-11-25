@@ -1,0 +1,35 @@
+{
+  "url": "https://konstantinlebedev.com/rss.xml",
+  "title": "Konstantin Lebedev blog",
+  "subtitle": "Personal and technical blog",
+  "bytes": 6634,
+  "last": "2026-07-27",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "react",
+    "typescript"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://konstantinlebedev.com/hacker-holidays/",
+      "title": "Hacker Holidays CTF writeup",
+      "description": null
+    },
+    {
+      "link": "https://konstantinlebedev.com/bypassing-automated-traffic-detection/",
+      "title": "Bypassing automated traffic detection",
+      "description": "How bot detection really works — from User-Agent and header checks to TLS fingerprinting — and why your scripts get a 403 while the browser gets through."
+    },
+    {
+      "link": "https://konstantinlebedev.com/safe-chain-npmrc/",
+      "title": "Staying safe in a wake of supply-chain attacks",
+      "description": "A layered defense against npm supply-chain attacks — a repo .npmrc that disables lifecycle scripts and delays installs, plus Safe Chain malware scanning."
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "url": "http://www.nuke24.net/plog/atom.xml",
+  "title": "TOGoS's Project Log",
+  "subtitle": "XX Blathering about woodworking, 3rd grade soldering projects, and too-abstract type systems",
+  "bytes": 14696,
+  "last": "2026-02-04",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "woodworking"
+  ],
+  "source": {
+    "name": "outcoldman/hackernews-personal-blogs",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "http://www.nuke24.net/plog/52.html",
+      "title": "3D-Printable Drywall Ports",
+      "description": "I invented a couple of 3D-printable parts for making round ports in your drywall"
+    },
+    {
+      "link": "http://www.nuke24.net/plog/51.html",
+      "title": "Depressive Ambient Pathological Demand Avoidance",
+      "description": null
+    },
+    {
+      "link": "http://www.nuke24.net/plog/50.html",
+      "title": "Ratcheting Forward",
+      "description": "An attempt to identify 'major projects' and block of time for working on them"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "url": "https://www.tokimon.io/blog/rss.xml",
+  "title": "Tokimon — devlog",
+  "subtitle": "Notes from building Tokimon: the pixel-art pipeline, the generative tooling, and what the art actually cost.",
+  "bytes": 892,
+  "last": "2026-08-06",
+  "languages": [],
+  "topics": [
+    "pixel-art"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://tokimon.app/blog/making-ai-pixel-art-usable/",
+      "title": "Notes on making AI-generated pixel art usable",
+      "description": "All the art is generated. Generating it took an afternoon. Getting it to a state where it could ship took considerably longer, and most of that time went into finding out how the output was wrong."
+    }
+  ]
+}

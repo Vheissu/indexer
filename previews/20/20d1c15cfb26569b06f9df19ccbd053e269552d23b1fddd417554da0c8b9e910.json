@@ -1,0 +1,19 @@
+{
+  "url": "https://artcircuits.com/feed/",
+  "title": "Art Circuits Guide",
+  "subtitle": "Culture and Entertainment Guide Since 2009",
+  "bytes": 9668,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "art",
+    "miami"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

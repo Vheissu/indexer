@@ -1,0 +1,34 @@
+{
+  "url": "https://mitanshu7.github.io/rss.xml",
+  "title": "Mitanshu Sukhwani's Blog",
+  "subtitle": "Hello, I’m Mitanshu Sukhwani, creator of PaperMatch with a Master’s in Physics from IIT Madras. I’ve worked at IISER Tirupati on EEG data, network science, and brain modeling. I enjoy exploring ML, Linux, and the intersection of neuroscience, software, and data.",
+  "bytes": 27468,
+  "last": "2026-10-16",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "netflix"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://mitanshu7.github.io/html/register_passkey_linux.html",
+      "title": "\"How to register (any*) passkey to linux?\"",
+      "description": "\"Register a new device on linux using command line and authenticate with a touch.\""
+    },
+    {
+      "link": "https://mitanshu7.github.io/html/About_Jellyfin.html",
+      "title": "\"About Jellyfin\"",
+      "description": "\"This blog post describes about jellyfin, a self hosted streaming platform\""
+    },
+    {
+      "link": "https://mitanshu7.github.io/html/Autoconnect_ProtonVPN_systemd.html",
+      "title": "\"Autoconnect to ProtonVPN using systemd\"",
+      "description": "\"This blog post describes a method to autostart ProtonVPN client using the systemd service\""
+    }
+  ]
+}

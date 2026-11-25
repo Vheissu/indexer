@@ -1,0 +1,18 @@
+{
+  "url": "https://mugglenet.com/feed/",
+  "title": "MuggleNet",
+  "subtitle": null,
+  "bytes": 17158,
+  "last": "2026-11-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "harry-potter"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

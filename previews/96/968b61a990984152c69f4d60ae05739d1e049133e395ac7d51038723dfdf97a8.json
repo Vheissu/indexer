@@ -1,0 +1,34 @@
+{
+  "url": "https://o526.net/notes.xml",
+  "title": "-ez momentary jots",
+  "subtitle": "freely feed the bird thoughts",
+  "bytes": 21327,
+  "last": "2026-11-01",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "blaugust"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://o526.net/blog/note/4d914734/",
+      "title": "note #4d914734",
+      "description": "close to opening but opposite is closure"
+    },
+    {
+      "link": "https://o526.net/blog/note/476a8393/",
+      "title": "note #476a8393",
+      "description": "shown up without an invite to teach a lesson"
+    },
+    {
+      "link": "https://o526.net/blog/note/b964823c/",
+      "title": "note #b964823c",
+      "description": "neutral for capturings expression"
+    }
+  ]
+}

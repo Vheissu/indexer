@@ -1,0 +1,22 @@
+{
+  "url": "https://sahilkolwankar.com/rss.xml",
+  "title": "Sahil Kolwankar",
+  "subtitle": "Notes on software engineering, from Sahil Kolwankar.",
+  "bytes": 685,
+  "last": "2026-07-22",
+  "languages": [],
+  "topics": [
+    "software-engineering"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://sahilkolwankar.com/blog/ai-input-not-output/",
+      "title": "Ownership in the age of AI",
+      "description": "AI should be the input to your thinking, never the output - and what that means for how you write, review, and ship code."
+    }
+  ]
+}

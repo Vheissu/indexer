@@ -1,0 +1,34 @@
+{
+  "url": "https://www.robinlinacre.com/rss.xml",
+  "title": "Robin Linacre's homepage: Probabilistic record linkage, Data Science and Data Engineering",
+  "subtitle": "Probabilistic record linkage, Data Deduplication, Data Science, Engineering and the Environment",
+  "bytes": 26556,
+  "last": "2026-11-08",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "data-science"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.robinlinacre.com/dog_man/",
+      "title": "Psst: Dog Man is Actually Pretty Good",
+      "description": "Why Dav Pilkey's Dog Man books deserve a place among the best children's books."
+    },
+    {
+      "link": "https://www.robinlinacre.com/open_source_agents/",
+      "title": "Using AI agents effectively without trusting them",
+      "description": "How open source enables effective use of AI agents in government"
+    },
+    {
+      "link": "https://www.robinlinacre.com/data_science_age_ai/",
+      "title": "Data Science in the Age of AI",
+      "description": "Reflections on how AI is changing data science workflows"
+    }
+  ]
+}

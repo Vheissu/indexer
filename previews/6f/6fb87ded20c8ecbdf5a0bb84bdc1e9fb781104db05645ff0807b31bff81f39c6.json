@@ -1,0 +1,34 @@
+{
+  "url": "https://gitbybit.com/feed.xml",
+  "title": "GitByBit Blog",
+  "subtitle": "Articles, tutorials, and insights about Git, version control, and software development best practices.",
+  "bytes": 5625,
+  "last": "2026-08-04",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "git"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://gitbybit.com/blog/0009-good-localization",
+      "title": "Good translation requires rewriting the source",
+      "description": "Over the past two months, I released the first batch of localizations for GitByBit, letting roughly 10% of the planet learn Git in the best possible way, all in their native languages:"
+    },
+    {
+      "link": "https://gitbybit.com/blog/0008-learning-git-in-spanish-portuguese-ukrainian-russian",
+      "title": "Learning Git in Spanish, Portuguese, Ukrainian, and Russian",
+      "description": "Good news! The first batch of localizations for GitByBit is ready!"
+    },
+    {
+      "link": "https://gitbybit.com/blog/0007-certificate",
+      "title": "Certificates of completion",
+      "description": "You've spent hours learning and practicing, but all you've got is... _a decent skill boost._"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "url": "https://www.momsplans.com/feed/",
+  "title": "Mom's Plans",
+  "subtitle": "learning to live a fulfilling life on less",
+  "bytes": 73299,
+  "last": "2026-11-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "goals"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

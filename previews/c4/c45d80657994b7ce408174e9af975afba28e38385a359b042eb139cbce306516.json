@@ -1,0 +1,34 @@
+{
+  "url": "https://themattchung.com/feed.xml",
+  "title": "Matt Chung",
+  "subtitle": "Building Communities",
+  "bytes": 110716,
+  "last": "2026-10-25",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "life"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://themattchung.com/hana-wa-saku",
+      "title": "Hana wa Saku",
+      "description": "Hana wa Saku - Flowers will bloom."
+    },
+    {
+      "link": "https://themattchung.com/all-time-roasting-company-oug",
+      "title": "All Time Roasting Company",
+      "description": "We had a calm weekend coffee chill time at All Time Roasting in UOG"
+    },
+    {
+      "link": "https://themattchung.com/september-2026",
+      "title": "September 2026",
+      "description": "Updates in September 2026"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "url": "https://www.laurenscountyadvertiser.net/feed/",
+  "title": "The Laurens County Advertiser",
+  "subtitle": null,
+  "bytes": 195812,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "breaking-news"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

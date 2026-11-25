@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>journey feeds</title>
+    <dateCreated>Wed, 25 Nov 2026 00:04:35 +0000</dateCreated>
+  </head>
+  <body>
+    <outline type="rss" text="Blaine Bonham" title="Blaine Bonham" xmlUrl="https://blainebonham.com/feed/" htmlUrl="https://blainebonham.com/"/>
+    <outline type="rss" text="Two Under The Sky" title="Two Under The Sky" xmlUrl="https://twounderthesky.com/feed.xml" htmlUrl="https://twounderthesky.com/"/>
+    <outline type="rss" text="Peter Kang" title="Peter Kang" xmlUrl="https://www.peterkang.com/feed/" htmlUrl="https://www.peterkang.com/"/>
+  </body>
+</opml>

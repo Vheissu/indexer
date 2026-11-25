@@ -1,0 +1,34 @@
+{
+  "url": "https://rasterweb.net/raster/feed/",
+  "title": "RasterWeb!",
+  "subtitle": "~/ Insights and such since 1997...",
+  "bytes": 35651,
+  "last": "2026-11-16",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "cycling"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://rasterweb.net/raster/2026/11/16/i-changed-an-ebike-tire/",
+      "title": "I changed an ebike tire!",
+      "description": "There's a first time for..."
+    },
+    {
+      "link": "https://rasterweb.net/raster/2026/11/15/bike-light-downtube-white-led-strip-v2/",
+      "title": "Bike Light – Downtube – White LED Strip V2",
+      "description": "Light it up in the darkness again..."
+    },
+    {
+      "link": "https://rasterweb.net/raster/2026/11/13/3d-printed-shoes/",
+      "title": "3D Printed Shoes?",
+      "description": "It's like a 3D print for your feet..."
+    }
+  ]
+}

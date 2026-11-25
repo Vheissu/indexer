@@ -1,0 +1,34 @@
+{
+  "url": "https://arizerner.com/index.xml",
+  "title": "Ari Zerner's Demesne",
+  "subtitle": "Recent content on Ari Zerner's Demesne",
+  "bytes": 295366,
+  "last": "2026-08-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "writing"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://arizerner.com/posts/hiveminds-are-good-actually/",
+      "title": "Hiveminds Are Good Actually",
+      "description": "Or, how I learned to stop worrying and love assimilation."
+    },
+    {
+      "link": "https://arizerner.com/posts/wrestling-vs-sex/",
+      "title": "Wrestling vs Sex",
+      "description": "Fighting: it’s like sex, but there’s a winner!"
+    },
+    {
+      "link": "https://arizerner.com/posts/commentary-on-wrapping-up-my-slutcon-experiment/",
+      "title": "Commentary on \"Wrapping Up My SlutCon Experiment\"",
+      "description": "People had a lot to say about my last post."
+    }
+  ]
+}

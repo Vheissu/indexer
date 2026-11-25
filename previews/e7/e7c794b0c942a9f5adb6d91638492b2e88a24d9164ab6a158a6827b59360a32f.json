@@ -1,0 +1,19 @@
+{
+  "url": "https://mandyvictoria.com/feed/",
+  "title": "Mandy Victoria",
+  "subtitle": "Solo (female) travel & fashion blog",
+  "bytes": 8944,
+  "last": "2026-10-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "travel",
+    "fashion"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

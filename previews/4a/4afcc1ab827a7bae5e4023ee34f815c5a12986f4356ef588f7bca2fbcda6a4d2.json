@@ -1,0 +1,29 @@
+{
+  "url": "https://blog.cyan.pet/feed.xml",
+  "title": "cyan's blog",
+  "subtitle": "silly kitty blog :3",
+  "bytes": 6488,
+  "last": "2026-04-11",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "travel"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://blog.cyan.pet/mf26/",
+      "title": "modfest time!",
+      "description": "there is a 70% chance that you already know what that is if you know me"
+    },
+    {
+      "link": "https://blog.cyan.pet/new-blog/",
+      "title": "i don't know what to title this but it's the first post of my blog",
+      "description": "after several months of saying i'm going to make one"
+    }
+  ]
+}

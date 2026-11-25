@@ -1,0 +1,18 @@
+{
+  "url": "https://mcopik.github.io/feed.xml",
+  "title": "Marcin Copik",
+  "subtitle": "Personal webpage",
+  "bytes": 231768,
+  "last": "2026-03-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "compilers"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": []
+}

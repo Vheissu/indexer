@@ -1,0 +1,19 @@
+{
+  "url": "https://artandtheology.org/feed/",
+  "title": "Art & Theology",
+  "subtitle": "Revitalizing the Christian imagination through painting, poetry, music, and more",
+  "bytes": 562207,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "contemporary-art",
+    "advent"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

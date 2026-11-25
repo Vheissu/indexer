@@ -1,0 +1,16 @@
+{
+  "url": "https://secretgeek.net/rss",
+  "title": "secretgeek.net",
+  "subtitle": "secretgeek.net :: dot Nuts about dot Net",
+  "bytes": 53200,
+  "last": "2026-08-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": []
+}

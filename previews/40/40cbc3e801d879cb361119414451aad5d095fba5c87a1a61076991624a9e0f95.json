@@ -1,0 +1,34 @@
+{
+  "url": "https://parsam.io/rss.xml",
+  "title": "Parsa Mesgarha",
+  "subtitle": "Writing about stuff I find interesting enough to share, mostly on things in technology.",
+  "bytes": 279698,
+  "last": "2026-09-01",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "personal-projects"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://parsam.io/gloves/",
+      "title": "Teleoperating a robot arm with gloves",
+      "description": "Recently I built a teleoperation stack controlled by motion-capture (mocap) gloves, and used it to collect roughly an hour of robot demonstrations. It works…"
+    },
+    {
+      "link": "https://parsam.io/split/",
+      "title": "too much keyboard",
+      "description": "recently I stopped using my ZSA Voyager, a $365 ortholinear split keyboard (I bought it second hand in new condition for €300 in February). all the cool kids…"
+    },
+    {
+      "link": "https://parsam.io/23/",
+      "title": "23 years old",
+      "description": "Even though I haven't posted in a while, I still enjoy keeping up this yearly tradition of writing a post on my birthday. This time I'll keep it simple and…"
+    }
+  ]
+}

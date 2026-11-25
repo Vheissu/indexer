@@ -1,0 +1,34 @@
+{
+  "url": "https://www.scottbrady.io/rss.xml",
+  "title": "Scott Brady - scottbrady.io",
+  "subtitle": "Articles on Identity, Authentication, OAuth, and ASP.NET Core.",
+  "bytes": 71935,
+  "last": "2026-03-13",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "authentication"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.scottbrady.io/general/cto-craft-con-london-2026",
+      "title": "CTO Craft Con London 2026",
+      "description": "A review of the changes in 2025 and my plans for 2026."
+    },
+    {
+      "link": "https://www.scottbrady.io/general/year-in-review-2024",
+      "title": "Year in review: 2024",
+      "description": "A review of the changes in 2024 and my plans for 2025."
+    },
+    {
+      "link": "https://www.scottbrady.io/ws-federation/understanding-ws-federation",
+      "title": "Understanding WS-Federation: A modern primer for an obsolete protocol",
+      "description": "A modern overview of the WS-Federation protocol, focussing on the parts of the protocol that are still in use and somewhat useful to know."
+    }
+  ]
+}

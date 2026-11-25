@@ -1,0 +1,34 @@
+{
+  "url": "https://czep.net/feed.xml",
+  "title": "Variables and Observations",
+  "subtitle": "work, data, and working_with_data",
+  "bytes": 15918,
+  "last": "2026-04-14",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "data"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": null,
+      "title": "This time is no different",
+      "description": null
+    },
+    {
+      "link": null,
+      "title": "Obfuscating your Primary Keys",
+      "description": null
+    },
+    {
+      "link": null,
+      "title": "How to Load IPUMS Datasets into a Relational Database",
+      "description": null
+    }
+  ]
+}

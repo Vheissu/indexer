@@ -1,0 +1,18 @@
+{
+  "url": "https://ranganathg.wordpress.com/feed/",
+  "title": "Ranganathg's Blog",
+  "subtitle": "Be Happy!!",
+  "bytes": 145549,
+  "last": "2026-04-09",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "documentation"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": []
+}

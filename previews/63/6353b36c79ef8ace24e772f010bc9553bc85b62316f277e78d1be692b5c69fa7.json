@@ -1,0 +1,34 @@
+{
+  "url": "https://dhruvs.space/index.xml",
+  "title": "dhruv's space",
+  "subtitle": "Recent content on dhruv's space",
+  "bytes": 17290,
+  "last": "2025-12-27",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "neural-networks"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://dhruvs.space/posts/reflections-on-2025/",
+      "title": "Reflections on 2025",
+      "description": "Looking back at a year of open source, career changes, and the rise of AI agents."
+    },
+    {
+      "link": "https://dhruvs.space/posts/keeping-up-with-dependency-updates/",
+      "title": "Keeping up with dependency updates",
+      "description": "How I stay on top of the never-ending cycle of dependency updates for my projects."
+    },
+    {
+      "link": "https://dhruvs.space/posts/feature-preview-deployments-for-the-frontend/",
+      "title": "Feature Preview Deployments for the Front-end",
+      "description": "Adding support for feature previews for a front-end application"
+    }
+  ]
+}

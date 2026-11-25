@@ -1,0 +1,32 @@
+{
+  "url": "https://www.industrialempathy.com/feed/feed.xml",
+  "title": "Industrial Empathy",
+  "subtitle": "Malte Ubl's literal website",
+  "bytes": 3963073,
+  "last": "2026-10-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "simevidas/web-dev-feeds",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://vercel.com/blog/death-to-long-lived-static-credentials",
+      "title": "Death to long-lived static credentials",
+      "description": "Read more"
+    },
+    {
+      "link": "https://vercel.com/blog/everything-hackable-will-get-hacked",
+      "title": "Everything hackable will get hacked",
+      "description": "Read more"
+    },
+    {
+      "link": "https://vercel.com/blog/introducing-deepsec-find-and-fix-vulnerabilities-in-your-code-base",
+      "title": "Introducing deepsec: The security harness for finding vulnerabilities in your codebase",
+      "description": "Read more"
+    }
+  ]
+}

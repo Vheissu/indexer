@@ -1,0 +1,34 @@
+{
+  "url": "https://hite.sh/rss.xml",
+  "title": "Hitesh Joshi",
+  "subtitle": "Hitesh Joshi, founder of Ploton.ai, shares insights on building AI agents for enterprise teams, startup lessons, and the future of work. Learn from real-world experiences in AI automation, technical deep-dives, and strategies for scaling technology products.",
+  "bytes": 22189,
+  "last": "2025-12-23",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "startups"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://hite.sh/nothing-personal",
+      "title": "Nothing personal",
+      "description": "Early stage companies see rejections from almost every space.. customers, VCs, and even vendors at times."
+    },
+    {
+      "link": "https://hite.sh/why-you-might-not-need-unified",
+      "title": "You might not need unified APIs",
+      "description": "Unified APIs promise to streamline integrations, but they might not be the best fit for every business scenario. This blog explores why a tailored approach may sometimes be better."
+    },
+    {
+      "link": "https://hite.sh/devtool-gtm-strategy",
+      "title": "DevTools GTM Strategy (zero to one)",
+      "description": "Developer tools cater to a vast and diverse user base, making it challenging to confine them to a specific vertical or business type."
+    }
+  ]
+}

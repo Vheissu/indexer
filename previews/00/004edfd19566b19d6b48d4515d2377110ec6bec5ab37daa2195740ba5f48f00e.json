@@ -1,0 +1,18 @@
+{
+  "url": "https://warpdoor.com/rss/",
+  "title": "Warp Door",
+  "subtitle": "Warp Door",
+  "bytes": 22810,
+  "last": "2026-11-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "puzzles"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

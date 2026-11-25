@@ -1,0 +1,18 @@
+{
+  "url": "https://cdm.link/feed/",
+  "title": "CDM Create Digital Music",
+  "subtitle": "Create digital music, motion, and more.",
+  "bytes": 24208,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "music"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

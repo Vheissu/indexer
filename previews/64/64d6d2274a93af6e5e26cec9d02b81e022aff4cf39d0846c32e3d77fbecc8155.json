@@ -1,0 +1,34 @@
+{
+  "url": "https://sahilarora.in/blog/rss.xml",
+  "title": "Sahil Arora | Blog",
+  "subtitle": "Sahil Arora's personal blog and portfolio",
+  "bytes": 125062,
+  "last": "2025-11-28",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "travel"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://sahilarora.in/blog/the-great-manager/",
+      "title": "The Great Manager",
+      "description": "What separates a good manager from a great one? This article explores the indispensable role of managers and breaks down the key attributes—from providing stability and scoping work to acting as a partner—that empower teams and foster individual growth."
+    },
+    {
+      "link": "https://sahilarora.in/blog/running-journey-and-even-healthcare/",
+      "title": "My running journey and Even Healthcare",
+      "description": "From frequent injuries to completing a 42.2km marathon, this is the story of how I achieved my running goals with expert guidance."
+    },
+    {
+      "link": "https://sahilarora.in/blog/hair-loss/",
+      "title": "How I lost my hair, and what I found instead",
+      "description": "I share my decade-long experience with hair loss, the emotional toll it took, and how I'm learning to embrace it."
+    }
+  ]
+}

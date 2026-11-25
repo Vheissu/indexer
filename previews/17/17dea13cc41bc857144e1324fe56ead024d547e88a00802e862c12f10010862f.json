@@ -1,0 +1,22 @@
+{
+  "url": "https://reubenbrooks.dev/rss.xml",
+  "title": "Writing",
+  "subtitle": "Essays and notes.",
+  "bytes": 19046,
+  "last": "2026-05-19",
+  "languages": [],
+  "topics": [
+    "writing"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://reubenbrooks.dev/blog/structural-backpressure-beats-smarter-agents/",
+      "title": "Structural Backpressure Beats Smarter Agents",
+      "description": "Formal verification gates for AI coding loops, in the language you're already shipping."
+    }
+  ]
+}

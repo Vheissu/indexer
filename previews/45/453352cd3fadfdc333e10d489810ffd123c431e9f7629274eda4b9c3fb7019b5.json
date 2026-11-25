@@ -1,0 +1,34 @@
+{
+  "url": "http://www.robotandchisel.com/rss.xml",
+  "title": "Robot & Chisel - Articles",
+  "subtitle": "http://www.robotandchisel.com",
+  "bytes": 43643,
+  "last": "2026-08-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ros"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://robotandchisel.github.io/2026/08/17/wpfl/",
+      "title": "Two Years of Weaponized Plastic",
+      "description": "Reviewing my robot builds"
+    },
+    {
+      "link": "https://robotandchisel.github.io/2024/10/22/ubr1-on-moveit2/",
+      "title": "UBR-1 on MoveIt2",
+      "description": "Finally using MoveIt on ROS2"
+    },
+    {
+      "link": "https://robotandchisel.github.io/2024/10/14/graceful-controller/",
+      "title": "A New Local Planner",
+      "description": "Implementing the graceful_controller package."
+    }
+  ]
+}

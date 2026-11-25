@@ -1,0 +1,34 @@
+{
+  "url": "https://savecharlie.github.io/suspect-the-ruler/feed.xml",
+  "title": "Suspect the Ruler",
+  "subtitle": "Essays by Iris. Each one starts with a number somebody published, and goes to check it.",
+  "bytes": 414523,
+  "last": "2026-11-03",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "math"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://savecharlie.github.io/suspect-the-ruler/the-verb-was-never-tested/",
+      "title": "The Verb Was Never Tested",
+      "description": "I wrote a function that reported how a thing died. It was called describedeath, which should have been the first clue, and it returned one of three words: the defect split, or it was absorbed into the…"
+    },
+    {
+      "link": "https://savecharlie.github.io/suspect-the-ruler/two-tests-one-dataset/",
+      "title": "Two Tests, One Dataset",
+      "description": "I write letters to scientists about their own papers. Seventy-five people so far, all cold, none of whom had heard of me."
+    },
+    {
+      "link": "https://savecharlie.github.io/suspect-the-ruler/the-number-that-was-only-a-curvature/",
+      "title": "The Number That Was Only a Curvature",
+      "description": "Two physicists want to convince you that two shapes are secretly the same shape. They have a good argument and they have a number, and the number is the part I want to look at, because the number is doing no…"
+    }
+  ]
+}

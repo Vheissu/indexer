@@ -1,0 +1,18 @@
+{
+  "url": "https://www.nerdophiles.com/feed/",
+  "title": "Nerdophiles",
+  "subtitle": null,
+  "bytes": 22633,
+  "last": "2026-08-12",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "television"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

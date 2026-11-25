@@ -1,0 +1,16 @@
+{
+  "url": "https://majorlinux.com/feed/",
+  "title": "MajorLinux",
+  "subtitle": "Your Favorite Streamer's Favorite IT Guy",
+  "bytes": 33833,
+  "last": "2026-11-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

@@ -1,0 +1,34 @@
+{
+  "url": "https://silentsblog.com/feed.xml",
+  "title": "Silent’s Blog",
+  "subtitle": "A blog and portfolio featuring my game modifications, patches, and technical writeups for PC and console games.",
+  "bytes": 346791,
+  "last": "2026-09-16",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "game-engine"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://silentsblog.com/2026/09/16/blackwood-act-1-review/",
+      "title": "Discovering BLACKWOOD: Ambitious game on a smaller scale",
+      "description": "A technical review of BLACKWOOD, including my gameplay impressions, settings breakdown, comparisons, benchmarks, and tests on the Steam Deck and Steam Machine."
+    },
+    {
+      "link": "https://silentsblog.com/2026/07/31/silentpatch-2026-update/",
+      "title": "SilentPatch for Grand Theft Auto: 2026 Update",
+      "description": "The 2026 update to SilentPatch for Grand Theft Auto brings over 100 new fixes, additional voice lines, and improved stability and mod compatibility."
+    },
+    {
+      "link": "https://silentsblog.com/2026/03/03/iracing-arcade-review/",
+      "title": "iRacing Arcade review – casual racing under a serious brand",
+      "description": "A sequel to Circuit Superstars with a new name."
+    }
+  ]
+}

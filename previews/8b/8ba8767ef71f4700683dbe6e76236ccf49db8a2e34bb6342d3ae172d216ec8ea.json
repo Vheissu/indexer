@@ -1,0 +1,34 @@
+{
+  "url": "https://fidget-spinner.github.io/feed.xml",
+  "title": "Ken Jin’s Blog",
+  "subtitle": "Random Ramblings",
+  "bytes": 86666,
+  "last": "2026-07-01",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "python"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://fidget-spinner.github.io/posts/ultra-fast-tracing.html",
+      "title": "Python 3.15’s Ultra-Low Overhead Interpreter Profiling Mode",
+      "description": "Python 3.15’s Ultra-Low Overhead Interpreter Profiling Mode"
+    },
+    {
+      "link": "https://fidget-spinner.github.io/posts/jit-on-track.html",
+      "title": "Python 3.15’s JIT is now back on track",
+      "description": "Python 3.15’s JIT is now back on track"
+    },
+    {
+      "link": "https://fidget-spinner.github.io/posts/no-longer-sorry.html",
+      "title": "Python 3.15’s interpreter for Windows x86-64 should hopefully be 15% faster",
+      "description": "Python 3.15’s interpreter for Windows x86-64 should hopefully be 15% faster"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "url": "https://vannevel.net/rss.xml",
+  "title": "To kill a mocking bug",
+  "subtitle": "To kill a mocking bug",
+  "bytes": 880174,
+  "last": "2026-03-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "tooling"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://vannevel.net/posts/2026-03-15---A-Retrospection-On-An-AI-Task/",
+      "title": "A retrospection on an AI task",
+      "description": "Lots of hype about AI so I'd like to offer a step-by-step review of some actual work I did on my open-source project."
+    },
+    {
+      "link": "https://vannevel.net/posts/2025-07-27---Switching-Browsers/",
+      "title": "Switching Browsers: Taking back control",
+      "description": "Using a custom application as your default browser to interchangeable use Chrome or Firefox"
+    },
+    {
+      "link": "https://vannevel.net/posts/2023-10-30---Exploring-Object-Layouts/",
+      "title": "Exploring Object Layouts",
+      "description": "Removing fields from an object should reduce that object's size. Why am I not seeing any difference?"
+    }
+  ]
+}

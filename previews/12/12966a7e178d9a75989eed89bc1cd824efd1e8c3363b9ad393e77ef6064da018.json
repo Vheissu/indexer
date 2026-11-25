@@ -1,0 +1,18 @@
+{
+  "url": "https://hallam.io/index.xml",
+  "title": "hallam.io",
+  "subtitle": "Recent content on hallam.io",
+  "bytes": 2761,
+  "last": "2026-01-04",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "linkedin"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": []
+}

@@ -1,0 +1,19 @@
+{
+  "url": "https://footballabsurdity.com/feed/",
+  "title": "Football Absurdity",
+  "subtitle": "Our Analysis is No Joke... But the Jokes Are",
+  "bytes": 120106,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "nfl",
+    "defense"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

@@ -1,0 +1,32 @@
+{
+  "url": "https://geyer.dev/blog/rss.xml",
+  "title": "Ryan Geyer’s Blog",
+  "subtitle": "Writing about the joys of frontend development and more",
+  "bytes": 124329,
+  "last": "2025-12-30",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://geyer.dev/blog/garden-in-review-2025",
+      "title": "My Garden In Review 2025",
+      "description": "A blog post by Ryan Geyer"
+    },
+    {
+      "link": "https://geyer.dev/blog/micro-optimizing-boolean-to-int",
+      "title": "Micro-optimizing boolean-to-int conversions for... fun?",
+      "description": "A blog post by Ryan Geyer"
+    },
+    {
+      "link": "https://geyer.dev/blog/windows-flag-emojis",
+      "title": "The dumb reason why flag emojis aren't working on your site in Chrome on Windows",
+      "description": "A blog post by Ryan Geyer"
+    }
+  ]
+}

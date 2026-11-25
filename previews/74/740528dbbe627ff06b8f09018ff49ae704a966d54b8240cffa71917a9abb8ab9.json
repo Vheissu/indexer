@@ -1,0 +1,29 @@
+{
+  "url": "https://vaguely-nonsensical.bearblog.dev/feed/",
+  "title": "Vaguely Nonsensical",
+  "subtitle": "Hi. I’m not sure how I got here. Nor am I entirely sure what I want to do with this blog besides documenting some of my life and creative projects–potentiall...",
+  "bytes": 6785,
+  "last": "2026-07-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "travel"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://vaguely-nonsensical.bearblog.dev/ashland-trip-osf/",
+      "title": "Ashland Trip (OSF)",
+      "description": "This past weekend, I went to Ashland with my mom in order to visit the Oregon Shakespeare Festival (OSF). The drive down is super scenic, as you pass though many different biomes in order to reach the final destination. On the way down, we passed though many sunny and rainy patches on the interstate, and eventually stopped in Eugene to refuel and get snacks. I always enjoy going down to Ashland, a"
+    },
+    {
+      "link": "https://vaguely-nonsensical.bearblog.dev/olaf-hat-july-2/",
+      "title": "Olaf Hat-July 2",
+      "description": "The Olaf Hat was designed by Sandra Manson for Jamieson & Smith I was fortunate enough to get the chance to go on a school-lead, arts-focused trip to Scotland and the Shetland Islands towards the end of May this year. I picked up the pattern for this hat at the Jamieson & Smith store, which we visited after meeting the local wool graders and receiving some information about the history of the comp"
+    }
+  ]
+}

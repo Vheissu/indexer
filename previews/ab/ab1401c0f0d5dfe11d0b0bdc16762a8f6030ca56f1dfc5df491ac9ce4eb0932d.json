@@ -1,0 +1,22 @@
+{
+  "url": "https://professormikey.com/feed/",
+  "title": "#professormikey",
+  "subtitle": "MIKE MADIGAN --> MINDFULNESS - Mental Health - SELF Care - Journaling",
+  "bytes": 24741,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "coffee",
+    "mindfulness",
+    "mental-health",
+    "meditation",
+    "journaling"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

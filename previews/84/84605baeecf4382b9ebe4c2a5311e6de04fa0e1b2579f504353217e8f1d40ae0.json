@@ -1,0 +1,19 @@
+{
+  "url": "https://getoutofdebt.org/feed",
+  "title": "Get Out of Debt Guy – Steve Rhode",
+  "subtitle": "No Sales. No Judgment. Just Honest Debt Advice That Works.",
+  "bytes": 55728,
+  "last": "2026-11-13",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "bankruptcy",
+    "debt"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

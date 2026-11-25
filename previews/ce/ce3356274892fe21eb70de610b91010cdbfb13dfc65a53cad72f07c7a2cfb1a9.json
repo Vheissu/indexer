@@ -1,0 +1,32 @@
+{
+  "url": "https://davidisaksson.dev/index.xml",
+  "title": "~/.didev",
+  "subtitle": "Recent content on ~/.didev",
+  "bytes": 18273,
+  "last": "2025-11-25",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://davidisaksson.dev/posts/dynamic-images/",
+      "title": "Dynamic images in Hugo",
+      "description": "As you may have noticed, this website can be displayed in either light or dark mode (toggle with sun/moon top left of page or with Alt+T ). An issue is that images and diagrams are perfectly visible in light mode, but when flipping over to dark mode they either are surrounded by a big white box or lost all contrast if the background is transparent, or vice versa."
+    },
+    {
+      "link": "https://davidisaksson.dev/posts/reverse-proxy/",
+      "title": "Setting up a local reverse proxy with Nginx Proxy Manager and Let's Encrypt",
+      "description": "This is part 2 on the topic of a short series about setting up DNS hosting with Cloudflare and using DNS-01 challenges to get TLS certificates from Let’s Encrypt See part 1: Moving DNS hosting from Namecheap to Cloudflare In this post I am sharing my experience setting up a reverse proxy that acts as a frontend for my internal self-hosted web services. What and why? A reverse proxy is a service th"
+    },
+    {
+      "link": "https://davidisaksson.dev/posts/weekly-and-daily-note-templates-in-obsidian/",
+      "title": "Weekly and daily note templates in Obsidian",
+      "description": "I use Obsidian extensively for both personal use and work. Today I’m sharing a trick using the Templater plugin that makes it possible to create daily and weekly notes that based on their file names can auto-generate links in-between them. Super handy! Install Templater and in the template directory of your vault, we will create two files, “Daily Template” and “Weekly Template”. Weekly note templa"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "url": "https://www.justmariakv.com/blog-feed.xml",
+  "title": "Just Maria KV",
+  "subtitle": "My passion & purpose is about loving myself JUST as I am. I aim for authentic expression so you realize that you are magnificent just as you are",
+  "bytes": 14919,
+  "last": "2026-04-02",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.justmariakv.com/post/grounding-through-the-sustainability-of-climate-pledge-arena",
+      "title": "Grounding: Through the Sustainability of Climate Pledge Arena",
+      "description": "Becoming a concessions suoervisor at climate pledge Arena in seattke"
+    },
+    {
+      "link": "https://www.justmariakv.com/post/the-second-chapter-of-my-career",
+      "title": "✨ The\"Second Chapter\"of My Career",
+      "description": "Second chapr of my careert"
+    },
+    {
+      "link": "https://www.justmariakv.com/post/the-joy-of-the-theatre-come-from-away",
+      "title": "The Joy of the Theatre: Come From Away",
+      "description": "The joy of local theatre"
+    }
+  ]
+}

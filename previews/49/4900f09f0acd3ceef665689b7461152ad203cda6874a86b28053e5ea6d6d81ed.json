@@ -1,0 +1,27 @@
+{
+  "url": "https://blog.zortax.de/feed.xml",
+  "title": null,
+  "subtitle": "Personal Notes",
+  "bytes": 1264,
+  "last": "2026-11-08",
+  "languages": [],
+  "topics": [
+    "ui"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "http://localhost:3000/posts/a-critique-of-gpui",
+      "title": "A Critique of GPUI",
+      "description": null
+    },
+    {
+      "link": "http://localhost:3000/posts/the-ui-is-a-function-you-cannot-afford-to-call",
+      "title": "UI Is a Function You Cannot Afford to Call",
+      "description": "From Sketchpad to self-adjusting computation: a model of what UI frameworks retain, invalidate, recompute, and preserve after an edit."
+    }
+  ]
+}

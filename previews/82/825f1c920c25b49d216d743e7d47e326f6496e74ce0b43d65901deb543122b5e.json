@@ -1,0 +1,34 @@
+{
+  "url": "https://hyeomans.com/rss.xml",
+  "title": "Hector Yeomans",
+  "subtitle": "Staff software engineer focused on Go, TypeScript, and microservices. Writing about scalable systems, open data, and engineering leadership.",
+  "bytes": 15238,
+  "last": "2026-09-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "golang"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://hyeomans.com/posts/github-app-authentication-go/",
+      "title": "GitHub App Authentication in Go: JWTs and Installation Tokens",
+      "description": "Build a GitHub App in Go that authenticates independently of users, mints short-lived installation tokens, and displays app, organization, and repository data."
+    },
+    {
+      "link": "https://hyeomans.com/posts/passkeys-only-authentication/",
+      "title": "Build Passkey Authentication in Go: A Complete Workshop",
+      "description": "A step-by-step Go workshop: create a passkey, sign in, create a server session, and protect cookie-authenticated requests with a CSRF token."
+    },
+    {
+      "link": "https://hyeomans.com/posts/ssf-implementing-a-basic-ssf-transmiter-in-golang/",
+      "title": "Shared Signals Framework: A Basic Transmitter in Go",
+      "description": "Learn what the Shared Signals Framework is, why security events matter, and how to build a small Go transmitter with signed SETs and a SQLite delivery queue."
+    }
+  ]
+}

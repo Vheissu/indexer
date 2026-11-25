@@ -1,0 +1,22 @@
+{
+  "url": "https://tuanquang.com/feed.xml",
+  "title": "Tuan Quang",
+  "subtitle": "Your Name's academic portfolio",
+  "bytes": 34452,
+  "last": "2026-01-01",
+  "languages": [],
+  "topics": [
+    "portfolio"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://tuanquang.com/posts/2026/01/multi-agent-with-langchain/",
+      "title": "Multi agent with LangChain",
+      "description": "Building Multi-Agent Systems with LangChain: A Production-Ready Guide"
+    }
+  ]
+}

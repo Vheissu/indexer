@@ -1,0 +1,34 @@
+{
+  "url": "https://juvoni.com/rss.xml",
+  "title": "Juvoni Beckford",
+  "subtitle": "A disciplined approach to growth.",
+  "bytes": 34735,
+  "last": "2026-10-05",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "personal-development"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://juvoni.com/do-hard-things",
+      "title": "Do Hard Things",
+      "description": null
+    },
+    {
+      "link": "https://juvoni.com/my-rebellion-is-unity",
+      "title": "My Rebellion Is Unity",
+      "description": null
+    },
+    {
+      "link": "https://juvoni.com/what-2016-taught-me",
+      "title": "What 2016 Taught Me",
+      "description": null
+    }
+  ]
+}

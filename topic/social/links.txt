@@ -1,0 +1,4 @@
+https://douglastarr.com/feed.xml
+https://aj.bourg.family/rss.xml
+https://coding.social/blog/rss.xml
+https://ykgoon.com/feeds/all.atom.xml

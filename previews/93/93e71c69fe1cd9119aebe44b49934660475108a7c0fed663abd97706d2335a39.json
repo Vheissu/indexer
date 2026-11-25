@@ -1,0 +1,27 @@
+{
+  "url": "https://www.pseudopodium.org/index.rss.xml",
+  "title": "Pseudopodium",
+  "subtitle": "False foot forward",
+  "bytes": 1330,
+  "last": "2026-09-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.pseudopodium.org/ht-20260626.html#2026-09-15",
+      "title": "The Dewy Muse",
+      "description": "Moist poetry by wet poets"
+    },
+    {
+      "link": "https://www.pseudopodium.org/ht-20260626.html#2026-06-26",
+      "title": "Continuing Education",
+      "description": "Notes from a closer-than-usual re-reading of Flaubert's l'Ã ducation sentimentale"
+    }
+  ]
+}

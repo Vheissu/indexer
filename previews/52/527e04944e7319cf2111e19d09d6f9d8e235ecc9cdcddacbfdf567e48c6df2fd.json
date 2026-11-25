@@ -1,0 +1,18 @@
+{
+  "url": "https://www.wtnh.com/feed/",
+  "title": "WTNH.com",
+  "subtitle": null,
+  "bytes": 20594,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "connecticut"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

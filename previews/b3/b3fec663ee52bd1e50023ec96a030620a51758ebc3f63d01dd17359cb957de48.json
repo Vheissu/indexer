@@ -1,0 +1,32 @@
+{
+  "url": "https://solivan.dev/rss.xml",
+  "title": "/home/danny",
+  "subtitle": "Personal blog and website",
+  "bytes": 5312,
+  "last": "2025-12-01",
+  "languages": [],
+  "topics": [
+    "personal-website"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://solivan.dev/blog/mtg-drafting-a-crash-course",
+      "title": "MTG Drafting, A Crash Course",
+      "description": null
+    },
+    {
+      "link": "https://solivan.dev/blog/licensing-in-the-age-of-ai",
+      "title": "Licensing in the Age of AI",
+      "description": null
+    },
+    {
+      "link": "https://solivan.dev/blog/building-a-new-language",
+      "title": "Building a New Language",
+      "description": null
+    }
+  ]
+}

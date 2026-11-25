@@ -1,0 +1,34 @@
+{
+  "url": "https://ezz.sh/rss.xml",
+  "title": "Ezz's Blog",
+  "subtitle": "Technical blog by Ezz Abuzaid covering TypeScript, Angular, React, Node.js, RxJS, and modern web development. In-depth tutorials, code examples, and best practices for software engineers.",
+  "bytes": 15375,
+  "last": "2026-11-08",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "typescript"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://ezz.sh/posts/harness-led-fine-tuning",
+      "title": "Harness-led Fine-tuning",
+      "description": "Where I landed when thinking about how to start fine-tuning: evaluate the harness first, then tune the model around its shortcomings."
+    },
+    {
+      "link": "https://ezz.sh/posts/ways_of_writing",
+      "title": "Ways of Writing",
+      "description": "“You”, “Your Team”, and “Your Audience” can all do the writing."
+    },
+    {
+      "link": "https://ezz.sh/posts/content-pipeline",
+      "title": "Content Pipeline",
+      "description": "How I use Codex automations and a custom agent skill to publish four blog series on a schedule without burning out."
+    }
+  ]
+}

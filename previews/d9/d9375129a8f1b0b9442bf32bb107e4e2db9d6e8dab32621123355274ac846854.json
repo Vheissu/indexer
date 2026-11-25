@@ -1,0 +1,20 @@
+{
+  "url": "https://jukkan.com/feed/",
+  "title": "JukkaNet",
+  "subtitle": "The hub for all things created by Jukka Niiranen",
+  "bytes": 2671,
+  "last": "2026-02-25",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://jukkan.com/openclaw-open-the-front-door/",
+      "title": "“OpenClaw, open the front door”",
+      "description": "The 84-Day Arc from Weekend Project to Weaponized Infrastructure. That’s the alternative title that the co-author of this article, Claude, would have chosen. Yes, this is all based on chat’s I’ve had with an LLM, around real-world events and links. Feel free to stop reading now if you feel offended by this fact. The CEO’s Read more at JukkaNet"
+    }
+  ]
+}

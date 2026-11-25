@@ -1,0 +1,34 @@
+{
+  "url": "https://maia.crimew.gay/feed.xml",
+  "title": "maia blog",
+  "subtitle": "the maia blog :3",
+  "bytes": 398209,
+  "last": "2026-02-14",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "hacker-news"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://maia.crimew.gay/posts/kinemaster-drm/",
+      "title": "How To Add DRM To Your Backend (easy) [2026 WORKING]",
+      "description": "How KineMaster stopped some modded clients from accessing their asset market"
+    },
+    {
+      "link": "https://maia.crimew.gay/posts/fuckstalkerware-8/",
+      "title": "Gbyte leaks gigabytes of data - #FuckStalkerware pt. 8",
+      "description": "plus an MMO boosting service, fully remote Android spying and patented ToS violations"
+    },
+    {
+      "link": "https://maia.crimew.gay/posts/im-bored/",
+      "title": "i'm bored, so here's a useless 0day",
+      "description": "i either want my US$2.5k professional-grade device backdoored or not at all"
+    }
+  ]
+}

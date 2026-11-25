@@ -1,0 +1,32 @@
+{
+  "url": "https://yobibyte.cc/feed.xml",
+  "title": "Yobihome",
+  "subtitle": "Make old internet great again.",
+  "bytes": 76801,
+  "last": "2026-10-13",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://yobibyte.cc/graphomaniacs.html",
+      "title": "generation of graphomaniacs",
+      "description": "generation of graphomaniacs"
+    },
+    {
+      "link": "https://yobibyte.cc/consequences.html",
+      "title": "second-order consequences",
+      "description": "second-order consequences"
+    },
+    {
+      "link": "https://yobibyte.cc/whatsup.html",
+      "title": "What's up?",
+      "description": "What's up?"
+    }
+  ]
+}

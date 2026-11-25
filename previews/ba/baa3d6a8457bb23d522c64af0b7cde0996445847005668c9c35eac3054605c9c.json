@@ -1,0 +1,35 @@
+{
+  "url": "https://lovro-bikic.github.io/feed",
+  "title": "Lovro Bikić",
+  "subtitle": "Ruby Stuff",
+  "bytes": 195572,
+  "last": "2026-11-05",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "rspec",
+    "ruby"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://lovro-bikic.github.io/software-line-specialist/",
+      "title": "Software Line Specialist",
+      "description": "Hybrid · 3 weeks ago · 42 people clicked apply"
+    },
+    {
+      "link": "https://lovro-bikic.github.io/rubocop-lazy-loaded-cops/",
+      "title": "RuboCop Lazy Loads Cops Now",
+      "description": "Recap of an initiative that improved RuboCop startup times."
+    },
+    {
+      "link": "https://lovro-bikic.github.io/rspec-mockbidden/",
+      "title": "rspec-mockbidden: Forbid Unwanted RSpec Mocks",
+      "description": "Utility gem for RSpec testing framework to forbid mocking methods on objects/classes/modules, evaluated at test runtime."
+    }
+  ]
+}

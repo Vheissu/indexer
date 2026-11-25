@@ -1,0 +1,18 @@
+{
+  "url": "https://zrockr.com/feed/",
+  "title": "ZRockR Magazine",
+  "subtitle": "If it's too loud... THAT'S TOO DAMN BAD!",
+  "bytes": 8784,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "gallery"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

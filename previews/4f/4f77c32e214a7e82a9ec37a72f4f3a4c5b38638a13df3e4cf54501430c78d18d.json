@@ -1,0 +1,34 @@
+{
+  "url": "https://ogzhanolguncu.com/rss.xml",
+  "title": "Oğuzhan Olguncu",
+  "subtitle": "A developer who likes to hack things up. Dedicated learner, mentor and technical blogger - Oğuzhan Olguncu",
+  "bytes": 19357,
+  "last": "2026-10-04",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "typescript"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://ogzhanolguncu.com/blog/how-to-keep-learning-in-the-age-of-llms/",
+      "title": "How to keep learning in the age of LLMs",
+      "description": "Notes on how I keep learning as a programmer in the age of LLMs"
+    },
+    {
+      "link": "https://ogzhanolguncu.com/blog/arena-allocator-in-go/",
+      "title": "Arena Allocator in Go",
+      "description": "Learn how memory allocation works by building an arena allocator in Go from scratch. Covers memory addresses, alignment, padding math, and unsafe pointer reads."
+    },
+    {
+      "link": "https://ogzhanolguncu.com/blog/implementing-distributed-counter-part-2/",
+      "title": "Implementing Distributed Counter: Part 2 - Networking",
+      "description": "Learn how to implement TCP networking for a distributed counter in Go. This part covers TCP transport implementation with proper framing, peer management refactoring, and shows a working distributed counter cluster communicating over an actual network."
+    }
+  ]
+}

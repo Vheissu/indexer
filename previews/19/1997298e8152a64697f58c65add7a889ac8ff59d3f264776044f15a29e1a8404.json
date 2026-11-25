@@ -1,0 +1,34 @@
+{
+  "url": "https://faraazahmad.github.io/blog/rss.xml",
+  "title": "Faraaz's Blog",
+  "subtitle": "Essays on software, systems, AI, and building things.",
+  "bytes": 2068,
+  "last": "2026-09-13",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "essay"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://faraazahmad.github.io/blog/posts/filesystem-is-lying-to-you/",
+      "title": "Your filesystem is lying to you",
+      "description": "What fsync really guarantees, how delayed writeback errors escape transaction boundaries, and why durable local state is not an atomic external side effect."
+    },
+    {
+      "link": "https://faraazahmad.github.io/blog/posts/more-efficient-coding-agent/",
+      "title": "I made AI coding agents more efficient",
+      "description": "Using static analysis to improve token efficiency of AI coding agents"
+    },
+    {
+      "link": "https://faraazahmad.github.io/blog/posts/knowledge-assistant-ai/",
+      "title": "There's too much content, so I built an AI knowledge assistant.",
+      "description": "How and why I built an AI assistant that lets me consume or discard content much quicker."
+    }
+  ]
+}

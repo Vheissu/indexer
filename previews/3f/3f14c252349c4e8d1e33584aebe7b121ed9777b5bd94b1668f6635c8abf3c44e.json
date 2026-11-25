@@ -1,0 +1,34 @@
+{
+  "url": "https://deejaygraham.github.io/rss.xml",
+  "title": "invalid argument: a blog by d.j. graham - Blog Feed",
+  "subtitle": "a triumph of style over substance",
+  "bytes": 26571,
+  "last": "2026-11-23",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "advent-of-code"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://deejaygraham.github.io/2026/11/23/humans/",
+      "title": "Humans",
+      "description": "Humans! They lived in a world where the grass continued to be green and the sun rose every day and flowers regularly turned into fruit, and what impressed them? Weeping statues. And wine made out of..."
+    },
+    {
+      "link": "https://deejaygraham.github.io/2026/10/28/coupling/",
+      "title": "Coupling",
+      "description": "Dave Farley of Modern Software Engineering on Coupling in software..."
+    },
+    {
+      "link": "https://deejaygraham.github.io/2026/10/19/extract-music-from-mp3/",
+      "title": "Extract Music from MP3",
+      "description": "I discovered a python package librosa that does audio and signal processing and that you can use to work out pitches of an audio track. I thought I would try it with the Captain Laserbeam Distress..."
+    }
+  ]
+}

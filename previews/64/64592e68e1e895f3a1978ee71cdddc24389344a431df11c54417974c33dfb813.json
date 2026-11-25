@@ -1,0 +1,32 @@
+{
+  "url": "https://ellen-fremedon.dreamwidth.org/data/rss",
+  "title": "ellen_fremedon",
+  "subtitle": "ellen_fremedon - Dreamwidth Studios",
+  "bytes": 12165,
+  "last": "2026-10-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://ellen-fremedon.dreamwidth.org/928593.html",
+      "title": "Dear Yuletide Writer 2026",
+      "description": null
+    },
+    {
+      "link": "https://ellen-fremedon.dreamwidth.org/928260.html",
+      "title": "Yuletide reveal",
+      "description": null
+    },
+    {
+      "link": "https://ellen-fremedon.dreamwidth.org/928044.html",
+      "title": "Yuletide 2025 gift",
+      "description": null
+    }
+  ]
+}

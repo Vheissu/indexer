@@ -1,0 +1,32 @@
+{
+  "url": "https://adversaria.bearblog.dev/feed/",
+  "title": "Adversaria",
+  "subtitle": "A commonplace blog full of things I learnt from the internet (and various other things)!",
+  "bytes": 30466,
+  "last": "2026-06-03",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://adversaria.bearblog.dev/trans_rights/",
+      "title": "Trans Rights: A Controversy That Shouldn't Be",
+      "description": "A piece on Transgender Rights and the Trans Act 2026, written for Day's Topic/Speech at Namrup College of Teacher Education."
+    },
+    {
+      "link": "https://adversaria.bearblog.dev/ai-detectors-bane-or-boon/",
+      "title": "AI Detectors : Bane or Boon?",
+      "description": "Do AI detectors have any truth to them? Or are they just a sham?"
+    },
+    {
+      "link": "https://adversaria.bearblog.dev/bird_listening/",
+      "title": "Bird Listening",
+      "description": "A piece on identifying birds by ear, written for English Class Magazine"
+    }
+  ]
+}

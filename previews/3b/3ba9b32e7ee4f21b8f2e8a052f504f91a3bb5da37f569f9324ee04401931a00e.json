@@ -1,0 +1,34 @@
+{
+  "url": "https://lau.rent/index.xml",
+  "title": "lau.rent",
+  "subtitle": "Recent content on lau.rent",
+  "bytes": 5243,
+  "last": "2026-07-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "advent-of-code"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://lau.rent/posts/hire-for-agency/",
+      "title": "Hire for agency",
+      "description": "Improve your hiring skills with this one weird trick"
+    },
+    {
+      "link": "https://lau.rent/posts/python-lambda-with-dependencies/",
+      "title": "Deploying a Python Lambda with dependencies with AWS CDK",
+      "description": "I spent 4 hours figuring it out so you don’t have to."
+    },
+    {
+      "link": "https://lau.rent/posts/public-cloud-innovator-dilemma/",
+      "title": "How Public Cloud ate private hosting",
+      "description": "Public cloud - yet another example of the innovator’s dilemma."
+    }
+  ]
+}

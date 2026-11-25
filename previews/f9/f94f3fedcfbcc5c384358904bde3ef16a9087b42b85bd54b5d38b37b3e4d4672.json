@@ -1,0 +1,34 @@
+{
+  "url": "https://sajalchoudhary.net/rss.xml",
+  "title": "Sajal Choudhary",
+  "subtitle": "Personal blog, thoughts, stories, and discoveries. Writing since 2012 about technology, life, books, and everything in between.",
+  "bytes": 85171,
+  "last": "2026-11-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "haiku"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://sajalchoudhary.net/photo/202611222203/",
+      "title": null,
+      "description": "Spent my 35th birthday eating, and playing GTA. Thank you Prerna for everything."
+    },
+    {
+      "link": "https://sajalchoudhary.net/micro/202611211516/",
+      "title": null,
+      "description": "do people use tags on social media anymore? I tried to find posts on masto, bluesky and threads with tags. There weren't any. Though Masto has an explore page with a tags section."
+    },
+    {
+      "link": "https://sajalchoudhary.net/nordletter/nl132-gta-week/",
+      "title": "GTA Week",
+      "description": "Playing GTA, thinking about routines and the smallest unit of work"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "url": "https://emi-h.com/feed.xml",
+  "title": "emi-h.com feed",
+  "subtitle": null,
+  "bytes": 3650,
+  "last": "2026-06-11",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://emi-h.com/articles/mcrl2/new-mcrl2-type-system",
+      "title": "A New mCRL2 Type System",
+      "description": null
+    },
+    {
+      "link": "https://emi-h.com/articles/mcrl2/typechecking-mcrl2",
+      "title": "Typechecking mCRL2",
+      "description": null
+    },
+    {
+      "link": "https://emi-h.com/articles/a-case-against-currying",
+      "title": "A Case Against Currying",
+      "description": null
+    }
+  ]
+}

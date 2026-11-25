@@ -1,0 +1,32 @@
+{
+  "url": "https://analogfeelings.xyz/rss.xml",
+  "title": "Nora's Hideout",
+  "subtitle": "Nora's personal website for programming and other stuff.",
+  "bytes": 5465,
+  "last": "2026-04-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://analogfeelings.xyz/posts/shadersave-inner-machinery/",
+      "title": "On Shadersave's Inner Machinery",
+      "description": "An article on Shadersave's inner workings, and how it can render Shadertoy shaders natively."
+    },
+    {
+      "link": "https://analogfeelings.xyz/posts/rendering-skybox-panoramas-povray/",
+      "title": "Rendering Skybox Panoramas With POV-Ray",
+      "description": "A knowledge article on rendering POV-Ray scenes into several files that can be turned into a panorama."
+    },
+    {
+      "link": "https://analogfeelings.xyz/posts/writing-a-screensaver/",
+      "title": "Writing a Windows Screensaver",
+      "description": "A knowledge article on writing native Win32 screensavers."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "url": "https://blerg.net/rss.xml",
+  "title": "Arthurs Website",
+  "subtitle": "Welcome to my website!",
+  "bytes": 765,
+  "last": "2026-03-04",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://example.com/blog/record-location/",
+      "title": "Recording Location",
+      "description": "Simple webpage for recording location"
+    },
+    {
+      "link": "https://example.com/blog/selecting-text/",
+      "title": "Selecting Text",
+      "description": "How to force webpages to let you select text"
+    }
+  ]
+}

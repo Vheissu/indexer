@@ -1,0 +1,34 @@
+{
+  "url": "https://www.tamirdresher.com/feed.xml",
+  "title": "IBlogger",
+  "subtitle": "Tamir Dresher's blog about .NET, reactive programming, distributed systems, AI, and software architecture. Tips, tools, and insights from a Principal Engineer.",
+  "bytes": 4152,
+  "last": "2026-11-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "reactive-programming"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.tamirdresher.com/blog/2026/11/11/langgraph-with-dts-durable-tools-and-worker-recovery",
+      "title": "LangGraph With Durable Task Scheduler: Durable Tools and Worker Recovery",
+      "description": null
+    },
+    {
+      "link": "https://www.tamirdresher.com/blog/2026/11/05/langgraph-after-the-crash",
+      "title": "LangGraph After the Crash: Checkpoints, Pending Writes and Recovery",
+      "description": null
+    },
+    {
+      "link": "https://www.tamirdresher.com/blog/2026/10/29/recurring-durable-orchestrations",
+      "title": "Run Forever, Keep History Bounded: Recurring Durable Orchestrations",
+      "description": null
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "url": "https://mediadiversified.org/feed/",
+  "title": "Media Diversified",
+  "subtitle": "Foregrounding marginalised voices",
+  "bytes": 14631,
+  "last": "2026-09-14",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "genocide",
+    "gaza",
+    "media",
+    "palestine",
+    "racism"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

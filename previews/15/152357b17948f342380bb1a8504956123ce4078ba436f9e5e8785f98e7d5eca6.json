@@ -1,0 +1,19 @@
+{
+  "url": "https://www.fedsmith.com/feed/",
+  "title": "FedSmith.com",
+  "subtitle": "For the Informed Fed",
+  "bytes": 11730,
+  "last": "2026-11-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "federal-reserve",
+    "retirement"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

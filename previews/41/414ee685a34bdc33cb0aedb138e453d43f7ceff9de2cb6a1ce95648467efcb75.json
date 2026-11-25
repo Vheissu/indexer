@@ -1,0 +1,22 @@
+{
+  "url": "https://www.rafael.md/feed.xml",
+  "title": "Rafael Câmara",
+  "subtitle": "Essays by Rafael Câmara on verification, coding agents, evals and the systems we build around them.",
+  "bytes": 978,
+  "last": "2026-09-21",
+  "languages": [],
+  "topics": [
+    "ai-coding-agents"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.rafael.md/writing/building-software-that-can-prove-agents-wrong",
+      "title": "Building Software That Can Prove Agents Wrong",
+      "description": "What changes when implementation becomes cheaper than verification?"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "url": "https://css-articles.com/feed.xml",
+  "title": "CSS Articles by Temani Afif",
+  "subtitle": "A wide range of articles covering all CSS Topics. From the basic to the advanced ones, all the CSS secrets are here.",
+  "bytes": 115931,
+  "last": "2026-11-11",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "css"
+  ],
+  "source": {
+    "name": "simevidas/web-dev-feeds",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://blog.master.dev/creating-diagrams-and-graphs-using-modern-css/",
+      "title": "Creating Diagrams and Graphs Using Modern CSS",
+      "description": "Creating Diagrams and Graphs Using Modern CSS Read the full article online"
+    },
+    {
+      "link": "https://css-tricks.com/re-implementing-nth-child-with-modern-css/",
+      "title": "Re-Implementing :nth-child() With Modern CSS",
+      "description": "Re-Implementing :nth-child() With Modern CSS Read the full article online"
+    },
+    {
+      "link": "https://blog.master.dev/two-circles-one-connection-and-border-shape/",
+      "title": "Two Circles, One Connection, and border-shape",
+      "description": "Two Circles, One Connection, and border-shape Read the full article online"
+    }
+  ]
+}

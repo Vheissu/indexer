@@ -1,0 +1,18 @@
+{
+  "url": "https://www.ozarksfirst.com/feed/",
+  "title": "KOLR - OzarksFirst.com",
+  "subtitle": "Local News, Weather and Sports in the Springfield and Branson local area",
+  "bytes": 15800,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "missouri"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

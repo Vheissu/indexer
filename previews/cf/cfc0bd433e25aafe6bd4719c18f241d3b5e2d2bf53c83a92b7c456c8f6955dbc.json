@@ -1,0 +1,34 @@
+{
+  "url": "https://isamert.net/feed.xml",
+  "title": "isamert.net",
+  "subtitle": "My notes and ideas.",
+  "bytes": 15674,
+  "last": "2026-11-10",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "emacs"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://isamert.net/2026/11/10/yml-el-blazingly-fast-yaml-parser-for-emacs.html",
+      "title": "yml.el: BLAZINGLY fast YAML parser for Emacs",
+      "description": null
+    },
+    {
+      "link": "https://isamert.net/2026/11/05/tracking-issues-with-emacs-and-org-mode-dynamic-blocks.html",
+      "title": "Tracking issues with Emacs and Org mode dynamic blocks",
+      "description": null
+    },
+    {
+      "link": "https://isamert.net/2026/10/18/a-more-intuitive-sway-scratchpad-turn-it-into-a-floating-workspace.html",
+      "title": "A more intuitive Sway scratchpad: Turn it into a floating workspace",
+      "description": null
+    }
+  ]
+}

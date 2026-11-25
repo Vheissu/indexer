@@ -1,0 +1,32 @@
+{
+  "url": "https://andolga.nekoweb.org/feed.rss",
+  "title": "andolga's rants",
+  "subtitle": null,
+  "bytes": 3277,
+  "last": "2026-10-28",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://andolga.nekoweb.org/posts/2026-10-28-no-more-caps.html",
+      "title": "no more caps",
+      "description": "begone, pesky blocks"
+    },
+    {
+      "link": "https://andolga.nekoweb.org/posts/2026-04-16-Caligula-2-is-My-New-Favorite-Persona-Game.html",
+      "title": "Caligula 2 is My New Favorite Persona Game",
+      "description": "Maybe don't fire the guy because of a bad spin-off next time, yeah?"
+    },
+    {
+      "link": "https://andolga.nekoweb.org/posts/2026-02-03-The-iPhone-is-a-War-Crime.html",
+      "title": "The iPhone is a War Crime",
+      "description": "In at least one way, literally."
+    }
+  ]
+}

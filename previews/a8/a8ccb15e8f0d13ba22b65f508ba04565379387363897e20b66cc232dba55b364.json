@@ -1,0 +1,23 @@
+{
+  "url": "https://gikster.dev/feed",
+  "title": "George Bolba",
+  "subtitle": "Graphics enthusiast posting mainly about graphics programming!",
+  "bytes": 1385,
+  "last": "2026-02-03",
+  "languages": [],
+  "topics": [
+    "graphic-design",
+    "computer-graphics"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.gikster.dev/posts/Ocean-Simulation/",
+      "title": "Oceans: Theory to Implementation",
+      "description": "Learn how to implement Jerry Tessendorf’s ocean simulation model with step-by-step explanations and code examples."
+    }
+  ]
+}

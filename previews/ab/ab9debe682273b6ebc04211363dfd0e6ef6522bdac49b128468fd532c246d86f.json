@@ -1,0 +1,34 @@
+{
+  "url": "https://rossmcmillan.co.uk/rss.xml",
+  "title": "Ross McMillan",
+  "subtitle": "TypeScript, frontend and Node.js developer from Glasgow, Scotland.",
+  "bytes": 3842,
+  "last": "2026-01-20",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "typescript"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://rossmcmillan.co.uk/blog/a-better-oh-my-zsh-alias-for-gcb",
+      "title": "A better oh-my-zsh alias for gcb",
+      "description": "Prevent accidental commits on the wrong branch"
+    },
+    {
+      "link": "https://rossmcmillan.co.uk/blog/vscode-console-log-snippet",
+      "title": "VSCode keyboard shortcut for logging out a selected variable",
+      "description": "In an effort to wean off of TurboLog which has become awfully noisy"
+    },
+    {
+      "link": "https://rossmcmillan.co.uk/blog/3d-printing-a-mod-for-a-leak-sensor",
+      "title": "Making a shower sensor",
+      "description": "by 3D printing a stand for the Aqara Water Leak Sensor"
+    }
+  ]
+}

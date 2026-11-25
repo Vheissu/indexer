@@ -1,0 +1,35 @@
+{
+  "url": "https://mileswoodroffe.com/feed.xml",
+  "title": "Miles Woodroffe",
+  "subtitle": "I help entrepreneurs, startups and scaleups build and deliver modern software products, services and teams.",
+  "bytes": 103425,
+  "last": "2026-02-04",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "ruby-on-rails",
+    "technology"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://mileswoodroffe.com/articles/claude-on-rails",
+      "title": "Ruby on Rails + Claude Code = Magic",
+      "description": "8 Months Ago"
+    },
+    {
+      "link": "https://mileswoodroffe.com/articles/out-of-body-experience-with-turbo",
+      "title": "An Out of Body Experience with Turbo",
+      "description": "Messengers"
+    },
+    {
+      "link": "https://mileswoodroffe.com/articles/claude-rails-and-me",
+      "title": "Claude, Rails and me - An Inflection Point",
+      "description": "TL;DR"
+    }
+  ]
+}

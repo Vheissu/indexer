@@ -1,0 +1,32 @@
+{
+  "url": "https://writeodd.bearblog.dev/feed/",
+  "title": "Writing my Odd Game",
+  "subtitle": "Home of cramOS TTRPG, IRON on IRON on IRON, Odd Kids, and other Into the Odd inspired oddities. Also writing TTRPG adventures, rulesets and campaigns for oth...",
+  "bytes": 85068,
+  "last": "2026-11-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://writeodd.bearblog.dev/to-bootleg-boothill-pt1/",
+      "title": "To Bootleg Boothill - pt.1",
+      "description": "In pursuit of making my own Boot Hill blogpost Campaign"
+    },
+    {
+      "link": "https://writeodd.bearblog.dev/writing-iron/",
+      "title": "Writing for IRON on IRON on IRON",
+      "description": "Historical references and rules for IRON and other medieval stories"
+    },
+    {
+      "link": "https://writeodd.bearblog.dev/sword-and-mud-ttrpg/",
+      "title": "IRON on IRON on IRON - Sharpened Edition",
+      "description": "A new edition of a rules-lite Sword and Mud TTRPG for your medieval desires"
+    }
+  ]
+}

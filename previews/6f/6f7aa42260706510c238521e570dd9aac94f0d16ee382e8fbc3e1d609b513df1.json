@@ -1,0 +1,34 @@
+{
+  "url": "http://www.kaamkiya.dev/feeds/rss.xml",
+  "title": "Kaamkiya's Blog",
+  "subtitle": "The ramblings of a random programmer",
+  "bytes": 15177,
+  "last": "2026-01-06",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "programming"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://kaamkiya.github.io/posts/getting-a-domain/",
+      "title": "Getting a Domain",
+      "description": "I (finally) got myself an actual website!"
+    },
+    {
+      "link": "https://kaamkiya.github.io/posts/blog-questions-challenge/",
+      "title": "Blog Questions Challenge",
+      "description": "I read a lot of other people were doing this, so I figured why not?"
+    },
+    {
+      "link": "https://kaamkiya.github.io/posts/tiny-transpiler/",
+      "title": "The Tiny Transpiler",
+      "description": "A tiny Brainfuck to C transpiler written in 40 lines of C."
+    }
+  ]
+}

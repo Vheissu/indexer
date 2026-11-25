@@ -1,0 +1,20 @@
+{
+  "url": "https://borealis.bearblog.dev/feed/",
+  "title": "Borealis' Blog",
+  "subtitle": "Notes on learning, coding, and understanding (I just started this blog, so this page isn't fleshed out yet. I will complete it soon I promise)",
+  "bytes": 2771,
+  "last": "2026-10-28",
+  "languages": [],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://borealis.bearblog.dev/3-years-day-0/",
+      "title": "3 years, day 0",
+      "description": "On the 28th of October 2023. Three years ago today, I started a journal in Obsidian. I don't know exactly what caused me to want to journal in the first place. I never wrote about the reason. Something about the way I'm wired found it satisfying enough to continue year after year. It felt like I was building something. It still feels that way. So far after hundreds and hundreds of hours I've learn"
+    }
+  ]
+}

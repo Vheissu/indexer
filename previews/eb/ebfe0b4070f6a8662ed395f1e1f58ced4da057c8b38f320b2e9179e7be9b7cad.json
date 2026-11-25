@@ -1,0 +1,32 @@
+{
+  "url": "http://dan-blanchard.github.io/index.xml",
+  "title": "Home on Dan Blanchard",
+  "subtitle": "Recent content in Home on Dan Blanchard",
+  "bytes": 4093,
+  "last": "2026-03-29",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "http://dan-blanchard.github.io/blog/chardet-rewrite-controversy/",
+      "title": "Everything Claude Saw: A Transparent Account of the Chardet v7 Rewrite",
+      "description": "Exactly what Claude accessed from the old chardet codebase during the v7 rewrite, with evidence from the raw conversation transcripts."
+    },
+    {
+      "link": "http://dan-blanchard.github.io/blog/hello-world/",
+      "title": "Hello, World",
+      "description": "Is this thing on?"
+    },
+    {
+      "link": "http://dan-blanchard.github.io/chardet-architecture-regurgitation/",
+      "title": "chardet: Architecture and Data Flow (From Claude's Training Data)",
+      "description": "Claude’s description of chardet’s internal architecture, written entirely from training data memory with no source code access. Referenced in the chardet transparency post."
+    }
+  ]
+}

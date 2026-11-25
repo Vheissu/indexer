@@ -1,0 +1,36 @@
+{
+  "url": "https://nimish.ch/feed.xml",
+  "title": "Captain Jack Sparow",
+  "subtitle": "Cybersecurity writeups, CTF notes, reverse engineering walkthroughs, forensics labs, and Linux troubleshooting.",
+  "bytes": 76375,
+  "last": "2026-07-16",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "security",
+    "forensics",
+    "hackathon"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://nimish.ch/next-palantir",
+      "title": "Why build next Palantir?",
+      "description": "Story of a 23 year old founder knocking on doors of intelligence agencies and police departments - selling AI native platform to solve national security problems."
+    },
+    {
+      "link": "https://nimish.ch/flex-watt-scsp-hackathon",
+      "title": "Flex Watt: AI Data Centers That Flex With the Grid",
+      "description": "Live demo: Flex Watt"
+    },
+    {
+      "link": "https://nimish.ch/bluf-generator-critical-ops",
+      "title": "BLUF Generator: Critical Ops Hackathon",
+      "description": "Live demo: BLUF Generator"
+    }
+  ]
+}

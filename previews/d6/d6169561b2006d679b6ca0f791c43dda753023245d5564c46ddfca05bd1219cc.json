@@ -1,0 +1,32 @@
+{
+  "url": "https://greglinscheid.com/rss.xml",
+  "title": "Greg Linscheid",
+  "subtitle": "A personal website for Greg Linscheid",
+  "bytes": 1529,
+  "last": "2026-06-08",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://greglinscheid.com/blog/vilos92-com/",
+      "title": "vilos92.com: my GitHub project hub",
+      "description": "Short URLs and fuzzy search for every repo. Built with Preact, Vite+, and Cloudflare Workers"
+    },
+    {
+      "link": "https://greglinscheid.com/blog/the-new-new-greglinscheid-com/",
+      "title": "The new new greglinscheid.com",
+      "description": "Same URL, new repo — Astro 6, Vite+, Vanilla Extract, and fallow"
+    },
+    {
+      "link": "https://greglinscheid.com/blog/copyparty-tunnel/",
+      "title": "copyparty-tunnel",
+      "description": "Run a copyparty instance and expose it using a cloudflare tunnel"
+    }
+  ]
+}

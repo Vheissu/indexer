@@ -1,0 +1,22 @@
+{
+  "url": "https://cymatic.ie/rss.xml",
+  "title": null,
+  "subtitle": null,
+  "bytes": 28211,
+  "last": "2026-05-14",
+  "languages": [],
+  "topics": [
+    "secrets-management"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://cymatic.ie/blog/kubernetes-secret-management/",
+      "title": "Getting Secret Management Right in Kubernetes",
+      "description": "One of the biggest challenges in migrating to Kubernetes is getting secret management right. The number of teams I've seen committing plaintext secrets to Git, or baking them into Docker images, is genuinely surprising. Most of the time it's simply because they don't have a better solution, or it's just what they've always done. There are a few problems with this. From a security standpoint, you w"
+    }
+  ]
+}

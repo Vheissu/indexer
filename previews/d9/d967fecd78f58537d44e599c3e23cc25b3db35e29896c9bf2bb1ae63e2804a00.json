@@ -1,0 +1,19 @@
+{
+  "url": "https://www.uptheclarets.com/feed",
+  "title": "UpTheClarets",
+  "subtitle": "Unofficial Burnley FC Supporters Website",
+  "bytes": 84429,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "leeds",
+    "liverpool"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

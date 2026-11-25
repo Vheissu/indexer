@@ -1,0 +1,32 @@
+{
+  "url": "https://www.lloydatkinson.net/rss.xml",
+  "title": "Lloyd Atkinson's Articles",
+  "subtitle": "This is my place on the internet where I express my thoughts on software engineering, take notes, share knowledge, advocate for best practices, write articles on topics I'm passionate about, occasionally rant about things, and share my creative projects.",
+  "bytes": 27701,
+  "last": "2026-09-15",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://www.lloydatkinson.net/posts/2026/building-a-toolbox-for-my-website/",
+      "title": "Building a Toolbox for My Website",
+      "description": "I built a small collection of tools to automate repetitive tasks and make working on my website easier. - Tagged: Astro, Automation, Static Sites, Workflows, Tools"
+    },
+    {
+      "link": "https://www.lloydatkinson.net/posts/2026/reducing-dotnet-aws-lambda-cold-starts-by-increasing-memory/",
+      "title": "Reducing .NET AWS Lambda Cold Starts by Adding Memory",
+      "description": "A pleasantly simple fix that reduced cold-start time from ~7 seconds to ~2.5 seconds. - Tagged: .NET, AWS"
+    },
+    {
+      "link": "https://www.lloydatkinson.net/posts/2025/year-in-review/",
+      "title": "2025: Year in Review",
+      "description": "Reflecting on my year - Tagged: Year in review, Gardening, Programming, Portugal, Poland, Slovakia"
+    }
+  ]
+}

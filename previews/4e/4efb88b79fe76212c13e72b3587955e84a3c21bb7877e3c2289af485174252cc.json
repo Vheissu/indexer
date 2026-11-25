@@ -1,0 +1,22 @@
+{
+  "url": "https://bogdantruta.com/feed.xml",
+  "title": "Bogdan Truța: Writing",
+  "subtitle": "Writing by Bogdan Truța, AI Engineer at ERNI in Cluj-Napoca, on retrieval, LLM evaluation and agent systems.",
+  "bytes": 27429,
+  "last": "2026-10-18",
+  "languages": [],
+  "topics": [
+    "ai-writing"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://bogdantruta.com/blog/claude-finished-baldurs-gate-3/",
+      "title": "Claude Opus 5.5 finished Baldur's Gate 3 on its own in 39 hours",
+      "description": "A half-orc paladin named Claude, 96 sessions, $712 of API usage, a mod, a tool server and nobody at the controls. What the agent saw each turn, where it got stuck, and the one result I had to rerun."
+    }
+  ]
+}

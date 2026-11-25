@@ -1,0 +1,37 @@
+{
+  "url": "https://oikofuge.com/feed/atom/",
+  "title": "The Oikofuge",
+  "subtitle": "A discursive blog on various topics of minor interest",
+  "bytes": 11041,
+  "last": "2026-10-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "eclipse",
+    "archaeology",
+    "astronomy",
+    "geography"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://oikofuge.com/olde/",
+      "title": "Olde",
+      "description": "The word \"olde\" is an affected modern usage, but it also tells a story as old as the English language."
+    },
+    {
+      "link": "https://oikofuge.com/the-spilhaus-projection/",
+      "title": "The Spilhaus Projection",
+      "description": "A discussion of the Spilhaus \"World in a Square\" projection, used to display all the worlds oceans as a continuous body of water, without interruption."
+    },
+    {
+      "link": "https://oikofuge.com/eaglemoss-orrery/",
+      "title": "Eaglemoss Orrery",
+      "description": "An illustrated build log for a brass orrery (model of the solar system), using a kit produced by Eaglemoss."
+    }
+  ]
+}

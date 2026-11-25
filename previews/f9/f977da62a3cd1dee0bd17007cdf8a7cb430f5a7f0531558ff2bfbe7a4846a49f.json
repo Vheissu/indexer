@@ -1,0 +1,18 @@
+{
+  "url": "https://abc11.com/feed/",
+  "title": "ABC11 RSS Feed",
+  "subtitle": "Keep up with news from your local ABC station.",
+  "bytes": 29391,
+  "last": "2026-11-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "traffic"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

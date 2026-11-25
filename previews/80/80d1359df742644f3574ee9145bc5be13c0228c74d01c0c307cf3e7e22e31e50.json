@@ -1,0 +1,34 @@
+{
+  "url": "https://deadpresidents.tumblr.com/rss",
+  "title": "Dead Presidents",
+  "subtitle": "A journey through Presidential history with compelling stories, intriguing facts, original writing, and answers to your questions about the Presidency, Presidential politics, and each of the American Presidents.",
+  "bytes": 16976,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "us-politics"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://deadpresidents.tumblr.com/post/833924443618394112",
+      "title": "A team from Sacramento just won a sports championship and I don’t know how to react. As a lifelong…",
+      "description": "A team from Sacramento just won a sports championship and I don’t know how to react. As a..."
+    },
+    {
+      "link": "https://deadpresidents.tumblr.com/post/833496836770758656",
+      "title": "Why did LBJ grow out his hair?",
+      "description": "I apologize if this answer gets a little complicated because of the intricate political science..."
+    },
+    {
+      "link": "https://deadpresidents.tumblr.com/post/833493718253355008",
+      "title": "People really need to take a fucking civics class, I swear to God.",
+      "description": "Sadly, a lot of American schools no longer offer civics classes, so history/civics literacy are..."
+    }
+  ]
+}

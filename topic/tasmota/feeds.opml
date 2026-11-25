@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>tasmota feeds</title>
+    <dateCreated>Wed, 25 Nov 2026 00:04:35 +0000</dateCreated>
+  </head>
+  <body>
+    <outline type="rss" text="Tasshin" title="Tasshin" xmlUrl="https://tasshin.com/feed/" htmlUrl="https://tasshin.com"/>
+  </body>
+</opml>

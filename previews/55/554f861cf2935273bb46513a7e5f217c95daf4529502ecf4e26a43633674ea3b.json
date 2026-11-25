@@ -1,0 +1,36 @@
+{
+  "url": "https://jaypinion.com/feed.xml",
+  "title": "Jay Pinion",
+  "subtitle": "Jay Pinion is a software developer working on AI integrations and 4DGS web dev. Writing about AI, world models, reinforcement learning, building, and life.",
+  "bytes": 19918,
+  "last": "2026-06-27",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "development",
+    "entrepreneurship",
+    "life"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://jaypinion.com/2026/06/27/hay-fever",
+      "title": "Hay Fever",
+      "description": "The Free NHS Scotland Hay Fever Treatment That Actually Works"
+    },
+    {
+      "link": "https://jaypinion.com/2026/06/26/ride-to-the-sun-2026",
+      "title": "Ride to the Sun 2026",
+      "description": "Carlisle to Edinburgh Overnight"
+    },
+    {
+      "link": "https://jaypinion.com/2026/06/10/easy-german",
+      "title": "Easy German and Work That Matters",
+      "description": "A wholesome community"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "url": "https://azeemba.com/index.xml",
+  "title": "azeemba.com",
+  "subtitle": "Recent blog posts on azeemba.com",
+  "bytes": 17814,
+  "last": "2026-08-23",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://azeemba.com/posts/stochastic-parrots-can-be-intelligent.html",
+      "title": "Stochastic Parrots Can Be Intelligent",
+      "description": "LLMs are prediction engines but that, on its own, cannot dismiss their intelligence."
+    },
+    {
+      "link": "https://azeemba.com/posts/motivating-number-systems.html",
+      "title": "Motivating Number Systems",
+      "description": "Why do we need negatives, irrational, and imaginary numbers?"
+    },
+    {
+      "link": "https://azeemba.com/posts/extrapolating-from-existence.html",
+      "title": "Extrapolating From Existence",
+      "description": "Is it surprising that we exist now?"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "url": "https://jacko.io/rss.xml",
+  "title": "jacko.io",
+  "subtitle": "Jack O'Connor's blog",
+  "bytes": 2770,
+  "last": "2026-10-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "rust"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://github.com/rust-lang/rfcs/pull/4020",
+      "title": "RFC 4020",
+      "description": null
+    },
+    {
+      "link": "https://github.com/rust-lang/rfcs/pull/4019",
+      "title": "RFC 4019",
+      "description": null
+    },
+    {
+      "link": "https://www.youtube.com/watch?v=zQAia_u8WPM",
+      "title": "Making Progress on AsyncIterator",
+      "description": null
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "url": "https://departure.blog/atom/",
+  "title": "A parenthetical departure",
+  "subtitle": "Welcome to my tiny internet home. I write notes, jot small thoughts, and save clippings.",
+  "bytes": 39301,
+  "last": "2026-10-10",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "community"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://departure.blog/wwo/2026/9-spicy/",
+      "title": "Spicy (Weird Web October)",
+      "description": "Weird Web October 2026 / 9. Spicy"
+    },
+    {
+      "link": "https://departure.blog/wwo/2026/8-skeuomorphism/",
+      "title": "Skeuomorphism (Weird Web October)",
+      "description": "Weird Web October 2026 / 8. Skeuomorphism"
+    },
+    {
+      "link": "https://departure.blog/wwo/2026/5-sheet/",
+      "title": "Sheet (Weird Web October)",
+      "description": "Weird Web October 2026 / 5. Sheet"
+    }
+  ]
+}

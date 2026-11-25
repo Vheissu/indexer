@@ -1,0 +1,19 @@
+{
+  "url": "https://bcbookmarks.com/feed/",
+  "title": "BC Bookmarks",
+  "subtitle": "Literary news from the Boston College community",
+  "bytes": 46529,
+  "last": "2026-11-19",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "literature",
+    "poetry"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

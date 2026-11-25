@@ -1,0 +1,16 @@
+{
+  "url": "https://www.heavyconnector.com/feeds/posts/default",
+  "title": "Heavy Connector",
+  "subtitle": null,
+  "bytes": 140795,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

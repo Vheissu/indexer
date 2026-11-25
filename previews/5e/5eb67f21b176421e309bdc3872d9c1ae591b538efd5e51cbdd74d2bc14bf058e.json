@@ -1,0 +1,32 @@
+{
+  "url": "https://blog.sayan.page/feed.xml",
+  "title": "Sayan’s Blog",
+  "subtitle": "My writing focusses on machine learning, computer science and other topics that catch my fancy.",
+  "bytes": 60605,
+  "last": "2026-11-03",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://blog.sayan.page/wsp-with-open-weights-models/",
+      "title": "Weight Space Programming with Open Weights Models",
+      "description": "Rikiya Takehi, Jayden Teoh, Alex Zhang, and Omar Khattab. “Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights.” November 2026. https://rikiyat.github.io/blog/weight-space-programming/"
+    },
+    {
+      "link": "https://blog.sayan.page/mlx-notes/",
+      "title": "Notes on MLX",
+      "description": "Collection of my notes from reading the MLX docs."
+    },
+    {
+      "link": "https://blog.sayan.page/disable-hdr-firefox/",
+      "title": "Disable HDR in Firefox",
+      "description": "Set gfx.color_management.hdr to false in about:config."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "url": "https://pavi2410.com/blog/rss.xml",
+  "title": "pavi2410's Blog",
+  "subtitle": "Web development, programming, performance optimization, CSS, JavaScript, and technology insights by Pavitra Golchha",
+  "bytes": 5927,
+  "last": "2026-02-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "frontend",
+    "open-source",
+    "programming-languages",
+    "web"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://pavi2410.com/blog/undefined/",
+      "title": "I Built a KMP Library for In-App Updates (So You Don't Have To)",
+      "description": "Introducing kmp-app-updater — a Kotlin Multiplatform library that handles checking for updates, downloading them, and installing them on Android and Desktop. With pluggable update sources and Compose UI components."
+    }
+  ]
+}

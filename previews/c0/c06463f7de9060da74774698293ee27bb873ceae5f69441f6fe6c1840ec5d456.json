@@ -1,0 +1,20 @@
+{
+  "url": "https://www.mymelbournearts.com/feeds/posts/default",
+  "title": "My Melbourne Arts",
+  "subtitle": "Reviews and interviews exploring Melbourne’s independent and professional theatre and performing arts scene.",
+  "bytes": 241952,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "theatre",
+    "melbourne",
+    "humor"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

@@ -1,0 +1,20 @@
+{
+  "url": "https://franstraveltales.com/feed/",
+  "title": "frans travel tales",
+  "subtitle": "come along with me",
+  "bytes": 30042,
+  "last": "2026-09-12",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "travel",
+    "bali",
+    "holidays"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

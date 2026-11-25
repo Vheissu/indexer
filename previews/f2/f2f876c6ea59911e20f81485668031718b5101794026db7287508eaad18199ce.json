@@ -1,0 +1,18 @@
+{
+  "url": "https://greg.org/feed",
+  "title": "greg.org",
+  "subtitle": "the making of, by greg allen",
+  "bytes": 145465,
+  "last": "2026-11-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "art"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": []
+}

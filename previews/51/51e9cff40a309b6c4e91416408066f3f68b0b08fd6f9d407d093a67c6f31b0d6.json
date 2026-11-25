@@ -1,0 +1,32 @@
+{
+  "url": "https://nfld.uk/feed.xml",
+  "title": "jlj's blog",
+  "subtitle": "The latest posts from jlj's blog",
+  "bytes": 4812,
+  "last": "2026-02-17",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://nfld.uk/blog/20260217-oatly.html",
+      "title": "My feedback to Oatly",
+      "description": "My Tetra Pak hoard"
+    },
+    {
+      "link": "https://nfld.uk/blog/20251103-democracy.html",
+      "title": "Democracy: The current discourse",
+      "description": "Cllr Sam Jones is exceptional, sadly"
+    },
+    {
+      "link": "https://nfld.uk/blog/20240221-rumsfeld.html",
+      "title": "'Rumsfelding' ChatGPT",
+      "description": "The unknown unknowns of generative AI"
+    }
+  ]
+}

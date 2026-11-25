@@ -1,0 +1,18 @@
+{
+  "url": "https://new.miamisprings.com/feed/",
+  "title": "MiamiSprings.com",
+  "subtitle": "The Official Miami Springs Community Website",
+  "bytes": 65484,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "miami"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

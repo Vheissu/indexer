@@ -1,0 +1,34 @@
+{
+  "url": "https://howtotestfrontend.com/rss.xml",
+  "title": "How To Test Frontend Blog",
+  "subtitle": "Learn about testing Frontend and React based apps, with Jest, Vitest, and more",
+  "bytes": 11467,
+  "last": "2026-07-27",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "testing"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://howtotestfrontend.com/resources/visual-regression-testing-introduction-guide",
+      "title": "Visual Regression Testing: The Most Important Test You're Not Running",
+      "description": "Your tests can pass while your app looks broken. Visual regression testing catches the UI bugs that unit, integration and E2E tests miss - and here is how to set it up with Percy, Chromatic or Vitest Browser Mode"
+    },
+    {
+      "link": "https://howtotestfrontend.com/resources/react-testing-interview-questions",
+      "title": "React Testing Questions That Trip Up Engineers",
+      "description": "Think you know your way around a test suite? These React testing interview questions cover act(), debounced inputs, mocking pitfalls, IntersectionObserver, and more. They can be harder than they look."
+    },
+    {
+      "link": "https://howtotestfrontend.com/resources/frontend-ai-generated-test-code-smells",
+      "title": "Code Smells when you get AI to write your Frontend Tests",
+      "description": "AI is very powerful, but it can introduce lots of subtle code smells when it generates code for your frontend applications. Here are the main ones to look out for."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "url": "https://talbotspy.org/feed/",
+  "title": "Talbot Spy",
+  "subtitle": "Covering the public affairs and arts of Talbot County, Maryland",
+  "bytes": 293810,
+  "last": "2026-11-21",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

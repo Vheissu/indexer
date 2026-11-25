@@ -1,0 +1,32 @@
+{
+  "url": "https://azdavis.net/posts/feed.xml",
+  "title": "azdavis.net",
+  "subtitle": null,
+  "bytes": 11298,
+  "last": "2026-07-08",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://azdavis.net/posts/care-proportional-to-impact/",
+      "title": "Care proportional to impact",
+      "description": "How to value things."
+    },
+    {
+      "link": "https://azdavis.net/posts/obvious/",
+      "title": "When something seems obvious",
+      "description": "Why don't we just...?"
+    },
+    {
+      "link": "https://azdavis.net/posts/execute-refactor/",
+      "title": "Executing a large-scale refactor",
+      "description": "Safely and gradually rolling out large-scale changes on a codebase."
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "url": "http://timkadlec.com/atom.xml",
+  "title": "Tim Kadlec",
+  "subtitle": "Posts about web performance, product management, and the web.",
+  "bytes": 17613,
+  "last": "2026-05-18",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "web-performance"
+  ],
+  "source": {
+    "name": "simevidas/web-dev-feeds",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://timkadlec.com/remembers/2026/05/losing-focus/",
+      "title": "Losing Focus",
+      "description": null
+    },
+    {
+      "link": "https://timkadlec.com/saved/2026/05/2ality-blog-temporarily-offline/",
+      "title": "2ality blog: temporarily offline",
+      "description": null
+    },
+    {
+      "link": "https://timkadlec.com/saved/2024/12/web-performance-calendar-goodhart-s-law-in-action-3-webperf-examples/",
+      "title": "Web Performance Calendar » Goodhart’s law in action: 3 WebPerf examples",
+      "description": null
+    }
+  ]
+}

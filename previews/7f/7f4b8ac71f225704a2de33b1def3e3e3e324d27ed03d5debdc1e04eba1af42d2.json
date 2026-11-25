@@ -1,0 +1,34 @@
+{
+  "url": "https://passthejoe.wordpress.com/feed/",
+  "title": "Steven Rosenberg",
+  "subtitle": "Reading, writing, plumbing and ontology",
+  "bytes": 255898,
+  "last": "2025-11-26",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "wordpress"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://passthejoe.wordpress.com/2025/11/26/dave-winer-is-right-mastodon-is-harder-to-host-than-wordpress/",
+      "title": "Dave Winer is right: Mastodon is harder to host than WordPress",
+      "description": "Even though it's apples and oranges in more than a few ways, Dave Winer is right when he says it's easier to host WordPress than Mastodon. Dave's a little more all in on WP than I am. Maybe a lot more all in. Still, it's true that anybody can host their own WP instance on […]"
+    },
+    {
+      "link": "https://passthejoe.wordpress.com/2025/08/16/the-problem-with-wordpress-is-the-hosting/",
+      "title": "The problem with WordPress is the hosting",
+      "description": "I have self-hosted WordPress before, and I'm sure I could do it again. But it can be a lot of work, and it seems like a lot of infrastructure for a blog. Only one thing makes me want to do it, and that thing is the integrated comments. Nowadays very few blog engines (and none […]"
+    },
+    {
+      "link": "https://passthejoe.wordpress.com/2025/08/16/if-wordland-is-the-thing-that-makes-me-want-to-use-wordpress-ill-have-to-redesign-this-site/",
+      "title": "If Wordland is the thing that makes me want to use WordPress, I’ll have to redesign this site",
+      "description": "If Dave Winer's Wordland editor is the thing that gets me writing on this WordPress.com site, I'll have to see what I can do about a new theme. Maybe the fully dark, super spare design is a little much. I've been thinking and plotting on how to get the hundreds of posts on this site […]"
+    }
+  ]
+}

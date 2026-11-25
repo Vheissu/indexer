@@ -1,0 +1,34 @@
+{
+  "url": "https://silouanthompson.net/feed/",
+  "title": "S I L O U A N",
+  "subtitle": null,
+  "bytes": 11132,
+  "last": "2026-10-25",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "salvation"
+  ],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://silouanthompson.net/2026/10/change-is-coming/",
+      "title": "Change is coming",
+      "description": "\"Old things have passed away; all things are made new.\""
+    },
+    {
+      "link": "https://silouanthompson.net/2026/10/launch-out/",
+      "title": "Launch out",
+      "description": "Peter fell at Jesus’ knees and said, “Get away from me, Lord; I am a sinful man!”"
+    },
+    {
+      "link": "https://silouanthompson.net/2026/09/apostle-john-trinity/",
+      "title": "Apostle John explains the Holy Trinity",
+      "description": "One God, the Father of the living Word, of subsistent Wisdom and Power, and of the eternal Image; perfect, the Begetter of the Perfect; Father of the only-begotten Son..."
+    }
+  ]
+}

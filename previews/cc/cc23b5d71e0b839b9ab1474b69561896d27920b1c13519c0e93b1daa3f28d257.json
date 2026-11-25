@@ -1,0 +1,19 @@
+{
+  "url": "https://www.eurasiareview.com/feed/",
+  "title": "Eurasia Review",
+  "subtitle": "A Journal of Analysis and News",
+  "bytes": 436665,
+  "last": "2026-11-22",
+  "languages": [
+    "en"
+  ],
+  "topics": [
+    "international-relations",
+    "world-news"
+  ],
+  "source": {
+    "name": "data/survivors/",
+    "license": "Common Crawl terms"
+  },
+  "posts": []
+}

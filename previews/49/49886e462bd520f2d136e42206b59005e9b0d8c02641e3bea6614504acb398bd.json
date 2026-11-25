@@ -1,0 +1,32 @@
+{
+  "url": "https://sgdf.bearblog.dev/feed/",
+  "title": "Small Games Done Fast",
+  "subtitle": "Small Games Done Fast is a blog where I post small game projects from jams and minigames, usually developed in Godot, usually playable in a browser.",
+  "bytes": 17946,
+  "last": "2026-03-23",
+  "languages": [
+    "en"
+  ],
+  "topics": [],
+  "source": {
+    "name": "kagisearch/smallweb",
+    "license": "MIT"
+  },
+  "posts": [
+    {
+      "link": "https://sgdf.bearblog.dev/head-gamez/",
+      "title": "Head Gamez",
+      "description": "Avoid the bouncing skulls"
+    },
+    {
+      "link": "https://sgdf.bearblog.dev/272-pickup/",
+      "title": "272 Pickup",
+      "description": "Clear away all the dots with three tries."
+    },
+    {
+      "link": "https://sgdf.bearblog.dev/troidz/",
+      "title": "Troidz",
+      "description": "Dodge the 'troidz in this single-button arcade game inspired by Atari's 1973 Space Race."
+    }
+  ]
+}
